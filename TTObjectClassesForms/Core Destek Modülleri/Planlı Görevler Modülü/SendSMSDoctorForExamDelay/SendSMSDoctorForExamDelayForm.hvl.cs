@@ -1,0 +1,49 @@
+
+using System;
+using System.Xml;
+using System.Data;
+using System.Text;
+using System.Drawing;
+using System.Reflection;
+using System.Collections;
+using System.Linq;
+using System.ComponentModel;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Collections.ObjectModel;
+using System.Runtime.InteropServices;
+
+using TTUtils;
+using TTObjectClasses;
+using TTDataDictionary;
+using TTCoreDefinitions;
+using TTConnectionManager;
+using TTInstanceManagement;
+using TTDefinitionManagement;
+using TTStorageManager.Security;
+
+using TTStorageManager;
+using System.Runtime.Versioning;
+using System.Windows.Forms;
+using TTVisual;
+namespace TTFormClasses
+{
+    public partial class SendSMSDoctorForExamDelayForm : ScheduledTaskBaseForm
+    {
+    /// <summary>
+    /// Poliklinik Muayeneleri Gecikmesi için Doktora SMS Gönderme İşlemi
+    /// </summary>
+        protected TTObjectClasses.SendSMSDoctorForExamDelay _SendSMSDoctorForExamDelay
+        {
+            get { return (TTObjectClasses.SendSMSDoctorForExamDelay)_ttObject; }
+        }
+
+        public SendSMSDoctorForExamDelayForm() : base("SENDSMSDOCTORFOREXAMDELAY", "SendSMSDoctorForExamDelayForm")
+        {
+        }
+
+        protected SendSMSDoctorForExamDelayForm(string objectDefName, string formDefName) : base(objectDefName, formDefName)
+        {
+        }
+    }
+}

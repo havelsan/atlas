@@ -1,0 +1,57 @@
+
+using System;
+using System.Xml;
+using System.Data;
+using System.Text;
+using System.Drawing;
+using System.Reflection;
+using System.Collections;
+using System.Linq;
+using System.ComponentModel;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Collections.ObjectModel;
+using System.Runtime.InteropServices;
+
+using TTUtils;
+using TTObjectClasses;
+using TTDataDictionary;
+using TTCoreDefinitions;
+using TTConnectionManager;
+using TTInstanceManagement;
+using TTDefinitionManagement;
+using TTStorageManager.Security;
+
+using TTStorageManager;
+using System.Runtime.Versioning;
+namespace TTObjectClasses
+{
+    [Serializable, TTStorageManager.Attributes.ObjectDefAttribute(Name="StockOutMaterial")] 
+
+    /// <summary>
+    /// Stok Çıkışlarının Yapılması İçin kullanılan sınıftır
+    /// </summary>
+    public  partial class StockOutMaterial : StockActionDetailOut
+    {
+        public class StockOutMaterialList : TTObjectCollection<StockOutMaterial> { }
+                    
+        public class ChildStockOutMaterialCollection : TTObject.TTChildObjectCollection<StockOutMaterial>
+        {
+            public ChildStockOutMaterialCollection(TTObject parent, Guid relDefID) : base(parent, relDefID) { }
+            public ChildStockOutMaterialCollection(TTObject.ITTChildObjectCollection parentCollection, string relSubtypeDefName) : base(parentCollection, relSubtypeDefName) { }
+        }
+                    
+        protected StockOutMaterial(TTObjectContext objectContext, string objectDefName, DataRow dataRow) : base(objectContext, objectDefName, dataRow) { }
+        protected StockOutMaterial(TTObjectContext objectContext, string objectDefName, DataRow dataRow, bool isImported) : base(objectContext, objectDefName, dataRow, isImported) { }
+        protected StockOutMaterial(TTObjectContext objectContext, string objectDefName, Guid objectID) : base(objectContext, objectDefName, objectID) { }
+        protected StockOutMaterial(TTObjectContext objectContext, string objectDefName, Guid objectID, bool isImported) : base(objectContext, objectDefName, objectID, isImported) { }
+        protected StockOutMaterial(TTObjectContext objectContext, DataRow dataRow) : base(objectContext, "STOCKOUTMATERIAL", dataRow) { }
+        protected StockOutMaterial(TTObjectContext objectContext, DataRow dataRow, bool isImported) : base(objectContext, "STOCKOUTMATERIAL", dataRow, isImported) { }
+        public StockOutMaterial(TTObjectContext objectContext) : this(objectContext, (DataRow)null) { }
+
+        public StockOutMaterial(SerializationInfo info, StreamingContext context) : base(info, context) { }
+
+        public StockOutMaterial() : base() { }
+
+    }
+}

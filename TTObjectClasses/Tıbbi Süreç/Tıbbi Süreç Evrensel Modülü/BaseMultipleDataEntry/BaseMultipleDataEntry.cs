@@ -1,0 +1,79 @@
+﻿
+using System;
+using System.Xml;
+using System.Data;
+using System.Text;
+using System.Drawing;
+using System.Reflection;
+using System.Collections;
+using System.Linq;
+using System.ComponentModel;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Collections.ObjectModel;
+using System.Runtime.InteropServices;
+
+using TTUtils;
+using TTObjectClasses;
+using TTDataDictionary;
+using TTCoreDefinitions;
+using TTConnectionManager;
+using TTInstanceManagement;
+using TTDefinitionManagement;
+using TTStorageManager.Security;
+
+
+
+using TTStorageManager;
+using System.Runtime.Versioning;
+
+
+namespace TTObjectClasses
+{
+    public  partial class BaseMultipleDataEntry : TTObject
+    {
+    /// <summary>
+    /// İşlem Özeti
+    /// </summary>
+        public string Summary
+        {
+            get
+            {
+                try
+                {
+                    #region Summary_GetScript                    
+                    return GetSummary();
+                    #endregion Summary_GetScript
+                }
+                catch (Exception ex)
+                {
+                    throw new TTException(TTUtils.CultureService.GetText("M148", "Error getting property '{0}'", "Summary") + " : " + ex.Message, ex);
+                }
+            }
+            set
+            {
+                try
+                {
+#region Summary_SetScript                    
+                    
+#endregion Summary_SetScript
+                }
+                catch (Exception ex)
+                {
+                    throw new TTException(TTUtils.CultureService.GetText("M149", "Error setting property '{0}'", "Summary") + " : " + ex.Message, ex);
+                }
+            }
+        }
+
+        public virtual string GetSummary()
+        {
+            return string.Empty;
+        }
+
+        public virtual string GetRowColor()
+        {
+            return string.Empty;
+        }
+
+    }
+}

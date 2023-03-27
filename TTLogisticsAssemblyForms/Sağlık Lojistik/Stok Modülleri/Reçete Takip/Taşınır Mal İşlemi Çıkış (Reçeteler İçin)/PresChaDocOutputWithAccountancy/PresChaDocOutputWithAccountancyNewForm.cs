@@ -1,0 +1,47 @@
+
+using System;
+using System.Xml;
+using System.Data;
+using System.Text;
+using System.Drawing;
+using System.Reflection;
+using System.Collections;
+using System.Linq;
+using System.ComponentModel;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Collections.ObjectModel;
+using System.Runtime.InteropServices;
+
+using TTUtils;
+using TTObjectClasses;
+using TTDataDictionary;
+using TTCoreDefinitions;
+using TTConnectionManager;
+using TTInstanceManagement;
+using TTDefinitionManagement;
+using TTStorageManager.Security;
+
+using SmartCardWrapper;
+
+using TTStorageManager;
+using System.Runtime.Versioning;
+using System.Windows.Forms;
+using TTVisual;
+namespace TTFormClasses
+{
+    /// <summary>
+    /// Taşınır Mal İşlemi Çıkış (Reçeteler İçin)
+    /// </summary>
+    public partial class PresChaDocOutputWithAccountancyNewForm : BasePresChaDocOutputWithAccountancyForm
+    {
+        protected override void PreScript()
+        {
+#region PresChaDocOutputWithAccountancyNewForm_PreScript
+    base.PreScript();
+            ((ITTListBoxColumn)((ITTGridColumn)this.PresChaDocOutputWithAccountancyDetails.Columns["MaterialPresChaDocOutputDetWithAccountancy"])).ListFilterExpression = "STOCKS.STORE = " + ConnectionManager.GuidToString(_PresChaDocOutputWithAccountancy.Store.ObjectID) + " AND STOCKS.INHELD > 0";
+#endregion PresChaDocOutputWithAccountancyNewForm_PreScript
+
+            }
+                }
+}

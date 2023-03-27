@@ -1,0 +1,43 @@
+﻿
+using System;
+using System.Xml;
+using System.Data;
+using System.Text;
+using System.Drawing;
+using System.Reflection;
+using System.Collections;
+using System.Linq;
+using System.ComponentModel;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Collections.ObjectModel;
+using System.Runtime.InteropServices;
+
+using TTUtils;
+using TTObjectClasses;
+using TTDataDictionary;
+using TTCoreDefinitions;
+using TTConnectionManager;
+using TTInstanceManagement;
+using TTDefinitionManagement;
+using TTStorageManager.Security;
+
+
+
+using TTStorageManager;
+using System.Runtime.Versioning;
+
+
+namespace TTObjectClasses
+{
+    /// <summary>
+    /// 484b2fc2-d1a2-4675-872e-c2c56e72d921
+    /// </summary>
+    public  partial class SKRSKonjenitalAnomaliliDogumVarligi : BaseSKRSCommonDef
+    {
+        public partial class GetSKRSKonjenitalAnomaliliDogumVarligi_Class : TTReportNqlObject 
+        {
+        }
+
+    }
+}

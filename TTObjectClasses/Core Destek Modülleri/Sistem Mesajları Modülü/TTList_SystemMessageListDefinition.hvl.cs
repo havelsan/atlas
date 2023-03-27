@@ -1,0 +1,78 @@
+
+using System;
+using System.Xml;
+using System.Data;
+using System.Text;
+using System.Drawing;
+using System.Reflection;
+using System.Collections;
+using System.Linq;
+using System.ComponentModel;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Collections.ObjectModel;
+using System.Runtime.InteropServices;
+
+using TTUtils;
+using TTObjectClasses;
+using TTDataDictionary;
+using TTCoreDefinitions;
+using TTConnectionManager;
+using TTInstanceManagement;
+using TTDefinitionManagement;
+using TTStorageManager.Security;
+
+using TTStorageManager;
+using System.Runtime.Versioning;
+namespace TTObjectClasses
+{
+    public partial class TTList_SystemMessageListDefinition : TTList
+    {
+        public TTList_SystemMessageListDefinition(TTListDef listDef, string listFilterExpression) : base(listDef, listFilterExpression)
+        {
+        }
+
+        public TTList_SystemMessageListDefinition(TTObjectContext objectContext, TTListDef listDef, string listFilterExpression) : base(objectContext, listDef, listFilterExpression)
+        {
+        }
+
+        BindingList<SystemMessage.GetSystemMessagesDefinition_Class> _listOfDefinition;
+    
+        public override int RunListNql(string injectionNQL)
+        {
+            _listOfDefinition = SystemMessage.GetSystemMessagesDefinition(injectionNQL);
+            return _listOfDefinition.Count;
+        }
+
+        public override Guid FillRow(int rowIndex, object[] values)
+        {
+            SystemMessage.GetSystemMessagesDefinition_Class definition = _listOfDefinition[rowIndex];
+            values[2] = definition.Message;
+            values[0] = definition.MessageCode;
+
+            if (definition.MessageType != null)
+                values[1] = GetEnumDisplayText("SystemMessageTypeEnum",(int)definition.MessageType);
+            return ConnectionManager.FromDBGuid(definition["OBJECTID"]);
+        }
+
+        public override Dictionary<int, Type> GetColumnDataTypes()
+        {
+            Dictionary<int, Type> columnDataTypes = new Dictionary<int, Type>();
+            columnDataTypes.Add(2, typeof(string));
+            columnDataTypes.Add(0, typeof(long));
+            columnDataTypes.Add(1, typeof(SystemMessageTypeEnum));
+
+            return columnDataTypes;
+        }
+
+        public override Dictionary<int, String> GetColumnNames()
+        {
+            Dictionary<int, String> columnNames = new Dictionary<int, String>();
+            columnNames.Add(2, "MESSAGE");
+            columnNames.Add(0, "MESSAGECODE");
+            columnNames.Add(1, "MESSAGETYPE");
+
+            return columnNames;
+        }
+    }
+}

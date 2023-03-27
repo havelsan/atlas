@@ -1,0 +1,56 @@
+﻿
+using System;
+using System.Xml;
+using System.Data;
+using System.Text;
+using System.Drawing;
+using System.Reflection;
+using System.Collections;
+using System.Linq;
+using System.ComponentModel;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Collections.ObjectModel;
+using System.Runtime.InteropServices;
+
+using TTUtils;
+using TTObjectClasses;
+using TTDataDictionary;
+using TTCoreDefinitions;
+using TTConnectionManager;
+using TTInstanceManagement;
+using TTDefinitionManagement;
+using TTStorageManager.Security;
+
+
+
+using TTStorageManager;
+using System.Runtime.Versioning;
+
+
+namespace TTObjectClasses
+{
+    public  partial class NursingFallingDownRisk : TTObject
+    {
+#region Methods
+        public static void CalcFallingDownRiskTotalScore(NursingFallingDownRisk nursingFallingDownRisk)
+        {
+            //int? toplam=0;
+            //if(nursingFallingDownRisk.RiskFactor!=null)
+            //    toplam+= nursingFallingDownRisk.RiskFactor.Score;
+            ////if(nursingFallingDownRisk.StandUpTest!=null)
+            ////    toplam+= nursingFallingDownRisk.StandUpTest.Score;
+            //nursingFallingDownRisk.TotalScore=toplam;
+        }
+        //protected override bool IsReadOnly()
+        //{
+        //    if(((ITTObject)this).IsNew!=true)
+        //        return true;
+            
+        //    return false;
+        //}
+        
+#endregion Methods
+
+    }
+}
