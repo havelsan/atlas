@@ -1,0 +1,96 @@
+﻿<div class="row" [ngStyle]="accordionContainerHeight" data-tid="A357799">
+    <div class="col-md-12" style="height:100%" data-tid="A357800">
+        <dx-accordion #searchAndListAccordion class="margin-bottom-10" collapsible="true" style="height:100%" id="searchAndListAccordion" (onItemTitleClick)="accordionClick($event)" data-tid="A357801">
+            <dxi-item title="Nükleer Tıp İş Listesi" style="height:100%" data-tid="A357802">
+                <div class="row" style="height:200px" data-tid="A357803">
+                        <div class="col-sm-4" data-tid="A357804">
+                            <div class="row" style="margin-bottom: 5px;" data-tid="A357805">
+                                <div class="col-sm-6" data-tid="A357806">
+                                    <label class="control-label" data-tid="A357807">Başlangıç Tarihi</label>
+                                    <dx-date-box [(value)]="NuclearMedicineWorkListModel.StartDate" width="100%" type="date" displayFormat="dd/MM/yyyy" data-tid="A357808"></dx-date-box>
+                                </div>
+                                <div class="col-sm-6" data-tid="A357809">
+                                    <label class="control-label" data-tid="A357810">Bitiş Tarihi</label>
+                                    <dx-date-box [(value)]="NuclearMedicineWorkListModel.EndDate" width="100%" type="date" displayFormat="dd/MM/yyyy" data-tid="A357811"></dx-date-box>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" data-tid="A357812">
+                            <div class="row" style="margin-bottom: 5px;" data-tid="A357813">
+                                <div class="col-sm-6" data-tid="A357814">
+                                    <label class="control-label" data-tid="A357815">İşlem Durumu</label>
+                                    <dx-tag-box [items]="[{Disabled:false,Group:null,Selected:false,Text:&#39;İptaller&#39;,Value:&#39;CANCELLED&#39;},{Disabled:false,Group:null,Selected:false,Text:&#39;Başarılı&#39;,Value:&#39;SUCCESSFUL&#39;},{Disabled:false,Group:null,Selected:true,Text:&#39;Başarısız&#39;,Value:&#39;UNSUCCESSFUL&#39;},{Disabled:false,Group:null,Selected:false,Text:&#39;Tamamlanmamış&#39;,Value:&#39;UNCOMPLETED&#39;}]" applyValueMode="useButtons" searchEnabled="true" displayExpr="Text" showDataBeforeSearch="true" showSelectionControls="true" [multiline]="false" placeholder="Durum Seçiniz..." valueExpr="Value" [(value)]="NuclearMedicineWorkListModel.SelectedStateTypes" (onSelectionChanged)="stateTypeSelectionChanged()" i18n-placeholder="@@M13366" id="A24634" data-tid="A357816">
+                                    </dx-tag-box>
+                                </div>
+                                <div class="col-sm-6" data-tid="A357817">
+                                    <label class="control-label" data-tid="A357818">İşlem Adımı</label>
+                                    <dx-tag-box [items]="NuclearMedicineWorkListStateItems" applyValueMode="useButtons" displayExpr="StateDefName" showDataBeforeSearch="true" showSelectionControls="true" [multiline]="false" placeholder="İşlem Durumu" [(value)]="SelectedNuclearMedicineWorkListStateItems" (onSelectionChanged)="nuclearMedicineWorkListStateItemsSelectionChanged($event.addedItems)" data-tid="A357819">
+                                    </dx-tag-box>
+                                </div>
+                            </div>
+                        </div>
+                        
+                   
+                        <div class="col-md-8" data-tid="A357820">
+                            <label class="control-label" data-tid="A357821">Birim</label>
+                            <dx-tag-box [items]="NuclearMedicineWorkListModel.UserResourceItems" applyValueMode="useButtons" displayExpr="ResourceName" showDataBeforeSearch="true" showSelectionControls="true" [multiline]="false" placeholder="Seçilen Birimler" [(value)]="NuclearMedicineWorkListModel.SelectedUserResourceItems" (onSelectionChanged)="userResourceItemsSelectionChanged()" data-tid="A357822">
+                            </dx-tag-box>
+                        </div>
+                 
+                        <div class="col-md-12" data-tid="A357823">
+                            <div class="row" data-tid="A357824">
+                                <div class="col-md-2" data-tid="A357825">
+                                    <label class="control-label" data-tid="A357826">Kabul No</label>
+                                    <dx-text-box [showClearButton]="true" [(value)]="NuclearMedicineWorkListModel.ProtocolNo" (onEnterKey)="onProtocolNoEnterKeyDown($event)" data-tid="A357827"></dx-text-box>
+
+                                </div>
+                                <div class="col-md-4" data-tid="A357828">
+                                    <label class="control-label" data-tid="A357829">Hasta</label>
+                                    <PatientSearchForm Width="100%" (SelectedPatientChanged)="patientChanged($event)" data-tid="A357830"></PatientSearchForm>
+                                </div>
+                                <br data-tid="A357831" />
+                                <div class="col-md-6" data-tid="A357832">
+
+                                    <dx-radio-group [items]="radioGroupOnlyOwnPatientItems" displayExpr="text" valueExpr="value" [(value)]="NuclearMedicineWorkListModel.OnlyOwnPatient" layout="horizontal" data-tid="A357833">
+                                    </dx-radio-group>
+                                </div>
+                            </div>
+                    </div>
+                        </div>
+                <div class="row" style="margin-bottom: 5px;" data-tid="A357834">
+                   
+                        <label class="control-label col-sm-6 info-label" data-tid="A357835">Listelenen İşlem Sayısı : {{this.NuclearMedicineWorkListModel.NuclearMedicineList?.length}}</label>
+                        <div class="col-sm-6" style="float:right;" data-tid="A357836">
+                            <dx-button type="default" class="pull-right" style="float:left; margin-top: 16px;" icon="fa fa-bars" text="Listele" (onClick)="btnListele_Click()" i18n-text="@@M27337" id="A24664" data-tid="A357837"></dx-button>
+
+                        </div>
+
+                </div>
+                <div class="row" style="height:calc(100% - 275px)" data-tid="A357838">
+                    <div class="col-sm-12" style="height:100%" data-tid="A357839">
+                        <dx-data-grid #WorkListGrid height="100%" width="100%" id="gridContainer" [columns]="WorkListColumns" [dataSource]="NuclearMedicineWorkListModel.NuclearMedicineList" (onRowClick)="select($event)" [selection]="{mode: 'single',allowSelectAll: false, showCheckBoxesMode: 'none'}" [editing]="{mode: 'row' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" [ngStyle]="{'padding-top': '10px', 'min-width':'100%' }" (onToolbarPreparing)="onToolbarPreparing($event)" (onRowPrepared)="rowPrepared($event)" data-tid="A357840">
+                            <dxo-paging [pageSize]="20" data-tid="A357841"></dxo-paging>
+                            <dxo-export [enabled]="true" fileName="Nükleer Tıp İş Listesi" [allowExportSelectedData]="false" id="A28479" data-tid="A357842"></dxo-export>
+                            <dxo-column-chooser [enabled]="true" id="A28480" data-tid="A357843"></dxo-column-chooser>
+                            <div *dxTemplate="let cellData of 'PriorityCellTemplate'" id="A28542" data-tid="A357844">
+                                <div class="col-md-2" style="float:left;margin-left: -16px;" id="A28543" data-tid="A357845">{{cellData.text}}</div>&nbsp;
+
+                                <i *ngIf="cellData.data.isNuclearMedicineTestEmergency" class="fa fa-ambulance" data-toggle="tooltip" data-placement="bottom" title="Acil!" style="float:right;color:#e40d0d;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M10456" id="A28545" data-tid="A357846">&nbsp;</i>
+                            </div>
+                        </dx-data-grid>
+                    </div>
+                </div>
+            </dxi-item>
+    </dx-accordion>
+
+    <div class="row" style="height:98%" [ngStyle]="composeComponentRowContainerVisible" data-tid="A357847">
+        <div class="col-md-12 col-sm-12 col-xs-12" data-tid="A357848">
+            <comp-compose #dynamicComponent [Info]="systemApiService?.componentInfo" [SaveAndCloseCommandVisible]="true" [CloseWithStateTransition]="true" (DynamicComponentClosed)="dynamicComponentClosed($event)" (ComponentCreated)="dynamicComponentCreated($event)" (DynamicComponentActionExecuted)="dynamicComponentActionExecuted($event)" (DynamicComponentViewModelLoaded)="dynamicComponentViewModelLoaded($event)" data-tid="A357849"></comp-compose>
+        </div>
+    </div>
+    <div data-tid="A357850">
+        <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A357851">
+        </dx-load-panel>
+    </div>
+</div>
+    </div>

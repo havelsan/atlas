@@ -1,0 +1,89 @@
+﻿<div class="col-sm-3" style="height: 100%;" data-tid="A369985">
+    <dx-data-grid #grid id="gridContainer" [dataSource]="medicalResarchTermDefs " keyExpr="ObjectId" [hoverStateEnabled]="true" [showBorders]="true" style="height: 100%;" [paging]="{pageSize:34}" (onSelectionChanged)="selectionGridEvent($event)" data-tid="A369986">
+        <dxo-selection mode="single" data-tid="A369987"></dxo-selection>
+        <dxo-filter-row [visible]="true" data-tid="A369988"></dxo-filter-row>
+        <dxi-column dataField="TermCode" caption="Dönem Kodu" data-tid="A369989"></dxi-column>
+        <dxi-column dataField="TermName" caption="Dönem Adı" data-tid="A369990"></dxi-column>
+    </dx-data-grid>
+</div>
+
+<div class="col-sm-9" data-tid="A369991">
+    <div class="row" data-tid="A369992">
+        <div class="col-sm-8" data-tid="A369993">
+            <dx-button icon="fa fa-plus" type="default" text="Yeni" (onClick)="newTermClick()" data-tid="A369994">
+            </dx-button>
+        </div>
+        
+        <div class="col-sm-2" data-tid="A369995">
+            <dx-button icon="check" type="success" text="Kaydet" (onClick)="saveTermClick()" data-tid="A369996">
+            </dx-button>
+        </div>
+        <div class="col-sm-2" data-tid="A369997">
+            <dx-button icon="revert" type="danger" text="Vazgeç" (onClick)="cancelClick()" data-tid="A369998">
+            </dx-button>
+        </div>
+    </div>
+    <div *ngIf="openTermDef" data-tid="A369999">
+        <div class="row" data-tid="A370000">
+            <div class="col-sm-3" data-tid="A370001">
+                <div data-tid="A370002">Dönem Kodu</div>
+            </div>
+            <div class="col-sm-3" data-tid="A370003">
+                <div data-tid="A370004">Dönem Adı</div>
+            </div>
+            <div class="col-sm-2" data-tid="A370005">
+                <dx-check-box [(value)]="model.Status" [width]="80" text="Aktif/Pasif" data-tid="A370006"></dx-check-box>
+            </div>
+
+        </div>
+
+        <div class="row" data-tid="A370007">
+            <div class="col-sm-3" data-tid="A370008">
+                <dx-text-box [(value)]="model.TermCode" data-tid="A370009"></dx-text-box>
+            </div>
+            <div class="col-sm-9" data-tid="A370010">
+                <dx-text-box [(value)]="model.TermName" data-tid="A370011"></dx-text-box>
+            </div>
+        </div>
+        <br data-tid="A370012" />
+        <div class="row" data-tid="A370013">
+            <div class="col-sm-3" data-tid="A370014">
+                <div data-tid="A370015">Başlangıç Tarihi</div>
+            </div>
+            <div class="col-sm-3" data-tid="A370016">
+                <div data-tid="A370017">Bitiş Tarihi</div>
+            </div>
+            <div class="col-sm-6" data-tid="A370018">
+                <div data-tid="A370019">Dönem Bütçesi</div>
+            </div>
+        </div>
+
+        <div class="row" data-tid="A370020">
+            <div class="col-sm-3" data-tid="A370021">
+                <dx-date-box [(value)]="model.StartDate" type="date" style="width: 100%;" data-tid="A370022"></dx-date-box>
+            </div>
+            <div class="col-sm-3" data-tid="A370023">
+                <dx-date-box [(value)]="model.EndDate" type="date" style="width: 100%;" data-tid="A370024"></dx-date-box>
+            </div>
+            <div class="col-sm-6" data-tid="A370025">
+                <dx-text-box [(value)]="model.TermBudgetPrice" data-tid="A370026"></dx-text-box>
+            </div>
+        </div>
+        <br data-tid="A370027" />
+        <div class="row" data-tid="A370028">
+            <div class="col-sm-12" data-tid="A370029">
+                <div data-tid="A370030">Açıklama</div>
+            </div>
+        </div>
+
+        <div class="row" data-tid="A370031">
+            <div class="col-sm-12" data-tid="A370032">
+                <dx-text-box [(value)]="model.Desciption" data-tid="A370033"></dx-text-box>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<dx-load-panel shadingColor="rgba(0,0,0,0.4)" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A370034">
+</dx-load-panel>

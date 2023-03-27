@@ -1,0 +1,1128 @@
+﻿<style type="text/css" id="A16460" data-tid="A326728">
+	.dropup,
+	.dropdown {
+		position: absolute !important;
+	}
+
+	.accordion {
+		background-color: #08c;
+	}
+</style>
+<!-- <NeStatePanelComponent [ObjectDefID]="_ConsumableMaterialDefinition.ObjectDefID"
+	[CurrentStateDefID]="_ConsumableMaterialDefinition.CurrentStateDefID" (onSetState)="setState($event)"
+	(onSaveChanges)="save($event)">
+</NeStatePanelComponent> -->
+
+<form id="ConsumableMaterialDefinitionForm" class="form-horizontal" role="form" data-tid="A326729">
+</form>
+
+<div class="col-md-12 " id="sarfGroup" data-tid="A326730">
+	<div style="height: calc(100% - 250px);" data-tid="A326731">
+		<div class="panel" style="margin-bottom:5px" data-tid="A326732">
+			<div style="background-color: #08c;padding: 0px 10px !important;" data-tid="A326733">
+				<h4 class="panel-title" style="color: white;height: 27px;" data-tid="A326734">
+					<a data-parent="#myGroup2" data-tid="A326735">Genel Bilgiler</a>
+					<dx-button type="button" type="success" icon="save" class="btn btn-primary" (onClick)="save()" text="Kaydet" style="margin-left: 79%;" data-tid="A326736"></dx-button>
+					<dx-button type="button" type="danger" icon="close" class="btn btn-primary" (onClick)="cancel()" text="Vazgeç" style="margin-left: 1%;" data-tid="A326737"></dx-button>
+				</h4>
+			</div>
+			<div id="GenelBilgiler" data-tid="A326738">
+				<div class="panel-body" data-tid="A326739">
+					<div class="row" data-tid="A326740">
+						<!-- Üst kısım Baslangıc -->
+						<div class="col-sm-2" data-tid="A326741">
+							<div class=" dx-field" style="float: left;" data-tid="A326742">
+								<div class="dx-field-label" style="width: 40%;font-weight: bold;" title="Kodu" data-tid="A326743">Kodu
+								</div>
+								<div class="dx-field-value" style="float: left;" data-tid="A326744">
+									<dx-text-box [readOnly]="true" [(value)]="consumableMaterialDefinitionFormViewModel._ConsumableMaterialDefinition.MaterialCodeSequence" data-tid="A326745">
+									</dx-text-box>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-2" data-tid="A326746">
+							<div class=" dx-field" style="float: left;" data-tid="A326747">
+								<div class="dx-field-label" style="font-weight: bold;" title="Ekleyen Kullanıcı" data-tid="A326748">
+									Ekleyen Kul.</div>
+								<div class="dx-field-value" style="float: left;" data-tid="A326749">
+									<dx-text-box [readOnly]="true" [(value)]="creationUser" data-tid="A326750"></dx-text-box>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-2" data-tid="A326751">
+							<div class=" dx-field" style="float: left;" data-tid="A326752">
+								<div class="dx-field-label" style="font-weight: bold;" title="Eklenme Tarihi" data-tid="A326753">
+									Eklenme Tar.</div>
+								<div class="dx-field-value" style="float: left;" data-tid="A326754">
+									<dx-date-box [readOnly]="true" [(value)]="creationDate" data-tid="A326755"></dx-date-box>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-2" data-tid="A326756">
+							<div class=" dx-field" style="float: left;" data-tid="A326757">
+								<div class="dx-field-label" style="font-weight: bold;" title="Değiştiren Kullanıcı" data-tid="A326758">
+									Değiştiren Kul.</div>
+								<div class="dx-field-value" style="float: left;" data-tid="A326759">
+									<dx-text-box [readOnly]="true" [(value)]="lastUpdateUser" data-tid="A326760"></dx-text-box>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-2" data-tid="A326761">
+							<div class=" dx-field" style="float: left;margin: 0 0 5px 0;" data-tid="A326762">
+								<div class="dx-field-label" style="font-weight: bold;" title="Değiştirilme Tarihi" data-tid="A326763">
+									Değiştirilme Tar.</div>
+								<div class="dx-field-value" style="float: left;" data-tid="A326764">
+									<dx-date-box [readOnly]="true" [(value)]="lastUpdateDate" data-tid="A326765"></dx-date-box>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-1" data-tid="A326766">
+							<dx-button type="btn btn-default" style="font-size: 100%;border-style: unset;color: #4276a4 !important;" text="İ" (onClick)="getDetailAudit()" data-tid="A326767"></dx-button>
+						</div>
+
+						<div class="col-sm-1" data-tid="A326768">
+							<dx-select-box searchEnabled="true" [(value)]="consumableMaterialDefinitionFormViewModel._ConsumableMaterialDefinition.IsActive" [items]="IsActiveItems" displayExpr="Name" valueExpr="Value" data-tid="A326769"></dx-select-box>
+						</div>
+					</div>
+					<div class="row" data-tid="A326770">
+						<div class="col-sm-7" data-tid="A326771">
+							<div class=" dx-field" style="margin: 0 0 5px 0;" data-tid="A326772">
+								<div class="dx-field-label" style="width: 11%;font-weight: bold;" title="Malzeme Adı" data-tid="A326773">
+									Malzeme Adı</div>
+								<div class="dx-field-value" style="float: left; width: 78%;" data-tid="A326774">
+									<dx-text-box [(value)]="consumableMaterialDefinitionFormViewModel._ConsumableMaterialDefinition.Name" data-tid="A326775">
+									</dx-text-box>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-5" data-tid="A326776">
+							<div class=" dx-field" style="margin: 0 0 5px 0;" data-tid="A326777">
+								<div class="dx-field-label" style="font-weight: bold;" title="Depo Mevcudu" data-tid="A326778">Depo Mevcudu
+								</div>
+								<div class="dx-field-value" style="float: left;" data-tid="A326779">
+									<dx-text-box [readOnly]="true" [(value)]="stockInheld" data-tid="A326780">
+									</dx-text-box>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row" data-tid="A326781">
+						<div class="col-sm-7" data-tid="A326782">
+							<div class=" dx-field" style="margin: 0 0 5px 0;" data-tid="A326783">
+								<div class="dx-field-label" style="width: 11%;font-weight: bold;" title="Taşınır Kodu" data-tid="A326784">
+									Taşınır Kodu</div>
+								<div class="dx-field-value" style="float: left; width: 78%;" data-tid="A326785">
+									<hvl-list-box #Validation (SelectedObjectChange)="onStockCardChanged($event)" [AutoCompleteDialogHeight]="StockCard?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="StockCard?.AutoCompleteDialogWidth" [AutoCompleteMode]="StockCard?.AutoCompleteMode" [BackColor]="StockCard?.BackColor" [DefinitionName]="StockCard?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="StockCard?.Enabled" [Font]="StockCard?.Font" [ForeColor]="StockCard?.ForeColor" [ListFilterExpression]="StockCard?.ListFilterExpression" [MinSearchLength]="StockCard?.MinSearchLength" [PopupDialogFieldConfig]="StockCard?.PopupDialogFieldConfig" [PopupDialogGridColumns]="StockCard?.PopupDialogGridColumns" [PopupDialogHeight]="StockCard?.PopupDialogHeight" [PopupDialogTitle]="StockCard?.PopupDialogTitle" [PopupDialogWidth]="StockCard?.PopupDialogWidth" [ReadOnly]="false" [SearchMode]="StockCard?.SearchMode" [SearchTimeout]="StockCard?.SearchTimeout" [SelectedObject]="_ConsumableMaterialDefinition.StockCard" [TabIndex]="StockCard?.TabIndex" [Visible]="StockCard?.Visible" [width]="StockCard?.Width" data-tid="A326786">
+									</hvl-list-box>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-5" data-tid="A326787">
+							<div class=" dx-field" style="margin: 0 0 5px 0;" data-tid="A326788">
+								<div class="dx-field-label" style="width: 25%;font-weight: bold;" title="Malzeme Grubu" data-tid="A326789">
+									Mlz. Grubu</div>
+								<div class="dx-field-value" data-tid="A326790">
+									<dx-select-box displayExpr="Name" valueExpr="ObjectID" [dataSource]="materialTreeDefinitionSource" [(value)]="consumableMaterialDefinitionFormViewModel._ConsumableMaterialDefinition.MaterialTree.ObjectID" data-tid="A326791">
+									</dx-select-box>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row" data-tid="A326792">
+						<div class="col-sm-7" data-tid="A326793">
+							<div class=" dx-field" style="margin: 0 0 5px 0;" data-tid="A326794">
+								<div class="dx-field-label" style="width: 11%;font-weight: bold;" title="Barkod No" data-tid="A326795">
+									Barkod
+									No</div>
+								<div class="dx-field-value" style="float: left; width: 78%;" data-tid="A326796">
+									<dx-text-box [(value)]="consumableMaterialDefinitionFormViewModel._ConsumableMaterialDefinition.Barcode" data-tid="A326797">
+									</dx-text-box>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-5" data-tid="A326798">
+							<div class=" dx-field" style="margin: 0 0 5px 0;" data-tid="A326799">
+								<div class="dx-field-label" style="font-weight: bold;" title="GMDN Kodu" data-tid="A326800">GMDN Kodu</div>
+								<div class="dx-field-value" style="float: left;" data-tid="A326801">
+									<div class="row" data-tid="A326802">
+										<div class="col-md-9" data-tid="A326803">
+											<dx-text-box readOnly="true" [(value)]="GMDNCode" data-tid="A326804">
+											</dx-text-box>
+										</div>
+										<div class="col-md-3" data-tid="A326805">
+											<dx-button icon="pulldown" hint="GMDN Kodu Seç" type="default" (onClick)="selectGMDNCode()" data-tid="A326806"></dx-button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="row" data-tid="A326807">
+						<div class="col-sm-4" data-tid="A326808">
+							<div class=" dx-field" style="margin: 0 0 5px 0;" data-tid="A326809">
+								<div class="dx-field-label" style="font-weight: bold;width: 85px;" title="MKYS Id" data-tid="A326810">MKYS
+									Id
+								</div>
+								<div class="dx-field-value" style="float: left;" data-tid="A326811">
+									<dx-text-box readOnly="true" [(value)]="consumableMaterialDefinitionFormViewModel._ConsumableMaterialDefinition.MkysMalzemeKodu" data-tid="A326812">
+									</dx-text-box>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-3" style="margin-left: -6%;" data-tid="A326813">
+							<div class=" dx-field" style="margin: 0 0 5px 0;" data-tid="A326814">
+								<div class="dx-field-label" style="font-weight: bold;" title="İ.S.M. Id" data-tid="A326815">İ.S.M. Id</div>
+								<div class="dx-field-value" style="float: left;" data-tid="A326816">
+									<dx-text-box [(value)]="consumableMaterialDefinitionFormViewModel._ConsumableMaterialDefinition.IsmId" data-tid="A326817">
+									</dx-text-box>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-5" style="margin-left: 6%;" data-tid="A326818">
+							<div class="dx-field-label" style="font-weight: bold;" title="Bütçe Kodu" data-tid="A326819">Bütçe Kodu</div>
+							<dx-drop-down-box [(value)]="selectedRevenueSubAccountCodeItemDescription" displayExpr="Name" valueExpr="ObjectID" [showClearButton]="true" [dataSource] (onOpened)="openRevenueSubAccountDropDown()" style="width: 60%;float: left;" (onValueChanged)="onClearRevenueSubAccount($event)" data-tid="A326820">
+								<div *dxTemplate="let data of 'content'" data-tid="A326821">
+									<dx-data-grid [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" [dataSource]="RevenueSubAccountCodeSource" (onRowClick)="selectRevenueSubAccount($event)" [remoteOperations]="true" [customizeColumns]="null" data-tid="A326822">
+										<dxo-filter-row [visible]="true" data-tid="A326823"></dxo-filter-row>
+										<dxo-paging [pageSize]="10" data-tid="A326824"></dxo-paging>
+										<dxo-selection mode="single" data-tid="A326825"></dxo-selection>
+										<dxi-column caption="Kodu" dataField="AccountCode" width="100" data-tid="A326826"></dxi-column>
+										<dxi-column caption="Adı" dataField="Description" data-tid="A326827"></dxi-column>
+									</dx-data-grid>
+								</div>
+							</dx-drop-down-box>
+						</div>
+					</div>
+
+
+					<div class="row" data-tid="A326828">
+						<div class="col-sm-7" data-tid="A326829">
+							<div class="control-label" style="font-weight: bold;" title="Açıklama" data-tid="A326830">Açıklama</div>
+						</div>
+					</div>
+					<br data-tid="A326831" />
+					<div class="row" data-tid="A326832">
+						<div class="col-sm-10" data-tid="A326833">
+							<dx-text-area [(value)]="consumableMaterialDefinitionFormViewModel._ConsumableMaterialDefinition.Description" style="margin-bottom:-10px;margin-top:-10px" [maxLength]="4000" data-tid="A326834">
+							</dx-text-area>
+						</div>
+						<div class="col-sm-2" data-tid="A326835">
+								<b id="A4009" style="font-weight: bold;" data-tid="A326836">
+									Açıklama Uyarı Yeri</b>
+								<dx-select-box [(value)]="consumableMaterialDefinitionFormViewModel._ConsumableMaterialDefinition.MaterialDescriptionShowType" valueExpr="ordinal" displayExpr="description" [dataSource]="materialDescriptionShowTypeItems" data-tid="A326837">
+								</dx-select-box>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel" style="margin-bottom:5px" data-tid="A326838">
+			<div style="background-color: #08c;padding: 0px 10px !important;" data-tid="A326839">
+				<h4 class="panel-title" style="color: white;height: 27px;" data-tid="A326840">
+					<a data-parent="#myGroup3" data-tid="A326841">Stok Seviyesi Bilgileri/Yerleşim Bilgileri/Diğer Bilgiler</a>
+				</h4>
+			</div>
+			<div id="StokBilgileri_{{panelTag}}" class="panel-collapse collapse in" data-tid="A326842">
+				<div class="panel-body" data-tid="A326843">
+					<div class="row" data-tid="A326844">
+						<div class="col-sm-3" data-tid="A326845">
+							<div class=" dx-field" style="margin: 0 0 5px 0;" data-tid="A326846">
+								<div class="dx-field-label" style="font-weight: bold;" title="Minimum Stok Seviyesi" data-tid="A326847">Min
+									Stok Seviyesi</div>
+								<div class="dx-field-value" data-tid="A326848">
+									<dx-text-box [(value)]="MinimumLevel" readOnly="true" data-tid="A326849">
+									</dx-text-box>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-3" data-tid="A326850">
+							<div class=" dx-field" data-tid="A326851">
+								<div class="dx-field-label" style="font-weight: bold;" title="Kritik Stok Seviyesi" data-tid="A326852">Krt.
+									Stok Seviyesi</div>
+								<div class="dx-field-value" data-tid="A326853">
+									<dx-text-box [(value)]="CriticalLevel" readOnly="true" data-tid="A326854">
+									</dx-text-box>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-3" data-tid="A326855">
+							<div class=" dx-field" data-tid="A326856">
+								<div class="dx-field-label" style="font-weight: bold;" title="Maksimum Stok Seviyesi" data-tid="A326857">
+									Max
+									Stok Seviyesi</div>
+								<div class="dx-field-value" data-tid="A326858">
+									<dx-text-box [(value)]="MaximumLevel" readOnly="true" data-tid="A326859">
+									</dx-text-box>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-3" data-tid="A326860">
+							<div class=" dx-field" data-tid="A326861">
+								<div class="dx-field-label" style="font-weight: bold;" title="Uyarı Gün Süresi" data-tid="A326862">Uyarı
+									Gün
+									Süresi</div>
+								<div class="dx-field-value" data-tid="A326863">
+									<dx-text-box [readOnly]="true" [(value)]="WarningDate" data-tid="A326864">
+									</dx-text-box>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row" data-tid="A326865">
+						<div class="col-sm-3" data-tid="A326866">
+							<div class=" dx-field" style="margin: 0 0 5px 0;" data-tid="A326867">
+								<div class="dx-field-label" style="font-weight: bold;" title="Bina" data-tid="A326868">Bina</div>
+								<div class="dx-field-value" data-tid="A326869">
+									<!-- Value değeri bakılacak -->
+									<dx-select-box [(value)]="building" displayExpr="Name" valueExpr="ObjectID" (onOpened)="GetStockLocation()" [dataSource]="ParentStockLocationList" (onSelectionChanged)="onBuildingSelectionChanged($event)" data-tid="A326870"></dx-select-box>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="col-sm-3" data-tid="A326871">
+							<div class=" dx-field" data-tid="A326872">
+								<div class="dx-field-label" style="font-weight: bold;" title="Birim" data-tid="A326873">Birim</div>
+								<div class="dx-field-value" data-tid="A326874">
+									<dx-select-box [(value)]="StockLocationShelf" displayExpr="Name" valueExpr="ObjectID" [dataSource]="StockLocationList" data-tid="A326875"></dx-select-box>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-3" data-tid="A326876">
+							<div class=" dx-field" data-tid="A326877">
+								<div class="dx-field-label" style="font-weight: bold;" title="Raf" data-tid="A326878">Raf</div>
+								<div class="dx-field-value" data-tid="A326879">
+									<!-- Value değeri bakılacak -->
+									<dx-text-box [(value)]="shelfNo" data-tid="A326880">
+									</dx-text-box>
+								</div>
+
+							</div>
+						</div>
+						<div class="col-sm-3" data-tid="A326881">
+							<div class=" dx-field" data-tid="A326882">
+								<div class="dx-field-label" style="font-weight: bold;" title="Sıra" data-tid="A326883">Sıra</div>
+								<div class="dx-field-value" data-tid="A326884">
+									<!-- Value değeri bakılacak -->
+									<dx-text-box [(value)]="rowNo" data-tid="A326885">
+									</dx-text-box>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row" data-tid="A326886">
+						<div class="col-sm-2" id="A4023" data-tid="A326887">
+							<dx-check-box [(value)]="_ConsumableMaterialDefinition.ShowZeroOnDistributionInfo" [width]="400" text="Dağıtım Belgesinde '0'  Göster " style="margin-bottom: 10px;" data-tid="A326888">
+							</dx-check-box>
+						</div>
+
+						<div class="col-sm-2" id="A4023" data-tid="A326889">
+							<dx-check-box [(value)]="_ConsumableMaterialDefinition.NotAppearInEpicrisis" [width]="400" text="Epikriz Formunda Görünmesin " style="margin-bottom: 10px;" data-tid="A326890">
+							</dx-check-box>
+						</div>
+
+						<div class="col-sm-2" id="A4023" data-tid="A326891">
+							<dx-check-box [(value)]="_ConsumableMaterialDefinition.HasEstimatedTime" [width]="400" text="S.K.T Zorunlu Olsun " style="margin-bottom: 10px;" data-tid="A326892">
+							</dx-check-box>
+						</div>
+
+						<div class="col-sm-2" id="A4023" data-tid="A326893">
+							<dx-check-box [(value)]="_ConsumableMaterialDefinition.DailyStay" [width]="400" text="Günübirlik Yatış Gerektirir" style="margin-bottom: 10px;" data-tid="A326894"></dx-check-box>
+						</div>
+						<div class="col-sm-3" style="float:right" data-tid="A326895">
+							<div class=" dx-field" style="margin: 0 0 5px 0;" data-tid="A326896">
+								<div class="dx-field-label" style="font-weight: bold;" title="Minimum Temin Süresi" data-tid="A326897">Min
+									Temin Süresi</div>
+								<div class="dx-field-value" data-tid="A326898">
+									<dx-text-box [(value)]="_ConsumableMaterialDefinition.EstimatedTimeOfCheck" data-tid="A326899">
+									</dx-text-box>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row" data-tid="A326900">
+						<div class="col-sm-2" id="A4023" data-tid="A326901">
+							<dx-check-box [(value)]="_ConsumableMaterialDefinition.IsExpendableMaterial" [width]="400" text="Atık Depolara Atılabilsin " style="margin-bottom: 10px;" data-tid="A326902">
+							</dx-check-box>
+						</div>
+
+						<div class="col-sm-1" id="A4023" data-tid="A326903">
+							<dx-check-box [(value)]="_ConsumableMaterialDefinition.SendSMS" [width]="400" text="Sms Gönderilir " style="margin-bottom: 10px;" data-tid="A326904">
+							</dx-check-box>
+						</div>
+						<div class="col-sm-1" id="A4023" data-tid="A326905">
+							<dx-check-box [(value)]="_ConsumableMaterialDefinition.AllowToGivePatient" [width]="400" text="Hastaya Verilir" style="margin-bottom: 10px;" data-tid="A326906"></dx-check-box>
+						</div>
+
+						<div class="col-sm-2" id="A4023" data-tid="A326907">
+							<dx-check-box [(value)]="_ConsumableMaterialDefinition.IsAllogreft" [width]="400" text="Allogreft Malzeme" style="margin-bottom: 10px;" data-tid="A326908">
+							</dx-check-box>
+						</div>
+
+						<div class="col-sm-2" data-tid="A326909">
+							<dx-check-box [(value)]="_ConsumableMaterialDefinition.IsIndividualTrackingRequired" [width]="400" text="Tekil Takip Gerektirir" style="margin-bottom: 10px;" data-tid="A326910">
+							</dx-check-box>
+						</div>
+
+						<div class="col-sm-3" style="float:right" data-tid="A326911">
+							<div class=" dx-field" style="margin: 0 0 5px 0;" data-tid="A326912">
+								<div class="dx-field-label" style="font-weight: bold;" title="Maksimum Temin Süresi" data-tid="A326913">Max
+									Temin Süresi</div>
+								<div class="dx-field-value" data-tid="A326914">
+									<dx-text-box [(value)]="_ConsumableMaterialDefinition.MaximumEstimatedTimeOfCheck" data-tid="A326915">
+									</dx-text-box>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel" style="margin-bottom:5px" data-tid="A326916">
+			<div style="background-color: #08c;padding: 0px 10px !important;" data-tid="A326917">
+				<h4 class="panel-title" style="color: white;height: 27px;" data-tid="A326918">
+					<a data-parent="#myGroup4" data-tid="A326919">Fatura ve Fiyat Bilgileri</a>
+				</h4>
+			</div>
+			<div id="FaturaveFiyatBilgileri_{{panelTag}}" class="panel-collapse collapse in " data-tid="A326920">
+				<div class="panel-body" data-tid="A326921">
+					<div class="row" data-tid="A326922">
+
+						<div class="col-sm-3" data-tid="A326923">
+							<div class=" dx-field" style="margin: 0 0 5px 0;" data-tid="A326924">
+								<div class="dx-field-label" style="font-weight: bold;" title="SUT Kodu" data-tid="A326925">SUT Kodu</div>
+								<div class="dx-field-value" data-tid="A326926">
+									<div class="col-sm-10" style="margin-left: -7%;" data-tid="A326927">
+										<dx-text-box valueChangeEvent="keyup" (keypress)="SUT_KeyPress($event)" [(value)]="consumableMaterialDefinitionFormViewModel._ConsumableMaterialDefinition.Code" data-tid="A326928">
+										</dx-text-box>
+									</div>
+									<div class="col-sm-1" style="margin-left: -12%;width: 29%;" data-tid="A326929">
+										<dx-button icon="pulldown" hint="SUT Kodu Seç" type="default" (onClick)="updateMedulaByMaterial()" data-tid="A326930"></dx-button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-3" data-tid="A326931">
+							<div class=" dx-field" data-tid="A326932">
+								<div class="dx-field-label" style="font-weight: bold;" title="SUT Fiyatı" data-tid="A326933">SUT Fiyatı
+								</div>
+								<div class="dx-field-value" data-tid="A326934">
+									<dx-text-box [readOnly]="true" [(value)]="lastCost" data-tid="A326935">
+									</dx-text-box>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-3" data-tid="A326936">
+							<div class=" dx-field" data-tid="A326937">
+								<div class="dx-field-label" style="font-weight: bold;" title="SUT Eki" data-tid="A326938">SUT Eki</div>
+								<div class="dx-field-value" data-tid="A326939">
+									<dx-select-box displayExpr="description" valueExpr="code" [(value)]="consumableMaterialDefinitionFormViewModel._ConsumableMaterialDefinition.SUTAppendix" (onSelectionChanged)="onSutAppendixChange($event)" [dataSource]="SUTAppendixSource" data-tid="A326940">
+									</dx-select-box>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-3" data-tid="A326941">
+							<dx-button type="btn btn-default col-sm-12" text="Fiyatı Meduladan Güncelle" (onClick)="updateMedulaByMaterialBtn()" data-tid="A326942"></dx-button>
+						</div>
+					</div>
+
+					<div class="row" data-tid="A326943">
+						<div class="col-sm-3" data-tid="A326944">
+							<div class=" dx-field" style="margin: 0 0 5px 0;" data-tid="A326945">
+								<div class="dx-field-label" style="font-weight: bold;" title="Son Alış Fiyatı" data-tid="A326946">Son Alış
+									Fiyatı</div>
+								<div class="dx-field-value" data-tid="A326947">
+									<div class="col-sm-11" style="margin-left: -7%;" data-tid="A326948">
+										<dx-text-box [readOnly]="true" [(value)]="lastPrice" data-tid="A326949"></dx-text-box>
+									</div>
+									<div class="col-sm-1" style="margin-left: -2%;" data-tid="A326950">
+										<dx-button type="btn btn-default" style="font-size: 100%;border-style: unset;color: #4276a4 !important;" text="İ" (onClick)="getMaterialInStock()" data-tid="A326951"></dx-button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="col-sm-3" data-tid="A326952">
+							<div class=" dx-field" style="margin: 0 0 5px 0;" data-tid="A326953">
+								<div class="dx-field-label" style="font-weight: bold;" title="İşletme Gideri" data-tid="A326954">İşletme
+									Gideri
+									(%)</div>
+								<div class="dx-field-value" data-tid="A326955">
+									<dx-text-box [(value)]="consumableMaterialDefinitionFormViewModel._ConsumableMaterialDefinition.OperatingShare" data-tid="A326956">
+									</dx-text-box>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-3" data-tid="A326957">
+							<dx-check-box [(value)]="consumableMaterialDefinitionFormViewModel._ConsumableMaterialDefinition.IsPackageExclusive" text="Paket Harici Faturalanır" style="margin-top: 10px;width:100%;" data-tid="A326958">
+							</dx-check-box>
+						</div>
+						<div class="col-sm-3 " data-tid="A326959">
+							<dx-button type="btn btn-default col-sm-12" text="Hastaya Çıkış Fiyatını Güncelle" (onClick)="onPatientExitByOldPrice()" data-tid="A326960">
+							</dx-button>
+						</div>
+					</div>
+
+					<div class="row" data-tid="A326961">
+						<div class="col-sm-3" data-tid="A326962">
+							<div class=" dx-field" style="margin: 0 0 5px 0;" data-tid="A326963">
+								<div class="dx-field-label" style="font-weight: bold;" title="KDV (%)" data-tid="A326964">KDV (%)</div>
+								<div class="dx-field-value" data-tid="A326965">
+									<dx-text-box [(value)]="MaterialVatRate" data-tid="A326966">
+									</dx-text-box>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="col-sm-3" data-tid="A326967">
+							<div class=" dx-field" style="margin: 0 0 5px 0;" data-tid="A326968">
+								<div class="dx-field-label" style="font-weight: bold;" title="Hazine Payı (%)" data-tid="A326969">Hazine
+									Payı
+									(%)</div>
+								<div class="dx-field-value" data-tid="A326970">
+									<dx-text-box [(value)]="consumableMaterialDefinitionFormViewModel._ConsumableMaterialDefinition.TresuryShare" data-tid="A326971">
+									</dx-text-box>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-3" data-tid="A326972">
+							<!-- value ve onSearchSelection -->
+							<dx-check-box [(value)]="_ConsumableMaterialDefinition.Chargable" [width]="400" text="Ödeme Türü Ücretli Olsun" style="margin-top: 10px;" data-tid="A326973"></dx-check-box>
+						</div>
+					</div>
+
+					<div class="row" data-tid="A326974">
+						<div class="col-sm-3" data-tid="A326975">
+							<div class=" dx-field" data-tid="A326976">
+								<div class="dx-field-label" style="font-weight: bold;" title="Kutudaki Adeti" data-tid="A326977">Kutudaki
+									Adeti
+								</div>
+								<div class="dx-field-value" data-tid="A326978">
+									<dx-text-box [(value)]="consumableMaterialDefinitionFormViewModel._ConsumableMaterialDefinition.PackageAmount" data-tid="A326979">
+									</dx-text-box>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-3" data-tid="A326980">
+							<div class=" dx-field" data-tid="A326981">
+								<div class="dx-field-label" style="font-weight: bold;" title="S.H.Ç.E.K. Payı (%)" data-tid="A326982">
+									S.H.Ç.E.K. Payı (%)</div>
+								<div class="dx-field-value" data-tid="A326983">
+									<dx-text-box [(value)]="consumableMaterialDefinitionFormViewModel._ConsumableMaterialDefinition.ShcekShare" data-tid="A326984">
+									</dx-text-box>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div style="height: 250px;" data-tid="A326985">
+		<div class="row" data-tid="A326986">
+			<div class="col-md-12" data-tid="A326987">
+				<dx-tab-panel style="height:100%;" [selectedIndex]="0" [animationEnabled]="true" [swipeEnabled]="false" id="A323331" data-tid="A326988">
+					<dxi-item title="Diğer Bilgiler" icon="fa fa-plus-square" style="padding: 0 10px !important;height: 230px;" data-tid="A326989">
+						<br data-tid="A326990" />
+						<div class="row" data-tid="A326991">
+							<div class="col-sm-3" data-tid="A326992">
+								<div class="dx-field-label" style="font-weight: bold;" title="Malzeme Türü" data-tid="A326993">Malzeme Türü
+								</div>
+							</div>
+							<div class="col-sm-2" style="margin-left: -13%;" data-tid="A326994">
+								<dx-select-box [dataSource]="MaterialTypeList" [searchEnabled]="true" valueExpr="MaterialTypeObjectID" displayExpr="MaterialTypeName" [(value)]="malzemeTuru" data-tid="A326995">
+								</dx-select-box>
+							</div>
+							<div class="col-sm-7" data-tid="A326996">
+								<div class=" dx-field" style="margin: 0 0 5px 0;" data-tid="A326997">
+									<div class="dx-field-label" style="font-weight: bold;padding-left: 26%;" title="Saklama Kosulu" data-tid="A326998">Saklama Koşulu</div>
+									<div class="dx-field-value" data-tid="A326999">
+										<dx-text-box [readOnly]="false" [(value)]="consumableMaterialDefinitionFormViewModel._ConsumableMaterialDefinition.StorageConditions" data-tid="A327000">
+										</dx-text-box>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row" style="padding-top: 5px" data-tid="A327001">
+							<div class="col-sm-3" data-tid="A327002">
+								<div class="dx-field-label" style="font-weight: bold;" title="Cinsiyet" data-tid="A327003">Cinsiyet</div>
+							</div>
+							<div class="col-sm-2" style="margin-left: -13%;" data-tid="A327004">
+								<dx-select-box [items]="GenderList" [searchEnabled]="true" valueExpr="ordinal" displayExpr="description" [(value)]="consumableMaterialDefinitionFormViewModel._ConsumableMaterialDefinition.SEX" data-tid="A327005">
+								</dx-select-box>
+							</div>
+						</div>
+						<div class="row" style="padding-top: 5px" data-tid="A327006">
+
+							<div class="col-sm-1" data-tid="A327007">
+								<div class="dx-field-label" style="font-weight: bold;" title="Yaş" data-tid="A327008">Yaş</div>
+							</div>
+							<div class="col-sm-1" style="margin-left: 50px;margin-right: -10px;" data-tid="A327009">
+								<dx-text-box [(value)]="consumableMaterialDefinitionFormViewModel._ConsumableMaterialDefinition.MixPatientAge" data-tid="A327010">
+								</dx-text-box>
+							</div>
+							<div class="col-sm-1" data-tid="A327011">
+								<dx-text-box [(value)]="consumableMaterialDefinitionFormViewModel._ConsumableMaterialDefinition.MaxPatientAge" data-tid="A327012">
+								</dx-text-box>
+							</div>
+						</div>
+						<div class="row" style="padding-top: 5px" data-tid="A327013">
+							<div class="col-sm-3" data-tid="A327014">
+								<div class="dx-field-label" style="font-weight: bold;" title="Tekrar Gün Süresi" data-tid="A327015">
+									Tekrar Gün Süresi</div>
+							</div>
+							<div class="col-sm-2" style="margin-left: -13%;" data-tid="A327016">
+								<dx-text-box [(value)]="consumableMaterialDefinitionFormViewModel._ConsumableMaterialDefinition.OrderRPTDay" data-tid="A327017">
+								</dx-text-box>
+							</div>
+						</div>
+						<div class="row" style="padding-top: 5px" data-tid="A327018">
+							<div class="col-sm-4" data-tid="A327019">
+								<div class="dx-field-label" style="font-weight: bold;" title="Hasta Gün. Max. Çıkış" data-tid="A327020">
+									Hasta Gün. Max. Çıkış</div>
+							</div>
+							<div class="col-sm-2" style="margin-left: -21.3%;" data-tid="A327021">
+								<dx-text-box [(value)]="consumableMaterialDefinitionFormViewModel._ConsumableMaterialDefinition.PatientMaxDayOut" data-tid="A327022">
+								</dx-text-box>
+							</div>
+						</div>
+						<div class="row" style="padding-top: 5px" data-tid="A327023">
+							<div class="col-sm-4" data-tid="A327024">
+								<div class=" dx-field" data-tid="A327025">
+									<div class="dx-field-label" style="font-weight: bold;" title="Hasta Türü" data-tid="A327026">
+										Hasta Türü</div>
+									<div class="dx-field-value" data-tid="A327027">
+										<dx-select-box [items]="MaterialPatientTypeItems" [searchEnabled]="true" valueExpr="ordinal" displayExpr="description" [(value)]="this.MaterialPatientTypeSeleceted" showSelectionControls="true" [disabled]="showUnused" data-tid="A327028">
+										</dx-select-box>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+					</dxi-item>
+
+					<dxi-item title="UBB/Firma Tanımı" icon="fa fa-archive" style="padding: 0 10px !important;height: 230px;" data-tid="A327029">
+						<div class="row" style="padding-top: 7px;padding-left: 1px;" data-tid="A327030">
+							<div class="col-sm-12" data-tid="A327031">
+								<label class="control-label" style="padding-left: 10px;" data-tid="A327032">Firma Seçiniz</label>
+							</div>
+							<div class="col-sm-12" data-tid="A327033">
+								<hvl-list-box #Validation [AutoCompleteDialogHeight]="110" [AutoCompleteDialogHeight]="Producer?.AutoCompleteDialogHeight" [AutoCompleteMode]="Producer?.AutoCompleteMode" [BackColor]="Producer?.BackColor" [DefinitionName]="Producer?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="Producer?.Enabled" [Font]="Producer?.Font" [ForeColor]="Producer?.ForeColor" [ListFilterExpression]="Producer?.ListFilterExpression" [MinSearchLength]="Producer?.MinSearchLength" [PopupDialogFieldConfig]="Producer?.PopupDialogFieldConfig" [PopupDialogGridColumns]="Producer?.PopupDialogGridColumns" [PopupDialogHeight]="Producer?.PopupDialogHeight" [PopupDialogTitle]="Producer?.PopupDialogTitle" [PopupDialogWidth]="Producer?.PopupDialogWidth" [ReadOnly]="Producer?.ReadOnly" [SearchMode]="Producer?.SearchMode" [SearchTimeout]="Producer?.SearchTimeout" [SelectedObject]="_ConsumableMaterialDefinition.Producer" [TabIndex]="Producer?.TabIndex" [Visible]="Producer?.Visible" [width]="Producer?.Width" (SelectedObjectChange)="onProducerChanged($event)" data-tid="A327034">
+								</hvl-list-box>
+							</div>
+							<div class="col-sm-12" data-tid="A327035">
+								<dx-data-grid #materialProducerdataSourceGrid showColumnLines="true" showRowLines="true" rowAlternationEnabled="true" showBorders="true" [dataSource]="ProducerdataSource" [columns]="ProducerColumns" [scrolling]="{mode:'infinite'}" [selection]="{mode: 'single'}" [editing]="{allowUpdating: false,allowAdding: false,allowDeleting: false}" data-tid="A327036">
+
+									<div *dxTemplate="let cellData of 'deleteCellTemplate'" id="A27832" data-tid="A327037">
+										<i class="fa fa fa-trash" style="cursor:pointer" (click)="materialProducerdataSourceGrid_CellContentClicked(cellData)" data-tid="A327038"></i>
+									</div>
+								</dx-data-grid>
+							</div>
+						</div>
+					</dxi-item>
+
+					<dxi-item title="Hizmet Eşleştirmesi" icon="glyphicon glyphicon-list-alt" style="padding: 0 10px !important;height: 230px;" data-tid="A327039">
+						<div class="row" data-tid="A327040">
+							<div class="col-sm-12" data-tid="A327041">
+								<label class="control-label" style="padding-left: 10px;" data-tid="A327042"> Hizmet Seçiniz</label>
+							</div>
+							<div class="col-sm-12" data-tid="A327043">
+								<hvl-list-box [AutoCompleteDialogHeight]="120" [AutoCompleteDialogWidth]="grdMaterialProcedures?.AutoCompleteDialogWidth" [AutoCompleteMode]="grdMaterialProcedures?.AutoCompleteMode" [BackColor]="grdMaterialProcedures?.BackColor" [DefinitionName]="grdMaterialProcedures?.ListDefName" [DisplayExpressionsCache]="grdMaterialProcedures?.ListDefDisplayExpressions" [Enabled]="grdMaterialProcedures?.Enabled" [Font]="grdMaterialProcedures?.Font" [ForeColor]="grdMaterialProcedures?.ForeColor" [ListFilterExpression]="grdMaterialProcedures?.ListFilterExpression" [MinSearchLength]="grdMaterialProcedures?.MinSearchLength" [PopupDialogFieldConfig]="grdMaterialProcedures?.PopupDialogFieldConfig" [PopupDialogGridColumns]="grdMaterialProcedures?.PopupDialogGridColumns" [PopupDialogHeight]="grdMaterialProcedures?.PopupDialogHeight" [PopupDialogTitle]="grdMaterialProcedures?.PopupDialogTitle" [PopupDialogWidth]="grdMaterialProcedures?.PopupDialogWidth" [ReadOnly]="grdMaterialProcedures?.ReadOnly" [SearchMode]="grdMaterialProcedures?.SearchMode" [SearchTimeout]="grdMaterialProcedures?.SearchTimeout" [TabIndex]="grdMaterialProcedures?.TabIndex" [Visible]="grdMaterialProcedures?.Visible" [width]="grdMaterialProcedures?.Width" (SelectedObjectChange)="onMaterialProceduresChanged($event)" data-tid="A327044">
+								</hvl-list-box>
+								<dx-data-grid #materialServiceProcedureGrid id="materialServiceProcedureGrid" showColumnLines="true" showRowLines="true" showBorders="true" [(dataSource)]="GridDataSource" [columns]="MaterialProceduresGridColumns" [paging]="{enabled:true}" height="100%" [filterRow]="{visible:true}" [scrolling]="{mode:'infinite'}" [editing]="{allowUpdating: false,allowAdding: false,allowDeleting: false}" data-tid="A327045">
+
+									<div *dxTemplate="let cellData of 'deleteCellTemplate'" id="A27832" data-tid="A327046">
+										<i class="fa fa fa-trash" style="cursor:pointer" (click)="materialServiceProcedureGrid_CellContentClicked(cellData)" data-tid="A327047"></i>
+									</div>
+								</dx-data-grid>
+							</div>
+						</div>
+					</dxi-item>
+
+					<dxi-item title="Branşlar" icon="fa fa-file-pdf-o" style="padding: 0 10px !important;height: 230px;" data-tid="A327048">
+						<div class="row" data-tid="A327049">
+							<div class="col-sm-12" data-tid="A327050">
+								<label class="control-label" style="padding-left: 10px;" data-tid="A327051"> Branş Seçiniz</label>
+							</div>
+							<div class="col-sm-12" data-tid="A327052">
+								<hvl-list-box [AutoCompleteDialogHeight]="120" [AutoCompleteDialogWidth]="MaterialSpecialtyDefinitionMaterialSpecialty?.AutoCompleteDialogWidth" [AutoCompleteMode]="MaterialSpecialtyDefinitionMaterialSpecialty?.AutoCompleteMode" [BackColor]="MaterialSpecialtyDefinitionMaterialSpecialty?.BackColor" [DefinitionName]="MaterialSpecialtyDefinitionMaterialSpecialty?.ListDefName" [DisplayExpressionsCache]="MaterialSpecialtyDefinitionMaterialSpecialty?.ListDefDisplayExpressions" [Enabled]="MaterialSpecialtyDefinitionMaterialSpecialty?.Enabled" [Font]="MaterialSpecialtyDefinitionMaterialSpecialty?.Font" [ForeColor]="MaterialSpecialtyDefinitionMaterialSpecialty?.ForeColor" [ListFilterExpression]="MaterialSpecialtyDefinitionMaterialSpecialty?.ListFilterExpression" [MinSearchLength]="MaterialSpecialtyDefinitionMaterialSpecialty?.MinSearchLength" [PopupDialogFieldConfig]="MaterialSpecialtyDefinitionMaterialSpecialty?.PopupDialogFieldConfig" [PopupDialogGridColumns]="MaterialSpecialtyDefinitionMaterialSpecialty?.PopupDialogGridColumns" [PopupDialogHeight]="MaterialSpecialtyDefinitionMaterialSpecialty?.PopupDialogHeight" [PopupDialogTitle]="MaterialSpecialtyDefinitionMaterialSpecialty?.PopupDialogTitle" [PopupDialogWidth]="MaterialSpecialtyDefinitionMaterialSpecialty?.PopupDialogWidth" [ReadOnly]="MaterialSpecialtyDefinitionMaterialSpecialty?.ReadOnly" [SearchMode]="MaterialSpecialtyDefinitionMaterialSpecialty?.SearchMode" [SearchTimeout]="MaterialSpecialtyDefinitionMaterialSpecialty?.SearchTimeout" [TabIndex]="MaterialSpecialtyDefinitionMaterialSpecialty?.TabIndex" [Visible]="MaterialSpecialtyDefinitionMaterialSpecialty?.Visible" [width]="MaterialSpecialtyDefinitionMaterialSpecialty?.Width" (SelectedObjectChange)="onMaterialSpecialtyDefinitionMaterialSpecialtyChanged($event)" data-tid="A327053">
+								</hvl-list-box>
+								<dx-data-grid #MaterialSpecialtysGrid id="MaterialSpecialtysGrid" showColumnLines="true" showRowLines="true" showBorders="true" [(dataSource)]="MaterialSpecialtysGridDataSource" [columns]="MaterialSpecialtysGridColumns" [paging]="{enabled:true}" height="100%" [filterRow]="{visible:true}" [scrolling]="{mode:'infinite'}" [editing]="{allowUpdating: false,allowAdding: false,allowDeleting: false}" data-tid="A327054">
+
+									<div *dxTemplate="let cellData of 'deleteCellTemplate'" id="A27832" data-tid="A327055">
+										<i class="fa fa fa-trash" style="cursor:pointer" (click)="consumableMaterialSpecialtyGrid_CellContentClicked(cellData)" data-tid="A327056"></i>
+									</div>
+								</dx-data-grid>
+							</div>
+						</div>
+					</dxi-item>
+
+					<dxi-item title="Raporlar" icon="fa fa-file-pdf-o" style="height: 230px;" data-tid="A327057">
+						<div data-tid="A327058">
+							<dx-tab-panel style="height:100%" [selectedIndex]="0" [animationEnabled]="true" [swipeEnabled]="false" id="A32333" data-tid="A327059">
+								<!-- class="file-uploader-block" -->
+								<dxi-item title="Girişler" class="row" style="overflow-y: scroll; overflow-x: hidden;" data-tid="A327060">
+									<div class="row" style="padding-left: 20px" data-tid="A327061">
+										<div class="col-sm-3" style="margin-right: -14%;" data-tid="A327062">
+											<label class="control-label" id="A32009" data-tid="A327063">Hesap Dönemini
+												Seçiniz
+												:</label>
+										</div>
+										<div class="col-sm-3" data-tid="A327064">
+											<dx-select-box #selectBox [dataSource]="costActionAccountingTerm" displayExpr="Desciption" valueExpr="ObjId" [acceptCustomValue]="true" (onSelectionChanged)="selectAccountingTerm($event)" id="A32011" [value]="activeAccountingTerm" data-tid="A327065">
+											</dx-select-box>
+										</div>
+										<div class="col-sm-2" data-tid="A327066">
+											<dx-button type="btn btn-default" text=" Getir" (onClick)="GetForInputs()" [disabled]="showUnused" data-tid="A327067">
+											</dx-button>
+										</div>
+										<div class="col-sm-1" id="A32028" style="padding-left: 5px;" data-tid="A327068">
+											<dx-button type="btn btn-default" text="Grafik" (onClick)="openInTrxChart()" icon="fa fa-chart-pie" data-tid="A327069"></dx-button>
+										</div>
+									</div>
+									<br data-tid="A327070" />
+									<div class="row" style="padding-left: 30px" data-tid="A327071">
+
+										<dx-data-grid #grid id="grid-container" [dataSource]="InputsResult" style="padding-bottom: 1px;max-width: 1350px;" class="height444" [selectedRowKeys]="[]" data-tid="A327072">
+											<dxo-selection mode="single" data-tid="A327073"></dxo-selection>
+											<dxo-paging [pageSize]="10" data-tid="A327074"></dxo-paging>
+											<dxo-filter-row [visible]="true" id="A5673" data-tid="A327075"> </dxo-filter-row>
+											<dxi-column dataField="StockActionID" caption="İşlem No" [width]="170" data-tid="A327076">
+											</dxi-column>
+											<dxi-column dataField="TransactionDate" caption="Fiş Tarihi" dataType="date" format="dd/MM/yyyy" [width]="100" data-tid="A327077"></dxi-column>
+											<dxi-column dataField="SourceDescription" caption="Firma/Kurum Adı" data-tid="A327078">
+											</dxi-column>
+											<dxi-column dataField="Amount" caption="Miktar" data-tid="A327079"></dxi-column>
+											<dxi-column dataField="UnitPrice" caption="KDV'li Fiyat" data-tid="A327080"></dxi-column>
+											<dxi-column dataField="ExpirationDate" caption="Son Kullanma Tarihi" dataType="date" format="dd/MM/yyyy" [width]="100" data-tid="A327081"></dxi-column>
+											<dxi-column dataField="TIFNo" caption="Tif No" [width]="170" data-tid="A327082"></dxi-column>
+											<dxi-column dataField="MKYSTrxID" caption="MKYS S.H.Id" data-tid="A327083"></dxi-column>
+											<dxi-column dataField="ReceiptNumber" caption="Ayniyat No" data-tid="A327084"></dxi-column>
+											<dxi-column name="button" [allowEditing]="false" caption='Detay' dataField="MaterialObjectID" cellTemplate="buttonCellTemplate" [width]="50" data-tid="A327085">
+											</dxi-column>
+											<div *dxTemplate="let row of 'buttonCellTemplate'" style="padding-bottom: 1px;" id="A32144" data-tid="A327086">
+												<button type="button" class="btn btn-default glyphicon glyphicon-list" (click)="itemClick($event,row)" data-toggle="tooltip" data-placement="top" title="İşlem Detayı" data-tid="A327087">
+												</button>
+											</div>
+										</dx-data-grid>
+
+									</div>
+								</dxi-item>
+								<dxi-item title="Çıkışlar" class="row " style="overflow-y: scroll; overflow-x: hidden;" data-tid="A327088">
+									<div class="row" style="padding-left: 20px" data-tid="A327089">
+										<div class="col-sm-3" style="margin-right: -14%;" data-tid="A327090">
+											<label class="control-label" id="A32009" data-tid="A327091">Hesap Dönemini
+												Seçiniz
+												:</label>
+										</div>
+										<div class="col-sm-3" data-tid="A327092">
+											<dx-select-box #selectBox [dataSource]="costActionAccountingTerm" displayExpr="Desciption" valueExpr="ObjId" [acceptCustomValue]="true" (onSelectionChanged)="selectAccountingTerm($event)" id="A32011" [value]="activeAccountingTerm" data-tid="A327093">
+											</dx-select-box>
+										</div>
+										<div class="col-sm-2" data-tid="A327094">
+											<dx-button type="btn btn-default" text=" Getir" (onClick)="GetForOutputs()" [disabled]="showUnused" data-tid="A327095">
+											</dx-button>
+										</div>
+										<div class="col-sm-1" id="A32028" style="padding-left: 5px;" data-tid="A327096">
+											<dx-button type="btn btn-default" text="Grafik" (onClick)="openOutTrxChart()" icon="fa fa-chart-pie" data-tid="A327097"></dx-button>
+										</div>
+									</div>
+									<br data-tid="A327098" />
+									<div class="row" style="padding-left: 30px" data-tid="A327099">
+										<dx-data-grid [dataSource]="OutputsResult" style="padding-bottom: 1px;max-width: 1350px;" [selectedRowKeys]="[]" data-tid="A327100">
+											<dxo-scrolling mode="infinite" data-tid="A327101"></dxo-scrolling>
+											<dxo-selection mode="single" data-tid="A327102"></dxo-selection>
+											<!-- <dxo-paging [pageSize]="10"></dxo-paging> -->
+											<dxo-filter-row [visible]="true" id="A5673" data-tid="A327103"> </dxo-filter-row>
+											<dxi-column dataField="StockActionID" caption="İşlem No" [width]="170" data-tid="A327104">
+											</dxi-column>
+											<dxi-column dataField="TransactionDate" caption="Çıkış Tarihi" dataType="date" format="dd/MM/yyyy" [width]="100" data-tid="A327105"></dxi-column>
+											<dxi-column dataField="TrxDescription" caption="Çıkış Türü" [width]="170" data-tid="A327106">
+											</dxi-column>
+											<dxi-column dataField="SourceDescription" caption="Çıkış Birimi" data-tid="A327107">
+											</dxi-column>
+											<dxi-column dataField="Amount" caption="Miktar" data-tid="A327108"></dxi-column>
+											<dxi-column dataField="UnitPrice" caption="KDV'li Fiyat" data-tid="A327109"></dxi-column>
+											<dxi-column dataField="TIFNo" caption="Tif No" [width]="170" data-tid="A327110"></dxi-column>
+											<dxi-column dataField="ReceiptNumber" caption="Ayniyat No" data-tid="A327111"></dxi-column>
+											<dxi-column name="button" [allowEditing]="false" caption='Detay' dataField="selectedInStockTransaction" cellTemplate="buttonCellTemplate" [width]="50" data-tid="A327112"></dxi-column>
+											<div *dxTemplate="let row of 'buttonCellTemplate'" style="padding-bottom: 1px;" id="A32144" data-tid="A327113">
+												<button type="button" class="btn btn-default glyphicon glyphicon-list" (click)="itemClick($event,row)" data-toggle="tooltip" data-placement="top" title="İşlem Detayı" data-tid="A327114"></button>
+											</div>
+										</dx-data-grid>
+									</div>
+								</dxi-item>
+								<dxi-item title="XXXXXX Envanteri" class="row" style="overflow-y: scroll; overflow-x: hidden;" data-tid="A327115">
+									<div class="row" style="padding-left: 20px" data-tid="A327116">
+										<div class="col-sm-2" data-tid="A327117">
+											<dx-button type="btn btn-default" text=" Sorgula" (onClick)="GetForHospitalInventories()" [disabled]="showUnused" data-tid="A327118">
+											</dx-button>
+										</div>
+									</div>
+									<br data-tid="A327119" />
+									<div class="row" style="padding-left: 30px" data-tid="A327120">
+										<dx-data-grid #grid id="grid-container" style="padding-bottom: 1px;max-width: 1350px;" [dataSource]="HospitalInventoryResult" class="height444" [selectedRowKeys]="[]" data-tid="A327121">
+											<dxo-selection mode="single" data-tid="A327122"></dxo-selection>
+											<dxo-paging [pageSize]="10" data-tid="A327123"></dxo-paging>
+											<dxo-filter-row [visible]="true" id="A5673" data-tid="A327124"> </dxo-filter-row>
+											<dxi-column dataField="StoreType" caption="Depo Türü" data-tid="A327125"></dxi-column>
+											<dxi-column dataField="StoreName" caption="Depo Adı" data-tid="A327126"></dxi-column>
+											<dxi-column dataField="Amount" caption="Miktar" data-tid="A327127"></dxi-column>
+										</dx-data-grid>
+									</div>
+								</dxi-item>
+								<dxi-item title="Aylık Rapor" class="row" style="overflow-y: scroll; overflow-x: hidden;" data-tid="A327128">
+
+									<div class="row" style="padding-left: 20px" data-tid="A327129">
+										<div class="col-sm-3" style="margin-right: -14%;" data-tid="A327130">
+											<label class="control-label" id="A32009" data-tid="A327131">Hesap Dönemini
+												Seçiniz
+												:</label>
+										</div>
+										<div class="col-sm-3" data-tid="A327132">
+											<dx-select-box #selectBox [dataSource]="costActionAccountingTerm" displayExpr="Desciption" valueExpr="ObjId" [acceptCustomValue]="true" (onSelectionChanged)="selectAccountingTerm($event)" id="A32011" [value]="activeAccountingTerm" data-tid="A327133">
+											</dx-select-box>
+										</div>
+										<div class="col-sm-2" data-tid="A327134">
+
+											<dx-button type="btn btn-default" text=" Getir" (onClick)="GetForMontlyReports()" [disabled]="showUnused" data-tid="A327135">
+											</dx-button>
+										</div>
+									</div>
+									<br data-tid="A327136" />
+									<div class="row" style="padding-left: 30px" data-tid="A327137">
+										<dx-data-grid #grid id="grid-container" style="padding-bottom: 1px;max-width: 1350px;" [dataSource]="MontlyReportsResult" class="height444" [selectedRowKeys]="[]" data-tid="A327138">
+
+											<dxo-selection mode="single" data-tid="A327139"></dxo-selection>
+											<!-- <dxo-paging [pageSize]="10"></dxo-paging> -->
+											<dxo-filter-row [visible]="true" id="A5673" data-tid="A327140"> </dxo-filter-row>
+											<dxi-column dataField="Month" caption="Ay" data-tid="A327141"></dxi-column>
+											<dxi-column dataField="InAmount" caption="Giren" data-tid="A327142"></dxi-column>
+											<dxi-column dataField="OutAmount" caption="Çıkan" data-tid="A327143"></dxi-column>
+											<dxi-column dataField=" " caption="Kümülatif Kalan" data-tid="A327144"></dxi-column>
+
+										</dx-data-grid>
+									</div>
+								</dxi-item>
+							</dx-tab-panel>
+						</div>
+					</dxi-item>
+
+					<dxi-item title="Şartname" icon="fa fa-file-pdf-o" style="padding: 0 10px !important;height: 230px;" data-tid="A327145">
+						<div title="Döküman Ekle" icon="glyphicon glyphicon-list-alt" data-tid="A327146">
+							<div class="row" style="padding-top: 7px;padding-left: 1px;" data-tid="A327147">
+								<div class="col-sm-12" data-tid="A327148">
+									<dx-data-grid #grid id="grid-container" [(dataSource)]="docsUpload" (onSelectionChanged)="selectItem($event)" (onRowRemoving)="deleteDocumentUnSaved($event)" data-tid="A327149">
+										<dxo-selection mode="single" data-tid="A327150"></dxo-selection>
+										<dxo-paging [pageSize]="10" data-tid="A327151"></dxo-paging>
+										<dxo-filter-row [visible]="true" id="A5673" data-tid="A327152"> </dxo-filter-row>
+										<dxi-column dataField="FileUpdateDate" caption="Eklenme Tarihi" data-tid="A327153">
+										</dxi-column>
+										<dxi-column dataField="FileName" caption="Adı" data-tid="A327154"></dxi-column>
+										<dxo-editing mode="row" [allowDeleting]="false" data-tid="A327155"></dxo-editing>
+									</dx-data-grid>
+								</div>
+							</div>
+							<div class="row" data-tid="A327156">
+								<!--<div class="col-sm-3" id="A14638">
+									<input type="file" id="filePicker" (change)="onChange($event)"
+										accept=".png, .jpg, .jpeg, .pdf, .ppt, .pptx, .doc, .docx, .mp3, .mp4, .avi, .wma" />
+								</div>
+								<div class="col-sm-3" id="A14638">
+									<dx-button style="float:right;margin-right: -0px;" icon="fa fa-upload" text="Yükle"
+										type="default" (onClick)="addDocument()" i18n-text="@@M24733" id="A14635">
+									</dx-button>
+									<dx-button text="Kaydet" style="margin-right: 0px;" rtlEnabled="true" icon="save"
+										(onClick)="Upload()" i18n-text="@@M17386" id="A14639"></dx-button>
+									<dx-button style="float:right;margin-right: -0px;" icon="fa fa-download"
+										text="İndir" type="default" (onClick)="downloadSelectedFiles()"
+										i18n-text="@@M24733" id="A14635">
+									</dx-button>
+								</div>-->
+								<dx-button style="float:right;margin-right: -0px;" icon="fa fa-download" text="Dosya Yükle / İndir" type="default" (onClick)="openLogisticDocument()" data-tid="A327157">
+								</dx-button>
+							</div>
+						</div>
+					</dxi-item>
+
+					<dxi-item title="Fiyatlar" icon="fa fa-diamond" style="padding: 0 10px !important;height: 230px;" data-tid="A327158">
+						<dx-data-grid #grid id="grid-container" [dataSource]="MaterialPriceInfos" data-tid="A327159">
+							<dxo-paging [pageSize]="10" data-tid="A327160"></dxo-paging>
+							<dxo-filter-row [visible]="true" id="A5673" data-tid="A327161"> </dxo-filter-row>
+							<dxi-column dataField="DateStart" caption="Geçerlilik Başlangıç Tarihi" dataType="date" format="dd/MM/yyyy" data-tid="A327162"></dxi-column>
+							<dxi-column dataField="DateEnd" caption="Geçerlilik Bitiş Tarihi" dataType="date" format="dd/MM/yyyy" data-tid="A327163"></dxi-column>
+							<dxi-column dataField="DiscountPercent" caption="İndirim Oranı" data-tid="A327164"></dxi-column>
+							<dxi-column dataField="PriceWithOutDiscount" caption="İndirimsiz Fiyat" data-tid="A327165"></dxi-column>
+							<dxi-column dataField="Price" caption="Fiyatı" [width]="250" data-tid="A327166"></dxi-column>
+						</dx-data-grid>
+					</dxi-item>
+
+					<dxi-item title="Muadil Malzeme" icon="glyphicon glyphicon-list-alt" style="padding: 0 10px !important;height: 230px;" data-tid="A327167">
+						<div class="row" data-tid="A327168">
+							<div class="col-sm-12" data-tid="A327169">
+								<label class="control-label" style="padding-left: 10px;" data-tid="A327170">Muadil Malzeme Seçiniz</label>
+							</div>
+							<div class="col-sm-12" data-tid="A327171">
+								<hvl-list-box [AutoCompleteDialogHeight]="120" [AutoCompleteMode]="EquivalentMaterialEquivalentConsMaterial?.AutoCompleteMode" [Enabled]="true" [BackColor]="EquivalentMaterialEquivalentConsMaterial?.BackColor" [DefinitionName]="EquivalentMaterialEquivalentConsMaterial?.ListDefName" [Font]="EquivalentMaterialEquivalentConsMaterial?.Font" [ForeColor]="EquivalentMaterialEquivalentConsMaterial?.ForeColor" [ListFilterExpression]="this.EquivalentMaterialEquivalentConsMaterial.ListFilterExpression" [MinSearchLength]="EquivalentMaterialEquivalentConsMaterial?.MinSearchLength" [PopupDialogFieldConfig]="EquivalentMaterialEquivalentConsMaterial?.PopupDialogFieldConfig" [PopupDialogGridColumns]="EquivalentMaterialEquivalentConsMaterial?.PopupDialogGridColumns" [PopupDialogHeight]="400" [PopupDialogTitle]="EquivalentMaterialEquivalentConsMaterial?.PopupDialogTitle" [PopupDialogWidth]="400" [ReadOnly]="EquivalentMaterialEquivalentConsMaterial?.ReadOnly" [SearchMode]="EquivalentMaterialEquivalentConsMaterial?.SearchMode" [SearchTimeout]="EquivalentMaterialEquivalentConsMaterial?.SearchTimeout" [TabIndex]="EquivalentMaterialEquivalentConsMaterial?.TabIndex" [Visible]="EquivalentMaterialEquivalentConsMaterial?.Visible" width="100%" (SelectedObjectChange)="onEquivalentMaterialSelectionChange($event)" data-tid="A327172"></hvl-list-box>
+							</div>
+							<br data-tid="A327173" />
+							<div class="col-sm-12" data-tid="A327174">
+								<div class="row panel panel-success panel-success-seperator-3" style="position:relative; height:70%; margin:0;" data-tid="A327175">
+									<dx-data-grid #manuelEquivalentMatsGrid id="manuelEquivalentMatsGrid" showColumnLines="true" showRowLines="true" showBorders="true" [dataSource]="EquivalentMaterialList" [columns]="EquivalentMaterialColumns" [paging]="{enabled:true}" height="100%" [filterRow]="{visible:true}" [scrolling]="{mode:'infinite'}" data-tid="A327176">
+										<div *dxTemplate="let cellData of 'deleteCellTemplate'" data-tid="A327177">
+											<i class="fa fa fa-trash" style="cursor:pointer" (click)="EquivalentMaterialGrid_CellContentClicked(cellData)" data-tid="A327178"></i>
+										</div>
+									</dx-data-grid>
+								</div>
+							</div>
+						</div>
+					</dxi-item>
+				</dx-tab-panel>
+			</div>
+		</div>
+	</div>
+
+	<dx-popup width="500px" height="500px" [(visible)]="showATCMultiSelectForm" [closeOnOutsideClick]="false" title="ATC Kodu Listesi" data-tid="A327179">
+		<div id="list-api-demo" data-tid="A327180">
+			<div class="margin-bottom-10" data-tid="A327181">
+				<div *dxTemplate="let data of 'content'" data-tid="A327182">
+					<dx-list [dataSource]="consumableMaterialDefinitionFormViewModel._ConsumableMaterialDefinition.DrugATCs" height="400" selectAllMode="allPages" searchExpr="Name" selectionMode="all" showSelectionControls="true" searchMode="contains" nextButtonText="Daha Fazla Göster" [(selectedItems)]="ATC" [searchEnabled]="true" pageLoadMode="scrollBottom" data-tid="A327183">
+						<div *dxTemplate="let data of 'item'" id="A18785" data-tid="A327184">
+							<div data-tid="A327185">{{data.ATC.Code}} {{data.ATC.Name}}</div>
+						</div>
+					</dx-list>
+					<dx-button type="button" class="btn btn-primary" (onClick)="selectedChangeOnATC()" style="margin-left: 200px;" text="Tamam" id data-tid="A327186"></dx-button>
+
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</dx-popup>
+
+	<dx-popup width="500px" height="500px" [(visible)]="showActiveIngredientsMaterialMultiSelectForm" [closeOnOutsideClick]="false" title="Etken Madde Listesi" data-tid="A327187">
+		<div id="list-api-demo" data-tid="A327188">
+			<div class="margin-bottom-10" data-tid="A327189">
+				<div *dxTemplate="let data of 'content'" data-tid="A327190">
+					<dx-list [dataSource]="consumableMaterialDefinitionFormViewModel.ActiveIngredientList" height="400" selectAllMode="allPages" searchExpr="Name" selectionMode="all" showSelectionControls="true" searchMode="contains" nextButtonText="Daha Fazla Göster" [(selectedItems)]="_ConsumableMaterialDefinition.DrugActiveIngredients" [searchEnabled]="true" pageLoadMode="scrollBottom" data-tid="A327191">
+						<div *dxTemplate="let data of 'item'" data-tid="A327192">
+							<div data-tid="A327193">{{data.Name}}</div>
+						</div>
+					</dx-list>
+					<dx-button type="button" class="btn btn-primary" (onClick)="selectedChangeOnActiveIngredient()" style="margin-left: 200px;" text="Tamam" id data-tid="A327194"></dx-button>
+				</div>
+			</div>
+		</div>
+	</dx-popup>
+
+	<!-- Hizmet -->
+	<dx-popup width="500px" height="500px" [(visible)]="showServiceMultiSelectForm" [closeOnOutsideClick]="false" title="Hizmet Listesi" data-tid="A327195">
+		<div id="list-api-demo" data-tid="A327196">
+			<div class="margin-bottom-10" data-tid="A327197">
+				<div *dxTemplate="let data of 'content'" data-tid="A327198">
+					<dx-list [dataSource]="ProcedureList" height="400" selectAllMode="allPages" searchExpr="Name" selectionMode="all" showSelectionControls="true" searchMode="contains" nextButtonText="Daha Fazla Göster" [(selectedItems)]="SelectedProcedureList" [searchEnabled]="true" pageLoadMode="scrollBottom" data-tid="A327199">
+						<div *dxTemplate="let data of 'item'" data-tid="A327200">
+							<div data-tid="A327201">{{data.Name}}</div>
+						</div>
+					</dx-list>
+					<dx-button type="button" class="btn btn-primary" (onClick)="selectedChangeOnService()" style="margin-left: 200px;" text="Tamam" id data-tid="A327202"></dx-button>
+				</div>
+			</div>
+		</div>
+	</dx-popup>
+	<!-- GMDN -->
+
+	<dx-popup width="500px" height="500px" [(visible)]="showGMDNSelectGrid" [closeOnOutsideClick]="false" title="GMDN Kodu" data-tid="A327203">
+		<div class="margin-bottom-10" data-tid="A327204">
+			<div data-tid="A327205">
+				<dx-data-grid width="100%" height="400px" [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" [dataSource]="GMDNCodesSource" (onRowClick)="selectGMDN($event)" [remoteOperations]="true" [customizeColumns]="null" data-tid="A327206">
+					<dxo-filter-row [visible]="true" data-tid="A327207"></dxo-filter-row>
+					<dxo-paging [pageSize]="10" data-tid="A327208"></dxo-paging>
+					<dxo-scrolling mode="virtual" rowRenderingMode="virtual" data-tid="A327209"></dxo-scrolling>
+					<dxo-selection mode="single" data-tid="A327210"></dxo-selection>
+					<dxi-column caption="Kod" dataField="ConceptCode" width="100" data-tid="A327211"></dxi-column>
+					<dxi-column caption="Adı" dataField="Name_Tr" width="100" data-tid="A327212"></dxi-column>
+				</dx-data-grid>
+				<dx-button type="button" class="btn btn-default" (onClick)="setGMDN()" style="margin-left: 200px;" text="Tamam" id data-tid="A327213"></dx-button>
+			</div>
+		</div>
+	</dx-popup>
+
+	<!-- Sarf -->
+	<dx-popup width="500px" height="500px" [(visible)]="showConsumptionsMultiSelectForm" [closeOnOutsideClick]="false" title="Malzeme Listesi" data-tid="A327214">
+		<div id="list-api-demo" data-tid="A327215">
+			<div class="margin-bottom-10" data-tid="A327216">
+				<div *dxTemplate="let data of 'content'" data-tid="A327217">
+					<dx-list [dataSource]="ConsumptionList" height="400" selectAllMode="allPages" searchExpr="Name" selectionMode="all" showSelectionControls="true" searchMode="contains" nextButtonText="Daha Fazla Göster" [(selectedItems)]="SelectedConsumptionList" [searchEnabled]="true" pageLoadMode="scrollBottom" data-tid="A327218">
+						<div *dxTemplate="let data of 'item'" data-tid="A327219">
+							<div data-tid="A327220">{{data.Name}}</div>
+						</div>
+					</dx-list>
+					<dx-button type="button" class="btn btn-primary" (onClick)="selectedChangeOnConsumption()" style="margin-left: 200px;" text="Tamam" id data-tid="A327221"></dx-button>
+				</div>
+			</div>
+		</div>
+	</dx-popup>
+
+	<dx-popup width="500px" height="500px" [(visible)]="showFeaturedDrugMultiSelectForm" [closeOnOutsideClick]="false" title="Özellikli İlaç Listesi" data-tid="A327222">
+		<div id="list-api-demo" data-tid="A327223">
+			<div class="margin-bottom-10" data-tid="A327224">
+				<div *dxTemplate="let data of 'content'" data-tid="A327225">
+					<dx-list [dataSource]="grdDrugSpecification " height="400" selectAllMode="allPages" searchExpr="Name" selectionMode="all" showSelectionControls="true" searchMode="contains" nextButtonText="Daha Fazla Göster" [(selectedItems)]="DrugSpecification" [searchEnabled]="true" pageLoadMode="scrollBottom" data-tid="A327226">
+						<div *dxTemplate="let data of 'item'" id="A18785" data-tid="A327227">
+							<div data-tid="A327228">{{data.Name}}</div>
+						</div>
+					</dx-list>
+					<dx-button type="button" (onClick)="selectedChangeOnFeaturedDrug()" style="margin-left: 200px;" text="Tamam" id data-tid="A327229"></dx-button>
+				</div>
+			</div>
+		</div>
+	</dx-popup>
+
+	<dx-popup width="500px" height="500px" [(visible)]="showPriceForm" [closeOnOutsideClick]="false" title="Giriş Fiyat Listesi" data-tid="A327230">
+		<dx-data-grid #gridPrice [dataSource]="FirtInStockUnitePriceList" data-tid="A327231">
+			<dxo-paging [pageSize]="10" data-tid="A327232"></dxo-paging>
+			<dxi-column dataField="TransactionDate" caption="Fiş Tarihi" dataType="date" format="dd/MM/yyyy" [width]="100" data-tid="A327233">
+			</dxi-column>
+			<dxi-column dataField="Tif" caption="Tif No" [width]="170" data-tid="A327234"></dxi-column>
+			<dxi-column dataField="UnitePrice" caption="Fiyat" data-tid="A327235"> </dxi-column>
+			<dxi-column dataField="ExpirationDate" caption="Son Kullanma Tarihi" dataType="date" format="dd/MM/yyyy" [width]="100" data-tid="A327236"></dxi-column>
+			<dxi-column name="button" [allowEditing]="false" caption='Detay' dataField="selectedInStockTransaction" cellTemplate="buttonCellTemplate" [width]="50" data-tid="A327237"></dxi-column>
+			<div *dxTemplate="let row of 'buttonCellTemplate'" style="padding-bottom: 1px;" id="A32144" data-tid="A327238">
+				<button type="button" class="btn btn-default glyphicon glyphicon-list" (click)="itemClick($event,row)" data-toggle="tooltip" data-placement="top" title="İşlem Detayı" data-tid="A327239">
+				</button>
+			</div>
+		</dx-data-grid>
+	</dx-popup>
+
+	<dx-popup width="50%" height="50%" [(visible)]="showPriceMedulaForm" [closeOnOutsideClick]="false" title="Medula Fiyat Listesi" data-tid="A327240">
+		<dx-data-grid #gridPrice [dataSource]="updateMaterialPriceOutput" [filterRow]="{visible: true}" (onRowClick)="updateMaterialPrice($event)" data-tid="A327241">
+			<dxo-paging [pageSize]="10" data-tid="A327242"></dxo-paging>
+			<dxi-column dataField="Code" caption="SUT Kodu" data-tid="A327243"></dxi-column>
+			<dxi-column dataField="Desciption" caption="Malzeme" data-tid="A327244"> </dxi-column>
+			<dxi-column dataField="Price" caption="Fiyat" data-tid="A327245"> </dxi-column>
+			<dxi-column dataField="SutAppandix" caption="Sut Eki" data-tid="A327246"> </dxi-column>
+			<dxi-column dataField="ActivationDate" caption="Geç.Tarihi" data-tid="A327247"> </dxi-column>
+		</dx-data-grid>
+	</dx-popup>
+
+
+	<dx-popup width="800px" height="800px" [(visible)]="showPatientPriceForm" [closeOnOutsideClick]="false" title="Hastaya Çıkış Fiyatını Güncelleme Form" data-tid="A327248">
+		<div class="row" data-tid="A327249">
+			<div class="col-sm-12" data-tid="A327250">
+				<div class=" dx-field" data-tid="A327251">
+					<div class="dx-field-label" style="font-weight: bold;width: 7% !important;" title="İlaç Adı" data-tid="A327252">Malzeme
+						Adı
+					</div>
+					<div class="dx-field-value" style="margin-right: 30%;" data-tid="A327253">
+						<dx-text-box [readOnly]="true" [(value)]="consumableMaterialDefinitionFormViewModel._ConsumableMaterialDefinition.Name" data-tid="A327254">
+						</dx-text-box>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row" data-tid="A327255">
+			<div class="col-sm-3" data-tid="A327256">
+				<div class="dx-field-label" style="font-weight: bold;" title="Baş. Tarihi" data-tid="A327257">Baş. Tarihi</div>
+			</div>
+			<div class="col-sm-2" style="margin-left: -15%;padding-right: 1px !important;" data-tid="A327258">
+				<dx-date-box [readOnly]="true" [(value)]="priceStartDate" data-tid="A327259"></dx-date-box>
+			</div>
+			<div class="col-sm-3" style="margin-left: 18%;" data-tid="A327260">
+				<div class="dx-field-label" style="font-weight: bold;" title="Bitiş Tarihi" data-tid="A327261">Bitiş Tarihi</div>
+			</div>
+			<div class="col-sm-2" style="margin-left: -15%;" data-tid="A327262">
+				<dx-date-box [readOnly]="true" [(value)]="priceEndDate" data-tid="A327263"></dx-date-box>
+			</div>
+			<div class="col-sm-2" data-tid="A327264">
+				<dx-button type="button" [(disabled)]="updatePatientPriceBTN" type="default" class="btn btn-primary" (onClick)="updatePatientPrice_Click()" text="Güncelle" data-tid="A327265"></dx-button>
+			</div>
+		</div>
+		<div class="row" data-tid="A327266">
+			<div class="col-sm-12" data-tid="A327267">
+				<div class=" dx-field" data-tid="A327268">
+					<div class="dx-field-label" style="font-weight: bold;width: 7% !important;" title="Sonuç" data-tid="A327269">Sonuç
+					</div>
+					<div class="dx-field-value" style="margin-right: 30%;" data-tid="A327270">
+						<dx-text-box [readOnly]="true" [(value)]="totalUpdatePatientPriceCount" data-tid="A327271">
+						</dx-text-box>
+					</div>
+				</div>
+			</div>
+		</div>
+		<dx-tab-panel [selectedIndex]="0" [animationEnabled]="true" [swipeEnabled]="false" data-tid="A327272">
+			<dxi-item title="Güncelenemeyen Hastalar Listesi" data-tid="A327273">
+				<br data-tid="A327274" />
+				<dx-data-grid #unUpdate id="grid-container" [dataSource]="unUpdatedPatienList" data-tid="A327275">
+					<dxo-paging [pageSize]="10" data-tid="A327276"></dxo-paging>
+					<dxi-column dataField="PatientNameAndSurname" caption="Hasta Adı Soyadı" data-tid="A327277"></dxi-column>
+					<dxi-column dataField="PatientProtocolNo" caption="Kabul Numarası" data-tid="A327278"></dxi-column>
+					<dxi-column dataField="TrasnactionDate" caption="İşlem Tarihi" dataType="date" format="dd/MM/yyyy" data-tid="A327279">
+					</dxi-column>
+					<dxi-column dataField="OldPrice" caption="Mevcut Fiyatı" data-tid="A327280"></dxi-column>
+					<dxi-column dataField="NewPrice" caption="Güncellenen Fiyatı" data-tid="A327281"></dxi-column>
+					<dxi-column dataField="Desciption" caption="Açıklama" data-tid="A327282"></dxi-column>
+				</dx-data-grid>
+			</dxi-item>
+		</dx-tab-panel>
+		<dx-tab-panel [selectedIndex]="0" [animationEnabled]="true" [swipeEnabled]="false" data-tid="A327283">
+			<dxi-item title="Güncelenen Hastalar Listesi" data-tid="A327284">
+				<br data-tid="A327285" />
+				<dx-data-grid #unUpdate id="grid-container" [dataSource]="UpdatedPatienList" data-tid="A327286">
+					<dxo-paging [pageSize]="10" data-tid="A327287"></dxo-paging>
+					<dxi-column dataField="PatientNameAndSurname" caption="Hasta Adı Soyadı" data-tid="A327288"></dxi-column>
+					<dxi-column dataField="PatientProtocolNo" caption="Kabul Numarası" data-tid="A327289"></dxi-column>
+					<dxi-column dataField="TrasnactionDate" caption="İşlem Tarihi" dataType="date" format="dd/MM/yyyy" data-tid="A327290">
+					</dxi-column>
+					<dxi-column dataField="OldPrice" caption="Mevcut Fiyatı" data-tid="A327291"></dxi-column>
+					<dxi-column dataField="NewPrice" caption="Güncellenen Fiyatı" data-tid="A327292"></dxi-column>
+					<dxi-column dataField="Desciption" caption="Açıklama" data-tid="A327293"></dxi-column>
+				</dx-data-grid>
+			</dxi-item>
+		</dx-tab-panel>
+	</dx-popup>
+
+	<!-- <dx-popup width="500px" height="500px" [(visible)]="showDetailAudit" [closeOnOutsideClick]="false"
+		title="Giriş Fiyat Listesi">
+		<dx-data-grid [dataSource]="getDetailAuditDataSource">
+			<dxo-paging [pageSize]="10"></dxo-paging>
+			<dxi-column dataField="creationDate" caption="Oluşturma Tarihi" dataType="date" format="dd/MM/yyyy"
+				[width]="100">
+			</dxi-column>
+			<dxi-column dataField="creationUser" caption="Oluşturan User" [width]="170"></dxi-column>
+			<dxi-column dataField="lastUpdateUser" caption="Son Değiştiren"> </dxi-column>
+			<dxi-column dataField="lastUpdateDate" caption="Son Değiştirilme Tarihi" dataType="date" format="dd/MM/yyyy"
+				[width]="100"></dxi-column>
+		</dx-data-grid>
+	</dx-popup>
+ -->
+
+
+
+</div>
+
+
+<dx-load-panel shadingColor="rgba(0,0,0,0.4)" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A327294">
+</dx-load-panel>

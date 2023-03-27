@@ -1,0 +1,20 @@
+﻿<div class="container-fluid" id="A8736" data-tid="A336861">
+    <div class="row" style="margin-top: 10px; margin-bottom: 10px;" data-tid="A374085">
+        <div class="col-sm-6" data-tid="A374088">
+            <dx-text-box [(value)]="searchText" [showClearButton]="true" placeholder="Malzeme Ara .."
+                valueChangeEvent="keyup" (onEnterKey)="onEnterKey($event)"></dx-text-box>
+        </div>
+    </div>
+</div>
+<dx-popup width="40%" height="50%" [showTitle]="true" title="Detaylı Arama" [dragEnabled]="false"
+    [closeOnOutsideClick]="false" [showCloseButton]="true" [(visible)]="search">
+    <dx-data-grid #materialGrid width="100%" height="400px"  [columns]="materialGridColumns" [showColumnLines]="true" [showRowLines]="true"
+        [showBorders]="true" [rowAlternationEnabled]="true" [dataSource]="materialDataSource"
+        (onRowClick)="selectMaterial($event)" [(selectedRowKeys)]="selectedMaterials"
+        (onSelectionChanged)="selectedChanged($event)" [remoteOperations]="true" [customizeColumns]="null"
+        data-tid="A374091">
+        <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true" [width]="240" placeholder="Malzeme Ara..."></dxo-search-panel>
+        <dxo-filter-row [visible]="true" data-tid="A374092"></dxo-filter-row>
+        <dxo-paging [pageSize]="10" data-tid="A374093"></dxo-paging>
+    </dx-data-grid>
+</dx-popup>

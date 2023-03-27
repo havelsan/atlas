@@ -1,0 +1,315 @@
+﻿<!--AnaDepoSelect-->
+<dx-popup width="1400px" height="800px" [(visible)]="showMaterialMultiSelectForm" [closeOnOutsideClick]="true" title="Miad'ı Dolan İlaçlar" id="A32314" data-tid="A373789">
+    <div class="margin-bottom-10" id="A32315" data-tid="A373790">
+        <div *dxTemplate="let data of 'content'" id="A32316" data-tid="A373791">
+            <MaterialExpirationDateInfoForm [StoreObjectId]="store?.ObjectID" id="A32317" data-tid="A373792">
+            </MaterialExpirationDateInfoForm>
+        </div>
+    </div>
+</dx-popup>
+
+<div class="row" id="A32318" style="overflow-y:auto;height:100% !important;" data-tid="A373793">
+    <div class="col-xs-6" id="A32319" data-tid="A373794"></div>
+    <div class="col-xs-6" id="A32320" data-tid="A373795">
+        <div class="row" id="A32321" data-tid="A373796">
+            <div class="col-xs-3" id="A32322" data-tid="A373797">
+                <!--  <button *ngIf="showMaterialExpirationShownOnTab==false" type="button"
+                    class="btn btn-info btn-gradient btn-round" (click)="openMaterialExpirationDateInfoForm()"
+                    id="A32323">
+                    <span class="fa fa-list" id="A32324"></span>&nbsp;Miad'ı Dolan İlaçlar
+                </button> -->
+            </div>
+            <div class="col-xs-3" id="A32325" data-tid="A373798">
+                <label id="A32326" data-tid="A373799">Kullanıcı Depo :</label>
+            </div>
+
+            <div class="col-xs-5" id="A32327" data-tid="A373800">
+                <label class="control-label" style="color:#08c" id="A32328" data-tid="A373801">{{storeName}}</label>
+            </div>
+
+            <div class="col-xs-1" id="A32329" data-tid="A373802">
+                <dx-button icon="pulldown" [disabled]="boolStore" hint="Depo Değiştir" type="default" (onClick)="setStoreClick()" i18n-hint="@@M12618" id="A32330" data-tid="A373803"></dx-button>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!--AnaDepoSelect-->
+
+    <div style="background-color:#fff; height:100%" id="A32331" data-tid="A373804">
+        <div class="col-xs-12" id="A32332" style="height:97%;" data-tid="A373805">
+            <dx-tab-panel style="height:100%" [selectedIndex]="0" [animationEnabled]="true" [swipeEnabled]="false" id="A32333" data-tid="A373806">
+
+                <dxi-item *ngIf="showMaterialExpirationShownOnTab" title="Uyarılar" icon="glyphicon glyphicon-info-sign" [template]="'showMaterialExpirationTemplate'" data-tid="A373807">
+                </dxi-item>
+
+                <dxi-item *ngIf="hasRoleStockWorkList" title="Ana Sayfa" icon="glyphicon glyphicon-home" [template]="'customTemplate'" i18n-title="@@M10925" id="A32334" data-tid="A373808">
+                </dxi-item>
+
+                <dxi-item *ngIf="hasRoleDashboard" class="tabpanel-item" title="Dashboard" icon="glyphicon glyphicon-stats" id="A32335" data-tid="A373809">
+                    <hvl-logistic-dashboard-view [SelectedMainStore]="store" id="A32336" data-tid="A373810"></hvl-logistic-dashboard-view>
+                </dxi-item>
+                <dxi-item *ngIf="hasRoleMkysIntegration" class="tabpanel-item" title="MKYS Ent. Yönetimi" icon="glyphicon glyphicon-check" i18n-title="@@M27729" id="A32337" data-tid="A373811">
+                    <hvl-logistic-mkysIntegration-view id="A32338" data-tid="A373812"></hvl-logistic-mkysIntegration-view>
+                </dxi-item>
+                <dxi-item *ngIf="hasRoleSupplyRequestManager" class="tabpanel-item" title="Satınalma Yönetimi" icon="glyphicon glyphicon-tags" i18n-title="@@M27613" id="A32339" data-tid="A373813">
+                    <hvl-logistic-supplyRequestManager-view id="A32340" data-tid="A373814"></hvl-logistic-supplyRequestManager-view>
+                </dxi-item>
+
+                
+
+                <div *dxTemplate="let item of 'DefinitionsITSTabTemplate'" class="tabpanel-item" style="height:100%!important;" data-tid="A374077">
+                    <its-component data-tid="A374078"></its-component>
+                </div>
+    
+                <dxi-item *ngIf="hasRoleMkysIntegration" class="tabpanel-item" title=" ITS Sarf "  icon="glyphicon glyphicon-tags" [template]="'DefinitionsITSTabTemplate'">
+                </dxi-item>
+    
+
+
+
+                <dxi-item *ngIf="hasRoleStockWorkList" class="tabpanel-item" title="Raporlar" icon="glyphicon glyphicon-list-alt" i18n-title="@@M20887" id="A32341" data-tid="A373815">
+                    <hvl-logistic-report-view id="A32342" data-tid="A373816"></hvl-logistic-report-view>
+                </dxi-item>
+
+                <dxi-item *ngIf="hasRoleLogisticAddAndUpdate" class="tabpanel-item" title="Veri Günc. Ve Ekleme" icon="fa fa-stack-overflow" i18n-title="@@M24093" id="A32343" data-tid="A373817">
+                    <hvl-logistic-addandupdate-view id="A32344" data-tid="A373818"></hvl-logistic-addandupdate-view>
+                </dxi-item>
+
+
+
+
+              
+               
+
+
+
+                <!--  <dxi-item *ngIf="hasRoleStockWorkList" title="Raporlar(Yeni)" icon="glyphicon glyphicon-eye-open"
+                    [template]="'NewReportTemplate'" style="height:100%!important;">
+                </dxi-item> -->
+
+                <dxi-item *ngIf="hasRoleStockWorkList" title="Raporlar(Yeni)" icon="glyphicon glyphicon-eye-open" [template]="'NewHierReportTemplate'" style="height:100%!important;" data-tid="A373819">
+                </dxi-item>
+
+                <dxi-item *ngIf="hasRoleDefinitions" title="Tanımlar" icon="glyphicon glyphicon-eye-open" [template]="'DefinitionsTabTemplate'" style="height:100%!important;" data-tid="A373820">
+                </dxi-item>
+                <div *dxTemplate="let item of 'DefinitionsTabTemplate'" class="tabpanel-item" style="height:100%!important;" data-tid="A373821">
+                    <div class="{{this.collapseSelectedDivProperties()}}" style="flex:1;" data-tid="A373822">
+                        <div class="row" style="height: 100%;" data-tid="A373823">
+                            <div class="col-sm-12 gradientPanel" style="height:4%;min-height: 35px;" id="A16463" data-tid="A373824">
+                                <h4 style="color:#fff; font-size:19px;text-align:left;" id="A16464" data-tid="A373825">
+                                    <div class="btn collapseBtn" (click)="btnCollapse()" style="padding:0;margin-top:3px;margin-right: 5px;" data-tid="A373826">
+                                        <i class="{{this.collapseIconProperties()}}" id="A16466" data-tid="A373827"></i>
+                                    </div>
+                                    <span id="A16467" data-tid="A373828">Tanımlar</span>
+                                </h4>
+                            </div>
+                            <div class="panel-body" style="background-color:#f6f6f6;padding-bottom:0; height:100%;padding: 0; padding-bottom: 20px;" data-tid="A373829">
+                                <div style="margin-top: 55px;" data-tid="A373830">
+                                    <dx-tree-view [items]="treeList" (onItemClick)="selectItem($event)" [searchEnabled]="true" style="height: 850px;" searchMode="contains" data-tid="A373831">
+                                        <div *dxTemplate="let data of 'item'" data-tid="A373832">
+                                            <div class="row" data-tid="A373833">
+                                                <div class="col-md-10" data-tid="A373834">{{data.text}}</div>
+                                            </div>
+                                        </div>
+                                    </dx-tree-view>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="{{this.collapseSelectedHiddenDivProperties()}}" style="position:relative;" data-tid="A373835">
+                        <div class="MyVerticalText" (click)="btnCollapse()" data-tid="A373836">
+                            <i class="{{this.collapseIconProperties()}}" data-tid="A373837"></i>
+                            <span id="A16547" data-tid="A373838">&nbsp;&nbsp;&nbsp;&nbsp;Tanımlar</span>
+                        </div>
+                    </div>
+
+                    <div class="{{this.collapsedPanelProperties()}}" style="height:100%!important;overflow-y: scroll;overflow-x: hidden;" data-tid="A373839">
+
+                        <div class="col-xs-12" id="A32332" data-tid="A373840">
+                            <!-- Tanımlar -->
+                            <div class="row" *ngIf="tabVisibility.hasDrugDefinitionBaseForm" [hidden]="tabHidden.hasDrugDefinitionBaseForm" data-tid="A373841">
+                                <DrugDefinitionBaseForm data-tid="A373842"></DrugDefinitionBaseForm>
+                            </div>
+                            <div class="row" *ngIf="tabVisibility.hasConsumableMaterialDefinitionBaseForm" [hidden]="tabHidden.hasConsumableMaterialDefinitionBaseForm" data-tid="A373843">
+                                <ConsumableMaterialDefinitionBaseForm data-tid="A373844">
+                                </ConsumableMaterialDefinitionBaseForm>
+                            </div>
+                            <div class="row" *ngIf="tabVisibility.hasDepletionMaterialDefinitionBaseForm" [hidden]="tabHidden.hasDepletionMaterialDefinitionBaseForm" data-tid="A373845">
+                                <DepletionMaterialDefinitionBaseForm data-tid="A373846"></DepletionMaterialDefinitionBaseForm>
+                            </div>
+                            <div class="row" *ngIf="tabVisibility.hasSupplierandproducerdef" [hidden]="tabHidden.hasSupplierandproducerdef" data-tid="A373847">
+                                <supplierandproducerdef-component data-tid="A373848"></supplierandproducerdef-component>
+                            </div>
+                            <div class="row" *ngIf="tabVisibility.hasMaterialtreedefinition" [hidden]="tabHidden.hasMaterialtreedefinition" data-tid="A373849">
+                                <materialtreedefinition-component data-tid="A373850"></materialtreedefinition-component>
+                            </div>
+                            <div class="row" *ngIf="tabVisibility.hasCommisiondefinition" [hidden]="tabHidden.hasCommisiondefinition" data-tid="A373851">
+                                <commisiondefinition-component data-tid="A373852"></commisiondefinition-component>
+                            </div>
+                            <div class="row" *ngIf="tabVisibility.hasAtcdefinition" [hidden]="tabHidden.hasAtcdefinition" data-tid="A373853">
+                                <atcdefinition-component data-tid="A373854"></atcdefinition-component>
+                            </div>
+                            <div class="row" *ngIf="tabVisibility.hasHospitalTimeSchedule" [hidden]="tabHidden.hasHospitalTimeSchedule" data-tid="A373855">
+                                <hospital-time-schedule-component data-tid="A373856"></hospital-time-schedule-component>
+                            </div>
+                            <div class="row" *ngIf="tabVisibility.hasRouteOfAdmineDef" [hidden]="tabHidden.hasRouteOfAdmineDef" data-tid="A373857">
+                                <routeofadmindefinition-component data-tid="A373858"></routeofadmindefinition-component>
+                            </div>
+                            <div class="row" *ngIf="tabVisibility.hasDistributionDefinition" [hidden]="tabHidden.hasDistributionDefinition" data-tid="A373859">
+                                <distributiondefinition-component data-tid="A373860"></distributiondefinition-component>
+                            </div>
+                            <div class="row" *ngIf="tabVisibility.hasOrderTemplateDefinition" [hidden]="tabHidden.hasOrderTemplateDefinition" data-tid="A373861">
+                                <ordertemplatedef-component data-tid="A373862"></ordertemplatedef-component>
+                            </div>
+                            <div class="row" *ngIf="tabVisibility.hasActiveIngredientDefinition" [hidden]="tabHidden.hasActiveIngredientDefinition" data-tid="A373863">
+                                <activeIngredientDef-component data-tid="A373864"></activeIngredientDef-component>
+                            </div>
+                            <div class="row" *ngIf="tabVisibility.hasSubStoreDefinition" [hidden]="tabHidden.hasSubStoreDefinition" data-tid="A373865">
+                                <subStoreDefinition-component data-tid="A373866"></subStoreDefinition-component>
+                            </div>
+                            <div class="row" *ngIf="tabVisibility.hasMainStoreDefinition" [hidden]="tabHidden.hasMainStoreDefinition" data-tid="A373867">
+                                <mainStoreDefinition-component data-tid="A373868"></mainStoreDefinition-component>
+                            </div>
+                            <div class="row" *ngIf="tabVisibility.hasOrderRestDayDefinition" [hidden]="tabHidden.hasOrderRestDayDefinition" data-tid="A373869">
+                                <orderRestDayDefinition-component data-tid="A373870"></orderRestDayDefinition-component>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div *dxTemplate="let item of 'NewHierReportTemplate'" class="tabpanel-item" style="height:100%!important;" id="A32345" data-tid="A373871">
+                    <new-report-view data-tid="A373872"></new-report-view>
+                </div>
+
+
+                <div *dxTemplate="let item of 'NewReportTemplate'" class="tabpanel-item" style="height:100%!important;" id="A32345" data-tid="A373873">
+                    <dx-tab-panel style="height:100%!important;" [selectedIndex]="0" [animationEnabled]="true" [swipeEnabled]="false" id="A32334" data-tid="A373874">
+                        <dxi-item *ngIf="hasRoleStockWorkList" title="Giriş Raporları" icon="glyphicon glyphicon-list-alt" [template]="'MovableTransactionInputVoucherTemplate'" data-tid="A373875">
+                        </dxi-item>
+                        <dxi-item *ngIf="hasRoleStockWorkList" title="Çıkış Raporları" icon="glyphicon glyphicon-list-alt" [template]="'MovableTransactionOutVoucherTemplate'" data-tid="A373876">
+                        </dxi-item>
+                        <dxi-item *ngIf="hasRoleStockWorkList" title="Muadil Malzeme Raporu" icon="glyphicon glyphicon-list-alt" [template]="'showEquivalentMaterialForm'" data-tid="A373877">
+                        </dxi-item>
+                        <dxi-item *ngIf="hasRoleStockWorkList" title="Son Kullanma Tarihine Göre Malzeme Raporu" icon="glyphicon glyphicon-list-alt" [template]="'showMaterialReportByExpirationDateForm'" data-tid="A373878">
+                        </dxi-item>
+                        <!--<dxi-item *ngIf="hasRoleStockWorkList" title="UTS Toplu Sorgu Ekranı" icon="glyphicon glyphicon-list-alt" [template]="'showUTSBatchNotificationForm'">
+    </dxi-item>-->
+                        <dxi-item *ngIf="hasRoleStockWorkList" title="Eczaneye İade Raporu" icon="glyphicon glyphicon-list-alt" [template]="'showDrugReturnReportForm'" data-tid="A373879">
+                        </dxi-item>
+                        <dxi-item *ngIf="hasRoleStockWorkList" title="İlaç Kullanım Raporu" icon="glyphicon glyphicon-list-alt" [template]="'showDrugUsageReportForm'" data-tid="A373880">
+                        </dxi-item>
+                        <dxi-item *ngIf="hasRoleStockWorkList" title="Muadil Malzeme Tüketim Raporu" icon="glyphicon glyphicon-list-alt" [template]="'showEquivalentMaterialConsumptionReportForm'" data-tid="A373881">
+                        </dxi-item>
+                        <dxi-item *ngIf="hasRoleStockWorkList" title="İade Raporu(Oransal)" icon="glyphicon glyphicon-list-alt" [template]="'showReturnReportFormTemplate'" data-tid="A373882">
+                        </dxi-item>
+                        <dxi-item *ngIf="hasRoleStockWorkList" title="Kullanılmayan Malzeme Raporu" icon="glyphicon glyphicon-list-alt" [template]="'showUnusedMaterialFormTemplate'" data-tid="A373883">
+                        </dxi-item>
+                        <dxi-item *ngIf="hasRoleStockWorkList" title="Reçete Türüne Göre İlaç Çıkışı" icon="glyphicon glyphicon-list-alt" [template]="'showDrugOutForRecipeType'" data-tid="A373884">
+                        </dxi-item>
+                        <div *dxTemplate="let item of 'showEquivalentMaterialForm'" class="tabpanel-item col-sm-12" id="A100003" style="height:100%!important;" data-tid="A373885">
+                            <equivalent-material-report-form [SelectedStoreObjectID]="store?.ObjectID" id="A100002" data-tid="A373886">
+                            </equivalent-material-report-form>
+                        </div>
+                        <div *dxTemplate="let item of 'MovableTransactionInputVoucherTemplate'" class="tabpanel-item" data-tid="A373887">
+                            <MovableTransactionInputVoucherForm [SelectedMainStore]="store" data-tid="A373888">
+                            </MovableTransactionInputVoucherForm>
+                        </div>
+                        <div *dxTemplate="let item of 'MovableTransactionOutVoucherTemplate'" class="tabpanel-item" data-tid="A373889">
+                            <MovableTransactionOutVoucherForm [SelectedMainStore]="store" data-tid="A373890">
+                            </MovableTransactionOutVoucherForm>
+                        </div>
+                        <div *dxTemplate="let item of 'showMaterialReportByExpirationDateForm'" class="tabpanel-item" data-tid="A373891">
+                            <MaterialReportByExpirationDateForm [StoreObjectId]="store?.ObjectID" data-tid="A373892">
+                            </MaterialReportByExpirationDateForm>
+                        </div>
+                        <!--<div *dxTemplate="let item of 'showUTSBatchNotificationForm'" class="tabpanel-item">
+        <UTSBatchNotificationForm></UTSBatchNotificationForm>
+    </div>-->
+                        <div *dxTemplate="let item of 'showDrugReturnReportForm'" class="tabpanel-item" data-tid="A373893">
+                            <DrugReturnReportForm [StoreObjectId]="store?.ObjectID" data-tid="A373894"></DrugReturnReportForm>
+                        </div>
+                        <div *dxTemplate="let item of 'showDrugUsageReportForm'" class="tabpanel-item" data-tid="A373895">
+                            <DrugUsageReportForm [StoreObjectId]="store?.ObjectID" data-tid="A373896"></DrugUsageReportForm>
+                        </div>
+                        <div *dxTemplate="let item of 'showEquivalentMaterialConsumptionReportForm'" class="tabpanel-item" data-tid="A373897">
+                            <EquivalentMaterialConsumptionForm [StoreObjectId]="store?.ObjectID" data-tid="A373898">
+                            </EquivalentMaterialConsumptionForm>
+                        </div>
+                        <div *dxTemplate="let item of 'showReturnReportFormTemplate'" class="tabpanel-item" data-tid="A373899">
+                            <ReturnForm [SelectedMainStore]="store" data-tid="A373900"></ReturnForm>
+                        </div>
+                        <div *dxTemplate="let item of 'showUnusedMaterialFormTemplate'" class="tabpanel-item" data-tid="A373901">
+                            <UnusedMaterialForm [SelectedMainStore]="store" data-tid="A373902"></UnusedMaterialForm>
+                        </div>
+                        <div *dxTemplate="let item of 'showDrugOutForRecipeType'" class="tabpanel-item" data-tid="A373903">
+                            <DrugOutForRecipeTypeForm [SelectedMainStore]="store" data-tid="A373904"></DrugOutForRecipeTypeForm>
+                        </div>
+                    </dx-tab-panel>
+                </div>
+                <div *dxTemplate="let item of 'customTemplate'" class="tabpanel-item" id="A32345" style="display: unset;" data-tid="A373905">
+                    <hvl-logistic-main-view id="A32346" data-tid="A373906"></hvl-logistic-main-view>
+                </div>
+                <div *dxTemplate="let item of 'showMaterialExpirationTemplate'" class="tabpanel-item col-sm-12" id="A52348" data-tid="A373907">
+                    <h4 class="col-sm-12" style="text-align:center;" data-tid="A373908">Miadı Dolan İlaç/Malzemeler</h4>
+                    <div class="col-sm-12" data-tid="A373909">
+                        <MaterialExpirationDateInfoForm [StoreObjectId]="store?.ObjectID" id="A32317" data-tid="A373910">
+                        </MaterialExpirationDateInfoForm>
+                    </div>
+                    <div class="col-sm-12" data-tid="A373911">
+                        <h4 class="col-sm-12" style="text-align:center;" data-tid="A373912">Stok Seviyeleri</h4>
+                        <div class="row" data-tid="A373913">
+                            <label class="col-sm-2" data-tid="A373914">Stok Seviyesi Filtresi</label>
+                            <div class="col-sm-3" data-tid="A373915">
+                                <dx-select-box [items]="CriticalStockLevelTypeItems" displayExpr="description" valueExpr="ordinal" (onValueChanged)="onStockLevelTypeChanged($event)" showClearButton="true" id="A30266" data-tid="A373916">
+                                </dx-select-box>
+                            </div>
+                            <label class="col-sm-2" data-tid="A373917">Malzeme Grubu</label>
+                            <div class="col-sm-3" data-tid="A373918">
+                                <dx-select-box [items]="MaterialTreeForStock" displayExpr="Name" valueExpr="ObjectID" (onValueChanged)="onSelectedMaterialTreeChanged($event)" showClearButton="true" id="A30266" data-tid="A373919">
+                                </dx-select-box>
+                            </div>
+                            <dx-check-box [(value)]="checkBoxValue" [width]="280" (onValueChanged)="onValueChanged($event)" text="Mevcutları Göster" i18n-text="@@M16871" id="A32388" data-tid="A373920"></dx-check-box>
+                        </div>
+                    </div>
+                    <br data-tid="A373921" />
+                    <div class="col-sm-12" data-tid="A373922">
+                        <dx-data-grid [columns]="criticalStockLevelGridColumns" [dataSource]="filteredCriticalStockLevelOfItems" style="height: 350px;" (onRowPrepared)="onRowPreparedTransactionList($event)" [filterRow]="{visible:true}" [allowColumnResizing]="true" columnResizingMode="nextColumn" data-tid="A373923">
+                            <dxo-paging [pageSize]="11" data-tid="A373924"></dxo-paging>
+                            <dxo-export [enabled]="true" fileName="Stok_Seviye" data-tid="A373925"></dxo-export>
+                            <div *dxTemplate="let info of 'titleHeaderTemplateMini'" data-tid="A373926">
+                                <i style="color: rgb(241, 93, 93)" data-tid="A373927">Belirlenen Minimum Seviye</i>
+                            </div>
+                            <div *dxTemplate="let info of 'titleHeaderTemplateMax'" data-tid="A373928">
+                                <i style="color: rgb(126, 176, 237)" data-tid="A373929">Belirlenen Maximum Seviye</i>
+                            </div>
+                            <div *dxTemplate="let info of 'titleHeaderTemplateKrit'" data-tid="A373930">
+                                <i style="color: maroon" data-tid="A373931">Belirlenen Kritik Seviye</i>
+                            </div>
+                        </dx-data-grid>
+                    </div>
+                </div>
+
+            </dx-tab-panel>
+        </div>
+    </div>
+</div>
+
+
+<dx-popup width="500px" height="400px" [(visible)]="definitionPopupVisible" [closeOnOutsideClick]="false" title="Tanımlar" data-tid="A373932">
+    <div class="row" data-tid="A373933">
+        <div class="col-sm-12" data-tid="A373934">
+            <dx-tree-view [items]="treeList" (onItemClick)="selectItem($event)" [searchEnabled]="true" style="height: 850px;" searchMode="contains" data-tid="A373935">
+                <div *dxTemplate="let data of 'item'" data-tid="A373936">
+                    <div class="row" data-tid="A373937">
+                        <div class="col-md-10" data-tid="A373938">{{data.text}}</div>
+                    </div>
+                </div>
+            </dx-tree-view>
+        </div>
+    </div>
+</dx-popup>

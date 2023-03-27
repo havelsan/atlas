@@ -1,0 +1,179 @@
+﻿<!--<div [ngClass]="formClasses">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="col-sm-12">
+                <label>Kayıtlı Tanımlar</label>
+            </div>
+            <div class="col-sm-12">
+                <dx-select-box [dataSource]="HospitalTimeSchedules" [(value)]="ObjectID" displayExpr="Name"
+                    valueExpr="ObjectID" (onValueChanged)="onHospitalTimeScheduleValueChanged($event)">
+
+                </dx-select-box>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label class="col-sm-12">Order Adı:</label>
+            <div class="col-sm-12">
+                <dx-text-box [(value)]="hospitalTimeScheduleFormViewModel.HospitalTimeSchedule.Name">
+
+                </dx-text-box>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <label class="col-sm-12">Doz Aralığı:</label>
+            <div class="col-sm-12">
+                <dx-select-box [dataSource]="FrequencyDataSource"
+                    [(value)]="hospitalTimeScheduleFormViewModel.HospitalTimeSchedule.Frequency"
+                    displayExpr="description" valueExpr="ordinal">
+
+                </dx-select-box>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="col-sm-6">
+                <dx-check-box [(value)]="hospitalTimeScheduleFormViewModel.HospitalTimeSchedule.IsTomorrow" [width]="50"
+                    text="Yarın"></dx-check-box>
+            </div>
+            <div class="col-sm-6">
+                <dx-check-box [(value)]="hospitalTimeScheduleFormViewModel.HospitalTimeSchedule.Active" [width]="50"
+                    text="Aktif"></dx-check-box>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="col-sm-2">
+                <dx-button text="Kaydet" type="default" icon="save" (onClick)="SaveTimeSchedule()">
+
+                </dx-button>
+            </div>
+            <div class="col-sm-2">
+                <dx-button text="Yeni" type="success" icon="fa fa-plus" (onClick)="CreateNewHospitalTimeSchedule()">
+
+                </dx-button>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="col-sm-12">
+                <dx-number-box [showSpinButtons]="false" [(value)]="timeScheduleDetailCount"
+                    (onValueChanged)="onTimeScheduleDetailCountValueChanged($event)" min="1" max="24">
+                </dx-number-box>
+                <dx-button text="Otomatik Oluştur" (onClick)="onAutoGenerateTimeScheduleDetails()" type="btn-secondary">
+
+                </dx-button>
+            </div>
+            <div class="col-sm-12">
+                (onRowUpdating)="onRowUpdating($event)"
+                <dx-data-grid #timeschedulegrid
+                    [dataSource]="hospitalTimeScheduleFormViewModel.HospitalTimeScheduleDetails"
+                    [columns]="TimeScheduleGridColumns" height="250"
+                    (onRowInserted)="onTimeScheduleGridRowInsterted($event)" (onRowUpdated)="onRowUpdated($event)"
+                    (onRowRemoving)="onTimeScheduleGridRowRemoving($event)">
+                    <dxo-editing mode="cell" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
+                    </dxo-editing>
+                    <dxo-scrolling mode="infinite"></dxo-scrolling>
+                    <dxo-sorting mode="none"></dxo-sorting>
+                </dx-data-grid>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+<div class="{{this.collapseSelectedDivProperties()}}" style="height: 100%;" id="A16462" data-tid="A329867">
+    <div class="row" style="height: 100%;" data-tid="A329868">
+        <div class="col-sm-12 gradientPanel" id="A16463" data-tid="A329869">
+            <h4 style="color:#fff; font-size:19px;text-align:left;" id="A16464" data-tid="A329870">
+                <div class="btn collapseBtn" (click)="btnCollapse()" style="padding:0;margin-top:3px;margin-right: 5px;" id="A16465" data-tid="A329871">
+                    <i class="{{this.collapseIconProperties()}}" id="A16466" data-tid="A329872"></i>
+                </div>
+                <span id="A16467" data-tid="A329873">Direktif Zaman Çizelgesi Listesi</span>
+            </h4>
+        </div>
+        <div class="panel-body" style="background-color:#f6f6f6;padding-bottom:0; height:100%;padding: 0" data-tid="A329874">
+            <div class="col-md-12" style="padding: 2px;height: calc(100% - 127px);" id="A10249" data-tid="A329875">
+                <dx-data-grid #grid [dataSource]="HospitalTimeSchedules" style="height: 650px;" [columns]="hospitalTimeScheduleDataColumn" [filterRow]="{visible: true}" [paging]="{pageSize:34}" (onSelectionChanged)="selectionGridEvent($event)" [showBorders]="true" data-tid="A329876">
+                    <dxo-selection mode="single" data-tid="A329877"></dxo-selection>
+                </dx-data-grid>
+            </div>
+            <br data-tid="A329878" />
+            <div class="col-md-12" style="max-height: 111px;" data-tid="A329879">
+                <div class="row" data-tid="A329880">
+                    <div class="col-sm-6" data-tid="A329881">
+                        <dx-button icon="fas fa-plus" style="float: left;" stylingMode="contained" text="Yeni" type="default" [width]="120" (onClick)="CreateNewHospitalTimeSchedule()" data-tid="A329882">
+                        </dx-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="{{this.collapseSelectedHiddenDivProperties()}}" style="position:relative;" id="A16544" data-tid="A329883">
+    <div class="MyVerticalText" (click)="btnCollapse()" id="A16545" data-tid="A329884">
+        <i class="{{this.collapseIconProperties()}}" id="A16546" data-tid="A329885"></i>
+        <span data-tid="A329886">&nbsp;&nbsp;&nbsp;&nbsp;Direktif Zaman Çizelgesi Listesi</span>
+    </div>
+</div>
+
+<div class="col-sm-8" style="padding-top: 1%;padding-left: 2% !important;" data-tid="A329887">
+    <div id="detail" *ngIf="selectedItemFromOpen" data-tid="A329888">
+        <div class="row" data-tid="A329889">
+            <dx-button icon="fa fa-times" style="float: right;" stylingMode="contained" text="Vazgeç" type="danger" [width]="120" (onClick)="Cancel()" data-tid="A329890">
+            </dx-button>
+            <dx-button icon="fas fa-save" style="float: right;" stylingMode="contained" text="Kaydet" type="success" [width]="120" (onClick)="SaveTimeSchedule()" data-tid="A329891">
+            </dx-button>
+        </div>
+        <br data-tid="A329892" />
+        <br data-tid="A329893" />
+        <div class="row" data-tid="A329894">
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A329895">
+                Order Adı
+                <dx-text-box [(value)]="hospitalTimeScheduleFormViewModel.HospitalTimeSchedule.Name" data-tid="A329896">
+                    <dx-validator data-tid="A329897">
+                        <dxi-validation-rule type="required" message="Order Adı Boş Olamaz!" data-tid="A329898"></dxi-validation-rule>
+                    </dx-validator>
+                </dx-text-box>
+            </div>
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A329899">
+                Doz Aralığı
+                <dx-select-box [dataSource]="FrequencyDataSource" [(value)]="hospitalTimeScheduleFormViewModel.HospitalTimeSchedule.Frequency" displayExpr="description" valueExpr="ordinal" data-tid="A329900">
+                    <dx-validator data-tid="A329901">
+                        <dxi-validation-rule type="required" message="Doz Aralığı Boş Olamaz!" data-tid="A329902"></dxi-validation-rule>
+                    </dx-validator>
+                </dx-select-box>
+            </div>
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A329903">
+                <br data-tid="A329904" />
+                <dx-check-box [(value)]="hospitalTimeScheduleFormViewModel.HospitalTimeSchedule.IsTomorrow" [width]="50" text="Yarın" data-tid="A329905"></dx-check-box>
+            </div>
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A329906">
+                <br data-tid="A329907" />
+                <dx-check-box [(value)]="hospitalTimeScheduleFormViewModel.HospitalTimeSchedule.Active" [width]="50" text="Aktif" data-tid="A329908">
+                </dx-check-box>
+            </div>
+        </div>
+        <br data-tid="A329909" />
+        <div class="row" data-tid="A329910">
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A329911">
+                <dx-number-box [showSpinButtons]="false" [(value)]="timeScheduleDetailCount" (onValueChanged)="onTimeScheduleDetailCountValueChanged($event)" min="1" max="24" data-tid="A329912">
+                </dx-number-box>
+            </div>
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A329913">
+                <dx-button text="Otomatik Oluştur" (onClick)="onAutoGenerateTimeScheduleDetails()" type="btn-secondary" data-tid="A329914">
+                </dx-button>
+            </div>
+            <div class="col-sm-6" style="font-weight: bold;" data-tid="A329915">
+                <dx-data-grid #timeschedulegrid [dataSource]="hospitalTimeScheduleFormViewModel.HospitalTimeScheduleDetails" [columns]="TimeScheduleGridColumns" height="250" (onRowInserted)="onTimeScheduleGridRowInsterted($event)" (onRowUpdated)="onRowUpdated($event)" (onRowRemoving)="onTimeScheduleGridRowRemoving($event)" data-tid="A329916">
+                    <dxo-editing mode="cell" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" data-tid="A329917">
+                    </dxo-editing>
+                    <dxo-scrolling mode="infinite" data-tid="A329918"></dxo-scrolling>
+                    <dxo-sorting mode="none" data-tid="A329919"></dxo-sorting>
+                </dx-data-grid>
+            </div>
+        </div>
+
+    </div>
+</div>
+<dx-load-panel shadingColor="rgba(0,0,0,0.4)" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A329920">
+</dx-load-panel>

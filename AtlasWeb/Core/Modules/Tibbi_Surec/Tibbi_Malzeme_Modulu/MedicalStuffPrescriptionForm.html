@@ -1,0 +1,344 @@
+﻿<form id="MedicalStuffPrescriptionForm" class="form-horizontal" role="form" data-tid="A365359"></form>
+<div class="row" data-tid="A365360">
+    <div class=" col-md-6" data-tid="A365361">
+        <div class="row" data-tid="A365362">
+            <div class="col-md-12" data-tid="A365363">
+                <patient-demographics-form [actionId]="medicalStuffPrescriptionFormViewModel._MedicalStuffPrescription.MasterAction" id="A28186" data-tid="A365364"></patient-demographics-form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6" data-tid="A365365">
+        <div class="row" data-tid="A365366">
+            <label class="control-label col-md-4" data-tid="A365367">
+                İşlemi Yapan Doktor
+            </label>
+            <div class="col-md-8" data-tid="A365368">
+                <hvl-list-box #Validation (SelectedObjectChange)="onProcedureDoctorChanged($event)" [AutoCompleteDialogHeight]="ProcedureDoctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ProcedureDoctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="ProcedureDoctor?.AutoCompleteMode" [BackColor]="ProcedureDoctor?.BackColor" [DefinitionName]="ProcedureDoctor?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="ProcedureDoctor?.Enabled" [Font]="ProcedureDoctor?.Font" [ForeColor]="ProcedureDoctor?.ForeColor" [ListFilterExpression]="ProcedureDoctor?.ListFilterExpression" [MinSearchLength]="ProcedureDoctor?.MinSearchLength" [PopupDialogFieldConfig]="ProcedureDoctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ProcedureDoctor?.PopupDialogGridColumns" [PopupDialogHeight]="ProcedureDoctor?.PopupDialogHeight" [PopupDialogTitle]="ProcedureDoctor?.PopupDialogTitle" [PopupDialogWidth]="ProcedureDoctor?.PopupDialogWidth" [ReadOnly]="ProcedureDoctor?.ReadOnly" [SearchMode]="ProcedureDoctor?.SearchMode" [SearchTimeout]="ProcedureDoctor?.SearchTimeout" [SelectedObject]="_MedicalStuffPrescription.ProcedureDoctor" [TabIndex]="ProcedureDoctor?.TabIndex" [Visible]="ProcedureDoctor?.Visible" [width]="ProcedureDoctor?.Width" data-tid="A365369">
+                </hvl-list-box>
+            </div>
+        </div>
+        <div class="row" style="padding-top:5px" data-tid="A365370">
+            <label class=" control-label col-md-4" data-tid="A365371">
+                Reçete Tarihi
+            </label>
+            <div class="col-md-8" data-tid="A365372">
+                <hvl-date-picker #Validation (ValueChange)="onPrescriptionDateChanged($event)" [BackColor]="PrescriptionDate?.BackColor" [CustomFormat]="PrescriptionDate?.CustomFormat" [Enabled]="PrescriptionDate?.Enabled" [Font]="PrescriptionDate?.Font" [ForeColor]="PrescriptionDate?.ForeColor" [Format]="PrescriptionDate?.Format" [Max]="PrescriptionDate?.Max" [Min]="PrescriptionDate?.Min" [ReadOnly]="PrescriptionDate?.ReadOnly" [Required]="PrescriptionDate?.Required" [TabIndex]="PrescriptionDate?.TabIndex" [Value]="_MedicalStuffPrescription.PrescriptionDate" [Visible]="PrescriptionDate?.Visible" data-tid="A365373">
+                </hvl-date-picker>
+            </div>
+        </div>
+        <div class="row" data-tid="A365374">
+            <div class="col-md-12" id="A28217" data-tid="A365375">
+                <button type="button" class="btn btn-primary btn-gradient btn-round" (click)="eReceteListeSorgula()" style="width:150px" id="A28218" data-tid="A365376">e-Reçete Listesi</button>
+            </div>
+        </div>
+        <!--<div class="row" style="padding-top:5px">
+            <div class="col-md-2" *ngIf="medicalStuffReport != null">
+                <dx-button type="default" [disabled]="sended" (onClick)="btndiagnosis_Click()" text="TANILAR" style="margin-left:0px;"></dx-button>
+            </div>
+            <label class="col-md-2">
+                Medula Rapor No
+            </label>
+            <div class="col-sm-4">
+                <dx-text-box [(value)]="medulaReportNo"></dx-text-box>
+            </div>
+            <div class="col-sm-2">
+                <dx-button type="default" (onClick)="getMedicalStuffReport()" text="Rapor Yükle" style="margin-left:0px;"></dx-button>
+            </div>
+
+        </div>-->
+    </div>
+
+    <div class="col-md-4" data-tid="A365377">
+
+    </div>
+
+</div>
+<div class="row" style="padding-top:7px" data-tid="A365378">
+    <div class="col-sm-12" data-tid="A365379">
+        <div class="row" data-tid="A365380">
+            <label class="col-sm-12" data-tid="A365381">Rapor ve Malzeme Listesi</label>
+        </div>
+        <div class="row" style="padding-top:5px;height:175px" *ngIf="medicalStuffPrescriptionFormViewModel.MedicalStuffGridGridList.length > 0" data-tid="A365382">
+            <!--<hvl-list-view (RowPrepared)="PrescriptionReportListViewRowPrepared($event)" (SelectedObjectChange)="PrescriptionReportListView_Click($event)" [BackColor]="PrescriptionReportListView?.BackColor" [Columns]="PrescriptionReportListView?.Columns" [EnableFilter]="PrescriptionReportListView?.ShowFilterRow" [EnablePaging]="PrescriptionReportListView?.EnablePaging" [Enabled]="PrescriptionReportListView?.Enabled" [Font]="PrescriptionReportListView?.Font" [ForeColor]="PrescriptionReportListView?.ForeColor" [Items]="PrescriptionReportListView?.Items" [PageSize]="PrescriptionReportListView?.PageSize" [ReadOnly]="PrescriptionReportListView?.ReadOnly" [SelectedObject]="PrescriptionReportListView?.SelectedItems" [TabIndex]="PrescriptionReportListView?.TabIndex" [RowDisablePath]="PrescriptionReportListView?.RowDisablePath" id="A28197"></hvl-list-view>-->
+            <!--<hvl-datagrid [AllowUserToAddRows]="false" [AllowUserToDeleteRows]="ReadOnly != true" [Columns]="gridMedulaStuffColumns" [dataSource]="medicalStuffPrescriptionFormViewModel?.MedicalStuffGridGridList" [ReadOnly]="true" [height]="100" id="A28298">
+            </hvl-datagrid>-->
+            <dx-data-grid height="95%" [dataSource]="medicalStuffPrescriptionFormViewModel?.MedicalStuffGridGridList" [columns]='medicalStuffColumns' id="A28704" data-tid="A365383">
+                <div *dxTemplate="let row of 'medicalStuffCodeTemplate'" data-tid="A365384">
+                    <dx-text-box [readOnly]="true" [(value)]="row.data.MedicalStuffDef.Code" data-tid="A365385"></dx-text-box>
+                </div>
+                <div *dxTemplate="let row of 'medicalStuffNameTemplate'" data-tid="A365386">
+                    <dx-text-box [readOnly]="true" [(value)]="row.data.MedicalStuffDef.Name" data-tid="A365387"></dx-text-box>
+                </div>
+
+                <div *dxTemplate="let row of 'medicalStuffAmountTemplate'" data-tid="A365388">
+                    <dx-text-box [(value)]="row.data.StuffAmount" data-tid="A365389"></dx-text-box>
+                </div>
+                <div *dxTemplate="let row of 'medicalStuffPlaceOfUsageTemplate'" data-tid="A365390">
+                    <dx-text-box *ngIf="row.data.MedicalStuffPlaceOfUsage != null" [readOnly]="true" [(value)]="row.data.MedicalStuffPlaceOfUsage.Name" data-tid="A365391"></dx-text-box>
+                </div>
+                <div *dxTemplate="let row of 'medicalStuffUsageTypeTemplate'" data-tid="A365392">
+                    <dx-text-box *ngIf="row.data.MedicalStuffUsageType != null" [readOnly]="true" [(value)]="row.data.MedicalStuffUsageType.Name" data-tid="A365393"></dx-text-box>
+                    <!--<hvl-list-box IsOnPopup="false" [ReadOnly]="StuffUsageType?.ReadOnly"
+                        [(SelectedObject)]="row.data.MedicalStuffUsageType"
+                        [AutoCompleteDialogHeight]="StuffUsageType?.AutoCompleteDialogHeight"
+                        [AutoCompleteDialogWidth]="StuffUsageType?.AutoCompleteDialogWidth"
+                        [AutoCompleteMode]="StuffUsageType?.AutoCompleteMode"
+                        [DefinitionName]="StuffUsageType?.ListDefName"></hvl-list-box>-->
+
+                </div>
+                <div *dxTemplate="let row of 'medicalStuffOdyometryTestIdTemplate'" data-tid="A365394">
+                    <dx-text-box [(value)]="row.data.OdyometryTestId" data-tid="A365395"></dx-text-box>
+                </div>
+                <div *dxTemplate="let row of 'medicalStuffPeriodUnitTemplate'" data-tid="A365396">
+                    <dx-text-box [(value)]="row.data.PeriodUnit" data-tid="A365397"></dx-text-box>
+                </div>
+                <div *dxTemplate="let row of 'medicalStuffPeriodUnitTypeTemplate'" data-tid="A365398">
+                    <hvl-enum-combobox #Validation [(Value)]="row.data.PeriodUnitType" [DataTypeName]="PeriodUnitType?.DataTypeName" [ReadOnly]="PeriodUnitType?.ReadOnly" data-tid="A365399">
+                    </hvl-enum-combobox>
+                </div>
+
+            </dx-data-grid>
+        </div>
+    </div>
+</div>
+<div class="row" style="padding-top:7px" id="A28200" data-tid="A365400">
+    <div class="col-sm-3" id="A28201" data-tid="A365401">
+        <label class="control-label" id="A28202" data-tid="A365402">Açıklama Türü</label>
+        <hvl-enum-combobox #Validation (ValueChange)="onDescriptionTypeChanged($event)" [BackColor]="DescriptionType?.BackColor" [DataTypeName]="DescriptionType?.DataTypeName" [Enabled]="DescriptionType?.Enabled" [Font]="DescriptionType?.Font" [ForeColor]="DescriptionType?.ForeColor" [IncludeOnly]="DescriptionType?.IncludeOnly" [ReadOnly]="DescriptionType?.ReadOnly" [ShowClearButton]="DescriptionType?.ShowClearButton" [SortBy]="DescriptionType?.SortBy" [TabIndex]="DescriptionType?.TabIndex" [Value]="medicalStuffPrescriptionFormViewModel?._MedicalStuffPrescription?.DescriptionType" [Visible]="DescriptionType?.Visible" id="A28203" data-tid="A365403"></hvl-enum-combobox>
+    </div>
+    <div class="col-sm-9" id="A28204" data-tid="A365404">
+        <label class="control-label" id="A28205" data-tid="A365405">Açıklama</label>
+        <hvl-richtextbox (change)="onPrescriptionDescriptionChanged($event)" [Height]="&#x27;50px&#x27;" [ngModelOptions]="{ standalone: true}" [ngModel]="medicalStuffPrescriptionFormViewModel?._MedicalStuffPrescription?.Description" [ReadOnly]="PrescriptionDescription?.ReadOnly" [TemplateGroupName]="PrescriptionDescription?.TemplateGroupName" [Visible]="PrescriptionDescription?.Visible" id="A28206" data-tid="A365406"></hvl-richtextbox>
+    </div>
+</div>
+<dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A365407">
+</dx-load-panel>
+<div class="row" style="padding-top:7px" id="A28208" data-tid="A365408">
+    <!--<div class="col-sm-6" id="A28209">-->
+    <!--<div class="col-md-2" id="A28210">
+        <button type="button" class="btn btn-primary btn-gradient btn-round" (click)="AddPrescriptionDiagnosis()" style="width:150px"  id="A28211">Tanı Ekle</button>
+    </div>-->
+
+    <div class="col-md-3" id="A28212" *ngIf="medicalStuffPrescriptionFormViewModel?._MedicalStuffPrescription?.ReceteTakipNo != null && medicalStuffPrescriptionFormViewModel?._MedicalStuffPrescription?.ReceteTakipNo != ''" data-tid="A365409">
+        <button type="button" class="btn btn-primary btn-gradient btn-round" (click)="DeletePrescriptionFromMedula()" style="width:150px" id="A28213" data-tid="A365410">Meduladan Sil</button>
+    </div>
+    <div class="col-md-3" id="A28214" *ngIf="medicalStuffPrescriptionFormViewModel._MedicalStuffPrescription?.IsNew != true && medicalStuffPrescriptionFormViewModel?._MedicalStuffPrescription?.ReceteTakipNo == null" data-tid="A365411">
+        <button type="button" class="btn btn-primary btn-gradient btn-round" (click)="SendPrescriptionToMedula()" style="width:150px" id="A28215" data-tid="A365412">Medulaya Gönder</button>
+    </div>
+    <div class="col-md-3" id="A28214" *ngIf="medicalStuffPrescriptionFormViewModel?._MedicalStuffPrescription?.ReceteTakipNo != null" data-tid="A365413">
+        <button type="button" class="btn btn-primary btn-gradient btn-round" (click)="openDiagnosisPopUp()" style="width:150px" id="A28215" data-tid="A365414">Reçete Tanı Ekle </button>
+    </div>
+    <!--</div>-->
+    <!--<div class="col-sm-6" style="float: right" id="A28216">-->
+    <div class="col-md-1" id="A28217" *ngIf="medicalStuffPrescriptionFormViewModel?._MedicalStuffPrescription?.ReceteTakipNo == null || medicalStuffPrescriptionFormViewModel?._MedicalStuffPrescription?.ReceteTakipNo == ''" data-tid="A365415">
+        <button type="button" class="btn btn-primary btn-gradient btn-round" (click)="SavePrescription()" style="width:100px" id="A28218" data-tid="A365416">Kaydet</button>
+    </div>
+    <!--<div class="col-md-1" id="A28219">
+        <button type="button" class="btn btn-primary btn-gradient btn-round" (click)="PrintPrescription()" style="width:100px"  id="A28220">Yazdır</button>
+    </div>-->
+    <div class="col-md-1" id="A28221" *ngIf="medicalStuffPrescriptionFormViewModel?._MedicalStuffPrescription?.ReceteTakipNo == null || medicalStuffPrescriptionFormViewModel?._MedicalStuffPrescription?.ReceteTakipNo == ''" data-tid="A365417">
+        <button type="button" class="btn btn-primary btn-gradient btn-round" (click)="CancelPrescription()" style="width:100px" id="A28222" data-tid="A365418">İptal Et</button>
+    </div>
+    <!--</div>-->
+
+</div>
+<div class="row" style="padding-left: 3px;padding-top:7px" id="A28224" data-tid="A365419">
+    <div class="col-sm-4" data-tid="A365420">
+        <label class="control-label" id="A28226" data-tid="A365421">E-Reçete No</label>
+        <hvl-text-box #Validation (TextChange)="onReceteTakipNoChanged($event)" [BackColor]="ReceteTakipNo?.BackColor" [CharacterCasing]="ReceteTakipNo?.CharacterCasing" [Enabled]="ReceteTakipNo?.Enabled" [Font]="ReceteTakipNo?.Font" [ForeColor]="ReceteTakipNo?.ForeColor" [height]="ReceteTakipNo?.Height" [InputFormat]="ReceteTakipNo?.InputFormat" [InputTurkishCharacter]="ReceteTakipNo?.InputTurkishCharacter" [IsNonNumeric]="ReceteTakipNo?.IsNonNumeric" [MultiLine]="ReceteTakipNo?.Multiline" [ReadOnly]="ReceteTakipNo?.ReadOnly" [Required]="ReceteTakipNo?.Required" [TabIndex]="ReceteTakipNo?.TabIndex" [TextAlign]="ReceteTakipNo?.TextAlign" [Text]="medicalStuffPrescriptionFormViewModel?._MedicalStuffPrescription?.ReceteTakipNo" [Visible]="ReceteTakipNo?.Visible" id="A28227" data-tid="A365422"></hvl-text-box>
+    </div>
+    <div class="col-sm-8" id="A28225" data-tid="A365423">
+        <label class="control-label" id="A28226" data-tid="A365424">Medula Sonuç</label>
+        <hvl-text-box #Validation (TextChange)="onMedulaPrescriptionDescriptionChanged($event)" [BackColor]="MedulaDescription?.BackColor" [CharacterCasing]="MedulaDescription?.CharacterCasing" [Enabled]="MedulaDescription?.Enabled" [Font]="MedulaDescription?.Font" [ForeColor]="MedulaDescription?.ForeColor" [height]="MedulaDescription?.Height" [InputFormat]="MedulaDescription?.InputFormat" [InputTurkishCharacter]="MedulaDescription?.InputTurkishCharacter" [IsNonNumeric]="MedulaDescription?.IsNonNumeric" [MultiLine]="MedulaDescription?.Multiline" [ReadOnly]="MedulaDescription?.ReadOnly" [Required]="MedulaDescription?.Required" [TabIndex]="MedulaDescription?.TabIndex" [TextAlign]="MedulaDescription?.TextAlign" [Text]="medicalStuffPrescriptionFormViewModel?._MedicalStuffPrescription?.MedulaDescription" [Visible]="MedulaDescription?.Visible" id="A28227" data-tid="A365425"></hvl-text-box>
+    </div>
+</div>
+<br id="A28228" data-tid="A365426" />
+
+<div class="row" style="padding-left: 3px" id="A28236" data-tid="A365427">
+    <div class="col-sm-12" id="A28237" data-tid="A365428">
+        <label class="control-label" id="A28226" data-tid="A365429">Bu Rapor ile Yazılmış Reçeteler</label>
+        <hvl-list-view (RowPrepared)="PrescriptionListViewRowPrepared($event)" (SelectedObjectChange)="PrescriptionListView_Click($event)" [BackColor]="PrescriptionListView?.BackColor" [Columns]="PrescriptionListView?.Columns" [EnableFilter]="PrescriptionListView?.ShowFilterRow" [EnablePaging]="PrescriptionListView?.EnablePaging" [Enabled]="PrescriptionListView?.Enabled" [Font]="PrescriptionListView?.Font" [ForeColor]="PrescriptionListView?.ForeColor" [Items]="PrescriptionListView?.Items" [PageSize]="PrescriptionListView?.PageSize" [ReadOnly]="PrescriptionListView?.ReadOnly" [SelectedObject]="PrescriptionListView?.SelectedItems" [TabIndex]="PrescriptionListView?.TabIndex" [RowDisablePath]="PrescriptionListView?.RowDisablePath" [Visible]="PrescriptionListView?.Visible" [height]="125" id="A28337" data-tid="A365430"></hvl-list-view>
+    </div>
+</div>
+<!--<div class="row" id="A28229">
+    <ul class="nav nav-tabs" id="A28230">
+        <li class="active" id="A28231"><a data-toggle="tab" href="#dbPrescription" (click)="clickRepScreen(1)"  id="A28232">Mevcut Reçeteler</a></li>
+        <li id="A28233"><a data-toggle="tab" href="#medulaPrescription" (click)="clickRepScreen(2)"  id="A28234">Medula Reçeteleri</a></li>
+    </ul>
+    <div class="tab-content margin-top-10" style="background-color:#fff;" id="A28235">
+        <div id="dbPrescription" class="tab-pane fade in active">
+
+        </div>
+        <div id="medulaPrescription" class="tab-pane fade in">
+            <div class="row" style="padding-left: 3px" id="A28238">
+                <div class="col-sm-12" id="A28239">
+                    <hvl-list-view (RowPrepared)="MedulaPrescriptionListViewRowPrepared($event)" (SelectedObjectChange)="MedulaPrescriptionListView_Click($event)" [BackColor]="MedulaPrescriptionListView?.BackColor" [Columns]="MedulaPrescriptionListView?.Columns" [EnableFilter]="MedulaPrescriptionListView?.ShowFilterRow" [EnablePaging]="MedulaPrescriptionListView?.EnablePaging" [Enabled]="MedulaPrescriptionListView?.Enabled" [Font]="MedulaPrescriptionListView?.Font" [ForeColor]="MedulaPrescriptionListView?.ForeColor" [Items]="MedulaPrescriptionListView?.Items" [PageSize]="MedulaPrescriptionListView?.PageSize" [ReadOnly]="MedulaPrescriptionListView?.ReadOnly" [SelectedObject]="MedulaPrescriptionListView?.SelectedItems" [TabIndex]="MedulaPrescriptionListView?.TabIndex" [RowDisablePath]="MedulaPrescriptionListView?.RowDisablePath" [Visible]="MedulaPrescriptionListView?.Visible" [height]="125" id="A28240"></hvl-list-view>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+<dx-popup width="700px" height="400px" [(visible)]="showReportDiagnosis" [closeOnOutsideClick]="true" title="TANILAR" data-tid="A365431">
+    <div *dxTemplate="let data of 'content'" data-tid="A365432">
+        <div class="col-sm-12" style="margin-left:0px;" data-tid="A365433">
+            <!--<DiagnosisGridReadOnlyForm #Report [EpisodeAction]="actionIdForDemografic()"></DiagnosisGridReadOnlyForm>-->
+            <div class="col-md-12" id="A28253" data-tid="A365434">
+                <ReportDiagnosisForm [EpisodeAction]="medicalStuffReport.ObjectID" [Episode]="medicalStuffReport.Episode" [IsReadOnly]="true" data-tid="A365435"></ReportDiagnosisForm>
+            </div>
+        </div>
+    </div>
+</dx-popup>
+
+<dx-popup width="500px" height="200px" [(visible)]="addExtraDiagnosisPopUp" title="Tanı Ekle" data-tid="A365436">
+    <div *dxTemplate="let data of 'content'" data-tid="A365437">
+
+        <div class="row" data-tid="A365438">
+            <div class="col-sm-12" data-tid="A365439">
+                <label class="control-label" data-tid="A365440">
+                    Tanı
+                </label>
+            </div>
+        </div>
+        <div class="row" data-tid="A365441">
+            <div class="col-sm-12" data-tid="A365442">
+                <hvl-list-box #Validation IsOnPopup="true" (SelectedObjectChange)="selectAdditionalDiagnosis($event)" [AutoCompleteDialogHeight]="300" [AutoCompleteDialogWidth]="lstDiagnosisAddedToReport?.AutoCompleteDialogWidth" [AutoCompleteMode]="lstDiagnosisAddedToReport?.AutoCompleteMode" [BackColor]="lstDiagnosisAddedToReport?.BackColor" [DefinitionName]="lstDiagnosisAddedToReport?.ListDefName" [Enabled]="true" [Font]="lstDiagnosisAddedToReport?.Font" [ForeColor]="lstDiagnosisAddedToReport?.ForeColor" [ListFilterExpression]="lstDiagnosisAddedToReport?.ListFilterExpression" [MinSearchLength]="lstDiagnosisAddedToReport?.MinSearchLength" [PopupDialogFieldConfig]="lstDiagnosisAddedToReport?.PopupDialogFieldConfig" [PopupDialogGridColumns]="lstDiagnosisAddedToReport?.PopupDialogGridColumns" [PopupDialogHeight]="lstDiagnosisAddedToReport?.PopupDialogHeight" [PopupDialogTitle]="lstDiagnosisAddedToReport?.PopupDialogTitle" [PopupDialogWidth]="lstDiagnosisAddedToReport?.PopupDialogWidth" [ReadOnly]="false" [SearchMode]="lstDiagnosisAddedToReport?.SearchMode" [SearchTimeout]="lstDiagnosisAddedToReport?.SearchTimeout" [SelectedObject]="addedDiagnosis" [TabIndex]="lstDiagnosisAddedToReport?.TabIndex" [Visible]="lstDiagnosisAddedToReport?.Visible" [width]="lstDiagnosisAddedToReport?.Width" data-tid="A365443">
+                </hvl-list-box>
+            </div>
+        </div>
+        <div class="row" *ngIf="addedDiagnosis != null" style="padding-top:5px" data-tid="A365444">
+            <div class="col-sm-12" data-tid="A365445">
+                <dx-button type="success" (click)="AddExtraDiagnosis()" id="A17497" data-tid="A365446">
+                    <span class="fa fa-check" id="A17498" data-tid="A365447"></span>&nbsp;Tanı Ekle
+                </dx-button>
+            </div>
+        </div>
+    </div>
+
+
+</dx-popup>
+
+<dx-popup width="600px" height="400px" [(visible)]="showPrescriptionListPopUp" title="Reçete Listesi" (onHiding)="clearLastSelectedItem()" data-tid="A365448">
+    <div *dxTemplate=" let data of 'content'" data-tid="A365449">
+            <dx-scroll-view #scrollView id=" scrollview" [scrollByContent]="true" [scrollByThumb]="true" [showScrollbar]="always" data-tid="A365450">
+    <div class="row" data-tid="A365451">
+        <div class="col-sm-12" data-tid="A365452">
+            <label class="control-label" data-tid="A365453">
+                Reçete Listesi
+            </label>
+        </div>
+    </div>
+    <div class="row" *ngIf="ePrescriptionList.length > 0" data-tid="A365454">
+        <div class="col-sm-12" data-tid="A365455">
+            <dx-select-box [items]="ePrescriptionList" (onItemClick)="selectPrescription($event)" height="100%" displayExpr="eReceteNo" data-tid="A365456">
+                <div *dxTemplate="let itemObj of 'item'" data-tid="A365457">
+                    <div class="product" data-tid="A365458">
+                        <div data-tid="A365459">Reçete No: {{itemObj.eReceteNo}} - Reçete Tarihi {{itemObj.receteTarihi }}</div>
+                    </div>
+                </div>
+            </dx-select-box>
+        </div>
+    </div>
+    <div class="row" *ngIf="lastSelectedEprescription != null" style="padding-top:5px" data-tid="A365460">
+        <div class="col-sm-4" data-tid="A365461">
+            <b data-tid="A365462">E-Reçete No</b> : {{lastSelectedEprescription.eReceteNo}}
+        </div>
+        <div class="col-sm-4" data-tid="A365463">
+            <b data-tid="A365464">Reçete Tarihi</b> : {{lastSelectedEprescription.receteTarihi}}
+        </div>
+        <div class="col-sm-4" data-tid="A365465">
+            <b data-tid="A365466">Reçete Türü</b> : {{lastSelectedEprescription.receteTuruAdi}}
+        </div>
+    </div>
+    <div class="row" *ngIf="lastSelectedEprescription != null" style="padding-top:5px" data-tid="A365467">
+        <div class="col-sm-6" data-tid="A365468">
+            <b data-tid="A365469">Doktor</b> : {{lastSelectedEprescription.doktorBilgisi.adi}}
+            {{lastSelectedEprescription.doktorBilgisi.soyadi}}
+        </div>
+    </div>
+    <div class="row" *ngIf="lastSelectedEprescription != null" style="padding-top: 5px" data-tid="A365470">
+        <div class="col-sm-6" style="background-color: #f0f8ff" data-tid="A365471">
+            <div class="row" data-tid="A365472">
+                <label class="col-sm-12" data-tid="A365473">
+                    <b data-tid="A365474">Tanılar</b>
+                </label>
+            </div>
+            <div class="row" *ngFor="let diagnose of lastSelectedEprescription.taniListesi" style="padding-top:5px;border-bottom-color: black;border-bottom-style: groove;border-bottom-width: 1px;" data-tid="A365475">
+                <div class="col-sm-12" data-tid="A365476">
+                    <b data-tid="A365477">{{diagnose.taniKodu}}</b> : {{diagnose.taniAdi}}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6" style="background-color: #f5f5ed" data-tid="A365478">
+            <div class="row" data-tid="A365479">
+                <label class="col-sm-12" data-tid="A365480">
+                    <b data-tid="A365481">Malzeme Listesi</b>
+                </label>
+            </div>
+            <div class="row" *ngFor="let medicalStuff of lastSelectedEprescription.malzemeListesi" style="padding-top:5px;border-bottom-color: black;border-bottom-style: groove;border-bottom-width: 1px;" data-tid="A365482">
+                <div class="col-sm-12" data-tid="A365483">
+                    <div class="row" data-tid="A365484">
+                        <div class="col-sm-12" data-tid="A365485">
+                            <b data-tid="A365486">{{medicalStuff.malzemeSutKodu}}</b> : {{medicalStuff.malzemeAdi}}
+                        </div>
+                    </div>
+                    <div class="row" data-tid="A365487">
+                        <div class="col-sm-4" data-tid="A365488">
+                            <b data-tid="A365489">Adet </b> : {{medicalStuff.adet}}
+                        </div>
+                        <div class="col-sm-4" data-tid="A365490">
+                            <b data-tid="A365491">Kullanım Yeri</b> : {{medicalStuff.kullanimYeriAdi}}
+                        </div>
+                        <div class="col-sm-4" data-tid="A365492">
+                            <b data-tid="A365493">Kullanım Şekli</b> : {{medicalStuff.kullanimSekliAdi}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </dx-scroll-view>
+
+
+    </div>
+
+
+</dx-popup>
+
+
+<!--<div class="container-fluid" id="A28181">
+    <div class="row" id="A28182">
+        <div class="margin-top-10" id="A28183">
+            <div class="row margin-top-10" id="A28184">
+                <div class="col-md-6 col-sm-10" id="A28185">
+                </div>
+                <div class="col-md-6 col-sm-11" id="A28187">
+                </div>
+            </div>
+            <br id="A28189" />
+            <div class="row margin-top-10" id="A28190">
+                <div class="col-sm-12" id="A28191">
+                    <div class="row" id="A28192">
+                        <div class="col-sm-6" id="A28193">
+                            <label class="control-label"  id="A28194">
+                                Rapor ve Malzeme Listesi
+                            </label>
+                        </div>
+                        <div class="row" id="A28195">
+                            <div class="col-sm-12" id="A28196">
+                            </div>
+                        </div>
+                    </div>
+                    <br id="A28198" />
+                    <br id="A28199" />
+
+                    <br id="A28207" />
+
+                    <br id="A28223" />
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->

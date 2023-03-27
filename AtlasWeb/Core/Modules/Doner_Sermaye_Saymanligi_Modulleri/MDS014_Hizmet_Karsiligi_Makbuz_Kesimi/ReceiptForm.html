@@ -1,0 +1,169 @@
+﻿<NeStatePanelComponent [OutgoingTransitions]="receiptFormViewModel?.OutgoingTransitions" [ObjectID]="receiptFormViewModel?._Receipt?.ObjectID" [ObjectDefID]="receiptFormViewModel?._Receipt?.ObjectDefID" [SaveCommandVisible]="saveCommandVisible" [CurrentStateDefID]="receiptFormViewModel._Receipt.CurrentStateDefID" (onSetState)="setStateChange($event)" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()" id="A1756" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A324545">
+    <div class="CustomButton" *ngIf="showCustomButton" style="padding-right:0" data-tid="A324546">
+        <dx-button (onClick)="printReport()" type="default" style="float:left; margin: 0px 5px 0px 0px;" data-tid="A324547">
+            <i class="fa fa-file-text-o" style="color:white" data-tid="A324548"></i> Rapor
+        </dx-button>
+    </div>
+</NeStatePanelComponent>
+<div class="container-fluid" id="A1757" data-tid="A324549">
+    <form id="ReceiptForm" class="form-horizontal" role="form" data-tid="A324550">
+
+    </form>
+
+    <div class="row" id="A1758" data-tid="A324551">
+        <div class="col-sm-3" id="A1759" data-tid="A324552">
+            <label class="control-label" id="A1760" data-tid="A324553">
+                Vezne Adı
+            </label>
+            <hvl-text-box #Validation (TextChange)="onCASHOFFICENAMEChanged($event)" [BackColor]="CASHOFFICENAME?.BackColor" [CharacterCasing]="CASHOFFICENAME?.CharacterCasing" [Enabled]="CASHOFFICENAME?.Enabled" [Font]="CASHOFFICENAME?.Font" [ForeColor]="CASHOFFICENAME?.ForeColor" [height]="CASHOFFICENAME?.Height" [InputFormat]="CASHOFFICENAME?.InputFormat" [InputTurkishCharacter]="CASHOFFICENAME?.InputTurkishCharacter" [IsNonNumeric]="CASHOFFICENAME?.IsNonNumeric" [MultiLine]="CASHOFFICENAME?.Multiline" [ReadOnly]="CASHOFFICENAME?.ReadOnly" [Required]="CASHOFFICENAME?.Required" [TabIndex]="CASHOFFICENAME?.TabIndex" [TextAlign]="CASHOFFICENAME?.TextAlign" [Text]="receiptFormViewModel?._Receipt?.CashOfficeName" [Visible]="CASHOFFICENAME?.Visible" id="A1761" data-tid="A324554">
+            </hvl-text-box>
+        </div>
+        <div class="col-sm-3" id="A1762" data-tid="A324555">
+            <label class="control-label" id="A1763" data-tid="A324556">
+                Veznedar
+            </label>
+            <hvl-text-box #Validation (TextChange)="onCASHIERNAMEChanged($event)" [BackColor]="CASHIERNAME?.BackColor" [CharacterCasing]="CASHIERNAME?.CharacterCasing" [Enabled]="CASHIERNAME?.Enabled" [Font]="CASHIERNAME?.Font" [ForeColor]="CASHIERNAME?.ForeColor" [height]="CASHIERNAME?.Height" [InputFormat]="CASHIERNAME?.InputFormat" [InputTurkishCharacter]="CASHIERNAME?.InputTurkishCharacter" [IsNonNumeric]="CASHIERNAME?.IsNonNumeric" [MultiLine]="CASHIERNAME?.Multiline" [ReadOnly]="CASHIERNAME?.ReadOnly" [Required]="CASHIERNAME?.Required" [TabIndex]="CASHIERNAME?.TabIndex" [TextAlign]="CASHIERNAME?.TextAlign" [Text]="receiptFormViewModel?._Receipt?.ReceiptDocument?.ResUser?.Name" [Visible]="CASHIERNAME?.Visible" id="A1764" data-tid="A324557"></hvl-text-box>
+        </div>
+        <div class="col-sm-3" id="A1765" data-tid="A324558">
+            <label class="control-label" id="A1766" data-tid="A324559">
+                Ödeme Yapan Kişi
+            </label>
+            <hvl-text-box #Validation (TextChange)="onPAYEENAMEChanged($event)" [BackColor]="PAYEENAME?.BackColor" [CharacterCasing]="PAYEENAME?.CharacterCasing" [Enabled]="PAYEENAME?.Enabled" [Font]="PAYEENAME?.Font" [ForeColor]="PAYEENAME?.ForeColor" [height]="PAYEENAME?.Height" [InputFormat]="PAYEENAME?.InputFormat" [InputTurkishCharacter]="PAYEENAME?.InputTurkishCharacter" [IsNonNumeric]="PAYEENAME?.IsNonNumeric" [MultiLine]="PAYEENAME?.Multiline" [ReadOnly]="PAYEENAME?.ReadOnly" [Required]="PAYEENAME?.Required" [TabIndex]="PAYEENAME?.TabIndex" [TextAlign]="PAYEENAME?.TextAlign" [Text]="receiptFormViewModel?._Receipt?.ReceiptDocument?.PayeeName" [Visible]="PAYEENAME?.Visible" id="A1767" data-tid="A324560"></hvl-text-box>
+        </div>
+        <div class="col-sm-3" id="A1765" data-tid="A324561">
+            <label class="control-label" id="A1766" data-tid="A324562">
+                Tarih
+            </label>
+            <hvl-date-picker #Validation (ValueChange)="onDOCUMENTDATEChanged($event)" [BackColor]="DOCUMENTDATE?.BackColor" [CustomFormat]="DOCUMENTDATE?.CustomFormat" [Enabled]="DOCUMENTDATE?.Enabled" [Font]="DOCUMENTDATE?.Font" [ForeColor]="DOCUMENTDATE?.ForeColor" [Format]="DOCUMENTDATE?.Format" [Max]="DOCUMENTDATE?.Max" [Min]="DOCUMENTDATE?.Min" [ReadOnly]="DOCUMENTDATE?.ReadOnly" [Required]="DOCUMENTDATE?.Required" [TabIndex]="DOCUMENTDATE?.TabIndex" [Value]="receiptFormViewModel?._Receipt?.ReceiptDocument?.DocumentDate" [Visible]="DOCUMENTDATE?.Visible" id="A1777" data-tid="A324563"></hvl-date-picker>
+        </div>
+    </div>
+    <div class="row margin-top-10" id="A1768" data-tid="A324564">
+        <label class="control-label col-sm-3" id="A1769" data-tid="A324565">
+            Makbuz Seri No
+        </label>
+        <label class="control-label col-sm-3" id="A1770" data-tid="A324566">
+            Ödeme Tipi
+        </label>
+        <label class="control-label col-sm-3" id="A1770" data-tid="A324567">
+            Döviz Türü
+        </label>
+        <label class="control-label col-sm-3" [style.visibility]="showDailyRate" id="A1770" data-tid="A324568">
+            Satış Kuru
+        </label>
+    </div>
+    <div class="row" id="A1772" data-tid="A324569">
+        <div class="col-sm-3" id="A1773" data-tid="A324570">
+            <hvl-text-box #Validation (TextChange)="onRECEIPTNOChanged($event)" [BackColor]="RECEIPTNO?.BackColor" [CharacterCasing]="RECEIPTNO?.CharacterCasing" [Enabled]="RECEIPTNO?.Enabled" [Font]="RECEIPTNO?.Font" [ForeColor]="RECEIPTNO?.ForeColor" [height]="RECEIPTNO?.Height" [InputFormat]="RECEIPTNO?.InputFormat" [InputTurkishCharacter]="RECEIPTNO?.InputTurkishCharacter" [IsNonNumeric]="RECEIPTNO?.IsNonNumeric" [MultiLine]="RECEIPTNO?.Multiline" [ReadOnly]="RECEIPTNO?.ReadOnly" [Required]="RECEIPTNO?.Required" [TabIndex]="RECEIPTNO?.TabIndex" [TextAlign]="RECEIPTNO?.TextAlign" [Text]="receiptFormViewModel?._Receipt?.ReceiptDocument?.DocumentNo" [Visible]="RECEIPTNO?.Visible" id="A1774" data-tid="A324571"></hvl-text-box>
+        </div>
+        <div class="col-sm-3" id="paymentType" data-tid="A324572">
+            <hvl-enum-combobox #Validation (ValueChange)="oncbxPaymentTypeChanged($event)" [BackColor]="cbxPaymentType?.BackColor" [DataTypeName]="cbxPaymentType?.DataTypeName" [Enabled]="cbxPaymentType?.Enabled" [Font]="cbxPaymentType?.Font" [ForeColor]="cbxPaymentType?.ForeColor" [IncludeOnly]="cbxPaymentType?.IncludeOnly" [ReadOnly]="cbxPaymentType?.ReadOnly" [ShowClearButton]="cbxPaymentType?.ShowClearButton" [SortBy]="cbxPaymentType?.SortBy" [TabIndex]="cbxPaymentType?.TabIndex" [Value]="receiptFormViewModel?._Receipt?.ReceiptDocument?.PaymentType" [Visible]="cbxPaymentType?.Visible" id="A1775" data-tid="A324573"></hvl-enum-combobox>
+        </div>
+        <div class="col-sm-3" data-tid="A324574">
+            <dx-select-box [readOnly]="currencyTypeReadOnly" [dataSource]="CurrencyTypes" displayExpr="Name" valueExpr="ObjectID" [(value)]="receiptFormViewModel.SelectedCurrencyTypeDefinition" (onValueChanged)="onCurrencyTypeValueChanged($event)" data-tid="A324575"></dx-select-box>
+        </div>
+        <!-- <div class="col-sm-2" id="A1778">
+            <hvl-list-box #Validation (SelectedObjectChange)="onDISCOUNTTYPEChanged($event)"
+                [AutoCompleteDialogHeight]="DISCOUNTTYPE?.AutoCompleteDialogHeight"
+                [AutoCompleteDialogWidth]="DISCOUNTTYPE?.AutoCompleteDialogWidth"
+                [AutoCompleteMode]="DISCOUNTTYPE?.AutoCompleteMode" [BackColor]="DISCOUNTTYPE?.BackColor"
+                [DefinitionName]="DISCOUNTTYPE?.ListDefName"
+                [DisplayExpressionsCache]="receiptFormViewModel?.ListDefDisplayExpressions"
+                [Enabled]="DISCOUNTTYPE?.Enabled" [Font]="DISCOUNTTYPE?.Font" [ForeColor]="DISCOUNTTYPE?.ForeColor"
+                [ListFilterExpression]="DISCOUNTTYPE?.ListFilterExpression"
+                [MinSearchLength]="DISCOUNTTYPE?.MinSearchLength"
+                [PopupDialogFieldConfig]="DISCOUNTTYPE?.PopupDialogFieldConfig"
+                [PopupDialogGridColumns]="DISCOUNTTYPE?.PopupDialogGridColumns"
+                [PopupDialogHeight]="DISCOUNTTYPE?.PopupDialogHeight"
+                [PopupDialogTitle]="DISCOUNTTYPE?.PopupDialogTitle" [PopupDialogWidth]="DISCOUNTTYPE?.PopupDialogWidth"
+                [ReadOnly]="DISCOUNTTYPE?.ReadOnly" [SearchMode]="DISCOUNTTYPE?.SearchMode"
+                [SearchTimeout]="DISCOUNTTYPE?.SearchTimeout"
+                [SelectedObject]="receiptFormViewModel?._Receipt?.DiscountTypeDefinition"
+                [TabIndex]="DISCOUNTTYPE?.TabIndex" [Visible]="DISCOUNTTYPE?.Visible" [width]="DISCOUNTTYPE?.Width"
+                id="A1779"></hvl-list-box>
+        </div> -->
+        <div class="col-sm-3" id="A1773" [style.visibility]="showDailyRate" data-tid="A324576">
+            <dx-number-box [ngStyle]="{'background-color':'#F0F0F0'}" stylingMode="filled" format="#,##0.## TL" [value]="selectedCurrencyRate?.DailyRate" readOnly="true" data-tid="A324577">
+
+            </dx-number-box>
+        </div>
+    </div>
+    <div class="row" id="A1780" data-tid="A324578">
+        <div class="col-sm-2" id="A1781" data-tid="A324579">
+            <hvl-text-box #Validation (TextChange)="onCREDITCARDDOCUMENTNOChanged($event)" [BackColor]="CREDITCARDDOCUMENTNO?.BackColor" [CharacterCasing]="CREDITCARDDOCUMENTNO?.CharacterCasing" [Enabled]="CREDITCARDDOCUMENTNO?.Enabled" [Font]="CREDITCARDDOCUMENTNO?.Font" [ForeColor]="CREDITCARDDOCUMENTNO?.ForeColor" [height]="CREDITCARDDOCUMENTNO?.Height" [InputFormat]="CREDITCARDDOCUMENTNO?.InputFormat" [InputTurkishCharacter]="CREDITCARDDOCUMENTNO?.InputTurkishCharacter" [IsNonNumeric]="CREDITCARDDOCUMENTNO?.IsNonNumeric" [MultiLine]="CREDITCARDDOCUMENTNO?.Multiline" [ReadOnly]="CREDITCARDDOCUMENTNO?.ReadOnly" [Required]="CREDITCARDDOCUMENTNO?.Required" [TabIndex]="CREDITCARDDOCUMENTNO?.TabIndex" [TextAlign]="CREDITCARDDOCUMENTNO?.TextAlign" [Text]="receiptFormViewModel?._Receipt?.ReceiptDocument?.CreditCardDocumentNo" [Visible]="CREDITCARDDOCUMENTNO?.Visible" id="A1782" data-tid="A324580"></hvl-text-box>
+        </div>
+        <div class="col-sm-2" id="A1783" data-tid="A324581">
+            <hvl-text-box #Validation (TextChange)="onCREDITCARDSPECIALNOChanged($event)" [BackColor]="CREDITCARDSPECIALNO?.BackColor" [CharacterCasing]="CREDITCARDSPECIALNO?.CharacterCasing" [Enabled]="CREDITCARDSPECIALNO?.Enabled" [Font]="CREDITCARDSPECIALNO?.Font" [ForeColor]="CREDITCARDSPECIALNO?.ForeColor" [height]="CREDITCARDSPECIALNO?.Height" [InputFormat]="CREDITCARDSPECIALNO?.InputFormat" [InputTurkishCharacter]="CREDITCARDSPECIALNO?.InputTurkishCharacter" [IsNonNumeric]="CREDITCARDSPECIALNO?.IsNonNumeric" [MultiLine]="CREDITCARDSPECIALNO?.Multiline" [ReadOnly]="CREDITCARDSPECIALNO?.ReadOnly" [Required]="CREDITCARDSPECIALNO?.Required" [TabIndex]="CREDITCARDSPECIALNO?.TabIndex" [TextAlign]="CREDITCARDSPECIALNO?.TextAlign" [Text]="receiptFormViewModel?._Receipt?.ReceiptDocument?.CreditCardSpecialNo" [Visible]="CREDITCARDSPECIALNO?.Visible" id="A1784" data-tid="A324582"></hvl-text-box>
+        </div>
+        <div class="col-sm-1" id="A1785" data-tid="A324583">
+            <hvl-text-box #Validation (TextChange)="onTOTALDISCOUNTENTRYChanged($event)" [BackColor]="TOTALDISCOUNTENTRY?.BackColor" [CharacterCasing]="TOTALDISCOUNTENTRY?.CharacterCasing" [Enabled]="TOTALDISCOUNTENTRY?.Enabled" [Font]="TOTALDISCOUNTENTRY?.Font" [ForeColor]="TOTALDISCOUNTENTRY?.ForeColor" [height]="TOTALDISCOUNTENTRY?.Height" [InputFormat]="TOTALDISCOUNTENTRY?.InputFormat" [InputTurkishCharacter]="TOTALDISCOUNTENTRY?.InputTurkishCharacter" [IsNonNumeric]="TOTALDISCOUNTENTRY?.IsNonNumeric" [MultiLine]="TOTALDISCOUNTENTRY?.Multiline" [ReadOnly]="TOTALDISCOUNTENTRY?.ReadOnly" [Required]="TOTALDISCOUNTENTRY?.Required" [TabIndex]="TOTALDISCOUNTENTRY?.TabIndex" [TextAlign]="TOTALDISCOUNTENTRY?.TextAlign" [Text]="receiptFormViewModel?._Receipt?.TotalDiscountEntry" [Visible]="TOTALDISCOUNTENTRY?.Visible" id="A1786" data-tid="A324584"></hvl-text-box>
+        </div>
+    </div>
+    <div class="row" id="A1787" data-tid="A324585">
+        <div class="row" id="A1788" data-tid="A324586">
+            <div class="col-sm-12" id="A1789" data-tid="A324587">
+                <!-- <hvl-datagrid (CellValueChange)="GRIDReceiptProcedures_CellValueChangedEmitted($event)" [AllowUserToAddRows]="GRIDReceiptProcedures?.AllowUserToAddRows" [AllowUserToDeleteRows]="GRIDReceiptProcedures?.AllowUserToDeleteRows" [Columns]="GRIDReceiptProceduresColumns" [dataSource]="receiptFormViewModel?._Receipt?.ReceiptProcedures" [DeleteButtonWidth]="GRIDReceiptProcedures?.DeleteButtonWidth" [DisplayExpressionsCache]="receiptFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="GRIDReceiptProcedures?.ShowFilterRow" [FilterColumnName]="GRIDReceiptProcedures?.FilterColumnName" [FilterLabel]="GRIDReceiptProcedures?.FilterLabel" [Filter]="GRIDReceiptProcedures?.Filter" [height]="GRIDReceiptProcedures?.Height" [IsFilterLabelSingleLine]="GRIDReceiptProcedures?.IsFilterLabelSingleLine" [ShowColumnHeaders]="GRIDReceiptProcedures?.ColumnHeadersVisible" [ShowFilterCombo]="GRIDReceiptProcedures?.ShowFilterCombo" [ShowTotalNumberOfRows]="GRIDReceiptProcedures?.ShowTotalNumberOfRows" id="A1790" data-tid="A324588"></hvl-datagrid> -->
+            </div>
+        </div>
+    </div>
+    <div class="row" id="A1787" data-tid="A324585">
+        <div class="row" id="A1788" data-tid="A324586">
+            <div class="col-sm-12" id="A1789" data-tid="A324587">
+                <dx-data-grid [dataSource]="receiptFormViewModel?._Receipt?.ReceiptProcedures" height="180"  [columns]="GRIDReceiptProceduresColumns2" 
+                [filterRow]="{visible:true}" [editing]="{allowUpdating: true,allowAdding: false,allowDeleting: false, mode:'cell'}" (onRowUpdated)="grdProcOnRowUpdated($event)">
+
+                </dx-data-grid>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="A1791" data-tid="A324589">
+        <div class="col-sm-2" id="A1792" data-tid="A324590">
+            <hvl-text-box #Validation (TextChange)="onCASHIERLOGIDChanged($event)" [BackColor]="CASHIERLOGID?.BackColor" [CharacterCasing]="CASHIERLOGID?.CharacterCasing" [Enabled]="CASHIERLOGID?.Enabled" [Font]="CASHIERLOGID?.Font" [ForeColor]="CASHIERLOGID?.ForeColor" [height]="CASHIERLOGID?.Height" [InputFormat]="CASHIERLOGID?.InputFormat" [InputTurkishCharacter]="CASHIERLOGID?.InputTurkishCharacter" [IsNonNumeric]="CASHIERLOGID?.IsNonNumeric" [MultiLine]="CASHIERLOGID?.Multiline" [ReadOnly]="CASHIERLOGID?.ReadOnly" [Required]="CASHIERLOGID?.Required" [TabIndex]="CASHIERLOGID?.TabIndex" [TextAlign]="CASHIERLOGID?.TextAlign" [Text]="receiptFormViewModel?._Receipt?.ReceiptDocument?.CashierLog?.LogID" [Visible]="CASHIERLOGID?.Visible" id="A1793" data-tid="A324591"></hvl-text-box>
+        </div>
+    </div>
+    <div class="row margin-top-10 right-float" id="A1794" data-tid="A324592">
+        <label class="control-label col-sm-2" id="A1795" data-tid="A324593">
+            Alınan Avanslar
+        </label>
+        <div class="col-sm-2" id="A1796" data-tid="A324594">
+            <hvl-text-box #Validation (TextChange)="ontttextbox1Changed($event)" [BackColor]="tttextbox1?.BackColor" [CharacterCasing]="tttextbox1?.CharacterCasing" [Enabled]="tttextbox1?.Enabled" [Font]="tttextbox1?.Font" [ForeColor]="tttextbox1?.ForeColor" [height]="tttextbox1?.Height" [InputFormat]="tttextbox1?.InputFormat" [InputTurkishCharacter]="tttextbox1?.InputTurkishCharacter" [IsNonNumeric]="tttextbox1?.IsNonNumeric" [MultiLine]="tttextbox1?.Multiline" [ReadOnly]="tttextbox1?.ReadOnly" [Required]="tttextbox1?.Required" [TabIndex]="tttextbox1?.TabIndex" [TextAlign]="tttextbox1?.TextAlign" [Text]="receiptFormViewModel?._Receipt?.AdvanceTaken" [Visible]="tttextbox1?.Visible" id="A1797" data-tid="A324595"></hvl-text-box>
+        </div>
+        <label class="control-label col-sm-2" id="A1798" data-tid="A324596">
+            Toplam Tutar
+        </label>
+        <div class="col-sm-2" id="A1799" data-tid="A324597">
+            <hvl-text-box #Validation (TextChange)="ontxtTotalPriceChanged($event)" [BackColor]="txtTotalPrice?.BackColor" [CharacterCasing]="txtTotalPrice?.CharacterCasing" [Enabled]="txtTotalPrice?.Enabled" [Font]="txtTotalPrice?.Font" [ForeColor]="txtTotalPrice?.ForeColor" [height]="txtTotalPrice?.Height" [InputFormat]="txtTotalPrice?.InputFormat" [InputTurkishCharacter]="txtTotalPrice?.InputTurkishCharacter" [IsNonNumeric]="txtTotalPrice?.IsNonNumeric" [MultiLine]="txtTotalPrice?.Multiline" [ReadOnly]="txtTotalPrice?.ReadOnly" [Required]="txtTotalPrice?.Required" [TabIndex]="txtTotalPrice?.TabIndex" [TextAlign]="txtTotalPrice?.TextAlign" [Text]="receiptFormViewModel?._Receipt?.TotalPrice" [Visible]="txtTotalPrice?.Visible" id="A1800" data-tid="A324598">
+            </hvl-text-box>
+        </div>
+        <label class="control-label col-sm-2" id="A1801" data-tid="A324599">
+            Ödenen Tutar
+        </label>
+        <div class="col-sm-2 remove-padding" id="A1802" data-tid="A324600">
+            <dx-text-box [(readOnly)]="txtTotalPaymentReadOnly" valueChangeEvent="keyup" [value]="receiptFormViewModel._Receipt.TotalPayment" (keypress)="totalPaymentKeyPress($event)" (onValueChanged)="ontxtTotalPaymentValueChanged($event)" id="A1803" data-tid="A324601">
+            </dx-text-box>
+        </div>
+        <label class="control-label col-sm-2" id="A1801" [style.visibility]="showDailyRate" data-tid="A324602">
+            Dövizle Ödeme Tutarı
+        </label>
+        <div class="col-sm-2" id="A1802" [style.visibility]="showDailyRate" data-tid="A324603">
+            <dx-number-box min="0" [ngStyle]="{'background-color':'#F0F0F0'}" [(value)]="receiptFormViewModel.ConvertedTotalPayment" [format]="moneyPaidFormat" readOnly="true" stylingMode="filled" data-tid="A324604">
+
+            </dx-number-box>
+        </div>
+        <label class="control-label col-sm-2" id="A1801" *ngIf="MoneyPaidVisible" data-tid="A324605">
+            Alınan Tutar
+        </label>
+        <div class="col-sm-2" id="A1802" *ngIf="MoneyPaidVisible" data-tid="A324606">
+            <dx-number-box min="0" [(value)]="receiptFormViewModel.MoneyPaid" (onValueChanged)="onMoneyPaidValueChanged($event)" [readOnly]="txtTotalPaymentReadOnly" valueChangeEvent="keyup" [format]="moneyPaidFormat" showClearButton="true" data-tid="A324607">
+
+            </dx-number-box>
+        </div>
+        <label class="control-label col-sm-2" id="A1801" *ngIf="MoneyPaidVisible" data-tid="A324608">
+            Para Üstü
+        </label>
+        <div class="col-sm-2 remove-padding" id="A1802" readOnly="true" *ngIf="MoneyPaidVisible" data-tid="A324609">
+            <dx-number-box [value]="receiptFormViewModel.RemainderOfMoney" readOnly="true" format="#,##0.## TL" data-tid="A324610">
+
+            </dx-number-box>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,358 @@
+﻿<!--<NeStatePanelComponent [ObjectDefID]="resUserFormViewModel._ResUser.ObjectDefID" [CurrentStateDefID]="resUserFormViewModel._ResUser.CurrentStateDefID" (onSetState)="setState($event)" (onSaveChanges)="save($event)">
+</NeStatePanelComponent>-->
+<form id="ResUserForm" class="form-horizontal" role="form" data-tid="A324001">
+    <div class="col-md-12" data-tid="A324002">
+        <ul class="nav nav-tabs" data-tid="A324003">
+            <li class="active" data-tid="A324004"><a data-toggle="tab" href="#kullaniciBilgileri" data-tid="A324005">Kullanıcı Bilgileri</a></li>
+            <li data-tid="A324006"><a data-toggle="tab" href="#kullaniciSifreleri" data-tid="A324007">Kullanıcı Şifreleri</a></li>
+            <li data-tid="A324008"><a data-toggle="tab" href="#gorevBilgileri" data-tid="A324009">Görev Bilgileri</a></li>
+            <li data-tid="A324010"><a data-toggle="tab" href="#hastaGruplari" data-tid="A324011">Hasta Grupları</a></li>
+        </ul>
+
+        <div class="tab-content" data-tid="A324012">
+            <div id="kullaniciBilgileri" class="tab-pane fade in active" data-tid="A324013">
+
+                <div class="row" data-tid="A324014">
+                    <div class="col-md-2" data-tid="A324015">
+                        <label class="control-label" data-tid="A324016">
+                            T.C. Kimlik No
+                        </label>
+                        <hvl-text-box #Validation (TextChange)="onUniqueRefNoChanged($event)" [BackColor]="UniqueRefNo?.BackColor" [CharacterCasing]="UniqueRefNo?.CharacterCasing" [Enabled]="UniqueRefNo?.Enabled" [Font]="UniqueRefNo?.Font" [ForeColor]="UniqueRefNo?.ForeColor" [height]="UniqueRefNo?.Height" [InputFormat]="UniqueRefNo?.InputFormat" [InputTurkishCharacter]="UniqueRefNo?.InputTurkishCharacter" [IsNonNumeric]="UniqueRefNo?.IsNonNumeric" [MultiLine]="UniqueRefNo?.Multiline" [ReadOnly]="UniqueRefNo?.ReadOnly" [Required]="UniqueRefNo?.Required" [TabIndex]="UniqueRefNo?.TabIndex" [TextAlign]="UniqueRefNo?.TextAlign" [Text]="_ResUser.Person.UniqueRefNo" [Visible]="UniqueRefNo?.Visible" data-tid="A324017">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-md-2" data-tid="A324018">
+                        <label class="control-label" data-tid="A324019">
+                            Mesleği
+                        </label>
+                        <hvl-enum-combobox #Validation (ValueChange)="onUserTypeChanged($event)" [BackColor]="UserType?.BackColor" [DataTypeName]="UserType?.DataTypeName" [Enabled]="UserType?.Enabled" [Font]="UserType?.Font" [ForeColor]="UserType?.ForeColor" [IncludeOnly]="UserType?.IncludeOnly" [ReadOnly]="UserType?.ReadOnly" [ShowClearButton]="UserType?.ShowClearButton" [SortBy]="UserType?.SortBy" [TabIndex]="UserType?.TabIndex" [Value]="_ResUser.UserType" [Visible]="UserType?.Visible" data-tid="A324020">
+                        </hvl-enum-combobox>
+                    </div>
+                    <div class="col-md-2" data-tid="A324021">
+                        <label class="control-label" data-tid="A324022">
+                            Ünvan
+                        </label>
+                        <hvl-enum-combobox #Validation (ValueChange)="onUserTitleChanged($event)" [BackColor]="UserTitle?.BackColor" [DataTypeName]="UserTitle?.DataTypeName" [Enabled]="UserTitle?.Enabled" [Font]="UserTitle?.Font" [ForeColor]="UserTitle?.ForeColor" [IncludeOnly]="UserTitle?.IncludeOnly" [ReadOnly]="UserTitle?.ReadOnly" [ShowClearButton]="UserTitle?.ShowClearButton" [SortBy]="UserTitle?.SortBy" [TabIndex]="UserTitle?.TabIndex" [Value]="_ResUser.Title" [Visible]="UserTitle?.Visible" data-tid="A324023">
+                        </hvl-enum-combobox>
+                    </div>
+                    <div class="col-md-2" data-tid="A324024">
+                        <label class="control-label" data-tid="A324025">
+                            Kullanıcı Adı
+                        </label>
+                        <hvl-text-box #Validation (TextChange)="txtUserName.Text=$event;" [BackColor]="txtUserName?.BackColor" [CharacterCasing]="txtUserName?.CharacterCasing" [Enabled]="txtUserName?.Enabled" [Font]="txtUserName?.Font" [ForeColor]="txtUserName?.ForeColor" [height]="txtUserName?.Height" [InputFormat]="txtUserName?.InputFormat" [InputTurkishCharacter]="txtUserName?.InputTurkishCharacter" [IsNonNumeric]="txtUserName?.IsNonNumeric" [MultiLine]="txtUserName?.Multiline" [ReadOnly]="txtUserName?.ReadOnly" [Required]="txtUserName?.Required" [TabIndex]="txtUserName?.TabIndex" [TextAlign]="txtUserName?.TextAlign" [Text]="resUserFormViewModel?.txtUserName" [Visible]="txtUserName?.Visible" data-tid="A324026">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-md-2" data-tid="A324027">
+                        <br data-tid="A324028" />
+                        <hvl-checkbox #Validation (ValueChange)="onActiveChanged($event)" [AllowThreeState]="Active?.ThreeState" [BackColor]="Active?.BackColor" [Enabled]="Active?.Enabled" [Font]="Active?.Font" [ForeColor]="Active?.ForeColor" [IsTitleLeft]="Active?.IsTitleLeft" [Margin]="Active?.Margin" [ReadOnly]="Active?.ReadOnly" [TabIndex]="Active?.TabIndex" [TitleTopPadding]="Active?.TitleTopPadding" [Title]="Active?.Title" [Value]="_ResUser.IsActive" [Visible]="Active?.Visible" data-tid="A324029">
+                        </hvl-checkbox>
+                    </div>
+                    <div class="col-md-2" data-tid="A324030">
+                        <br data-tid="A324031" />
+                        <hvl-checkbox #Validation (ValueChange)="onUsesESignatureChanged($event)" [AllowThreeState]="UsesESignature?.ThreeState" [BackColor]="UsesESignature?.BackColor" [Enabled]="UsesESignature?.Enabled" [Font]="UsesESignature?.Font" [ForeColor]="UsesESignature?.ForeColor" [IsTitleLeft]="UsesESignature?.IsTitleLeft" [Margin]="UsesESignature?.Margin" [ReadOnly]="UsesESignature?.ReadOnly" [TabIndex]="UsesESignature?.TabIndex" [TitleTopPadding]="UsesESignature?.TitleTopPadding" [Title]="UsesESignature?.Title" [Value]="UsesESignature.Value" [Visible]="UsesESignature?.Visible" data-tid="A324032">
+                        </hvl-checkbox>
+                    </div>
+                </div>
+
+                <div class="row" data-tid="A324033">
+                    <div class="col-md-2" data-tid="A324034">
+                        <label class="control-label" data-tid="A324035">
+                            Ad
+                        </label>
+                        <hvl-text-box #Validation (TextChange)="onNameChanged($event)" [BackColor]="Name?.BackColor" [CharacterCasing]="Name?.CharacterCasing" [Enabled]="Name?.Enabled" [Font]="Name?.Font" [ForeColor]="Name?.ForeColor" [height]="Name?.Height" [InputFormat]="Name?.InputFormat" [InputTurkishCharacter]="Name?.InputTurkishCharacter" [IsNonNumeric]="Name?.IsNonNumeric" [MultiLine]="Name?.Multiline" [ReadOnly]="Name?.ReadOnly" [Required]="Name?.Required" [TabIndex]="Name?.TabIndex" [TextAlign]="Name?.TextAlign" [Text]="_ResUser.Person.Name" [Visible]="Name?.Visible" data-tid="A324036">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-md-2" data-tid="A324037">
+                        <label class="control-label" data-tid="A324038">
+                            Soyad
+                        </label>
+                        <hvl-text-box #Validation (TextChange)="onSurnameChanged($event)" [BackColor]="Surname?.BackColor" [CharacterCasing]="Surname?.CharacterCasing" [Enabled]="Surname?.Enabled" [Font]="Surname?.Font" [ForeColor]="Surname?.ForeColor" [height]="Surname?.Height" [InputFormat]="Surname?.InputFormat" [InputTurkishCharacter]="Surname?.InputTurkishCharacter" [IsNonNumeric]="Surname?.IsNonNumeric" [MultiLine]="Surname?.Multiline" [ReadOnly]="Surname?.ReadOnly" [Required]="Surname?.Required" [TabIndex]="Surname?.TabIndex" [TextAlign]="Surname?.TextAlign" [Text]="_ResUser.Person.Surname" [Visible]="Surname?.Visible" data-tid="A324039">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-md-2" data-tid="A324040">
+                        <label class="control-label" data-tid="A324041">
+                            Baba Adı
+                        </label>
+                        <hvl-text-box #Validation (TextChange)="onFatherNameChanged($event)" [BackColor]="FatherName?.BackColor" [CharacterCasing]="FatherName?.CharacterCasing" [Enabled]="FatherName?.Enabled" [Font]="FatherName?.Font" [ForeColor]="FatherName?.ForeColor" [height]="FatherName?.Height" [InputFormat]="FatherName?.InputFormat" [InputTurkishCharacter]="FatherName?.InputTurkishCharacter" [IsNonNumeric]="FatherName?.IsNonNumeric" [MultiLine]="FatherName?.Multiline" [ReadOnly]="FatherName?.ReadOnly" [Required]="FatherName?.Required" [TabIndex]="FatherName?.TabIndex" [TextAlign]="FatherName?.TextAlign" [Text]="_ResUser.Person.FatherName" [Visible]="FatherName?.Visible" data-tid="A324042">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-md-2" data-tid="A324043">
+                        <label class="control-label" data-tid="A324044">
+                            Anne Adı
+                        </label>
+                        <hvl-text-box #Validation (TextChange)="onMotherNameChanged($event)" [BackColor]="MotherName?.BackColor" [CharacterCasing]="MotherName?.CharacterCasing" [Enabled]="MotherName?.Enabled" [Font]="MotherName?.Font" [ForeColor]="MotherName?.ForeColor" [height]="MotherName?.Height" [InputFormat]="MotherName?.InputFormat" [InputTurkishCharacter]="MotherName?.InputTurkishCharacter" [IsNonNumeric]="MotherName?.IsNonNumeric" [MultiLine]="MotherName?.Multiline" [ReadOnly]="MotherName?.ReadOnly" [Required]="MotherName?.Required" [TabIndex]="MotherName?.TabIndex" [TextAlign]="MotherName?.TextAlign" [Text]="_ResUser.Person.MotherName" [Visible]="MotherName?.Visible" data-tid="A324045">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-md-2" data-tid="A324046">
+                        <br data-tid="A324047" />
+                        <hvl-checkbox #Validation (ValueChange)="onchkTakesPerformanceScoreChanged($event)" [AllowThreeState]="chkTakesPerformanceScore?.ThreeState" [BackColor]="chkTakesPerformanceScore?.BackColor" [Enabled]="chkTakesPerformanceScore?.Enabled" [Font]="chkTakesPerformanceScore?.Font" [ForeColor]="chkTakesPerformanceScore?.ForeColor" [IsTitleLeft]="chkTakesPerformanceScore?.IsTitleLeft" [Margin]="chkTakesPerformanceScore?.Margin" [ReadOnly]="chkTakesPerformanceScore?.ReadOnly" [TabIndex]="chkTakesPerformanceScore?.TabIndex" [TitleTopPadding]="chkTakesPerformanceScore?.TitleTopPadding" [Title]="chkTakesPerformanceScore?.Title" [Value]="_ResUser.TakesPerformanceScore" [Visible]="chkTakesPerformanceScore?.Visible" data-tid="A324048">
+                        </hvl-checkbox>
+                    </div>
+                    <div class="col-md-2" data-tid="A324049">
+                        <br data-tid="A324050" />
+                        <hvl-checkbox #Validation (ValueChange)="onchkIsClinicianChanged($event)" [AllowThreeState]="chkIsClinician?.ThreeState" [BackColor]="chkIsClinician?.BackColor" [Enabled]="chkIsClinician?.Enabled" [Font]="chkIsClinician?.Font" [ForeColor]="chkIsClinician?.ForeColor" [IsTitleLeft]="chkIsClinician?.IsTitleLeft" [Margin]="chkIsClinician?.Margin" [ReadOnly]="chkIsClinician?.ReadOnly" [TabIndex]="chkIsClinician?.TabIndex" [TitleTopPadding]="chkIsClinician?.TitleTopPadding" [Title]="chkIsClinician?.Title" [Value]="_ResUser.IsClinician" [Visible]="chkIsClinician?.Visible" data-tid="A324051">
+                        </hvl-checkbox>
+                    </div>
+
+                </div>
+
+                <div class="row" data-tid="A324052">
+                    <div class="col-md-2" data-tid="A324053">
+                        <label class="control-label" data-tid="A324054">
+                            Doğum Tarihi
+                        </label>
+                        <hvl-date-picker #Validation (ValueChange)="onBirthDateChanged($event)" [BackColor]="BirthDate?.BackColor" [CustomFormat]="BirthDate?.CustomFormat" [Enabled]="BirthDate?.Enabled" [Font]="BirthDate?.Font" [ForeColor]="BirthDate?.ForeColor" [Format]="BirthDate?.Format" [Max]="BirthDate?.Max" [Min]="BirthDate?.Min" [ReadOnly]="BirthDate?.ReadOnly" [Required]="BirthDate?.Required" [TabIndex]="BirthDate?.TabIndex" [Value]="_ResUser.Person.BirthDate" [Visible]="BirthDate?.Visible" data-tid="A324055">
+                        </hvl-date-picker>
+                    </div>
+                    <div class="col-md-2" data-tid="A324056">
+                        <label class="control-label" data-tid="A324057">
+                            Ülke
+                        </label>
+                        <hvl-list-box #Validation (SelectedObjectChange)="onCountryOfBirthChanged($event)" [AutoCompleteDialogHeight]="CountryOfBirth?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="CountryOfBirth?.AutoCompleteDialogWidth" [AutoCompleteMode]="CountryOfBirth?.AutoCompleteMode" [BackColor]="CountryOfBirth?.BackColor" [DefinitionName]="CountryOfBirth?.ListDefName" [DisplayExpressionsCache]="CountryOfBirth?.ListDefDisplayExpressions" [Enabled]="CountryOfBirth?.Enabled" [Font]="CountryOfBirth?.Font" [ForeColor]="CountryOfBirth?.ForeColor" [ListFilterExpression]="CountryOfBirth?.ListFilterExpression" [MinSearchLength]="CountryOfBirth?.MinSearchLength" [PopupDialogFieldConfig]="CountryOfBirth?.PopupDialogFieldConfig" [PopupDialogGridColumns]="CountryOfBirth?.PopupDialogGridColumns" [PopupDialogHeight]="CountryOfBirth?.PopupDialogHeight" [PopupDialogTitle]="CountryOfBirth?.PopupDialogTitle" [PopupDialogWidth]="CountryOfBirth?.PopupDialogWidth" [ReadOnly]="CountryOfBirth?.ReadOnly" [SearchMode]="CountryOfBirth?.SearchMode" [SearchTimeout]="CountryOfBirth?.SearchTimeout" [SelectedObject]="_ResUser.Person.CountryOfBirth" [TabIndex]="CountryOfBirth?.TabIndex" [Visible]="CountryOfBirth?.Visible" [width]="CountryOfBirth?.Width" data-tid="A324058">
+                        </hvl-list-box>
+                    </div>
+                    <div class="col-md-2" data-tid="A324059">
+                        <label class="control-label" data-tid="A324060">
+                            Doğum Yeri(Diğer)
+                        </label>
+                        <hvl-text-box #Validation (TextChange)="onBirthPlacePersonChanged($event)" [BackColor]="BirthPlacePerson?.BackColor" [CharacterCasing]="BirthPlacePerson?.CharacterCasing" [Enabled]="BirthPlacePerson?.Enabled" [Font]="BirthPlacePerson?.Font" [ForeColor]="BirthPlacePerson?.ForeColor" [height]="BirthPlacePerson?.Height" [InputFormat]="BirthPlacePerson?.InputFormat" [InputTurkishCharacter]="BirthPlacePerson?.InputTurkishCharacter" [IsNonNumeric]="BirthPlacePerson?.IsNonNumeric" [MultiLine]="BirthPlacePerson?.Multiline" [ReadOnly]="BirthPlacePerson?.ReadOnly" [Required]="BirthPlacePerson?.Required" [TabIndex]="BirthPlacePerson?.TabIndex" [TextAlign]="BirthPlacePerson?.TextAlign" [Text]="_ResUser.Person.BirthPlace" [Visible]="BirthPlacePerson?.Visible" data-tid="A324061">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-md-2" data-tid="A324062">
+                        <label class="control-label" data-tid="A324063">
+                            Doğum İlçesi
+                        </label>
+                        <hvl-list-box #Validation (SelectedObjectChange)="onTownOfBirthChanged($event)" [AutoCompleteDialogHeight]="TownOfBirth?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="TownOfBirth?.AutoCompleteDialogWidth" [AutoCompleteMode]="TownOfBirth?.AutoCompleteMode" [BackColor]="TownOfBirth?.BackColor" [DefinitionName]="TownOfBirth?.ListDefName" [DisplayExpressionsCache]="TownOfBirth?.ListDefDisplayExpressions" [Enabled]="TownOfBirth?.Enabled" [Font]="TownOfBirth?.Font" [ForeColor]="TownOfBirth?.ForeColor" [ListFilterExpression]="TownOfBirth?.ListFilterExpression" [MinSearchLength]="TownOfBirth?.MinSearchLength" [PopupDialogFieldConfig]="TownOfBirth?.PopupDialogFieldConfig" [PopupDialogGridColumns]="TownOfBirth?.PopupDialogGridColumns" [PopupDialogHeight]="TownOfBirth?.PopupDialogHeight" [PopupDialogTitle]="TownOfBirth?.PopupDialogTitle" [PopupDialogWidth]="TownOfBirth?.PopupDialogWidth" [ReadOnly]="TownOfBirth?.ReadOnly" [SearchMode]="TownOfBirth?.SearchMode" [SearchTimeout]="TownOfBirth?.SearchTimeout" [SelectedObject]="_ResUser.Person.TownOfBirth" [TabIndex]="TownOfBirth?.TabIndex" [Visible]="TownOfBirth?.Visible" [width]="TownOfBirth?.Width" data-tid="A324064">
+                        </hvl-list-box>
+                    </div>
+                    <div class="col-md-2" data-tid="A324065">
+                        <label class="control-label" data-tid="A324066">
+                            Ön Taburcu Limiti
+                        </label>
+                        <hvl-text-box #Validation (TextChange)="onPreDischargeLimitChanged($event)" [BackColor]="PreDischargeLimit?.BackColor" [CharacterCasing]="PreDischargeLimit?.CharacterCasing" [Enabled]="PreDischargeLimit?.Enabled" [Font]="PreDischargeLimit?.Font" [ForeColor]="PreDischargeLimit?.ForeColor" [height]="PreDischargeLimit?.Height" [InputFormat]="PreDischargeLimit?.InputFormat" [InputTurkishCharacter]="PreDischargeLimit?.InputTurkishCharacter" [IsNonNumeric]="PreDischargeLimit?.IsNonNumeric" [MultiLine]="PreDischargeLimit?.Multiline" [ReadOnly]="PreDischargeLimit?.ReadOnly" [Required]="PreDischargeLimit?.Required" [TabIndex]="PreDischargeLimit?.TabIndex" [TextAlign]="PreDischargeLimit?.TextAlign" [Text]="_ResUser.PreDischargeLimit" [Visible]="PreDischargeLimit?.Visible" data-tid="A324067">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-md-2" data-tid="A324068">
+
+                    </div>
+
+                </div>
+
+                <div class="row" data-tid="A324069">
+                    <div class="col-md-2" data-tid="A324070">
+                        <label class="control-label" data-tid="A324071">
+                            Cinsiyet
+                        </label>
+                        <hvl-list-box #Validation (SelectedObjectChange)="onSexPersonChanged($event)" [AutoCompleteDialogHeight]="SexPerson?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="SexPerson?.AutoCompleteDialogWidth" [AutoCompleteMode]="SexPerson?.AutoCompleteMode" [BackColor]="SexPerson?.BackColor" [DefinitionName]="SexPerson?.ListDefName" [DisplayExpressionsCache]="SexPerson?.ListDefDisplayExpressions" [Enabled]="SexPerson?.Enabled" [Font]="SexPerson?.Font" [ForeColor]="SexPerson?.ForeColor" [ListFilterExpression]="SexPerson?.ListFilterExpression" [MinSearchLength]="SexPerson?.MinSearchLength" [PopupDialogFieldConfig]="SexPerson?.PopupDialogFieldConfig" [PopupDialogGridColumns]="SexPerson?.PopupDialogGridColumns" [PopupDialogHeight]="SexPerson?.PopupDialogHeight" [PopupDialogTitle]="SexPerson?.PopupDialogTitle" [PopupDialogWidth]="SexPerson?.PopupDialogWidth" [ReadOnly]="SexPerson?.ReadOnly" [SearchMode]="SexPerson?.SearchMode" [SearchTimeout]="SexPerson?.SearchTimeout" [SelectedObject]="_ResUser.Person.Sex" [TabIndex]="SexPerson?.TabIndex" [Visible]="SexPerson?.Visible" [width]="SexPerson?.Width" data-tid="A324072">
+                        </hvl-list-box>
+                    </div>
+                    <div class="col-md-2" data-tid="A324073">
+                        <label class="control-label" data-tid="A324074">
+                            Kayıtlı Olduğu  İl
+                        </label>
+                        <hvl-list-box #Validation (SelectedObjectChange)="onCityOfRegistryChanged($event)" [AutoCompleteDialogHeight]="CityOfRegistry?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="CityOfRegistry?.AutoCompleteDialogWidth" [AutoCompleteMode]="CityOfRegistry?.AutoCompleteMode" [BackColor]="CityOfRegistry?.BackColor" [DefinitionName]="CityOfRegistry?.ListDefName" [DisplayExpressionsCache]="CityOfRegistry?.ListDefDisplayExpressions" [Enabled]="CityOfRegistry?.Enabled" [Font]="CityOfRegistry?.Font" [ForeColor]="CityOfRegistry?.ForeColor" [ListFilterExpression]="CityOfRegistry?.ListFilterExpression" [MinSearchLength]="CityOfRegistry?.MinSearchLength" [PopupDialogFieldConfig]="CityOfRegistry?.PopupDialogFieldConfig" [PopupDialogGridColumns]="CityOfRegistry?.PopupDialogGridColumns" [PopupDialogHeight]="CityOfRegistry?.PopupDialogHeight" [PopupDialogTitle]="CityOfRegistry?.PopupDialogTitle" [PopupDialogWidth]="CityOfRegistry?.PopupDialogWidth" [ReadOnly]="CityOfRegistry?.ReadOnly" [SearchMode]="CityOfRegistry?.SearchMode" [SearchTimeout]="CityOfRegistry?.SearchTimeout" [SelectedObject]="_ResUser.Person.CityOfRegistry" [TabIndex]="CityOfRegistry?.TabIndex" [Visible]="CityOfRegistry?.Visible" [width]="CityOfRegistry?.Width" data-tid="A324075">
+                        </hvl-list-box>
+                    </div>
+                    <div class="col-md-2" data-tid="A324076">
+                        <label class="control-label" data-tid="A324077">
+                            Kayıtlı Olduğu İlçe
+                        </label>
+                        <hvl-list-box #Validation (SelectedObjectChange)="onTownOfRegistryPersonChanged($event)" [AutoCompleteDialogHeight]="TownOfRegistryPerson?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="TownOfRegistryPerson?.AutoCompleteDialogWidth" [AutoCompleteMode]="TownOfRegistryPerson?.AutoCompleteMode" [BackColor]="TownOfRegistryPerson?.BackColor" [DefinitionName]="TownOfRegistryPerson?.ListDefName" [DisplayExpressionsCache]="TownOfRegistryPerson?.ListDefDisplayExpressions" [Enabled]="TownOfRegistryPerson?.Enabled" [Font]="TownOfRegistryPerson?.Font" [ForeColor]="TownOfRegistryPerson?.ForeColor" [ListFilterExpression]="TownOfRegistryPerson?.ListFilterExpression" [MinSearchLength]="TownOfRegistryPerson?.MinSearchLength" [PopupDialogFieldConfig]="TownOfRegistryPerson?.PopupDialogFieldConfig" [PopupDialogGridColumns]="TownOfRegistryPerson?.PopupDialogGridColumns" [PopupDialogHeight]="TownOfRegistryPerson?.PopupDialogHeight" [PopupDialogTitle]="TownOfRegistryPerson?.PopupDialogTitle" [PopupDialogWidth]="TownOfRegistryPerson?.PopupDialogWidth" [ReadOnly]="TownOfRegistryPerson?.ReadOnly" [SearchMode]="TownOfRegistryPerson?.SearchMode" [SearchTimeout]="TownOfRegistryPerson?.SearchTimeout" [SelectedObject]="_ResUser.Person.TownOfRegistry" [TabIndex]="TownOfRegistryPerson?.TabIndex" [Visible]="TownOfRegistryPerson?.Visible" [width]="TownOfRegistryPerson?.Width" data-tid="A324078">
+                        </hvl-list-box>
+                    </div>
+                    <div class="col-md-2" data-tid="A324079">
+                        <label class="control-label" data-tid="A324080">
+                            Kayıtlı Olduğu Mahalle/Köy
+                        </label>
+                        <hvl-text-box #Validation (TextChange)="onVillageOfRegistryChanged($event)" [BackColor]="VillageOfRegistry?.BackColor" [CharacterCasing]="VillageOfRegistry?.CharacterCasing" [Enabled]="VillageOfRegistry?.Enabled" [Font]="VillageOfRegistry?.Font" [ForeColor]="VillageOfRegistry?.ForeColor" [height]="VillageOfRegistry?.Height" [InputFormat]="VillageOfRegistry?.InputFormat" [InputTurkishCharacter]="VillageOfRegistry?.InputTurkishCharacter" [IsNonNumeric]="VillageOfRegistry?.IsNonNumeric" [MultiLine]="VillageOfRegistry?.Multiline" [ReadOnly]="VillageOfRegistry?.ReadOnly" [Required]="VillageOfRegistry?.Required" [TabIndex]="VillageOfRegistry?.TabIndex" [TextAlign]="VillageOfRegistry?.TextAlign" [Text]="_ResUser.Person.VillageOfRegistry" [Visible]="VillageOfRegistry?.Visible" data-tid="A324081">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-md-2" data-tid="A324082">
+
+                    </div>
+                    <div class="col-md-2" data-tid="A324083">
+
+                    </div>
+
+                </div>
+
+                <div class="row" data-tid="A324084">
+                    <div class="col-md-2" data-tid="A324085">
+                        <label class="control-label" data-tid="A324086">
+                            Giriş Tarihi
+                        </label>
+                        <hvl-date-picker #Validation (ValueChange)="onDateOfJoinChanged($event)" [BackColor]="DateOfJoin?.BackColor" [CustomFormat]="DateOfJoin?.CustomFormat" [Enabled]="DateOfJoin?.Enabled" [Font]="DateOfJoin?.Font" [ForeColor]="DateOfJoin?.ForeColor" [Format]="DateOfJoin?.Format" [Max]="DateOfJoin?.Max" [Min]="DateOfJoin?.Min" [ReadOnly]="DateOfJoin?.ReadOnly" [Required]="DateOfJoin?.Required" [TabIndex]="DateOfJoin?.TabIndex" [Value]="_ResUser.DateOfJoin" [Visible]="DateOfJoin?.Visible" data-tid="A324087">
+                        </hvl-date-picker>
+                    </div>
+                    <div class="col-md-2" data-tid="A324088">
+                        <label class="control-label" data-tid="A324089">
+                            Ayrılış Tarihi
+                        </label>
+                        <hvl-date-picker #Validation (ValueChange)="onDateOfLeaveChanged($event)" [BackColor]="DateOfLeave?.BackColor" [CustomFormat]="DateOfLeave?.CustomFormat" [Enabled]="DateOfLeave?.Enabled" [Font]="DateOfLeave?.Font" [ForeColor]="DateOfLeave?.ForeColor" [Format]="DateOfLeave?.Format" [Max]="DateOfLeave?.Max" [Min]="DateOfLeave?.Min" [ReadOnly]="DateOfLeave?.ReadOnly" [Required]="DateOfLeave?.Required" [TabIndex]="DateOfLeave?.TabIndex" [Value]="_ResUser.DateOfLeave" [Visible]="DateOfLeave?.Visible" data-tid="A324090">
+                        </hvl-date-picker>
+                    </div>
+                    <div class="col-md-2" data-tid="A324091">
+                        <label class="control-label" data-tid="A324092">
+                            Telefon No
+                        </label>
+                        <hvl-text-box #Validation (TextChange)="onPhoneNumberChanged($event)" [BackColor]="PhoneNumber?.BackColor" [CharacterCasing]="PhoneNumber?.CharacterCasing" [Enabled]="PhoneNumber?.Enabled" [Font]="PhoneNumber?.Font" [ForeColor]="PhoneNumber?.ForeColor" [height]="PhoneNumber?.Height" [InputFormat]="PhoneNumber?.InputFormat" [InputTurkishCharacter]="PhoneNumber?.InputTurkishCharacter" [IsNonNumeric]="PhoneNumber?.IsNonNumeric" [MultiLine]="PhoneNumber?.Multiline" [ReadOnly]="PhoneNumber?.ReadOnly" [Required]="PhoneNumber?.Required" [TabIndex]="PhoneNumber?.TabIndex" [TextAlign]="PhoneNumber?.TextAlign" [Text]="_ResUser.PhoneNumber" [Visible]="PhoneNumber?.Visible" data-tid="A324093">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-md-2" data-tid="A324094">
+
+                    </div>
+                    <div class="col-md-2" data-tid="A324095">
+
+                    </div>
+                    <div class="col-md-2" data-tid="A324096">
+
+                    </div>
+
+                </div>
+
+                <div class="row" data-tid="A324097">
+                    <div class="col-md-2" data-tid="A324098">
+                        <label class="control-label" data-tid="A324099">
+                            Diploma No
+                        </label>
+                        <hvl-text-box #Validation (TextChange)="onDiplomaNoChanged($event)" [BackColor]="DiplomaNo?.BackColor" [CharacterCasing]="DiplomaNo?.CharacterCasing" [Enabled]="DiplomaNo?.Enabled" [Font]="DiplomaNo?.Font" [ForeColor]="DiplomaNo?.ForeColor" [height]="DiplomaNo?.Height" [InputFormat]="DiplomaNo?.InputFormat" [InputTurkishCharacter]="DiplomaNo?.InputTurkishCharacter" [IsNonNumeric]="DiplomaNo?.IsNonNumeric" [MultiLine]="DiplomaNo?.Multiline" [ReadOnly]="DiplomaNo?.ReadOnly" [Required]="DiplomaNo?.Required" [TabIndex]="DiplomaNo?.TabIndex" [TextAlign]="DiplomaNo?.TextAlign" [Text]="_ResUser.DiplomaNo" [Visible]="DiplomaNo?.Visible" data-tid="A324100">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-md-2" data-tid="A324101">
+                        <label class="control-label" data-tid="A324102">
+                            Diploma Tescil No
+                        </label>
+                        <hvl-text-box #Validation (TextChange)="onTescilNoChanged($event)" [BackColor]="TescilNo?.BackColor" [CharacterCasing]="TescilNo?.CharacterCasing" [Enabled]="TescilNo?.Enabled" [Font]="TescilNo?.Font" [ForeColor]="TescilNo?.ForeColor" [height]="TescilNo?.Height" [InputFormat]="TescilNo?.InputFormat" [InputTurkishCharacter]="TescilNo?.InputTurkishCharacter" [IsNonNumeric]="TescilNo?.IsNonNumeric" [MultiLine]="TescilNo?.Multiline" [ReadOnly]="TescilNo?.ReadOnly" [Required]="TescilNo?.Required" [TabIndex]="TescilNo?.TabIndex" [TextAlign]="TescilNo?.TextAlign" [Text]="_ResUser.DiplomaRegisterNo" [Visible]="TescilNo?.Visible" data-tid="A324103">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-md-2" data-tid="A324104">
+                        <label class="control-label" data-tid="A324105">
+                            Uzmanlık Tescil No
+                        </label>
+                        <hvl-text-box #Validation (TextChange)="ontttextbox1Changed($event)" [BackColor]="tttextbox1?.BackColor" [CharacterCasing]="tttextbox1?.CharacterCasing" [Enabled]="tttextbox1?.Enabled" [Font]="tttextbox1?.Font" [ForeColor]="tttextbox1?.ForeColor" [height]="tttextbox1?.Height" [InputFormat]="tttextbox1?.InputFormat" [InputTurkishCharacter]="tttextbox1?.InputTurkishCharacter" [IsNonNumeric]="tttextbox1?.IsNonNumeric" [MultiLine]="tttextbox1?.Multiline" [ReadOnly]="tttextbox1?.ReadOnly" [Required]="tttextbox1?.Required" [TabIndex]="tttextbox1?.TabIndex" [TextAlign]="tttextbox1?.TextAlign" [Text]="_ResUser.SpecialityRegistryNo" [Visible]="tttextbox1?.Visible" data-tid="A324106">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-md-2" data-tid="A324107">
+                        <label class="control-label" data-tid="A324108">
+                            Sicil No
+                        </label>
+                        <hvl-text-box #Validation (TextChange)="onEmploymentRecordIDChanged($event)" [BackColor]="EmploymentRecordID?.BackColor" [CharacterCasing]="EmploymentRecordID?.CharacterCasing" [Enabled]="EmploymentRecordID?.Enabled" [Font]="EmploymentRecordID?.Font" [ForeColor]="EmploymentRecordID?.ForeColor" [height]="EmploymentRecordID?.Height" [InputFormat]="EmploymentRecordID?.InputFormat" [InputTurkishCharacter]="EmploymentRecordID?.InputTurkishCharacter" [IsNonNumeric]="EmploymentRecordID?.IsNonNumeric" [MultiLine]="EmploymentRecordID?.Multiline" [ReadOnly]="EmploymentRecordID?.ReadOnly" [Required]="EmploymentRecordID?.Required" [TabIndex]="EmploymentRecordID?.TabIndex" [TextAlign]="EmploymentRecordID?.TextAlign" [Text]="_ResUser.EmploymentRecordID" [Visible]="EmploymentRecordID?.Visible" data-tid="A324109">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-md-2" data-tid="A324110">
+
+                    </div>
+                    <div class="col-md-2" data-tid="A324111">
+
+                    </div>
+
+                    <div class="col-md-12" data-tid="A324112">
+                        <hvl-datagrid (CellValueChange)="ResourceSpecialities" [AllowUserToAddRows]="_ResUser.ResourceSpecialities?.AllowUserToAddRows" [AllowUserToDeleteRows]="_ResUser.ResourceSpecialities?.AllowUserToDeleteRows" [Columns]="ResourceSpecialitiesColumns" [dataSource]="resUserFormViewModel?._ResUser?.ResourceSpecialities" [DeleteButtonWidth]="_ResUser.ResourceSpecialities?.DeleteButtonWidth" [DisplayExpressionsCache]="_ResUser.ResourceSpecialities?.ListDefDisplayExpressions" [EnableFilter]="_ResUser.ResourceSpecialities?.ShowFilterRow" [FilterColumnName]="_ResUser.ResourceSpecialities?.FilterColumnName" [FilterLabel]="_ResUser.ResourceSpecialities?.FilterLabel" [Filter]="_ResUser.ResourceSpecialities?.Filter" [height]="_ResUser.ResourceSpecialities?.Height" [IsFilterLabelSingleLine]="_ResUser.ResourceSpecialities?.IsFilterLabelSingleLine" [ShowColumnHeaders]="_ResUser.ResourceSpecialities?.ColumnHeadersVisible" [ShowFilterCombo]="_ResUser.ResourceSpecialities?.ShowFilterCombo" [ShowTotalNumberOfRows]="_ResUser.ResourceSpecialities?.ShowTotalNumberOfRows" data-tid="A324113">
+                        </hvl-datagrid>
+                    </div>
+                </div>
+
+            </div>
+            <div id="kullaniciSifreleri" class="tab-pane fade" data-tid="A324114">
+                <div class="row" data-tid="A324115">
+                    <div class="col-md-2" data-tid="A324116">
+                        <label class="control-label" data-tid="A324117">
+                            E Reçete Şifresi
+                        </label>
+                        <hvl-text-box #Validation (TextChange)="onErecetePasswordChanged($event)" [BackColor]="ErecetePassword?.BackColor" [CharacterCasing]="ErecetePassword?.CharacterCasing" [Enabled]="ErecetePassword?.Enabled" [Font]="ErecetePassword?.Font" [ForeColor]="ErecetePassword?.ForeColor" [height]="ErecetePassword?.Height" [InputFormat]="ErecetePassword?.InputFormat" [InputTurkishCharacter]="ErecetePassword?.InputTurkishCharacter" [IsNonNumeric]="ErecetePassword?.IsNonNumeric" [MultiLine]="ErecetePassword?.Multiline" [ReadOnly]="ErecetePassword?.ReadOnly" [Required]="ErecetePassword?.Required" [TabIndex]="ErecetePassword?.TabIndex" [TextAlign]="ErecetePassword?.TextAlign" [Text]="_ResUser.ErecetePassword" [Visible]="ErecetePassword?.Visible" data-tid="A324118">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-md-2" data-tid="A324119">
+                        <br data-tid="A324120" />
+                        <hvl-checkbox #Validation (ValueChange)="onSentToMHRSChanged($event)" [AllowThreeState]="SentToMHRS?.ThreeState" [BackColor]="SentToMHRS?.BackColor" [Enabled]="SentToMHRS?.Enabled" [Font]="SentToMHRS?.Font" [ForeColor]="SentToMHRS?.ForeColor" [IsTitleLeft]="SentToMHRS?.IsTitleLeft" [Margin]="SentToMHRS?.Margin" [ReadOnly]="SentToMHRS?.ReadOnly" [TabIndex]="SentToMHRS?.TabIndex" [TitleTopPadding]="SentToMHRS?.TitleTopPadding" [Title]="SentToMHRS?.Title" [Value]="_ResUser.SentToMHRS" [Visible]="SentToMHRS?.Visible" data-tid="A324121">
+                        </hvl-checkbox>
+                    </div>
+                </div>
+                <div class="row" data-tid="A324122">
+                    <div class="col-md-2" data-tid="A324123">
+                        <label class="control-label" data-tid="A324124">
+                            MKYS Kullanıcı Adı
+                        </label>
+                        <hvl-text-box #Validation (TextChange)="onMkysUserNameChanged($event)" [BackColor]="MkysUserName?.BackColor" [CharacterCasing]="MkysUserName?.CharacterCasing" [Enabled]="MkysUserName?.Enabled" [Font]="MkysUserName?.Font" [ForeColor]="MkysUserName?.ForeColor" [height]="MkysUserName?.Height" [InputFormat]="MkysUserName?.InputFormat" [InputTurkishCharacter]="MkysUserName?.InputTurkishCharacter" [IsNonNumeric]="MkysUserName?.IsNonNumeric" [MultiLine]="MkysUserName?.Multiline" [ReadOnly]="MkysUserName?.ReadOnly" [Required]="MkysUserName?.Required" [TabIndex]="MkysUserName?.TabIndex" [TextAlign]="MkysUserName?.TextAlign" [Text]="_ResUser.MkysUserName" [Visible]="MkysUserName?.Visible" data-tid="A324125">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-md-2" data-tid="A324126">
+                        <label class="control-label" data-tid="A324127">
+                            MKYS Şifre
+                        </label>
+                        <hvl-text-box #Validation (TextChange)="onMkysPasswordChanged($event)" [BackColor]="MkysPassword?.BackColor" [CharacterCasing]="MkysPassword?.CharacterCasing" [Enabled]="MkysPassword?.Enabled" [Font]="MkysPassword?.Font" [ForeColor]="MkysPassword?.ForeColor" [height]="MkysPassword?.Height" [InputFormat]="MkysPassword?.InputFormat" [InputTurkishCharacter]="MkysPassword?.InputTurkishCharacter" [IsNonNumeric]="MkysPassword?.IsNonNumeric" [MultiLine]="MkysPassword?.Multiline" [ReadOnly]="MkysPassword?.ReadOnly" [Required]="MkysPassword?.Required" [TabIndex]="MkysPassword?.TabIndex" [TextAlign]="MkysPassword?.TextAlign" [Text]="_ResUser.MkysPassword" [Visible]="MkysPassword?.Visible" data-tid="A324128">
+                        </hvl-text-box>
+                    </div>
+                </div>
+                <div class="row" data-tid="A324129">
+                    <div class="col-md-2" data-tid="A324130">
+                        <label class="control-label" data-tid="A324131">
+                            KPS Kullanıcı Adı
+                        </label>
+                        <hvl-text-box #Validation (TextChange)="onKPSUserNameChanged($event)" [BackColor]="KPSUserName?.BackColor" [CharacterCasing]="KPSUserName?.CharacterCasing" [Enabled]="KPSUserName?.Enabled" [Font]="KPSUserName?.Font" [ForeColor]="KPSUserName?.ForeColor" [height]="KPSUserName?.Height" [InputFormat]="KPSUserName?.InputFormat" [InputTurkishCharacter]="KPSUserName?.InputTurkishCharacter" [IsNonNumeric]="KPSUserName?.IsNonNumeric" [MultiLine]="KPSUserName?.Multiline" [ReadOnly]="KPSUserName?.ReadOnly" [Required]="KPSUserName?.Required" [TabIndex]="KPSUserName?.TabIndex" [TextAlign]="KPSUserName?.TextAlign" [Text]="_ResUser.KPSUserName" [Visible]="KPSUserName?.Visible" data-tid="A324132">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-md-2" data-tid="A324133">
+                        <label class="control-label" data-tid="A324134">
+                            KPS Şifre
+                        </label>
+                        <hvl-text-box #Validation (TextChange)="onKPSPasswordChanged($event)" [BackColor]="KPSPassword?.BackColor" [CharacterCasing]="KPSPassword?.CharacterCasing" [Enabled]="KPSPassword?.Enabled" [Font]="KPSPassword?.Font" [ForeColor]="KPSPassword?.ForeColor" [height]="KPSPassword?.Height" [InputFormat]="KPSPassword?.InputFormat" [InputTurkishCharacter]="KPSPassword?.InputTurkishCharacter" [IsNonNumeric]="KPSPassword?.IsNonNumeric" [MultiLine]="KPSPassword?.Multiline" [ReadOnly]="KPSPassword?.ReadOnly" [Required]="KPSPassword?.Required" [TabIndex]="KPSPassword?.TabIndex" [TextAlign]="KPSPassword?.TextAlign" [Text]="_ResUser.KPSPassword" [Visible]="KPSPassword?.Visible" data-tid="A324135">
+                        </hvl-text-box>
+                    </div>
+                </div>
+            </div>
+            <div id="gorevBilgileri" class="tab-pane fade" data-tid="A324136">
+                <div class="row" data-tid="A324137">
+                    <div class="col-md-2" data-tid="A324138">
+                        <label class="control-label" data-tid="A324139">
+                            Görevi
+                        </label>
+                        <hvl-text-box #Validation (TextChange)="ontttextbox3Changed($event)" [BackColor]="tttextbox3?.BackColor" [CharacterCasing]="tttextbox3?.CharacterCasing" [Enabled]="tttextbox3?.Enabled" [Font]="tttextbox3?.Font" [ForeColor]="tttextbox3?.ForeColor" [height]="tttextbox3?.Height" [InputFormat]="tttextbox3?.InputFormat" [InputTurkishCharacter]="tttextbox3?.InputTurkishCharacter" [IsNonNumeric]="tttextbox3?.IsNonNumeric" [MultiLine]="tttextbox3?.Multiline" [ReadOnly]="tttextbox3?.ReadOnly" [Required]="tttextbox3?.Required" [TabIndex]="tttextbox3?.TabIndex" [TextAlign]="tttextbox3?.TextAlign" [Text]="_ResUser.Work" [Visible]="tttextbox3?.Visible" data-tid="A324140">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-md-2" data-tid="A324141">
+                        <label class="control-label" data-tid="A324142">
+                            Görev Yeri
+                        </label>
+                        <hvl-text-box #Validation (TextChange)="onWorkPlaceChanged($event)" [BackColor]="WorkPlace?.BackColor" [CharacterCasing]="WorkPlace?.CharacterCasing" [Enabled]="WorkPlace?.Enabled" [Font]="WorkPlace?.Font" [ForeColor]="WorkPlace?.ForeColor" [height]="WorkPlace?.Height" [InputFormat]="WorkPlace?.InputFormat" [InputTurkishCharacter]="WorkPlace?.InputTurkishCharacter" [IsNonNumeric]="WorkPlace?.IsNonNumeric" [MultiLine]="WorkPlace?.Multiline" [ReadOnly]="WorkPlace?.ReadOnly" [Required]="WorkPlace?.Required" [TabIndex]="WorkPlace?.TabIndex" [TextAlign]="WorkPlace?.TextAlign" [Text]="_ResUser.WorkPlace" [Visible]="WorkPlace?.Visible" data-tid="A324143">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-md-2" data-tid="A324144">
+                        <label class="control-label" data-tid="A324145">
+                            Deposu
+                        </label>
+                        <hvl-list-box #Validation (SelectedObjectChange)="onStoreChanged($event)" [AutoCompleteDialogHeight]="Store?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="Store?.AutoCompleteDialogWidth" [AutoCompleteMode]="Store?.AutoCompleteMode" [BackColor]="Store?.BackColor" [DefinitionName]="Store?.ListDefName" [DisplayExpressionsCache]="Store?.ListDefDisplayExpressions" [Enabled]="Store?.Enabled" [Font]="Store?.Font" [ForeColor]="Store?.ForeColor" [ListFilterExpression]="Store?.ListFilterExpression" [MinSearchLength]="Store?.MinSearchLength" [PopupDialogFieldConfig]="Store?.PopupDialogFieldConfig" [PopupDialogGridColumns]="Store?.PopupDialogGridColumns" [PopupDialogHeight]="Store?.PopupDialogHeight" [PopupDialogTitle]="Store?.PopupDialogTitle" [PopupDialogWidth]="Store?.PopupDialogWidth" [ReadOnly]="Store?.ReadOnly" [SearchMode]="Store?.SearchMode" [SearchTimeout]="Store?.SearchTimeout" [SelectedObject]="_ResUser.Store" [TabIndex]="Store?.TabIndex" [Visible]="Store?.Visible" [width]="Store?.Width" data-tid="A324146">
+                        </hvl-list-box>
+                    </div>
+                    <div class="col-md-12" data-tid="A324147">
+                        <hvl-datagrid (CellValueChange)="UserResources" [AllowUserToAddRows]="_ResUser.UserResources?.AllowUserToAddRows" [AllowUserToDeleteRows]="_ResUser.UserResources?.AllowUserToDeleteRows" [Columns]="UserResourcesColumns" [dataSource]="resUserFormViewModel?._ResUser?.UserResources" [DeleteButtonWidth]="_ResUser.UserResources?.DeleteButtonWidth" [DisplayExpressionsCache]="_ResUser.UserResources?.ListDefDisplayExpressions" [EnableFilter]="_ResUser.UserResources?.ShowFilterRow" [FilterColumnName]="_ResUser.UserResources?.FilterColumnName" [FilterLabel]="_ResUser.UserResources?.FilterLabel" [Filter]="_ResUser.UserResources?.Filter" [height]="_ResUser.UserResources?.Height" [IsFilterLabelSingleLine]="_ResUser.UserResources?.IsFilterLabelSingleLine" [ShowColumnHeaders]="_ResUser.UserResources?.ColumnHeadersVisible" [ShowFilterCombo]="_ResUser.UserResources?.ShowFilterCombo" [ShowTotalNumberOfRows]="_ResUser.UserResources?.ShowTotalNumberOfRows" data-tid="A324148">
+                        </hvl-datagrid>
+                    </div>
+                    <div class="col-md-12" data-tid="A324149">
+                        <hvl-datagrid (CellValueChange)="ResUserUsableStores" [AllowUserToAddRows]="_ResUser.ResUserUsableStores?.AllowUserToAddRows" [AllowUserToDeleteRows]="_ResUser.ResUserUsableStores?.AllowUserToDeleteRows" [Columns]="ResUserUsableStoresColumns" [dataSource]="resUserFormViewModel?._ResUser?.ResUserUsableStores" [DeleteButtonWidth]="_ResUser.ResUserUsableStores?.DeleteButtonWidth" [DisplayExpressionsCache]="_ResUser.ResUserUsableStores?.ListDefDisplayExpressions" [EnableFilter]="_ResUser.ResUserUsableStores?.ShowFilterRow" [FilterColumnName]="_ResUser.ResUserUsableStores?.FilterColumnName" [FilterLabel]="_ResUser.ResUserUsableStores?.FilterLabel" [Filter]="_ResUser.ResUserUsableStores?.Filter" [height]="_ResUser.ResUserUsableStores?.Height" [IsFilterLabelSingleLine]="_ResUser.ResUserUsableStores?.IsFilterLabelSingleLine" [ShowColumnHeaders]="_ResUser.ResUserUsableStores?.ColumnHeadersVisible" [ShowFilterCombo]="_ResUser.ResUserUsableStores?.ShowFilterCombo" [ShowTotalNumberOfRows]="_ResUser.ResUserUsableStores?.ShowTotalNumberOfRows" data-tid="A324150">
+                        </hvl-datagrid>
+                    </div>
+                </div>
+            </div>
+            <div id="hastaGruplari" class="tab-pane fade" data-tid="A324151">
+                <div class="row" data-tid="A324152">
+                    <div class="col-sm-12" data-tid="A324153">
+                        <label class="control-label" data-tid="A324154">
+                            Doktorun Atanabildiği Hasta Grupları
+                        </label>
+                        <hvl-datagrid (CellValueChange)="ResUserPatientGroupMatches" [AllowUserToAddRows]="_ResUser.ResUserPatientGroupMatches?.AllowUserToAddRows" [AllowUserToDeleteRows]="_ResUser.ResUserPatientGroupMatches?.AllowUserToDeleteRows" [Columns]="ResUserPatientGroupMatchesColumns" [dataSource]="resUserFormViewModel?._ResUser?.ResUserPatientGroupMatches" [DeleteButtonWidth]="_ResUser.ResUserPatientGroupMatches?.DeleteButtonWidth" [DisplayExpressionsCache]="_ResUser.ResUserPatientGroupMatches?.ListDefDisplayExpressions" [EnableFilter]="_ResUser.ResUserPatientGroupMatches?.ShowFilterRow" [FilterColumnName]="_ResUser.ResUserPatientGroupMatches?.FilterColumnName" [FilterLabel]="_ResUser.ResUserPatientGroupMatches?.FilterLabel" [Filter]="_ResUser.ResUserPatientGroupMatches?.Filter" [height]="_ResUser.ResUserPatientGroupMatches?.Height" [IsFilterLabelSingleLine]="_ResUser.ResUserPatientGroupMatches?.IsFilterLabelSingleLine" [ShowColumnHeaders]="_ResUser.ResUserPatientGroupMatches?.ColumnHeadersVisible" [ShowFilterCombo]="_ResUser.ResUserPatientGroupMatches?.ShowFilterCombo" [ShowTotalNumberOfRows]="_ResUser.ResUserPatientGroupMatches?.ShowTotalNumberOfRows" data-tid="A324155">
+                        </hvl-datagrid>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <br data-tid="A324156" />
+    </div>
+</form>
+
+
+
+
+
+<!--<pre>
+    {{ _ViewModel | json }}</pre>-->

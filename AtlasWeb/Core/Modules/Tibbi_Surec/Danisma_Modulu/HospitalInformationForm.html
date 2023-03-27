@@ -1,0 +1,529 @@
+﻿<form id="HospitalInformationForm" class="form-horizontal" role="form" data-tid="A340460">
+
+</form>
+
+<div class="col-sm-12" id="A10813" data-tid="A340461">
+    <dx-tab-panel [selectedIndex]="0" (onSelectionChanged)="selectedTabChanged($event)" id="A10814" data-tid="A340462">
+        <dxi-item class="tabpanel-item" title="Duyurular" i18n-title="@@M27495" id="A10815" data-tid="A340463">
+            <div class="row" id="A10816" data-tid="A340464">
+                <div class="list-container col-md-3" id="A32628" data-tid="A340465">
+                    <h2 style="margin:0" id="A32629" data-tid="A340466">Duyurular ve Sistem Mesajları</h2>
+                    <dx-list [items]="inbox" height="800px" (onItemClick)="selectedChange($event)" id="A32630" data-tid="A340467">
+                        <div *dxTemplate="let data of 'item'" id="A32631" data-tid="A340468">
+                            <div *ngIf="data.Durumu==0" class="row" id="A32632" data-tid="A340469">
+                                <div class="col-sm-12" id="A32633" data-tid="A340470">
+                                    <b style="float:left" id="A32634" data-tid="A340471">{{data.Gonderenadi}}</b>
+                                </div>
+                                <div class="col-sm-4" style="padding-top:13px" id="A32635" data-tid="A340472">
+                                    <p id="A32636" data-tid="A340473">{{data.Baslik}}</p>
+                                </div>
+                                <div class="col-sm-6" id="A32637" data-tid="A340474">
+                                    <p style="float: right;margin-right: -66px;" id="A32638" data-tid="A340475">
+                                        {{(data.Tarih| date:'dd.MM.yyyy HH:mm')}}</p>
+                                </div>
+                            </div>
+                            <div *ngIf="data.Durumu==1" class="row" style="background-color:#d2d5d8" id="A32639" data-tid="A340476">
+                                <div class="col-sm-12" id="A32640" data-tid="A340477">
+                                    <b style="float:left" id="A32641" data-tid="A340478">{{data.Gonderenadi}}</b>
+                                </div>
+                                <div class="col-sm-4" style="padding-top:13px" id="A32642" data-tid="A340479">
+                                    <p id="A32643" data-tid="A340480">{{data.Baslik}}</p>
+                                </div>
+                                <div class="col-sm-6" id="A32644" data-tid="A340481">
+                                    <p style="float: right;margin-right: -66px;" id="A32645" data-tid="A340482">
+                                        {{(data.Tarih| date:'dd.MM.yyyy HH:mm')}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </dx-list>
+                </div>
+                <div class="list-container col-sm-9" id="A32646" data-tid="A340483">
+                    <br id="A32647" data-tid="A340484" />
+                    <br id="A32648" data-tid="A340485" />
+                    <div id="systemapi-container" class="col-sm-12" style="height:100%" data-tid="A340486">
+                        <comp-compose [Info]="systemApiService?.componentInfo" id="A32649" data-tid="A340487"></comp-compose>
+                    </div>
+                </div>
+            </div>
+
+        </dxi-item>
+        <dxi-item class="tabpanel-item" title="Muayene Sorgulama" i18n-title="@@M27495" id="A10815" data-tid="A340488">
+            <div class="row" style="margin-top :10px" data-tid="A340489">
+                <label class="control-label col-sm-2" id="A1801" data-tid="A340490">
+                    Birim Seçimi
+                </label>
+            </div>
+
+            <div class="row" id="A10816" data-tid="A340491">
+                <div class="col-sm-3" id="A10817" data-tid="A340492">
+                    <dx-select-box [items]="hospitalInformationFormViewModel.ClinicList" placeholder="Seçiniz" displayExpr="Name" showClearButton="true" searchEnabled="true" (showSelectionControls)="false" valueExpr="ObjectID" [readOnly]="false" (onSelectionChanged)="onResourceSelectionChanged($event)" data-tid="A340493">
+                    </dx-select-box>
+                </div>
+            </div>
+            <div class="row" id="A10950" data-tid="A340494">
+                <div class="col-sm-12" id="A11074" data-tid="A340495">
+                    <div style="margin-top:20px;" id="A11075" data-tid="A340496">
+                        <label class="control-label margin-top-25" id="A11076" data-tid="A340497">Muayene Listesi</label>
+                        <dx-data-grid [columns]="ExaminationSearchingColumns" [allowColumnResizing]="true" allowColumnReordering="true" height="300" [dataSource]="examinationList" [filterRow]="{visible: true}" [paging]="{enable: false, pageSize:1000000}" id="A11077" data-tid="A340498">
+                        </dx-data-grid>
+
+                    </div>
+                </div>
+            </div>
+
+        </dxi-item>
+
+        <dxi-item class="tabpanel-item" title="Hasta Sorgulama" i18n-title="@@M27495" id="A10815" data-tid="A340499">
+            <div class="row" id="A10816" data-tid="A340500">
+                <div class="col-md-12" id="A10817" data-tid="A340501">
+                    <HospitalInformationPatientSearchForm id="A10818" data-tid="A340502"> </HospitalInformationPatientSearchForm>
+                </div>
+            </div>
+
+        </dxi-item>
+
+        <dxi-item class="tabpanel-item" title="Personel Sorgulama" i18n-title="@@M20339" id="A10819" data-tid="A340503">
+
+            <div class="row" id="A10820" data-tid="A340504">
+                <div class="col-sm-2" id="A10821" data-tid="A340505">
+                    <label class="control-label " id="A10822" data-tid="A340506">
+                        Adı
+                    </label>
+                    <dx-text-box [value]="hospitalInformationFormViewModel._PersonnelSearchModel?.Name" (onValueChanged)="onPersonnelNameTextboxChanged($event)" name="PersonnelNameTextbox" style="padding-bottom:2px; text-align:center;" id="A10823" data-tid="A340507"></dx-text-box>
+
+                </div>
+                <div class="col-sm-2" id="A10824" data-tid="A340508">
+                    <label class="control-label" id="A10825" data-tid="A340509">
+                        Soyadı
+                    </label>
+                    <dx-text-box [value]="hospitalInformationFormViewModel._PersonnelSearchModel?.Surname" (onValueChanged)="onPersonnelSurnameTextboxChanged($event)" name="PersonnelSurnameTextbox" style="padding-bottom:2px; text-align:center;" id="A10826" data-tid="A340510"></dx-text-box>
+
+                </div>
+                <div class="col-sm-2" id="A10827" data-tid="A340511">
+                    <label style="grid-row: 2;" data-tid="A340512">Ünvan</label>
+                    <div style="grid-row: 2;" data-tid="A340513">
+                        <dx-select-box [dataSource]="UserTitleDataSource" [(value)]="hospitalInformationFormViewModel._PersonnelSearchModel.Title" valueExpr="ordinal" displayExpr="description" showClearButton="true" data-tid="A340514">
+                        </dx-select-box>
+
+                    </div>
+                </div>
+                <div class="col-sm-2" id="A10834" data-tid="A340515">
+                    <label style="grid-row: 2;" data-tid="A340516">Görev</label>
+                    <dx-select-box [dataSource]="UserTypeDataSource" [(value)]="hospitalInformationFormViewModel._PersonnelSearchModel.Mission" valueExpr="ordinal" displayExpr="description" showClearButton="true" data-tid="A340517">
+                    </dx-select-box>
+                </div>
+                <div class="col-sm-2" id="A10837" data-tid="A340518">
+                    <label class="control-label" id="A10838" data-tid="A340519">
+                        Branş
+                    </label>
+                    <hvl-list-box #Validation (SelectedObjectChange)="onPersonnelDepartmentTextboxChanged($event)" [AutoCompleteDialogHeight]="PersonnelDepartmentTextbox?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="PersonnelDepartmentTextbox?.AutoCompleteDialogWidth" [AutoCompleteMode]="PersonnelDepartmentTextbox?.AutoCompleteMode" [BackColor]="PersonnelDepartmentTextbox?.BackColor" [DefinitionName]="PersonnelDepartmentTextbox?.ListDefName" [DisplayExpressionsCache]="hospitalInformationFormViewModel?.ListDefDisplayExpressions" [Enabled]="PersonnelDepartmentTextbox?.Enabled" [Font]="PersonnelDepartmentTextbox?.Font" [ForeColor]="PersonnelDepartmentTextbox?.ForeColor" [ListFilterExpression]="PersonnelDepartmentTextbox?.ListFilterExpression" [MinSearchLength]="PersonnelDepartmentTextbox?.MinSearchLength" [PopupDialogFieldConfig]="PersonnelDepartmentTextbox?.PopupDialogFieldConfig" [PopupDialogGridColumns]="PersonnelDepartmentTextbox?.PopupDialogGridColumns" [PopupDialogHeight]="PersonnelDepartmentTextbox?.PopupDialogHeight" [PopupDialogTitle]="PersonnelDepartmentTextbox?.PopupDialogTitle" [PopupDialogWidth]="PersonnelDepartmentTextbox?.PopupDialogWidth" [ReadOnly]="PersonnelDepartmentTextbox?.ReadOnly" [SearchMode]="PersonnelDepartmentTextbox?.SearchMode" [SearchTimeout]="PersonnelDepartmentTextbox?.SearchTimeout" [SelectedObject]="hospitalInformationFormViewModel?._PersonnelSearchModel?.Department" [TabIndex]="PersonnelDepartmentTextbox?.TabIndex" [Visible]="PersonnelDepartmentTextbox?.Visible" [width]="PersonnelDepartmentTextbox?.Width" id="A10839" data-tid="A340520"></hvl-list-box>
+                </div>
+
+                <div class="col-sm-2" id="A10840" data-tid="A340521">
+                    <label class="control-label" id="A10841" data-tid="A340522">
+                        Bölüm
+                    </label>
+                    <hvl-list-box #Validation (SelectedObjectChange)="onPersonnelSectionTextboxChanged($event)" [AutoCompleteDialogHeight]="PersonnelSectionTextbox?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="PersonnelSectionTextbox?.AutoCompleteDialogWidth" [AutoCompleteMode]="PersonnelSectionTextbox?.AutoCompleteMode" [BackColor]="PersonnelSectionTextbox?.BackColor" [DefinitionName]="PersonnelSectionTextbox?.ListDefName" [DisplayExpressionsCache]="hospitalInformationFormViewModel?.ListDefDisplayExpressions" [Enabled]="PersonnelSectionTextbox?.Enabled" [Font]="PersonnelSectionTextbox?.Font" [ForeColor]="PersonnelSectionTextbox?.ForeColor" [ListFilterExpression]="PersonnelSectionTextbox?.ListFilterExpression" [MinSearchLength]="PersonnelSectionTextbox?.MinSearchLength" [PopupDialogFieldConfig]="PersonnelSectionTextbox?.PopupDialogFieldConfig" [PopupDialogGridColumns]="PersonnelSectionTextbox?.PopupDialogGridColumns" [PopupDialogHeight]="PersonnelSectionTextbox?.PopupDialogHeight" [PopupDialogTitle]="PersonnelSectionTextbox?.PopupDialogTitle" [PopupDialogWidth]="PersonnelSectionTextbox?.PopupDialogWidth" [ReadOnly]="PersonnelSectionTextbox?.ReadOnly" [SearchMode]="PersonnelSectionTextbox?.SearchMode" [SearchTimeout]="PersonnelSectionTextbox?.SearchTimeout" [SelectedObject]="hospitalInformationFormViewModel?._PersonnelSearchModel?.Section" [TabIndex]="PersonnelSectionTextbox?.TabIndex" [Visible]="PersonnelSectionTextbox?.Visible" [width]="PersonnelSectionTextbox?.Width" id="A10842" data-tid="A340523"></hvl-list-box>
+                </div>
+     
+            </div>
+
+            <div class="row" id="A10832" data-tid="A340524">
+                <div style="margin-top:10px;" id="A10833" data-tid="A340525">
+        
+                    <div class="col-sm-2" id="A10834" data-tid="A340526">
+                        <label class="control-label" id="A1590" data-tid="A340527">Göreve Başlama Tarihi</label>
+                        <dx-date-box width="100%" type="date" [(value)]="hospitalInformationFormViewModel._PersonnelSearchModel.DateOfJoin" id="A1592" data-tid="A340528">
+                        </dx-date-box>
+                    </div>
+
+                    <div class="col-sm-2" id="A10840" data-tid="A340529">
+                        <label class="control-label" id="A1594" data-tid="A340530">Görev Bitiş Tarihi</label>
+                        <dx-date-box width="100%" type="date" [(value)]="hospitalInformationFormViewModel._PersonnelSearchModel.DateOfLeave" id="A1596" data-tid="A340531">
+                        </dx-date-box>
+                    </div>
+
+                    <div class="col-sm-2" id="A10830" style="margin-top:14px;" data-tid="A340532">
+                        <dx-button text="Personel Ara" rtlEnabled="true" class="default" icon="search" (onClick)="SearchPersonnelWithDetails()" i18n-text="@@M20324" id="A10831" data-tid="A340533"></dx-button>
+                    </div>
+
+                </div>
+            </div>
+    
+
+            <div class="row" id="A10843" data-tid="A340534">
+                <div class="col-sm-7" id="A10844" data-tid="A340535">
+                    <div style="margin-top:20px;" id="A10845" data-tid="A340536">
+                        <label class="control-label margin-top-25" id="A10846" data-tid="A340537">Personel Listesi</label>
+                        <dx-data-grid [columns]="PersonnelGridSearchingColumns" [allowColumnResizing]="true" allowColumnReordering="true" height="500" [dataSource]="_PersonnelGridSearchResult" [filterRow]="{visible: true}" [paging]="{enable: false, pageSize:1000000}" [selection]="{mode: 'single',allowSelectAll: false}" [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" (onCellClick)="selectSearchingPersonnel($event)" id="A10847" data-tid="A340538">
+                            <div *dxTemplate="let row of 'detailButtonTemplate'" id="A24132" data-tid="A340539">
+                                    <button type="button" class="fa fa-info" data-toggle="tooltip" data-placement="top" title="Bölüm Bilgisi" (click)="ShowSectionInfo_CellContentClickEmitted(row)" id="A35150" data-tid="A340540"></button>
+                                </div>
+                        </dx-data-grid>
+                    </div>
+                </div>
+                <div class="col-sm-5" style="margin-top:30px;" id="A10848" data-tid="A340541">
+                    <label class="control-label margin-top-25" id="A10849" data-tid="A340542">Personel Bilgi Formu</label>
+
+                    <div class="row" style="margin-top:10px;" id="A10850" data-tid="A340543">
+                        <div class="col-md-2" id="A10851" data-tid="A340544">
+                            <div style="text-align:center;" id="A10852" data-tid="A340545">
+                                <img [src]="imageSource" class="media-object" style="max-width:100px; max-height:120px;" id="A10853" data-tid="A340546" />
+                            </div>
+
+                        </div>
+                        <div class="col-md-10" style="margin-top:10px;" id="A10854" data-tid="A340547">
+                            <div class="margin-top-10" id="A10855" data-tid="A340548">
+                                <label class="control-label col-md-4" style="margin-top: 5px;" id="A10856" data-tid="A340549">Adı </label>
+                                <div class="col-md-8" id="A10857" data-tid="A340550">
+                                    <dx-text-box [disabled]=" false" [value]="selectedPersonnelInfo?.Name" name="Name" style="padding-bottom:2px; text-align:center; border:0px; border-bottom:1px solid;border-color:lightgray;" id="A10858" data-tid="A340551"></dx-text-box>
+                                </div>
+                            </div>
+                            <div class="margin-top-10" id="A10859" data-tid="A340552">
+                                <label class="control-label col-md-4" style="margin-top: 5px;" id="A10860" data-tid="A340553">Soyadı </label>
+                                <div class="col-md-8" id="A10861" data-tid="A340554">
+                                    <dx-text-box [disabled]=" false" [value]="selectedPersonnelInfo?.Surname" name="Surname" style="padding-bottom:2px;text-align:center; border:0px; border-bottom:1px solid;border-color:lightgray;" id="A10862" data-tid="A340555"></dx-text-box>
+                                </div>
+                            </div>
+                            <div class="margin-top-10" id="A10863" data-tid="A340556">
+                                <label class="control-label col-md-4" style="margin-top: 5px;" id="A10864" data-tid="A340557">Cep Telefonu </label>
+                                <div class="col-md-8" id="A10865" data-tid="A340558">
+                                    <dx-text-box [disabled]=" false" [value]="selectedPersonnelInfo?.MobilePhone" name="MobilePhone" style="padding-bottom:2px; text-align:center; border:0px; border-bottom:1px solid;border-color:lightgray;" id="A10866" data-tid="A340559"></dx-text-box>
+                                </div>
+                            </div>
+                            <div class="margin-top-10" id="A10867" data-tid="A340560">
+                                <label class="control-label col-md-4" style="margin-top: 5px;" id="A10868" data-tid="A340561">Branş</label>
+                                <div class="col-md-8" id="A10869" data-tid="A340562">
+                                    <dx-text-box [disabled]=" false" [value]="selectedPersonnelInfo?.Department" name="Department" style="padding-bottom:2px; text-align:center; border:0px; border-bottom:1px solid;border-color:lightgray;" id="A10870" data-tid="A340563"></dx-text-box>
+                                </div>
+                            </div>
+                            <div class="margin-top-10" id="A10871" data-tid="A340564">
+                                <label class="control-label col-md-4" style="margin-top: 5px;" id="A10872" data-tid="A340565">Çalıştığı Yer</label>
+                                <div class="col-md-8" id="A10873" data-tid="A340566">
+                                    <dx-text-box [disabled]=" false" [value]="selectedPersonnelInfo?.WorkPlace" name="WorkPlace" style="padding-bottom:2px; text-align:center; border:0px; border-bottom:1px solid;border-color:lightgray;" id="A10874" data-tid="A340567"></dx-text-box>
+                                </div>
+                            </div>
+                            <div class="margin-top-10" id="A10875" data-tid="A340568">
+                                <label class="control-label col-md-4" style="margin-top: 5px;" id="A10876" data-tid="A340569">Görev</label>
+                                <div class="col-md-8" id="A10877" data-tid="A340570">
+                                    <dx-text-box [disabled]=" false" [value]="selectedPersonnelInfo?.Mission" name="Mission" style="padding-bottom:2px; text-align:center; border:0px; border-bottom:1px solid;border-color:lightgray;" id="A10878" data-tid="A340571"></dx-text-box>
+                                </div>
+                            </div>
+                            <div class="margin-top-10" id="A10879" data-tid="A340572">
+                                <label class="control-label col-md-4" style="margin-top: 5px;" id="A10880" data-tid="A340573">Ünvan</label>
+                                <div class="col-md-8" id="A10881" data-tid="A340574">
+                                    <dx-text-box [disabled]=" false" [value]="selectedPersonnelInfo?.Title" name="Title" style="padding-bottom:2px; text-align:center; border:0px; border-bottom:1px solid;border-color:lightgray;" id="A10882" data-tid="A340575"></dx-text-box>
+                                </div>
+                            </div>
+                            <div class="margin-top-10" id="A10883" data-tid="A340576">
+                                <label class="control-label col-md-4" style="margin-top: 5px;" id="A10884" data-tid="A340577">Dahili Telefon</label>
+                                <div class="col-md-8" id="A10885" data-tid="A340578">
+                                    <dx-text-box [disabled]=" false" [value]="selectedPersonnelInfo?.RoomPhone" name="RoomPhone" style="padding-bottom:2px; text-align:center; border:0px; border-bottom:1px solid;border-color:lightgray;" id="A10886" data-tid="A340579"></dx-text-box>
+                                </div>
+                                <div class="margin-top-10" id="A10887" data-tid="A340580">
+                                    <label class="control-label col-md-4" style="margin-top: 5px;" id="A10888" data-tid="A340581">Oda No </label>
+                                    <div class="col-md-8" id="A10889" data-tid="A340582">
+                                        <dx-text-box [disabled]=" false" [value]="selectedPersonnelInfo?.Room" name="Room" style="padding-bottom:2px; text-align:center; border:0px; border-bottom:1px solid;border-color:lightgray;" id="A10890" data-tid="A340583"></dx-text-box>
+                                    </div>
+                                </div>
+                                <div class="margin-top-10" id="A10891" data-tid="A340584">
+                                    <label class="control-label col-md-4" style="margin-top: 5px;" id="A10892" data-tid="A340585">Oda Lokasyon Tanımı </label>
+                                    <div class="col-md-8" id="A10893" data-tid="A340586">
+                                        <dx-text-box [disabled]=" false" [value]="selectedPersonnelInfo?.RoomLocation" name="RoomLocation" style="padding-bottom:2px; text-align:center; border:0px; border-bottom:1px solid;border-color:lightgray;" id="A10894" data-tid="A340587"></dx-text-box>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </dxi-item>
+
+        <dxi-item class="tabpanel-item" title="Lokasyon Sorgulama" i18n-title="@@M18352" id="A10895" data-tid="A340588">
+
+            <div class="row" id="A10896" data-tid="A340589">
+
+                <div style="margin-top :10px" id="A10897" data-tid="A340590">
+                    <div class="col-sm-2" id="A10898" data-tid="A340591">
+                        <label class="control-label" id="A10899" data-tid="A340592">
+                            Birim
+                        </label>
+                        <hvl-list-box #Validation (SelectedObjectChange)="onLocationPoliclinicChanged($event)" [AutoCompleteDialogHeight]="PolyclinicTTListBox?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="PolyclinicTTListBox?.AutoCompleteDialogWidth" [AutoCompleteMode]="PolyclinicTTListBox?.AutoCompleteMode" [BackColor]="PolyclinicTTListBox?.BackColor" [DefinitionName]="PolyclinicTTListBox?.ListDefName" [DisplayExpressionsCache]="hospitalInformationFormViewModel?.ListDefDisplayExpressions" [Enabled]="PolyclinicTTListBox?.Enabled" [Font]="PolyclinicTTListBox?.Font" [ForeColor]="PolyclinicTTListBox?.ForeColor" [ListFilterExpression]="PolyclinicTTListBox?.ListFilterExpression" [MinSearchLength]="PolyclinicTTListBox?.MinSearchLength" [PopupDialogFieldConfig]="PolyclinicTTListBox?.PopupDialogFieldConfig" [PopupDialogGridColumns]="PolyclinicTTListBox?.PopupDialogGridColumns" [PopupDialogHeight]="PolyclinicTTListBox?.PopupDialogHeight" [PopupDialogTitle]="PolyclinicTTListBox?.PopupDialogTitle" [PopupDialogWidth]="PolyclinicTTListBox?.PopupDialogWidth" [ReadOnly]="PolyclinicTTListBox?.ReadOnly" [SearchMode]="PolyclinicTTListBox?.SearchMode" [SearchTimeout]="PolyclinicTTListBox?.SearchTimeout" [SelectedObject]="hospitalInformationFormViewModel?._LocationSearchModel?.Policlinic" [TabIndex]="PolyclinicTTListBox?.TabIndex" [Visible]="PolyclinicTTListBox?.Visible" [width]="PolyclinicTTListBox?.Width" id="A10900" data-tid="A340593"></hvl-list-box>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row" id="A10901" data-tid="A340594">
+
+                <div style="margin-top :12px" id="A10902" data-tid="A340595">
+                    <div class="col-sm-12" id="A10903" data-tid="A340596">
+                        <div class="margin-top-20 margin-bottom-20" id="A10904" data-tid="A340597">
+
+                            <div class="margin-top-20 margin-bottom-20" id="A10905" data-tid="A340598">
+
+                                <dx-data-grid [columns]="LocationGridSearchingColumns" [allowColumnResizing]="true" allowColumnReordering="true" height="600" [dataSource]="_LocationGridSearchResult" [filterRow]="{visible: true}" [paging]="{enable: false, pageSize:1000000}" [selection]="{mode: 'single',allowSelectAll: false}" [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" id="A10906" data-tid="A340599">
+                                </dx-data-grid>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </dxi-item>
+
+        <dxi-item class="tabpanel-item" title="Randevu Sorgulama" i18n-title="@@M27568" id="A10907" data-tid="A340600">
+            <div class="row" id="A10908" data-tid="A340601">
+                <div style="margin-top :10px" id="A10909" data-tid="A340602">
+
+                    <div class="col-sm-2" id="A10910" data-tid="A340603">
+                        <label class="control-label" id="A10911" data-tid="A340604">
+                            Tc Kimlik No
+                        </label>
+                        <dx-number-box [value]="hospitalInformationFormViewModel._AppointmentSearchModel?.UnicRefNo" (keypress)="keyDownForNumericControl($event)" (onValueChanged)="onAppointmentUniqRefNoChanged($event)" name="AppointmentPatientIdentifyTextbox" style="padding-bottom:2px; text-align:center;" id="A10912" data-tid="A340605"></dx-number-box>
+                    </div>
+                    <div class="col-sm-2" id="A10913" data-tid="A340606">
+                        <label class="control-label" id="A10914" data-tid="A340607">
+                            Hasta No
+                        </label>
+                        <dx-number-box [value]="hospitalInformationFormViewModel._AppointmentSearchModel?.AdmissionNo" (onValueChanged)="onAppointmentAdmissionNoChanged($event)" name="AppointmentPatientNoTextbox" style="padding-bottom:2px; text-align:center;" id="A10915" data-tid="A340608"></dx-number-box>
+                    </div>
+                    <div class="col-sm-2" id="A10916" data-tid="A340609">
+                        <label class="control-label" id="A10917" data-tid="A340610">
+                            Adı
+                        </label>
+                        <dx-text-box [value]="hospitalInformationFormViewModel._AppointmentSearchModel?.Name" (onValueChanged)="onAppointmentNameChanged($event)" name="AppointmentPatientNameTextbox" style="padding-bottom:2px; text-align:center;" id="A10918" data-tid="A340611"></dx-text-box>
+                    </div>
+                    <div class="col-sm-2" id="A10919" data-tid="A340612">
+                        <label class="control-label" id="A10920" data-tid="A340613">
+                            Soyadı
+                        </label>
+                        <dx-text-box [value]="hospitalInformationFormViewModel._AppointmentSearchModel?.Surname" (onValueChanged)="onAppointmentsurnameChanged($event)" name="AppointmentPatientSurnameTextbox" style="padding-bottom:2px; text-align:center;" id="A10921" data-tid="A340614"></dx-text-box>
+
+                    </div>
+                    <div class="col-sm-2" id="A10922" data-tid="A340615">
+                        <label class="control-label" id="A10923" data-tid="A340616">
+                            Anne Adı
+                        </label>
+                        <dx-text-box [value]="hospitalInformationFormViewModel._AppointmentSearchModel?.MotherName" (onValueChanged)="onAppointmentMotherNameChanged($event)" name="AppointmentPatientMotherNameTextbox" style="padding-bottom:2px; text-align:center;" id="A10924" data-tid="A340617"></dx-text-box>
+                    </div>
+                    <div class="col-sm-2" id="A10925" data-tid="A340618">
+                        <label class="control-label" id="A10926" data-tid="A340619">
+                            Baba Adı
+                        </label>
+                        <dx-text-box [value]="hospitalInformationFormViewModel._AppointmentSearchModel?.FatherName" (onValueChanged)="onAppointmentFatherNameChanged($event)" name="AppointmentPatientFatherNameTextbox" style="padding-bottom:2px; text-align:center;" id="A10927" data-tid="A340620"></dx-text-box>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" id="A10928" data-tid="A340621">
+                <div style="margin-top :10px" id="A10929" data-tid="A340622">
+
+                    <div class="col-sm-2" id="A10930" data-tid="A340623">
+                        <label class="control-label" id="A10931" data-tid="A340624">
+                            Doğum Yeri
+                        </label>
+                        <hvl-text-box #Validation (TextChange)="onAppointmentPatientBirthCityTextboxChanged($event)" Mode="password" [(Text)]="hospitalInformationFormViewModel._AppointmentSearchModel.BirthCity" [BackColor]="AppointmentPatientBirthCityTextbox?.BackColor" [CharacterCasing]="AppointmentPatientBirthCityTextbox?.CharacterCasing" [Enabled]="AppointmentPatientBirthCityTextbox?.Enabled" [Font]="AppointmentPatientBirthCityTextbox?.Font" [ForeColor]="AppointmentPatientBirthCityTextbox?.ForeColor" [height]="AppointmentPatientBirthCityTextbox?.Height" [InputFormat]="AppointmentPatientBirthCityTextbox?.InputFormat" [InputTurkishCharacter]="AppointmentPatientBirthCityTextbox?.InputTurkishCharacter" [IsNonNumeric]="AppointmentPatientBirthCityTextbox?.IsNonNumeric" [MultiLine]="AppointmentPatientBirthCityTextbox?.Multiline" [ReadOnly]="AppointmentPatientBirthCityTextbox?.ReadOnly" [Required]="AppointmentPatientBirthCityTextbox?.Required" [TabIndex]="AppointmentPatientBirthCityTextbox?.TabIndex" [TextAlign]="AppointmentPatientBirthCityTextbox?.TextAlign" [Visible]="AppointmentPatientBirthCityTextbox?.Visible" id="A10932" data-tid="A340625"></hvl-text-box>
+                    </div>
+                    <div class="col-sm-2" id="A10933" data-tid="A340626">
+                        <label class="control-label" id="A10934" data-tid="A340627">
+                            Doğum Tarihi
+                        </label>
+                        <dx-date-box width="100%" type="date" displayFormat="dd/MM/yyyy" (onValueChanged)="onAppointmentBithDatePickerChanged($event)" [value]="hospitalInformationFormViewModel._AppointmentSearchModel?.BirthDate" id="A10935" data-tid="A340628">
+                        </dx-date-box>
+                    </div>
+                    <div class="col-sm-2" id="A10936" data-tid="A340629">
+                        <label class="control-label" id="A10937" data-tid="A340630">
+                            Doktor
+                        </label>
+                        <div id="A10938" data-tid="A340631">
+                            <hvl-list-box #Validation (SelectedObjectChange)="onAppointmentPatientDoctorTextboxChanged($event)" [AutoCompleteDialogHeight]="AppointmentPatientDoctorTextbox?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="AppointmentPatientDoctorTextbox?.AutoCompleteDialogWidth" [AutoCompleteMode]="AppointmentPatientDoctorTextbox?.AutoCompleteMode" [BackColor]="AppointmentPatientDoctorTextbox?.BackColor" [DefinitionName]="AppointmentPatientDoctorTextbox?.ListDefName" [DisplayExpressionsCache]="hospitalInformationFormViewModel?.ListDefDisplayExpressions" [Enabled]="AppointmentPatientDoctorTextbox?.Enabled" [Font]="AppointmentPatientDoctorTextbox?.Font" [ForeColor]="AppointmentPatientDoctorTextbox?.ForeColor" [ListFilterExpression]="AppointmentPatientDoctorTextbox?.ListFilterExpression" [MinSearchLength]="AppointmentPatientDoctorTextbox?.MinSearchLength" [PopupDialogFieldConfig]="AppointmentPatientDoctorTextbox?.PopupDialogFieldConfig" [PopupDialogGridColumns]="AppointmentPatientDoctorTextbox?.PopupDialogGridColumns" [PopupDialogHeight]="AppointmentPatientDoctorTextbox?.PopupDialogHeight" [PopupDialogTitle]="AppointmentPatientDoctorTextbox?.PopupDialogTitle" [PopupDialogWidth]="AppointmentPatientDoctorTextbox?.PopupDialogWidth" [ReadOnly]="AppointmentPatientDoctorTextbox?.ReadOnly" [SearchMode]="AppointmentPatientDoctorTextbox?.SearchMode" [SearchTimeout]="AppointmentPatientDoctorTextbox?.SearchTimeout" [SelectedObject]="hospitalInformationFormViewModel?._AppointmentSearchModel?.Doctor" [TabIndex]="AppointmentPatientDoctorTextbox?.TabIndex" [Visible]="AppointmentPatientDoctorTextbox?.Visible" [width]="AppointmentPatientDoctorTextbox?.Width" id="A10939" data-tid="A340632"></hvl-list-box>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-2" id="A10940" data-tid="A340633">
+                        <label class="control-label" id="A10941" data-tid="A340634">
+                            Tarih Aralığı Başlangıç
+                        </label>
+                        <dx-date-box width="100%" type="date" displayFormat="dd/MM/yyyy" (onValueChanged)="onAppointmentDateFirstChanged($event)" [value]="hospitalInformationFormViewModel._AppointmentSearchModel?.DateFirst" id="A10942" data-tid="A340635">
+                        </dx-date-box>
+                    </div>
+                    <div class="col-sm-2" id="A10943" data-tid="A340636">
+                        <label class="control-label" id="A10944" data-tid="A340637">
+                            Tarih Aralığı bitiş
+                        </label>
+                        <dx-date-box width="100%" type="date" displayFormat="dd/MM/yyyy" (onValueChanged)="onAppointmentDateSecondChanged($event)" [value]="hospitalInformationFormViewModel._AppointmentSearchModel?.DateSecond" id="A10945" data-tid="A340638">
+                        </dx-date-box>
+                    </div>
+
+                    <div class="col-sm-1" style="text-align:center;" id="A10946" data-tid="A340639">
+                        <dx-button text="Ara" rtlEnabled="true" class="tabHeaderButton dx-button-active dx-button-semioval dx-button-main" icon="search" (onClick)="SearchAppointmentWithDetails()" i18n-text="@@M27276" id="A10947" data-tid="A340640"></dx-button>
+                    </div>
+                    <div class="col-sm-1" style="text-align:center;" id="A10948" data-tid="A340641">
+                        <dx-button text="Çıktı Al" rtlEnabled="true" class="tabHeaderButton dx-button-active dx-button-semioval dx-button-main" icon="print" (onClick)="printPatientFamilyInfoReport()" i18n-text="@@M27393" id="A10949" data-tid="A340642"></dx-button>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="A10950" data-tid="A340643">
+                <div class="col-sm-12" id="A10951" data-tid="A340644">
+                    <div class="margin-top-20 margin-bottom-15" id="A10952" data-tid="A340645">
+                    </div>
+                    <label class="control-label" id="A10953" data-tid="A340646">
+                        Randevu Listesi
+                    </label>
+
+                    <dx-data-grid #grid [columns]="AppointmentGridSearchingColumns" [allowColumnResizing]="true" allowColumnReordering="true" height="500" keyExpr="ID" [hoverStateEnabled]="true" (onSelectionChanged)="selectionAppointmentChanged($event)" [selectedRowKeys]="[]" [dataSource]="_AppointmentSearchingResultList" [filterRow]="{visible: true}" [paging]="{enable: false, pageSize:1000000}" [selection]="{mode: 'single',allowSelectAll: false}" [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" id="A10954" data-tid="A340647">
+                    </dx-data-grid>
+
+                </div>
+            </div>
+
+        </dxi-item>
+
+        <dxi-item class="tabpanel-item" title="Ziyaretçi Kaydı" i18n-title="@@M27503" id="A10955" data-tid="A340648">
+
+            <dx-accordion #triajDetails [items]="[{title:'Ziyaret Edilecek Hasta Seçimi'}]" collapsible="true" deferRendering="false" id="A10956" data-tid="A340649">
+                <div *dxTemplate="let a of 'item'" id="A10957" data-tid="A340650">
+                    <div class="panel panel-success" style="background-color:#f8f8f8;margin-bottom: 0px;margin-left: -8px;margin-top: -5px;margin-right: -8px;" id="A10958" data-tid="A340651">
+                        <div class="container-fluid" id="A10959" data-tid="A340652">
+                            <div class="row" id="A10960" data-tid="A340653">
+                                <div class="margin-bottom-10" id="A10961" data-tid="A340654">
+                                    <HospitalInformationPatientSearchForm [isOutPatientCanCalling]="false" (SelectedInPatientChanged)="InPatientChanged($event)" (SelectedOutPatientChanged)="OutPatientChanged($event)" id="A10962" data-tid="A340655">
+                                    </HospitalInformationPatientSearchForm>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </dx-accordion>
+            <div *ngIf="!isInPatientSelected" class="margin-top-20 margin-bottom-20" id="A10963" data-tid="A340656">
+                <label class="col-md-4 col-md-push-4 control-label" style="color:#e07c05;" id="A10964" data-tid="A340657">
+                    Yeni Ziyaretçi Kaydı İçin Öncelikle Hasta Seçimi Yapmanız Gerekmektedir.
+                </label>
+            </div>
+            <div *ngIf="isInPatientSelected" class="margin-top-10 margin-bottom-10" id="A10965" data-tid="A340658">
+                <div class="row" id="A10966" data-tid="A340659">
+                    <div class="col-md-2" id="A10967" data-tid="A340660">
+                        <dx-text-box [value]="hospitalInformationFormViewModel._RecordPatientVisitor?.Patient?.UniqueRefNo" disabled="true" (onValueChanged)="onPatientFromVisitUniqueRefNoChanged($event)" name="UniqueRefNo" placeholder="Hasta TC Kimlik Numarası" style="padding-bottom:2px; text-align:center;border:0px;border-bottom:1px solid; border-color:lightgray;" i18n-placeholder="@@M15318" id="A10968" data-tid="A340661"></dx-text-box>
+                    </div>
+
+                    <div class="col-md-2" id="A10969" data-tid="A340662">
+                        <dx-text-box [value]="hospitalInformationFormViewModel._RecordPatientVisitor?.Patient?.Name" disabled="true" (onValueChanged)="onPatientFromVisitNameChanged($event)" name="Name" placeholder="Hasta Adı" style="padding-bottom:2px; text-align:center; border:0px; border-bottom:1px solid;border-color:lightgray;" i18n-placeholder="@@M15131" id="A10970" data-tid="A340663"></dx-text-box>
+                    </div>
+
+                    <div class="col-md-2" id="A10971" data-tid="A340664">
+                        <dx-text-box [value]="hospitalInformationFormViewModel._RecordPatientVisitor?.Patient?.Surname" disabled="true" (onValueChanged)="onPatientFromVisitSurnameChanged($event)" name="Surname" placeholder="Hasta Soyadı" style="padding-bottom:2px;text-align:center; border:0px; border-bottom:1px solid;border-color:lightgray;" i18n-placeholder="@@M15303" id="A10972" data-tid="A340665"></dx-text-box>
+                    </div>
+
+                    <div class="col-sm-2" id="A10973" data-tid="A340666">
+                        <label class="control-label" id="A10974" data-tid="A340667"> T.C. Kimlik No</label>
+                        <dx-number-box [value]="hospitalInformationFormViewModel._RecordPatientVisitor?.VisitorUnicRefId" (keypress)="keyDownForNumericControl($event)" (onValueChanged)="onVisitorUnicRefIdPatientVisitorChanged($event.value)" name="VisitorUnicRefIdPatientVisitor" style="padding-bottom:2px; text-align:center;" id="A10975" data-tid="A340668"></dx-number-box>
+                    </div>
+
+                    <div class="col-sm-2" id="A10976" data-tid="A340669">
+                        <label class="control-label" id="A10977" data-tid="A340670">
+                            Adı
+                        </label>
+                        <hvl-text-box #Validation (TextChange)="onVisitorNamePatientVisitorChanged($event)" [BackColor]="VisitorNamePatientVisitor?.BackColor" [CharacterCasing]="VisitorNamePatientVisitor?.CharacterCasing" [Enabled]="VisitorNamePatientVisitor?.Enabled" [Font]="VisitorNamePatientVisitor?.Font" [ForeColor]="VisitorNamePatientVisitor?.ForeColor" [height]="VisitorNamePatientVisitor?.Height" [InputFormat]="VisitorNamePatientVisitor?.InputFormat" [InputTurkishCharacter]="VisitorNamePatientVisitor?.InputTurkishCharacter" [IsNonNumeric]="VisitorNamePatientVisitor?.IsNonNumeric" [MultiLine]="VisitorNamePatientVisitor?.Multiline" [ReadOnly]="VisitorNamePatientVisitor?.ReadOnly" [Required]="VisitorNamePatientVisitor?.Required" [TabIndex]="VisitorNamePatientVisitor?.TabIndex" [TextAlign]="VisitorNamePatientVisitor?.TextAlign" [Text]="hospitalInformationFormViewModel?._RecordPatientVisitor?.VisitorName" [Visible]="VisitorNamePatientVisitor?.Visible" id="A10978" data-tid="A340671"></hvl-text-box>
+                    </div>
+                    <div class="col-sm-2" id="A10979" data-tid="A340672">
+                        <label class="control-label" id="A10980" data-tid="A340673">
+                            Soyadı
+                        </label>
+                        <hvl-text-box #Validation (TextChange)="onVisitorSurnamePatientVisitorChanged($event)" [BackColor]="VisitorSurnamePatientVisitor?.BackColor" [CharacterCasing]="VisitorSurnamePatientVisitor?.CharacterCasing" [Enabled]="VisitorSurnamePatientVisitor?.Enabled" [Font]="VisitorSurnamePatientVisitor?.Font" [ForeColor]="VisitorSurnamePatientVisitor?.ForeColor" [height]="VisitorSurnamePatientVisitor?.Height" [InputFormat]="VisitorSurnamePatientVisitor?.InputFormat" [InputTurkishCharacter]="VisitorSurnamePatientVisitor?.InputTurkishCharacter" [IsNonNumeric]="VisitorSurnamePatientVisitor?.IsNonNumeric" [MultiLine]="VisitorSurnamePatientVisitor?.Multiline" [ReadOnly]="VisitorSurnamePatientVisitor?.ReadOnly" [Required]="VisitorSurnamePatientVisitor?.Required" [TabIndex]="VisitorSurnamePatientVisitor?.TabIndex" [TextAlign]="VisitorSurnamePatientVisitor?.TextAlign" [Text]="hospitalInformationFormViewModel?._RecordPatientVisitor?.VisitorSurname" [Visible]="VisitorSurnamePatientVisitor?.Visible" id="A10981" data-tid="A340674"></hvl-text-box>
+                    </div>
+                </div>
+                <div class="row" id="A10982" data-tid="A340675">
+
+                    <div class="col-md-2" id="A10983" data-tid="A340676">
+                        <label class="control-label" id="A10984" data-tid="A340677">Cinsiyet</label>
+                        <hvl-list-box #Validation (SelectedObjectChange)="onVisitorSexChanged($event)" [AutoCompleteDialogHeight]="VisitorSex?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="VisitorSex?.AutoCompleteDialogWidth" [AutoCompleteMode]="VisitorSex?.AutoCompleteMode" [BackColor]="VisitorSex?.BackColor" [DefinitionName]="VisitorSex?.ListDefName" [DisplayExpressionsCache]="hospitalInformationFormViewModel?.ListDefDisplayExpressions" [Enabled]="VisitorSex?.Enabled" [Font]="VisitorSex?.Font" [ForeColor]="VisitorSex?.ForeColor" [ListFilterExpression]="VisitorSex?.ListFilterExpression" [MinSearchLength]="VisitorSex?.MinSearchLength" [PopupDialogFieldConfig]="VisitorSex?.PopupDialogFieldConfig" [PopupDialogGridColumns]="VisitorSex?.PopupDialogGridColumns" [PopupDialogHeight]="VisitorSex?.PopupDialogHeight" [PopupDialogTitle]="VisitorSex?.PopupDialogTitle" [PopupDialogWidth]="VisitorSex?.PopupDialogWidth" [ReadOnly]="VisitorSex?.ReadOnly" [SearchMode]="VisitorSex?.SearchMode" [SearchTimeout]="VisitorSex?.SearchTimeout" [SelectedObject]="hospitalInformationFormViewModel?._RecordPatientVisitor?.VisitorSex" [TabIndex]="VisitorSex?.TabIndex" [Visible]="VisitorSex?.Visible" [width]="VisitorSex?.Width" id="A10985" data-tid="A340678"></hvl-list-box>
+                    </div>
+                    <div class="col-sm-2" id="A10986" data-tid="A340679">
+                        <label class="control-label" id="A10987" data-tid="A340680">
+                            Anne Adı
+                        </label>
+                        <hvl-text-box #Validation (TextChange)="onVisitorMotherNamePatientVisitorChanged($event)" [BackColor]="VisitorMotherNamePatientVisitor?.BackColor" [CharacterCasing]="VisitorMotherNamePatientVisitor?.CharacterCasing" [Enabled]="VisitorMotherNamePatientVisitor?.Enabled" [Font]="VisitorMotherNamePatientVisitor?.Font" [ForeColor]="VisitorMotherNamePatientVisitor?.ForeColor" [height]="VisitorMotherNamePatientVisitor?.Height" [InputFormat]="VisitorMotherNamePatientVisitor?.InputFormat" [InputTurkishCharacter]="VisitorMotherNamePatientVisitor?.InputTurkishCharacter" [IsNonNumeric]="VisitorMotherNamePatientVisitor?.IsNonNumeric" [MultiLine]="VisitorMotherNamePatientVisitor?.Multiline" [ReadOnly]="VisitorMotherNamePatientVisitor?.ReadOnly" [Required]="VisitorMotherNamePatientVisitor?.Required" [TabIndex]="VisitorMotherNamePatientVisitor?.TabIndex" [TextAlign]="VisitorMotherNamePatientVisitor?.TextAlign" [Text]="hospitalInformationFormViewModel?._RecordPatientVisitor?.VisitorMotherName" [Visible]="VisitorMotherNamePatientVisitor?.Visible" id="A10988" data-tid="A340681"></hvl-text-box>
+                    </div>
+                    <div class="col-sm-2" id="A10989" data-tid="A340682">
+                        <label class="control-label" id="A10990" data-tid="A340683">
+                            Baba Adı
+                        </label>
+                        <hvl-text-box #Validation (TextChange)="onVisitorFatherNamePatientVisitorChanged($event)" [BackColor]="VisitorFatherNamePatientVisitor?.BackColor" [CharacterCasing]="VisitorFatherNamePatientVisitor?.CharacterCasing" [Enabled]="VisitorFatherNamePatientVisitor?.Enabled" [Font]="VisitorFatherNamePatientVisitor?.Font" [ForeColor]="VisitorFatherNamePatientVisitor?.ForeColor" [height]="VisitorFatherNamePatientVisitor?.Height" [InputFormat]="VisitorFatherNamePatientVisitor?.InputFormat" [InputTurkishCharacter]="VisitorFatherNamePatientVisitor?.InputTurkishCharacter" [IsNonNumeric]="VisitorFatherNamePatientVisitor?.IsNonNumeric" [MultiLine]="VisitorFatherNamePatientVisitor?.Multiline" [ReadOnly]="VisitorFatherNamePatientVisitor?.ReadOnly" [Required]="VisitorFatherNamePatientVisitor?.Required" [TabIndex]="VisitorFatherNamePatientVisitor?.TabIndex" [TextAlign]="VisitorFatherNamePatientVisitor?.TextAlign" [Text]="hospitalInformationFormViewModel?._RecordPatientVisitor?.VisitorFatherName" [Visible]="VisitorFatherNamePatientVisitor?.Visible" id="A10991" data-tid="A340684"></hvl-text-box>
+                    </div>
+
+                    <div class="col-sm-2" id="A10992" data-tid="A340685">
+                        <label class="control-label" id="A10993" data-tid="A340686">
+                            Telefon No
+                        </label>
+                        <hvl-masktext-box #Validation (TextChange)="onVisitorPhoneNumberPatientVisitorChanged($event)" [BackColor]="VisitorPhoneNumberPatientVisitor?.BackColor" [Enabled]="VisitorPhoneNumberPatientVisitor?.Enabled" [Font]="VisitorPhoneNumberPatientVisitor?.Font" [ForeColor]="VisitorPhoneNumberPatientVisitor?.ForeColor" [InputTurkishCharacter]="VisitorPhoneNumberPatientVisitor?.InputTurkishCharacter" [Mask]="VisitorPhoneNumberPatientVisitor?.Mask" [ReadOnly]="VisitorPhoneNumberPatientVisitor?.ReadOnly" [TabIndex]="VisitorPhoneNumberPatientVisitor?.TabIndex" [TextAlign]="VisitorPhoneNumberPatientVisitor?.TextAlign" [Text]="hospitalInformationFormViewModel?._RecordPatientVisitor?.VisitorPhoneNumber" [Visible]="VisitorPhoneNumberPatientVisitor?.Visible" id="A10994" data-tid="A340687"></hvl-masktext-box>
+                    </div>
+                    <div class="col-sm-2" id="A10995" data-tid="A340688">
+                        <label class="control-label" id="A10996" data-tid="A340689">
+                            Doğum Tarihi
+                        </label>
+                        <hvl-date-picker #Validation (ValueChange)="onVisitorBirthDatePatientVisitorChanged($event)" [BackColor]="VisitorBirthDatePatientVisitor?.BackColor" [CustomFormat]="VisitorBirthDatePatientVisitor?.CustomFormat" [Enabled]="VisitorBirthDatePatientVisitor?.Enabled" [Font]="VisitorBirthDatePatientVisitor?.Font" [ForeColor]="VisitorBirthDatePatientVisitor?.ForeColor" [Format]="VisitorBirthDatePatientVisitor?.Format" [Max]="VisitorBirthDatePatientVisitor?.Max" [Min]="VisitorBirthDatePatientVisitor?.Min" [ReadOnly]="VisitorBirthDatePatientVisitor?.ReadOnly" [Required]="VisitorBirthDatePatientVisitor?.Required" [TabIndex]="VisitorBirthDatePatientVisitor?.TabIndex" [Value]="hospitalInformationFormViewModel?._RecordPatientVisitor?.VisitorBirthDate" [Visible]="VisitorBirthDatePatientVisitor?.Visible" id="A10997" data-tid="A340690"></hvl-date-picker>
+                    </div>
+                    <div class="col-md-2" id="A10998" data-tid="A340691">
+                        <label class="control-label" id="A10999" data-tid="A340692">Doğum Yeri</label>
+                        <hvl-list-box #Validation (SelectedObjectChange)="onVisitorBirthCityChanged($event)" [AutoCompleteDialogHeight]="VisitorBirthCity?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="VisitorBirthCity?.AutoCompleteDialogWidth" [AutoCompleteMode]="VisitorBirthCity?.AutoCompleteMode" [BackColor]="VisitorBirthCity?.BackColor" [DefinitionName]="VisitorBirthCity?.ListDefName" [DisplayExpressionsCache]="hospitalInformationFormViewModel?.ListDefDisplayExpressions" [Enabled]="VisitorBirthCity?.Enabled" [Font]="VisitorBirthCity?.Font" [ForeColor]="VisitorBirthCity?.ForeColor" [ListFilterExpression]="VisitorBirthCity?.ListFilterExpression" [MinSearchLength]="VisitorBirthCity?.MinSearchLength" [PopupDialogFieldConfig]="VisitorBirthCity?.PopupDialogFieldConfig" [PopupDialogGridColumns]="VisitorBirthCity?.PopupDialogGridColumns" [PopupDialogHeight]="VisitorBirthCity?.PopupDialogHeight" [PopupDialogTitle]="VisitorBirthCity?.PopupDialogTitle" [PopupDialogWidth]="VisitorBirthCity?.PopupDialogWidth" [ReadOnly]="VisitorBirthCity?.ReadOnly" [SearchMode]="VisitorBirthCity?.SearchMode" [SearchTimeout]="VisitorBirthCity?.SearchTimeout" [SelectedObject]="hospitalInformationFormViewModel?._RecordPatientVisitor?.VisitorBirthCity" [TabIndex]="VisitorBirthCity?.TabIndex" [Visible]="VisitorBirthCity?.Visible" [width]="VisitorBirthCity?.Width" id="A11000" data-tid="A340693"></hvl-list-box>
+                    </div>
+                </div>
+
+                <div class="margin-top-10 margin-bottom-10" id="A11001" data-tid="A340694">
+                </div>
+                <div class="row" id="A11002" data-tid="A340695">
+
+                    <div class="col-sm-2" id="A11003" data-tid="A340696">
+                        <label class="control-label1" id="A11004" data-tid="A340697">
+                            Yakınlık Derecesi
+                        </label>
+                        <hvl-text-box #Validation (TextChange)="onVisitorRelationStatePatientVisitorChanged($event)" [BackColor]="VisitorRelationStatePatientVisitor?.BackColor" [CharacterCasing]="VisitorRelationStatePatientVisitor?.CharacterCasing" [Enabled]="VisitorRelationStatePatientVisitor?.Enabled" [Font]="VisitorRelationStatePatientVisitor?.Font" [ForeColor]="VisitorRelationStatePatientVisitor?.ForeColor" [height]="VisitorRelationStatePatientVisitor?.Height" [InputFormat]="VisitorRelationStatePatientVisitor?.InputFormat" [InputTurkishCharacter]="VisitorRelationStatePatientVisitor?.InputTurkishCharacter" [IsNonNumeric]="VisitorRelationStatePatientVisitor?.IsNonNumeric" [MultiLine]="VisitorRelationStatePatientVisitor?.Multiline" [ReadOnly]="VisitorRelationStatePatientVisitor?.ReadOnly" [Required]="VisitorRelationStatePatientVisitor?.Required" [TabIndex]="VisitorRelationStatePatientVisitor?.TabIndex" [TextAlign]="VisitorRelationStatePatientVisitor?.TextAlign" [Text]="hospitalInformationFormViewModel?._RecordPatientVisitor?.VisitorRelationState" [Visible]="VisitorRelationStatePatientVisitor?.Visible" id="A11005" data-tid="A340698"></hvl-text-box>
+                    </div>
+
+                    <div class="col-sm-4" id="A11006" data-tid="A340699">
+                        <label class="control-label" id="A11007" data-tid="A340700">
+                            Açıklama
+                        </label>
+                        <hvl-text-box #Validation (TextChange)="onVisitorNotePatientVisitorChanged($event)" [BackColor]="VisitorNotePatientVisitor?.BackColor" [CharacterCasing]="VisitorNotePatientVisitor?.CharacterCasing" [Enabled]="VisitorNotePatientVisitor?.Enabled" [Font]="VisitorNotePatientVisitor?.Font" [ForeColor]="VisitorNotePatientVisitor?.ForeColor" [height]="VisitorNotePatientVisitor?.Height" [InputFormat]="VisitorNotePatientVisitor?.InputFormat" [InputTurkishCharacter]="VisitorNotePatientVisitor?.InputTurkishCharacter" [IsNonNumeric]="VisitorNotePatientVisitor?.IsNonNumeric" [MultiLine]="VisitorNotePatientVisitor?.Multiline" [ReadOnly]="VisitorNotePatientVisitor?.ReadOnly" [Required]="VisitorNotePatientVisitor?.Required" [TabIndex]="VisitorNotePatientVisitor?.TabIndex" [TextAlign]="VisitorNotePatientVisitor?.TextAlign" [Text]="hospitalInformationFormViewModel?._RecordPatientVisitor?.VisitorNote" [Visible]="VisitorNotePatientVisitor?.Visible" id="A11008" data-tid="A340701"></hvl-text-box>
+                    </div>
+                    <div class="col-sm-2" id="A11009" data-tid="A340702">
+                        <label class="control-label" id="A11010" data-tid="A340703">
+                            Ziyaret Girişi
+                        </label>
+                        <hvl-date-picker #Validation (ValueChange)="onVisitorEnterDatePatientVisitorChanged($event)" [BackColor]="VisitorEnterDatePatientVisitor?.BackColor" [CustomFormat]="VisitorEnterDatePatientVisitor?.CustomFormat" [Enabled]="VisitorEnterDatePatientVisitor?.Enabled" [Font]="VisitorEnterDatePatientVisitor?.Font" [ForeColor]="VisitorEnterDatePatientVisitor?.ForeColor" [Format]="VisitorEnterDatePatientVisitor?.Format" [Max]="VisitorEnterDatePatientVisitor?.Max" [Min]="VisitorEnterDatePatientVisitor?.Min" [ReadOnly]="VisitorEnterDatePatientVisitor?.ReadOnly" [Required]="VisitorEnterDatePatientVisitor?.Required" [TabIndex]="VisitorEnterDatePatientVisitor?.TabIndex" [Value]="hospitalInformationFormViewModel?._RecordPatientVisitor?.VisitorEnterDate" [Visible]="VisitorEnterDatePatientVisitor?.Visible" id="A11011" data-tid="A340704"></hvl-date-picker>
+                    </div>
+                    <div class="col-md-1" id="A11012" style="margin-top: 15px;" data-tid="A340705">
+                        <dx-button text="Temizle" rtlEnabled="true" type="danger" icon="refresh" (onClick)="ClearPatientVisitor()" i18n-text="@@M23181" id="A11013" data-tid="A340706"></dx-button>
+                    </div>
+                    <div class="col-md-2" id="A11014" style="margin-top: 15px;" data-tid="A340707">
+                        <dx-button text="Ziyaretçi Kaydet" rtlEnabled="true" type="default" icon="save" (onClick)="SavePatientVisitor()" i18n-text="@@M24786" id="A11015" data-tid="A340708"></dx-button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row" id="A11016" data-tid="A340709">
+                <div class="margin-top-10 margin-bottom-10" id="A11017" data-tid="A340710">
+                    <div class="col-sm-10 col-md-push-1" id="A11018" data-tid="A340711">
+                        <label class="control-label" id="A11019" data-tid="A340712">
+                            Ziyaretçi Listesi
+                        </label>
+                        <dx-data-grid [columns]="VisitorGridSearchingColumns" [allowColumnResizing]="true" allowColumnReordering="true" height="500" [dataSource]="_PatientVisitorGridSearchResult" [filterRow]="{visible: true}" [paging]="{enable: false, pageSize:1000000}" [selection]="{mode: 'single',allowSelectAll: false}" [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" id="A11020" data-tid="A340713">
+                        </dx-data-grid>
+                    </div>
+                </div>
+            </div>
+        </dxi-item>
+    </dx-tab-panel>
+</div>
+
+<dx-popup width="450px" height="500px" [(visible)]="showPersonnelSection" [closeOnOutsideClick]="true" title="Bölüm Bilgisi" data-tid="A340714">
+        <div *dxTemplate="let data of 'content'" id="A24160" data-tid="A340715">
+                <dx-data-grid [columns]="SectionInformationColumns" [allowColumnResizing]="true" allowColumnReordering="true" height="500" [dataSource]="sectionInformationList" [filterRow]="{visible: true}" [paging]="{enable: false, pageSize:1000000}" [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" id="A11020" data-tid="A340716">
+            </dx-data-grid>
+        </div>
+    </dx-popup>

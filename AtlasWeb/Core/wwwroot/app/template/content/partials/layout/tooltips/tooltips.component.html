@@ -1,0 +1,23 @@
+﻿<!-- begin::Quick Nav -->
+<div *ngIf="favoriteService.items.length > 0" data-tid="A375841">
+    <li class="m-nav-sticky__item" data-tid="A375842">
+        <i class="fa fa-arrows-alt tooltip-move-icon " aria-hidden="true" data-tid="A375843"></i>
+    </li>
+    <li *ngFor="let item of favoriteService.items" class="m-nav-sticky__item" data-tid="A375844">
+        <a id="item{{item.key}}" *ngIf="item.link != null" [routerLink]="[item.link]" (click)="click(item)" data-tid="A375845">
+            <i class="{{item.icon}}" data-tid="A375846"></i>
+        </a>
+        <a id="item{{item.key}}" *ngIf="item.link == null" href="javascript:;" (click)="click(item)" data-tid="A375847">
+            <i class="{{item.icon}}" data-tid="A375848"></i>
+        </a>
+        <dx-tooltip target="#item{{item.key}}" position="left" showEvent="dxhoverstart" hideEvent="dxhoverend" data-tid="A375849">
+            <div *dxTemplate="let data = data of 'content'" data-tid="A375850">
+                {{item.name}}
+            </div>
+        </dx-tooltip>
+    </li>
+</div>
+
+<!-- begin::Quick Nav -->
+
+

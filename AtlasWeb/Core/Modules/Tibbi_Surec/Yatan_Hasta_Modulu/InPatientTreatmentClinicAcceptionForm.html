@@ -1,0 +1,187 @@
+﻿
+<div class="container-fluid" id="A29378" data-tid="A368444">
+    <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [visible]="loadingVisible" [showIndicator]="true" [message]="panelMessage" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" i18n-message="@@M17380" id="A19836" data-tid="A368445">
+    </dx-load-panel>
+
+    <NeStatePanelComponent [OutgoingTransitions]="inPatientTreatmentClinicAcceptionFormViewModel?.OutgoingTransitions" [StateReports]="inPatientTreatmentClinicAcceptionFormViewModel?.CurrentStateReports" [ObjectID]="inPatientTreatmentClinicAcceptionFormViewModel?._InPatientTreatmentClinicApplication?.ObjectID" [ObjectDefID]="inPatientTreatmentClinicAcceptionFormViewModel?._InPatientTreatmentClinicApplication?.ObjectDefID" [CurrentStateDefID]="inPatientTreatmentClinicAcceptionFormViewModel._InPatientTreatmentClinicApplication.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()" [DropStateList]="DropStateList" [FixedCommandsVisible]="true" id="A29379" [SaveAndCloseCommandVisible]="true" [CloseWithStateTransition]="closeWithStateTransition" [CustomButtonVisible]="_isTreatmentClinicAcception" [CustomButtonType]="_customButtonType" [CustomButtonCaption]="_buttonCaption" (onCustomButtonClick)="setTreatmentClinicAcceptionWaiting()" data-tid="A368446"></NeStatePanelComponent>
+    <form id="InPatientTreatmentClinicAcceptionForm" class="form-horizontal" role="form" data-tid="A368447"></form>
+    <div style="height:660px;" data-tid="A368448">
+        <dx-scroll-view #scrollView id="scrollview" [scrollByContent]="true" [scrollByThumb]="true" [showScrollbar]="always" data-tid="A368449">
+            <div class="row" id="A29381" data-tid="A368450">
+                <div class="col-md-4 col-sm-12" id="A29382" data-tid="A368451">
+                    <patient-demographics-form [actionId]="inPatientTreatmentClinicAcceptionFormViewModel._InPatientTreatmentClinicApplication.ObjectID" id="A29383" data-tid="A368452"></patient-demographics-form>
+                </div>
+                <div class="col-md-2 col-sm-12" id="A29384" data-tid="A368453">
+                    <div class="row" id="A29385" data-tid="A368454">
+                        <div class="col-md-12" id="A29386" data-tid="A368455">
+                            <label class="control-label" id="A29387" data-tid="A368456">İstek Tarihi</label>
+                            <hvl-date-picker #Validation (ValueChange)="onRequestDateChanged($event)" [BackColor]="RequestDate?.BackColor" [CustomFormat]="RequestDate?.CustomFormat" [Enabled]="RequestDate?.Enabled" [Font]="RequestDate?.Font" [ForeColor]="RequestDate?.ForeColor" [Format]="RequestDate?.Format" [Max]="RequestDate?.Max" [Min]="RequestDate?.Min" [ReadOnly]="RequestDate?.ReadOnly" [Required]="RequestDate?.Required" [TabIndex]="RequestDate?.TabIndex" [Value]="inPatientTreatmentClinicAcceptionFormViewModel?._InPatientTreatmentClinicApplication?.BaseInpatientAdmission?.RequestDate" [Visible]="RequestDate?.Visible" id="A29388" data-tid="A368457"></hvl-date-picker>
+                        </div>
+                    </div>
+                    <div class="row" id="A29389" data-tid="A368458">
+                        <div class="col-md-12" id="A29390" data-tid="A368459">
+                            <label class="control-label" id="A29391" data-tid="A368460">Tıbbi Kayıt Protokol No</label>
+                            <hvl-text-box #Validation [(Text)]="inPatientTreatmentClinicAcceptionFormViewModel.QuarantineProtocolNo" [BackColor]="QuarantineProtocolNo?.BackColor" [CharacterCasing]="QuarantineProtocolNo?.CharacterCasing" [Enabled]="QuarantineProtocolNo?.Enabled" [Font]="QuarantineProtocolNo?.Font" [ForeColor]="QuarantineProtocolNo?.ForeColor" [height]="QuarantineProtocolNo?.Height" [InputFormat]="QuarantineProtocolNo?.InputFormat" [InputTurkishCharacter]="QuarantineProtocolNo?.InputTurkishCharacter" [IsNonNumeric]="QuarantineProtocolNo?.IsNonNumeric" [MultiLine]="QuarantineProtocolNo?.Multiline" [ReadOnly]="QuarantineProtocolNo?.ReadOnly" [Required]="QuarantineProtocolNo?.Required" [TabIndex]="QuarantineProtocolNo?.TabIndex" [TextAlign]="QuarantineProtocolNo?.TextAlign" [Visible]="QuarantineProtocolNo?.Visible" id="A29392" data-tid="A368461"></hvl-text-box>
+                        </div>
+                    </div>
+                    <div class="row" id="A29393" data-tid="A368462">
+                        <div class="col-md-12" id="A29394" data-tid="A368463">
+                            <label class="control-label" id="A29395" data-tid="A368464">Klinik Protokol No</label>
+                            <hvl-text-box #Validation (TextChange)="onInpatientProtocolNoChanged($event)" [BackColor]="InpatientProtocolNo?.BackColor" [CharacterCasing]="InpatientProtocolNo?.CharacterCasing" [Enabled]="InpatientProtocolNo?.Enabled" [Font]="InpatientProtocolNo?.Font" [ForeColor]="InpatientProtocolNo?.ForeColor" [height]="InpatientProtocolNo?.Height" [InputFormat]="InpatientProtocolNo?.InputFormat" [InputTurkishCharacter]="InpatientProtocolNo?.InputTurkishCharacter" [IsNonNumeric]="InpatientProtocolNo?.IsNonNumeric" [MultiLine]="InpatientProtocolNo?.Multiline" [ReadOnly]="InpatientProtocolNo?.ReadOnly" [Required]="InpatientProtocolNo?.Required" [TabIndex]="InpatientProtocolNo?.TabIndex" [TextAlign]="InpatientProtocolNo?.TextAlign" [Text]="inPatientTreatmentClinicAcceptionFormViewModel?._InPatientTreatmentClinicApplication?.ProtocolNo" [Visible]="InpatientProtocolNo?.Visible" id="A29396" data-tid="A368465"></hvl-text-box>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12" id="A29397" data-tid="A368466">
+                    <DiagnosisGridReadOnlyForm [EpisodeAction]="inPatientTreatmentClinicAcceptionFormViewModel._InPatientTreatmentClinicApplication" id="A29398" data-tid="A368467"></DiagnosisGridReadOnlyForm>
+                </div>
+            </div>
+            <div class="row" *ngIf="inPatientTreatmentClinicAcceptionFormViewModel.IsPreAcception==true && inPatientTreatmentClinicAcceptionFormViewModel.HasInpatientAppGiveRole==true && inPatientTreatmentClinicAcceptionFormViewModel.IsClinicAllowAppointment==true" data-tid="A368468">
+                <div class="col-md-12" data-tid="A368469">
+                    <button type="button" class="btn btn-sm btn-primary pull-right" (click)="openAppointmentForm()" data-tid="A368470">Randevu Ver</button>
+                </div>
+            </div>
+            <br id="A29399" data-tid="A368471" />
+            <div class="row" id="A29400" data-tid="A368472">
+                <div class="col-sm-12" id="A29401" data-tid="A368473">
+                    <div class="col-md-12" style="border: 2px solid #99e2ff;margin-right:0px;margin-right: 12px;" data-tid="A368474">
+                        <div class="row" id="A29402" data-tid="A368475">
+                            <label class="control-label col-sm-2" id="A29403" data-tid="A368476">
+                                XXXXXX Yatış Tarihi
+                            </label>
+                            <label class="control-label col-sm-2" id="A29404" data-tid="A368477">
+                                Tahmini Yatacağı Gün
+                            </label>
+                            <label class="control-label col-sm-2" id="A29405" data-tid="A368478">
+                                Sorumlu Tabip
+                            </label>
+                            <label class="control-label col-sm-2" id="A29406" data-tid="A368479">
+                                Hastanın Tedavi Gördüğü Klinik
+                            </label>
+                            <label class="control-label col-sm-2" id="A29407" data-tid="A368480">
+                                İsteği yapan Doktor
+                            </label>
+                        </div>
+                        <div class="row" id="A29408" data-tid="A368481">
+                            <div class="col-sm-2" id="A29409" data-tid="A368482">
+                                <hvl-date-picker #Validation (ValueChange)="onHospitalInpatientDateChanged($event)" [BackColor]="HospitalInpatientDate?.BackColor" [CustomFormat]="HospitalInpatientDate?.CustomFormat" [Enabled]="HospitalInpatientDate?.Enabled" [Font]="HospitalInpatientDate?.Font" [ForeColor]="HospitalInpatientDate?.ForeColor" [Format]="HospitalInpatientDate?.Format" [Max]="HospitalInpatientDate?.Max" [Min]="HospitalInpatientDate?.Min" [ReadOnly]="HospitalInpatientDate?.ReadOnly" [Required]="HospitalInpatientDate?.Required" [TabIndex]="HospitalInpatientDate?.TabIndex" [Value]="inPatientTreatmentClinicAcceptionFormViewModel?._InPatientTreatmentClinicApplication?.BaseInpatientAdmission?.HospitalInPatientDate" [Visible]="HospitalInpatientDate?.Visible" id="A29410" data-tid="A368483"></hvl-date-picker>
+                            </div>
+                            <div class="col-sm-2" id="A29411" data-tid="A368484">
+                                <hvl-number-box #Validation (ValueChange)="onEstimatedInpatientDateCountChanged($event)" [BackColor]="EstimatedInpatientDateCount?.BackColor" [Enabled]="EstimatedInpatientDateCount?.Enabled" [Font]="EstimatedInpatientDateCount?.Font" [ForeColor]="EstimatedInpatientDateCount?.ForeColor" [ReadOnly]="EstimatedInpatientDateCount?.ReadOnly" [TabIndex]="EstimatedInpatientDateCount?.TabIndex" [Value]="inPatientTreatmentClinicAcceptionFormViewModel?._InPatientTreatmentClinicApplication?.BaseInpatientAdmission?.EstimatedInpatientDateCount" [Visible]="EstimatedInpatientDateCount?.Visible" id="A29412" data-tid="A368485"></hvl-number-box>
+                            </div>
+                            <div class="col-sm-2" id="A29413" data-tid="A368486">
+                                <hvl-list-box #Validation (SelectedObjectChange)="onResponsibleDoctorChanged($event)" [AutoCompleteDialogHeight]="ResponsibleDoctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ResponsibleDoctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="ResponsibleDoctor?.AutoCompleteMode" [BackColor]="ResponsibleDoctor?.BackColor" [DefinitionName]="ResponsibleDoctor?.ListDefName" [DisplayExpressionsCache]="inPatientTreatmentClinicAcceptionFormViewModel?.ListDefDisplayExpressions" [Enabled]="ResponsibleDoctor?.Enabled" [Font]="ResponsibleDoctor?.Font" [ForeColor]="ResponsibleDoctor?.ForeColor" [ListFilterExpression]="ResponsibleDoctor?.ListFilterExpression" [MinSearchLength]="ResponsibleDoctor?.MinSearchLength" [PopupDialogFieldConfig]="ResponsibleDoctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ResponsibleDoctor?.PopupDialogGridColumns" [PopupDialogHeight]="ResponsibleDoctor?.PopupDialogHeight" [PopupDialogTitle]="ResponsibleDoctor?.PopupDialogTitle" [PopupDialogWidth]="ResponsibleDoctor?.PopupDialogWidth" [ReadOnly]="ResponsibleDoctor?.ReadOnly" [SearchMode]="ResponsibleDoctor?.SearchMode" [SearchTimeout]="ResponsibleDoctor?.SearchTimeout" [SelectedObject]="inPatientTreatmentClinicAcceptionFormViewModel?._InPatientTreatmentClinicApplication?.ProcedureDoctor" [TabIndex]="ResponsibleDoctor?.TabIndex" [Visible]="ResponsibleDoctor?.Visible" [width]="ResponsibleDoctor?.Width" id="A29414" data-tid="A368487"></hvl-list-box>
+                            </div>
+                            <div class="col-sm-2" id="A29415" data-tid="A368488">
+                                <hvl-list-box #Validation (SelectedObjectChange)="onMasterResourceChanged($event)" [AutoCompleteDialogHeight]="MasterResource?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="MasterResource?.AutoCompleteDialogWidth" [AutoCompleteMode]="MasterResource?.AutoCompleteMode" [BackColor]="MasterResource?.BackColor" [DefinitionName]="MasterResource?.ListDefName" [DisplayExpressionsCache]="inPatientTreatmentClinicAcceptionFormViewModel?.ListDefDisplayExpressions" [Enabled]="MasterResource?.Enabled" [Font]="MasterResource?.Font" [ForeColor]="MasterResource?.ForeColor" [ListFilterExpression]="MasterResource?.ListFilterExpression" [MinSearchLength]="MasterResource?.MinSearchLength" [PopupDialogFieldConfig]="MasterResource?.PopupDialogFieldConfig" [PopupDialogGridColumns]="MasterResource?.PopupDialogGridColumns" [PopupDialogHeight]="MasterResource?.PopupDialogHeight" [PopupDialogTitle]="MasterResource?.PopupDialogTitle" [PopupDialogWidth]="MasterResource?.PopupDialogWidth" [ReadOnly]="MasterResource?.ReadOnly" [SearchMode]="MasterResource?.SearchMode" [SearchTimeout]="MasterResource?.SearchTimeout" [SelectedObject]="inPatientTreatmentClinicAcceptionFormViewModel?._InPatientTreatmentClinicApplication?.MasterResource" [TabIndex]="MasterResource?.TabIndex" [Visible]="MasterResource?.Visible" [width]="MasterResource?.Width" id="A29416" data-tid="A368489"></hvl-list-box>
+                            </div>
+                            <div class="col-sm-2" id="A29417" data-tid="A368490">
+                                <hvl-list-box #Validation (SelectedObjectChange)="onRequestDoctorChanged($event)" [AutoCompleteDialogHeight]="RequestDoctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="RequestDoctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="RequestDoctor?.AutoCompleteMode" [BackColor]="RequestDoctor?.BackColor" [DefinitionName]="RequestDoctor?.ListDefName" [DisplayExpressionsCache]="inPatientTreatmentClinicAcceptionFormViewModel?.ListDefDisplayExpressions" [Enabled]="RequestDoctor?.Enabled" [Font]="RequestDoctor?.Font" [ForeColor]="RequestDoctor?.ForeColor" [ListFilterExpression]="RequestDoctor?.ListFilterExpression" [MinSearchLength]="RequestDoctor?.MinSearchLength" [PopupDialogFieldConfig]="RequestDoctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="RequestDoctor?.PopupDialogGridColumns" [PopupDialogHeight]="RequestDoctor?.PopupDialogHeight" [PopupDialogTitle]="RequestDoctor?.PopupDialogTitle" [PopupDialogWidth]="RequestDoctor?.PopupDialogWidth" [ReadOnly]="RequestDoctor?.ReadOnly" [SearchMode]="RequestDoctor?.SearchMode" [SearchTimeout]="RequestDoctor?.SearchTimeout" [SelectedObject]="inPatientTreatmentClinicAcceptionFormViewModel?._InPatientTreatmentClinicApplication?.BaseInpatientAdmission?.ProcedureDoctor" [TabIndex]="RequestDoctor?.TabIndex" [Visible]="RequestDoctor?.Visible" [width]="RequestDoctor?.Width" id="A29418" data-tid="A368491"></hvl-list-box>
+                            </div>
+                            <div class="col-sm-1" style="float:right;text-align: right;" id="A29419" data-tid="A368492">
+                                <dx-button rtlEnabled="true" class="dx-button-oval dx-button-blue" icon="fa fa-barcode" (onClick)="printInpatientWristBarcode()" hint="Yatan Hasta Bilekliği Bas" i18n-hint="@@M24381" id="A29420" data-tid="A368493"></dx-button>
+                            </div>
+
+                        </div>
+                        <div class="row" id="A29421" data-tid="A368494">
+                            <label class="control-label col-sm-2" id="A29422" data-tid="A368495">
+                                Klinik Yatış Tarihi
+                            </label>
+                            <label class="control-label col-sm-2" id="A29423" data-tid="A368496">
+                                Tahmini Taburcu Tarihi
+                            </label>
+                            <label class="control-label col-sm-2" id="A29424" data-tid="A368497">
+                                Sorumlu Hemşire
+                            </label>
+                        </div>
+                        <div class="row" id="A29425" data-tid="A368498">
+                            <div class="col-sm-2" id="A29426" data-tid="A368499">
+                                <hvl-date-picker #klinikYatis (ValueChange)="onClinicInpatientDateChanged($event)" [BackColor]="ClinicInPatientDate?.BackColor" [CustomFormat]="ClinicInPatientDate?.CustomFormat" [Enabled]="ClinicInPatientDate?.Enabled" [Font]="ClinicInPatientDate?.Font" [ForeColor]="ClinicInPatientDate?.ForeColor" [Format]="ClinicInPatientDate?.Format" [Max]="ClinicInPatientDate?.Max" [Min]="ClinicInPatientDate?.Min" [ReadOnly]="ClinicInPatientDate?.ReadOnly" [TabIndex]="ClinicInPatientDate?.TabIndex" [Value]="inPatientTreatmentClinicAcceptionFormViewModel?._InPatientTreatmentClinicApplication?.ClinicInpatientDate" [Visible]="ClinicInPatientDate?.Visible" id="A29427" data-tid="A368500"></hvl-date-picker>
+                            </div>
+                            <div class="col-sm-2" id="A29428" data-tid="A368501">
+                                <hvl-date-picker #Validation (ValueChange)="onEstimatedDischargeDateChanged($event)" [BackColor]="EstimatedDischargeDate?.BackColor" [CustomFormat]="EstimatedDischargeDate?.CustomFormat" [Enabled]="EstimatedDischargeDate?.Enabled" [Font]="EstimatedDischargeDate?.Font" [ForeColor]="EstimatedDischargeDate?.ForeColor" [Format]="EstimatedDischargeDate?.Format" [Max]="EstimatedDischargeDate?.Max" [Min]="EstimatedDischargeDate?.Min" [ReadOnly]="EstimatedDischargeDate?.ReadOnly" [Required]="EstimatedDischargeDate?.Required" [TabIndex]="EstimatedDischargeDate?.TabIndex" [Value]="inPatientTreatmentClinicAcceptionFormViewModel?._InPatientTreatmentClinicApplication?.BaseInpatientAdmission?.EstimatedDischargeDate" [Visible]="EstimatedDischargeDate?.Visible" id="A29429" data-tid="A368502"></hvl-date-picker>
+                            </div>
+                            <div class="col-sm-2" id="A29430" data-tid="A368503">
+                                <hvl-list-box #Validation (SelectedObjectChange)="onResponsibleNurseChanged($event)" [AutoCompleteDialogHeight]="ResponsibleNurse?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ResponsibleNurse?.AutoCompleteDialogWidth" [AutoCompleteMode]="ResponsibleNurse?.AutoCompleteMode" [BackColor]="ResponsibleNurse?.BackColor" [DefinitionName]="ResponsibleNurse?.ListDefName" [DisplayExpressionsCache]="inPatientTreatmentClinicAcceptionFormViewModel?.ListDefDisplayExpressions" [Enabled]="ResponsibleNurse?.Enabled" [Font]="ResponsibleNurse?.Font" [ForeColor]="ResponsibleNurse?.ForeColor" [ListFilterExpression]="ResponsibleNurse?.ListFilterExpression" [MinSearchLength]="ResponsibleNurse?.MinSearchLength" [PopupDialogFieldConfig]="ResponsibleNurse?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ResponsibleNurse?.PopupDialogGridColumns" [PopupDialogHeight]="ResponsibleNurse?.PopupDialogHeight" [PopupDialogTitle]="ResponsibleNurse?.PopupDialogTitle" [PopupDialogWidth]="ResponsibleNurse?.PopupDialogWidth" [ReadOnly]="ResponsibleNurse?.ReadOnly" [SearchMode]="ResponsibleNurse?.SearchMode" [SearchTimeout]="ResponsibleNurse?.SearchTimeout" [SelectedObject]="inPatientTreatmentClinicAcceptionFormViewModel?._InPatientTreatmentClinicApplication?.ResponsibleNurse" [TabIndex]="ResponsibleNurse?.TabIndex" [Visible]="ResponsibleNurse?.Visible" [width]="ResponsibleNurse?.Width" id="A29431" data-tid="A368504"></hvl-list-box>
+                            </div>
+                            <div class="col-sm-6" style="margin-top: -19px" id="A29432" data-tid="A368505">
+                                <BedSelectionForm [selectedPhysicalStateClinic]="inPatientTreatmentClinicAcceptionFormViewModel._InPatientTreatmentClinicApplication.BaseInpatientAdmission.PhysicalStateClinic" [selectedRoomGroup]="inPatientTreatmentClinicAcceptionFormViewModel._InPatientTreatmentClinicApplication.BaseInpatientAdmission?.RoomGroup" [selectedRoom]="inPatientTreatmentClinicAcceptionFormViewModel._InPatientTreatmentClinicApplication.BaseInpatientAdmission?.Room" [selectedBed]="inPatientTreatmentClinicAcceptionFormViewModel._InPatientTreatmentClinicApplication.BaseInpatientAdmission?.Bed" [patientSex]="inPatientTreatmentClinicAcceptionFormViewModel?.PatientSex" (sendSelectedBed)="setSelectedBed($event)" [IsReadOnly]="false" id="A29433" data-tid="A368506"></BedSelectionForm>
+                            </div>
+                        </div>
+                        <div class="row" id="A29434" data-tid="A368507">
+                            <div class="col-sm-2" id="A29435" data-tid="A368508">
+                                <hvl-checkbox #Validation (ValueChange)="onHasFallingRiskBaseInpatientAdmissionChanged($event)" [AllowThreeState]="HasFallingRiskBaseInpatientAdmission?.ThreeState" [BackColor]="HasFallingRiskBaseInpatientAdmission?.BackColor" [Enabled]="HasFallingRiskBaseInpatientAdmission?.Enabled" [Font]="HasFallingRiskBaseInpatientAdmission?.Font" [ForeColor]="HasFallingRiskBaseInpatientAdmission?.ForeColor" [IsTitleLeft]="HasFallingRiskBaseInpatientAdmission?.IsTitleLeft" [Margin]="HasFallingRiskBaseInpatientAdmission?.Margin" [ReadOnly]="HasFallingRiskBaseInpatientAdmission?.ReadOnly" [TabIndex]="HasFallingRiskBaseInpatientAdmission?.TabIndex" [TitleTopPadding]="HasFallingRiskBaseInpatientAdmission?.TitleTopPadding" [Title]="HasFallingRiskBaseInpatientAdmission?.Title" [Value]="inPatientTreatmentClinicAcceptionFormViewModel?._InPatientTreatmentClinicApplication?.BaseInpatientAdmission?.HasFallingRisk" [Visible]="HasFallingRiskBaseInpatientAdmission?.Visible" id="A29436" data-tid="A368509"></hvl-checkbox>
+                            </div>
+                            <div class="col-sm-2" id="A29437" data-tid="A368510">
+                                <hvl-checkbox #Validation (ValueChange)="onHasDropletIsolationBaseInpatientAdmissionChanged($event)" [AllowThreeState]="HasDropletIsolationBaseInpatientAdmission?.ThreeState" [BackColor]="HasDropletIsolationBaseInpatientAdmission?.BackColor" [Enabled]="HasDropletIsolationBaseInpatientAdmission?.Enabled" [Font]="HasDropletIsolationBaseInpatientAdmission?.Font" [ForeColor]="HasDropletIsolationBaseInpatientAdmission?.ForeColor" [IsTitleLeft]="HasDropletIsolationBaseInpatientAdmission?.IsTitleLeft" [Margin]="HasDropletIsolationBaseInpatientAdmission?.Margin" [ReadOnly]="HasDropletIsolationBaseInpatientAdmission?.ReadOnly" [TabIndex]="HasDropletIsolationBaseInpatientAdmission?.TabIndex" [TitleTopPadding]="HasDropletIsolationBaseInpatientAdmission?.TitleTopPadding" [Title]="HasDropletIsolationBaseInpatientAdmission?.Title" [Value]="inPatientTreatmentClinicAcceptionFormViewModel?._InPatientTreatmentClinicApplication?.BaseInpatientAdmission?.HasDropletIsolation" [Visible]="HasDropletIsolationBaseInpatientAdmission?.Visible" id="A29438" data-tid="A368511"></hvl-checkbox>
+                            </div>
+                            <div class="col-sm-2" id="A29439" data-tid="A368512">
+                                <hvl-checkbox #Validation (ValueChange)="onHasAirborneContactIsolationBaseInpatientAdmissionChanged($event)" [AllowThreeState]="HasAirborneContactIsolationBaseInpatientAdmission?.ThreeState" [BackColor]="HasAirborneContactIsolationBaseInpatientAdmission?.BackColor" [Enabled]="HasAirborneContactIsolationBaseInpatientAdmission?.Enabled" [Font]="HasAirborneContactIsolationBaseInpatientAdmission?.Font" [ForeColor]="HasAirborneContactIsolationBaseInpatientAdmission?.ForeColor" [IsTitleLeft]="HasAirborneContactIsolationBaseInpatientAdmission?.IsTitleLeft" [Margin]="HasAirborneContactIsolationBaseInpatientAdmission?.Margin" [ReadOnly]="HasAirborneContactIsolationBaseInpatientAdmission?.ReadOnly" [TabIndex]="HasAirborneContactIsolationBaseInpatientAdmission?.TabIndex" [TitleTopPadding]="HasAirborneContactIsolationBaseInpatientAdmission?.TitleTopPadding" [Title]="HasAirborneContactIsolationBaseInpatientAdmission?.Title" [Value]="inPatientTreatmentClinicAcceptionFormViewModel?._InPatientTreatmentClinicApplication?.BaseInpatientAdmission?.HasAirborneContactIsolation" [Visible]="HasAirborneContactIsolationBaseInpatientAdmission?.Visible" id="A29440" data-tid="A368513"></hvl-checkbox>
+                            </div>
+                            <div class="col-sm-2" id="A29441" data-tid="A368514">
+                                <hvl-checkbox #Validation (ValueChange)="onHasContactIsolationBaseInpatientAdmissionChanged($event)" [AllowThreeState]="HasContactIsolationBaseInpatientAdmission?.ThreeState" [BackColor]="HasContactIsolationBaseInpatientAdmission?.BackColor" [Enabled]="HasContactIsolationBaseInpatientAdmission?.Enabled" [Font]="HasContactIsolationBaseInpatientAdmission?.Font" [ForeColor]="HasContactIsolationBaseInpatientAdmission?.ForeColor" [IsTitleLeft]="HasContactIsolationBaseInpatientAdmission?.IsTitleLeft" [Margin]="HasContactIsolationBaseInpatientAdmission?.Margin" [ReadOnly]="HasContactIsolationBaseInpatientAdmission?.ReadOnly" [TabIndex]="HasContactIsolationBaseInpatientAdmission?.TabIndex" [TitleTopPadding]="HasContactIsolationBaseInpatientAdmission?.TitleTopPadding" [Title]="HasContactIsolationBaseInpatientAdmission?.Title" [Value]="inPatientTreatmentClinicAcceptionFormViewModel?._InPatientTreatmentClinicApplication?.BaseInpatientAdmission?.HasContactIsolation" [Visible]="HasContactIsolationBaseInpatientAdmission?.Visible" id="A29442" data-tid="A368515"></hvl-checkbox>
+                            </div>
+                            <div class="col-sm-2" id="A29443" data-tid="A368516">
+                                <hvl-checkbox #Validation (ValueChange)="onHasTightContactIsolationBaseInpatientAdmissionChanged($event)" [AllowThreeState]="HasTightContactIsolationBaseInpatientAdmission?.ThreeState" [BackColor]="HasTightContactIsolationBaseInpatientAdmission?.BackColor" [Enabled]="HasTightContactIsolationBaseInpatientAdmission?.Enabled" [Font]="HasTightContactIsolationBaseInpatientAdmission?.Font" [ForeColor]="HasTightContactIsolationBaseInpatientAdmission?.ForeColor" [IsTitleLeft]="HasTightContactIsolationBaseInpatientAdmission?.IsTitleLeft" [Margin]="HasTightContactIsolationBaseInpatientAdmission?.Margin" [ReadOnly]="HasTightContactIsolationBaseInpatientAdmission?.ReadOnly" [TabIndex]="HasTightContactIsolationBaseInpatientAdmission?.TabIndex" [TitleTopPadding]="HasTightContactIsolationBaseInpatientAdmission?.TitleTopPadding" [Title]="HasTightContactIsolationBaseInpatientAdmission?.Title" [Value]="inPatientTreatmentClinicAcceptionFormViewModel?._InPatientTreatmentClinicApplication?.BaseInpatientAdmission?.HasTightContactIsolation" [Visible]="HasTightContactIsolationBaseInpatientAdmission?.Visible" id="A29444" data-tid="A368517"></hvl-checkbox>
+                            </div>
+                            <div class="col-sm-2" id="A29445" data-tid="A368518">
+                                <hvl-checkbox #Validation (ValueChange)="onNeedCompanionChanged($event)" [AllowThreeState]="NeedCompanion?.ThreeState" [BackColor]="NeedCompanion?.BackColor" [Enabled]="NeedCompanion?.Enabled" [Font]="NeedCompanion?.Font" [ForeColor]="NeedCompanion?.ForeColor" [IsTitleLeft]="NeedCompanion?.IsTitleLeft" [Margin]="NeedCompanion?.Margin" [ReadOnly]="NeedCompanion?.ReadOnly" [TabIndex]="NeedCompanion?.TabIndex" [TitleTopPadding]="NeedCompanion?.TitleTopPadding" [Title]="NeedCompanion?.Title" [Value]="inPatientTreatmentClinicAcceptionFormViewModel?._InPatientTreatmentClinicApplication?.BaseInpatientAdmission?.NeedCompanion" [Visible]="NeedCompanion?.Visible" id="A29446" data-tid="A368519"></hvl-checkbox>
+                            </div>
+                        </div>
+                        <div class="row" id="A29447" data-tid="A368520">
+                            <div class="col-sm-1" id="A29448" data-tid="A368521">
+                                <dx-popup showTitle="false" title="Klinik Bilgileri" [(visible)]="showPopup" i18n-title="@@M17624" id="A29449" data-tid="A368522">
+                                    <div *dxTemplate="let data of 'content'" id="A29450" data-tid="A368523">
+                                        <InPatientAdmissionClinicProcedure id="A29451" data-tid="A368524"></InPatientAdmissionClinicProcedure>
+                                    </div>
+                                </dx-popup>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br id="A29452" data-tid="A368525" />
+            <div class="row" id="A29453" data-tid="A368526">
+                <div class="col-md-12" data-tid="A368527">
+                    <atlas-form-editor [QueryParameters]="companionQueryParameters" [ComponentInfo]="companionComponentInfo" [SaveForm]="savecompanionComponent" [OpenComponentByAddButton]="true" Title="Refakatçi İşlemleri" (QueryResultLoaded)="componentQueryResultLoaded($event)" i18n-Title="@@M27648" id="A29455" data-tid="A368528"></atlas-form-editor>
+                </div>
+
+                <div class="col-md-12" *ngIf="inPatientTreatmentClinicAcceptionFormViewModel.HasDepositMaterial == true" style="text-align: right">
+                    <dx-button type="default" style="margin-right:3px" (click)="createDepositReport()" id="A17495" data-tid="A349834"><span class="fa fa-file-alt" id="A17496" data-tid="A349835"></span>Emanet Raporu</dx-button>
+                </div>
+                <div class="col-md-12" data-tid="A368529">
+                    <atlas-form-editor [QueryParameters]="depositQueryParameters" [ComponentInfo]="depositComponentInfo" [SaveForm]="savedepositComponent" [OpenComponentByAddButton]="true" Title="Emanet İşlemleri" (QueryResultLoaded)="depositQueryResultLoaded($event)"  i18n-Title="@@M13636" id="A29458" data-tid="A368530"></atlas-form-editor>
+                </div>
+
+                <div class="col-md-12" *ngIf="showLongInpatientReason" data-tid="A368531">
+                    <div class="panel panel-info" data-tid="A368532">
+                        <div class="panel-heading" data-tid="A368533">
+                            Uzun Yatış Sebebi
+                        </div>
+                        <div class="panel-body" data-tid="A368534">
+                            <hvl-text-box #Validation (TextChange)="onLongInpatientReasonChanged($event)" [BackColor]="LongInpatientReason?.BackColor" [CharacterCasing]="LongInpatientReason?.CharacterCasing" [Enabled]="LongInpatientReason?.Enabled" [Font]="LongInpatientReason?.Font" [ForeColor]="LongInpatientReason?.ForeColor" [height]="LongInpatientReason?.Height" [InputFormat]="LongInpatientReason?.InputFormat" [InputTurkishCharacter]="LongInpatientReason?.InputTurkishCharacter" [IsNonNumeric]="LongInpatientReason?.IsNonNumeric" [MultiLine]="LongInpatientReason?.Multiline" [ReadOnly]="LongInpatientReason?.ReadOnly" [Required]="LongInpatientReason?.Required" [TabIndex]="LongInpatientReason?.TabIndex" [TextAlign]="LongInpatientReason?.TextAlign" [Text]="_InPatientTreatmentClinicApplication.LongInpatientReason" [Visible]="LongInpatientReason?.Visible" data-tid="A368535">
+                            </hvl-text-box>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12" *ngIf="showShortInpatientReason" data-tid="A368536">
+                    <div class="panel panel-info" data-tid="A368537">
+                        <div class="panel-heading" data-tid="A368538">
+                            Kısa Yatış Sebebi
+                        </div>
+                        <div class="panel-body" data-tid="A368539">
+                            <hvl-text-box #Validation (TextChange)="onShotInpatientReasonChanged($event)" [BackColor]="ShotInpatientReason?.BackColor" [CharacterCasing]="ShotInpatientReason?.CharacterCasing" [Enabled]="ShotInpatientReason?.Enabled" [Font]="ShotInpatientReason?.Font" [ForeColor]="ShotInpatientReason?.ForeColor" [height]="ShotInpatientReason?.Height" [InputFormat]="ShotInpatientReason?.InputFormat" [InputTurkishCharacter]="ShotInpatientReason?.InputTurkishCharacter" [IsNonNumeric]="ShotInpatientReason?.IsNonNumeric" [MultiLine]="ShotInpatientReason?.Multiline" [ReadOnly]="ShotInpatientReason?.ReadOnly" [Required]="ShotInpatientReason?.Required" [TabIndex]="ShotInpatientReason?.TabIndex" [TextAlign]="ShotInpatientReason?.TextAlign" [Text]="_InPatientTreatmentClinicApplication.ShotInpatientReason" [Visible]="ShotInpatientReason?.Visible" data-tid="A368540">
+                            </hvl-text-box>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </dx-scroll-view>
+    </div>
+</div>
+
+<dx-popup [showTitle]="true" title="Yatak Rezerve Ajandası Hasta Ekle" [width]="900" [height]="270" [(visible)]="showInpatientAppointmentPopup" data-tid="A368541">
+    <div *dxTemplate="let data of 'content'" id="A19505" data-tid="A368542">
+        <comp-compose [Info]="InpatientAppointmentComponentInfo" [CloseWithStateTransition]="true" (DynamicComponentActionExecuted)="dynamicComponentActionExecuted($event)" (DynamicComponentActionFailed)="dynamicComponentClosed($event)" data-tid="A368543"></comp-compose>
+    </div>
+</dx-popup>

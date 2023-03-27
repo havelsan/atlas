@@ -1,0 +1,109 @@
+﻿
+
+<div class="container-fluid" id="A18259" data-tid="A351448">
+
+    <div class="row" id="A18260" data-tid="A351449">
+        <div class="col-sm-10" style="margin-left:-15px" id="A18261" data-tid="A351450">
+            <NeStatePanelComponent [OutgoingTransitions]="nursingOrderDetailFormViewModel?.OutgoingTransitions" [StateReports]="nursingOrderDetailFormViewModel?.CurrentStateReports" [ObjectID]="nursingOrderDetailFormViewModel?._NursingOrderDetail?.ObjectID" [ObjectDefID]="nursingOrderDetailFormViewModel?._NursingOrderDetail?.ObjectDefID" [CurrentStateDefID]="nursingOrderDetailFormViewModel._NursingOrderDetail.CurrentStateDefID" [FixedCommandsVisible]="false" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()" [DropStateList]="DropStateList" id="A18262" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A351451">
+            </NeStatePanelComponent>
+        </div>
+        <div class="col-sm-2 pull-right" style="float: right;margin-right: -30px;" *ngIf="!IsEntryState" id="A18263" data-tid="A351452">
+            <button type="button" class="btn btn-warning" (click)="undoNursingOrderDetail()" style="float:right;" id="A18264" data-tid="A351453">İşlem Geri Al</button>
+        </div>
+    </div>
+
+    <form id="NursingOrderDetailForm" class="form-horizontal" role="form" data-tid="A351454"></form>
+    <div class="row" style="margin-left: -1px;border-bottom: black solid 1px;" id="A18265" data-tid="A351455">
+        <div class="col-sm-3" id="A18266" data-tid="A351456">
+            
+        <label class="control-label" style="font-size:16px; margin-left:-15px; padding-left:0px;" id="A18267" data-tid="A351457">
+            Adı Soyadı :
+        </label>
+
+        </div>
+
+        <div class="col-sm-9" id="A18268" data-tid="A351458">
+            <span class="pull-left" style="font-size:16px;margin-left:-30px;" id="A18269" data-tid="A351459">{{nursingOrderDetailFormViewModel.PatientFullName}}</span>
+        </div>
+    </div>
+    <div class="row" id="A18270" data-tid="A351460">
+        <label class="control-label col-sm-3" id="A18271" data-tid="A351461">
+            Planlama Zamanı
+        </label>
+        <label class="control-label col-sm-3" id="A18272" data-tid="A351462">
+            Uygulama Zamanı
+        </label>
+        <label class="control-label col-sm-6" id="A18273" data-tid="A351463">
+            Vital Bulgu Ve Hemşirelik İşlemi
+        </label>
+    </div>
+    <div class="row" id="A18274" data-tid="A351464">
+        <div class="col-sm-3" id="A18275" data-tid="A351465">
+            <dx-date-box width="100%" type="datetime" displayFormat="dd/MM/yyyy HH:mm" [value]="nursingOrderDetailFormViewModel._NursingOrderDetail.WorkListDate" (onValueChanged)="onttdatetimepicker1Changed($event)" [disabled]="_worklistDateReadOnly" id="A18276" data-tid="A351466">
+            </dx-date-box>
+        </div>
+        <div class="col-sm-3" id="A18277" data-tid="A351467">
+            <dx-date-box width="100%" type="datetime" displayFormat="dd/MM/yyyy HH:mm" [value]="nursingOrderDetailFormViewModel._NursingOrderDetail.ExecutionDate" (onValueChanged)="onExecutionDateChanged($event)" id="A18278" data-tid="A351468">
+            </dx-date-box>
+        </div>
+        <div class="col-sm-6 todo-tasklist-item-border-blue" id="A18279" data-tid="A351469">
+            <hvl-list-box #Validation (SelectedObjectChange)="onProcedureObjectChanged($event)" [AutoCompleteDialogHeight]="ProcedureObject?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ProcedureObject?.AutoCompleteDialogWidth" [AutoCompleteMode]="ProcedureObject?.AutoCompleteMode" [BackColor]="ProcedureObject?.BackColor" [DefinitionName]="ProcedureObject?.ListDefName" [DisplayExpressionsCache]="nursingOrderDetailFormViewModel?.ListDefDisplayExpressions" [Enabled]="ProcedureObject?.Enabled" [Font]="ProcedureObject?.Font" [ForeColor]="ProcedureObject?.ForeColor" [ListFilterExpression]="ProcedureObject?.ListFilterExpression" [MinSearchLength]="ProcedureObject?.MinSearchLength" [PopupDialogFieldConfig]="ProcedureObject?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ProcedureObject?.PopupDialogGridColumns" [PopupDialogHeight]="ProcedureObject?.PopupDialogHeight" [PopupDialogTitle]="ProcedureObject?.PopupDialogTitle" [PopupDialogWidth]="ProcedureObject?.PopupDialogWidth" [ReadOnly]="ProcedureObject?.ReadOnly" [SearchMode]="ProcedureObject?.SearchMode" [SearchTimeout]="ProcedureObject?.SearchTimeout" [SelectedObject]="nursingOrderDetailFormViewModel?._NursingOrderDetail?.ProcedureObject" [TabIndex]="ProcedureObject?.TabIndex" [Visible]="ProcedureObject?.Visible" [width]="ProcedureObject?.Width" id="A18280" data-tid="A351470"></hvl-list-box>
+        </div>
+    </div>
+    <div class="row" id="A18281" data-tid="A351471">
+        <label class="control-label col-sm-6" id="A18282" data-tid="A351472">
+            Hemşire Notu
+        </label>
+        <label class="control-label col-sm-6" id="A18282" data-tid="A351473">
+            Uygulayan
+        </label>
+    </div>
+    <div class="row" id="A18283" data-tid="A351474">
+        <div class="col-sm-6" id="A18284" data-tid="A351475">
+            <hvl-text-box #Validation (TextChange)="onNoteChanged($event)" [BackColor]="Note?.BackColor" [CharacterCasing]="Note?.CharacterCasing" [Enabled]="Note?.Enabled" [Font]="Note?.Font" [ForeColor]="Note?.ForeColor" [height]="Note?.Height" [InputFormat]="Note?.InputFormat" [InputTurkishCharacter]="Note?.InputTurkishCharacter" [IsNonNumeric]="Note?.IsNonNumeric" [MultiLine]="Note?.Multiline" [ReadOnly]="Note?.ReadOnly" [Required]="Note?.Required" [TabIndex]="Note?.TabIndex" [TextAlign]="Note?.TextAlign" [Text]="nursingOrderDetailFormViewModel?._NursingOrderDetail?.Notes" [Visible]="Note?.Visible" id="A18285" data-tid="A351476"></hvl-text-box>
+        </div>
+        <div class="col-sm-6" data-tid="A351477">
+			<hvl-text-box #Validation (TextChange)="onNameResourceChanged($event)" [BackColor]="NameResource?.BackColor" [CharacterCasing]="NameResource?.CharacterCasing" [Enabled]="NameResource?.Enabled" [Font]="NameResource?.Font" [ForeColor]="NameResource?.ForeColor" [height]="NameResource?.Height" [InputFormat]="NameResource?.InputFormat" [InputTurkishCharacter]="NameResource?.InputTurkishCharacter" [IsNonNumeric]="NameResource?.IsNonNumeric" [MultiLine]="NameResource?.Multiline" [ReadOnly]="NameResource?.ReadOnly" [Required]="NameResource?.Required" [TabIndex]="NameResource?.TabIndex" [TextAlign]="NameResource?.TextAlign" [Text]="_NursingOrderDetail?.ProcedureByUser?.Name" [Visible]="NameResource?.Visible" data-tid="A351478">
+			</hvl-text-box>
+		</div>
+    </div>
+    <div class="row" id="A18286" data-tid="A351479">
+        <label class="control-label col-sm-3" id="A18287" data-tid="A351480">
+            {{labelResult.Text}}
+        </label>
+        <label class="control-label col-sm-3" *ngIf="ttmaskedResultPulse?.Visible" id="A18288" data-tid="A351481">
+            Nabız
+        </label>
+        <label class="control-label col-sm-3" *ngIf="ttmaskedResultPulse?.Visible" id="A18288" data-tid="A351482">
+            Saturasyon
+        </label>        
+        <label class="control-label col-sm-3" *ngIf="ttmaskedResultPulse?.Visible" id="A18289" data-tid="A351483">
+            B.Tansiyon - K. Tansiyon
+        </label>
+
+    </div>
+    <div class="row" id="A18290" data-tid="A351484">
+        <div class="col-sm-3 pull-left" id="A18291" data-tid="A351485">
+            <hvl-masktext-box #Validation (TextChange)="onttmaskedResultChanged($event)" [BackColor]="ttmaskedResult?.BackColor" [Enabled]="ttmaskedResult?.Enabled" [Font]="ttmaskedResult?.Font" [ForeColor]="ttmaskedResult?.ForeColor" [InputTurkishCharacter]="ttmaskedResult?.InputTurkishCharacter" [Mask]="ttmaskedResult?.Mask" [ReadOnly]="ttmaskedResult?.ReadOnly" [TabIndex]="ttmaskedResult?.TabIndex" [TextAlign]="ttmaskedResult?.TextAlign" [Text]="nursingOrderDetailFormViewModel?._NursingOrderDetail?.Result" [Visible]="ttmaskedResult?.Visible" id="A18292" data-tid="A351486"></hvl-masktext-box>
+            <hvl-list-box #Validation (SelectedObjectChange)="onResultBySelectionChanged($event)" [AutoCompleteDialogHeight]="ResultBySelection?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ResultBySelection?.AutoCompleteDialogWidth" [AutoCompleteMode]="ResultBySelection?.AutoCompleteMode" [BackColor]="ResultBySelection?.BackColor" [DefinitionName]="ResultBySelection?.ListDefName" [DisplayExpressionsCache]="nursingOrderDetailFormViewModel?.ListDefDisplayExpressions" [Enabled]="ResultBySelection?.Enabled" [Font]="ResultBySelection?.Font" [ForeColor]="ResultBySelection?.ForeColor" [ListFilterExpression]="ResultBySelection?.ListFilterExpression" [MinSearchLength]="ResultBySelection?.MinSearchLength" [PopupDialogFieldConfig]="ResultBySelection?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ResultBySelection?.PopupDialogGridColumns" [PopupDialogHeight]="ResultBySelection?.PopupDialogHeight" [PopupDialogTitle]="ResultBySelection?.PopupDialogTitle" [PopupDialogWidth]="ResultBySelection?.PopupDialogWidth" [ReadOnly]="ResultBySelection?.ReadOnly" [SearchMode]="ResultBySelection?.SearchMode" [SearchTimeout]="ResultBySelection?.SearchTimeout" [SelectedObject]="nursingOrderDetailFormViewModel?._NursingOrderDetail?.ResultBySelection" [TabIndex]="ResultBySelection?.TabIndex" [Visible]="ResultBySelection?.Visible" [width]="ResultBySelection?.Width" id="A18293" data-tid="A351487"></hvl-list-box>
+        </div>
+
+        <div class="col-sm-3 pull-left" id="A18294" data-tid="A351488">
+            <hvl-masktext-box #Validation (TextChange)="onttmaskedResultPulseChanged($event)" [BackColor]="ttmaskedResultPulse?.BackColor" [Enabled]="ttmaskedResultPulse?.Enabled" [Font]="ttmaskedResultPulse?.Font" [ForeColor]="ttmaskedResult?.ForeColor" [InputTurkishCharacter]="ttmaskedResultPulse?.InputTurkishCharacter" [Mask]="ttmaskedResultPulse?.Mask" [ReadOnly]="ttmaskedResultPulse?.ReadOnly" [TabIndex]="ttmaskedResultPulse?.TabIndex" [TextAlign]="ttmaskedResultPulse?.TextAlign" [Text]="nursingOrderDetailFormViewModel?._NursingOrderDetail?.Result_Pulse" [Visible]="ttmaskedResultPulse?.Visible" id="A18295" data-tid="A351489"></hvl-masktext-box>
+        </div>
+
+        <div class="col-sm-3 pull-left" id="A18294" data-tid="A351490">
+            <hvl-masktext-box #Validation (TextChange)="onttmaskedResultSPO2Changed($event)" [BackColor]="ttmaskedResultSPO2?.BackColor" [Enabled]="ttmaskedResultSPO2?.Enabled" [Font]="ttmaskedResultSPO2?.Font" [ForeColor]="ttmaskedResult?.ForeColor" [InputTurkishCharacter]="ttmaskedResultSPO2?.InputTurkishCharacter" [Mask]="ttmaskedResultSPO2?.Mask" [ReadOnly]="ttmaskedResultSPO2?.ReadOnly" [TabIndex]="ttmaskedResultSPO2?.TabIndex" [TextAlign]="ttmaskedResultSPO2?.TextAlign" [Text]="nursingOrderDetailFormViewModel?._NursingOrderDetail?.Result_SPO2" [Visible]="ttmaskedResultSPO2?.Visible" id="B18295" data-tid="A351491"></hvl-masktext-box>
+        </div>         
+
+        <div class="col-sm-3 pull-left" id="A18296" data-tid="A351492">
+            <hvl-masktext-box #Validation (TextChange)="onttmaskedBloodPressureChanged($event)" [BackColor]="ttmaskedBloodPressure?.BackColor" [Enabled]="ttmaskedBloodPressure?.Enabled" [Font]="ttmaskedBloodPressure?.Font" [ForeColor]="ttmaskedBloodPressure?.ForeColor" [InputTurkishCharacter]="ttmaskedBloodPressure?.InputTurkishCharacter" [Mask]="ttmaskedBloodPressure?.Mask" [ReadOnly]="ttmaskedBloodPressure?.ReadOnly" [TabIndex]="ttmaskedBloodPressure?.TabIndex" [TextAlign]="ttmaskedBloodPressure?.TextAlign" [Text]="nursingOrderDetailFormViewModel?._NursingOrderDetail?.ResultBloodPressure" [Visible]="ttmaskedBloodPressure?.Visible" id="A18297" data-tid="A351493"></hvl-masktext-box>
+        </div>      
+
+    </div>
+        <div class="row" id="A18298" data-tid="A351494">
+            <div class="col-sm-12 " id="A18299" data-tid="A351495">
+                <div title="Vital Bulgular Uyarı" style="float:left;" i18n-title="@@M24173" id="A18300" data-tid="A351496">{{_VitalSignValuesInfo}}</div>
+            </div>
+        </div>
+    </div>

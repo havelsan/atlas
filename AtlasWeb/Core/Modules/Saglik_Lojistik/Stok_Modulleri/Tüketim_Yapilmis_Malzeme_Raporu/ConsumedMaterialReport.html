@@ -1,0 +1,50 @@
+﻿<div class="col-md-12" style="height:100%;overflow-x:hidden;overflow-y:auto;padding-top: 1%;" data-tid="A337703">
+   <div class="row" style="padding-left: 1%;" data-tid="A337704">
+
+      <div class="col-sm-2" data-tid="A337705">
+         <label class="control-label" style="border:0; box-shadow:none; color:#08c" data-tid="A337706">Başlangıç Tarihi
+         </label>
+         <dx-date-box width="100%" type="date" [(value)]="StartDate" [readOnly]="false" data-tid="A337707">
+         </dx-date-box>
+      </div>
+      <div class="col-sm-2" data-tid="A337708">
+         <label class="control-label" style="border:0; box-shadow:none; color:#08c" data-tid="A337709">Bitiş Tarihi</label>
+         <dx-date-box width="100%" type="date" [(value)]="EndDate" [readOnly]="false" data-tid="A337710">
+         </dx-date-box>
+      </div>
+
+      <div class="col-sm-4" data-tid="A337711">
+         <label class="control-label" style="border:0; box-shadow:none; " data-tid="A337712">Ana Depo Seçiniz</label>
+         <dx-tag-box [(items)]="StoreList" [(value)]="selectedStores" placeholder="Depo" [searchEnabled]="true" [showSelectionControls]="true" displayExpr="Name" [multiline]="false" id="A28501" data-tid="A337713">
+         </dx-tag-box>
+     </div>
+
+      <div class="col-sm-2" data-tid="A337714">
+         <label class="control-label" data-tid="A337715">Bütçe Seçiniz</label>
+         <dx-select-box [dataSource]="budgetTypeSources" displayExpr="Name" valueExpr="ObjectID" [(value)]="budgetTypeObjectID" data-tid="A337716"></dx-select-box>
+      </div>
+
+      <div class="col-sm-1" id="A5668" style="margin-top: 12px;" data-tid="A337717">
+         <dx-button type="btn btn-info" icon="fa fa-bars" class="center-block" (onClick)="GetConsumedMaterial()" text="Sorgula" id="A5669" data-tid="A337718"></dx-button>
+      </div>
+   </div>
+   <div class="row" data-tid="A337719">
+      <div class="col-sm-12" style="margin-top:5px;" data-tid="A337720">
+         <div id="grid" data-tid="A337721">
+            <dx-data-grid [columns]="consumedMaterialColumn" [dataSource]="consumedMaterialDataSource" [groupPanel]="{visible: true}" [filterRow]="{visible: true}" width="100%" height="560px" showRowLines="true" [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" data-tid="A337722">
+               <dxo-paging [pageSize]="20" data-tid="A337723"></dxo-paging>
+               <dxo-group-panel [visible]="true" data-tid="A337724"></dxo-group-panel>
+               <dxo-filter-row [visible]="true" data-tid="A337725"> </dxo-filter-row>
+               <dxo-grouping #expand [autoExpandAll]="true" data-tid="A337726"></dxo-grouping>
+               <dxo-export [enabled]="true" fileName="Tüketim Malzeme Çıkış Raporu" [allowExportSelectedData]="false" data-tid="A337727"></dxo-export>
+            </dx-data-grid>
+         </div>
+      </div>
+      <div class="col-sm-12 pull pull-right" style="width:100%;color: black;padding: 15px;font-size: larger;" data-tid="A337728">
+         Toplam Kayıt Sayısı: {{ TotalNumberOfRows }}
+      </div>
+   </div>
+
+   <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" showIndicator="true" showPane="true" shading="true" closeOnOutsideClick="false" [(message)]="LoadPanelMessage" data-tid="A337729">
+   </dx-load-panel>
+</div>

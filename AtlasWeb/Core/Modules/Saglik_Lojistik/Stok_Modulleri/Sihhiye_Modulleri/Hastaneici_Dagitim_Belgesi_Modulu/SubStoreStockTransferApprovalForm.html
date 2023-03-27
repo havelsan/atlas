@@ -1,0 +1,83 @@
+﻿
+
+<div class="container-fluid" id="A6574" data-tid="A333634">
+    <h4 class="logisticLabel" style="margin-left:40%;color:#08c;" id="A6575" data-tid="A333635">{{FormCaption}}</h4>
+    <NeStatePanelComponent [OutgoingTransitions]="subStoreStockTransferApprovalFormViewModel?.OutgoingTransitions" [StateReports]="subStoreStockTransferApprovalFormViewModel?.CurrentStateReports" [ObjectID]="subStoreStockTransferApprovalFormViewModel?._SubStoreStockTransfer?.ObjectID" [ObjectDefID]="subStoreStockTransferApprovalFormViewModel?._SubStoreStockTransfer?.ObjectDefID" [CurrentStateDefID]="subStoreStockTransferApprovalFormViewModel._SubStoreStockTransfer.CurrentStateDefID" [DropStateList]="DropStateList" (onSetState)="stateChange($event)" (onSaveChanges)="onSaveButtonClick($event)" (onCancel)="cancel()" id="A6576" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A333636">
+
+    </NeStatePanelComponent>
+
+    <form id="SubStoreStockTransferApprovalForm" class="form-horizontal" role="form" data-tid="A333637"></form>
+    <br id="A6577" data-tid="A333638" />
+    <div class="row" id="A6578" data-tid="A333639">
+        <div class="col-sm-3" id="A6579" data-tid="A333640">
+            <label class="control-label" id="A6580" data-tid="A333641">
+                İşlem No
+            </label>
+            <hvl-text-box #Validation (TextChange)="onStockActionIDChanged($event)" [BackColor]="StockActionID?.BackColor" [CharacterCasing]="StockActionID?.CharacterCasing" [Enabled]="StockActionID?.Enabled" [Font]="StockActionID?.Font" [ForeColor]="StockActionID?.ForeColor" [height]="StockActionID?.Height" [InputFormat]="StockActionID?.InputFormat" [InputTurkishCharacter]="StockActionID?.InputTurkishCharacter" [IsNonNumeric]="StockActionID?.IsNonNumeric" [MultiLine]="StockActionID?.Multiline" [ReadOnly]="StockActionID?.ReadOnly" [Required]="StockActionID?.Required" [TabIndex]="StockActionID?.TabIndex" [TextAlign]="StockActionID?.TextAlign" [Text]="subStoreStockTransferApprovalFormViewModel?._SubStoreStockTransfer?.StockActionID" [Visible]="StockActionID?.Visible" id="A6581" data-tid="A333642"></hvl-text-box>
+        </div>
+        <div class="col-sm-3" id="A6582" data-tid="A333643">
+            <label class="control-label" id="A6583" data-tid="A333644">
+                İşlem Tarihi
+            </label>
+            <hvl-date-picker #Validation (ValueChange)="onActionDateChanged($event)" [BackColor]="ActionDate?.BackColor" [CustomFormat]="ActionDate?.CustomFormat" [Enabled]="ActionDate?.Enabled" [Font]="ActionDate?.Font" [ForeColor]="ActionDate?.ForeColor" [Format]="ActionDate?.Format" [Max]="ActionDate?.Max" [Min]="ActionDate?.Min" [ReadOnly]="ActionDate?.ReadOnly" [Required]="ActionDate?.Required" [TabIndex]="ActionDate?.TabIndex" [Value]="subStoreStockTransferApprovalFormViewModel?._SubStoreStockTransfer?.ActionDate" [Visible]="ActionDate?.Visible" id="A6584" data-tid="A333645"></hvl-date-picker>
+        </div>
+
+        <div class="col-sm-3" id="A6588" data-tid="A333646">
+            <label class="control-label" id="A6589" data-tid="A333647">
+                İstek Yapan Servis Depo
+            </label>
+            <hvl-list-box #Validation (SelectedObjectChange)="onDestinationStoreChanged($event)" [AutoCompleteDialogHeight]="DestinationStore?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="DestinationStore?.AutoCompleteDialogWidth" [AutoCompleteMode]="DestinationStore?.AutoCompleteMode" [BackColor]="DestinationStore?.BackColor" [DefinitionName]="DestinationStore?.ListDefName" [DisplayExpressionsCache]="subStoreStockTransferApprovalFormViewModel?.ListDefDisplayExpressions" [Enabled]="DestinationStore?.Enabled" [Font]="DestinationStore?.Font" [ForeColor]="DestinationStore?.ForeColor" [ListFilterExpression]="DestinationStore?.ListFilterExpression" [MinSearchLength]="DestinationStore?.MinSearchLength" [PopupDialogFieldConfig]="DestinationStore?.PopupDialogFieldConfig" [PopupDialogGridColumns]="DestinationStore?.PopupDialogGridColumns" [PopupDialogHeight]="DestinationStore?.PopupDialogHeight" [PopupDialogTitle]="DestinationStore?.PopupDialogTitle" [PopupDialogWidth]="DestinationStore?.PopupDialogWidth" [ReadOnly]="DestinationStore?.ReadOnly" [SearchMode]="DestinationStore?.SearchMode" [SearchTimeout]="DestinationStore?.SearchTimeout" [SelectedObject]="subStoreStockTransferApprovalFormViewModel?._SubStoreStockTransfer?.DestinationStore" [TabIndex]="DestinationStore?.TabIndex" [Visible]="DestinationStore?.Visible" [width]="DestinationStore?.Width" id="A6590" data-tid="A333648"></hvl-list-box>
+        </div>
+        <div class="col-sm-3" id="A6585" data-tid="A333649">
+            <label class="control-label" id="A6586" data-tid="A333650">
+                İstek Yapılan Servis Depo
+            </label>
+            <hvl-list-box #Validation (SelectedObjectChange)="onStoreChanged($event)" [AutoCompleteDialogHeight]="Store?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="Store?.AutoCompleteDialogWidth" [AutoCompleteMode]="Store?.AutoCompleteMode" [BackColor]="Store?.BackColor" [DefinitionName]="Store?.ListDefName" [DisplayExpressionsCache]="subStoreStockTransferApprovalFormViewModel?.ListDefDisplayExpressions" [Enabled]="Store?.Enabled" [Font]="Store?.Font" [ForeColor]="Store?.ForeColor" [ListFilterExpression]="Store?.ListFilterExpression" [MinSearchLength]="Store?.MinSearchLength" [PopupDialogFieldConfig]="Store?.PopupDialogFieldConfig" [PopupDialogGridColumns]="Store?.PopupDialogGridColumns" [PopupDialogHeight]="Store?.PopupDialogHeight" [PopupDialogTitle]="Store?.PopupDialogTitle" [PopupDialogWidth]="Store?.PopupDialogWidth" [ReadOnly]="Store?.ReadOnly" [SearchMode]="Store?.SearchMode" [SearchTimeout]="Store?.SearchTimeout" [SelectedObject]="subStoreStockTransferApprovalFormViewModel?._SubStoreStockTransfer?.Store" [TabIndex]="Store?.TabIndex" [Visible]="Store?.Visible" [width]="Store?.Width" id="A6587" data-tid="A333651"></hvl-list-box>
+        </div>
+    </div>
+    <br id="A6591" data-tid="A333652" />
+    <div class="row" id="A6592" data-tid="A333653">
+        <div class="col-sm-3" id="A6593" data-tid="A333654">
+            <label class="control-label" id="A6594" data-tid="A333655">
+                Teslim Alan
+            </label>
+            <hvl-button-textbox (Clicked)="TTTeslimAlanButon_Click()" (TextChange)="onMKYS_TeslimAlanChanged($event)" [(Text)]="MKYS_TeslimAlan.Text" [BackColor]="MKYS_TeslimAlan?.BackColor" [ButtonEnabled]="MKYS_TeslimAlan?.ButtonEnabled" [ButtonOnRight]="MKYS_TeslimAlan?.ButtonOnRight" [ButtonText]="MKYS_TeslimAlan.ButtonText" [ButtonWidth]="MKYS_TeslimAlan?.ButtonWidth" [Enabled]="MKYS_TeslimAlan?.Enabled" [Font]="MKYS_TeslimAlan?.Font" [ForeColor]="MKYS_TeslimAlan?.ForeColor" [Icon]="MKYS_TeslimAlan?.Icon" [placeHolder]="MKYS_TeslimAlan?.placeHolder" [ReadOnly]="MKYS_TeslimAlan?.ReadOnly" [ShowClearButton]="MKYS_TeslimAlan?.ShowClearButton" [TabIndex]="MKYS_TeslimAlan?.TabIndex" [Type]="MKYS_TeslimAlan?.Type" [Visible]="MKYS_TeslimAlan?.Visible" id="A6595" data-tid="A333656"></hvl-button-textbox>
+        </div>
+        <div class="col-sm-3" id="A6596" data-tid="A333657">
+            <label class="control-label" id="A6597" data-tid="A333658">
+                Teslim Eden
+            </label>
+            <hvl-button-textbox (Clicked)="TTTeslimEdenButon_Click()" (TextChange)="onMKYS_TeslimEdenChanged($event)" [(Text)]="MKYS_TeslimEden.Text" [BackColor]="MKYS_TeslimEden?.BackColor" [ButtonEnabled]="MKYS_TeslimEden?.ButtonEnabled" [ButtonOnRight]="MKYS_TeslimEden?.ButtonOnRight" [ButtonText]="MKYS_TeslimEden.ButtonText" [ButtonWidth]="MKYS_TeslimEden?.ButtonWidth" [Enabled]="MKYS_TeslimEden?.Enabled" [Font]="MKYS_TeslimEden?.Font" [ForeColor]="MKYS_TeslimEden?.ForeColor" [Icon]="MKYS_TeslimEden?.Icon" [placeHolder]="MKYS_TeslimEden?.placeHolder" [ReadOnly]="MKYS_TeslimEden?.ReadOnly" [ShowClearButton]="MKYS_TeslimEden?.ShowClearButton" [TabIndex]="MKYS_TeslimEden?.TabIndex" [Type]="MKYS_TeslimEden?.Type" [Visible]="MKYS_TeslimEden?.Visible" id="A6598" data-tid="A333659"></hvl-button-textbox>
+        </div>
+    </div>
+    <br id="A6599" data-tid="A333660" />
+    <div class="row" id="A6600" data-tid="A333661">
+        <div class="col-sm-12" id="A6601" data-tid="A333662">
+            <label class="control-label " id="A6602" data-tid="A333663">
+                Açıklama
+            </label>
+            <hvl-text-box #Validation (TextChange)="onDescriptionChanged($event)" [BackColor]="Description?.BackColor" [CharacterCasing]="Description?.CharacterCasing" [Enabled]="Description?.Enabled" [Font]="Description?.Font" [ForeColor]="Description?.ForeColor" [height]="Description?.Height" [InputFormat]="Description?.InputFormat" [InputTurkishCharacter]="Description?.InputTurkishCharacter" [IsNonNumeric]="Description?.IsNonNumeric" [MultiLine]="Description?.Multiline" [ReadOnly]="Description?.ReadOnly" [Required]="Description?.Required" [TabIndex]="Description?.TabIndex" [TextAlign]="Description?.TextAlign" [Text]="subStoreStockTransferApprovalFormViewModel?._SubStoreStockTransfer?.Description" [Visible]="Description?.Visible" id="A6603" data-tid="A333664"></hvl-text-box>
+        </div>
+    </div>
+    <br id="A6604" data-tid="A333665" />
+    <div class="row" id="A6605" data-tid="A333666">
+        <dx-tab-panel [selectedIndex]="0" id="A6606" data-tid="A333667">
+            <dxi-item class="tabpanel-item" title="Taşınır Malın" i18n-title="@@M27509" id="A6607" data-tid="A333668">
+                <div class="row" id="A6608" data-tid="A333669">
+                    <div class="col-sm-12" id="A6609" data-tid="A333670">
+                        <!--<hvl-datagrid (CellContentClicked)="onCellContentClicked($event)" (CellValueChange)="SubStoreStockTransferMaterials_CellValueChangedEmitted($event)" (InitNewRow)="initNewRow($event)" (RowInserting)="onRowInserting($event)" (SelectedObjectChange)="onSelectionChange($event)" [AllowUserToAddRows]="SubStoreStockTransferMaterials?.AllowUserToAddRows" [AllowUserToDeleteRows]="SubStoreStockTransferMaterials?.AllowUserToDeleteRows" [Columns]="SubStoreStockTransferMaterialsColumns" [dataSource]="subStoreStockTransferApprovalFormViewModel?._SubStoreStockTransfer?.SubStoreStockTransferMaterials" [DeleteButtonWidth]="SubStoreStockTransferMaterials?.DeleteButtonWidth" [DisplayExpressionsCache]="subStoreStockTransferApprovalFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="SubStoreStockTransferMaterials?.ShowFilterRow" [FilterColumnName]="SubStoreStockTransferMaterials?.FilterColumnName" [FilterLabel]="SubStoreStockTransferMaterials?.FilterLabel" [Filter]="SubStoreStockTransferMaterials?.Filter" [height]="SubStoreStockTransferMaterials?.Height" [IsFilterLabelSingleLine]="SubStoreStockTransferMaterials?.IsFilterLabelSingleLine" [ShowColumnHeaders]="SubStoreStockTransferMaterials?.ColumnHeadersVisible" [ShowFilterCombo]="SubStoreStockTransferMaterials?.ShowFilterCombo" [ShowTotalNumberOfRows]="SubStoreStockTransferMaterials?.ShowTotalNumberOfRows" id="A6610"></hvl-datagrid>-->
+
+                        <div class="col-sm-12" data-tid="A333671">
+                            <!--(onRowUpdating)="materialGridRowUpdating($event)" (onEditingStart)="onEditingStartMaterialGrid($event)"-->
+                            <dx-data-grid #materialGrid showColumnLines="true" showRowLines="true" rowAlternationEnabled="true" showBorders="true" height="500px" columnAutoWidth="true" [dataSource]="subStoreStockTransferApprovalFormViewModel?._SubStoreStockTransfer?.SubStoreStockTransferMaterials" [columns]="MaterialGridColumns == null ? CreateGridColumns(true) : MaterialGridColumns" [scrolling]="{mode:'infinite'}" [selection]="{mode: 'single'}" (onRowUpdated)="onMaterialGridRowUpdated($event)" (onRowRemoving)="onMaterialGridRowRemoving($event)" (onRowRemoved)="onMaterialGridRowRemoved($event)" data-tid="A333672">
+                                <dxo-editing mode="cell" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="false" data-tid="A333673">
+                                </dxo-editing>
+                            </dx-data-grid>
+                        </div>
+                    </div>
+                </div>
+            </dxi-item>
+        </dx-tab-panel>
+    </div>
+</div>
+

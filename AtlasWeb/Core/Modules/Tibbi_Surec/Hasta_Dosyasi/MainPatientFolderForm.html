@@ -1,0 +1,80 @@
+﻿
+
+<div class="row" data-tid="A346406">
+    <div class="col-md-12" data-tid="A346407">
+        <dx-accordion #searchAccordion class="margin-bottom-10" collapsible="true" data-tid="A346408">
+            <dxi-item title="Hasta Dosyası" data-tid="A346409">
+                <div class="row" style="margin-bottom:10px" id="A14641" data-tid="A346410">
+                    <div class="col-md-1" id="AY28452" data-tid="A346411">
+
+                        <dx-text-box placeholder="Kabul No" [showClearButton]="true" [(value)]="_protocolNo" (onEnterKey)="onProtocolNoEnterKeyDown($event)" id="AY16484" data-tid="A346412"></dx-text-box>
+
+                    </div>
+
+                    <div class="col-md-6 col-sm-12" id="A14642" data-tid="A346413">
+                        <PatientAdmissionSearchForm (SelectedPatientChanged)="patientChanged($event)" (SelectedPatientAdmissionChanged)="patientAdmissionChanged($event)" id="A14643" data-tid="A346414"></PatientAdmissionSearchForm>
+                    </div>
+                    <div class="col-md-2 col-sm-12" id="A14644" data-tid="A346415">
+                        <a data-toggle="collapse" (click)="detailSearchCollapse_Click()" href="#searchWithDetails" id="A14645" data-tid="A346416"><i class="{{this.detailSearchIconClassProperties()}}" style="float:right;" id="A14646" data-tid="A346417"></i>Detaylı Arama</a>
+                    </div>
+                    <div class="col-md-1 col-sm-6" style="float:right" id="A14647" data-tid="A346418">
+                        <button type="button" class="btn btn-warning" [class.disabled]="IsButtonActive==false" (click)="UndoLastTransition_SelectedEpisodeAction()" id="A14648" data-tid="A346419">İşlem Geri Al</button>
+                    </div>
+                    <div class="col-md-1 col-sm-6" style="float:right" id="A14649" data-tid="A346420">
+                        <button type="button" class="btn btn-danger" [class.disabled]="IsButtonActive==false" (click)="Cancel_SelectedEpisodeAction()" id="A14650" data-tid="A346421">İşlem İptal Et</button>
+                    </div>
+
+                </div>
+                <div class="row" id="A14651" data-tid="A346422">
+                    <div id="searchWithDetails" class="collapse  col-md-12" data-tid="A346423">
+                        <div style="margin-bottom:10px" id="A14652" data-tid="A346424">
+                            <PatientSearchWithDetailsForm (SelectedPatientChanged)="patientChanged($event)" (SelectedPatientAdmissionChanged)="patientAdmissionChanged($event)" id="A14653" data-tid="A346425"></PatientSearchWithDetailsForm>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="height:96%" id="A14654" data-tid="A346426">
+                    <div class="col-md-12" style="height:100%" id="A14655" data-tid="A346427">
+
+                        <div class="panel panel-info" style="height:48%" id="A14656" data-tid="A346428">
+                            <div class="panel-heading" id="A14657" data-tid="A346429">Hastahane Kayıtları</div>
+                            <div class="panel-body" style="height:92%" id="A14658" data-tid="A346430">
+                                <dx-data-grid showColumnLines="true" showBorders="true" showRowLines="true" allowColumnResizing="true" allowColumnReordering="true" height="100%" [allowColumnReordering]="true" [allowColumnResizing]="true" [filterRow]="{visible: true}" [dataSource]="mainPatientFolderFormViewModel?.SubEpisodeList" [columns]="SubEpisodeListColumns" [selection]="{mode: 'single',showCheckBoxesMode:'none',selectAllMode:'page'}" (onSelectionChanged)="onSelectionChangedSubEpisodeList($event)" id="A14659" data-tid="A346431">
+                                    <dxo-editing mode="cell" [allowUpdating]="false" [allowAdding]="false" [allowDeleting]="false" id="A14660" data-tid="A346432">
+                                    </dxo-editing>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-info" style="height:48%" id="A14661" data-tid="A346433">
+                            <div class="panel-heading" id="A14662" data-tid="A346434">İşlemler</div>
+                            <div class="panel-body" style="height:92%" id="A14663" data-tid="A346435">
+                                <dx-data-grid showColumnLines="true" showBorders="true" showRowLines="true" allowColumnResizing="true" allowColumnReordering="true" height="100%" [allowColumnReordering]="true" [allowColumnResizing]="true" [filterRow]="{visible: true}" [dataSource]="mainPatientFolderFormViewModel?.EpisodeActionList" [columns]="EpisodeActionListColumns" [selection]="{mode: 'single',showCheckBoxesMode:'none',selectAllMode:'page'}" (onSelectionChanged)="onSelectionChangedEpisodeActionList($event)" id="A14664" data-tid="A346436">
+                                    <dxo-editing mode="cell" [allowUpdating]="false" [allowAdding]="false" [allowDeleting]="false" id="A14665" data-tid="A346437">
+                                    </dxo-editing>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </dxi-item>
+        </dx-accordion>
+    </div>
+</div>
+<div class="row" *ngIf="showEpisodeAction" data-tid="A346438">
+    <div class="col-md-12" id="A14666" data-tid="A346439">
+        <EpisodeActionDisplayForm id="A14667" data-tid="A346440"></EpisodeActionDisplayForm>
+    </div>
+</div>
+
+<dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A28485" data-tid="A346441">
+</dx-load-panel>
+
+
+
+<div class="f-modal-alert" data-tid="A346442">
+    <div class="f-modal-icon f-modal-warning scaleWarning" data-tid="A346443">
+        <span class="f-modal-body pulseWarningIns" data-tid="A346444"></span>
+        <span class="f-modal-dot pulseWarningIns" data-tid="A346445"></span>
+    </div>
+</div>

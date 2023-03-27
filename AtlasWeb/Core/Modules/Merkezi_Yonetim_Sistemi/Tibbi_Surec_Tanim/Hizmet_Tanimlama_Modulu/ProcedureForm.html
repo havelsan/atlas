@@ -1,0 +1,437 @@
+﻿
+<!-- <NeStatePanelComponent [ObjectDefID]="procedureFormViewModel._ProcedureDefinition.ObjectDefID" [CurrentStateDefID]="procedureFormViewModel._ProcedureDefinition.CurrentStateDefID" (onSetState)="setState($event)" (onSaveChanges)="save($event)" >
+</NeStatePanelComponent> -->
+<div class="container-fluid" data-tid="A327902">
+	<form id="ProcedureForm" class="form-horizontal" role="form" data-tid="A327903">
+	</form>
+	<div class="row" data-tid="A327904">
+		<dx-tab-panel [selectedIndex]="0" data-tid="A327905">
+            <dxi-item class="tabpanel-item" title="Hizmet" data-tid="A327906">
+                <div class="row" data-tid="A327907">
+                    <label class="control-label col-sm-2" data-tid="A327908">
+                        Hizmet Türü
+                    </label>
+                </div>
+                <div class="row" data-tid="A327909">
+                    <div class="col-sm-5" data-tid="A327910">
+                        <hvl-text-box #Validation (TextChange)="ProcType.Text=$event;" [BackColor]="ProcType?.BackColor" [CharacterCasing]="ProcType?.CharacterCasing" [Enabled]="ProcType?.Enabled" [Font]="ProcType?.Font" [ForeColor]="ProcType?.ForeColor" [height]="ProcType?.Height" [InputFormat]="ProcType?.InputFormat" [InputTurkishCharacter]="ProcType?.InputTurkishCharacter" [IsNonNumeric]="ProcType?.IsNonNumeric" [MultiLine]="ProcType?.Multiline" [ReadOnly]="ProcType?.ReadOnly" [Required]="ProcType?.Required" [TabIndex]="ProcType?.TabIndex" [TextAlign]="ProcType?.TextAlign" [Text]="ProcType?.Text" [Visible]="ProcType?.Visible" data-tid="A327911">
+                        </hvl-text-box>
+                    </div>
+                </div>
+                <div class="row" data-tid="A327912">
+                    <div class="col-sm-2" data-tid="A327913">
+                        checkbox group						<div class="col-sm-4" data-tid="A327914">
+                            <hvl-checkbox #Validation (ValueChange)="onIsActiveChanged($event)" [AllowThreeState]="IsActive?.ThreeState" [BackColor]="IsActive?.BackColor" [Enabled]="IsActive?.Enabled" [Font]="IsActive?.Font" [ForeColor]="IsActive?.ForeColor" [IsTitleLeft]="IsActive?.IsTitleLeft" [Margin]="IsActive?.Margin" [ReadOnly]="IsActive?.ReadOnly" [TabIndex]="IsActive?.TabIndex" [TitleTopPadding]="IsActive?.TitleTopPadding" [Title]="IsActive?.Title" [Value]="_ProcedureDefinition.IsActive" [Visible]="IsActive?.Visible" data-tid="A327915">
+                            </hvl-checkbox>
+                        </div>
+                        <div class="col-sm-6" data-tid="A327916">
+                            <hvl-checkbox #Validation (ValueChange)="onChargableChanged($event)" [AllowThreeState]="Chargable?.ThreeState" [BackColor]="Chargable?.BackColor" [Enabled]="Chargable?.Enabled" [Font]="Chargable?.Font" [ForeColor]="Chargable?.ForeColor" [IsTitleLeft]="Chargable?.IsTitleLeft" [Margin]="Chargable?.Margin" [ReadOnly]="Chargable?.ReadOnly" [TabIndex]="Chargable?.TabIndex" [TitleTopPadding]="Chargable?.TitleTopPadding" [Title]="Chargable?.Title" [Value]="_ProcedureDefinition.Chargable" [Visible]="Chargable?.Visible" data-tid="A327917">
+                            </hvl-checkbox>
+                        </div>
+                        <div class="col-sm-10" data-tid="A327918">
+                            <hvl-checkbox #Validation (ValueChange)="onQuickEntryAllowedChanged($event)" [AllowThreeState]="QuickEntryAllowed?.ThreeState" [BackColor]="QuickEntryAllowed?.BackColor" [Enabled]="QuickEntryAllowed?.Enabled" [Font]="QuickEntryAllowed?.Font" [ForeColor]="QuickEntryAllowed?.ForeColor" [IsTitleLeft]="QuickEntryAllowed?.IsTitleLeft" [Margin]="QuickEntryAllowed?.Margin" [ReadOnly]="QuickEntryAllowed?.ReadOnly" [TabIndex]="QuickEntryAllowed?.TabIndex" [TitleTopPadding]="QuickEntryAllowed?.TitleTopPadding" [Title]="QuickEntryAllowed?.Title" [Value]="_ProcedureDefinition.QuickEntryAllowed" [Visible]="QuickEntryAllowed?.Visible" data-tid="A327919">
+                            </hvl-checkbox>
+                        </div>
+                        <div class="col-sm-10" data-tid="A327920">
+                            <hvl-checkbox #Validation (ValueChange)="onReportSelectionRequiredChanged($event)" [AllowThreeState]="ReportSelectionRequired?.ThreeState" [BackColor]="ReportSelectionRequired?.BackColor" [Enabled]="ReportSelectionRequired?.Enabled" [Font]="ReportSelectionRequired?.Font" [ForeColor]="ReportSelectionRequired?.ForeColor" [IsTitleLeft]="ReportSelectionRequired?.IsTitleLeft" [Margin]="ReportSelectionRequired?.Margin" [ReadOnly]="ReportSelectionRequired?.ReadOnly" [TabIndex]="ReportSelectionRequired?.TabIndex" [TitleTopPadding]="ReportSelectionRequired?.TitleTopPadding" [Title]="ReportSelectionRequired?.Title" [Value]="_ProcedureDefinition.ReportSelectionRequired" [Visible]="ReportSelectionRequired?.Visible" data-tid="A327921">
+                            </hvl-checkbox>
+                        </div>
+                        <div class="col-sm-12" data-tid="A327922">
+                            <hvl-checkbox #Validation (ValueChange)="onIsDescriptionNeededChanged($event)" [AllowThreeState]="IsDescriptionNeeded?.ThreeState" [BackColor]="IsDescriptionNeeded?.BackColor" [Enabled]="IsDescriptionNeeded?.Enabled" [Font]="IsDescriptionNeeded?.Font" [ForeColor]="IsDescriptionNeeded?.ForeColor" [IsTitleLeft]="IsDescriptionNeeded?.IsTitleLeft" [Margin]="IsDescriptionNeeded?.Margin" [ReadOnly]="IsDescriptionNeeded?.ReadOnly" [TabIndex]="IsDescriptionNeeded?.TabIndex" [TitleTopPadding]="IsDescriptionNeeded?.TitleTopPadding" [Title]="IsDescriptionNeeded?.Title" [Value]="_ProcedureDefinition.IsDescriptionNeeded" [Visible]="IsDescriptionNeeded?.Visible" data-tid="A327923">
+                            </hvl-checkbox>
+                        </div>
+                        <div class="col-sm-9" data-tid="A327924">
+                            <hvl-checkbox #Validation (ValueChange)="onParticipationProcedureChanged($event)" [AllowThreeState]="ParticipationProcedure?.ThreeState" [BackColor]="ParticipationProcedure?.BackColor" [Enabled]="ParticipationProcedure?.Enabled" [Font]="ParticipationProcedure?.Font" [ForeColor]="ParticipationProcedure?.ForeColor" [IsTitleLeft]="ParticipationProcedure?.IsTitleLeft" [Margin]="ParticipationProcedure?.Margin" [ReadOnly]="ParticipationProcedure?.ReadOnly" [TabIndex]="ParticipationProcedure?.TabIndex" [TitleTopPadding]="ParticipationProcedure?.TitleTopPadding" [Title]="ParticipationProcedure?.Title" [Value]="_ProcedureDefinition.ParticipationProcedure" [Visible]="ParticipationProcedure?.Visible" data-tid="A327925">
+                            </hvl-checkbox>
+                        </div>
+                        <div class="col-sm-6" data-tid="A327926">
+                            <hvl-checkbox #Validation (ValueChange)="onExternalOperationChanged($event)" [AllowThreeState]="ExternalOperation?.ThreeState" [BackColor]="ExternalOperation?.BackColor" [Enabled]="ExternalOperation?.Enabled" [Font]="ExternalOperation?.Font" [ForeColor]="ExternalOperation?.ForeColor" [IsTitleLeft]="ExternalOperation?.IsTitleLeft" [Margin]="ExternalOperation?.Margin" [ReadOnly]="ExternalOperation?.ReadOnly" [TabIndex]="ExternalOperation?.TabIndex" [TitleTopPadding]="ExternalOperation?.TitleTopPadding" [Title]="ExternalOperation?.Title" [Value]="_ProcedureDefinition.ExternalOperation" [Visible]="ExternalOperation?.Visible" data-tid="A327927">
+                            </hvl-checkbox>
+                        </div>
+                        <div class="col-sm-10" data-tid="A327928">
+                            <hvl-checkbox #Validation (ValueChange)="onPathologyOperationNeededChanged($event)" [AllowThreeState]="PathologyOperationNeeded?.ThreeState" [BackColor]="PathologyOperationNeeded?.BackColor" [Enabled]="PathologyOperationNeeded?.Enabled" [Font]="PathologyOperationNeeded?.Font" [ForeColor]="PathologyOperationNeeded?.ForeColor" [IsTitleLeft]="PathologyOperationNeeded?.IsTitleLeft" [Margin]="PathologyOperationNeeded?.Margin" [ReadOnly]="PathologyOperationNeeded?.ReadOnly" [TabIndex]="PathologyOperationNeeded?.TabIndex" [TitleTopPadding]="PathologyOperationNeeded?.TitleTopPadding" [Title]="PathologyOperationNeeded?.Title" [Value]="_ProcedureDefinition.PathologyOperationNeeded" [Visible]="PathologyOperationNeeded?.Visible" data-tid="A327929">
+                            </hvl-checkbox>
+                        </div>
+                        <div class="col-sm-9" data-tid="A327930">
+                            <hvl-checkbox #Validation (ValueChange)="onQualifiedMedicalProcessChanged($event)" [AllowThreeState]="QualifiedMedicalProcess?.ThreeState" [BackColor]="QualifiedMedicalProcess?.BackColor" [Enabled]="QualifiedMedicalProcess?.Enabled" [Font]="QualifiedMedicalProcess?.Font" [ForeColor]="QualifiedMedicalProcess?.ForeColor" [IsTitleLeft]="QualifiedMedicalProcess?.IsTitleLeft" [Margin]="QualifiedMedicalProcess?.Margin" [ReadOnly]="QualifiedMedicalProcess?.ReadOnly" [TabIndex]="QualifiedMedicalProcess?.TabIndex" [TitleTopPadding]="QualifiedMedicalProcess?.TitleTopPadding" [Title]="QualifiedMedicalProcess?.Title" [Value]="_ProcedureDefinition.QualifiedMedicalProcess" [Visible]="QualifiedMedicalProcess?.Visible" data-tid="A327931">
+                            </hvl-checkbox>
+                        </div>
+                        <div class="col-sm-9" data-tid="A327932">
+                            <hvl-checkbox #Validation (ValueChange)="onDontBlockInvoiceChanged($event)" [AllowThreeState]="DontBlockInvoice?.ThreeState" [BackColor]="DontBlockInvoice?.BackColor" [Enabled]="DontBlockInvoice?.Enabled" [Font]="DontBlockInvoice?.Font" [ForeColor]="DontBlockInvoice?.ForeColor" [IsTitleLeft]="DontBlockInvoice?.IsTitleLeft" [Margin]="DontBlockInvoice?.Margin" [ReadOnly]="DontBlockInvoice?.ReadOnly" [TabIndex]="DontBlockInvoice?.TabIndex" [TitleTopPadding]="DontBlockInvoice?.TitleTopPadding" [Title]="DontBlockInvoice?.Title" [Value]="_ProcedureDefinition.DontBlockInvoice" [Visible]="DontBlockInvoice?.Visible" data-tid="A327933">
+                            </hvl-checkbox>
+                        </div>
+                        <div class="col-sm-10" data-tid="A327934">
+                            <hvl-checkbox #Validation (ValueChange)="onIsResultNeededChanged($event)" [AllowThreeState]="IsResultNeeded?.ThreeState" [BackColor]="IsResultNeeded?.BackColor" [Enabled]="IsResultNeeded?.Enabled" [Font]="IsResultNeeded?.Font" [ForeColor]="IsResultNeeded?.ForeColor" [IsTitleLeft]="IsResultNeeded?.IsTitleLeft" [Margin]="IsResultNeeded?.Margin" [ReadOnly]="IsResultNeeded?.ReadOnly" [TabIndex]="IsResultNeeded?.TabIndex" [TitleTopPadding]="IsResultNeeded?.TitleTopPadding" [Title]="IsResultNeeded?.Title" [Value]="_ProcedureDefinition.IsResultNeeded" [Visible]="IsResultNeeded?.Visible" data-tid="A327935">
+                            </hvl-checkbox>
+                        </div>
+                        <div class="col-sm-12" data-tid="A327936">
+                            <hvl-checkbox #Validation (ValueChange)="onIsVisibleChanged($event)" [AllowThreeState]="IsVisible?.ThreeState" [BackColor]="IsVisible?.BackColor" [Enabled]="IsVisible?.Enabled" [Font]="IsVisible?.Font" [ForeColor]="IsVisible?.ForeColor" [IsTitleLeft]="IsVisible?.IsTitleLeft" [Margin]="IsVisible?.Margin" [ReadOnly]="IsVisible?.ReadOnly" [TabIndex]="IsVisible?.TabIndex" [TitleTopPadding]="IsVisible?.TitleTopPadding" [Title]="IsVisible?.Title" [Value]="_ProcedureDefinition.IsVisible" [Visible]="IsVisible?.Visible" data-tid="A327937">
+                            </hvl-checkbox>
+                        </div>
+                        <div class="col-sm-12" data-tid="A327938">
+                            <hvl-checkbox #Validation (ValueChange)="onRepetitionQueryNeededChanged($event)" [AllowThreeState]="RepetitionQueryNeeded?.ThreeState" [BackColor]="RepetitionQueryNeeded?.BackColor" [Enabled]="RepetitionQueryNeeded?.Enabled" [Font]="RepetitionQueryNeeded?.Font" [ForeColor]="RepetitionQueryNeeded?.ForeColor" [IsTitleLeft]="RepetitionQueryNeeded?.IsTitleLeft" [Margin]="RepetitionQueryNeeded?.Margin" [ReadOnly]="RepetitionQueryNeeded?.ReadOnly" [TabIndex]="RepetitionQueryNeeded?.TabIndex" [TitleTopPadding]="RepetitionQueryNeeded?.TitleTopPadding" [Title]="RepetitionQueryNeeded?.Title" [Value]="_ProcedureDefinition.RepetitionQueryNeeded" [Visible]="RepetitionQueryNeeded?.Visible" data-tid="A327939">
+                            </hvl-checkbox>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" data-tid="A327940">
+                    <label class="control-label col-sm-1" data-tid="A327941">
+                        Hizmet Adı
+                    </label>
+                </div>
+                <div class="row" data-tid="A327942">
+                    <div class="col-sm-5" data-tid="A327943">
+                        <hvl-text-box #Validation (TextChange)="onNameChanged($event)" [BackColor]="Name?.BackColor" [CharacterCasing]="Name?.CharacterCasing" [Enabled]="Name?.Enabled" [Font]="Name?.Font" [ForeColor]="Name?.ForeColor" [height]="Name?.Height" [InputFormat]="Name?.InputFormat" [InputTurkishCharacter]="Name?.InputTurkishCharacter" [IsNonNumeric]="Name?.IsNonNumeric" [MultiLine]="Name?.Multiline" [ReadOnly]="Name?.ReadOnly" [Required]="Name?.Required" [TabIndex]="Name?.TabIndex" [TextAlign]="Name?.TextAlign" [Text]="_ProcedureDefinition.Name" [Visible]="Name?.Visible" data-tid="A327944">
+                        </hvl-text-box>
+                    </div>
+                </div>
+                <div class="row" data-tid="A327945">
+                    <label class="control-label col-sm-1" data-tid="A327946">
+                        Kod
+                    </label>
+                    <label class="control-label col-sm-1" data-tid="A327947">
+                        SUT Kodu
+                    </label>
+                    <label class="control-label col-sm-1" data-tid="A327948">
+                        HUV Kodu
+                    </label>
+                    <label class="control-label col-sm-1" data-tid="A327949">
+                        GİL Kodu
+                    </label>
+                </div>
+                <div class="row" data-tid="A327950">
+                    <div class="col-sm-1" data-tid="A327951">
+                        <hvl-text-box #Validation (TextChange)="onCodeChanged($event)" [BackColor]="Code?.BackColor" [CharacterCasing]="Code?.CharacterCasing" [Enabled]="Code?.Enabled" [Font]="Code?.Font" [ForeColor]="Code?.ForeColor" [height]="Code?.Height" [InputFormat]="Code?.InputFormat" [InputTurkishCharacter]="Code?.InputTurkishCharacter" [IsNonNumeric]="Code?.IsNonNumeric" [MultiLine]="Code?.Multiline" [ReadOnly]="Code?.ReadOnly" [Required]="Code?.Required" [TabIndex]="Code?.TabIndex" [TextAlign]="Code?.TextAlign" [Text]="_ProcedureDefinition.Code" [Visible]="Code?.Visible" data-tid="A327952">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-sm-1" data-tid="A327953">
+                        <hvl-text-box #Validation (TextChange)="ontxtSUTCodeChanged($event)" [BackColor]="txtSUTCode?.BackColor" [CharacterCasing]="txtSUTCode?.CharacterCasing" [Enabled]="txtSUTCode?.Enabled" [Font]="txtSUTCode?.Font" [ForeColor]="txtSUTCode?.ForeColor" [height]="txtSUTCode?.Height" [InputFormat]="txtSUTCode?.InputFormat" [InputTurkishCharacter]="txtSUTCode?.InputTurkishCharacter" [IsNonNumeric]="txtSUTCode?.IsNonNumeric" [MultiLine]="txtSUTCode?.Multiline" [ReadOnly]="txtSUTCode?.ReadOnly" [Required]="txtSUTCode?.Required" [TabIndex]="txtSUTCode?.TabIndex" [TextAlign]="txtSUTCode?.TextAlign" [Text]="_ProcedureDefinition.SUTCode" [Visible]="txtSUTCode?.Visible" data-tid="A327954">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-sm-1" data-tid="A327955">
+                        <hvl-text-box #Validation (TextChange)="onHUVCodeChanged($event)" [BackColor]="HUVCode?.BackColor" [CharacterCasing]="HUVCode?.CharacterCasing" [Enabled]="HUVCode?.Enabled" [Font]="HUVCode?.Font" [ForeColor]="HUVCode?.ForeColor" [height]="HUVCode?.Height" [InputFormat]="HUVCode?.InputFormat" [InputTurkishCharacter]="HUVCode?.InputTurkishCharacter" [IsNonNumeric]="HUVCode?.IsNonNumeric" [MultiLine]="HUVCode?.Multiline" [ReadOnly]="HUVCode?.ReadOnly" [Required]="HUVCode?.Required" [TabIndex]="HUVCode?.TabIndex" [TextAlign]="HUVCode?.TextAlign" [Text]="_ProcedureDefinition.HUVCode" [Visible]="HUVCode?.Visible" data-tid="A327956">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-sm-1" data-tid="A327957">
+                        <hvl-text-box #Validation (TextChange)="ontxtGILCodeChanged($event)" [BackColor]="txtGILCode?.BackColor" [CharacterCasing]="txtGILCode?.CharacterCasing" [Enabled]="txtGILCode?.Enabled" [Font]="txtGILCode?.Font" [ForeColor]="txtGILCode?.ForeColor" [height]="txtGILCode?.Height" [InputFormat]="txtGILCode?.InputFormat" [InputTurkishCharacter]="txtGILCode?.InputTurkishCharacter" [IsNonNumeric]="txtGILCode?.IsNonNumeric" [MultiLine]="txtGILCode?.Multiline" [ReadOnly]="txtGILCode?.ReadOnly" [Required]="txtGILCode?.Required" [TabIndex]="txtGILCode?.TabIndex" [TextAlign]="txtGILCode?.TextAlign" [Text]="_ProcedureDefinition.GILCode" [Visible]="txtGILCode?.Visible" data-tid="A327958">
+                        </hvl-text-box>
+                    </div>
+                </div>
+                <div class="row" data-tid="A327959">
+                    <label class="control-label col-sm-1" data-tid="A327960">
+                        SUT Puanı
+                    </label>
+                    <label class="control-label col-sm-1" data-tid="A327961">
+                        HUV Puanı
+                    </label>
+                    <label class="control-label col-sm-1" data-tid="A327962">
+                        GİL Puanı
+                    </label>
+                </div>
+                <div class="row" data-tid="A327963">
+                    <div class="col-sm-2" data-tid="A327964">
+                        <hvl-text-box #Validation (TextChange)="onSUTPointChanged($event)" [BackColor]="SUTPoint?.BackColor" [CharacterCasing]="SUTPoint?.CharacterCasing" [Enabled]="SUTPoint?.Enabled" [Font]="SUTPoint?.Font" [ForeColor]="SUTPoint?.ForeColor" [height]="SUTPoint?.Height" [InputFormat]="SUTPoint?.InputFormat" [InputTurkishCharacter]="SUTPoint?.InputTurkishCharacter" [IsNonNumeric]="SUTPoint?.IsNonNumeric" [MultiLine]="SUTPoint?.Multiline" [ReadOnly]="SUTPoint?.ReadOnly" [Required]="SUTPoint?.Required" [TabIndex]="SUTPoint?.TabIndex" [TextAlign]="SUTPoint?.TextAlign" [Text]="_ProcedureDefinition.SUTPoint" [Visible]="SUTPoint?.Visible" data-tid="A327965">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-sm-1" data-tid="A327966">
+                        <hvl-text-box #Validation (TextChange)="onHUVPointChanged($event)" [BackColor]="HUVPoint?.BackColor" [CharacterCasing]="HUVPoint?.CharacterCasing" [Enabled]="HUVPoint?.Enabled" [Font]="HUVPoint?.Font" [ForeColor]="HUVPoint?.ForeColor" [height]="HUVPoint?.Height" [InputFormat]="HUVPoint?.InputFormat" [InputTurkishCharacter]="HUVPoint?.InputTurkishCharacter" [IsNonNumeric]="HUVPoint?.IsNonNumeric" [MultiLine]="HUVPoint?.Multiline" [ReadOnly]="HUVPoint?.ReadOnly" [Required]="HUVPoint?.Required" [TabIndex]="HUVPoint?.TabIndex" [TextAlign]="HUVPoint?.TextAlign" [Text]="_ProcedureDefinition.HUVPoint" [Visible]="HUVPoint?.Visible" data-tid="A327967">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-sm-1" data-tid="A327968">
+                        <hvl-text-box #Validation (TextChange)="ontxtGILPointChanged($event)" [BackColor]="txtGILPoint?.BackColor" [CharacterCasing]="txtGILPoint?.CharacterCasing" [Enabled]="txtGILPoint?.Enabled" [Font]="txtGILPoint?.Font" [ForeColor]="txtGILPoint?.ForeColor" [height]="txtGILPoint?.Height" [InputFormat]="txtGILPoint?.InputFormat" [InputTurkishCharacter]="txtGILPoint?.InputTurkishCharacter" [IsNonNumeric]="txtGILPoint?.IsNonNumeric" [MultiLine]="txtGILPoint?.Multiline" [ReadOnly]="txtGILPoint?.ReadOnly" [Required]="txtGILPoint?.Required" [TabIndex]="txtGILPoint?.TabIndex" [TextAlign]="txtGILPoint?.TextAlign" [Text]="_ProcedureDefinition.GILPoint" [Visible]="txtGILPoint?.Visible" data-tid="A327969">
+                        </hvl-text-box>
+                    </div>
+                </div>
+                <div class="row" data-tid="A327970">
+                    <label class="control-label col-sm-1" data-tid="A327971">
+                        Açıklama
+                    </label>
+                </div>
+                <div class="row" data-tid="A327972">
+                    <div class="col-sm-5" data-tid="A327973">
+                        <hvl-text-box #Validation (TextChange)="onDescriptionChanged($event)" [BackColor]="Description?.BackColor" [CharacterCasing]="Description?.CharacterCasing" [Enabled]="Description?.Enabled" [Font]="Description?.Font" [ForeColor]="Description?.ForeColor" [height]="Description?.Height" [InputFormat]="Description?.InputFormat" [InputTurkishCharacter]="Description?.InputTurkishCharacter" [IsNonNumeric]="Description?.IsNonNumeric" [MultiLine]="Description?.Multiline" [ReadOnly]="Description?.ReadOnly" [Required]="Description?.Required" [TabIndex]="Description?.TabIndex" [TextAlign]="Description?.TextAlign" [Text]="_ProcedureDefinition.Description" [Visible]="Description?.Visible" data-tid="A327974">
+                        </hvl-text-box>
+                    </div>
+                </div>
+                <div class="row" data-tid="A327975">
+                    <label class="control-label col-sm-1" data-tid="A327976">
+                        SUT Eki
+                    </label>
+                </div>
+                <div class="row" data-tid="A327977">
+                    <div class="col-sm-3" data-tid="A327978">
+                        <hvl-enum-combobox #Validation (ValueChange)="onSUTAppendixChanged($event)" [BackColor]="SUTAppendix?.BackColor" [DataTypeName]="SUTAppendix?.DataTypeName" [Enabled]="SUTAppendix?.Enabled" [Font]="SUTAppendix?.Font" [ForeColor]="SUTAppendix?.ForeColor" [IncludeOnly]="SUTAppendix?.IncludeOnly" [ReadOnly]="SUTAppendix?.ReadOnly" [ShowClearButton]="SUTAppendix?.ShowClearButton" [SortBy]="SUTAppendix?.SortBy" [TabIndex]="SUTAppendix?.TabIndex" [Value]="_ProcedureDefinition.SUTAppendix" [Visible]="SUTAppendix?.Visible" data-tid="A327979">
+                        </hvl-enum-combobox>
+                    </div>
+                </div>
+                <div class="row" data-tid="A327980">
+                    <label class="control-label col-sm-1" data-tid="A327981">
+                        Acil
+                    </label>
+                    <label class="control-label col-sm-1" data-tid="A327982">
+                        Muayene
+                    </label>
+                    <label class="control-label col-sm-1" data-tid="A327983">
+                        Kontrol
+                    </label>
+                    <label class="control-label col-sm-1" data-tid="A327984">
+                        Yatış
+                    </label>
+                    <label class="control-label col-sm-1" data-tid="A327985">
+                        Günübirlik
+                    </label>
+                </div>
+                <div class="row" data-tid="A327986">
+                    <label class="control-label col-sm-2" data-tid="A327987">
+                        İşlem gün Adedi
+                    </label>
+                    <div class="col-sm-1" data-tid="A327988">
+                        <hvl-text-box #Validation (TextChange)="onEmergencyDayCountChanged($event)" [BackColor]="EmergencyDayCount?.BackColor" [CharacterCasing]="EmergencyDayCount?.CharacterCasing" [Enabled]="EmergencyDayCount?.Enabled" [Font]="EmergencyDayCount?.Font" [ForeColor]="EmergencyDayCount?.ForeColor" [height]="EmergencyDayCount?.Height" [InputFormat]="EmergencyDayCount?.InputFormat" [InputTurkishCharacter]="EmergencyDayCount?.InputTurkishCharacter" [IsNonNumeric]="EmergencyDayCount?.IsNonNumeric" [MultiLine]="EmergencyDayCount?.Multiline" [ReadOnly]="EmergencyDayCount?.ReadOnly" [Required]="EmergencyDayCount?.Required" [TabIndex]="EmergencyDayCount?.TabIndex" [TextAlign]="EmergencyDayCount?.TextAlign" [Text]="_ProcedureDefinition.EmergencyDayCount" [Visible]="EmergencyDayCount?.Visible" data-tid="A327989">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-sm-1" data-tid="A327990">
+                        <hvl-text-box #Validation (TextChange)="onExaminationDayCountChanged($event)" [BackColor]="ExaminationDayCount?.BackColor" [CharacterCasing]="ExaminationDayCount?.CharacterCasing" [Enabled]="ExaminationDayCount?.Enabled" [Font]="ExaminationDayCount?.Font" [ForeColor]="ExaminationDayCount?.ForeColor" [height]="ExaminationDayCount?.Height" [InputFormat]="ExaminationDayCount?.InputFormat" [InputTurkishCharacter]="ExaminationDayCount?.InputTurkishCharacter" [IsNonNumeric]="ExaminationDayCount?.IsNonNumeric" [MultiLine]="ExaminationDayCount?.Multiline" [ReadOnly]="ExaminationDayCount?.ReadOnly" [Required]="ExaminationDayCount?.Required" [TabIndex]="ExaminationDayCount?.TabIndex" [TextAlign]="ExaminationDayCount?.TextAlign" [Text]="_ProcedureDefinition.ExaminationDayCount" [Visible]="ExaminationDayCount?.Visible" data-tid="A327991">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-sm-1" data-tid="A327992">
+                        <hvl-text-box #Validation (TextChange)="onControlDayCountChanged($event)" [BackColor]="ControlDayCount?.BackColor" [CharacterCasing]="ControlDayCount?.CharacterCasing" [Enabled]="ControlDayCount?.Enabled" [Font]="ControlDayCount?.Font" [ForeColor]="ControlDayCount?.ForeColor" [height]="ControlDayCount?.Height" [InputFormat]="ControlDayCount?.InputFormat" [InputTurkishCharacter]="ControlDayCount?.InputTurkishCharacter" [IsNonNumeric]="ControlDayCount?.IsNonNumeric" [MultiLine]="ControlDayCount?.Multiline" [ReadOnly]="ControlDayCount?.ReadOnly" [Required]="ControlDayCount?.Required" [TabIndex]="ControlDayCount?.TabIndex" [TextAlign]="ControlDayCount?.TextAlign" [Text]="_ProcedureDefinition.ControlDayCount" [Visible]="ControlDayCount?.Visible" data-tid="A327993">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-sm-1" data-tid="A327994">
+                        <hvl-text-box #Validation (TextChange)="onInpatientDayCountChanged($event)" [BackColor]="InpatientDayCount?.BackColor" [CharacterCasing]="InpatientDayCount?.CharacterCasing" [Enabled]="InpatientDayCount?.Enabled" [Font]="InpatientDayCount?.Font" [ForeColor]="InpatientDayCount?.ForeColor" [height]="InpatientDayCount?.Height" [InputFormat]="InpatientDayCount?.InputFormat" [InputTurkishCharacter]="InpatientDayCount?.InputTurkishCharacter" [IsNonNumeric]="InpatientDayCount?.IsNonNumeric" [MultiLine]="InpatientDayCount?.Multiline" [ReadOnly]="InpatientDayCount?.ReadOnly" [Required]="InpatientDayCount?.Required" [TabIndex]="InpatientDayCount?.TabIndex" [TextAlign]="InpatientDayCount?.TextAlign" [Text]="_ProcedureDefinition.InpatientDayCount" [Visible]="InpatientDayCount?.Visible" data-tid="A327995">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-sm-1" data-tid="A327996">
+                        <hvl-text-box #Validation (TextChange)="onDailyDayCountChanged($event)" [BackColor]="DailyDayCount?.BackColor" [CharacterCasing]="DailyDayCount?.CharacterCasing" [Enabled]="DailyDayCount?.Enabled" [Font]="DailyDayCount?.Font" [ForeColor]="DailyDayCount?.ForeColor" [height]="DailyDayCount?.Height" [InputFormat]="DailyDayCount?.InputFormat" [InputTurkishCharacter]="DailyDayCount?.InputTurkishCharacter" [IsNonNumeric]="DailyDayCount?.IsNonNumeric" [MultiLine]="DailyDayCount?.Multiline" [ReadOnly]="DailyDayCount?.ReadOnly" [Required]="DailyDayCount?.Required" [TabIndex]="DailyDayCount?.TabIndex" [TextAlign]="DailyDayCount?.TextAlign" [Text]="_ProcedureDefinition.DailyDayCount" [Visible]="DailyDayCount?.Visible" data-tid="A327997">
+                        </hvl-text-box>
+                    </div>
+                </div>
+                <div class="row" data-tid="A327998">
+                    <div class="col-sm-12" data-tid="A327999">
+                        <hvl-datagrid id="ismail" (CellValueChange)="GridSubProcedures" [AllowUserToAddRows]="_ProcedureDefinition.SubProcedureDefinitions?.AllowUserToAddRows" [AllowUserToDeleteRows]="_ProcedureDefinition.SubProcedureDefinitions?.AllowUserToDeleteRows" [Columns]="GridSubProceduresColumns" [dataSource]="_ProcedureDefinition?.SubProcedureDefinitions" [DeleteButtonWidth]="_ProcedureDefinition.SubProcedureDefinitions?.DeleteButtonWidth" [DisplayExpressionsCache]="_ProcedureDefinition?.SubProcedureDefinitions?.ListDefDisplayExpressions" [EnableFilter]="_ProcedureDefinition.SubProcedureDefinitions?.ShowFilterRow" [FilterColumnName]="_ProcedureDefinition.SubProcedureDefinitions?.FilterColumnName" [FilterLabel]="_ProcedureDefinition.SubProcedureDefinitions?.FilterLabel" [Filter]="_ProcedureDefinition.SubProcedureDefinitions?.Filter" [height]="300" [IsFilterLabelSingleLine]="_ProcedureDefinition.SubProcedureDefinitions?.IsFilterLabelSingleLine" [ShowColumnHeaders]="_ProcedureDefinition.SubProcedureDefinitions?.ColumnHeadersVisible" [ShowFilterCombo]="_ProcedureDefinition.SubProcedureDefinitions?.ShowFilterCombo" [ShowTotalNumberOfRows]="_ProcedureDefinition.SubProcedureDefinitions?.ShowTotalNumberOfRows" data-tid="A328000">
+                        </hvl-datagrid>
+                    </div>
+                </div>
+                <div class="row" data-tid="A328001">
+                    <label class="control-label col-sm-2" data-tid="A328002">
+                        Yasaklı Kabul Grubu
+                    </label>
+                    <div class="col-sm-1" data-tid="A328003">
+                        <hvl-checkbox #Validation (ValueChange)="onForbiddenForEmergencyChanged($event)" [AllowThreeState]="ForbiddenForEmergency?.ThreeState" [BackColor]="ForbiddenForEmergency?.BackColor" [Enabled]="ForbiddenForEmergency?.Enabled" [Font]="ForbiddenForEmergency?.Font" [ForeColor]="ForbiddenForEmergency?.ForeColor" [IsTitleLeft]="ForbiddenForEmergency?.IsTitleLeft" [Margin]="ForbiddenForEmergency?.Margin" [ReadOnly]="ForbiddenForEmergency?.ReadOnly" [TabIndex]="ForbiddenForEmergency?.TabIndex" [TitleTopPadding]="ForbiddenForEmergency?.TitleTopPadding" [Title]="ForbiddenForEmergency?.Title" [Value]="_ProcedureDefinition.ForbiddenForEmergency" [Visible]="ForbiddenForEmergency?.Visible" data-tid="A328004">
+                        </hvl-checkbox>
+                    </div>
+                    <div class="col-sm-1" data-tid="A328005">
+                        <hvl-checkbox #Validation (ValueChange)="onForbiddenForExaminationChanged($event)" [AllowThreeState]="ForbiddenForExamination?.ThreeState" [BackColor]="ForbiddenForExamination?.BackColor" [Enabled]="ForbiddenForExamination?.Enabled" [Font]="ForbiddenForExamination?.Font" [ForeColor]="ForbiddenForExamination?.ForeColor" [IsTitleLeft]="ForbiddenForExamination?.IsTitleLeft" [Margin]="ForbiddenForExamination?.Margin" [ReadOnly]="ForbiddenForExamination?.ReadOnly" [TabIndex]="ForbiddenForExamination?.TabIndex" [TitleTopPadding]="ForbiddenForExamination?.TitleTopPadding" [Title]="ForbiddenForExamination?.Title" [Value]="_ProcedureDefinition.ForbiddenForExamination" [Visible]="ForbiddenForExamination?.Visible" data-tid="A328006">
+                        </hvl-checkbox>
+                    </div>
+                    <div class="col-sm-1" data-tid="A328007">
+                        <hvl-checkbox #Validation (ValueChange)="onForbiddenForControlChanged($event)" [AllowThreeState]="ForbiddenForControl?.ThreeState" [BackColor]="ForbiddenForControl?.BackColor" [Enabled]="ForbiddenForControl?.Enabled" [Font]="ForbiddenForControl?.Font" [ForeColor]="ForbiddenForControl?.ForeColor" [IsTitleLeft]="ForbiddenForControl?.IsTitleLeft" [Margin]="ForbiddenForControl?.Margin" [ReadOnly]="ForbiddenForControl?.ReadOnly" [TabIndex]="ForbiddenForControl?.TabIndex" [TitleTopPadding]="ForbiddenForControl?.TitleTopPadding" [Title]="ForbiddenForControl?.Title" [Value]="_ProcedureDefinition.ForbiddenForControl" [Visible]="ForbiddenForControl?.Visible" data-tid="A328008">
+                        </hvl-checkbox>
+                    </div>
+                    <div class="col-sm-1" data-tid="A328009">
+                        <hvl-checkbox #Validation (ValueChange)="onForbiddenForInpatientChanged($event)" [AllowThreeState]="ForbiddenForInpatient?.ThreeState" [BackColor]="ForbiddenForInpatient?.BackColor" [Enabled]="ForbiddenForInpatient?.Enabled" [Font]="ForbiddenForInpatient?.Font" [ForeColor]="ForbiddenForInpatient?.ForeColor" [IsTitleLeft]="ForbiddenForInpatient?.IsTitleLeft" [Margin]="ForbiddenForInpatient?.Margin" [ReadOnly]="ForbiddenForInpatient?.ReadOnly" [TabIndex]="ForbiddenForInpatient?.TabIndex" [TitleTopPadding]="ForbiddenForInpatient?.TitleTopPadding" [Title]="ForbiddenForInpatient?.Title" [Value]="_ProcedureDefinition.ForbiddenForInpatient" [Visible]="ForbiddenForInpatient?.Visible" data-tid="A328010">
+                        </hvl-checkbox>
+                    </div>
+                    <div class="col-sm-1" data-tid="A328011">
+                        <hvl-checkbox #Validation (ValueChange)="onForbiddenForDailyChanged($event)" [AllowThreeState]="ForbiddenForDaily?.ThreeState" [BackColor]="ForbiddenForDaily?.BackColor" [Enabled]="ForbiddenForDaily?.Enabled" [Font]="ForbiddenForDaily?.Font" [ForeColor]="ForbiddenForDaily?.ForeColor" [IsTitleLeft]="ForbiddenForDaily?.IsTitleLeft" [Margin]="ForbiddenForDaily?.Margin" [ReadOnly]="ForbiddenForDaily?.ReadOnly" [TabIndex]="ForbiddenForDaily?.TabIndex" [TitleTopPadding]="ForbiddenForDaily?.TitleTopPadding" [Title]="ForbiddenForDaily?.Title" [Value]="_ProcedureDefinition.ForbiddenForDaily" [Visible]="ForbiddenForDaily?.Visible" data-tid="A328012">
+                        </hvl-checkbox>
+                    </div>
+                </div>
+                <div class="row" data-tid="A328013">
+                    <label class="control-label col-sm-2" data-tid="A328014">
+                        Bağlı Olduğu Hizmet Grubu
+                    </label>
+                </div>
+                <div class="row" data-tid="A328015">
+                    <div class="col-sm-5" data-tid="A328016">
+                        <hvl-list-box #Validation (SelectedObjectChange)="onttobjectlistbox1Changed($event)" [AutoCompleteDialogHeight]="ttobjectlistbox1?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ttobjectlistbox1?.AutoCompleteDialogWidth" [AutoCompleteMode]="ttobjectlistbox1?.AutoCompleteMode" [BackColor]="ttobjectlistbox1?.BackColor" [DefinitionName]="ttobjectlistbox1?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="ttobjectlistbox1?.Enabled" [Font]="ttobjectlistbox1?.Font" [ForeColor]="ttobjectlistbox1?.ForeColor" [ListFilterExpression]="ttobjectlistbox1?.ListFilterExpression" [MinSearchLength]="ttobjectlistbox1?.MinSearchLength" [PopupDialogFieldConfig]="ttobjectlistbox1?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ttobjectlistbox1?.PopupDialogGridColumns" [PopupDialogHeight]="ttobjectlistbox1?.PopupDialogHeight" [PopupDialogTitle]="ttobjectlistbox1?.PopupDialogTitle" [PopupDialogWidth]="ttobjectlistbox1?.PopupDialogWidth" [ReadOnly]="ttobjectlistbox1?.ReadOnly" [SearchMode]="ttobjectlistbox1?.SearchMode" [SearchTimeout]="ttobjectlistbox1?.SearchTimeout" [SelectedObject]="_ProcedureDefinition.ProcedureTree" [TabIndex]="ttobjectlistbox1?.TabIndex" [Visible]="ttobjectlistbox1?.Visible" [width]="ttobjectlistbox1?.Width" data-tid="A328017">
+                        </hvl-list-box>
+                    </div>
+                </div>
+                <div class="row" data-tid="A328018">
+                    <label class="control-label col-sm-2" data-tid="A328019">
+                        Paket Hizmeti
+                    </label>
+                </div>
+                <div class="row" data-tid="A328020">
+                    <div class="col-sm-5" data-tid="A328021">
+                        <hvl-list-box #Validation (SelectedObjectChange)="onPackageProcedureChanged($event)" [AutoCompleteDialogHeight]="PackageProcedure?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="PackageProcedure?.AutoCompleteDialogWidth" [AutoCompleteMode]="PackageProcedure?.AutoCompleteMode" [BackColor]="PackageProcedure?.BackColor" [DefinitionName]="PackageProcedure?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="PackageProcedure?.Enabled" [Font]="PackageProcedure?.Font" [ForeColor]="PackageProcedure?.ForeColor" [ListFilterExpression]="PackageProcedure?.ListFilterExpression" [MinSearchLength]="PackageProcedure?.MinSearchLength" [PopupDialogFieldConfig]="PackageProcedure?.PopupDialogFieldConfig" [PopupDialogGridColumns]="PackageProcedure?.PopupDialogGridColumns" [PopupDialogHeight]="PackageProcedure?.PopupDialogHeight" [PopupDialogTitle]="PackageProcedure?.PopupDialogTitle" [PopupDialogWidth]="PackageProcedure?.PopupDialogWidth" [ReadOnly]="PackageProcedure?.ReadOnly" [SearchMode]="PackageProcedure?.SearchMode" [SearchTimeout]="PackageProcedure?.SearchTimeout" [SelectedObject]="_ProcedureDefinition.PackageProcedure" [TabIndex]="PackageProcedure?.TabIndex" [Visible]="PackageProcedure?.Visible" [width]="PackageProcedure?.Width" data-tid="A328022">
+                        </hvl-list-box>
+                    </div>
+                </div>
+                <div class="row" data-tid="A328023">
+                    <label class="control-label col-sm-2" data-tid="A328024">
+                        Zorunlu Tanılar
+                    </label>
+                </div>
+
+                <div class="row" data-tid="A328025">
+                    <div class="col-sm-12" data-tid="A328026">
+                        <hvl-datagrid (CellValueChange)="GridRequiredDiagnosis" [AllowUserToAddRows]="_ProcedureDefinition.RequiredDiagnoseProcedures?.AllowUserToAddRows" [AllowUserToDeleteRows]="_ProcedureDefinition.RequiredDiagnoseProcedures?.AllowUserToDeleteRows" [Columns]="_ProcedureDefinition.RequiredDiagnoseProceduresColumns" [dataSource]="dummyModel?.dataMember" [DeleteButtonWidth]="_ProcedureDefinition.RequiredDiagnoseProcedures?.DeleteButtonWidth" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [EnableFilter]="_ProcedureDefinition.RequiredDiagnoseProcedures?.ShowFilterRow" [FilterColumnName]="_ProcedureDefinition.RequiredDiagnoseProcedures?.FilterColumnName" [FilterLabel]="_ProcedureDefinition.RequiredDiagnoseProcedures?.FilterLabel" [Filter]="_ProcedureDefinition.RequiredDiagnoseProcedures?.Filter" [height]="_ProcedureDefinition.RequiredDiagnoseProcedures?.Height" [IsFilterLabelSingleLine]="_ProcedureDefinition.RequiredDiagnoseProcedures?.IsFilterLabelSingleLine" [ShowColumnHeaders]="_ProcedureDefinition.RequiredDiagnoseProcedures?.ColumnHeadersVisible" [ShowFilterCombo]="_ProcedureDefinition.RequiredDiagnoseProcedures?.ShowFilterCombo" [ShowTotalNumberOfRows]="_ProcedureDefinition.RequiredDiagnoseProcedures?.ShowTotalNumberOfRows" data-tid="A328027">
+                        </hvl-datagrid>
+                    </div>
+                </div>
+
+                <div class="row" data-tid="A328028">
+                    <label class="control-label col-sm-1" data-tid="A328029">
+                        GİL
+                    </label>
+                </div>
+                <div class="row" data-tid="A328030">
+                    <div class="col-sm-5" data-tid="A328031">
+                        <hvl-list-box #Validation (SelectedObjectChange)="onGILDefinitionChanged($event)" [AutoCompleteDialogHeight]="GILDefinition?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="GILDefinition?.AutoCompleteDialogWidth" [AutoCompleteMode]="GILDefinition?.AutoCompleteMode" [BackColor]="GILDefinition?.BackColor" [DefinitionName]="GILDefinition?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="GILDefinition?.Enabled" [Font]="GILDefinition?.Font" [ForeColor]="GILDefinition?.ForeColor" [ListFilterExpression]="GILDefinition?.ListFilterExpression" [MinSearchLength]="GILDefinition?.MinSearchLength" [PopupDialogFieldConfig]="GILDefinition?.PopupDialogFieldConfig" [PopupDialogGridColumns]="GILDefinition?.PopupDialogGridColumns" [PopupDialogHeight]="GILDefinition?.PopupDialogHeight" [PopupDialogTitle]="GILDefinition?.PopupDialogTitle" [PopupDialogWidth]="GILDefinition?.PopupDialogWidth" [ReadOnly]="GILDefinition?.ReadOnly" [SearchMode]="GILDefinition?.SearchMode" [SearchTimeout]="GILDefinition?.SearchTimeout" [SelectedObject]="_ProcedureDefinition.GILDefinition" [TabIndex]="GILDefinition?.TabIndex" [Visible]="GILDefinition?.Visible" [width]="GILDefinition?.Width" data-tid="A328032">
+                        </hvl-list-box>
+                    </div>
+                    <label class="control-label col-sm-2" data-tid="A328033">
+                        Kısa Ad
+                    </label>
+                    <label class="control-label col-sm-1" data-tid="A328034">
+                        No
+                    </label>
+                </div>
+                <div class="row" data-tid="A328035">
+                    <div class="col-sm-2" data-tid="A328036">
+                        <hvl-text-box #Validation (TextChange)="onQrefChanged($event)" [BackColor]="Qref?.BackColor" [CharacterCasing]="Qref?.CharacterCasing" [Enabled]="Qref?.Enabled" [Font]="Qref?.Font" [ForeColor]="Qref?.ForeColor" [height]="Qref?.Height" [InputFormat]="Qref?.InputFormat" [InputTurkishCharacter]="Qref?.InputTurkishCharacter" [IsNonNumeric]="Qref?.IsNonNumeric" [MultiLine]="Qref?.Multiline" [ReadOnly]="Qref?.ReadOnly" [Required]="Qref?.Required" [TabIndex]="Qref?.TabIndex" [TextAlign]="Qref?.TextAlign" [Text]="_ProcedureDefinition.Qref" [Visible]="Qref?.Visible" data-tid="A328037">
+                        </hvl-text-box>
+                    </div>
+                    <div class="col-sm-1" data-tid="A328038">
+                        <hvl-text-box #Validation (TextChange)="onIDChanged($event)" [BackColor]="ID?.BackColor" [CharacterCasing]="ID?.CharacterCasing" [Enabled]="ID?.Enabled" [Font]="ID?.Font" [ForeColor]="ID?.ForeColor" [height]="ID?.Height" [InputFormat]="ID?.InputFormat" [InputTurkishCharacter]="ID?.InputTurkishCharacter" [IsNonNumeric]="ID?.IsNonNumeric" [MultiLine]="ID?.Multiline" [ReadOnly]="ID?.ReadOnly" [Required]="ID?.Required" [TabIndex]="ID?.TabIndex" [TextAlign]="ID?.TextAlign" [Text]="_ProcedureDefinition.ID" [Visible]="ID?.Visible" data-tid="A328039">
+                        </hvl-text-box>
+                    </div>
+                </div>
+                <div class="row" data-tid="A328040">
+                    <label class="control-label col-sm-2" data-tid="A328041">
+                        Muhasebe Gelir Hesap Kırınımı
+                    </label>
+                </div>
+                <div class="row" data-tid="A328042">
+                    <div class="col-sm-5" data-tid="A328043">
+                        <hvl-list-box #Validation (SelectedObjectChange)="onREVENUESUBACCOUNTCODEChanged($event)" [AutoCompleteDialogHeight]="REVENUESUBACCOUNTCODE?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="REVENUESUBACCOUNTCODE?.AutoCompleteDialogWidth" [AutoCompleteMode]="REVENUESUBACCOUNTCODE?.AutoCompleteMode" [BackColor]="REVENUESUBACCOUNTCODE?.BackColor" [DefinitionName]="REVENUESUBACCOUNTCODE?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="REVENUESUBACCOUNTCODE?.Enabled" [Font]="REVENUESUBACCOUNTCODE?.Font" [ForeColor]="REVENUESUBACCOUNTCODE?.ForeColor" [ListFilterExpression]="REVENUESUBACCOUNTCODE?.ListFilterExpression" [MinSearchLength]="REVENUESUBACCOUNTCODE?.MinSearchLength" [PopupDialogFieldConfig]="REVENUESUBACCOUNTCODE?.PopupDialogFieldConfig" [PopupDialogGridColumns]="REVENUESUBACCOUNTCODE?.PopupDialogGridColumns" [PopupDialogHeight]="REVENUESUBACCOUNTCODE?.PopupDialogHeight" [PopupDialogTitle]="REVENUESUBACCOUNTCODE?.PopupDialogTitle" [PopupDialogWidth]="REVENUESUBACCOUNTCODE?.PopupDialogWidth" [ReadOnly]="REVENUESUBACCOUNTCODE?.ReadOnly" [SearchMode]="REVENUESUBACCOUNTCODE?.SearchMode" [SearchTimeout]="REVENUESUBACCOUNTCODE?.SearchTimeout" [SelectedObject]="_ProcedureDefinition.RevenueSubAccountCode" [TabIndex]="REVENUESUBACCOUNTCODE?.TabIndex" [Visible]="REVENUESUBACCOUNTCODE?.Visible" [width]="REVENUESUBACCOUNTCODE?.Width" data-tid="A328044">
+                        </hvl-list-box>
+                    </div>
+                </div>
+                <label class="control-label col-sm-5" data-tid="A328045">
+                    Birlikte Ücretlendirilecek Hizmetler
+                </label>
+            </dxi-item>
+			<dxi-item class="tabpanel-item" title="Medula" data-tid="A328046">
+				<div class="row" data-tid="A328047">
+					<label class="control-label col-sm-3" data-tid="A328048">
+						Hizmet Kayıt Grubu					</label>
+					<label class="control-label col-sm-3" data-tid="A328049">
+						Takibinin Provizyon Tipini Güncelle					</label>
+				</div>
+				<div class="row" data-tid="A328050">
+					<hvl-group-box class="col-sm-4" [Text]="MedulaProvisionProperties.Text" data-tid="A328051">
+						<div class="row" data-tid="A328052">
+							<div class="col-sm-3" data-tid="A328053">
+								<hvl-checkbox #Validation (ValueChange)="onDailyMedulaProvisionNecessityChanged($event)" [AllowThreeState]="DailyMedulaProvisionNecessity?.ThreeState" [BackColor]="DailyMedulaProvisionNecessity?.BackColor" [Enabled]="DailyMedulaProvisionNecessity?.Enabled" [Font]="DailyMedulaProvisionNecessity?.Font" [ForeColor]="DailyMedulaProvisionNecessity?.ForeColor" [IsTitleLeft]="DailyMedulaProvisionNecessity?.IsTitleLeft" [Margin]="DailyMedulaProvisionNecessity?.Margin" [ReadOnly]="DailyMedulaProvisionNecessity?.ReadOnly" [TabIndex]="DailyMedulaProvisionNecessity?.TabIndex" [TitleTopPadding]="DailyMedulaProvisionNecessity?.TitleTopPadding" [Title]="DailyMedulaProvisionNecessity?.Title" [Value]="_ProcedureDefinition.DailyMedulaProvisionNecessity" [Visible]="DailyMedulaProvisionNecessity?.Visible" data-tid="A328054">
+								</hvl-checkbox>
+							</div>
+						</div>
+						<div class="row" data-tid="A328055">
+							<label class="control-label col-sm-3" data-tid="A328056">
+								Tedavi Tipi							</label>
+						</div>
+						<div class="row" data-tid="A328057">
+							<div class="col-sm-11" data-tid="A328058">
+								<hvl-list-box #Validation (SelectedObjectChange)="onttobjectlistbox2Changed($event)" [AutoCompleteDialogHeight]="ttobjectlistbox2?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ttobjectlistbox2?.AutoCompleteDialogWidth" [AutoCompleteMode]="ttobjectlistbox2?.AutoCompleteMode" [BackColor]="ttobjectlistbox2?.BackColor" [DefinitionName]="ttobjectlistbox2?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="ttobjectlistbox2?.Enabled" [Font]="ttobjectlistbox2?.Font" [ForeColor]="ttobjectlistbox2?.ForeColor" [ListFilterExpression]="ttobjectlistbox2?.ListFilterExpression" [MinSearchLength]="ttobjectlistbox2?.MinSearchLength" [PopupDialogFieldConfig]="ttobjectlistbox2?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ttobjectlistbox2?.PopupDialogGridColumns" [PopupDialogHeight]="ttobjectlistbox2?.PopupDialogHeight" [PopupDialogTitle]="ttobjectlistbox2?.PopupDialogTitle" [PopupDialogWidth]="ttobjectlistbox2?.PopupDialogWidth" [ReadOnly]="ttobjectlistbox2?.ReadOnly" [SearchMode]="ttobjectlistbox2?.SearchMode" [SearchTimeout]="ttobjectlistbox2?.SearchTimeout" [SelectedObject]="_ProcedureDefinition.MedulaProvisionTedaviTipi" [TabIndex]="ttobjectlistbox2?.TabIndex" [Visible]="ttobjectlistbox2?.Visible" [width]="ttobjectlistbox2?.Width" data-tid="A328059">
+								</hvl-list-box>
+							</div>
+						</div>
+					</hvl-group-box>
+				</div>
+				<div class="row" data-tid="A328060">
+					<div class="col-sm-4" data-tid="A328061">
+						<hvl-enum-combobox #Validation (ValueChange)="onMedulaProcedureTypeChanged($event)" [BackColor]="MedulaProcedureType?.BackColor" [DataTypeName]="MedulaProcedureType?.DataTypeName" [Enabled]="MedulaProcedureType?.Enabled" [Font]="MedulaProcedureType?.Font" [ForeColor]="MedulaProcedureType?.ForeColor" [IncludeOnly]="MedulaProcedureType?.IncludeOnly" [ReadOnly]="MedulaProcedureType?.ReadOnly" [ShowClearButton]="MedulaProcedureType?.ShowClearButton" [SortBy]="MedulaProcedureType?.SortBy" [TabIndex]="MedulaProcedureType?.TabIndex" [Value]="_ProcedureDefinition.MedulaProcedureType" [Visible]="MedulaProcedureType?.Visible" data-tid="A328062">
+						</hvl-enum-combobox>
+					</div>
+					<div class="col-sm-3" data-tid="A328063">
+						<hvl-list-box #Validation (SelectedObjectChange)="onProvizyonTipiChanged($event)" [AutoCompleteDialogHeight]="ProvizyonTipi?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ProvizyonTipi?.AutoCompleteDialogWidth" [AutoCompleteMode]="ProvizyonTipi?.AutoCompleteMode" [BackColor]="ProvizyonTipi?.BackColor" [DefinitionName]="ProvizyonTipi?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="ProvizyonTipi?.Enabled" [Font]="ProvizyonTipi?.Font" [ForeColor]="ProvizyonTipi?.ForeColor" [ListFilterExpression]="ProvizyonTipi?.ListFilterExpression" [MinSearchLength]="ProvizyonTipi?.MinSearchLength" [PopupDialogFieldConfig]="ProvizyonTipi?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ProvizyonTipi?.PopupDialogGridColumns" [PopupDialogHeight]="ProvizyonTipi?.PopupDialogHeight" [PopupDialogTitle]="ProvizyonTipi?.PopupDialogTitle" [PopupDialogWidth]="ProvizyonTipi?.PopupDialogWidth" [ReadOnly]="ProvizyonTipi?.ReadOnly" [SearchMode]="ProvizyonTipi?.SearchMode" [SearchTimeout]="ProvizyonTipi?.SearchTimeout" [SelectedObject]="_ProcedureDefinition.ProvizyonTipi" [TabIndex]="ProvizyonTipi?.TabIndex" [Visible]="ProvizyonTipi?.Visible" [width]="ProvizyonTipi?.Width" data-tid="A328064">
+						</hvl-list-box>
+					</div>
+				</div>
+				<div class="row" data-tid="A328065">
+					<label class="control-label col-sm-3" data-tid="A328066">
+						Hizmet Kaydı İçin Rapor Zorunluluk Durumu					</label>
+					<label class="control-label col-sm-3" data-tid="A328067">
+						Takibinin Takip Tipini Güncelle					</label>
+				</div>
+				<div class="row" data-tid="A328068">
+					<div class="col-sm-4" data-tid="A328069">
+						<hvl-enum-combobox #Validation (ValueChange)="onMedulaReportNecessityChanged($event)" [BackColor]="MedulaReportNecessity?.BackColor" [DataTypeName]="MedulaReportNecessity?.DataTypeName" [Enabled]="MedulaReportNecessity?.Enabled" [Font]="MedulaReportNecessity?.Font" [ForeColor]="MedulaReportNecessity?.ForeColor" [IncludeOnly]="MedulaReportNecessity?.IncludeOnly" [ReadOnly]="MedulaReportNecessity?.ReadOnly" [ShowClearButton]="MedulaReportNecessity?.ShowClearButton" [SortBy]="MedulaReportNecessity?.SortBy" [TabIndex]="MedulaReportNecessity?.TabIndex" [Value]="_ProcedureDefinition.MedulaReportNecessity" [Visible]="MedulaReportNecessity?.Visible" data-tid="A328070">
+						</hvl-enum-combobox>
+					</div>
+					<div class="col-sm-3" data-tid="A328071">
+						<hvl-list-box #Validation (SelectedObjectChange)="onTakipTipiChanged($event)" [AutoCompleteDialogHeight]="TakipTipi?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="TakipTipi?.AutoCompleteDialogWidth" [AutoCompleteMode]="TakipTipi?.AutoCompleteMode" [BackColor]="TakipTipi?.BackColor" [DefinitionName]="TakipTipi?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="TakipTipi?.Enabled" [Font]="TakipTipi?.Font" [ForeColor]="TakipTipi?.ForeColor" [ListFilterExpression]="TakipTipi?.ListFilterExpression" [MinSearchLength]="TakipTipi?.MinSearchLength" [PopupDialogFieldConfig]="TakipTipi?.PopupDialogFieldConfig" [PopupDialogGridColumns]="TakipTipi?.PopupDialogGridColumns" [PopupDialogHeight]="TakipTipi?.PopupDialogHeight" [PopupDialogTitle]="TakipTipi?.PopupDialogTitle" [PopupDialogWidth]="TakipTipi?.PopupDialogWidth" [ReadOnly]="TakipTipi?.ReadOnly" [SearchMode]="TakipTipi?.SearchMode" [SearchTimeout]="TakipTipi?.SearchTimeout" [SelectedObject]="_ProcedureDefinition.TakipTipi" [TabIndex]="TakipTipi?.TabIndex" [Visible]="TakipTipi?.Visible" [width]="TakipTipi?.Width" data-tid="A328072">
+						</hvl-list-box>
+					</div>
+				</div>
+				<div class="row" data-tid="A328073">
+					<label class="control-label col-sm-3" data-tid="A328074">
+						Özel Durum					</label>
+					<label class="control-label col-sm-3" data-tid="A328075">
+						Takibinin Tedavi Tipini Güncelle					</label>
+				</div>
+				<div class="row" data-tid="A328076">
+					<div class="col-sm-4" data-tid="A328077">
+						<hvl-list-box #Validation (SelectedObjectChange)="onOzelDurumChanged($event)" [AutoCompleteDialogHeight]="OzelDurum?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="OzelDurum?.AutoCompleteDialogWidth" [AutoCompleteMode]="OzelDurum?.AutoCompleteMode" [BackColor]="OzelDurum?.BackColor" [DefinitionName]="OzelDurum?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="OzelDurum?.Enabled" [Font]="OzelDurum?.Font" [ForeColor]="OzelDurum?.ForeColor" [ListFilterExpression]="OzelDurum?.ListFilterExpression" [MinSearchLength]="OzelDurum?.MinSearchLength" [PopupDialogFieldConfig]="OzelDurum?.PopupDialogFieldConfig" [PopupDialogGridColumns]="OzelDurum?.PopupDialogGridColumns" [PopupDialogHeight]="OzelDurum?.PopupDialogHeight" [PopupDialogTitle]="OzelDurum?.PopupDialogTitle" [PopupDialogWidth]="OzelDurum?.PopupDialogWidth" [ReadOnly]="OzelDurum?.ReadOnly" [SearchMode]="OzelDurum?.SearchMode" [SearchTimeout]="OzelDurum?.SearchTimeout" [SelectedObject]="_ProcedureDefinition.OzelDurum" [TabIndex]="OzelDurum?.TabIndex" [Visible]="OzelDurum?.Visible" [width]="OzelDurum?.Width" data-tid="A328078">
+						</hvl-list-box>
+					</div>
+					<div class="col-sm-3" data-tid="A328079">
+						<hvl-list-box #Validation (SelectedObjectChange)="onTedaviTipiChanged($event)" [AutoCompleteDialogHeight]="TedaviTipi?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="TedaviTipi?.AutoCompleteDialogWidth" [AutoCompleteMode]="TedaviTipi?.AutoCompleteMode" [BackColor]="TedaviTipi?.BackColor" [DefinitionName]="TedaviTipi?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="TedaviTipi?.Enabled" [Font]="TedaviTipi?.Font" [ForeColor]="TedaviTipi?.ForeColor" [ListFilterExpression]="TedaviTipi?.ListFilterExpression" [MinSearchLength]="TedaviTipi?.MinSearchLength" [PopupDialogFieldConfig]="TedaviTipi?.PopupDialogFieldConfig" [PopupDialogGridColumns]="TedaviTipi?.PopupDialogGridColumns" [PopupDialogHeight]="TedaviTipi?.PopupDialogHeight" [PopupDialogTitle]="TedaviTipi?.PopupDialogTitle" [PopupDialogWidth]="TedaviTipi?.PopupDialogWidth" [ReadOnly]="TedaviTipi?.ReadOnly" [SearchMode]="TedaviTipi?.SearchMode" [SearchTimeout]="TedaviTipi?.SearchTimeout" [SelectedObject]="_ProcedureDefinition.TedaviTipi" [TabIndex]="TedaviTipi?.TabIndex" [Visible]="TedaviTipi?.Visible" [width]="TedaviTipi?.Width" data-tid="A328080">
+						</hvl-list-box>
+					</div>
+				</div>
+				<div class="row" data-tid="A328081">
+					<label class="control-label col-sm-3" data-tid="A328082">
+						Doktor					</label>
+				</div>
+				<div class="row" data-tid="A328083">
+					<div class="col-sm-3" data-tid="A328084">
+						checkbox group						<div class="row" data-tid="A328085">
+							<div class="col-sm-9" data-tid="A328086">
+								<hvl-checkbox #Validation (ValueChange)="onPreProcedureEntryNecessityChanged($event)" [AllowThreeState]="PreProcedureEntryNecessity?.ThreeState" [BackColor]="PreProcedureEntryNecessity?.BackColor" [Enabled]="PreProcedureEntryNecessity?.Enabled" [Font]="PreProcedureEntryNecessity?.Font" [ForeColor]="PreProcedureEntryNecessity?.ForeColor" [IsTitleLeft]="PreProcedureEntryNecessity?.IsTitleLeft" [Margin]="PreProcedureEntryNecessity?.Margin" [ReadOnly]="PreProcedureEntryNecessity?.ReadOnly" [TabIndex]="PreProcedureEntryNecessity?.TabIndex" [TitleTopPadding]="PreProcedureEntryNecessity?.TitleTopPadding" [Title]="PreProcedureEntryNecessity?.Title" [Value]="_ProcedureDefinition.PreProcedureEntryNecessity" [Visible]="PreProcedureEntryNecessity?.Visible" data-tid="A328087">
+								</hvl-checkbox>
+							</div>
+						</div>
+						<div class="col-sm-12" data-tid="A328088">
+							<hvl-checkbox #Validation (ValueChange)="onCreateInMedulaDontSendStateChanged($event)" [AllowThreeState]="CreateInMedulaDontSendState?.ThreeState" [BackColor]="CreateInMedulaDontSendState?.BackColor" [Enabled]="CreateInMedulaDontSendState?.Enabled" [Font]="CreateInMedulaDontSendState?.Font" [ForeColor]="CreateInMedulaDontSendState?.ForeColor" [IsTitleLeft]="CreateInMedulaDontSendState?.IsTitleLeft" [Margin]="CreateInMedulaDontSendState?.Margin" [ReadOnly]="CreateInMedulaDontSendState?.ReadOnly" [TabIndex]="CreateInMedulaDontSendState?.TabIndex" [TitleTopPadding]="CreateInMedulaDontSendState?.TitleTopPadding" [Title]="CreateInMedulaDontSendState?.Title" [Value]="_ProcedureDefinition.CreateInMedulaDontSendState" [Visible]="CreateInMedulaDontSendState?.Visible" data-tid="A328089">
+							</hvl-checkbox>
+						</div>
+					</div>
+				</div>
+				<div class="row" data-tid="A328090">
+					<div class="col-sm-3" data-tid="A328091">
+						<hvl-list-box #Validation (SelectedObjectChange)="onDoctorListBoxChanged($event)" [AutoCompleteDialogHeight]="DoctorListBox?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="DoctorListBox?.AutoCompleteDialogWidth" [AutoCompleteMode]="DoctorListBox?.AutoCompleteMode" [BackColor]="DoctorListBox?.BackColor" [DefinitionName]="DoctorListBox?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="DoctorListBox?.Enabled" [Font]="DoctorListBox?.Font" [ForeColor]="DoctorListBox?.ForeColor" [ListFilterExpression]="DoctorListBox?.ListFilterExpression" [MinSearchLength]="DoctorListBox?.MinSearchLength" [PopupDialogFieldConfig]="DoctorListBox?.PopupDialogFieldConfig" [PopupDialogGridColumns]="DoctorListBox?.PopupDialogGridColumns" [PopupDialogHeight]="DoctorListBox?.PopupDialogHeight" [PopupDialogTitle]="DoctorListBox?.PopupDialogTitle" [PopupDialogWidth]="DoctorListBox?.PopupDialogWidth" [ReadOnly]="DoctorListBox?.ReadOnly" [SearchMode]="DoctorListBox?.SearchMode" [SearchTimeout]="DoctorListBox?.SearchTimeout" [SelectedObject]="_ProcedureDefinition.Doctor" [TabIndex]="DoctorListBox?.TabIndex" [Visible]="DoctorListBox?.Visible" [width]="DoctorListBox?.Width" data-tid="A328092">
+						</hvl-list-box>
+					</div>
+				</div>
+			</dxi-item>
+			<dxi-item class="tabpanel-item" title="Fiyatlar" data-tid="A328093">
+				<div class="row" data-tid="A328094">
+					<div class="col-sm-12" data-tid="A328095">
+						<hvl-datagrid (CellValueChange)="grdPrices" [AllowUserToAddRows]="_ProcedureDefinition.ProcedurePrice?.AllowUserToAddRows" [AllowUserToDeleteRows]="_ProcedureDefinition.ProcedurePrice?.AllowUserToDeleteRows" [Columns]="_ProcedureDefinition.ProcedurePriceColumns" [dataSource]="dummyModel?.dataMember" [DeleteButtonWidth]="_ProcedureDefinition.ProcedurePrice?.DeleteButtonWidth" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [EnableFilter]="_ProcedureDefinition.ProcedurePrice?.ShowFilterRow" [FilterColumnName]="_ProcedureDefinition.ProcedurePrice?.FilterColumnName" [FilterLabel]="_ProcedureDefinition.ProcedurePrice?.FilterLabel" [Filter]="_ProcedureDefinition.ProcedurePrice?.Filter" [height]="_ProcedureDefinition.ProcedurePrice?.Height" [IsFilterLabelSingleLine]="_ProcedureDefinition.ProcedurePrice?.IsFilterLabelSingleLine" [ShowColumnHeaders]="_ProcedureDefinition.ProcedurePrice?.ColumnHeadersVisible" [ShowFilterCombo]="_ProcedureDefinition.ProcedurePrice?.ShowFilterCombo" [ShowTotalNumberOfRows]="_ProcedureDefinition.ProcedurePrice?.ShowTotalNumberOfRows" data-tid="A328096">
+						</hvl-datagrid>
+					</div>
+				</div>
+			</dxi-item>
+		</dx-tab-panel>
+	</div>
+	<div class="row" data-tid="A328097">
+		<div class="col-sm-1" data-tid="A328098">
+			<hvl-checkbox #Validation (ValueChange)="onttcheckbox1Changed($event)" [AllowThreeState]="ttcheckbox1?.ThreeState" [BackColor]="ttcheckbox1?.BackColor" [Enabled]="ttcheckbox1?.Enabled" [Font]="ttcheckbox1?.Font" [ForeColor]="ttcheckbox1?.ForeColor" [IsTitleLeft]="ttcheckbox1?.IsTitleLeft" [Margin]="ttcheckbox1?.Margin" [ReadOnly]="ttcheckbox1?.ReadOnly" [TabIndex]="ttcheckbox1?.TabIndex" [TitleTopPadding]="ttcheckbox1?.TitleTopPadding" [Title]="ttcheckbox1?.Title" [Value]="_ProcedureDefinition.Chargable" [Visible]="ttcheckbox1?.Visible" data-tid="A328099">
+			</hvl-checkbox>
+		</div>
+		<div class="col-sm-2" data-tid="A328100">
+			<hvl-checkbox #Validation (ValueChange)="onttcheckbox2Changed($event)" [AllowThreeState]="ttcheckbox2?.ThreeState" [BackColor]="ttcheckbox2?.BackColor" [Enabled]="ttcheckbox2?.Enabled" [Font]="ttcheckbox2?.Font" [ForeColor]="ttcheckbox2?.ForeColor" [IsTitleLeft]="ttcheckbox2?.IsTitleLeft" [Margin]="ttcheckbox2?.Margin" [ReadOnly]="ttcheckbox2?.ReadOnly" [TabIndex]="ttcheckbox2?.TabIndex" [TitleTopPadding]="ttcheckbox2?.TitleTopPadding" [Title]="ttcheckbox2?.Title" [Value]="_ProcedureDefinition.QuickEntryAllowed" [Visible]="ttcheckbox2?.Visible" data-tid="A328101">
+			</hvl-checkbox>
+		</div>
+	</div>
+	<div class="col-sm-1" data-tid="A328102">
+		<hvl-checkbox #Validation (ValueChange)="onttcheckbox3Changed($event)" [AllowThreeState]="ttcheckbox3?.ThreeState" [BackColor]="ttcheckbox3?.BackColor" [Enabled]="ttcheckbox3?.Enabled" [Font]="ttcheckbox3?.Font" [ForeColor]="ttcheckbox3?.ForeColor" [IsTitleLeft]="ttcheckbox3?.IsTitleLeft" [Margin]="ttcheckbox3?.Margin" [ReadOnly]="ttcheckbox3?.ReadOnly" [TabIndex]="ttcheckbox3?.TabIndex" [TitleTopPadding]="ttcheckbox3?.TitleTopPadding" [Title]="ttcheckbox3?.Title" [Value]="_ProcedureDefinition.IsActive" [Visible]="ttcheckbox3?.Visible" data-tid="A328103">
+		</hvl-checkbox>
+	</div>
+</div>
+<pre data-tid="A328104">
+	{{ _ViewModel | json }}</pre>

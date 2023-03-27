@@ -1,0 +1,36 @@
+﻿
+
+<div class="container-fluid" id="A18029" data-tid="A351185">
+    <div style="margin-top:10px;" id="A18030" data-tid="A351186">
+        <NeStatePanelComponent [OutgoingTransitions]="nursingCareMainFormViewModel?.OutgoingTransitions" PrintReportCommandVisible="true" (onPrintReport)="printReport()" [StateReports]="nursingCareMainFormViewModel?.CurrentStateReports" [ObjectID]="nursingCareMainFormViewModel?._NursingCare?.ObjectID" [ObjectDefID]="nursingCareMainFormViewModel?._NursingCare?.ObjectDefID" [CurrentStateDefID]="nursingCareMainFormViewModel._NursingCare.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()" [SaveCommandVisible]="!nursingCareMainFormViewModel.ReadOnly" [DropStateList]="DropStateList" id="A18031" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A351187">
+        </NeStatePanelComponent>
+    </div>
+    <form id="NursingCareMainForm" class="form-horizontal" role="form" data-tid="A351188">
+        
+    </form>
+    <div class="row" id="A18032" data-tid="A351189">
+        <hvl-multisearch-panel #hvlMultiSearchPanel [DataSources]="SearchPanelDataSources" [Config]="PanelConfig" (SelectionChanged)="changed($event)" height="300px" [Disabled]="nursingCareMainFormViewModel.ReadOnly" [ReadOnly]="nursingCareMainFormViewModel.ReadOnly" id="A18033" data-tid="A351190">
+        </hvl-multisearch-panel>
+    </div>
+    <div class="row" id="A18034" data-tid="A351191">
+        <label class="control-label col-sm-4" id="A18035" data-tid="A351192">
+            Durum
+        </label>
+        <label class="control-label col-sm-6" id="A18036" data-tid="A351193">
+            Not
+        </label>
+    </div>
+    <div class="row" id="A18037" data-tid="A351194">
+            
+        <div class="col-md-4 NursingScheduleRadioCss" id="A18038" data-tid="A351195">
+            <hvl-enum-radio-button-group style="margin-bottom:10px" DataTypeName="NursingCareResultEnum" [(Value)]="nursingCareMainFormViewModel._NursingCare.NursingResult" (ValueChange)="onNursingResultChanged($event)" [ReadOnly]="nursingCareMainFormViewModel.ReadOnly" [Enabled]="nursingCareMainFormViewModel.ReadOnly == false" id="A18039" data-tid="A351196">
+
+            </hvl-enum-radio-button-group>
+        </div>
+        <div class="col-sm-8" id="A18040" data-tid="A351197">
+            <hvl-text-box #Validation (TextChange)="onNoteChanged($event)" [BackColor]="Note?.BackColor" [CharacterCasing]="Note?.CharacterCasing" [Enabled]="Note?.Enabled" [Font]="Note?.Font" [ForeColor]="Note?.ForeColor" [height]="Note?.Height" [InputFormat]="Note?.InputFormat" [InputTurkishCharacter]="Note?.InputTurkishCharacter" [IsNonNumeric]="Note?.IsNonNumeric" [MultiLine]="Note?.Multiline" [ReadOnly]="Note?.ReadOnly" [Required]="Note?.Required" [TabIndex]="Note?.TabIndex" [TextAlign]="Note?.TextAlign" [Text]="nursingCareMainFormViewModel?._NursingCare?.Note" [Visible]="Note?.Visible" id="A18041" data-tid="A351198"></hvl-text-box>
+        </div>
+    </div>
+
+
+</div>

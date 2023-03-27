@@ -1,0 +1,207 @@
+﻿
+<!--<div class="col-sm-12" style="float:right;margin-top:-5px;margin-right: 7px;" id="A23911">
+    <dx-button text="Kaydet" rtlEnabled="true" class="tabHeaderButton dx-button-active dx-button-semioval dx-button-blue" icon="save" (onClick)="btnPathologyRequestSave_Click()" i18n-text="@@M17386" id="A23912"></dx-button>
+</div>-->
+<NeStatePanelComponent [ObjectDefID]="pathologyRequestMainFormViewModel._PathologyRequest.ObjectDefID" [CurrentStateDefID]="pathologyRequestMainFormViewModel._PathologyRequest.CurrentStateDefID" (onSetState)="setStateToTransition($event)" [StateCommandsVisible]="false" (onSaveChanges)="saveForm($event)" data-tid="A359275">
+</NeStatePanelComponent>
+
+<div class="col-sm-12" style="margin-top:40px" id="A23913" data-tid="A359276">
+    <div class="col-md-4 col-sm-12" id="A23915" data-tid="A359277">
+        <patient-demographics-form [actionId]="pathologyRequestMainFormViewModel._PathologyRequest.ObjectID" id="A23916" data-tid="A359278"></patient-demographics-form>
+    </div>
+    <div class="col-md-8 col-sm-12" id="A23917" data-tid="A359279">
+        <DiagnosisGridReadOnlyForm [EpisodeAction]="pathologyRequestMainFormViewModel._PathologyRequest" id="A23918" data-tid="A359280"></DiagnosisGridReadOnlyForm>
+    </div>
+    <div class="col-md-12" id="A23920" data-tid="A359281">
+        <hr id="A23921" data-tid="A359282" />
+    </div>
+</div>
+
+<div #scrollPanel class="col-sm-12" style="padding-left:3px; overflow-y:auto" data-tid="A359283">
+    <div class="col-sm-4" id="A23924" data-tid="A359284">
+        <div class="col-sm-12" id="A23925" data-tid="A359285">
+            <label class="control-label" id="A23926" data-tid="A359286">İstek Tarihi</label>
+            <dx-date-box [(value)]="pathologyRequestMainFormViewModel._PathologyRequest.RequestDate" type="datetime" [disabled]="true" id="A23927" data-tid="A359287">
+            </dx-date-box>
+
+        </div>
+        <div class="col-sm-12" id="A23928" data-tid="A359288">
+            <label class="control-label" id="A23929" data-tid="A359289"> İstek Yapan Doktor</label>
+            <hvl-list-box #Validation (SelectedObjectChange)="onRequestDoctorChanged($event)" [AutoCompleteDialogHeight]="RequestDoctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="RequestDoctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="RequestDoctor?.AutoCompleteMode" [BackColor]="RequestDoctor?.BackColor" [DefinitionName]="RequestDoctor?.ListDefName" [DisplayExpressionsCache]="pathologyRequestMainFormViewModel?.ListDefDisplayExpressions" [Enabled]="RequestDoctor?.Enabled" [Font]="RequestDoctor?.Font" [ForeColor]="RequestDoctor?.ForeColor" [ListFilterExpression]="RequestDoctor?.ListFilterExpression" [MinSearchLength]="RequestDoctor?.MinSearchLength" [PopupDialogFieldConfig]="RequestDoctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="RequestDoctor?.PopupDialogGridColumns" [PopupDialogHeight]="RequestDoctor?.PopupDialogHeight" [PopupDialogTitle]="RequestDoctor?.PopupDialogTitle" [PopupDialogWidth]="RequestDoctor?.PopupDialogWidth" [ReadOnly]="RequestDoctor?.ReadOnly" [SearchMode]="RequestDoctor?.SearchMode" [SearchTimeout]="RequestDoctor?.SearchTimeout" [SelectedObject]="pathologyRequestMainFormViewModel?._PathologyRequest?.RequestDoctor" [TabIndex]="RequestDoctor?.TabIndex" [Visible]="RequestDoctor?.Visible" [width]="RequestDoctor?.Width" id="A23930" data-tid="A359290"></hvl-list-box>
+        </div>
+        <div class="col-sm-12" id="A23931" data-tid="A359291">
+            <label class="control-label" id="A23932" data-tid="A359292">Telefon No</label>
+            <hvl-text-box #Validation (TextChange)="onPhoneNumberResUserChanged($event)" [BackColor]="PhoneNumberResUser?.BackColor" [CharacterCasing]="PhoneNumberResUser?.CharacterCasing" [Enabled]="PhoneNumberResUser?.Enabled" [Font]="PhoneNumberResUser?.Font" [ForeColor]="PhoneNumberResUser?.ForeColor" [height]="PhoneNumberResUser?.Height" [InputFormat]="PhoneNumberResUser?.InputFormat" [InputTurkishCharacter]="PhoneNumberResUser?.InputTurkishCharacter" [IsNonNumeric]="PhoneNumberResUser?.IsNonNumeric" [MultiLine]="PhoneNumberResUser?.Multiline" [ReadOnly]="PhoneNumberResUser?.ReadOnly" [Required]="PhoneNumberResUser?.Required" [TabIndex]="PhoneNumberResUser?.TabIndex" [TextAlign]="PhoneNumberResUser?.TextAlign" [Text]="pathologyRequestMainFormViewModel?._PathologyRequest?.RequestDoctor?.PhoneNumber" [Visible]="PhoneNumberResUser?.Visible" id="A23933" data-tid="A359293"></hvl-text-box>
+        </div>
+    </div>
+
+    <div class="col-sm-4" id="A23934" data-tid="A359294">
+
+        <div class="col-sm-12" id="A23936" data-tid="A359295">
+            <label class="control-label" id="A23937" data-tid="A359296"> Numuneyi Getiren Sorumlu</label>
+            <hvl-text-box #Validation (TextChange)="onMaterialResponsibleChanged($event)" [BackColor]="MaterialResponsible?.BackColor" [CharacterCasing]="MaterialResponsible?.CharacterCasing" [Enabled]="MaterialResponsible?.Enabled" [Font]="MaterialResponsible?.Font" [ForeColor]="MaterialResponsible?.ForeColor" [height]="MaterialResponsible?.Height" [InputFormat]="MaterialResponsible?.InputFormat" [InputTurkishCharacter]="MaterialResponsible?.InputTurkishCharacter" [IsNonNumeric]="MaterialResponsible?.IsNonNumeric" [MultiLine]="MaterialResponsible?.Multiline" [ReadOnly]="MaterialResponsible?.ReadOnly" [Required]="MaterialResponsible?.Required" [TabIndex]="MaterialResponsible?.TabIndex" [TextAlign]="MaterialResponsible?.TextAlign" [Text]="pathologyRequestMainFormViewModel?._PathologyRequest?.MaterialResponsible" [Visible]="MaterialResponsible?.Visible" id="A23938" data-tid="A359297"></hvl-text-box>
+
+        </div>
+
+
+        <div class="col-sm-12" id="A23940" data-tid="A359298">
+            <label class="control-label" id="A23941" data-tid="A359299"> Kabul Tarihi</label>
+            <dx-date-box [(value)]="pathologyRequestMainFormViewModel._PathologyRequest.AcceptionDate" type="datetime" id="A23942" data-tid="A359300">
+            </dx-date-box>
+        </div>
+
+
+        <div class="col-sm-12" id="A23944" data-tid="A359301">
+            <label class="control-label" id="A23945" data-tid="A359302">İstek Arşiv Numarası</label>
+            <hvl-text-box #Validation (TextChange)="onRequestMaterialNumberChanged($event)" [BackColor]="RequestMaterialNumber?.BackColor" [CharacterCasing]="RequestMaterialNumber?.CharacterCasing" [Enabled]="RequestMaterialNumber?.Enabled" [Font]="RequestMaterialNumber?.Font" [ForeColor]="RequestMaterialNumber?.ForeColor" [height]="RequestMaterialNumber?.Height" [InputFormat]="RequestMaterialNumber?.InputFormat" [InputTurkishCharacter]="RequestMaterialNumber?.InputTurkishCharacter" [IsNonNumeric]="RequestMaterialNumber?.IsNonNumeric" [MultiLine]="RequestMaterialNumber?.Multiline" [ReadOnly]="RequestMaterialNumber?.ReadOnly" [Required]="RequestMaterialNumber?.Required" [TabIndex]="RequestMaterialNumber?.TabIndex" [TextAlign]="RequestMaterialNumber?.TextAlign" [Text]="pathologyRequestMainFormViewModel?._PathologyRequest?.RequestMaterialNumber" [Visible]="RequestMaterialNumber?.Visible" id="A23946" data-tid="A359303"></hvl-text-box>
+        </div>
+
+    </div>
+    <div class="col-sm-4" data-tid="A359304">
+        <div class="col-sm-12" data-tid="A359305">
+            <label class="control-label" id="A23948" data-tid="A359306">Kabul Notu</label>
+            <hvl-text-box #Validation (TextChange)="onAcceptionNoteChanged($event)" [BackColor]="AcceptionNote?.BackColor" [CharacterCasing]="AcceptionNote?.CharacterCasing" [Enabled]="AcceptionNote?.Enabled" [Font]="AcceptionNote?.Font" [ForeColor]="AcceptionNote?.ForeColor" [height]="AcceptionNote?.Height" [InputFormat]="AcceptionNote?.InputFormat" [InputTurkishCharacter]="AcceptionNote?.InputTurkishCharacter" [IsNonNumeric]="AcceptionNote?.IsNonNumeric" [MultiLine]="AcceptionNote?.Multiline" [ReadOnly]="AcceptionNote?.ReadOnly" [Required]="AcceptionNote?.Required" [TabIndex]="AcceptionNote?.TabIndex" [TextAlign]="AcceptionNote?.TextAlign" [Text]="pathologyRequestMainFormViewModel?._PathologyRequest?.AcceptionNote" [Visible]="AcceptionNote?.Visible" id="A23949" data-tid="A359307"></hvl-text-box>
+        </div>
+        <div class="col-sm-12" data-tid="A359308">
+            <label class="control-label" data-tid="A359309">İşlemi Uygulayacak Doktor</label>
+            <dx-select-box searchEnabled="true" [dataSource]="pathologyRequestMainFormViewModel?.ProcedureDoctorList" displayExpr="Name" valueExpr="ObjectID" [(value)]="pathologyRequestMainFormViewModel.ProcedureDoctorID" data-tid="A359310"></dx-select-box>
+
+        </div>
+    </div>
+
+
+
+    <div class="col-md-12" id="A23951" data-tid="A359311">
+        <hr id="A23952" data-tid="A359312" />
+    </div>
+
+    <div class="col-sm-12" id="A23953" data-tid="A359313">
+        <div class="col-sm-10 margin-bottom-10" id="A23954" data-tid="A359314">
+          
+            <a href="javascript:void(0)" class="nav-link" (click)="onAcceptMaterial()" id="A23955" data-tid="A359315">
+                <i style="float:left;margin-right:20px" class="fa fa-check-square fa-2x" data-toggle="tooltip" data-placement="bottom" title="Seçilenleri Kabul Et" i18n-title="@@M21542" id="A23956" data-tid="A359316"></i>
+            </a>
+            <a href="javascript:void(0)" class="nav-link" (click)="onRejectMaterial()" id="A23957" data-tid="A359317">
+                <i style="color:#e06b6b;float:left;margin-right:20px" class="fa fa-minus-square fa-2x" data-toggle="tooltip" data-placement="bottom" title="Seçilenleri Reddet" i18n-title="@@M21543" id="A23958" data-tid="A359318"></i>
+            </a>
+            <a href="javascript:void(0)" class="nav-link" (click)="onClearSelectedMaterials()" id="A23959" data-tid="A359319">
+                <i style="color:#8d7193;float:left;margin-right:20px" class="fa fa-trash fa-2x" data-toggle="tooltip" data-placement="bottom" title="Seçimi Temizle" i18n-title="@@M21570" id="A23960" data-tid="A359320"></i>
+            </a>
+        </div>
+
+    </div>
+
+    <div class="col-sm-12" id="A23962" data-tid="A359321">
+        <dx-data-grid #materials showColumnLines="true" showBorders="true" showRowLines="true" [height]="200" [dataSource]="pathologyRequestMainFormViewModel?._PathologyRequest?.PathologyMaterials" [columns]="PathologyMaterialListColumns" [selection]="{mode: 'multiple',showCheckBoxesMode:'always',selectAllMode:'page'}" (onSelectionChanged)="onSelectionChangedMaterialList($event)" (onRowPrepared)="onRowPreparedMaterialList($event)" [(selectedRowKeys)]="selectedPathologyMaterials" id="A23963" data-tid="A359322">
+            <dxo-editing mode="cell" [allowUpdating]="true" [allowAdding]="false" [allowDeleting]="false" id="A23964" data-tid="A359323">
+            </dxo-editing>
+
+            <div *dxTemplate="let row of 'linkCellTemplateAddProcedure'" data-tid="A359324">
+                <button class="btn btn-xs btn-primary" (click)="addProcedureToMaterial(row)" id="A23966" data-tid="A359325"><i class="fa fa-plus" title="Tetkik Ekle" i18n-title="@@M23309" id="A23967" data-tid="A359326"></i></button>
+            </div>
+
+
+        </dx-data-grid>
+    </div>
+
+
+    <div class="col-md-12" id="A23969" data-tid="A359327">
+        <hr id="A23970" data-tid="A359328" />
+    </div>
+
+    <div class="col-sm-12" id="A23972" data-tid="A359329">
+
+        <div class="panel panel-default" id="A23973" data-tid="A359330">
+            <div class="panel-heading" id="A23974" data-tid="A359331">Seçilen Materyaller</div>
+            <div class="panel-body" id="A23975" data-tid="A359332">
+                <dx-data-grid [dataSource]="PathologyList" [height]="200" [allowColumnReordering]="false" [columns]="PathologyListColumns" (onRowPrepared)="onRowPathologyList($event)" (onRowClick)="onRowClickPathologyList($event)" id="A23976" data-tid="A359333">
+                    <dxo-grouping #expand [autoExpandAll]="true" id="A23977" data-tid="A359334"></dxo-grouping>
+                    <div align="center" *dxTemplate="let row of 'BiopsyChkTemplate'" data-tid="A359335">
+                        <dx-check-box [value]="row.data.BiopsyCheck" [disabled]="row.data.BiopsyDisabled" (onValueChanged)="onBiopsyValueChanged(row.data,$event)" data-tid="A359336"></dx-check-box>
+
+                    </div>
+
+                    <div align="center" *dxTemplate="let row of 'CytologyChkTemplate'" data-tid="A359337">
+                        <dx-check-box [value]="row.data.CytologyCheck" [disabled]="row.data.CytologyDisabled" (onValueChanged)="onCytologyValueChanged(row.data,$event)" data-tid="A359338"></dx-check-box>
+
+                    </div>
+
+                </dx-data-grid>
+            </div>
+        </div>.
+    </div>
+
+
+
+    <div class="col-sm-12" id="A23979" data-tid="A359339">
+
+        <div class="panel panel-default" id="A23980" data-tid="A359340">
+            <div class="panel-heading" id="A23981" data-tid="A359341">Eklenen İşlemler</div>
+            <div class="panel-body" id="A23982" data-tid="A359342">
+                <dx-data-grid [dataSource]="RequestedProcedureList" [allowColumnReordering]="false" [columns]="ProcedureListColumns" id="A23983" data-tid="A359343">
+
+                </dx-data-grid>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <dx-popup width="450px" height="200px" [(visible)]="showReasonForRejectPopup" [closeOnOutsideClick]="true" title="Materyal Red Nedeni" i18n-title="@@M18703" id="A23984" data-tid="A359344">
+        <div *dxTemplate="let data of 'content'" id="A23985" data-tid="A359345">
+
+            <div class="col-sm-12 padding-tb-10" id="A23988" data-tid="A359346">
+                <label class="control-label" id="A23989" data-tid="A359347">Red Nedeni</label>
+                <dx-select-box searchEnabled="true" [dataSource]="pathologyRequestMainFormViewModel?.ReasonForRejectMaterialList" displayExpr="Description" valueExpr="ObjectID" (onValueChanged)="onValueChangedReasonForRejectPopup($event)" id="A23990" data-tid="A359348"></dx-select-box>
+            </div>
+
+            <div class="col-sm-12" data-tid="A359349">
+                <dx-button style="float:right;" type="success" text="Seç" (onClick)="onSelectReasonForReject()" i18n-text="@@M21507" id="A23991" data-tid="A359350">
+                </dx-button>
+            </div>
+
+        </div>
+    </dx-popup>
+
+    <dx-popup width="800px" height="500px" [(visible)]="showAddProcedureToMaterialPopup" [closeOnOutsideClick]="false" title="Tetkik Ekle" i18n-title="@@M23309" id="A23992" data-tid="A359351">
+        <div *dxTemplate="let data of 'content'" id="A23993" data-tid="A359352">
+
+            <div class="col-sm-12 padding-tb-10" id="A23996" data-tid="A359353">
+                <label class="control-label" id="A23997" data-tid="A359354">Tetkik</label>
+                <hvl-list-box #Validation (SelectedObjectChange)="procedureSelected($event)" [AutoCompleteDialogHeight]="MaterialProcedureList?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="MaterialProcedureList?.AutoCompleteDialogWidth" [AutoCompleteMode]="MaterialProcedureList?.AutoCompleteMode" [BackColor]="MaterialProcedureList?.BackColor" [DefinitionName]="MaterialProcedureList?.ListDefName" [DisplayExpressionsCache]="pathologyRequestMainFormViewModel?.ListDefDisplayExpressions" [Enabled]="MaterialProcedureList?.Enabled" [Font]="MaterialProcedureList?.Font" [ForeColor]="MaterialProcedureList?.ForeColor" [ListFilterExpression]="MaterialProcedureList?.ListFilterExpression" [MinSearchLength]="MaterialProcedureList?.MinSearchLength" [PopupDialogFieldConfig]="MaterialProcedureList?.PopupDialogFieldConfig" [PopupDialogGridColumns]="MaterialProcedureList?.PopupDialogGridColumns" [PopupDialogHeight]="MaterialProcedureList?.PopupDialogHeight" [PopupDialogTitle]="MaterialProcedureList?.PopupDialogTitle" [PopupDialogWidth]="MaterialProcedureList?.PopupDialogWidth" [ReadOnly]="MaterialProcedureList?.ReadOnly" [SearchMode]="MaterialProcedureList?.SearchMode" [SearchTimeout]="MaterialProcedureList?.SearchTimeout" [SelectedObject]="pathologyRequestMainFormViewModel?._selectedProcedureObject" [TabIndex]="MaterialProcedureList?.TabIndex" [Visible]="MaterialProcedureList?.Visible" [width]="MaterialProcedureList?.Width" id="A23998" data-tid="A359355"></hvl-list-box>
+            </div>
+
+            <div class="col-sm-12" id="A24000" data-tid="A359356">
+
+                <div class="panel panel-default" id="A24001" data-tid="A359357">
+                    <div class="panel-heading" id="A24002" data-tid="A359358">Eklenecek Tetkikler</div>
+                    <div class="panel-body" id="A24003" data-tid="A359359">
+
+                        <dx-data-grid showColumnLines="true" [paging]="{enable: false, pageSize:1000000}" showRowLines="true" height="250" [columns]="ProcedureListColumns" [dataSource]="_RequestedProcedureArray" allowColumnReordering="false" allowColumnResizing="true" [selection]="{mode: 'none',allowSelectAll: false}" (onRowRemoving)="onRowDeleted($event, row)" id="A24004" data-tid="A359360">
+
+                            <dxo-editing mode="cell" [allowUpdating]="true" [allowAdding]="false" [allowDeleting]="true" id="A24005" data-tid="A359361">
+                            </dxo-editing>
+
+                        </dx-data-grid>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="col-sm-12" data-tid="A359362">
+                <dx-button style="float:right;" type="success" text="Tamam" (onClick)="onAddProcedureToMaterial()" i18n-text="@@M22704" id="A24006" data-tid="A359363">
+                </dx-button>
+            </div>
+
+        </div>
+    </dx-popup>
+
+
+</div>
+
+

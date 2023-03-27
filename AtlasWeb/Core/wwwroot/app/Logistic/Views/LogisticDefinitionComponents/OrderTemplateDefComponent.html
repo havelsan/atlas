@@ -1,0 +1,172 @@
+﻿<div class="{{this.collapseSelectedDivProperties()}}" style="height: 100%;" id="A16462" data-tid="A374933">
+    <div class="row" style="height: 100%;" data-tid="A374934">
+        <div class="col-sm-12 gradientPanel" id="A16463" data-tid="A374935">
+            <h4 style="color:#fff; font-size:19px;text-align:left;" id="A16464" data-tid="A374936">
+                <div class="btn collapseBtn" (click)="btnCollapse()" style="padding:0;margin-top:3px;margin-right: 5px;" id="A16465" data-tid="A374937">
+                    <i class="{{this.collapseIconProperties()}}" id="A16466" data-tid="A374938"></i>
+                </div>
+                <span id="A16467" data-tid="A374939">Order Şablon Listesi</span>
+            </h4>
+        </div>
+        <div class="panel-body" style="background-color:#f6f6f6;padding-bottom:0; height:100%;padding: 0" data-tid="A374940">
+            <div class="col-md-12" style="padding: 2px;height: calc(100% - 127px);" id="A10249" data-tid="A374941">
+                <dx-data-grid #grid [dataSource]="orderTemplateDefinitionSource" style="height: 650px;" [columns]="orderTemplateDefintiionDataColumn" [filterRow]="{visible: true}" [paging]="{pageSize:34}" (onSelectionChanged)="selectionGridEvent($event)" [showBorders]="true" data-tid="A374942">
+                    <dxo-selection mode="single" data-tid="A374943"></dxo-selection>
+                </dx-data-grid>
+            </div>
+            <br data-tid="A374944" />
+            <div class="col-md-12" style="max-height: 111px;" data-tid="A374945">
+                <div class="row" data-tid="A374946">
+                    <div class="col-sm-6" data-tid="A374947">
+                        <dx-button icon="fas fa-plus" style="float: left;" stylingMode="contained" text="Yeni" type="default" [width]="120" (onClick)="addNew()" data-tid="A374948">
+                        </dx-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="{{this.collapseSelectedHiddenDivProperties()}}" style="position:relative;" id="A16544" data-tid="A374949">
+    <div class="MyVerticalText" (click)="btnCollapse()" id="A16545" data-tid="A374950">
+        <i class="{{this.collapseIconProperties()}}" id="A16546" data-tid="A374951"></i>
+        <span data-tid="A374952">&nbsp;&nbsp;&nbsp;&nbsp;Order Şablon Listesi</span>
+    </div>
+</div>
+
+<div class="{{this.collapsedPanelProperties()}}" style="padding-top: 1%;padding-right: 3% !important;" data-tid="A374953">
+    <div id="detail" *ngIf="selectedItemFromOpen" data-tid="A374954">
+        <div class="row" data-tid="A374955">
+            <dx-button icon="fa fa-times" style="float: right;" stylingMode="contained" text="Vazgeç" type="danger" [width]="120" (onClick)="Cancel()" data-tid="A374956">
+            </dx-button>
+            <dx-button icon="fas fa-save" style="float: right;" stylingMode="contained" text="Kaydet" type="success" [width]="120" (onClick)="Save()" data-tid="A374957">
+            </dx-button>
+        </div>
+        <br data-tid="A374958" />
+        <br data-tid="A374959" />
+        <div class="row" data-tid="A374960">
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A374961">
+                Ekleyen Kullanıcı
+                <dx-text-box [readOnly]="true" [(value)]="creationUser" data-tid="A374962"></dx-text-box>
+            </div>
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A374963">
+                Eklenme Tarihi
+                <dx-date-box style="width: 100%;" [readOnly]="true" [(value)]="creationDate" data-tid="A374964"></dx-date-box>
+            </div>
+            <div class="col-sm-2" style="font-weight: bold;" data-tid="A374965">
+                Değiştiren Kullanıcı
+                <dx-text-box [readOnly]="true" [(value)]="lastUpdateUser" data-tid="A374966"></dx-text-box>
+            </div>
+            <div class="col-sm-1" style="font-weight: bold;" data-tid="A374967">
+                <br data-tid="A374968" />
+                <dx-button type="btn btn-default" style="font-size: 100%;border-style: unset;color: #4276a4 !important;" text="İ" (onClick)="getDetailAudit()" data-tid="A374969"></dx-button>
+            </div>
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A374970">
+                Değiştirilme Tarihi
+                <dx-date-box style="width: 100%;" [readOnly]="true" [(value)]="lastUpdateDate" data-tid="A374971"></dx-date-box>
+            </div>
+        </div>
+        <br data-tid="A374972" />
+        <div class="row" data-tid="A374973">
+            <div class="col-sm-7" style="font-weight: bold;" data-tid="A374974">
+                Şablon Adı *
+                <dx-text-box [(value)]="activeOrderTemplateDefinition.Name" data-tid="A374975">
+                </dx-text-box>
+            </div>
+            <div class="col-sm-2" style="font-weight: bold;" data-tid="A374976">
+                Şablon Tipi *
+                <dx-select-box [dataSource]="OrderTemplateStatus" valueExpr="ordinal" displayExpr="description" (onSelectionChanged)="onOrderTemplateStatus($event)" [(value)]="activeOrderTemplateDefinition.OrderTemplateStatus" data-tid="A374977">
+                </dx-select-box>
+            </div>
+
+            <div *ngIf="clinicSeleted" class="col-sm-2" style="font-weight: bold;" data-tid="A374978">
+                Klinik Seçiniz *
+                <dx-select-box [dataSource]="UserResources" valueExpr="ResourceObjectID" displayExpr="ResourceName" [(value)]="SeletedResource" data-tid="A374979">
+                </dx-select-box>
+            </div>
+            <div *ngIf="bransSeleted" class="col-sm-2" style="font-weight: bold;" data-tid="A374980">
+                Branş Seçiniz *
+                <dx-select-box [dataSource]="UserSpecialityDefinitions" valueExpr="SpecialityDefObjectID" displayExpr="SpecialityDefName" [(value)]="SeletedSpecialityDef" data-tid="A374981">
+                </dx-select-box>
+            </div>
+
+
+            <div class="col-sm-1" style="font-weight: bold;" data-tid="A374982">
+                <br data-tid="A374983" />
+                <dx-check-box [(value)]="isActive" [width]="400" text="Aktif" style="margin-bottom: 10px;" data-tid="A374984">
+                </dx-check-box>
+            </div>
+        </div>
+        <br data-tid="A374985" />
+
+        <div class="row" data-tid="A374986">
+            <div class="btn-group" role="group" data-tid="A374987">
+                <div class="col-sm-6" id="A4023" data-tid="A374988">
+                    <dx-check-box [(value)]="isFavoriteDrugList" text="Sık Kullanılan İlaçlar" [width]="150" (onValueChanged)="onFavoriteDrugListValueChanged($event)" i18n-text="@@M21798" id="A4024" data-tid="A374989">
+                    </dx-check-box>
+                </div>
+                <div class="col-sm-3" id="A4025" data-tid="A374990">
+                    <dx-check-box [(value)]="isInheldDrugList" text="Mevcutlu İlaçlar" [width]="150" (onValueChanged)="onInheldValueChanged($event)" i18n-text="@@M18968" id="A4026" data-tid="A374991"></dx-check-box>
+                </div>
+            </div>
+            <div class="col-sm-12" data-tid="A374992">
+                <div class="dx-searchbar col-sm-10" id="A4016" style="padding:0" data-tid="A374993">
+                    <dx-text-box [(value)]="searchText" valueChangeEvent="keyup" placeholder="İlaç Ara" mode="search" (onValueChanged)="onSearchValueChanged($event)" i18n-placeholder="@@M27276" id="A4017" data-tid="A374994">
+                    </dx-text-box>
+                </div>
+                <div class="col-sm-2" data-tid="A374995">
+                    <dx-button icon="close" (onClick)="CloseSearchList()" style="float:right;" data-tid="A374996"></dx-button>
+                </div>
+                <div class="col-sm-12" style="padding:0;" *ngIf="drugSearchEnabled" data-tid="A374997">
+                    <dx-list #drugSearchList [dataSource]="drugSource" height="150" (onItemClick)="drugListOnItemClick($event)" id="A4018" selectionMode="single" [(selectedItems)]="selectedDrugListItems" [showSelectionControls]="false" pageLoadMode="scrollBottom" style="position:absolute!important; z-index:999; background-color:white;" data-tid="A374998">
+                        <div *dxTemplate="let data of 'item'" id="A4019" data-tid="A374999">
+                            <img src="{{GetDrugItemWithType(data.drugShapeTypeEnum)}}" style="float:left; margin-right:10px;" id="A14411" data-tid="A375000" />
+                            <div style="float:left; width:65%;" id="A4020" data-tid="A375001">{{data.name}}</div>
+                            <div *ngIf="isInpatient" style="float:right; width:8%;" id="A4021" data-tid="A375002">{{data.inheldStatus}}
+                            </div>
+                        </div>
+                    </dx-list>
+                </div>
+            </div>
+        </div>
+        <br data-tid="A375003" />
+        <div class="row" data-tid="A375004">
+            <div class="col-sm-12" data-tid="A375005">
+                <dx-data-grid [dataSource]="activeOrderTemplateDefinition.OrderTemplateDetails" [columnFixing]="{eneabled:'true'}" columnResizingMode="widget" height="500" data-tid="A375006">
+                    <dxo-paging [enabled]="true" data-tid="A375007"></dxo-paging>
+                    <dxo-editing mode="cell" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="false" data-tid="A375008">
+                    </dxo-editing>
+
+                    <dxi-column dataField="MaterialName" caption="İlaç Adı" [width]="600" [allowEditing]="false" data-tid="A375009">
+                    </dxi-column>
+
+                    <dxi-column dataField="HospitalTimeSchedule.ObjectID" caption="Doz Aralığı" [width]="100" data-tid="A375010">
+                        <dxo-lookup [dataSource]="timeScheduleDataSource" displayExpr="Name" valueExpr="ObjectID" data-tid="A375011">
+                        </dxo-lookup>
+                    </dxi-column>
+
+                    <dxi-column dataField="DoseAmount" caption="Doz Miktarı" [width]="100" [allowEditing]="true" data-tid="A375012">
+                    </dxi-column>
+
+
+                    <dxi-column dataField="DrugUsageType" caption="Kullanım Şekli" [width]="100" data-tid="A375013">
+                        <dxo-lookup [dataSource]="DrugUsageType" displayExpr="description" valueExpr="ordinal" data-tid="A375014">
+                        </dxo-lookup>
+                    </dxi-column>
+
+                    <dxi-column dataField="DrugOrderType" caption="Tedavi Türü" [width]="100" data-tid="A375015">
+                        <dxo-lookup [dataSource]="DrugOrderType" displayExpr="description" valueExpr="ordinal" data-tid="A375016">
+                        </dxo-lookup>
+                    </dxi-column>
+
+                    <dxi-column dataField="Description" caption="Açıklama" [width]="100" [allowEditing]="true" data-tid="A375017">
+                    </dxi-column>
+
+                </dx-data-grid>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<dx-load-panel shadingColor="rgba(0,0,0,0.4)" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A375018">
+</dx-load-panel>

@@ -1,0 +1,50 @@
+﻿
+<div class="panel-group" style="margin-bottom:-7px" id="A28420" data-tid="A365882">
+    <div class="panel panel-info" style="border-color: #ffffff;" id="A28421" data-tid="A365883">
+        <div class="panel-heading" style="height: 30px;" id="A28422" [style.color]="IsTitleRed ? 'red' : '' " data-tid="A365884">
+            {{title}}
+            <div class="float-right" id="A28424" data-tid="A365885">
+                <div class="col-sm-1" style="float:right;margin-top: -17px; width: 10px;" id="A28425" data-tid="A365886">
+                    <a href="javascript:void(0)" class="nav-link" (click)="getNextSummaryInfoSetAndAddToList()" id="A28426" data-tid="A365887">
+                        <i style="float:right;margin-right: 5px;width: 10px;" class="glyphicon glyphicon-sort-by-attributes" data-toggle="tooltip" data-placement="bottom" title="Daha Fazla Göster" i18n-title="@@M12456" id="A28427" data-tid="A365888"></i>
+                    </a>
+                </div>
+                <div *ngIf="!IsReadOnly" class="col-sm-1" style="float:right;margin-right: 25px;margin-top: -17px; width: 10px;" id="A28428" data-tid="A365889">
+                    <a href="javascript:void(0)" class="nav-link" (click)="btnAdd_valueChange()" id="A28429" data-tid="A365890">
+                        <i style="float:right;margin-right: 15px;width: 10px;" class="glyphicon glyphicon-plus" data-toggle="tooltip" data-placement="bottom" title="Ekle" i18n-title="@@M13543" id="A28430" data-tid="A365891"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body padding-bottom-0 padding-top-0" data-tid="A365892">
+            <div *ngIf="!_isFormOpenPopup" data-tid="A365893">
+                <div #applicationPanel *ngIf="showForm" style="margin-left:-15px; overflow-x:hidden; overflow-y:auto" id="A28431" data-tid="A365894">
+                    <div style="width:100%; " id="A28432" data-tid="A365895">
+                        <comp-compose #multipleDataComponent [(Info)]="systemApiService.componentInfo" (ComponentCreated)="onComponentCreated($event)" (DynamicComponentClosed)="onDynamicComponentClosed($event)" id="A28433" data-tid="A365896"></comp-compose>
+                        <br data-tid="A365897" />
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="SummaryInfoList.length > 0" class="row" id="A28434" data-tid="A365898">
+                <dx-data-grid [columns]="SummaryInfoColumns" allowColumnReordering="true" allowColumnResizing="false" [dataSource]="SummaryInfoList" (onRowClick)="select($event)" [filterRow]="{visible: false}" [columnAutoWidth]="true" [selection]="{mode: 'single',allowSelectAll: false}" [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:true}" (onRowRemoving)="onRowDeleted($event)" (onRowPrepared)="rowPrepared($event)" (onContentReady)="contentReady($event)" [showColumnHeaders]="false" [scrolling]="{mode: 'standart',scrollByContent:true, useNative:false}" [paging]="{enabled:false}" style="min-height:25px;max-height:175px" id="A28436" data-tid="A365899">
+                </dx-data-grid>
+            </div>
+        </div>
+    </div>
+</div>
+
+<dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A28437" data-tid="A365900">
+</dx-load-panel>
+
+<div *ngIf="_isFormOpenPopup" data-tid="A365901">
+    <dx-popup [showTitle]="true" title="{{title}}" [(visible)]="showForm" data-tid="A365902">
+        <div *dxTemplate="let data of 'content'" id="A19505" data-tid="A365903">
+            <div *ngIf="showForm" style="height:100%" data-tid="A365904">
+                <dx-scroll-view #scrollView id="scrollview" [scrollByContent]="true" [scrollByThumb]="true" [showScrollbar]="always" data-tid="A365905">
+                    <comp-compose #multipleDataComponent [(Info)]="systemApiService.componentInfo" (ComponentCreated)="onComponentCreated($event)" (DynamicComponentClosed)="onDynamicComponentClosed($event)" id="A28433" data-tid="A365906"></comp-compose>
+                </dx-scroll-view>
+            </div>
+        </div>
+    </dx-popup>
+</div>
+

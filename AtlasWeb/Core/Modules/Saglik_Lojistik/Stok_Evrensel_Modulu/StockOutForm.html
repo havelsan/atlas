@@ -1,0 +1,84 @@
+﻿<div class="container-fluid" id="A5455" data-tid="A331384">
+    <h4 class="logisticLabel" style="margin-left:40%;color:#08c;" id="A5456" data-tid="A331385">{{FormCaption}}</h4>
+    <NeStatePanelComponent [ObjectDefID]="stockOutFormViewModel._StockOut.ObjectDefID" [CurrentStateDefID]="stockOutFormViewModel._StockOut.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()" id="A5457" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A331386">
+    </NeStatePanelComponent>
+
+    <form id="StockOutForm" class="form-horizontal" role="form" data-tid="A331387">
+
+    </form>
+    <br id="A5458" data-tid="A331388" />
+    <div class="row" id="A3670" data-tid="A331389">
+        <div class="col-md-4 col-sm-12" id="A3671" data-tid="A331390">
+            <patient-demographics-form [actionId]="episodeActionID" id="A3672" data-tid="A331391">
+            </patient-demographics-form>
+        </div>
+        <div class="col-md-2 col-sm-12" *ngIf="hasPhysicianApplication" id="A3673" data-tid="A331392">
+            <div class="row" id="A3674" data-tid="A331393">
+                <div class="col-md-12" id="A3675" data-tid="A331394">
+                    <label class="control-label" id="A3676" data-tid="A331395">Klinik Protokol No</label>
+                    <dx-text-box [readOnly]="true" [hoverStateEnabled]="false" [(value)]="clinicProtocolNo" id="A3677" data-tid="A331396">
+                    </dx-text-box>
+                </div>
+            </div>
+            <div class="row" id="A3678" data-tid="A331397">
+                <div class="col-md-6" id="A3679" data-tid="A331398">
+                    <label class="control-label" id="A3680" data-tid="A331399">Oda</label>
+                    <dx-text-box [readOnly]="true" [hoverStateEnabled]="false" [(value)]="clinicRoom" id="A3681" data-tid="A331400">
+                    </dx-text-box>
+                </div>
+                <div class="col-md-6" id="A3682" data-tid="A331401">
+                    <label class="control-label" id="A3683" data-tid="A331402">Yatak</label>
+                    <dx-text-box [readOnly]="true" [hoverStateEnabled]="false" [(value)]="clinicBed" id="A3684" data-tid="A331403">
+                    </dx-text-box>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12" id="A3685" data-tid="A331404">
+            <DiagnosisGridReadOnlyForm [EpisodeAction]="episodeActionID" id="A3686" data-tid="A331405"></DiagnosisGridReadOnlyForm>
+        </div>
+    </div>
+    <br id="A5458" data-tid="A331406" />
+    <div class="row" id="A5459" data-tid="A331407">
+        <div class="col-sm-3" id="A5460" data-tid="A331408">
+            <label class="control-label" id="A5461" data-tid="A331409">
+                İşlem No
+            </label>
+            <hvl-text-box #Validation (TextChange)="onStockActionIDChanged($event)" [BackColor]="StockActionID?.BackColor" [CharacterCasing]="StockActionID?.CharacterCasing" [Enabled]="StockActionID?.Enabled" [Font]="StockActionID?.Font" [ForeColor]="StockActionID?.ForeColor" [height]="StockActionID?.Height" [InputFormat]="StockActionID?.InputFormat" [InputTurkishCharacter]="StockActionID?.InputTurkishCharacter" [IsNonNumeric]="StockActionID?.IsNonNumeric" [MultiLine]="StockActionID?.Multiline" [ReadOnly]="StockActionID?.ReadOnly" [Required]="StockActionID?.Required" [TabIndex]="StockActionID?.TabIndex" [TextAlign]="StockActionID?.TextAlign" [Text]="stockOutFormViewModel?._StockOut?.StockActionID" [Visible]="StockActionID?.Visible" id="A5462" data-tid="A331410">
+            </hvl-text-box>
+        </div>
+        <div class="col-sm-3" id="A5463" data-tid="A331411">
+            <label class="control-label" id="A5464" data-tid="A331412">
+                İşlem Tarihi
+            </label>
+            <hvl-date-picker #Validation (ValueChange)="onTransactionDateChanged($event)" [BackColor]="TransactionDate?.BackColor" [CustomFormat]="TransactionDate?.CustomFormat" [Enabled]="TransactionDate?.Enabled" [Font]="TransactionDate?.Font" [ForeColor]="TransactionDate?.ForeColor" [Format]="TransactionDate?.Format" [Max]="TransactionDate?.Max" [Min]="TransactionDate?.Min" [ReadOnly]="TransactionDate?.ReadOnly" [Required]="TransactionDate?.Required" [TabIndex]="TransactionDate?.TabIndex" [Value]="stockOutFormViewModel?._StockOut?.TransactionDate" [Visible]="TransactionDate?.Visible" id="A5465" data-tid="A331413"></hvl-date-picker>
+        </div>
+        <div class="col-sm-6" id="A5466" data-tid="A331414">
+            <label class="control-label" id="A5467" data-tid="A331415">
+                Gönderen Depo
+            </label>
+            <hvl-list-box #Validation (SelectedObjectChange)="onStoreChanged($event)" [AutoCompleteDialogHeight]="Store?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="Store?.AutoCompleteDialogWidth" [AutoCompleteMode]="Store?.AutoCompleteMode" [BackColor]="Store?.BackColor" [DefinitionName]="Store?.ListDefName" [DisplayExpressionsCache]="stockOutFormViewModel?.ListDefDisplayExpressions" [Enabled]="Store?.Enabled" [Font]="Store?.Font" [ForeColor]="Store?.ForeColor" [ListFilterExpression]="Store?.ListFilterExpression" [MinSearchLength]="Store?.MinSearchLength" [PopupDialogFieldConfig]="Store?.PopupDialogFieldConfig" [PopupDialogGridColumns]="Store?.PopupDialogGridColumns" [PopupDialogHeight]="Store?.PopupDialogHeight" [PopupDialogTitle]="Store?.PopupDialogTitle" [PopupDialogWidth]="Store?.PopupDialogWidth" [ReadOnly]="Store?.ReadOnly" [SearchMode]="Store?.SearchMode" [SearchTimeout]="Store?.SearchTimeout" [SelectedObject]="stockOutFormViewModel?._StockOut?.Store" [TabIndex]="Store?.TabIndex" [Visible]="Store?.Visible" [width]="Store?.Width" id="A5468" data-tid="A331416"></hvl-list-box>
+        </div>
+    </div>
+    <br id="A5469" data-tid="A331417" />
+    <div class="row" id="A5470" data-tid="A331418">
+        <div class="col-sm-12" id="A5471" data-tid="A331419">
+            <label class="control-label" id="A5472" data-tid="A331420">
+                Açıklama
+            </label>
+            <hvl-text-box #Validation (TextChange)="onDescriptionChanged($event)" [BackColor]="Description?.BackColor" [CharacterCasing]="Description?.CharacterCasing" [Enabled]="Description?.Enabled" [Font]="Description?.Font" [ForeColor]="Description?.ForeColor" [height]="Description?.Height" [InputFormat]="Description?.InputFormat" [InputTurkishCharacter]="Description?.InputTurkishCharacter" [IsNonNumeric]="Description?.IsNonNumeric" [MultiLine]="Description?.Multiline" [ReadOnly]="Description?.ReadOnly" [Required]="Description?.Required" [TabIndex]="Description?.TabIndex" [TextAlign]="Description?.TextAlign" [Text]="stockOutFormViewModel?._StockOut?.Description" [Visible]="Description?.Visible" id="A5473" data-tid="A331421"></hvl-text-box>
+        </div>
+    </div>
+    <br id="A5474" data-tid="A331422" />
+    <div class="row" id="A5475" data-tid="A331423">
+        <dx-tab-panel [selectedIndex]="0" id="A5476" data-tid="A331424">
+            <dxi-item class="tabpanel-item" title="Malzemeler" i18n-title="@@M18631" id="A5477" data-tid="A331425">
+                <div class="row" id="A5478" data-tid="A331426">
+                    <div class="col-sm-12" id="A5479" data-tid="A331427">
+                        <hvl-datagrid [AllowUserToAddRows]="StockActionOutDetails?.AllowUserToAddRows" [AllowUserToDeleteRows]="StockActionOutDetails?.AllowUserToDeleteRows" [Columns]="StockActionOutDetailsColumns" [dataSource]="stockOutFormViewModel?._StockOut?.StockOutMaterials" [DeleteButtonWidth]="StockActionOutDetails?.DeleteButtonWidth" [DisplayExpressionsCache]="stockOutFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="StockActionOutDetails?.ShowFilterRow" [FilterColumnName]="StockActionOutDetails?.FilterColumnName" [FilterLabel]="StockActionOutDetails?.FilterLabel" [Filter]="StockActionOutDetails?.Filter" [height]="StockActionOutDetails?.Height" [IsFilterLabelSingleLine]="StockActionOutDetails?.IsFilterLabelSingleLine" [ShowColumnHeaders]="StockActionOutDetails?.ColumnHeadersVisible" [ShowFilterCombo]="StockActionOutDetails?.ShowFilterCombo" [ShowTotalNumberOfRows]="StockActionOutDetails?.ShowTotalNumberOfRows" id="A5480" data-tid="A331428">
+                        </hvl-datagrid>
+                    </div>
+                </div>
+            </dxi-item>
+        </dx-tab-panel>
+    </div>
+</div>

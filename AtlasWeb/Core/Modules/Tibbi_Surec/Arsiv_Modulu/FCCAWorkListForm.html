@@ -1,0 +1,236 @@
+﻿<dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#workList' }" [visible]="loadingVisible" [showIndicator]="true" message="Yükleniyor..." [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" i18n-message="@@M24737" id="A10190" data-tid="A339768">
+</dx-load-panel>
+<dx-tab-panel [selectedIndex]="0" id="A10199" (onSelectionChanged)="selectedTabChanged($event)" data-tid="A339769">
+    <dxi-item class="tabpanel-item" title="Arşiv iş Listesi" i18n-title="@@M15369" id="A3601" data-tid="A339770">
+        <div id="workList" class="row" style="height:100%;padding:0" data-tid="A339771">
+            <div class="col-sm-12" id="A10191" data-tid="A339772">
+                <dx-accordion #searchAccordion class="margin-bottom-10" collapsible="true" id="A10192" data-tid="A339773">
+                    <dxi-item title="Sorgulama Paneli" i18n-title="@@M22127" id="A10193" style="padding-bottom: 16px;" data-tid="A339774">
+                        <div class="row" id="A10194" data-tid="A339775">
+                            <label class="control-label col-sm-2" id="A10196" data-tid="A339776">Yeri</label>
+                            <label class="control-label col-sm-2" id="A10195" data-tid="A339777">Hasta Durumu</label>
+                            <label class="control-label col-sm-2" id="A10197" data-tid="A339778">Servisi</label>
+                            <label class="control-label col-sm-2" id="A10198" data-tid="A339779">
+                                Taburcu Başlangıç
+                                Tarihi
+                            </label>
+                            <label class="control-label col-sm-2" id="A10199" data-tid="A339780">
+                                Taburcu Bitiş
+                                Tarihi
+                            </label>
+
+                        </div>
+                        <div class="row" id="A10200" data-tid="A339781">
+                            <div class="col-sm-2" id="A10201" data-tid="A339782">
+                                <dx-select-box searchEnabled="true" (onSelectionChanged)="LocationChanged($event)" [(value)]="ServiceValue" [items]="ServiceDt" placeholder="Hasta Yerini Seçiniz..." displayExpr="Name" valueExpr="ObjectID" i18n-placeholder="@@M15348" id="A10202" data-tid="A339783">
+                                </dx-select-box>
+                            </div>
+                            <div class="col-sm-2" id="A10203" data-tid="A339784">
+                                <dx-select-box searchEnabled="true" [(value)]="ViewModel.QueryModel.psEnum" [items]="psEnum" placeholder="Hasta Durumu Seçiniz..." displayExpr="description" valueExpr="code" i18n-placeholder="@@M15188" id="A10204" [disabled]="!filtersEnable" data-tid="A339785"></dx-select-box>
+                            </div>
+                            <div class="col-sm-2" id="A10205" data-tid="A339786">
+                                <hvl-valuelist-box #Validation [(SelectedValue)]="fCCAWorkListFormViewModel.QueryModel.FolderLocation" [AutoCompleteDialogHeight]="cmbFolderLocation?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="cmbFolderLocation?.AutoCompleteDialogWidth" [AutoCompleteMode]="cmbFolderLocation?.AutoCompleteMode" [BackColor]="cmbFolderLocation?.BackColor" [DefinitionName]="cmbFolderLocation?.ListDefName" [Enabled]="cmbFolderLocation?.Enabled" [Font]="cmbFolderLocation?.Font" [ForeColor]="cmbFolderLocation?.ForeColor" [ListFilterExpression]="cmbFolderLocation?.ListFilterExpression" [MinSearchLength]="cmbFolderLocation?.MinSearchLength" [PopupDialogFieldConfig]="cmbFolderLocation?.PopupDialogFieldConfig" [PopupDialogGridColumns]="cmbFolderLocation?.PopupDialogGridColumns" [PopupDialogHeight]="cmbFolderLocation?.PopupDialogHeight" [PopupDialogTitle]="cmbFolderLocation?.PopupDialogTitle" [PopupDialogWidth]="cmbFolderLocation?.PopupDialogWidth" [ReadOnly]="cmbFolderLocation?.ReadOnly" [SearchTimeout]="cmbFolderLocation?.SearchTimeout" [TabIndex]="cmbFolderLocation?.TabIndex" [Visible]="cmbFolderLocation?.Visible" [width]="cmbFolderLocation?.Width" id="A10206" data-tid="A339787"></hvl-valuelist-box>
+                            </div>
+                            <div class="col-sm-2" id="A10207" data-tid="A339788">
+                                <dx-date-box width="100%" type="date" [(value)]="ViewModel.QueryModel.StartDate" id="A10208" [disabled]="!filtersEnable" data-tid="A339789">
+                                </dx-date-box>
+                            </div>
+                            <div class="col-sm-2" id="A10209" data-tid="A339790">
+                                <dx-date-box width="100%" type="date" [(value)]="ViewModel.QueryModel.EndDate" id="A10210" [disabled]="!filtersEnable" data-tid="A339791">
+                                </dx-date-box>
+                            </div>
+                        </div>
+                        <br id="A10211" data-tid="A339792" />
+                        <div class="row" id="A10212" data-tid="A339793">
+                            <!-- <label class="control-label col-sm-2" id="A10213">Hasta TC Kimlik Numarası</label> -->
+                            <label class="control-label col-sm-2" id="A10214" data-tid="A339794">Hasta Arama</label>
+                            <label class="control-label col-sm-2" id="A10215" data-tid="A339795">Kabul Numarası</label>
+                            <label class="control-label col-sm-2" id="A10216" data-tid="A339796">Arşiv Numarası</label>
+                            <label class="control-label col-sm-2" id="A10216" data-tid="A339797">Arşive Kayıt Başlangıç Tarihi</label>
+                            <label class="control-label col-sm-2" id="A10217" data-tid="A339798">Arşive Kayıt Bitiş Tarihi</label>
+                        </div>
+                        <div class="row" id="A10218" data-tid="A339799">
+                            <!--  <div class="col-sm-2" id="A10219">
+                                <hvl-text-box #Validation [(Text)]="ViewModel.QueryModel.PatientUniqueRefNo" id="A10220"
+                                    [Enabled]="filtersEnable">
+                                </hvl-text-box>
+                            </div> -->
+                            <div class="col-sm-2" id="A10221" *ngIf="request==false" data-tid="A339800">
+                                <PatientSearchForm Width="100%" (SelectedPatientChanged)="patientChanged($event)" id="A10222" data-tid="A339801">
+                                </PatientSearchForm>
+                            </div>
+                            <div class="col-sm-2" id="A10221" *ngIf="request==true" data-tid="A339802">
+                                <PatientSearchForm Width="100%" Visible="false" (SelectedPatientChanged)="patientChanged($event)" id="A10222" data-tid="A339803">
+                                </PatientSearchForm>
+                            </div>
+                            <div class="col-sm-2" id="A10223" data-tid="A339804">
+                                <hvl-text-box #Validation [(Text)]="ViewModel.QueryModel.ProtocolNo" id="A10224" [Enabled]="filtersEnable" data-tid="A339805">
+                                </hvl-text-box>
+                            </div>
+                            <div class="col-sm-2" id="A10223" data-tid="A339806">
+                            <dx-text-box [(value)]="ViewModel.QueryModel.episodeFolderID" i18n-placeholder="@@M18458" id="A1466" data-tid="A339807">
+
+                            </dx-text-box>
+                        </div>
+                            <div class="col-sm-2" id="A10225" data-tid="A339808">
+                                <dx-date-box width="100%" type="date" [(value)]="ViewModel.QueryModel.ArchiveStartDate" id="A10226" [disabled]="!filtersEnable" data-tid="A339809">
+                                </dx-date-box>
+                            </div>
+                            <div class="col-sm-2" id="A10227" data-tid="A339810">
+                                <dx-date-box width="100%" type="date" [(value)]="ViewModel.QueryModel.ArchiveEndDate" id="A10228" [disabled]="!filtersEnable" data-tid="A339811">
+                                </dx-date-box>
+                            </div>
+                        </div>
+                        <div class="row" id="A10212" *ngIf="diagnoseEnable" data-tid="A339812">
+                            <label class="control-label col-sm-2" id="A10213" data-tid="A339813">Tanı</label>
+                        </div>
+                        <div class="row" *ngIf="diagnoseEnable" data-tid="A339814">
+                            <div class="col-sm-4" data-tid="A339815">
+                                <dx-tag-box #tagbox [(selectedItems)]="ViewModel.QueryModel.selectedDiagnosis" [showSelectionControls]="false" [searchEnabled]="true" [dataSource]="DiagnosisArray" valueExpr="Code" displayExpr="Codeandname" placeholder="Tanı Arama" i18n-placeholder="@@M27304" id="A28501" data-tid="A339816">
+                                </dx-tag-box>
+                            </div>
+                        </div>
+                        <div class="row" style="float:right;margin-right:1px" id="A10229" data-tid="A339817">
+                            <dx-button type="btn btn-info" icon="fa fa-bars" (onClick)="query()" text="Listele" i18n-text="@@M27337" id="A10230" data-tid="A339818"></dx-button>
+                        </div>
+                    </dxi-item>
+                </dx-accordion>
+                <br id="A10231" data-tid="A339819" />
+            </div>
+
+            <div class="col-sm-12" id="A10232" data-tid="A339820">
+                <div class="col-sm-1" id="A10233" *ngIf="request==true" data-tid="A339821">
+                    <dx-button type="success" (onClick)="sendToCompleteRequest()" text="İsteği Karşıla" i18n-text="@@M11107" id="A10234" data-tid="A339822"></dx-button>
+                </div>
+                <div class="col-sm-1" id="A10233" data-tid="A339823">
+                    <dx-button type="success" [visible]="archiveVisible" (onClick)="sendArchive()" text="Arşive Gönder" i18n-text="@@M11107" id="A10234" data-tid="A339824"></dx-button>
+                </div>
+                <div class="col-sm-2" id="A10235" data-tid="A339825">
+                    <dx-button type="default" [visible]="acceptArchivevisible" (onClick)="acceptArchive()" text="Arşivi Kabul Et" i18n-text="@@M11108" id="A10236" data-tid="A339826"></dx-button>
+                </div>
+                <div class="col-sm-1" id="A10237" data-tid="A339827">
+                    <dx-button type="success" [visible]="tigVisible" (onClick)="sendTig()" text="TİG'e Gönder" i18n-text="@@M23458" id="A10238" data-tid="A339828"></dx-button>
+                </div>
+                <div class="col-sm-2" id="A10239" data-tid="A339829">
+                    <dx-button type="success" [visible]="invoiceVisible" (onClick)="sendInvoice()" text="Faturaya Gönder" i18n-text="@@M14272" id="A10240" data-tid="A339830"></dx-button>
+                </div>
+                <div class="col-sm-2" id="A10241" *ngIf="request==false" data-tid="A339831">
+                    <hvl-valuelist-box #Validation [(SelectedValue)]="ServiceFolderLocation" [AutoCompleteDialogHeight]="cmbFolderLocation?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="cmbFolderLocation?.AutoCompleteDialogWidth" [AutoCompleteMode]="cmbFolderLocation?.AutoCompleteMode" [BackColor]="cmbFolderLocation?.BackColor" [DefinitionName]="cmbFolderLocation?.ListDefName" [Font]="cmbFolderLocation?.Font" [ForeColor]="cmbFolderLocation?.ForeColor" [ListFilterExpression]="cmbFolderLocation?.ListFilterExpression" [MinSearchLength]="cmbFolderLocation?.MinSearchLength" [PopupDialogFieldConfig]="cmbFolderLocation?.PopupDialogFieldConfig" [PopupDialogGridColumns]="cmbFolderLocation?.PopupDialogGridColumns" [PopupDialogHeight]="cmbFolderLocation?.PopupDialogHeight" [PopupDialogTitle]="cmbFolderLocation?.PopupDialogTitle" [PopupDialogWidth]="cmbFolderLocation?.PopupDialogWidth" [ReadOnly]="cmbFolderLocation?.ReadOnly" [SearchTimeout]="cmbFolderLocation?.SearchTimeout" [TabIndex]="cmbFolderLocation?.TabIndex" [Visible]="cmbFolderLocation?.Visible" [width]="cmbFolderLocation?.Width" id="A10242" data-tid="A339832">
+                    </hvl-valuelist-box>
+                </div>
+                <div class="col-sm-2" id="A10243" data-tid="A339833">
+                    <dx-button type="success" [visible]="serviceVisible" (onClick)="sendService()" text="Servise Gönder" i18n-text="@@M21670" id="A10244" data-tid="A339834"></dx-button>
+                </div>
+                <div class="col-sm-1" id="A10245" data-tid="A339835">
+                    <dx-button [visible]="!request" type="danger" (onClick)="undo()" text="Geri Al" i18n-text="@@M27345" id="A10246" data-tid="A339836">
+                    </dx-button>
+                </div>
+                <div class="col-sm-1" id="A10247" data-tid="A339837">
+                    <dx-button [visible]="!request" type="danger" (onClick)="undo()" text="Reddet" i18n-text="@@M27347" id="A10248" data-tid="A339838">
+                    </dx-button>
+                </div>
+            </div>
+            <div class="col-sm-12" style="height:78%" id="A10248" *ngIf="request==false" data-tid="A339839">
+                <dx-data-grid #archiveGrid [columns]="GridColumns" [dataSource]="ViewModel.dataSource" (onSelectionChanged)="selectionPatient($event)" (onRowClick)="rowClick($event)" [selection]="{mode: 'multiple',allowSelectAll: true}" [paging]="{enable: true, pageSize:100}" [groupPanel]="{visible: true}" [filterRow]="{visible: true}" style="height:100%" id="A10250" data-tid="A339840">
+                    <dxo-export [enabled]="true" fileName="Arşiv İş Listesi" [allowExportSelectedData]="true" id="A10251" data-tid="A339841">
+                    </dxo-export>
+                    <dxo-summary id="A10252" data-tid="A339842">
+                        <dxi-total-item alignment="left" column="EpisodeFolderID" summaryType="count" id="A10253" data-tid="A339843">
+                        </dxi-total-item>
+                    </dxo-summary>
+                </dx-data-grid>
+            </div>
+
+            <div class="col-sm-12" style="height:78%" id="A10249" *ngIf="request==true" data-tid="A339844">
+                <dx-data-grid [columns]="RequestWLGridColumns" [dataSource]="ViewModel.requestWorkListModel" (onSelectionChanged)="selectionRequestedArchives($event)" [selection]="{mode: 'multiple',allowSelectAll: true}" [paging]="{enable: true, pageSize:100}" [groupPanel]="{visible: true}" [filterRow]="{visible: true}" style="height:100%" id="A10250" data-tid="A339845">
+                    <dxo-export [enabled]="true" fileName="Arşiv İş Listesi" [allowExportSelectedData]="true" id="A10251" data-tid="A339846">
+                    </dxo-export>
+                    <dxo-summary id="A10252" data-tid="A339847">
+                        <dxi-total-item alignment="left" column="EpisodeFolderID" summaryType="count" id="A10253" data-tid="A339848">
+                        </dxi-total-item>
+                    </dxo-summary>
+                </dx-data-grid>
+            </div>
+        </div>
+    </dxi-item>
+    <dxi-item class="tabpanel-item" title="Arşiv İstek" data-tid="A339849">
+        <div id="requestTab" class="row" style="height:100%;padding:0" data-tid="A339850">
+            <div class="col-sm-12" id="A10191" data-tid="A339851">
+                <dx-accordion #searchAccordion class="margin-bottom-10" collapsible="true" id="A10192" data-tid="A339852">
+                    <dxi-item title="Sorgulama Paneli" i18n-title="@@M22127" id="A10193" style="padding-bottom: 16px;" data-tid="A339853">
+
+                        <div class="row" id="A10212" data-tid="A339854">
+                            <label class="control-label col-sm-3" id="A10213" data-tid="A339855">Hasta TC Kimlik Numarası</label>
+                            <label class="control-label col-sm-3" id="A10214" data-tid="A339856">Hasta Adı Soyadı</label>
+                            <label class="control-label col-sm-3" id="A10215" data-tid="A339857">Kabul Numarası</label>
+
+                        </div>
+                        <div class="row" id="A10218" data-tid="A339858">
+                            <div class="col-sm-3" id="A10219" data-tid="A339859">
+                                <hvl-text-box #Validation [(Text)]="ViewModel.QueryModel.PatientUniqueRefNo" id="A10220" data-tid="A339860">
+                                </hvl-text-box>
+                            </div>
+                            <div class="col-sm-3" id="A10221" data-tid="A339861">
+                                <PatientSearchForm Width="100%" (SelectedPatientChanged)="patientChanged($event)" id="A10222" data-tid="A339862">
+                                </PatientSearchForm>
+                            </div>
+                            <div class="col-sm-3" id="A10223" data-tid="A339863">
+                                <hvl-text-box #Validation [(Text)]="ViewModel.QueryModel.ProtocolNo" id="A10224" data-tid="A339864">
+                                </hvl-text-box>
+                            </div>
+                            <div class="col-sm-3" id="A10229" data-tid="A339865">
+                                <dx-button type="btn btn-info" icon="fa fa-bars" (onClick)="archiveQuery()" text="Listele" i18n-text="@@M27337" id="A10230" data-tid="A339866"></dx-button>
+                            </div>
+                        </div>
+
+                    </dxi-item>
+                </dx-accordion>
+                <br id="A10231" data-tid="A339867" />
+            </div>
+
+            <div class="col-sm-12" data-tid="A339868">
+                <div class="col-sm-1" id="A10237" data-tid="A339869">
+                    <dx-button type="success" [disabled]="!select" (onClick)="ShowSectionInfo_CellContentClickEmitted()" text="İstek Yap" i18n-text="@@M23458" id="A10238" data-tid="A339870"></dx-button>
+                </div>
+            </div>
+            <div class="col-sm-12" style="height:78%" id="A10249" data-tid="A339871">
+                <dx-data-grid [columns]="RequestGridColumns" [dataSource]="ViewModel.archiveRequestDataSource" (onRowClick)="requestRowClick($event)" [paging]="{enable: true, pageSize:100}" [filterRow]="{visible: true}" style="height:100%" id="A10250" [selection]="{mode: 'single',allowSelectAll: false}" data-tid="A339872">
+                </dx-data-grid>
+            </div>
+        </div>
+
+        <dx-popup width="500" height="320" [(visible)]="showArchive" [closeOnOutsideClick]="false" title="Arşiv İstek" [showCloseButton]="true" data-tid="A339873">
+            <div *dxTemplate="let data of 'content'" data-tid="A339874">
+                <div class="row" data-tid="A339875">
+
+                    <label class="control-label col-md-12" data-tid="A339876">
+                        İstek Açıklaması
+                    </label>
+                    <div class="col-md-12" data-tid="A339877">
+                        <dx-text-box placeholder="İstek Açıklaması Giriniz..." [(value)]="ArchiveRequestDescription" i18n-placeholder="@@M18458" id="A1466" data-tid="A339878">
+
+                        </dx-text-box>
+                    </div>
+                </div>
+                <br data-tid="A339879" />
+
+                <div class="row" data-tid="A339880">
+                    <label class="control-label  col-md-12" data-tid="A339881">
+                        İstek Yapan Birim
+                    </label>
+                    <div class="col-md-12" data-tid="A339882">
+                        <dx-select-box [dataSource]="ResSections" [(value)]="ArchiveRequesterSection" valueExpr="RequesterSectionID" displayExpr="RequesterSectionName" showClearButton="true" data-tid="A339883">
+
+                        </dx-select-box>
+                    </div>
+                </div>
+                <br data-tid="A339884" />
+                <div class="col-md-12" style="text-align:right;" data-tid="A339885">
+                    <br data-tid="A339886" />
+                    <button type="button" class="btn btn-default" (click)="CreateArchiveRequest()" data-tid="A339887">Arşiv İsteği
+                        Oluştur</button>
+                </div>
+            </div>
+        </dx-popup>
+    </dxi-item>
+</dx-tab-panel>

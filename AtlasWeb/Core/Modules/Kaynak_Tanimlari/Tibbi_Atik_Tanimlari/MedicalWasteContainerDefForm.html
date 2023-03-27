@@ -1,0 +1,168 @@
+﻿<div class="col-md-2" data-tid="A325643">
+    <div class="row" data-tid="A325644">
+        <h3 style="text-align:center" data-tid="A325645">TIBBİ ATIK TANIMLAR</h3><br data-tid="A325646" />
+        <ul class="nav nav-pills nav-stacked" data-tid="A325647">
+            <li class="active" data-tid="A325648"><a data-toggle="tab" href="#depoTanimlama" (click)="showUserList()" data-tid="A325649">Tıbbi/Tehlikeli Atık
+                    Depo Tanımlama</a></li>
+            <li data-tid="A325650"><a data-toggle="tab" href="#urunTanimlama" data-tid="A325651">Tıbbi/Tehlikeli Atık Ürün Tanımlama</a></li>
+            <li data-tid="A325652"><a data-toggle="tab" href="#islemTanimlama" data-tid="A325653">Tıbbi/Tehlikeli Atık İşlem Türü Tanımlama</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="tab-content col-md-10" data-tid="A325654">
+    <div id="depoTanimlama" class="tab-pane fade in active" data-tid="A325655">
+
+        <div class="row" data-tid="A325656">
+            <div class="panel panel-primary" data-tid="A325657">
+                <div class="panel-heading" style="text-align:center" data-tid="A325658"><i class="fa fa-film" data-tid="A325659"></i>&nbsp; Tıbbi/Tehlikeli
+                    Atık Depo Tanımlama
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6" data-tid="A325660">
+
+            <div class="row" data-tid="A325661">
+                <label class="control-label col-sm-3" data-tid="A325662">
+                    Adı </label>
+                <label class="control-label col-sm-3" data-tid="A325663">
+                    Kapasitesi(kg) </label>
+                <label class="control-label col-sm-3" data-tid="A325664">
+                    Aktif </label>
+            </div>
+            <div class="row" data-tid="A325665">
+                <div class="col-sm-3" data-tid="A325666">
+                    <dx-text-box [(value)]="ContainerName" i18n-placeholder="@@M27276" id="A1148" data-tid="A325667">
+                    </dx-text-box>
+                </div>
+                <div class="col-sm-3" data-tid="A325668">
+                    <dx-number-box [(value)]="ContainerCapacity" max="9999999" min="0" id="A2030" data-tid="A325669">
+                    </dx-number-box>
+                </div>
+
+                <div class="col-sm-3" data-tid="A325670">
+                    <dx-check-box [(value)]="ContainerActive" id="A1465" data-tid="A325671"></dx-check-box>
+                </div>
+            </div>
+            <br data-tid="A325672" />
+            <label class="control-label" data-tid="A325673">Depo Listesi</label>
+            <dx-data-grid [dataSource]="containerDataSource" [columns]="ContainerGridColumns" (onRowClick)="onContainerGridRowClick($event)" data-tid="A325674">
+            </dx-data-grid>
+            <br data-tid="A325675" />
+            <div class="row" data-tid="A325676">
+                <div class="col-lg-2" data-tid="A325677">
+                    <dx-button type="success" style="width: 100%; margin: 0px 5px 0px 0px" text="Yeni" (onClick)="createNewContainerRecord()" data-tid="A325678"></dx-button>
+                </div>
+                <div class="col-lg-2" data-tid="A325679">
+                    <dx-button type="danger" style="width: 100%; margin: 0px 5px 0px 0px" text="Sil" (onClick)="deleteContainerRecord($event)" data-tid="A325680"></dx-button>
+                </div>
+                <div class="col-lg-2" data-tid="A325681">
+                    <dx-button type="success" style="width: 100%; margin: 0px 5px 0px 0px" text="Kaydet" (onClick)="AddOrUpdateContainer()" data-tid="A325682"></dx-button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="urunTanimlama" class="tab-pane fade" data-tid="A325683">
+        <div class="row" data-tid="A325684">
+            <div class="panel panel-primary" data-tid="A325685">
+                <div class="panel-heading" style="text-align:center" data-tid="A325686"><i class="fa fa-film" data-tid="A325687"></i>&nbsp; Tıbbi/Tehlikeli
+                    Atık Ürün Tanımlama
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8" data-tid="A325688">
+            <div class="row" data-tid="A325689">
+                <label class="control-label col-sm-2" data-tid="A325690">
+                    Adı </label>
+                <label class="control-label col-sm-2" data-tid="A325691">
+                    Kodu </label>
+                <label class="control-label col-sm-4" data-tid="A325692">
+                    Atık Türü </label>
+                <label class="control-label col-sm-2" data-tid="A325693">
+                    Aktif </label>
+            </div>
+            <div class="row" data-tid="A325694">
+                <div class="col-sm-2" data-tid="A325695">
+                    <dx-text-box [(value)]="ProductName" i18n-placeholder="@@M27276" id="A1148" data-tid="A325696">
+                    </dx-text-box>
+                </div>
+                <div class="col-sm-2" data-tid="A325697">
+                    <dx-text-box [(value)]="ProductCode" id="A2030" data-tid="A325698">
+                    </dx-text-box>
+                </div>
+                <div class="col-sm-4" id="A1604" data-tid="A325699">
+                    <dx-select-box [(dataSource)]="activeTypeDataSource" displayExpr="Name" valueExpr="ObjectID" [(value)]="ProductTypeID" id="A1605" data-tid="A325700"></dx-select-box>
+                </div>
+                <div class="col-sm-2" data-tid="A325701">
+                    <dx-check-box [(value)]="ProductActive" id="A1465" data-tid="A325702"></dx-check-box>
+                </div>
+            </div>
+            <br data-tid="A325703" />
+            <label class="control-label" data-tid="A325704">Ürün Listesi</label>
+            <dx-data-grid [dataSource]="productDataSource" [columns]="ProductGridColumns" (onRowClick)="onProductGridRowClick($event)" data-tid="A325705">
+            </dx-data-grid>
+            <br data-tid="A325706" />
+            <div class="col-sm-10" style="margin-left: -30px;" data-tid="A325707">
+                <div class="col-lg-2" data-tid="A325708">
+                    <dx-button type="success" style="width: 100%; margin: 0px 5px 0px 0px" text="Yeni" (onClick)="createNewProductRecord()" data-tid="A325709"></dx-button>
+                </div>
+                <div class="col-lg-2" data-tid="A325710">
+                    <dx-button type="danger" style="width: 100%; margin: 0px 5px 0px 0px" text="Sil" (onClick)="deleteProductRecord($event)" data-tid="A325711"></dx-button>
+                </div>
+                <div class="col-lg-2" data-tid="A325712">
+                    <dx-button type="success" style="width: 100%; margin: 0px 5px 0px 0px" text="Kaydet" (onClick)="AddOrUpdateProduct()" data-tid="A325713"></dx-button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="islemTanimlama" class="tab-pane fade" data-tid="A325714">
+        <div class="row" data-tid="A325715">
+            <div class="panel panel-primary" data-tid="A325716">
+                <div class="panel-heading" style="text-align:center" data-tid="A325717"><i class="fa fa-film" data-tid="A325718"></i>&nbsp; Tıbbi/Tehlikeli
+                    Atık İşlem Türü Tanımlama
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6" data-tid="A325719">
+            <div class="row" data-tid="A325720">
+                <label class="control-label col-sm-3" data-tid="A325721">
+                    Adı </label>
+                <label class="control-label col-sm-3" data-tid="A325722">
+                    Kodu </label>
+                <label class="control-label col-sm-3" data-tid="A325723">
+                    Aktif </label>
+            </div>
+            <div class="row" data-tid="A325724">
+                <div class="col-sm-3" data-tid="A325725">
+                    <dx-text-box [(value)]="WasteTypeName" i18n-placeholder="@@M27276" id="A1148" data-tid="A325726">
+                    </dx-text-box>
+                </div>
+                <div class="col-sm-3" data-tid="A325727">
+                    <dx-text-box [(value)]="WasteTypeCode" id="A2030" data-tid="A325728">
+                    </dx-text-box>
+                </div>
+
+                <div class="col-sm-3" data-tid="A325729">
+                    <dx-check-box [(value)]="WasteTypeActive" id="A1465" data-tid="A325730"></dx-check-box>
+                </div>
+            </div>
+            <br data-tid="A325731" />
+            <label class="control-label" data-tid="A325732">İşlem Türü Listesi</label>
+            <dx-data-grid [dataSource]="typeDataSource" [columns]="WasteGridColumns" (onRowClick)="onTypeGridRowClick($event)" data-tid="A325733">
+            </dx-data-grid>
+            <br data-tid="A325734" />
+            <div class="row" data-tid="A325735">
+                <div class="col-lg-2" data-tid="A325736">
+                    <dx-button type="success" style="width: 100%; margin: 0px 5px 0px 0px" text="Yeni" (onClick)="createNewTypeRecord()" data-tid="A325737"></dx-button>
+                </div>
+                <div class="col-lg-2" data-tid="A325738">
+                    <dx-button type="danger" style="width: 100%; margin: 0px 5px 0px 0px" text="Sil" (onClick)="deleteTypeRecord($event)" data-tid="A325739"></dx-button>
+                </div>
+                <div class="col-lg-2" data-tid="A325740">
+                    <dx-button type="success" style="width: 100%; margin: 0px 5px 0px 0px" text="Kaydet" (onClick)="AddOrUpdateWasteType()" data-tid="A325741"></dx-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+﻿<div class="col-md-12" style="height:100%;overflow-x:hidden;overflow-y:auto;padding-top: 1%;" data-tid="A331945">
+   <div class="row" style="padding-left: 1%;" data-tid="A331946">
+      <div class="col-md-4" data-tid="A331947">
+         <label class="control-label" data-tid="A331948">Jenerik Seçiniz</label>
+         <dx-drop-down-box #genericDrug [(value)]="selectedGenericItem.Name" displayExpr="Name" valueExpr="ObjectID" [showClearButton]="true" [dataSource] (onOpened)="openGenericDefDropDown()" (onValueChanged)="onClearGeneric($event)" data-tid="A331949">
+            <div *dxTemplate="let data of 'content'" data-tid="A331950">
+               <dx-data-grid [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" [dataSource]="genericDefDataSource" (onRowClick)="selectGeneric($event)" [remoteOperations]="true" [customizeColumns]="null" data-tid="A331951">
+                  <dxo-filter-row [visible]="true" data-tid="A331952"></dxo-filter-row>
+                  <dxo-paging [pageSize]="10" data-tid="A331953"></dxo-paging>
+                  <dxo-selection mode="single" data-tid="A331954"></dxo-selection>
+                  <dxi-column caption="Jenerik Adı" dataField="Name" data-tid="A331955"></dxi-column>
+               </dx-data-grid>
+            </div>
+         </dx-drop-down-box>
+      </div>
+      <div class="col-sm-2" id="A5668" style="margin-top: 12px;" data-tid="A331956">
+         <dx-button type="btn btn-info" icon="fa fa-bars" class="center-block" (onClick)="GetDrugList()" text="Sorgula" id="A5669" data-tid="A331957"></dx-button>
+      </div>
+   </div>
+   <div class="row" data-tid="A331958">
+      <div class="col-sm-12" style="margin-top:5px;" data-tid="A331959">
+         <div id="grid" data-tid="A331960">
+            <dx-data-grid #grid id="grid-container" [columns]="DrugListColumn" [dataSource]="drugLists" style="height:600px" data-tid="A331961">
+               <dxo-paging [pageSize]="20" data-tid="A331962"></dxo-paging>
+               <dxo-filter-row [visible]="true" data-tid="A331963"> </dxo-filter-row>
+               <dxo-export [enabled]="true" fileName="İlaç Jenerik Raporu" [allowExportSelectedData]="false" data-tid="A331964">
+               </dxo-export>
+               <dxo-group-panel [visible]="true" data-tid="A331965"></dxo-group-panel>
+               <dxo-grouping #expand [autoExpandAll]="true" data-tid="A331966"></dxo-grouping>
+            </dx-data-grid>
+         </div>
+      </div>
+      <div class="col-sm-12 pull pull-right" style="width:100%;color: black;padding: 15px;font-size: larger;" data-tid="A331967">
+         Toplam Kayıt Sayısı: {{ TotalNumberOfRows }}
+      </div>
+   </div>
+
+   <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" showIndicator="true" showPane="true" shading="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A331968">
+   </dx-load-panel>
+</div>

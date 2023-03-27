@@ -1,0 +1,159 @@
+﻿<NeStatePanelComponent [OutgoingTransitions]="radiologyTestApproveFormViewModel?.OutgoingTransitions" [StateReports]="radiologyTestApproveFormViewModel?.CurrentStateReports" [ObjectID]="radiologyTestApproveFormViewModel?._RadiologyTest?.ObjectID" [ObjectDefID]="radiologyTestApproveFormViewModel?._RadiologyTest?.ObjectDefID" [CurrentStateDefID]="radiologyTestApproveFormViewModel._RadiologyTest.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" id="A25254" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A360918">
+</NeStatePanelComponent>
+<form id="RadiologyTestApproveForm" class="form-horizontal" role="form" data-tid="A360919">
+</form>
+
+<div class="row" id="A25255" data-tid="A360920">
+    <div class="col-md-6" id="A25256" data-tid="A360921">
+        <patient-demographics-form [actionId]="radiologyTestApproveFormViewModel._RadiologyTest.Radiology.ObjectID" id="A25257" data-tid="A360922"></patient-demographics-form>
+    </div>
+    <div class="col-md-6" id="A25258" data-tid="A360923">
+        <DiagnosisGridReadOnlyForm [EpisodeAction]="radiologyTestApproveFormViewModel._RadiologyTest.Radiology" id="A25259" data-tid="A360924"></DiagnosisGridReadOnlyForm>
+    </div>
+</div>
+<br id="A25260" data-tid="A360925" />
+<div class="row" id="A25261" data-tid="A360926">
+    <div class="col-md-2" id="A25262" data-tid="A360927">
+        <label class="control-label" id="A25263" data-tid="A360928">İşlem Zamanı</label>
+        <hvl-date-picker #Validation (ValueChange)="onActionDateChanged($event)" [BackColor]="ActionDate?.BackColor" [CustomFormat]="ActionDate?.CustomFormat" [Enabled]="ActionDate?.Enabled" [Font]="ActionDate?.Font" [ForeColor]="ActionDate?.ForeColor" [Format]="ActionDate?.Format" [Max]="ActionDate?.Max" [Min]="ActionDate?.Min" [ReadOnly]="ActionDate?.ReadOnly" [Required]="ActionDate?.Required" [TabIndex]="ActionDate?.TabIndex" [Value]="radiologyTestApproveFormViewModel?._RadiologyTest?.ActionDate" [Visible]="ActionDate?.Visible" id="A25264" data-tid="A360929"></hvl-date-picker>
+    </div>
+    <div class="col-md-2" id="A25265" data-tid="A360930">
+        <label class="control-label" id="A25266" data-tid="A360931">İstek Yapan Tabip</label>
+        <hvl-list-box #Validation (SelectedObjectChange)="onttobjectlistbox1Changed($event)" [AutoCompleteDialogHeight]="ttobjectlistbox1?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ttobjectlistbox1?.AutoCompleteDialogWidth" [AutoCompleteMode]="ttobjectlistbox1?.AutoCompleteMode" [BackColor]="ttobjectlistbox1?.BackColor" [DefinitionName]="ttobjectlistbox1?.ListDefName" [DisplayExpressionsCache]="radiologyTestApproveFormViewModel?.ListDefDisplayExpressions" [Enabled]="ttobjectlistbox1?.Enabled" [Font]="ttobjectlistbox1?.Font" [ForeColor]="ttobjectlistbox1?.ForeColor" [ListFilterExpression]="ttobjectlistbox1?.ListFilterExpression" [MinSearchLength]="ttobjectlistbox1?.MinSearchLength" [PopupDialogFieldConfig]="ttobjectlistbox1?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ttobjectlistbox1?.PopupDialogGridColumns" [PopupDialogHeight]="ttobjectlistbox1?.PopupDialogHeight" [PopupDialogTitle]="ttobjectlistbox1?.PopupDialogTitle" [PopupDialogWidth]="ttobjectlistbox1?.PopupDialogWidth" [ReadOnly]="ttobjectlistbox1?.ReadOnly" [SearchMode]="ttobjectlistbox1?.SearchMode" [SearchTimeout]="ttobjectlistbox1?.SearchTimeout" [SelectedObject]="radiologyTestApproveFormViewModel?._RadiologyTest?.Radiology?.RequestDoctor" [TabIndex]="ttobjectlistbox1?.TabIndex" [Visible]="ttobjectlistbox1?.Visible" [width]="ttobjectlistbox1?.Width" id="A25267" data-tid="A360932"></hvl-list-box>
+    </div>
+    <div class="col-md-2" id="A25268" data-tid="A360933">
+        <label class="control-label" id="A25269" data-tid="A360934">Sorumlu Tabip</label>
+        <hvl-list-box #Validation (SelectedObjectChange)="onApprovedByChanged($event)" [AutoCompleteDialogHeight]="ApprovedBy?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ApprovedBy?.AutoCompleteDialogWidth" [AutoCompleteMode]="ApprovedBy?.AutoCompleteMode" [BackColor]="ApprovedBy?.BackColor" [DefinitionName]="ApprovedBy?.ListDefName" [DisplayExpressionsCache]="radiologyTestApproveFormViewModel?.ListDefDisplayExpressions" [Enabled]="ApprovedBy?.Enabled" [Font]="ApprovedBy?.Font" [ForeColor]="ApprovedBy?.ForeColor" [ListFilterExpression]="ApprovedBy?.ListFilterExpression" [MinSearchLength]="ApprovedBy?.MinSearchLength" [PopupDialogFieldConfig]="ApprovedBy?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ApprovedBy?.PopupDialogGridColumns" [PopupDialogHeight]="ApprovedBy?.PopupDialogHeight" [PopupDialogTitle]="ApprovedBy?.PopupDialogTitle" [PopupDialogWidth]="ApprovedBy?.PopupDialogWidth" [ReadOnly]="ApprovedBy?.ReadOnly" [SearchMode]="ApprovedBy?.SearchMode" [SearchTimeout]="ApprovedBy?.SearchTimeout" [SelectedObject]="radiologyTestApproveFormViewModel?._RadiologyTest?.ProcedureDoctor" [TabIndex]="ApprovedBy?.TabIndex" [Visible]="ApprovedBy?.Visible" [width]="ApprovedBy?.Width" id="A25270" data-tid="A360935">
+        </hvl-list-box>
+    </div>
+    <div class="col-md-2" id="A25271" data-tid="A360936">
+        <label class="control-label" id="A25272" data-tid="A360937">Rapor Yazan</label>
+        <hvl-list-box #Validation (SelectedObjectChange)="onReportedByChanged($event)" [AutoCompleteDialogHeight]="ReportedBy?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ReportedBy?.AutoCompleteDialogWidth" [AutoCompleteMode]="ReportedBy?.AutoCompleteMode" [BackColor]="ReportedBy?.BackColor" [DefinitionName]="ReportedBy?.ListDefName" [DisplayExpressionsCache]="radiologyTestApproveFormViewModel?.ListDefDisplayExpressions" [Enabled]="ReportedBy?.Enabled" [Font]="ReportedBy?.Font" [ForeColor]="ReportedBy?.ForeColor" [ListFilterExpression]="ReportedBy?.ListFilterExpression" [MinSearchLength]="ReportedBy?.MinSearchLength" [PopupDialogFieldConfig]="ReportedBy?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ReportedBy?.PopupDialogGridColumns" [PopupDialogHeight]="ReportedBy?.PopupDialogHeight" [PopupDialogTitle]="ReportedBy?.PopupDialogTitle" [PopupDialogWidth]="ReportedBy?.PopupDialogWidth" [ReadOnly]="ReportedBy?.ReadOnly" [SearchMode]="ReportedBy?.SearchMode" [SearchTimeout]="ReportedBy?.SearchTimeout" [SelectedObject]="radiologyTestApproveFormViewModel?._RadiologyTest?.ReportedBy" [TabIndex]="ReportedBy?.TabIndex" [Visible]="ReportedBy?.Visible" [width]="ReportedBy?.Width" id="A25273" data-tid="A360938">
+        </hvl-list-box>
+    </div>
+    <div class="col-md-1" id="A25274" data-tid="A360939">
+        <label class="control-label" id="A25275" data-tid="A360940">İmaj Erişim No</label>
+        <hvl-text-box #Validation [(Text)]="radiologyTestApproveFormViewModel._RadiologyTest.AccessionNo" [BackColor]="AccessionNo?.BackColor" [CharacterCasing]="AccessionNo?.CharacterCasing" [Enabled]="AccessionNo?.Enabled" [Font]="AccessionNo?.Font" [ForeColor]="AccessionNo?.ForeColor" [height]="AccessionNo?.Height" [InputFormat]="AccessionNo?.InputFormat" [InputTurkishCharacter]="AccessionNo?.InputTurkishCharacter" [IsNonNumeric]="AccessionNo?.IsNonNumeric" [MultiLine]="AccessionNo?.Multiline" [ReadOnly]="AccessionNo?.ReadOnly" [Required]="AccessionNo?.Required" [TabIndex]="AccessionNo?.TabIndex" [TextAlign]="AccessionNo?.TextAlign" [Visible]="AccessionNo?.Visible" id="A25276" data-tid="A360941"></hvl-text-box>
+    </div>
+    <div class="col-md-2" id="A25277" data-tid="A360942">
+        <dx-button type="success" icon="fa fa-print" text="İmaj Görüntüle" (onClick)="cmdReport_Click()" i18n-text="@@M16462" id="A25278" data-tid="A360943"></dx-button>
+    </div>
+</div>
+<br id="A25279" data-tid="A360944" />
+<br id="A25280" data-tid="A360945" />
+<div class="row" id="A25281" data-tid="A360946">
+    <div class="fixpopup" data-tid="A360947">
+
+        <dx-tab-panel [selectedIndex]="0" [animationEnabled]="true" id="A25282" style="height:400px" data-tid="A360948">
+            <dxi-item class="tabpanel-item" title="Tetkik Bilgileri" i18n-title="@@M23303" id="A25283" data-tid="A360949">
+                <div class="row" id="A25284" data-tid="A360950">
+                    <div class="col-md-12" id="A25285" data-tid="A360951">
+                        <label class="control-label" id="A25286" data-tid="A360952">Rapor</label>
+                        <hvl-richtextbox (change)="onrtfReportChanged($event)" Theme="snow" [ngModelOptions]="{ standalone: true}" [ngModel]="radiologyTestApproveFormViewModel?._RadiologyTest?.Report" [ReadOnly]="rtfReport?.ReadOnly" [TemplateGroupName]="rtfReport?.TemplateGroupName" [Visible]="rtfReport?.Visible" id="A25287" data-tid="A360953"></hvl-richtextbox>
+                    </div>
+                </div>
+                <br id="A25288" data-tid="A360954" />
+                <div class="row" id="A25289" data-tid="A360955">
+                    <div class="col-md-3" id="A25290" data-tid="A360956">
+                        <label class="control-label" id="A25291" data-tid="A360957">Tetkik</label>
+                        <hvl-list-box #Validation (SelectedObjectChange)="onProcedureObjectChanged($event)" [AutoCompleteDialogHeight]="ProcedureObject?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ProcedureObject?.AutoCompleteDialogWidth" [AutoCompleteMode]="ProcedureObject?.AutoCompleteMode" [BackColor]="ProcedureObject?.BackColor" [DefinitionName]="ProcedureObject?.ListDefName" [DisplayExpressionsCache]="radiologyTestApproveFormViewModel?.ListDefDisplayExpressions" [Enabled]="ProcedureObject?.Enabled" [Font]="ProcedureObject?.Font" [ForeColor]="ProcedureObject?.ForeColor" [ListFilterExpression]="ProcedureObject?.ListFilterExpression" [MinSearchLength]="ProcedureObject?.MinSearchLength" [PopupDialogFieldConfig]="ProcedureObject?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ProcedureObject?.PopupDialogGridColumns" [PopupDialogHeight]="ProcedureObject?.PopupDialogHeight" [PopupDialogTitle]="ProcedureObject?.PopupDialogTitle" [PopupDialogWidth]="ProcedureObject?.PopupDialogWidth" [ReadOnly]="ProcedureObject?.ReadOnly" [SearchMode]="ProcedureObject?.SearchMode" [SearchTimeout]="ProcedureObject?.SearchTimeout" [SelectedObject]="radiologyTestApproveFormViewModel?._RadiologyTest?.ProcedureObject" [TabIndex]="ProcedureObject?.TabIndex" [Visible]="ProcedureObject?.Visible" [width]="ProcedureObject?.Width" id="A25292" data-tid="A360958"></hvl-list-box>
+                    </div>
+                    <div class="col-md-3" id="A25293" data-tid="A360959">
+                        <label class="control-label" id="A25294" data-tid="A360960">Bölüm</label>
+                        <hvl-list-box #Validation (SelectedObjectChange)="onDeparmentChanged($event)" [AutoCompleteDialogHeight]="Deparment?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="Deparment?.AutoCompleteDialogWidth" [AutoCompleteMode]="Deparment?.AutoCompleteMode" [BackColor]="Deparment?.BackColor" [DefinitionName]="Deparment?.ListDefName" [DisplayExpressionsCache]="radiologyTestApproveFormViewModel?.ListDefDisplayExpressions" [Enabled]="Deparment?.Enabled" [Font]="Deparment?.Font" [ForeColor]="Deparment?.ForeColor" [ListFilterExpression]="Deparment?.ListFilterExpression" [MinSearchLength]="Deparment?.MinSearchLength" [PopupDialogFieldConfig]="Deparment?.PopupDialogFieldConfig" [PopupDialogGridColumns]="Deparment?.PopupDialogGridColumns" [PopupDialogHeight]="Deparment?.PopupDialogHeight" [PopupDialogTitle]="Deparment?.PopupDialogTitle" [PopupDialogWidth]="Deparment?.PopupDialogWidth" [ReadOnly]="Deparment?.ReadOnly" [SearchMode]="Deparment?.SearchMode" [SearchTimeout]="Deparment?.SearchTimeout" [SelectedObject]="radiologyTestApproveFormViewModel?._RadiologyTest?.Department" [TabIndex]="Deparment?.TabIndex" [Visible]="Deparment?.Visible" [width]="Deparment?.Width" id="A25295" data-tid="A360961"></hvl-list-box>
+                    </div>
+                    <div class="col-md-3" id="A25296" data-tid="A360962">
+                        <label class="control-label" id="A25297" data-tid="A360963">Cihaz</label>
+                        <hvl-list-box #Validation (SelectedObjectChange)="onEquipmentChanged($event)" [AutoCompleteDialogHeight]="Equipment?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="Equipment?.AutoCompleteDialogWidth" [AutoCompleteMode]="Equipment?.AutoCompleteMode" [BackColor]="Equipment?.BackColor" [DefinitionName]="Equipment?.ListDefName" [DisplayExpressionsCache]="radiologyTestApproveFormViewModel?.ListDefDisplayExpressions" [Enabled]="Equipment?.Enabled" [Font]="Equipment?.Font" [ForeColor]="Equipment?.ForeColor" [ListFilterExpression]="Equipment?.ListFilterExpression" [MinSearchLength]="Equipment?.MinSearchLength" [PopupDialogFieldConfig]="Equipment?.PopupDialogFieldConfig" [PopupDialogGridColumns]="Equipment?.PopupDialogGridColumns" [PopupDialogHeight]="Equipment?.PopupDialogHeight" [PopupDialogTitle]="Equipment?.PopupDialogTitle" [PopupDialogWidth]="Equipment?.PopupDialogWidth" [ReadOnly]="Equipment?.ReadOnly" [SearchMode]="Equipment?.SearchMode" [SearchTimeout]="Equipment?.SearchTimeout" [SelectedObject]="radiologyTestApproveFormViewModel?._RadiologyTest?.Equipment" [TabIndex]="Equipment?.TabIndex" [Visible]="Equipment?.Visible" [width]="Equipment?.Width" id="A25298" data-tid="A360964"></hvl-list-box>
+                    </div>
+                    <div class="col-md-3" id="A25299" data-tid="A360965">
+                        <label class="control-label" id="A25300" data-tid="A360966">Onaylanma Tarihi</label>
+                        <hvl-date-picker #Validation (ValueChange)="onTestDateChanged($event)" [BackColor]="TestDate?.BackColor" [CustomFormat]="TestDate?.CustomFormat" [Enabled]="TestDate?.Enabled" [Font]="TestDate?.Font" [ForeColor]="TestDate?.ForeColor" [Format]="TestDate?.Format" [Max]="TestDate?.Max" [Min]="TestDate?.Min" [ReadOnly]="TestDate?.ReadOnly" [Required]="TestDate?.Required" [TabIndex]="TestDate?.TabIndex" [Value]="radiologyTestApproveFormViewModel?._RadiologyTest?.TestDate" [Visible]="TestDate?.Visible" id="A25301" data-tid="A360967"></hvl-date-picker>
+                    </div>
+                </div>
+                <br id="A25302" data-tid="A360968" />
+                <div class="row" id="A25303" data-tid="A360969">
+                    <div class="col-md-3" id="A25304" data-tid="A360970">
+                        <label class="control-label" id="A25305" data-tid="A360971">Aynı Kesi / Farklı Seans</label>
+                        <hvl-list-box #Validation (SelectedObjectChange)="onTTListBoxKesiChanged($event)" [AutoCompleteDialogHeight]="TTListBoxKesi?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="TTListBoxKesi?.AutoCompleteDialogWidth" [AutoCompleteMode]="TTListBoxKesi?.AutoCompleteMode" [BackColor]="TTListBoxKesi?.BackColor" [DefinitionName]="TTListBoxKesi?.ListDefName" [DisplayExpressionsCache]="radiologyTestApproveFormViewModel?.ListDefDisplayExpressions" [Enabled]="TTListBoxKesi?.Enabled" [Font]="TTListBoxKesi?.Font" [ForeColor]="TTListBoxKesi?.ForeColor" [ListFilterExpression]="TTListBoxKesi?.ListFilterExpression" [MinSearchLength]="TTListBoxKesi?.MinSearchLength" [PopupDialogFieldConfig]="TTListBoxKesi?.PopupDialogFieldConfig" [PopupDialogGridColumns]="TTListBoxKesi?.PopupDialogGridColumns" [PopupDialogHeight]="TTListBoxKesi?.PopupDialogHeight" [PopupDialogTitle]="TTListBoxKesi?.PopupDialogTitle" [PopupDialogWidth]="TTListBoxKesi?.PopupDialogWidth" [ReadOnly]="TTListBoxKesi?.ReadOnly" [SearchMode]="TTListBoxKesi?.SearchMode" [SearchTimeout]="TTListBoxKesi?.SearchTimeout" [SelectedObject]="radiologyTestApproveFormViewModel?._RadiologyTest?.AyniFarkliKesi" [TabIndex]="TTListBoxKesi?.TabIndex" [Visible]="TTListBoxKesi?.Visible" [width]="TTListBoxKesi?.Width" id="A25306" data-tid="A360972"></hvl-list-box>
+                    </div>
+                    <div class="col-md-3" id="A25307" data-tid="A360973">
+                        <label class="control-label" id="A25308" data-tid="A360974"> Sağ / Sol</label>
+                        <hvl-list-box #Validation (SelectedObjectChange)="onTTListBoxChanged($event)" [AutoCompleteDialogHeight]="TTListBox?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="TTListBox?.AutoCompleteDialogWidth" [AutoCompleteMode]="TTListBox?.AutoCompleteMode" [BackColor]="TTListBox?.BackColor" [DefinitionName]="TTListBox?.ListDefName" [DisplayExpressionsCache]="radiologyTestApproveFormViewModel?.ListDefDisplayExpressions" [Enabled]="TTListBox?.Enabled" [Font]="TTListBox?.Font" [ForeColor]="TTListBox?.ForeColor" [ListFilterExpression]="TTListBox?.ListFilterExpression" [MinSearchLength]="TTListBox?.MinSearchLength" [PopupDialogFieldConfig]="TTListBox?.PopupDialogFieldConfig" [PopupDialogGridColumns]="TTListBox?.PopupDialogGridColumns" [PopupDialogHeight]="TTListBox?.PopupDialogHeight" [PopupDialogTitle]="TTListBox?.PopupDialogTitle" [PopupDialogWidth]="TTListBox?.PopupDialogWidth" [ReadOnly]="TTListBox?.ReadOnly" [SearchMode]="TTListBox?.SearchMode" [SearchTimeout]="TTListBox?.SearchTimeout" [SelectedObject]="radiologyTestApproveFormViewModel?._RadiologyTest?.SagSol" [TabIndex]="TTListBox?.TabIndex" [Visible]="TTListBox?.Visible" [width]="TTListBox?.Width" id="A25309" data-tid="A360975"></hvl-list-box>
+                    </div>
+                    <div class="col-md-3" id="A25310" data-tid="A360976">
+                        <label class="control-label" id="A25311" data-tid="A360977">Birim</label>
+                        <hvl-text-box #Validation (TextChange)="ontttextboxBirimChanged($event)" [BackColor]="tttextboxBirim?.BackColor" [CharacterCasing]="tttextboxBirim?.CharacterCasing" [Enabled]="tttextboxBirim?.Enabled" [Font]="tttextboxBirim?.Font" [ForeColor]="tttextboxBirim?.ForeColor" [height]="tttextboxBirim?.Height" [InputFormat]="tttextboxBirim?.InputFormat" [InputTurkishCharacter]="tttextboxBirim?.InputTurkishCharacter" [IsNonNumeric]="tttextboxBirim?.IsNonNumeric" [MultiLine]="tttextboxBirim?.Multiline" [ReadOnly]="tttextboxBirim?.ReadOnly" [Required]="tttextboxBirim?.Required" [TabIndex]="tttextboxBirim?.TabIndex" [TextAlign]="tttextboxBirim?.TextAlign" [Text]="radiologyTestApproveFormViewModel?._RadiologyTest?.birim" [Visible]="tttextboxBirim?.Visible" id="A25312" data-tid="A360978"></hvl-text-box>
+                    </div>
+                    <div class="col-md-3" id="A25313" data-tid="A360979">
+                        <label class="control-label" id="A25314" data-tid="A360980"> Anestezi Dr. Tescil No.</label>
+                        <hvl-list-box #Validation (SelectedObjectChange)="onTTListBoxDrAnesteziTescilNoChanged($event)" [AutoCompleteDialogHeight]="TTListBoxDrAnesteziTescilNo?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="TTListBoxDrAnesteziTescilNo?.AutoCompleteDialogWidth" [AutoCompleteMode]="TTListBoxDrAnesteziTescilNo?.AutoCompleteMode" [BackColor]="TTListBoxDrAnesteziTescilNo?.BackColor" [DefinitionName]="TTListBoxDrAnesteziTescilNo?.ListDefName" [DisplayExpressionsCache]="radiologyTestApproveFormViewModel?.ListDefDisplayExpressions" [Enabled]="TTListBoxDrAnesteziTescilNo?.Enabled" [Font]="TTListBoxDrAnesteziTescilNo?.Font" [ForeColor]="TTListBoxDrAnesteziTescilNo?.ForeColor" [ListFilterExpression]="TTListBoxDrAnesteziTescilNo?.ListFilterExpression" [MinSearchLength]="TTListBoxDrAnesteziTescilNo?.MinSearchLength" [PopupDialogFieldConfig]="TTListBoxDrAnesteziTescilNo?.PopupDialogFieldConfig" [PopupDialogGridColumns]="TTListBoxDrAnesteziTescilNo?.PopupDialogGridColumns" [PopupDialogHeight]="TTListBoxDrAnesteziTescilNo?.PopupDialogHeight" [PopupDialogTitle]="TTListBoxDrAnesteziTescilNo?.PopupDialogTitle" [PopupDialogWidth]="TTListBoxDrAnesteziTescilNo?.PopupDialogWidth" [ReadOnly]="TTListBoxDrAnesteziTescilNo?.ReadOnly" [SearchMode]="TTListBoxDrAnesteziTescilNo?.SearchMode" [SearchTimeout]="TTListBoxDrAnesteziTescilNo?.SearchTimeout" [SelectedObject]="radiologyTestApproveFormViewModel?._RadiologyTest?.ResUser" [TabIndex]="TTListBoxDrAnesteziTescilNo?.TabIndex" [Visible]="TTListBoxDrAnesteziTescilNo?.Visible" [width]="TTListBoxDrAnesteziTescilNo?.Width" id="A25315" data-tid="A360981"></hvl-list-box>
+                    </div>
+                </div>
+                <br id="A25316" data-tid="A360982" />
+
+                <div class="row" id="A25317" data-tid="A360983">
+                    <div class="col-md-4" id="A25318" data-tid="A360984">
+                        <label class="control-label" id="A25319" data-tid="A360985">Açıklama</label>
+                        <hvl-text-box #Validation (TextChange)="onDescriptionChanged($event)" [BackColor]="Description?.BackColor" [CharacterCasing]="Description?.CharacterCasing" [Enabled]="Description?.Enabled" [Font]="Description?.Font" [ForeColor]="Description?.ForeColor" [height]="Description?.Height" [InputFormat]="Description?.InputFormat" [InputTurkishCharacter]="Description?.InputTurkishCharacter" [IsNonNumeric]="Description?.IsNonNumeric" [MultiLine]="Description?.Multiline" [ReadOnly]="Description?.ReadOnly" [Required]="Description?.Required" [TabIndex]="Description?.TabIndex" [TextAlign]="Description?.TextAlign" [Text]="radiologyTestApproveFormViewModel?._RadiologyTest?.Description" [Visible]="Description?.Visible" id="A25320" data-tid="A360986"></hvl-text-box>
+                    </div>
+                    <div class="col-md-4" id="A25321" data-tid="A360987">
+                        <label class="control-label" id="A25322" data-tid="A360988">Teknisyen Notu</label>
+                        <hvl-text-box #Validation (TextChange)="onTestTechnicianNoteChanged($event)" [BackColor]="TestTechnicianNote?.BackColor" [CharacterCasing]="TestTechnicianNote?.CharacterCasing" [Enabled]="TestTechnicianNote?.Enabled" [Font]="TestTechnicianNote?.Font" [ForeColor]="TestTechnicianNote?.ForeColor" [height]="TestTechnicianNote?.Height" [InputFormat]="TestTechnicianNote?.InputFormat" [InputTurkishCharacter]="TestTechnicianNote?.InputTurkishCharacter" [IsNonNumeric]="TestTechnicianNote?.IsNonNumeric" [MultiLine]="TestTechnicianNote?.Multiline" [ReadOnly]="TestTechnicianNote?.ReadOnly" [Required]="TestTechnicianNote?.Required" [TabIndex]="TestTechnicianNote?.TabIndex" [TextAlign]="TestTechnicianNote?.TextAlign" [Text]="radiologyTestApproveFormViewModel?._RadiologyTest?.TechnicianNote" [Visible]="TestTechnicianNote?.Visible" id="A25323" data-tid="A360989"></hvl-text-box>
+                    </div>
+                    <br id="A25324" data-tid="A360990" />
+                </div>
+
+
+
+            </dxi-item>
+            <dxi-item class="tabpanel-item" title="Malzeme Bilgileri" i18n-title="@@M18553" id="A25325" data-tid="A360991">
+                <div class="row" id="A25326" data-tid="A360992">
+                    <div class="col-md-12" id="A25327" data-tid="A360993">
+                        <TreatmentMaterialForm [EpisodeAction]="radiologyTestApproveFormViewModel._RadiologyTest" [StoreResourceId]="radiologyTestApproveFormViewModel._RadiologyTest.MasterResource" [TreatmentMaterialGridList]="radiologyTestApproveFormViewModel._RadiologyTest.RadiologyTestTreatmentMaterial" [IsReadOnly]="ReadOnly" id="A25328" data-tid="A360994"></TreatmentMaterialForm>
+                    </div>
+                </div>
+            </dxi-item>
+            <dxi-item class="tabpanel-item" title="Doğrudan Teminle Alınan Malzemeler" i18n-title="@@M27694" id="A25329" data-tid="A360995">
+                <div class="row" id="A25330" data-tid="A360996">
+                    <div class="col-sm-12" data-tid="A360997">
+                        <hvl-datagrid [AllowUserToAddRows]="SurgeryDirectPurchaseGrids?.AllowUserToAddRows" [AllowUserToDeleteRows]="SurgeryDirectPurchaseGrids?.AllowUserToDeleteRows" [Columns]="SurgeryDirectPurchaseGridsColumns" [dataSource]="radiologyTestApproveFormViewModel?._RadiologyTest?.RadiologyTest_SurgeryDirectPurchaseGrids" [DeleteButtonWidth]="SurgeryDirectPurchaseGrids?.DeleteButtonWidth" [DisplayExpressionsCache]="radiologyTestApproveFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="SurgeryDirectPurchaseGrids?.ShowFilterRow" [FilterColumnName]="SurgeryDirectPurchaseGrids?.FilterColumnName" [FilterLabel]="SurgeryDirectPurchaseGrids?.FilterLabel" [Filter]="SurgeryDirectPurchaseGrids?.Filter" [height]="SurgeryDirectPurchaseGrids?.Height" [IsFilterLabelSingleLine]="SurgeryDirectPurchaseGrids?.IsFilterLabelSingleLine" [ShowColumnHeaders]="SurgeryDirectPurchaseGrids?.ColumnHeadersVisible" [ShowFilterCombo]="SurgeryDirectPurchaseGrids?.ShowFilterCombo" [ShowTotalNumberOfRows]="SurgeryDirectPurchaseGrids?.ShowTotalNumberOfRows" id="A25332" data-tid="A360998">
+                        </hvl-datagrid>
+                    </div>
+                </div>
+            </dxi-item>
+        </dx-tab-panel>
+    </div>
+    </div>
+    <br id="A25333" data-tid="A360999" />
+    <div class="row" id="A25334" data-tid="A361000">
+        <dx-tab-panel [selectedIndex]="0" [animationEnabled]="true" id="A25335" data-tid="A361001">
+            <dxi-item class="tabpanel-item" title="Kısa Anamnez ve Klinik Bulgular" i18n-title="@@M17529" id="A25336" data-tid="A361002">
+                <div class="row" id="A25337" data-tid="A361003">
+                    <div class="col-md-6" id="A25338" data-tid="A361004">
+                        <hvl-richtextbox (change)="onPREDIAGNOSISChanged($event)" [Height]="&#x27;100px&#x27;" [ngModelOptions]="{ standalone: true}" [ngModel]="radiologyTestApproveFormViewModel?._RadiologyTest?.PreDiagnosis" [ReadOnly]="PREDIAGNOSIS?.ReadOnly" [TemplateGroupName]="PREDIAGNOSIS?.TemplateGroupName" [Visible]="PREDIAGNOSIS?.Visible" id="A25339" data-tid="A361005"></hvl-richtextbox>
+                    </div>
+                </div>
+            </dxi-item>
+            <dxi-item class="tabpanel-item" title="Açıklamalar" i18n-title="@@M10483" id="A25340" data-tid="A361006">
+                <div class="row" id="A25341" data-tid="A361007">
+                    <div class="col-md-6" id="A25342" data-tid="A361008">
+                        <hvl-richtextbox (change)="onCommonDescriptionChanged($event)" [Height]="&#x27;100px&#x27;" [ngModelOptions]="{ standalone: true}" [ngModel]="radiologyTestApproveFormViewModel?._RadiologyTest?.GeneralDescription" [ReadOnly]="CommonDescription?.ReadOnly" [TemplateGroupName]="CommonDescription?.TemplateGroupName" [Visible]="CommonDescription?.Visible" id="A25343" data-tid="A361009"></hvl-richtextbox>
+                    </div>
+                </div>
+            </dxi-item>
+            <dxi-item class="tabpanel-item" title="Ek İstek" i18n-title="@@M13522" id="A25344" data-tid="A361010">
+                <div class="row" id="A25345" data-tid="A361011">
+                    <div class="col-md-6" id="A25346" data-tid="A361012">
+                        <hvl-richtextbox (change)="ontttextbox1Changed($event)" [Height]="&#x27;100px&#x27;" [ngModelOptions]="{ standalone: true}" [ngModel]="radiologyTestApproveFormViewModel?._RadiologyTest?.AdditionalRequest" [ReadOnly]="tttextbox1?.ReadOnly" [TemplateGroupName]="tttextbox1?.TemplateGroupName" [Visible]="tttextbox1?.Visible" id="A25347" data-tid="A361013"></hvl-richtextbox>
+                    </div>
+                </div>
+            </dxi-item>
+        </dx-tab-panel>
+    </div>
+
+    <div class="row" id="A25348" data-tid="A361014">
+        <div class="col-sm-2" id="A25349" data-tid="A361015">
+            <hvl-text-box #Validation (TextChange)="onOwnerTypeChanged($event)" [BackColor]="OwnerType?.BackColor" [CharacterCasing]="OwnerType?.CharacterCasing" [Enabled]="OwnerType?.Enabled" [Font]="OwnerType?.Font" [ForeColor]="OwnerType?.ForeColor" [height]="OwnerType?.Height" [InputFormat]="OwnerType?.InputFormat" [InputTurkishCharacter]="OwnerType?.InputTurkishCharacter" [IsNonNumeric]="OwnerType?.IsNonNumeric" [MultiLine]="OwnerType?.Multiline" [ReadOnly]="OwnerType?.ReadOnly" [Required]="OwnerType?.Required" [TabIndex]="OwnerType?.TabIndex" [TextAlign]="OwnerType?.TextAlign" [Text]="radiologyTestApproveFormViewModel?._RadiologyTest?.OwnerType" [Visible]="OwnerType?.Visible" id="A25350" data-tid="A361016"></hvl-text-box>
+        </div>
+    </div>

@@ -1,0 +1,46 @@
+﻿<div class id="A14623" data-tid="A346384">
+    <div class id="A14624" data-tid="A346385">
+        <div class="col-sm-3" id="A14625" data-tid="A346386">Dosya Tipi</div>
+        <div class="col-sm-9" id="A14626" data-tid="A346387">
+            <dx-select-box searchEnabled="true" (onSelectionChanged)="onDocumentTypeChanged($event)" valueExpr="ObjectID" [(items)]="newDocumentTypes" placeholder="Dosya Tipini Seçiniz..." displayExpr="dosyaTuruAdi" i18n-placeholder="@@M13274" id="A14627" data-tid="A346388"></dx-select-box>
+        </div>
+    </div>
+
+    <!--     <div class id="A14624">
+        <div class="col-sm-3"  id="A14625">Dosya Tipi</div>
+        <div class="col-sm-9" id="A14626">
+            <dx-select-box searchEnabled="true" [(value)]="SelectedDocumentType" (onSelectionChanged)="DocumentTypeChanged($event)" [items]="documentTypes" placeholder="Dosya Tipini Seçiniz..." displayExpr="description" valueExpr="code" i18n-placeholder="@@M13274" id="A14627"></dx-select-box>
+        </div>
+    </div> -->
+
+    <div class id="A14628" data-tid="A346389">
+        <div class="col-sm-3" id="A14629" data-tid="A346390">Açıklama Giriniz</div>
+        <div class="col-sm-9" id="A14630" data-tid="A346391">
+            <dx-text-box [(value)]="Description" id="A14631" data-tid="A346392">
+            </dx-text-box>
+        </div>
+    </div>
+    <div class id="A14632" data-tid="A346393">
+        <div class="col-sm-8" id="A14633" data-tid="A346394">
+            <input type="file" id="filePicker" (change)="onChange($event)" accept=".png, .jpg, .jpeg, .pdf, .ppt, .pptx, .doc, .docx, .mp3, .mp4, .avi, .wma" data-tid="A346395" />
+        </div>
+        <div class="col-sm-4" id="A14634" data-tid="A346396">
+            <dx-button style="float:right;margin-right: -0px;" icon="fa fa-upload" text="Yükle" type="default" (onClick)="addDocument()" i18n-text="@@M24733" id="A14635" data-tid="A346397"></dx-button>
+        </div>
+    </div>
+
+    <div class="col-sm-12" id="A14636" data-tid="A346398">
+        <dx-data-grid #DocumentColumns [columns]="GridColumns" (onRowRemoving)="deleteDocument($event)" [allowColumnResizing]="true" (onSelectionChanged)="selectionDoc($event)" [dataSource]="docs" [editing]="{allowDeleting:true,mode: 'row',  texts:{confirmDeleteMessage:'Silmek İstediğinizden Emin misiniz?'}}" [paging]="{enable: true, pageSize:10}" [filterRow]="{visible: true}" style="height:300px" id="A14637" [selection]="{mode: 'multiple',allowSelectAll: true}" data-tid="A346399">
+        </dx-data-grid>
+    </div>
+    <div class="col-sm-12" id="A14638" data-tid="A346400" style="margin-top: 10px;">
+            <div class="col-sm-6" id="A14638" data-tid="A346401">
+            </div>
+    <div class="col-sm-3" id="A14638" data-tid="A346402" style="text-align: right;">
+        <dx-button text="Kaydet" style="margin-right: -50px;" rtlEnabled="true" type="default" icon="save" (onClick)="Upload()" i18n-text="@@M17386" id="A14639" data-tid="A346403"></dx-button>
+    </div>
+    <div class="col-sm-3" id="A14621" data-tid="A346404" style="text-align: right;">
+        <dx-button text="İndir" [disabled]="!anySelectedFiles" rtlEnabled="true" type="default" icon="fa fa-download" (onClick)="downloadSelectedFiles()" i18n-text="@@M16487" id="A14622" data-tid="A346405"></dx-button>
+    </div>
+    </div>
+</div>

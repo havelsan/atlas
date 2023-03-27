@@ -1,0 +1,65 @@
+﻿
+
+
+<div class="container-fluid" id="A17558" data-tid="A350490">
+    <NeStatePanelComponent [OutgoingTransitions]="baseNursingFallingDownRiskFormViewModel?.OutgoingTransitions" [StateReports]="baseNursingFallingDownRiskFormViewModel?.CurrentStateReports" [ObjectID]="baseNursingFallingDownRiskFormViewModel?._BaseNursingFallingDownRisk?.ObjectID" [ObjectDefID]="baseNursingFallingDownRiskFormViewModel?._BaseNursingFallingDownRisk?.ObjectDefID" [PrintReportCommandVisible]="printButtonVisible" [CurrentStateDefID]="baseNursingFallingDownRiskFormViewModel._BaseNursingFallingDownRisk.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()" (onPrintReport)="printReport()" [SaveCommandVisible]="!baseNursingFallingDownRiskFormViewModel.ReadOnly" [DropStateList]="DropStateList" id="A17559" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A350491">
+    </NeStatePanelComponent>
+
+    <form id="BaseNursingFallingDownRiskForm" class="form-horizontal" role="form" data-tid="A350492"></form>
+
+    <dx-box direction="row" width="100%" id="A17560" data-tid="A350493">
+        <dxi-item [ratio]="0" [baseSize]="250" id="A17561" data-tid="A350494">
+            <div class="col-sm-12 margin-bottom-10" id="A17562" data-tid="A350495">
+                <label class="control-label" id="A17563" data-tid="A350496">Uygulama Zamanı</label>
+                <dx-date-box type="datetime" displayFormat="dd/MM/yyyy HH:mm" [(value)]="baseNursingFallingDownRiskFormViewModel._BaseNursingFallingDownRisk.ApplicationDate" [readOnly]="baseNursingFallingDownRiskFormViewModel.ReadOnly" id="A17564" data-tid="A350497">
+                </dx-date-box>
+            </div>
+            <div class="col-sm-12" id="A17565" data-tid="A350498">
+                <label class="control-label" id="A17566" data-tid="A350499">
+                    Düşme Riski Doldurma Nedeni
+                </label>
+                <div class="col-md-12 NursingScheduleRadioCss" style="margin-left: -15px;" id="A17567" data-tid="A350500">
+                    <hvl-enum-radio-button-group style="margin-bottom:10px" DataTypeName="FallingDownRiskReasonEnum" [(Value)]="baseNursingFallingDownRiskFormViewModel._BaseNursingFallingDownRisk.FallingDownRiskReason" (ValueChange)="onFallingDownRiskReasonChanged($event)" [ReadOnly]="baseNursingFallingDownRiskFormViewModel.ReadOnly" [Enabled]="baseNursingFallingDownRiskFormViewModel.ReadOnly == false" id="A17568" data-tid="A350501">
+
+                    </hvl-enum-radio-button-group>
+                </div>
+            </div>
+        </dxi-item>
+        <dxi-item [ratio]="1" id="A17569" data-tid="A350502">
+            <dx-box direction="row" width="100%" align="left" crossAlign="left" id="A17570" data-tid="A350503">
+                <dxi-item [ratio]="1" id="A17571" data-tid="A350504">
+                    <div id="A17572" data-tid="A350505">
+                        <label class="control-label" id="A17573" data-tid="A350506">Not</label>
+                        <hvl-text-box #Validation (TextChange)="onNoteChanged($event)" [BackColor]="Note?.BackColor" [CharacterCasing]="Note?.CharacterCasing" [Enabled]="Note?.Enabled" [Font]="Note?.Font" [ForeColor]="Note?.ForeColor" [height]="Note?.Height" [InputFormat]="Note?.InputFormat" [InputTurkishCharacter]="Note?.InputTurkishCharacter" [IsNonNumeric]="Note?.IsNonNumeric" [MultiLine]="Note?.Multiline" [ReadOnly]="Note?.ReadOnly" [Required]="Note?.Required" [TabIndex]="Note?.TabIndex" [TextAlign]="Note?.TextAlign" [Text]="baseNursingFallingDownRiskFormViewModel?._BaseNursingFallingDownRisk?.Note" [Visible]="Note?.Visible" id="A17574" data-tid="A350507"></hvl-text-box>
+                    </div>
+                </dxi-item>
+            </dx-box>
+        </dxi-item>
+
+    </dx-box>
+
+    <div class="panel panel-default skorPanelStyle margin-bottom-10 margin-top-10" id="A17575" data-tid="A350508">
+        <div class="panel-heading" id="A17576" data-tid="A350509">
+            <h5 id="A17577" data-tid="A350510">
+                <span id="A17578" data-tid="A350511">DÜŞME RİSKİ ÖLÇEĞİ</span>
+                <span class="pull-right" id="A17579" data-tid="A350512"><b id="A17580" data-tid="A350513">Toplam Skor : {{baseNursingFallingDownRiskFormViewModel._BaseNursingFallingDownRisk.TotalScore}}</b></span>
+            </h5>
+        </div>
+        <div class="panel-body" id="A17581" data-tid="A350514">
+            <div class="row" id="A17582" data-tid="A350515">
+                <div class="col-sm-12 pull-left" id="A17583" data-tid="A350516">
+                    <label class="control-label pull-left" style="width:20px" id="A17584" data-tid="A350517"></label>
+                    <label class="control-label col-sm-8 pull-left" id="A17585" data-tid="A350518">Risk Faktörü</label>
+                    <label class="control-label col-sm-2 pull-left" id="A17586" data-tid="A350519">Puan</label>
+                </div>
+            </div>
+            <div class="row" id="A17587" data-tid="A350520">
+                <div class="col-sm-12 pull-left" *ngFor="let list of baseNursingFallingDownRiskFormViewModel.FallingDownRiskDefinitionList" id="A17588" data-tid="A350521">
+                    <hvl-checkbox #Validation class="pull-left" Margin="3px" style="width:20px" TitleTopPadding="3px" [IsTitleLeft]="true" [Value]="isValueExists(list.ObjectID)" (ValueChange)="onCheckValueChanged($event,list)" [ReadOnly]="baseNursingFallingDownRiskFormViewModel.ReadOnly" id="A17589" data-tid="A350522"></hvl-checkbox>
+                    <hvl-text-box class="col-sm-8 pull-left" [Text]="list.Name" [ReadOnly]="true" id="A17590" data-tid="A350523"></hvl-text-box>
+                    <hvl-text-box class="col-sm-2 pull-left" [Text]="list.Score" [ReadOnly]="true" id="A17591" data-tid="A350524"></hvl-text-box>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

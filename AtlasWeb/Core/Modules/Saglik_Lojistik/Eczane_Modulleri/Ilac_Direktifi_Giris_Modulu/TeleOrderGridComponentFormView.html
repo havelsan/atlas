@@ -1,0 +1,161 @@
+﻿<div class="col-sm-12" style="padding:0;" *ngIf="_isVisible">
+    <div class="col-sm-12 col-lg-6" style="padding:0;">
+        <div class="col-sm-12">
+            <div class="btn-group" role="group">
+                <!--<div class="col-sm-3" id="A4023">
+                    <dx-check-box [(value)]="isFavoriteDrugList" text="Sık Kullanılan İlaçlar" [width]="150"
+                        (onValueChanged)="onFavoriteDrugListValueChanged($event)" i18n-text="@@M21798" id="A4024">
+                    </dx-check-box>
+                </div>-->
+                <div class="col-sm-6" id="A4025">
+                    <dx-check-box [(value)]="isInheldDrugList" text="Mevcutlu İlaçlar" [width]="150"
+                        (onValueChanged)="onInheldValueChanged($event)" i18n-text="@@M18968" id="A4026"></dx-check-box>
+                </div>
+                <div class="col-sm-6" id="A4027">
+                    <dx-check-box [(value)]="searchIsPatientOwnDrug" text="Hastanın İlaçları" [width]="150"
+                        (onValueChanged)="onOwnDrugValueChanged($event)" i18n-text="@@M15458" id="A4028"></dx-check-box>
+                </div>
+                <!--<div class="col-sm-3" id="A4027">
+                    <dx-check-box [(value)]="drugListShowSelectionControl" text="Detaylı Arama" [width]="150"
+                        (onValueChanged)="onDrugListSelectionModeValueChange($event)" i18n-text="@@M15458" id="A4028">
+                    </dx-check-box>
+                </div>-->
+            </div>
+            <div class="col-sm-12">
+                <div class="dx-searchbar col-sm-10" id="A4016" style="padding:0">
+                    <dx-text-box [(value)]="searchText" valueChangeEvent="keyup" placeholder="İlaç Ara" mode="search"
+                        (onValueChanged)="onSearchValueChanged($event)" i18n-placeholder="@@M27276" id="A4017">
+                    </dx-text-box>
+                </div>
+                <div class="col-sm-2">
+                    <dx-button icon="close" (onClick)="CloseSearchList()" style="float:right;">
+
+                    </dx-button>
+                </div>
+                <div class="col-sm-12" style="padding:0;" *ngIf="drugSearchEnabled">
+                    <dx-list #drugSearchList [dataSource]="drugSource" height="150"
+                        (onItemClick)="drugListOnItemClick($event)" id="A4018" selectionMode="single"
+                        [(selectedItems)]="selectedDrugListItems" [showSelectionControls]="false"
+                        pageLoadMode="scrollBottom"
+                        style="position:absolute!important; z-index:999; background-color:white;">
+                        <div *dxTemplate="let data of 'item'" id="A4019">
+                            <img src="{{GetDrugItemWithType(data.drugShapeTypeEnum)}}"
+                                style="float:left; margin-right:10px;" id="A14411" />
+                            <div style="float:left; width:65%;" id="A4020">{{data.name}}</div>
+                            <div *ngIf="isInpatient" style="float:right; width:8%;" id="A4021">{{data.inheldStatus}}
+                            </div>
+                        </div>
+                    </dx-list>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-sm-12" *ngIf="_isVisible">
+    <dx-radio-group #eventRadioGroup id="radio-group-with-selection" [items]="OrderStatus"
+        style="margin-bottom: 10px; float: left; padding-left: 15px" [(value)]="SelectedOrderStatus"
+        (onValueChanged)="onValueChangedOrderStatus($event)" layout="horizontal"></dx-radio-group>
+    <!--<dx-button id="btnAction" icon="fa fa-undo" type="default" icon="spindown"
+        style="margin: 0px 5px 0px 0px; float:right;" text="Diğer İşlemler" (onClick)="showActionMenu()">
+    </dx-button>
+    <dx-context-menu [(visible)]="actionMenuVisible" [dataSource]="stateAction" target="#btnAction"
+        [position]="{at: 'left bottom'}" (onItemClick)="onActionMenuClick($event)">
+        <div *dxTemplate="let e of 'item'">
+            <div>
+                <span [ngClass]="e.Icon"></span>
+                {{e.Caption}}
+            </div>
+        </div>
+    </dx-context-menu>
+    <dx-button text="Tedavi Dışı" (onClick)="OutOfTreatmentDrugOrders()" icon="unpin" type="default"
+        [(disabled)]="loadingVisible" style="float:right;"></dx-button>-->
+    <dx-button text="Durdur & İptal Et" (onClick)="StopDrugOrders()" icon="clear" type="danger"
+        [(disabled)]="loadingVisible" style="float:right;"></dx-button>
+    <!--<dx-button text="Tedavi Gün." (onClick)="RepeatDrugOrders()" icon="refresh" type="btn btn-warning"
+        [(disabled)]="loadingVisible" style="float:right; background-color: #efb050; color:white;"></dx-button>-->
+    <dx-button text="Order Ver" (onClick)="SaveDrugOrders()" icon="save" type="success" [(disabled)]="loadingVisible"
+        style="float:right;"></dx-button>
+
+</div>
+
+<div class="col-sm-12">
+    <dx-data-grid #orderMasterGrid id="orderMasterGrid" keyExpr="ID"
+        [masterDetail]="{ enabled: true, template: 'detail' }"
+        [dataSource]="drugOrderIntroductionFormViewModel.DrugOrderIntroductionGridViewModel"
+        [columns]="MasterGridColumns" [columnFixing]="{eneabled:'true'}" columnResizingMode="widget" height="500"
+        [(selectedRowKeys)]="selectedMasterGridRowKeys" (onEditorPreparing)="onMasterGridEditorPreparing($event)"
+        (onEditorPrepared)="onEditorPrepared($event)" (onSelectionChanged)="onMasterGridSelectionChanged($event)"
+        (onEditingStart)="onMasterGridEditingStart($event)"
+        (onRowUpdating)="onDrugOrderIntroductionGridUpdating($event)"
+        (onRowUpdated)="onDrugOrderIntroductionGridUpdated($event)" (onRowRemoving)="onMasterGirdRowRemoving($event)"
+        (onRowPrepared)="onRowPrepared($event)">
+        <dxo-selection [showCheckBoxesMode]="checkBoxesMode" [allowSelectAll]="false" mode="multiple">
+        </dxo-selection>
+        <dxo-editing mode="popup" [allowUpdating]="_isVisible" [allowDeleting]="_isVisible" [allowAdding]="false">
+            <dxo-popup title="Direktif" [showTitle]="true" [width]="700" [height]="350"
+                [position]="{ my: 'center', at: 'center', of: window }">
+
+
+                <dxi-toolbar-item toolbar="bottom" location="after" widget="dxButton"
+                    [options]="{ type: 'success', text: 'Kaydet', onClick: saveClickHandler }">
+                </dxi-toolbar-item>
+                <dxi-toolbar-item toolbar="bottom" location="after" widget="dxButton"
+                    [options]="{ type:'danger', text: 'İptal', onClick: cancelClickHandler }">
+                </dxi-toolbar-item>
+
+
+            </dxo-popup>
+
+            <dxo-form>
+                <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+                    <dxi-item dataField="PlannedStartTime"
+                        [editorOptions]="{  min: this.drugOrderMinDate, max: this.drugOrderMaxDate }"></dxi-item>
+                    <dxi-item dataField="OrderStartTime"
+                        [editorOptions]="{ type: 'time' ,min: this.drugOrderMinDate }">
+                    </dxi-item>
+                    <dxi-item dataField="Material.name"></dxi-item>
+                    <dxi-item dataField="HospitalTimeScheduleObjectID"></dxi-item>
+                    <dxi-item dataField="DoseAmount"></dxi-item>
+                    <dxi-item dataField="Day"></dxi-item>
+                    <dxi-item dataField="UsageNote"></dxi-item>
+                    <dxi-item dataField="IsImmediate"></dxi-item>
+                    <dxi-item dataField="PatientOwnDrug"></dxi-item>
+                    <dxi-item dataField="CaseOfNeed"></dxi-item>
+                    <dxi-item dataField="DrugUsageType"></dxi-item>
+                    <dxi-item dataField="DrugOrderType"></dxi-item>
+                    <dxi-item dataField="DoctorGuid"></dxi-item>
+                </dxi-item>
+            </dxo-form>
+
+        </dxo-editing>
+        <!--<div *dxTemplate="let data of 'buttonCellTemplate'">
+            <dx-button [ngStyle]="{'height':'22px', 'font-size':'5px', 'padding':'0', 'width':'25%'}" text=""
+                icon="refresh" hint="Geri Al" (onClick)="UndoDrugOrder(data)"></dx-button>
+            <dx-button [ngStyle]="{'height':'22px', 'font-size':'5px', 'padding':'0', 'width':'25%'}" text=""
+                icon="info" hint="İnfo" (onClick)="InfoDrugOrder(data)"></dx-button>
+            <dx-button [ngStyle]="{'height':'22px', 'font-size':'5px', 'padding':'0', 'width':'25%'}" text=""
+                icon="clock" hint="Saat Güncelle" (onClick)="changeDrugOrderClick(data)"></dx-button>
+            <dx-button [ngStyle]="{'height':'22px', 'font-size':'5px', 'padding':'0', 'width':'25%'}" text=""
+                icon="upload" hint="Order Güncelle" (onClick)="upgradeDrugOrderClick(data)"></dx-button>
+        </div>-->
+        <div *dxTemplate="let item of 'detail'">
+            <label class="col-sm-12">Order Detayları</label>
+            <div class="col-sm-12 remove-padding">
+                <dx-data-grid #orderDetailGrid [dataSource]="item.data.DrugOrderIntroDuctionTimeSchedule"
+                    [columns]="DrugOrderDetailGridColumns"
+                    (onRowUpdated)="onDrugOrderIntroductionTimeScheduleGridUpdated($event)"
+                    (onRowUpdating)="onDrugOrderIntroductionTimeScheduleGridUpdating($event)"
+                    (onEditingStart)="onDetailGridEditingStart($event)">
+                    <dxo-editing mode="cell" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="false">
+                    </dxo-editing>
+                    <dxo-scrolling mode="infinite"></dxo-scrolling>
+                    <dxo-sorting mode="none"></dxo-sorting>
+                </dx-data-grid>
+            </div>
+        </div>
+    </dx-data-grid>
+</div>
+<dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" 
+    [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" message="İşlem Yapılıyor.."
+    [closeOnOutsideClick]="false">
+</dx-load-panel>

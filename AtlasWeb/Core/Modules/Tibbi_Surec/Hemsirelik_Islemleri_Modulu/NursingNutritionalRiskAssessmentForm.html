@@ -1,0 +1,121 @@
+﻿
+    <div class="row" id="A18151" data-tid="A351328">
+        <div class="col-sm-11" id="A18152" data-tid="A351329">
+            <NeStatePanelComponent [ObjectDefID]="nursingNutritionalRiskAssessmentFormViewModel._NursingNutritionalRiskAssessment.ObjectDefID" [PrintReportCommandVisible]="printButtonVisible" [CurrentStateDefID]="nursingNutritionalRiskAssessmentFormViewModel._NursingNutritionalRiskAssessment.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onPrintReport)="printReport()" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()" id="A18145" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [SaveCommandVisible]="!nursingNutritionalRiskAssessmentFormViewModel.ReadOnly" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A351330">
+            </NeStatePanelComponent>        
+        </div>
+        <div class="col-sm-1" id="A18154" data-tid="A351331">
+            <dx-button style="margin-top: 1px;" type="btn btn-default" text="Tüm Raporları Yazdır" (onClick)="printAllReports()" [(visible)]="nursingNutritionalRiskAssessmentFormViewModel.writeAllReportControl" data-tid="A351332"></dx-button>       
+         </div>
+    </div>
+
+<div class="container-fluid" id="A18146" data-tid="A351333">
+    <form id="NursingNutritionalRiskAssessmentForm" class="form-horizontal" role="form" data-tid="A351334">
+        
+    </form>
+    <div class="row" id="A18147" data-tid="A351335">
+        <label class="control-label col-sm-2" id="A18148" data-tid="A351336">
+            Uygulama Zamanı
+        </label>
+        <label class="control-label col-sm-1" id="A18149" data-tid="A351337">
+            Boy(cm)
+        </label>
+        <label class="control-label col-sm-1" id="A18150" data-tid="A351338">
+            Kilo
+        </label>
+    </div>
+    <div class="row" id="A18151" data-tid="A351339">
+        <div class="col-sm-2" id="A18152" data-tid="A351340">
+            <hvl-date-picker #Validation (ValueChange)="onApplicationDateChanged($event)" [BackColor]="ApplicationDate?.BackColor" [CustomFormat]="ApplicationDate?.CustomFormat" [Enabled]="ApplicationDate?.Enabled" [Font]="ApplicationDate?.Font" [ForeColor]="ApplicationDate?.ForeColor" [Format]="ApplicationDate?.Format" [Max]="ApplicationDate?.Max" [Min]="ApplicationDate?.Min" [ReadOnly]="ApplicationDate?.ReadOnly" [Required]="ApplicationDate?.Required" [TabIndex]="ApplicationDate?.TabIndex" [Value]="nursingNutritionalRiskAssessmentFormViewModel?._NursingNutritionalRiskAssessment?.ApplicationDate" [Visible]="ApplicationDate?.Visible" id="A18153" data-tid="A351341"></hvl-date-picker>
+        </div>
+        <div class="col-sm-1" id="A18154" data-tid="A351342">
+            <hvl-number-box #Validation (ValueChange)="onHeightChanged($event)" [Value]="nursingNutritionalRiskAssessmentFormViewModel?._NursingNutritionalRiskAssessment?.Height" id="A18155" data-tid="A351343"></hvl-number-box>
+        </div>
+        <div class="col-sm-1" id="A18156" data-tid="A351344">
+            <hvl-number-box #Validation (ValueChange)="onWeightChanged($event)" [Value]="nursingNutritionalRiskAssessmentFormViewModel?._NursingNutritionalRiskAssessment?.Weight" id="A18157" data-tid="A351345"></hvl-number-box>
+        </div>
+        <label class="control-label col-sm-1" id="A18158" data-tid="A351346">
+            VKİ: {{BMIValue}}
+        </label>
+    </div>
+    <br id="A18159" data-tid="A351347" />
+    <div class="row" id="A18160" data-tid="A351348">
+        <label class="control-label col-sm-12" style="font-size: inherit;" id="A18161" data-tid="A351349">
+            Ön Değerlendirme
+        </label>
+    </div>
+    <div class="row" id="A18162" data-tid="A351350">
+        <label class="control-label col-sm-4" id="A18163" data-tid="A351351">
+            Vücut Kitle İndeksi (VKİ) < 20,5 kg/m2 mi? /></label>
+        <div class="col-sm-8" id="A18164" data-tid="A351352">
+            <hvl-enum-radio-button-group [IsHorizontal]="true" DataTypeName="YesNoEnum" [Value]="nursingNutritionalRiskAssessmentFormViewModel._NursingNutritionalRiskAssessment.BMI" (ValueChange)="onBMIChanged($event)" [ReadOnly]="nursingNutritionalRiskAssessmentFormViewModel.ReadOnly" [Enabled]="nursingNutritionalRiskAssessmentFormViewModel.ReadOnly == false" id="A18165" data-tid="A351353"></hvl-enum-radio-button-group>
+        </div>
+    </div>
+    <div class="row" id="A18166" data-tid="A351354">
+        <label class="control-label col-sm-4" id="A18167" data-tid="A351355">
+            Hasta son 3 ayda kilo kaybetti mi?
+        </label>
+        <div class="col-sm-8" id="A18168" data-tid="A351356">
+            <hvl-enum-radio-button-group [IsHorizontal]="true" DataTypeName="YesNoEnum" [Value]="nursingNutritionalRiskAssessmentFormViewModel._NursingNutritionalRiskAssessment.ThreeMonthWeightLoss" (ValueChange)="onThreeMonthWeightLossChanged($event)" [ReadOnly]="nursingNutritionalRiskAssessmentFormViewModel.ReadOnly" [Enabled]="nursingNutritionalRiskAssessmentFormViewModel.ReadOnly == false" id="A18169" data-tid="A351357"></hvl-enum-radio-button-group>
+        </div>
+    </div>
+    <div class="row" id="A18170" data-tid="A351358">
+        <label class="control-label col-sm-4" id="A18171" data-tid="A351359">
+            Geçen Hafta Gıda Alımında Azalma Oldu Mu?
+        </label>
+        <div class="col-sm-8" id="A18172" data-tid="A351360">
+            <hvl-enum-radio-button-group [IsHorizontal]="true" DataTypeName="YesNoEnum" [Value]="nursingNutritionalRiskAssessmentFormViewModel._NursingNutritionalRiskAssessment.WeeklyIntakeDecrease" (ValueChange)="onWeeklyIntakeDecreaseChanged($event)" [ReadOnly]="nursingNutritionalRiskAssessmentFormViewModel.ReadOnly" [Enabled]="nursingNutritionalRiskAssessmentFormViewModel.ReadOnly == false" id="A18173" data-tid="A351361"></hvl-enum-radio-button-group>
+        </div>
+    </div>
+    <div class="row" id="A18174" data-tid="A351362">
+        <label class="control-label col-sm-4" id="A18175" data-tid="A351363">
+            Hasta ileri derecede hasta mı? (Örneğin yoğun bakımda mı?)
+        </label>
+        <div class="col-sm-8" id="A18176" data-tid="A351364">
+            <hvl-enum-radio-button-group [IsHorizontal]="true" DataTypeName="YesNoEnum" [Value]="nursingNutritionalRiskAssessmentFormViewModel._NursingNutritionalRiskAssessment.SevereDiseaseInfo" (ValueChange)="onSevereDiseaseInfoChanged($event)" [ReadOnly]="nursingNutritionalRiskAssessmentFormViewModel.ReadOnly" [Enabled]="nursingNutritionalRiskAssessmentFormViewModel.ReadOnly == false" id="A18177" data-tid="A351365"></hvl-enum-radio-button-group>
+        </div>
+    </div>
+    <br id="A18178" data-tid="A351366" />
+    <div [hidden]="hidePanel" class="panel panel-default" id="A18179" data-tid="A351367">
+        <div class="panel-body" id="A18180" data-tid="A351368">
+            <div class="row" id="A18181" data-tid="A351369">
+                <label class="control-label col-sm-12" style="font-size: inherit;" id="A18182" data-tid="A351370">
+                    Beslenme Durumundaki Bozulma
+                </label>
+                <div class="col-sm-12" id="A18183" data-tid="A351371">
+                    <hvl-enum-radio-button-group [IsHorizontal]="false" DataTypeName="NutritionIntakeAssessmentEnum" [Value]="nursingNutritionalRiskAssessmentFormViewModel._NursingNutritionalRiskAssessment.NutritionIntake" (ValueChange)="onNutritionIntakeChanged($event)" [ReadOnly]="nursingNutritionalRiskAssessmentFormViewModel.ReadOnly" [Enabled]="nursingNutritionalRiskAssessmentFormViewModel.ReadOnly == false" id="A18184" data-tid="A351372"></hvl-enum-radio-button-group>
+                </div>
+            </div>
+            <br id="A18185" data-tid="A351373" />
+            <div class="row" id="A18186" data-tid="A351374">
+                <label class="control-label col-sm-12" style="font-size: inherit;" id="A18187" data-tid="A351375">
+                    Hastalık Şiddeti
+                </label>
+                <div class="col-sm-12" id="A18188" data-tid="A351376">
+                    <hvl-checkbox #Validation (ValueChange)="onDiseaseLevelNormalChanged($event)" [AllowThreeState]="DiseaseLevelNormal?.ThreeState" [BackColor]="DiseaseLevelNormal?.BackColor" [Enabled]="DiseaseLevelNormal?.Enabled" [Font]="DiseaseLevelNormal?.Font" [ForeColor]="DiseaseLevelNormal?.ForeColor" [IsTitleLeft]="DiseaseLevelNormal?.IsTitleLeft" [Margin]="DiseaseLevelNormal?.Margin" [ReadOnly]="DiseaseLevelNormal?.ReadOnly" [TabIndex]="DiseaseLevelNormal?.TabIndex" [TitleTopPadding]="DiseaseLevelNormal?.TitleTopPadding" [Title]="DiseaseLevelNormal?.Title" [Value]="nursingNutritionalRiskAssessmentFormViewModel?._NursingNutritionalRiskAssessment?.DiseaseLevelNormal" [Visible]="DiseaseLevelNormal?.Visible" id="A18189" data-tid="A351377"></hvl-checkbox>
+                </div>
+                <div class="col-sm-12" id="A18190" data-tid="A351378">
+                    <hvl-checkbox #Validation (ValueChange)="onDiseaseLevelLowChanged($event)" [AllowThreeState]="DiseaseLevelLow?.ThreeState" [BackColor]="DiseaseLevelLow?.BackColor" [Enabled]="DiseaseLevelLow?.Enabled" [Font]="DiseaseLevelLow?.Font" [ForeColor]="DiseaseLevelLow?.ForeColor" [IsTitleLeft]="DiseaseLevelLow?.IsTitleLeft" [Margin]="DiseaseLevelLow?.Margin" [ReadOnly]="DiseaseLevelLow?.ReadOnly" [TabIndex]="DiseaseLevelLow?.TabIndex" [TitleTopPadding]="DiseaseLevelLow?.TitleTopPadding" [Title]="DiseaseLevelLow?.Title" [Value]="nursingNutritionalRiskAssessmentFormViewModel?._NursingNutritionalRiskAssessment?.DiseaseLevelLow" [Visible]="DiseaseLevelLow?.Visible" id="A18191" data-tid="A351379"></hvl-checkbox>
+                </div>
+                <div class="col-sm-12" id="A18192" data-tid="A351380">
+                    <hvl-checkbox #Validation (ValueChange)="onDiseaseLevelMediumChanged($event)" [AllowThreeState]="DiseaseLevelMedium?.ThreeState" [BackColor]="DiseaseLevelMedium?.BackColor" [Enabled]="DiseaseLevelMedium?.Enabled" [Font]="DiseaseLevelMedium?.Font" [ForeColor]="DiseaseLevelMedium?.ForeColor" [IsTitleLeft]="DiseaseLevelMedium?.IsTitleLeft" [Margin]="DiseaseLevelMedium?.Margin" [ReadOnly]="DiseaseLevelMedium?.ReadOnly" [TabIndex]="DiseaseLevelMedium?.TabIndex" [TitleTopPadding]="DiseaseLevelMedium?.TitleTopPadding" [Title]="DiseaseLevelMedium?.Title" [Value]="nursingNutritionalRiskAssessmentFormViewModel?._NursingNutritionalRiskAssessment?.DiseaseLevelMedium" [Visible]="DiseaseLevelMedium?.Visible" id="A18193" data-tid="A351381"></hvl-checkbox>
+                </div>
+                <div class="col-sm-12" id="A18194" data-tid="A351382">
+                    <hvl-checkbox #Validation (ValueChange)="onDiseaseLevelHighChanged($event)" [AllowThreeState]="DiseaseLevelHigh?.ThreeState" [BackColor]="DiseaseLevelHigh?.BackColor" [Enabled]="DiseaseLevelHigh?.Enabled" [Font]="DiseaseLevelHigh?.Font" [ForeColor]="DiseaseLevelHigh?.ForeColor" [IsTitleLeft]="DiseaseLevelHigh?.IsTitleLeft" [Margin]="DiseaseLevelHigh?.Margin" [ReadOnly]="DiseaseLevelHigh?.ReadOnly" [TabIndex]="DiseaseLevelHigh?.TabIndex" [TitleTopPadding]="DiseaseLevelHigh?.TitleTopPadding" [Title]="DiseaseLevelHigh?.Title" [Value]="nursingNutritionalRiskAssessmentFormViewModel?._NursingNutritionalRiskAssessment?.DiseaseLevelHigh" [Visible]="DiseaseLevelHigh?.Visible" id="A18195" data-tid="A351383"></hvl-checkbox>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br id="A18196" data-tid="A351384" />
+    <div class="row" id="A18197" data-tid="A351385">
+        <label class="control-label col-sm-12" style="font-size: inherit;" id="A18198" data-tid="A351386">
+            Toplam Skor
+        </label>
+    </div>
+    <div class="row" id="A18199" data-tid="A351387">
+        <div class="col-sm-1" id="A18200" data-tid="A351388">
+            <hvl-number-box #Validation (ValueChange)="onTotalScoreChanged($event)" [BackColor]="TotalScore?.BackColor" [Enabled]="TotalScore?.Enabled" [Font]="TotalScore?.Font" [ForeColor]="TotalScore?.ForeColor" [ReadOnly]="TotalScore?.ReadOnly" [TabIndex]="TotalScore?.TabIndex" [Value]="nursingNutritionalRiskAssessmentFormViewModel?._NursingNutritionalRiskAssessment?.TotalScore" [Visible]="TotalScore?.Visible" id="A18201" data-tid="A351389"></hvl-number-box>
+        </div>
+    </div>
+
+</div>

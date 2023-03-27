@@ -1,0 +1,81 @@
+﻿<h4 class="logisticLabel" style="margin-left:40%;color:#08c;" id="A3570" data-tid="A330181">{{FormCaption}}</h4>
+
+<NeStatePanelComponent [OutgoingTransitions]="halfDoseDestructionFormViewModel?.OutgoingTransitions" [StateReports]="halfDoseDestructionFormViewModel?.CurrentStateReports" [ObjectID]="halfDoseDestructionFormViewModel?._HalfDoseDestruction?.ObjectID" [ObjectDefID]="halfDoseDestructionFormViewModel?._HalfDoseDestruction?.ObjectDefID" [CurrentStateDefID]="halfDoseDestructionFormViewModel._HalfDoseDestruction.CurrentStateDefID" [DropStateList]="DropStateList" (onSetState)="stateChange($event)" (onSaveChanges)="onSaveButtonClick($event)" (onCancel)="cancel()" id="A8738" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A330182">
+</NeStatePanelComponent>
+<div class="container-fluid" data-tid="A330183">
+	<form id="HalfDoseDestructionForm" class="form-horizontal" role="form" data-tid="A330184">
+
+		<div class="row" id="A3362" data-tid="A330185">
+			<div class="col-md-4 col-sm-12" id="A3363" data-tid="A330186">
+				<patient-demographics-form [actionId]="halfDoseDestructionFormViewModel._HalfDoseDestruction.ObjectID" id="A3364" data-tid="A330187"></patient-demographics-form>
+			</div>
+			<div class="col-md-2 col-sm-12" id="A3365" data-tid="A330188">
+				<div class="row" id="A3366" data-tid="A330189">
+					<div class="col-md-12" id="A3367" data-tid="A330190">
+						<label class="control-label" id="A3368" data-tid="A330191">Klinik Protokol No</label>
+					</div>
+				</div>
+				<div class="row" id="A3369" data-tid="A330192">
+					<div class="col-md-12" id="A3370" data-tid="A330193">
+						<label class="control-label" id="A3371" data-tid="A330194">Hastanın Tedavi Gördüğü Klinik</label>
+					</div>
+				</div>
+				<div class="row" id="A3372" data-tid="A330195">
+					<div class="col-md-6" id="A3373" data-tid="A330196">
+						<label class="control-label" id="A3374" data-tid="A330197">Oda</label>
+					</div>
+					<div class="col-md-6" id="A3375" data-tid="A330198">
+						<label class="control-label" id="A3376" data-tid="A330199">Yatak</label>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-12" id="A3377" data-tid="A330200">
+				<DiagnosisGridReadOnlyForm [EpisodeAction]="halfDoseDestructionFormViewModel._HalfDoseDestruction" id="A3378" data-tid="A330201"></DiagnosisGridReadOnlyForm>
+
+			</div>
+		</div>
+		<br data-tid="A330202" />
+		<div class="row" data-tid="A330203">
+			<div class="col-sm-1" data-tid="A330204">
+				İşlem Nu.
+				<hvl-text-box #Validation (TextChange)="onIDChanged($event)" [BackColor]="ID?.BackColor" [CharacterCasing]="ID?.CharacterCasing" [Enabled]="ID?.Enabled" [Font]="ID?.Font" [ForeColor]="ID?.ForeColor" [height]="ID?.Height" [InputFormat]="ID?.InputFormat" [InputTurkishCharacter]="ID?.InputTurkishCharacter" [IsNonNumeric]="ID?.IsNonNumeric" [MultiLine]="ID?.Multiline" [ReadOnly]="ID?.ReadOnly" [Required]="ID?.Required" [TabIndex]="ID?.TabIndex" [TextAlign]="ID?.TextAlign" [Text]="_HalfDoseDestruction.ID" [Visible]="ID?.Visible" data-tid="A330205">
+				</hvl-text-box>
+			</div>
+			<div class="col-sm-3" data-tid="A330206">
+				İşlem Tarihi
+				<hvl-date-picker #Validation (ValueChange)="onActionDateChanged($event)" [BackColor]="ActionDate?.BackColor" [CustomFormat]="ActionDate?.CustomFormat" [Enabled]="ActionDate?.Enabled" [Font]="ActionDate?.Font" [ForeColor]="ActionDate?.ForeColor" [Format]="ActionDate?.Format" [Max]="ActionDate?.Max" [Min]="ActionDate?.Min" [ReadOnly]="ActionDate?.ReadOnly" [Required]="ActionDate?.Required" [TabIndex]="ActionDate?.TabIndex" [Value]="_HalfDoseDestruction.ActionDate" [Visible]="ActionDate?.Visible" data-tid="A330207">
+				</hvl-date-picker>
+			</div>
+			<div class="col-sm-7" data-tid="A330208">
+				Eczane
+				<hvl-list-box #Validation (SelectedObjectChange)="onPharmacyStoreDefinitionChanged($event)" [AutoCompleteDialogHeight]="PharmacyStoreDefinition?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="PharmacyStoreDefinition?.AutoCompleteDialogWidth" [AutoCompleteMode]="PharmacyStoreDefinition?.AutoCompleteMode" [BackColor]="PharmacyStoreDefinition?.BackColor" [DefinitionName]="PharmacyStoreDefinition?.ListDefName" [DisplayExpressionsCache]="halfDoseDestructionFormViewModel?.ListDefDisplayExpressions" [Enabled]="PharmacyStoreDefinition?.Enabled" [Font]="PharmacyStoreDefinition?.Font" [ForeColor]="PharmacyStoreDefinition?.ForeColor" [ListFilterExpression]="PharmacyStoreDefinition?.ListFilterExpression" [MinSearchLength]="PharmacyStoreDefinition?.MinSearchLength" [PopupDialogFieldConfig]="PharmacyStoreDefinition?.PopupDialogFieldConfig" [PopupDialogGridColumns]="PharmacyStoreDefinition?.PopupDialogGridColumns" [PopupDialogHeight]="PharmacyStoreDefinition?.PopupDialogHeight" [PopupDialogTitle]="PharmacyStoreDefinition?.PopupDialogTitle" [PopupDialogWidth]="PharmacyStoreDefinition?.PopupDialogWidth" [ReadOnly]="PharmacyStoreDefinition?.ReadOnly" [SearchMode]="PharmacyStoreDefinition?.SearchMode" [SearchTimeout]="PharmacyStoreDefinition?.SearchTimeout" [SelectedObject]="_HalfDoseDestruction.PharmacyStoreDefinition" [TabIndex]="PharmacyStoreDefinition?.TabIndex" [Visible]="PharmacyStoreDefinition?.Visible" [width]="PharmacyStoreDefinition?.Width" data-tid="A330209">
+				</hvl-list-box>
+			</div>
+		</div>
+		<br data-tid="A330210" />
+		<div class="row" data-tid="A330211">
+			<div class="col-sm-3" data-tid="A330212">
+				Başlangıç Tarihi
+				<hvl-date-picker #Validation (ValueChange)="onStartDateChanged($event)" [BackColor]="StartDate?.BackColor" [CustomFormat]="StartDate?.CustomFormat" [Enabled]="StartDate?.Enabled" [Font]="StartDate?.Font" [ForeColor]="StartDate?.ForeColor" [Format]="StartDate?.Format" [Max]="StartDate?.Max" [Min]="StartDate?.Min" [ReadOnly]="StartDate?.ReadOnly" [Required]="StartDate?.Required" [TabIndex]="StartDate?.TabIndex" [Value]="_HalfDoseDestruction.StartDate" [Visible]="StartDate?.Visible" data-tid="A330213">
+				</hvl-date-picker>
+			</div>
+			<div class="col-sm-3" data-tid="A330214">
+				Bitiş Tarihi
+				<hvl-date-picker #Validation (ValueChange)="onEndDateChanged($event)" [BackColor]="EndDate?.BackColor" [CustomFormat]="EndDate?.CustomFormat" [Enabled]="EndDate?.Enabled" [Font]="EndDate?.Font" [ForeColor]="EndDate?.ForeColor" [Format]="EndDate?.Format" [Max]="EndDate?.Max" [Min]="EndDate?.Min" [ReadOnly]="EndDate?.ReadOnly" [Required]="EndDate?.Required" [TabIndex]="EndDate?.TabIndex" [Value]="_HalfDoseDestruction.EndDate" [Visible]="EndDate?.Visible" data-tid="A330215">
+				</hvl-date-picker>
+			</div>
+			<div class="col-sm-5" data-tid="A330216">
+				İstek Yapan
+				<hvl-list-box #Validation (SelectedObjectChange)="onProcedureByUserChanged($event)" [AutoCompleteDialogHeight]="ProcedureByUser?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ProcedureByUser?.AutoCompleteDialogWidth" [AutoCompleteMode]="ProcedureByUser?.AutoCompleteMode" [BackColor]="ProcedureByUser?.BackColor" [DefinitionName]="ProcedureByUser?.ListDefName" [DisplayExpressionsCache]="halfDoseDestructionFormViewModel?.ListDefDisplayExpressions" [Enabled]="ProcedureByUser?.Enabled" [Font]="ProcedureByUser?.Font" [ForeColor]="ProcedureByUser?.ForeColor" [ListFilterExpression]="ProcedureByUser?.ListFilterExpression" [MinSearchLength]="ProcedureByUser?.MinSearchLength" [PopupDialogFieldConfig]="ProcedureByUser?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ProcedureByUser?.PopupDialogGridColumns" [PopupDialogHeight]="ProcedureByUser?.PopupDialogHeight" [PopupDialogTitle]="ProcedureByUser?.PopupDialogTitle" [PopupDialogWidth]="ProcedureByUser?.PopupDialogWidth" [ReadOnly]="ProcedureByUser?.ReadOnly" [SearchMode]="ProcedureByUser?.SearchMode" [SearchTimeout]="ProcedureByUser?.SearchTimeout" [SelectedObject]="_HalfDoseDestruction.ProcedureByUser" [TabIndex]="ProcedureByUser?.TabIndex" [Visible]="ProcedureByUser?.Visible" [width]="ProcedureByUser?.Width" data-tid="A330217">
+				</hvl-list-box>
+			</div>
+		</div>
+		<br data-tid="A330218" />
+		<div class="row" data-tid="A330219">
+			<div class="col-sm-12" data-tid="A330220">
+				<hvl-datagrid (CellValueChange)="HalfDoseDestructionDetails" [AllowUserToAddRows]="HalfDoseDestructionDetails?.AllowUserToAddRows" [AllowUserToDeleteRows]="HalfDoseDestructionDetails?.AllowUserToDeleteRows" [Columns]="HalfDoseDestructionDetailsColumns" [dataSource]="halfDoseDestructionFormViewModel?._HalfDoseDestruction?.HalfDoseDestructionDetails" [DeleteButtonWidth]="_HalfDoseDestructionDetails?.DeleteButtonWidth" [DisplayExpressionsCache]="halfDoseDestructionFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="HalfDoseDestructionDetails?.ShowFilterRow" [FilterColumnName]="HalfDoseDestructionDetails?.FilterColumnName" [FilterLabel]="HalfDoseDestructionDetails?.FilterLabel" [Filter]="HalfDoseDestructionDetails?.Filter" [height]="HalfDoseDestructionDetails?.Height" [IsFilterLabelSingleLine]="HalfDoseDestructionDetails?.IsFilterLabelSingleLine" [ShowColumnHeaders]="HalfDoseDestructionDetails?.ColumnHeadersVisible" [ShowFilterCombo]="HalfDoseDestructionDetails?.ShowFilterCombo" [ShowTotalNumberOfRows]="HalfDoseDestructionDetails?.ShowTotalNumberOfRows" data-tid="A330221">
+				</hvl-datagrid>
+			</div>
+		</div>
+	</form>
+</div>

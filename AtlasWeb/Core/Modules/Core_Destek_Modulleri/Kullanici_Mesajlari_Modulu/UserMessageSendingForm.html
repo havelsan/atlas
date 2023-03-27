@@ -1,0 +1,102 @@
+﻿<div class="container-fluid" id="A1517" data-tid="A323782">
+    <form id="UserMessageSendingForm" class="form-horizontal" role="form" data-tid="A323783">
+
+    </form>
+
+
+    <div class="row" id="A1520" data-tid="A323784">
+        <label class="control-label col-sm-1" id="A1521" data-tid="A323785">
+            Mesaj Tarihi
+        </label>
+        <div class="col-sm-2" id="A1522" data-tid="A323786">
+            <hvl-date-picker #Validation (ValueChange)="onMessageDateChanged($event)" [BackColor]="MessageDate?.BackColor" [CustomFormat]="MessageDate?.CustomFormat" [Enabled]="MessageDate?.Enabled" [Font]="MessageDate?.Font" [ForeColor]="MessageDate?.ForeColor" [Format]="MessageDate?.Format" [Max]="MessageDate?.Max" [Min]="MessageDate?.Min" [ReadOnly]="MessageDate?.ReadOnly" [Required]="MessageDate?.Required" [TabIndex]="MessageDate?.TabIndex" [Value]="userMessageReadingFormViewModel?._UserMessage?.MessageDate" [Visible]="MessageDate?.Visible" id="A1523" data-tid="A323787"></hvl-date-picker>
+        </div>
+
+        <div class="col-sm-1" id="A1525" data-tid="A323788">
+            <hvl-checkbox #Validation (ValueChange)="onIsSplashMessageChanged($event)" [AllowThreeState]="IsSplashMessage?.ThreeState" [BackColor]="IsSplashMessage?.BackColor" [Enabled]="IsSplashMessage?.Enabled" [Font]="IsSplashMessage?.Font" [ForeColor]="IsSplashMessage?.ForeColor" [IsTitleLeft]="IsSplashMessage?.IsTitleLeft" [Margin]="IsSplashMessage?.Margin" [ReadOnly]="IsSplashMessage?.ReadOnly" [TabIndex]="IsSplashMessage?.TabIndex" [TitleTopPadding]="IsSplashMessage?.TitleTopPadding" [Title]="IsSplashMessage?.Title" [Value]="userMessageReadingFormViewModel?._UserMessage?.IsSplashMessage" [Visible]="IsSplashMessage?.Visible" id="A1526" data-tid="A323789"></hvl-checkbox>
+        </div>
+        <div class="col-sm-1" id="A1528" data-tid="A323790">
+            <hvl-checkbox #Validation (ValueChange)="onMessageFeedbackChanged($event)" [AllowThreeState]="MessageFeedback?.ThreeState" [BackColor]="MessageFeedback?.BackColor" [Enabled]="MessageFeedback?.Enabled" [Font]="MessageFeedback?.Font" [ForeColor]="MessageFeedback?.ForeColor" [IsTitleLeft]="MessageFeedback?.IsTitleLeft" [Margin]="MessageFeedback?.Margin" [ReadOnly]="MessageFeedback?.ReadOnly" [TabIndex]="MessageFeedback?.TabIndex" [TitleTopPadding]="MessageFeedback?.TitleTopPadding" [Title]="MessageFeedback?.Title" [Value]="userMessageReadingFormViewModel?._UserMessage?.MessageFeedback" [Visible]="MessageFeedback?.Visible" id="A1529" data-tid="A323791"></hvl-checkbox>
+        </div>
+        <div class="col-sm-1" id="A1531" data-tid="A323792">
+            <hvl-checkbox #Validation (ValueChange)="onIsSystemMessageChanged($event)" [AllowThreeState]="IsSystemMessage?.ThreeState" [BackColor]="IsSystemMessage?.BackColor" [Enabled]="IsSystemMessage?.Enabled" [Font]="IsSystemMessage?.Font" [ForeColor]="IsSystemMessage?.ForeColor" [IsTitleLeft]="IsSystemMessage?.IsTitleLeft" [Margin]="IsSystemMessage?.Margin" [ReadOnly]="IsSystemMessage?.ReadOnly" [TabIndex]="IsSystemMessage?.TabIndex" [TitleTopPadding]="IsSystemMessage?.TitleTopPadding" [Title]="IsSystemMessage?.Title" [Value]="userMessageReadingFormViewModel?._UserMessage?.IsSystemMessage" [Visible]="IsSystemMessage?.Visible" id="A1532" data-tid="A323793"></hvl-checkbox>
+        </div>
+        <div class="col-sm-6" data-tid="A323794">
+            <label for="filePicker" id="A1533" data-tid="A323795">Choose or drag a file:</label>
+            <input type="file" id="filePicker" (change)="handleFileSelect($event)" multiple accept=".png, .jpg, .jpeg, .pdf, .ppt, .pptx, .doc, .docx" data-tid="A323796" />
+        </div>
+    </div>
+    <div class="row" id="A1535" data-tid="A323797">
+        <label class="control-label col-sm-1" id="A1536" data-tid="A323798">
+            Eklentiler
+        </label>
+        <div class="col-sm-2" *ngFor="let form of userMessageReadingFormViewModel.UserMessageAttachments;let i=index" id="A1537" data-tid="A323799">
+            <a style="cursor:pointer" id="A1538" data-tid="A323800">{{form.Name}}<i class="fa fa-times" (click)="deleteAttachment(form)" id="A1539" data-tid="A323801"></i></a>
+        </div>
+    </div>
+    <div class="row" id="A1540" data-tid="A323802">
+        <label class="control-label col-sm-1" id="A1541" data-tid="A323803">
+            Geçerlilik Bitiş Tarihi
+        </label>
+        <div class="col-sm-2" id="A1542" data-tid="A323804">
+            <hvl-date-picker #Validation (ValueChange)="onExpireDateChanged($event)" [BackColor]="ExpireDate?.BackColor" [CustomFormat]="ExpireDate?.CustomFormat" [Enabled]="ExpireDate?.Enabled" [Font]="ExpireDate?.Font" [ForeColor]="ExpireDate?.ForeColor" [Format]="ExpireDate?.Format" [Max]="ExpireDate?.Max" [Min]="ExpireDate?.Min" [ReadOnly]="ExpireDate?.ReadOnly" [Required]="ExpireDate?.Required" [TabIndex]="ExpireDate?.TabIndex" [Value]="userMessageReadingFormViewModel?._UserMessage?.ExpireDate" [Visible]="ExpireDate?.Visible" id="A1543" data-tid="A323805"></hvl-date-picker>
+        </div>
+    </div>
+    <div class="row" id="A1544" data-tid="A323806">
+        <label class="control-label col-sm-1" id="A1545" data-tid="A323807">
+            Konu Başlığı
+        </label>
+        <div class="col-sm-10" id="A1546" data-tid="A323808">
+            <hvl-text-box #Validation (TextChange)="onSubjectChanged($event)" [BackColor]="Subject?.BackColor" [CharacterCasing]="Subject?.CharacterCasing" [Enabled]="Subject?.Enabled" [Font]="Subject?.Font" [ForeColor]="Subject?.ForeColor" [height]="Subject?.Height" [InputFormat]="Subject?.InputFormat" [InputTurkishCharacter]="Subject?.InputTurkishCharacter" [IsNonNumeric]="Subject?.IsNonNumeric" [MultiLine]="Subject?.Multiline" [ReadOnly]="Subject?.ReadOnly" [Required]="Subject?.Required" [TabIndex]="Subject?.TabIndex" [TextAlign]="Subject?.TextAlign" [Text]="userMessageReadingFormViewModel?._UserMessage?.Subject" [Visible]="Subject?.Visible" id="A1547" data-tid="A323809">
+            </hvl-text-box>
+        </div>
+    </div>
+    <div class="row" id="A1548" data-tid="A323810">
+        <label class="control-label col-sm-1" id="A1549" data-tid="A323811">
+            Kime
+        </label>
+        <div class="col-sm-11" id="A1550" data-tid="A323812">
+            <dx-tag-box [items]="userMessageReadingFormViewModel.users" searchEnabled="true" displayExpr="Name" valueExpr="ObjectID" showSelectionControls="true" [multiline]="false" placeholder="Personel Seçiniz" [(value)]="SelectedUser" i18n-placeholder="@@M20336" id="A1551" data-tid="A323813">
+            </dx-tag-box>
+
+        </div>
+    </div>
+    <div class="row" id="A1552" data-tid="A323814">
+        <label class="control-label col-sm-1" id="A1553" data-tid="A323815">
+            Grup
+        </label>
+        <div class="col-sm-11" id="A1554" data-tid="A323816">
+            <dx-tag-box [items]="userMessageReadingFormViewModel.groups" searchEnabled="true" displayExpr="Caption" valueExpr="ObjectID" showSelectionControls="true" [multiline]="false" placeholder="Grup Seçiniz" [(value)]="SelectedGroups" i18n-placeholder="@@M14986" id="A1555" data-tid="A323817">
+            </dx-tag-box>
+        </div>
+    </div>
+    <div class="row" id="A1556" data-tid="A323818">
+        <label class="control-label col-sm-1" id="A1557" data-tid="A323819">
+            Bölüm
+        </label>
+        <div class="col-sm-11" id="A1558" data-tid="A323820">
+            <dx-tag-box [items]="userMessageReadingFormViewModel.units" searchEnabled="true" displayExpr="Name" valueExpr="ObjectID" showSelectionControls="true" [multiline]="false" placeholder="Bölüm Seçiniz" [(value)]="SelectedUnits" i18n-placeholder="@@M12038" id="A1559" data-tid="A323821">
+            </dx-tag-box>
+        </div>
+    </div>
+    <div class="row" id="A1560" data-tid="A323822">
+        <div class="col-sm-0" id="A1561" data-tid="A323823">
+            <hvl-richtextbox (change)="MessageBody.Rtf=$event;" [Height] [ngModelOptions]="{ standalone: true}" [ngModel]="MessageBody?.Rtf" [ReadOnly]="MessageBody?.ReadOnly" [TemplateGroupName]="MessageBody?.TemplateGroupName" [Visible]="MessageBody?.Visible" id="A1562" data-tid="A323824">
+            </hvl-richtextbox>
+        </div>
+    </div>
+
+
+    <div class="row" id="A1565" data-tid="A323825">
+        <div class="col-sm-1" id="A1566" data-tid="A323826">
+            <hvl-button (BtnClicked)="btnSend_Click()" [BackColor]="btnSend?.BackColor" [Enabled]="btnSend?.Enabled" [Font]="btnSend?.Font" [ForeColor]="btnSend?.ForeColor" [height]="btnSend?.Height" [ReadOnly]="btnSend?.ReadOnly" [TabIndex]="btnSend?.TabIndex" [Text]="btnSend?.Text" [Visible]="btnSend?.Visible" id="A1567" data-tid="A323827"></hvl-button>
+        </div>
+        <div class="col-sm-1" id="A1568" data-tid="A323828">
+            <hvl-button (BtnClicked)="btnOK_Click()" [BackColor]="btnOK?.BackColor" [Enabled]="btnOK?.Enabled" [Font]="btnOK?.Font" [ForeColor]="btnOK?.ForeColor" [height]="btnOK?.Height" [ReadOnly]="btnOK?.ReadOnly" [TabIndex]="btnOK?.TabIndex" [Text]="btnOK?.Text" [Visible]="btnOK?.Visible" id="A1569" data-tid="A323829"></hvl-button>
+        </div>
+        <div class="col-sm-1" id="A1570" data-tid="A323830">
+            <hvl-button (BtnClicked)="btnCancel_Click()" [BackColor]="btnCancel?.BackColor" [Enabled]="btnCancel?.Enabled" [Font]="btnCancel?.Font" [ForeColor]="btnCancel?.ForeColor" [height]="btnCancel?.Height" [ReadOnly]="btnCancel?.ReadOnly" [TabIndex]="btnCancel?.TabIndex" [Text]="btnCancel?.Text" [Visible]="btnCancel?.Visible" id="A1571" data-tid="A323831"></hvl-button>
+        </div>
+    </div>
+
+</div>

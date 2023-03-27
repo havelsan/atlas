@@ -1,0 +1,228 @@
+<form id="OzellikliBakimIzlemForm" class="form-horizontal" role="form">
+</form>
+<div class="row">
+    <div class="col-sm-11">
+
+    </div>
+    <div class="col-sm-1" data-tid="A325681">
+        <dx-button type="success" style="width: 100%; margin: 0px 5px 0px 0px" text="İzlem Kaydet"
+            (onClick)="AddOrUpdateOzellikliIzlemForm()" data-tid="A325682"></dx-button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="row">
+            <label class="col-sm-12">
+                İzlem Notu
+            </label>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <hvl-richtextbox (change)="onDescriptionChanged($event)" Theme="snow" Height="100px"
+                    [ngModelOptions]="{ standalone: true}" [ngModel]="ozellikliBakimIzlemFormViewModel.Description"
+                    data-tid="A360866"></hvl-richtextbox>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-12">
+                Yoğun Bakımda Mı
+            </label>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <dx-select-box displayExpr="Name" valueExpr="Id" [items]="ozellikliBakimIzlemFormViewModel.SKRSDurumList"
+                    [(value)]="ozellikliBakimIzlemFormViewModel.IsIntensiveCare"></dx-select-box>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-12">
+                İzolasyon Amaçlı Yatış Mı
+            </label>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <dx-select-box displayExpr="Name" valueExpr="Id" [items]="ozellikliBakimIzlemFormViewModel.SKRSDurumList"
+                    [(value)]="ozellikliBakimIzlemFormViewModel.IsIsolatedInpatient"></dx-select-box>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-12">
+                BT Çekildi Mi
+            </label>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <dx-select-box displayExpr="Name" valueExpr="Id" [items]="ozellikliBakimIzlemFormViewModel.SKRSDurumList"
+                    [(value)]="ozellikliBakimIzlemFormViewModel.HasCT"></dx-select-box>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-12">
+                BT Sonucu
+            </label>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <dx-select-box displayExpr="Name" valueExpr="Id" [items]="ozellikliBakimIzlemFormViewModel.SKRSBtCekimDurumuList"
+                    [(value)]="ozellikliBakimIzlemFormViewModel.CTResult"></dx-select-box>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-12">
+                Yüksek Doz C Vitamini
+            </label>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <dx-select-box displayExpr="Name" valueExpr="Id" [items]="ozellikliBakimIzlemFormViewModel.SKRSDurumList"
+                    [(value)]="ozellikliBakimIzlemFormViewModel.HighDoseCvitamin"></dx-select-box>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-12">
+                Hidroksiklorokin
+            </label>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <dx-select-box displayExpr="Name" valueExpr="Id" [items]="ozellikliBakimIzlemFormViewModel.SKRSDurumList"
+                    [(value)]="ozellikliBakimIzlemFormViewModel.Hydroxychloroquine"></dx-select-box>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-12">
+                Kaletra
+            </label>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <dx-select-box displayExpr="Name" valueExpr="Id" [items]="ozellikliBakimIzlemFormViewModel.SKRSDurumList"
+                    [(value)]="ozellikliBakimIzlemFormViewModel.Kaletra"></dx-select-box>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="row">
+            <div class="col-sm-7">
+                <div class="row">
+                    <label class="col-sm-12">
+                        İzlem Tarihi
+                    </label>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <dx-date-box [(value)]="ozellikliBakimIzlemFormViewModel.ProgressDate" type="datetime"
+                            (onValueChanged)="getMedicineUsages($event)"displayFormat="dd.MM.yyyy HH:mm">
+                        </dx-date-box>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="row">
+                    <label class="col-sm-12">
+                        PAO2-FIO2 Oranı
+                    </label>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <dx-number-box [(value)]="ozellikliBakimIzlemFormViewModel.PaoFioRatio" [showSpinButtons]="true"
+                            [showClearButton]="true"></dx-number-box>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-12">
+                Genel Durum
+            </label>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <dx-select-box displayExpr="Name" valueExpr="Id" [items]="ozellikliBakimIzlemFormViewModel.SKRSGenelDurumList"
+                    [(value)]="ozellikliBakimIzlemFormViewModel.GeneralStatus"></dx-select-box>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-12">
+                Klinik Bulgu Var Mı
+            </label>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <dx-select-box displayExpr="Name" valueExpr="Id" [items]="ozellikliBakimIzlemFormViewModel.SKRSDurumList"
+                    [(value)]="ozellikliBakimIzlemFormViewModel.HasClinicalFinding"></dx-select-box>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-12">
+                Covid Dışı Yatış Mı
+            </label>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <dx-select-box displayExpr="Name" valueExpr="Id" [items]="ozellikliBakimIzlemFormViewModel.SKRSDurumList"
+                    [(value)]="ozellikliBakimIzlemFormViewModel.NonCovidInpatient"></dx-select-box>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-12">
+                Pnömoni Var Mı
+            </label>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <dx-select-box displayExpr="Name" valueExpr="Id" [items]="ozellikliBakimIzlemFormViewModel.SKRSDurumList"
+                    [(value)]="ozellikliBakimIzlemFormViewModel.HasPneumonia"></dx-select-box>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-12">
+                Entübasyon Var Mı
+            </label>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <dx-select-box displayExpr="Name" valueExpr="Id" [items]="ozellikliBakimIzlemFormViewModel.SKRSDurumList"
+                    [(value)]="ozellikliBakimIzlemFormViewModel.HasIntubation"></dx-select-box>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-12">
+                Oseltamivir 75Gr Taniflu
+            </label>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <dx-select-box displayExpr="Name" valueExpr="Id" [items]="ozellikliBakimIzlemFormViewModel.SKRSDurumList"
+                    [(value)]="ozellikliBakimIzlemFormViewModel.Oseltamivir"></dx-select-box>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-12">
+                Azitromisin
+            </label>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <dx-select-box displayExpr="Name" valueExpr="Id" [items]="ozellikliBakimIzlemFormViewModel.SKRSDurumList"
+                    [(value)]="ozellikliBakimIzlemFormViewModel.Azitromisin"></dx-select-box>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-12">
+                Favipavir Avigan
+            </label>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <dx-select-box displayExpr="Name" valueExpr="Id" [items]="ozellikliBakimIzlemFormViewModel.SKRSDurumList"
+                    [(value)]="ozellikliBakimIzlemFormViewModel.FavipavirAvigan"></dx-select-box>
+            </div>
+        </div>
+    </div>
+</div>
+
+<dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true"
+    [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A31651"
+    data-tid="A368003">
+</dx-load-panel>

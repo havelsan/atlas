@@ -1,0 +1,202 @@
+﻿<div class="row" style="padding-bottom:15px; padding-top:15px" data-tid="A328293">
+    <div class="btn-group col-sm-12" style="float:right;" role="group" id="A19851" data-tid="A328294">
+        <dx-button type="default" style="float:right; margin-right:10px" (onClick)="saveSUTRules()" text="Kaydet" data-tid="A328295">
+
+        </dx-button>
+    </div>
+    <div class="col-sm-4" data-tid="A328296">
+        <label class="col-sm-12" data-tid="A328297">Yasaklı İşlemler</label>
+        <div class="col-sm-12" data-tid="A328298">
+            <hvl-list-box style="height:30px; display:block;" #listBox (SelectedObjectChange)="procDefintionChangedForRule1($event)" [(IsOnPopUp)]="IsOnPopUp" [AutoCompleteMode]="ProcedureDefinition?.AutoCompleteMode" [BackColor]="ProcedureDefinition?.BackColor" [DefinitionName]="ProcedureDefinition?.ListDefName" [Enabled]="ProcedureDefinition?.Enabled" [Font]="ProcedureDefinition?.Font" [ForeColor]="ProcedureDefinition?.ForeColor" [ListFilterExpression]="ProcedureDefinition?.ListFilterExpression" [MinSearchLength]="ProcedureDefinition?.MinSearchLength" [PopupDialogFieldConfig]="ProcedureDefinition?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ProcedureDefinition?.PopupDialogGridColumns" [PopupDialogHeight]="ProcedureDefinition?.PopupDialogHeight" [PopupDialogTitle]="ProcedureDefinition?.PopupDialogTitle" [PopupDialogWidth]="ProcedureDefinition?.PopupDialogWidth" [ReadOnly]="false" [SearchMode]="ProcedureDefinition?.SearchMode" [SearchTimeout]="ProcedureDefinition?.SearchTimeout" [SelectedObject]="selectedProcedureForRule1" [TabIndex]="ProcedureDefinition?.TabIndex" [Visible]="ProcedureDefinition?.Visible" [width]="ProcedureDefinition?.Width" data-tid="A328299"></hvl-list-box>
+        </div>
+        <div class="col-sm-6" data-tid="A328300">
+            <dx-check-box [(value)]="viewModel.RuleSetDTO.Rule1DTO.Active" text="Aktif/Pasif" data-tid="A328301">
+
+            </dx-check-box>
+        </div>
+        <div class="col-sm-6" data-tid="A328302">
+            <dx-check-box [(value)]="viewModel.RuleSetDTO.Rule1DTO.BlockRequest" text="Engelle" data-tid="A328303">
+
+            </dx-check-box>
+        </div>
+        <div class="col-sm-12" style="height: 150px;" data-tid="A328304">
+            <dx-data-grid #rule1Grid height="100%" width="100%" [columns]="rule1Columns" [dataSource]="viewModel.RuleSetDTO.Rule1DTO.Rule1DataSource" [editing]="{allowDeleting: true}" [scrolling]="{ mode: 'infinite' }" [filterRow]="{visible: true}" (onRowRemoving)="onRule1Removing($event)" data-tid="A328305">
+                <!-- <div *dxTemplate="let row of 'rule1ProcDefCodeTemplateColumn'">
+                    <div>{{row.data.ProcedureCode}}</div>
+                </div> -->
+                <!-- <div *dxTemplate="let row of 'rule1ProcDefNameTemplateColumn'">
+                    <div>{{row.data.ProcedureName}}</div>
+                </div> -->
+            </dx-data-grid>
+        </div>
+    </div>
+    <div class="col-sm-4" data-tid="A328306">
+        <label class="col-sm-12" data-tid="A328307">Zorunlu İşlemler</label>
+        <div class="col-sm-12" data-tid="A328308">
+            <hvl-list-box style="height:30px; display:block;" #listBox (SelectedObjectChange)="procDefintionChangedForRule16($event)" [(IsOnPopUp)]="IsOnPopUp" [AutoCompleteMode]="ProcedureDefinition?.AutoCompleteMode" [BackColor]="ProcedureDefinition?.BackColor" [DefinitionName]="ProcedureDefinition?.ListDefName" [Enabled]="ProcedureDefinition?.Enabled" [Font]="ProcedureDefinition?.Font" [ForeColor]="ProcedureDefinition?.ForeColor" [ListFilterExpression]="ProcedureDefinition?.ListFilterExpression" [MinSearchLength]="ProcedureDefinition?.MinSearchLength" [PopupDialogFieldConfig]="ProcedureDefinition?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ProcedureDefinition?.PopupDialogGridColumns" [PopupDialogHeight]="ProcedureDefinition?.PopupDialogHeight" [PopupDialogTitle]="ProcedureDefinition?.PopupDialogTitle" [PopupDialogWidth]="ProcedureDefinition?.PopupDialogWidth" [ReadOnly]="false" [SearchMode]="ProcedureDefinition?.SearchMode" [SearchTimeout]="ProcedureDefinition?.SearchTimeout" [SelectedObject]="selectedProcedureForRule16" [TabIndex]="ProcedureDefinition?.TabIndex" [Visible]="ProcedureDefinition?.Visible" [width]="ProcedureDefinition?.Width" data-tid="A328309"></hvl-list-box>
+        </div>
+        <div class="col-sm-6" data-tid="A328310">
+            <dx-check-box [(value)]="viewModel.RuleSetDTO.Rule16DTO.Active" text="Aktif/Pasif" data-tid="A328311">
+
+            </dx-check-box>
+        </div>
+        <div class="col-sm-6" data-tid="A328312">
+            <dx-check-box [(value)]="viewModel.RuleSetDTO.Rule16DTO.BlockRequest" text="Engelle" data-tid="A328313">
+
+            </dx-check-box>
+        </div>
+        <div class="col-sm-12" style="height: 150px;" data-tid="A328314">
+            <dx-data-grid height="100%" width="100%" [columns]="rule16Columns" [dataSource]="viewModel.RuleSetDTO.Rule16DTO.ProcedureNameAndCodes" [editing]="{allowDeleting: true}" [scrolling]="{ mode: 'infinite' }" [filterRow]="{visible: true}" (onRowRemoved)="onRule16Removed($event)" data-tid="A328315">
+            </dx-data-grid>
+        </div>
+    </div>
+    <div class="col-sm-4" data-tid="A328316">
+        <label class="col-sm-12" data-tid="A328317">Branş Sınırlaması</label>
+        <div class="col-sm-12" data-tid="A328318">
+            <hvl-list-box style="height:30px; display:block;" #listBox (SelectedObjectChange)="specialityDefintionSelectedChanged($event)" [(IsOnPopUp)]="IsOnPopUp" [AutoCompleteMode]="SpecialitySelection?.AutoCompleteMode" [BackColor]="SpecialitySelection?.BackColor" [DefinitionName]="SpecialitySelection?.ListDefName" [Enabled]="SpecialitySelection?.Enabled" [Font]="SpecialitySelection?.Font" [ForeColor]="SpecialitySelection?.ForeColor" [ListFilterExpression]="SpecialitySelection?.ListFilterExpression" [MinSearchLength]="SpecialitySelection?.MinSearchLength" [PopupDialogFieldConfig]="SpecialitySelection?.PopupDialogFieldConfig" [PopupDialogGridColumns]="SpecialitySelection?.PopupDialogGridColumns" [PopupDialogHeight]="SpecialitySelection?.PopupDialogHeight" [PopupDialogTitle]="SpecialitySelection?.PopupDialogTitle" [PopupDialogWidth]="SpecialitySelection?.PopupDialogWidth" [ReadOnly]="false" [SearchMode]="SpecialitySelection?.SearchMode" [SearchTimeout]="SpecialitySelection?.SearchTimeout" [SelectedObject]="selectedSpecialityDefForRule2" [TabIndex]="SpecialitySelection?.TabIndex" [Visible]="SpecialitySelection?.Visible" [width]="SpecialitySelection?.Width" data-tid="A328319"></hvl-list-box>
+        </div>
+        <div class="col-sm-6" data-tid="A328320">
+            <dx-check-box [(value)]="viewModel.RuleSetDTO.Rule2DTO.Active" text="Aktif/Pasif" data-tid="A328321">
+
+            </dx-check-box>
+        </div>
+        <div class="col-sm-6" data-tid="A328322">
+            <dx-check-box [(value)]="viewModel.RuleSetDTO.Rule2DTO.BlockRequest" text="Engelle" data-tid="A328323">
+
+            </dx-check-box>
+        </div>
+        <div class="col-sm-12" style="height: 150px;" data-tid="A328324">
+            <dx-data-grid height="100%" width="100%" [columns]="rule2Columns" [dataSource]="viewModel.RuleSetDTO.Rule2DTO.BranchCodesAndNames" [editing]="{allowDeleting: true}" [scrolling]="{ mode: 'infinite' }" [filterRow]="{visible: true}" (onRowRemoved)="onRule2Removed($event)" data-tid="A328325">
+            </dx-data-grid>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="padding-bottom:15px; padding-top:15px" data-tid="A328326">
+
+    <div class="col-sm-4" data-tid="A328327">
+        <label class="col-sm-12" data-tid="A328328">Tanı Kontrolü</label>
+        <div class="col-sm-12" data-tid="A328329">
+            <hvl-list-box style="height:30px; display:block;" #listBox (SelectedObjectChange)="diagnosisDefintionSelectedChanged($event)" [(IsOnPopUp)]="IsOnPopUp" [AutoCompleteMode]="DiagnosisDefinition?.AutoCompleteMode" [BackColor]="DiagnosisDefinition?.BackColor" [DefinitionName]="DiagnosisDefinition?.ListDefName" [Enabled]="DiagnosisDefinition?.Enabled" [Font]="DiagnosisDefinition?.Font" [ForeColor]="DiagnosisDefinition?.ForeColor" [ListFilterExpression]="DiagnosisDefinition?.ListFilterExpression" [MinSearchLength]="DiagnosisDefinition?.MinSearchLength" [PopupDialogFieldConfig]="DiagnosisDefinition?.PopupDialogFieldConfig" [PopupDialogGridColumns]="DiagnosisDefinition?.PopupDialogGridColumns" [PopupDialogHeight]="DiagnosisDefinition?.PopupDialogHeight" [PopupDialogTitle]="DiagnosisDefinition?.PopupDialogTitle" [PopupDialogWidth]="DiagnosisDefinition?.PopupDialogWidth" [ReadOnly]="false" [SearchMode]="DiagnosisDefinition?.SearchMode" [SearchTimeout]="DiagnosisDefinition?.SearchTimeout" [SelectedObject]="selectedDiagnosisDefForRule7" [TabIndex]="DiagnosisDefinition?.TabIndex" [Visible]="DiagnosisDefinition?.Visible" [width]="DiagnosisDefinition?.Width" data-tid="A328330"></hvl-list-box>
+        </div>
+        <div class="col-sm-6" data-tid="A328331">
+            <dx-check-box [(value)]="viewModel.RuleSetDTO.Rule7DTO.Active" text="Aktif/Pasif" data-tid="A328332">
+
+            </dx-check-box>
+        </div>
+        <div class="col-sm-6" data-tid="A328333">
+            <dx-check-box [(value)]="viewModel.RuleSetDTO.Rule7DTO.BlockRequest" text="Engelle" data-tid="A328334">
+
+            </dx-check-box>
+        </div>
+        <div class="col-sm-12" style="height: 150px;" data-tid="A328335">
+            <dx-data-grid height="100%" width="100%" [columns]="rule7Columns" [dataSource]="viewModel.RuleSetDTO.Rule7DTO.Icd10ListAndNames" [editing]="{allowDeleting: true}" [scrolling]="{ mode: 'infinite' }" [filterRow]="{visible: true}" (onRowRemoved)="onRule7Removed($event)" data-tid="A328336">
+            </dx-data-grid>
+        </div>
+    </div>
+    <div class="col-sm-3" data-tid="A328337">
+        <div class="col-sm-6" style="padding-top:22px" data-tid="A328338">
+            <dx-check-box [(value)]="viewModel.RuleSetDTO.Rule3DTO.Active" text="Aktif/Pasif" data-tid="A328339">
+
+            </dx-check-box>
+        </div>
+        <div class="col-sm-6" style="padding-top:22px" data-tid="A328340">
+            <dx-check-box [(value)]="viewModel.RuleSetDTO.Rule3DTO.BlockRequest" text="Engelle" data-tid="A328341">
+
+            </dx-check-box>
+        </div>
+        <label class="col-sm-12" style="padding-top:15px" data-tid="A328342">Periyodik Gün Sınırı</label>
+        <div class="col-sm-12" style="padding-bottom:15px" data-tid="A328343">
+            <dx-number-box [(value)]="viewModel.RuleSetDTO.Rule3DTO.NumOfDays" min="1" showClearButton="true" data-tid="A328344">
+
+            </dx-number-box>
+        </div>
+        <label class="col-sm-12" style="padding-top:15px" data-tid="A328345">İşlem Adedi</label>
+        <div class="col-sm-12" style="padding-bottom:15px" data-tid="A328346">
+            <dx-number-box [(value)]="viewModel.RuleSetDTO.Rule3DTO.MaxQuantity" min="1" showClearButton="true" data-tid="A328347">
+
+            </dx-number-box>
+        </div>
+    </div>
+    <div class="col-sm-3" data-tid="A328348">
+        <div class="col-sm-6" style="padding-top:22px" data-tid="A328349">
+            <dx-check-box [(value)]="viewModel.RuleSetDTO.Rule17DTO.Active" text="Aktif/Pasif" data-tid="A328350">
+
+            </dx-check-box>
+        </div>
+        <div class="col-sm-6" style="padding-top:22px" data-tid="A328351">
+            <dx-check-box [(value)]="viewModel.RuleSetDTO.Rule17DTO.BlockRequest" text="Engelle" data-tid="A328352">
+
+            </dx-check-box>
+        </div>
+        <label class="col-sm-12" data-tid="A328353">Arşiv Bazında İş. Adedi</label>
+        <div class="col-sm-12" data-tid="A328354">
+            <dx-number-box [(value)]="viewModel.RuleSetDTO.Rule17DTO.LifeTimeMaxQuantity" min="1" showClearButton="true" data-tid="A328355">
+
+            </dx-number-box>
+        </div>
+
+        <div class="col-sm-6" style="padding-top:22px" data-tid="A328356">
+            <dx-check-box [(value)]="viewModel.RuleSetDTO.Rule20DTO.Active" text="Aktif/Pasif" data-tid="A328357">
+
+            </dx-check-box>
+        </div>
+        <div class="col-sm-6" style="padding-top:22px" data-tid="A328358">
+            <dx-check-box [(value)]="viewModel.RuleSetDTO.Rule20DTO.BlockRequest" text="Engelle" data-tid="A328359">
+
+            </dx-check-box>
+        </div>
+        <label class="col-sm-12" style="padding-top:15px" data-tid="A328360">Kabul Bazında İşlem Adedi</label>
+        <div class="col-sm-12" style="padding-bottom:15px" data-tid="A328361">
+            <dx-number-box [(value)]="viewModel.RuleSetDTO.Rule20DTO.TreatmentMaxQuantity" min="1" showClearButton="true" data-tid="A328362">
+
+            </dx-number-box>
+        </div>
+    </div>
+</div>
+
+<div class="row" data-tid="A328363">
+    <div class="col-sm-3" data-tid="A328364">
+        <div class="col-sm-6" style="padding-top:22px" data-tid="A328365">
+            <dx-check-box [(value)]="viewModel.RuleSetDTO.Rule5DTO.Active" text="Aktif/Pasif" data-tid="A328366">
+
+            </dx-check-box>
+        </div>
+        <div class="col-sm-6" style="padding-top:22px" data-tid="A328367">
+            <dx-check-box [(value)]="viewModel.RuleSetDTO.Rule5DTO.BlockRequest" text="Engelle" data-tid="A328368">
+
+            </dx-check-box>
+        </div>
+        <label class="col-sm-12" style="padding-top:15px" data-tid="A328369">Min. Yaş (Ay)</label>
+        <div class="col-sm-12" style="padding-bottom:15px" data-tid="A328370">
+            <dx-number-box [(value)]="viewModel.RuleSetDTO.Rule5DTO.MinAge" min="0" showClearButton="true" data-tid="A328371">
+
+            </dx-number-box>
+        </div>
+        <label class="col-sm-12" data-tid="A328372">Maks. Yaş (Ay)</label>
+        <div class="col-sm-12" style="padding-bottom:15px" data-tid="A328373">
+            <dx-number-box [(value)]="viewModel.RuleSetDTO.Rule5DTO.MaxAge" min="1" showClearButton="true" data-tid="A328374">
+
+            </dx-number-box>
+        </div>
+    </div>
+    <div class="col-sm-3" data-tid="A328375">
+        <div class="col-sm-6" style="padding-top:22px" data-tid="A328376">
+            <dx-check-box [(value)]="viewModel.RuleSetDTO.Rule18DTO.Active" text="Aktif/Pasif" data-tid="A328377">
+
+            </dx-check-box>
+        </div>
+        <div class="col-sm-6" style="padding-top:22px" data-tid="A328378">
+            <dx-check-box [(value)]="viewModel.RuleSetDTO.Rule18DTO.BlockRequest" text="Engelle" data-tid="A328379">
+
+            </dx-check-box>
+        </div>
+        <label class="col-sm-12" style="padding-top:15px" data-tid="A328380">Cinsiyet</label>
+        <div class="col-sm-12" style="padding-bottom:15px" data-tid="A328381">
+            <dx-select-box [(value)]="viewModel.RuleSetDTO.Rule18DTO.Gender" [dataSource]="genderDataSource" valueExpr="code" displayExpr="name" showClearButton="true" data-tid="A328382">
+
+            </dx-select-box>
+        </div>
+    </div>
+
+</div>

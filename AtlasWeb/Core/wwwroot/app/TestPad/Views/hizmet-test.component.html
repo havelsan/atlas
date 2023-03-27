@@ -1,0 +1,123 @@
+﻿<h1 data-tid="A375851">Hizmet Giriş Test Component</h1>
+
+<div class="row" data-tid="A375852">
+    <div class="col-md-12" data-tid="A375853">
+        <app-patient-banner [PatientUniqueRefNo]="patientUniqueRefNo" (PatientFound)="patientFound($event)" data-tid="A375854"></app-patient-banner>
+    </div>
+</div>
+
+<div class="row" data-tid="A375855">
+    <div class="col-md-12" data-tid="A375856">
+    </div>
+</div>
+
+<div class="row" data-tid="A375857">
+    <div class="col-md-2" data-tid="A375858">
+        İşlem Listesi (AutoComplete)
+    </div>
+    <div class="col-md-6" data-tid="A375859">
+        <dx-autocomplete searchExpr="Code" [valueExpr]="procedureBox_displayExpr" placeholder="Lütfen İşlem seçiniz..." [showClearButton]="true" [dataSource]="autoCompleteDataSource" data-tid="A375860">
+        </dx-autocomplete>
+    </div>
+</div>
+
+<div class="row" data-tid="A375861">
+    <div class="col-md-2" data-tid="A375862">
+        İşlem Listesi (DropDown)
+    </div>
+    <div class="col-md-6" data-tid="A375863">
+        <dx-drop-down-box #procBox (onValueChanged)="onProcValueChanged($event)" [value]="procedureGridBoxValue" [dataSource]="procedureListDataSource" displayExpr="Name" valueExpr="Code" data-tid="A375864">
+            <dxo-drop-down-options height="500" data-tid="A375865"></dxo-drop-down-options>
+            <div *dxTemplate="let data of 'content'" data-tid="A375866">
+                <dx-data-grid width="100%" [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" (onSelectionChanged)="onProcSelectionChanged($event, procBox.instance)" [dataSource]="procedureListDataSource" data-tid="A375867">
+                    <dxo-filter-row [visible]="true" data-tid="A375868"></dxo-filter-row>
+                    <dxi-column dataField="Code" width="100" data-tid="A375869"></dxi-column>
+                    <dxi-column dataField="Name" data-tid="A375870"></dxi-column>
+                    <dxo-selection mode="single" data-tid="A375871"></dxo-selection>
+                </dx-data-grid>
+            </div>
+        </dx-drop-down-box>
+    </div>
+    <div class="col-md-2" data-tid="A375872">
+        &nbsp;
+    </div>
+</div>
+
+<div class="row" data-tid="A375873">
+    <div class="col-md-12" data-tid="A375874">
+    </div>
+</div>
+
+<div class="row" data-tid="A375875">
+    <div class="col-md-2" data-tid="A375876">
+        Hasta Gelişleri
+    </div>
+    <div class="col-md-6" data-tid="A375877">
+        <dx-drop-down-box #episodeBox (onValueChanged)="onEpisodeValueChanged($event)" [value]="episodeGridBoxValue" [dataSource]="episodeListDataSource" [displayExpr]="episodeBox_displayExpr" valueExpr="ObjectID" data-tid="A375878">
+            <dxo-drop-down-options height="500" data-tid="A375879"></dxo-drop-down-options>
+            <div *dxTemplate="let data of 'content'" data-tid="A375880">
+                <dx-data-grid width="100%" [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" (onSelectionChanged)="onEpisodeSelectionChanged($event, episodeBox.instance)" [dataSource]="episodeListDataSource" data-tid="A375881">
+                    <dxo-filter-row [visible]="true" data-tid="A375882"></dxo-filter-row>
+                    <dxi-column dataField="ObjectID" [visible]="false" data-tid="A375883"></dxi-column>
+                    <dxi-column dataField="ID" alignment="left" width="100" data-tid="A375884"></dxi-column>
+                    <dxi-column dataField="OpeningDate" caption="Açılış Tarihi" dataType="date" width="120" data-tid="A375885"></dxi-column>
+                    <dxi-column dataField="MainSpeciality" caption="Kabul Branşı" data-tid="A375886"></dxi-column>
+                    <dxi-column dataField="ClosingDate" caption="Kapanış Tarihi" dataType="date" width="120" data-tid="A375887"></dxi-column>
+                    <dxo-selection mode="single" data-tid="A375888"></dxo-selection>
+                </dx-data-grid>
+            </div>
+        </dx-drop-down-box>
+    </div>
+</div>
+
+<div class="row" data-tid="A375889">
+    <div class="col-md-12" data-tid="A375890">
+    </div>
+</div>
+
+<div class="row" data-tid="A375891">
+    <div class="col-md-2" data-tid="A375892">
+        <dx-button width="100%" style="margin-left: 10px" text="Değişiklikleri Kaydet" type="default" (onClick)="writeChanges($event)" data-tid="A375893"></dx-button>
+    </div>
+    <div class="col-md-10" data-tid="A375894">
+        &nbsp;
+    </div>
+</div>
+
+<div class="row" style="margin: 10px" data-tid="A375895">
+    <div class="col-md-12" data-tid="A375896">
+        <dx-data-grid #requestGrid id="gridContainer" keyExpr="DetailID" [dataSource]="requestList" [height]="450" [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" data-tid="A375897">
+            <dxo-editing mode="cell" [allowUpdating]="true" [allowAdding]="true" data-tid="A375898">
+            </dxo-editing>
+            <dxi-column dataField="DetailID" alignment="right" [visible]="false" data-tid="A375899"></dxi-column>
+            <dxi-column dataField="RequestDate" caption="İstek Tarihi" dataType="date" width="100" data-tid="A375900"></dxi-column>
+            <dxi-column dataField="ProcedureCode" caption="İşlem Kodu" dataType="string" width="150" editCellTemplate="autoCompleteCellTemplate" data-tid="A375901">
+            </dxi-column>
+            <dxi-column dataField="ProcedureName" caption="İşlem Adı" dataType="string" allowEditing="false" editCellTemplate="dropDownCellTemplate" data-tid="A375902">
+            </dxi-column>
+            <dxi-column dataField="Quantity" caption="Adet" dataType="number" alignment="right" width="100" data-tid="A375903"></dxi-column>
+            <dxi-column dataField="RequestDoctor" caption="İstemi Yapan" width="200" data-tid="A375904">
+                <dxo-lookup [dataSource]="doctorList" valueExpr="ObjectID" displayExpr="Name" data-tid="A375905">
+                </dxo-lookup>
+            </dxi-column>
+
+            <div *dxTemplate="let data of 'autoCompleteCellTemplate'" data-tid="A375906">
+                <dx-autocomplete searchExpr="Code" [value]="data.value" (onValueChanged)="onValueChanged($event, data)" [valueExpr]="procedureBox_displayExpr" placeholder="Lütfen İşlem seçiniz..." [showClearButton]="true" [dataSource]="autoCompleteDataSource" data-tid="A375907">
+                </dx-autocomplete>
+            </div>
+
+            <div *dxTemplate="let cellData of 'dropDownCellTemplate'" data-tid="A375908">
+                <dx-drop-down-box #cellProcDdbox [value]="cellData.value" valueExpr="Code" displayExpr="Name" (onValueChanged)="onCellProcValueChanged($event, requestGrid.instance)" [showClearButton]="true" [dataSource]="procedureListDataSource" data-tid="A375909">
+                    <div *dxTemplate="let data of 'content'" data-tid="A375910">
+                        <dx-data-grid [dataSource]="procedureListDataSource" [remoteOperations]="true" [hoverStateEnabled]="true" [height]="350" (onSelectionChanged)="onCellProcSelectionChanged($event, cellProcDdbox.instance)" data-tid="A375911">
+                            <dxo-filter-row [visible]="true" data-tid="A375912"></dxo-filter-row>
+                            <dxo-selection mode="single" data-tid="A375913"></dxo-selection>
+                            <dxi-column dataField="Code" width="100" data-tid="A375914"></dxi-column>
+                            <dxi-column dataField="Name" data-tid="A375915"></dxi-column>
+                        </dx-data-grid>
+                    </div>
+                </dx-drop-down-box>
+            </div>
+        </dx-data-grid>
+    </div>
+</div>

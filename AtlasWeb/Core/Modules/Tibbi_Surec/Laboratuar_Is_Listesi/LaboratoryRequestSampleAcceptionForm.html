@@ -1,0 +1,98 @@
+﻿
+
+<div class="container-fluid" id="A21092" data-tid="A356117">
+    <form id="LaboratoryRequestSampleAcceptionForm" class="form-horizontal" role="form" data-tid="A356118"></form>
+
+
+    <div class="panel panel-default gradientPanel" style="border:0; box-shadow:none;" id="A21093" data-tid="A356119">
+        <div class style="height: 50px;" id="A21094" data-tid="A356120">
+            <h4 style="color:#fff; font-size:19px;padding: 15px; text-align:center;height:50px;" id="A21095" data-tid="A356121">İstek Kabul/Numune Alma</h4>
+        </div>
+    </div>
+
+    <div class="row" id="A21096" data-tid="A356122">
+        <div class="col-md-6" id="A21097" data-tid="A356123">
+            <patient-demographics-form [actionId]="ViewModel?.LabRequestObjectID" [ClearModel]="this.clearDemographicInfo" id="A21098" data-tid="A356124"></patient-demographics-form>
+        </div>
+        <!--<div class="col-md-6">
+            <dx-button type="default" icon="fa fa-refresh" text="Yenile" (onClick)="btnRefreshClick()"></dx-button>
+        </div>-->
+
+    </div>
+
+    <br id="A21099" data-tid="A356125" />
+    <div class="row" id="A21100" data-tid="A356126">
+        <div [hidden]="hideButtons" class="col-md-6" id="A21101" data-tid="A356127">
+            <dx-button id="A1014" type="default" *ngIf="showSampleAcceptButtons()" icon="fa fa-download" text="İstek Kabul" (onClick)="btnSampleTakingClick()" i18n-text="@@M16623" data-tid="A356128"></dx-button>
+            <dx-button id="A1015" type="default" *ngIf="showSampleTakingButtons()" text="Numune Alındı" (onClick)="btnSampleLaboratoryAcceptClick()" i18n-text="@@M19534" data-tid="A356129"></dx-button>
+            <dx-button id="A1016" type="default" *ngIf="showPrintBarcodeButton" text="Barkod Bas" icon="fa fa-barcode" (onClick)="btnPrintBarcodeClick()" i18n-text="@@M27400" data-tid="A356130"></dx-button>
+            <dx-button id="A1017" type="default" *ngIf="showSampleTakingButtons" text="Sonuç Barkodu Bas" icon="fa fa-barcode" (onClick)="printResultBarcode()" i18n-text="@@M30804" data-tid="A356131"></dx-button>
+            <dx-button id="A1018" type="danger" *ngIf="showSampleAcceptButtons()" text="İptal Et" (onClick)="btnProcedureCancelClick()" i18n-text="@@M16552" data-tid="A356132"></dx-button>
+            <dx-button id="A1020" type="default" [text]="this.selectButtonName" (onClick)="SelectDeSelectAll()" i18n-text="@@M23660" data-tid="A356133"></dx-button>
+        </div>
+        <div class="col-sm-12" id="A21102" data-tid="A356134">
+            <div [hidden]="!showSampleTakingButtons()" class="col-sm-6" style="padding:5px" id="A21103" data-tid="A356135">
+                <dx-text-box id="A1022" #BarcodeText [readOnly]="false" [hoverStateEnabled]="false" placeholder="Barkod okutunuz" [(value)]="BarcodeValue" valueChangeEvent="keyup" (keypress)="onBarcodeChanged($event)" i18n-placeholder="@@M17292" data-tid="A356136">
+                </dx-text-box>
+                <!--<dx-text-box #barcodetextbox placeholder="Barkod okutunuz" (onValueChanged)="onBarcodeChanged($event)"></dx-text-box>-->
+                <!--<dx-button type="default" text="Barkod Okut" (onClick)="onKarekoduChanged()"></dx-button>-->
+            </div>
+        </div>
+        <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A21104" data-tid="A356137">
+        </dx-load-panel>
+    </div>
+    <div #scrollPanel class="col-sm-12" style="padding:0; overflow-y:auto" id="A21105" data-tid="A356138">
+        <div class="col-sm-12" id="A21106" data-tid="A356139">
+            <dx-data-grid showColumnLines="true" [paging]="{enable: true, pageSize:60}" showRowLines="true" style="margin-left: -10px;" height="100%" [columns]="ProcedureListColumns" [dataSource]="ViewModel?.LaboratoryProcedureList" allowColumnReordering="true" allowColumnResizing="true" allowUserToAddRows="false" allowUserToDeleteRows="false" id="A21107" data-tid="A356140">
+                <div *dxTemplate="let row of 'checkBoxTemplate'" id="A21108" data-tid="A356141">
+                    <hvl-checkbox id="A1023" [(Value)]="row.data.isSelected" data-tid="A356142"></hvl-checkbox>
+                </div>
+                <div *dxTemplate="let row of 'ExternalRequestCellTemplate'" id="A21109" data-tid="A356143">
+                    <div class="col-md-2" style="float:left;margin-left: -16px;" id="A21110" data-tid="A356144">{{row.text}}</div>&nbsp;
+                    <i *ngIf="row.data.isExternalProcedureRequest" class="fa fa-file-pdf-o" (click)="btnPrintExternalProcedureRequestReport_Click($event,row)" data-toggle="tooltip" data-placement="bottom" title="Dış Tetkik" style="float:right;color:#e40d0d;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M12761" id="A21111" data-tid="A356145">&nbsp;</i>
+                </div>
+
+                <div *dxTemplate="let row of 'BarcodeCellTemplate'" id="A21112" data-tid="A356146">
+                    <div class="col-md-2" style="float:left;margin-left: -16px;" id="A21113" data-tid="A356147">{{row.text}}</div>&nbsp;
+                    <i class="fa fa-barcode" id="A1024" data-toggle="tooltip" data-placement="bottom" (click)="btnPrintUniqueBarcodeCode_Click($event,row)" title="Barkod Bas" style="float:right;color:#e40d0d;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M27400" data-tid="A356148">&nbsp;</i>
+                </div>
+
+                <div *dxTemplate="let cellData of 'TestPriorityCellTemplate'" id="A21114" data-tid="A356149">
+                    <i *ngIf="cellData.data.isLabTestEmergency" class="fa fa-ambulance" data-toggle="tooltip" data-placement="bottom" title="Acil İstem!" style="float:left;color:#e40d0d;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M10432" id="A21115" data-tid="A356150">&nbsp;</i>
+                    <div *ngIf="cellData.data.isLabTestEmergency==false" class="col-md-2" style="float:left;margin-left: 6px;" id="A21116" data-tid="A356151">{{cellData.text}}</div>
+                    <div *ngIf="cellData.data.isLabTestEmergency==true" class="col-md-2" style="float:left;margin-left: -10px;" id="A21117" data-tid="A356152">{{cellData.text}}</div>
+                    <i *ngIf="cellData.data.hasProcedureInstruction" class="fa fa-exclamation-triangle" (click)="btnPrintTestInstructions_Click($event,cellData)" data-toggle="tooltip" data-placement="bottom" [title]="cellData.data.ProcedureInstructions" style="float:right;color:#e40d0d;margin-top: -2px;margin-bottom: -5px;" id="A28152" data-tid="A356153">&nbsp;</i>
+
+                </div>
+                <dxo-group-panel [visible]="false" id="A21118" data-tid="A356154"></dxo-group-panel>
+                <dxo-grouping #expand [autoExpandAll]="true" id="A21119" data-tid="A356155"></dxo-grouping>
+            </dx-data-grid>
+        </div>
+        <div *ngIf="showSampleTakingButtons()" class="col-sm-12" style="padding-top: 10px;" id="A21120" data-tid="A356156">
+            <dx-data-grid [paging]="{enable: true, pageSize:60}" style="margin-left: -10px;" [columns]="BarcodeSampleTakenColumns" [dataSource]="SampleTakenLaboratoryProcedureList" id="A21121" data-tid="A356157">
+            </dx-data-grid>
+        </div>
+        <div class="col-sm-6" id="A21122" data-tid="A356158">
+            <label id="A21123" data-tid="A356159">Tüp Bilgileri</label>
+            <dx-list [dataSource]="ViewModel?.TubeInformationList" id="A21124" data-tid="A356160">
+                <div *dxTemplate="let data of 'item'" id="A21125" data-tid="A356161">
+                    <div class="col-sm-12" id="A21126" data-tid="A356162">
+                        <div class="col-sm-12" id="A21127" data-tid="A356163">
+                            <b style="float:left" id="A21128" data-tid="A356164">{{data.ContainerID}}</b>
+                        </div>
+                        <br id="A21129" data-tid="A356165" />
+                        <div class="col-sm-4" id="A21130" data-tid="A356166">
+                            <br id="A21131" data-tid="A356167" />
+                            <label id="A21132" data-tid="A356168">Açıklama</label>
+                            <p id="A21133" data-tid="A356169">{{data.SpecialHandlingCode}}</p>
+                        </div>
+                        <div class="col-sm-6" id="A21134" data-tid="A356170">
+                            <p style="float: right;margin-right: -90px;" id="A21135" data-tid="A356171">{{data.OtherEnvFactor}}</p>
+                        </div>
+                    </div>
+                </div>
+            </dx-list>
+        </div>
+    </div>
+</div>
+

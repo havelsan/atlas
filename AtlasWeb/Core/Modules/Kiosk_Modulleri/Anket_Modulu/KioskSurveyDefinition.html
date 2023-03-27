@@ -1,0 +1,178 @@
+﻿<div class="{{this.collapseSelectedDivProperties()}}" style="height: 100%;" id="A16462" data-tid="A325742">
+    <div class="row" style="height: 100%;" data-tid="A325743">
+        <div class="col-sm-12 gradientPanel" id="A16463" data-tid="A325744">
+            <h4 style="color:#fff; font-size:19px;text-align:left;" id="A16464" data-tid="A325745">
+                <div class="btn collapseBtn" (click)="btnCollapse()" style="padding:0;margin-top:3px;margin-right: 5px;" id="A16465" data-tid="A325746">
+                    <i class="{{this.collapseIconProperties()}}" id="A16466" data-tid="A325747"></i>
+                </div>
+                <span id="A16467" data-tid="A325748">Anket Listesi</span>
+            </h4>
+        </div>
+        <div class="panel-body" style="background-color:#f6f6f6;padding-bottom:0; height:100%;padding: 0" data-tid="A325749">
+            <div class="col-md-12" style="padding: 2px;height: calc(100% - 127px);" id="A10249" data-tid="A325750">
+                <dx-data-grid #grid [dataSource]="surveyDefinitionListDTOs" style="height: 650px;" [columns]="surveyDefinitionColumn" [filterRow]="{visible: true}" [paging]="{pageSize:34}" (onRowClick)="selectGridRow($event)" [showBorders]="true" data-tid="A325751">
+                    <dxo-selection mode="single" data-tid="A325752"></dxo-selection>
+                </dx-data-grid>
+            </div>
+            <br data-tid="A325753" />
+            <div class="col-md-12" style="max-height: 111px;" data-tid="A325754">
+                <div class="row" data-tid="A325755">
+                    <div class="col-sm-6" data-tid="A325756">
+                        <dx-button icon="fas fa-plus" style="float: left;" stylingMode="contained" text="Yeni Anket" type="default" [width]="120" (onClick)="addNew()" data-tid="A325757">
+                        </dx-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="{{this.collapseSelectedHiddenDivProperties()}}" style="position:relative;" id="A16544" data-tid="A325758">
+    <div class="MyVerticalText" (click)="btnCollapse()" id="A16545" data-tid="A325759">
+        <i class="{{this.collapseIconProperties()}}" id="A16546" data-tid="A325760"></i>
+        <span data-tid="A325761">&nbsp;&nbsp;&nbsp;&nbsp;Anket Listesi</span>
+    </div>
+</div>
+
+
+<div class="{{this.collapsedPanelProperties()}}" style="padding-top: 1%;padding-right: 3% !important;" data-tid="A325762">
+    <div id="detail" *ngIf="selectedItemFromOpen" data-tid="A325763">
+        <div class="row" data-tid="A325764">
+            <dx-button icon="fa fa-times" style="float: right;" stylingMode="contained" text="Vazgeç" type="danger" [width]="120" (onClick)="Cancel()" data-tid="A325765">
+            </dx-button>
+            <dx-button icon="fas fa-save" style="float: right;" stylingMode="contained" text="Kaydet" type="success" [width]="120" (onClick)="Save()" data-tid="A325766">
+            </dx-button>
+        </div>
+        <br data-tid="A325767" />
+        <div class="row" data-tid="A325768">
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A325769">
+                Ekleyen Kullanıcı
+                <dx-text-box [readOnly]="true" [(value)]="creationUser" data-tid="A325770"></dx-text-box>
+            </div>
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A325771">
+                Eklenme Tarihi
+                <dx-date-box style="width: 100%;" [readOnly]="true" [(value)]="creationDate" data-tid="A325772"></dx-date-box>
+            </div>
+            <div class="col-sm-2" style="font-weight: bold;" data-tid="A325773">
+                Değiştiren Kullanıcı
+                <dx-text-box [readOnly]="true" [(value)]="lastUpdateUser" data-tid="A325774"></dx-text-box>
+            </div>
+            <div class="col-sm-1" style="font-weight: bold;" data-tid="A325775">
+                <br data-tid="A325776" />
+                <dx-button type="btn btn-default" style="font-size: 100%;border-style: unset;color: #4276a4 !important;" text="İ" (onClick)="getDetailAudit()" data-tid="A325777"></dx-button>
+            </div>
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A325778">
+                Değiştirilme Tarihi
+                <dx-date-box style="width: 100%;" [readOnly]="true" [(value)]="lastUpdateDate" data-tid="A325779"></dx-date-box>
+            </div>
+        </div>
+        <br data-tid="A325780" />
+        <div class="row" data-tid="A325781">
+            <div class="col-sm-5" style="font-weight: bold;" data-tid="A325782">
+                Anket Adı *
+                <dx-text-box [(value)]="activeSurveyDefinitionItem.Name" [(readOnly)]="isReadOnlyForm" data-tid="A325783">
+                </dx-text-box>
+            </div>
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A325784">
+                Anket Başlangıç Tarihi *
+                <dx-date-box style="width: 100%;" [(value)]="activeSurveyDefinitionItem.StartDate" [(readOnly)]="isReadOnlyForm" data-tid="A325785">
+                </dx-date-box>
+            </div>
+
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A325786">
+                Anket Başlangıç Tarihi *
+                <dx-date-box style="width: 100%;" [(value)]="activeSurveyDefinitionItem.EndDate" [(readOnly)]="isReadOnlyForm" data-tid="A325787">
+                </dx-date-box>
+            </div>
+
+            <div class="col-sm-1" style="font-weight: bold;" data-tid="A325788">
+                <br data-tid="A325789" />
+                <dx-check-box [(value)]="isActive" [width]="400" text="Aktif" style="margin-bottom: 10px;" data-tid="A325790">
+                </dx-check-box>
+            </div>
+        </div>
+        <br data-tid="A325791" />
+        <div class="row" data-tid="A325792">
+            <dx-button style="float: left;" stylingMode="contained" text="Soru Ekle" type="success" [width]="120" [(disabled)]="isReadOnlyForm" (onClick)="AddQuestion()" data-tid="A325793">
+            </dx-button>
+            <dx-button style="float: right;" stylingMode="contained" text="Anket Sonuçları" [width]="220" icon="fa fa-chart-pie" (onClick)="resultSurveyDefinition()" data-tid="A325794">
+            </dx-button>
+        </div>
+        <br data-tid="A325795" />
+        <div *ngIf="IsNewQestion" data-tid="A325796">
+            <div class="row" data-tid="A325797">
+                <div class="col-sm-12" style="font-weight: bold;" data-tid="A325798">
+                    Soru * :
+                    <dx-text-box [(value)]="newQuestionName" data-tid="A325799"></dx-text-box>
+                </div>
+            </div>
+            <br data-tid="A325800" />
+            <div class="row" data-tid="A325801">
+
+                <div class="col-sm-6" style="font-weight: bold;" data-tid="A325802">
+                    Soru Sırası :
+                    <dx-number-box [(value)]="newQuestionOrder" data-tid="A325803"></dx-number-box>
+                </div>
+                <div class="col-sm-6" style="font-weight: bold;" data-tid="A325804">
+                    Açıklama :
+                    <dx-text-box [(value)]="newQuestionDesciption" data-tid="A325805"></dx-text-box>
+                </div>
+            </div>
+            <br data-tid="A325806" />
+            <br data-tid="A325807" />
+            <div class="row" data-tid="A325808">
+                <div class="col-sm-12" style="font-weight: bold;" data-tid="A325809">
+                    Seçenekleri Ekleyiniz :
+                </div>
+                <div class="col-sm-12" data-tid="A325810">
+                    <dx-data-grid [dataSource]="newQuestionDataSoruce" [columnFixing]="{eneabled:'true'}" columnResizingMode="widget" height="200" data-tid="A325811">
+                        <dxo-paging [enabled]="true" data-tid="A325812"></dxo-paging>
+                        <dxo-editing mode="cell" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" data-tid="A325813">
+                        </dxo-editing>
+                        <dxi-column dataField="newChoise" caption="Seçenek" [width]="500" [allowEditing]="true" data-tid="A325814">
+                        </dxi-column>
+                        <dxi-column dataField="newPoint" caption="Seçenek Puanı" dataType="number" [width]="150" sortOrder="desc" data-tid="A325815">
+                        </dxi-column>
+                        <dxi-column dataField="newDesciption" caption="Açıklama" [width]="200" [allowEditing]="true" data-tid="A325816">
+                        </dxi-column>
+                    </dx-data-grid>
+                </div>
+            </div>
+            <div class="row" data-tid="A325817">
+                <dx-button icon="fas fa-save" style="float: left;" stylingMode="contained" text="Ekle" type="success" [width]="120" (onClick)="NewQuestionAdd()" data-tid="A325818">
+                </dx-button>
+                <dx-button stylingMode="contained" text="Vazgeç" type="danger" [width]="120" (onClick)="CancelQuestion()" data-tid="A325819">
+                </dx-button>
+            </div>
+        </div>
+
+        <div class="row" data-tid="A325820">
+            <dx-data-grid id="gridContainerTIF" style="height: 300;" [dataSource]="activeSurveyDefinitionItemDetail" [masterDetail]="{ enabled: true, template: 'detail' }" data-tid="A325821">
+                <dxo-editing mode="cell" [(allowUpdating)]="!isReadOnlyForm" [(allowDeleting)]="!isReadOnlyForm" [allowAdding]="false" data-tid="A325822">
+                </dxo-editing>
+                <dxi-column dataField="QuestionOrder" caption="Sıra" [width]="100" sortOrder="asc" allowEditing="false" dataType="number" data-tid="A325823">
+                </dxi-column>
+                <dxi-column dataField="Question" caption="Soru" data-tid="A325824"> </dxi-column>
+                <dxi-column dataField="Description" caption="Açılama" data-tid="A325825"> </dxi-column>
+
+                <div *dxTemplate="let activeSurveyDefinitionItemDetail of 'detail'" id="A32448" data-tid="A325826">
+                    <div class="internal-grid-container" id="A32449" data-tid="A325827">
+                        <dx-data-grid class="internal-grid" [dataSource]="activeSurveyDefinitionItemDetail.data.detail" data-tid="A325828">
+                            <dxo-editing mode="cell" [(allowUpdating)]="!isReadOnlyForm" [(allowDeleting)]="!isReadOnlyForm" [allowAdding]="false" data-tid="A325829"></dxo-editing>
+                            <dxi-column dataField="Answer" caption="Seçenekler" data-tid="A325830"> </dxi-column>
+                            <dxi-column dataField="Point" caption="Puanı" [width]="150" sortOrder="desc" dataType="number" data-tid="A325831"> </dxi-column>
+                            <dxi-column dataField="Description" caption="Açılama" [width]="150" data-tid="A325832"> </dxi-column>
+
+                        </dx-data-grid>
+                    </div>
+                </div>
+            </dx-data-grid>
+        </div>
+    </div>
+</div>
+
+
+<dx-load-panel shadingColor="rgba(0,0,0,0.4)" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A325833">
+</dx-load-panel>
+
+
+

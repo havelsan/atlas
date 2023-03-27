@@ -1,0 +1,116 @@
+﻿<dx-tab-panel [selectedIndex]="0">
+    <dxi-item class="tabpanel-item" title="Acil Direktif Giriş">
+        <div class="row">
+            <div class="col-sm-2">
+                <label class="control-label" style="border:0; box-shadow:none;">Depo</label>
+                <dx-tag-box [(items)]="StoreList" [(value)]="selectedStore" placeholder="Depo" [disabled]="true"
+                    [showSelectionControls]="true" displayExpr="Name" [multiline]="false">
+                </dx-tag-box>
+            </div>
+            <div class="col-sm-9">
+                <label class="control-label" id="A26704" data-tid="A363550">İlaç Seçiniz</label>
+                <dx-drop-down-box #materialDrop [(value)]="selectedMaterialItem.Name" displayExpr="Name"
+                    valueExpr="ObjectID" [showClearButton]="true" [dataSource]=""
+                    (onOpened)="openMaterialDropDown($event)" (onValueChanged)="onClearMaterial($event)"
+                    data-tid="A363551">
+                    <div *dxTemplate="let data of 'content'" data-tid="A363552">
+                        <dx-data-grid [showColumnLines]="true" [showRowLines]="true" [showBorders]="true"
+                            [remoteOperations]="true" [customizeColumns]="null" height="280"
+                            [rowAlternationEnabled]="true" [dataSource]="materialDataSource"
+                            (onRowClick)="selectMaterial($event)" data-tid="A363553">
+                            <dxo-search-panel [visible]="true" data-tid="A363554"></dxo-search-panel>
+                            <dxo-filter-row [visible]="true" data-tid="A363555"></dxo-filter-row>
+                            <dxo-paging [pageSize]="10" data-tid="A363556"></dxo-paging>
+                            <dxo-selection mode="single" data-tid="A363557"></dxo-selection>
+                            <dxi-column caption="Barkod" dataField="Barcode" width="100" data-tid="A363558">
+                            </dxi-column>
+                            <dxi-column caption="Taşınır Kodu" dataField="NATOStockNO" width="100" data-tid="A363559">
+                            </dxi-column>
+                            <dxi-column caption="Malzeme" dataField="Name" cssClass="pointer-column" data-tid="A363560">
+                            </dxi-column>
+                            <dxi-column caption="Birimi" dataField="Distributiontypename" width="70" data-tid="A363561">
+                            </dxi-column>
+                            <dxi-column caption="Miktar" dataField="Inheld" width="70" data-tid="A363562"></dxi-column>
+                        </dx-data-grid>
+                    </div>
+                </dx-drop-down-box>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <dx-data-grid #emergecyOrderGrid id="emergecyOrderGrid" [columns]="EmergecyOrderMaterialListColumns"
+                    height="600" [dataSource]="EmergecyOrderMaterialGridDataSource">
+                    <dxo-filter-row [visible]="false"> </dxo-filter-row>
+                    <dxo-paging [pageSize]="13"></dxo-paging>
+                    <div *dxTemplate="let row of 'AmountCellTemplate'" id="A26718" data-tid="A363577">
+                        <dx-text-box style="margin-top: -8px;margin-bottom: -6px;" rtlEnabled="true"
+                            [(value)]="row.text" (onValueChanged)="onAmountChanged($event,row)"></dx-text-box>
+                    </div>
+                    <div *dxTemplate="let cellData of 'deleteCellTemplate'" id="A26722" data-tid="A363585">
+                        <i class="fa fa fa-trash" style="cursor:pointer"
+                            (click)="gridEmergecyOrderMaterialGrid_CellContentClicked(cellData)"></i>
+                    </div>
+
+                </dx-data-grid>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                Açıklama
+                <dx-text-area [height]="50" [(value)]="Desciption">
+                </dx-text-area>
+            </div>
+        </div>
+
+        <div class="row">
+            <dx-button type="danger" class="btn btn-default" (onClick)="closePopupCancel()"
+                style="margin-right: 20px;margin-left: 16px;" text="Vazgeç"></dx-button>
+
+            <dx-button class="btn btn-default" type="success" (onClick)="closePopupOK()"
+                style="margin-right: 20px;float: right;" text="Hemşireye Gönder"></dx-button>
+        </div>
+    </dxi-item>
+
+    <dxi-item class="tabpanel-item" title="Hemşirede Bekleyen Direktifler">
+        <div class="row">
+            <div class="col-sm-12">
+                <dx-data-grid  height="700" [dataSource]="EmergencyOrderDetailWait" [columns]="EmergencyOrderDetailWaitGridColumns">
+                    <dxo-paging [pageSize]="20"></dxo-paging>
+
+                    <div *dxTemplate="let row of 'AmountCellTemplate'" id="A26718" data-tid="A363577">
+                        <dx-text-box style="margin-top: -8px;margin-bottom: -6px;" rtlEnabled="true"
+                            [(value)]="row.text" (onValueChanged)="onAmountUpdateChanged($event,row)"></dx-text-box>
+                    </div>
+
+                    <div *dxTemplate="let cellData of 'deleteCellTemplate'">
+                        <i class="fa fa fa-trash" style="cursor:pointer"
+                            (click)="gridEmergecyOrderMaterialCompGrid_CellContentClicked(cellData)"></i>
+                    </div>
+                    <div *dxTemplate="let cellData of 'updateCellTemplate'">
+                        <i class="fa fa fa-sync" style="cursor:pointer"
+                            (click)="gridEmergecyOrderMaterialCompGrid_CellContentClicked(cellData)"></i>
+                    </div>
+
+                </dx-data-grid>
+            </div>
+        </div>
+    </dxi-item>
+
+
+    <dxi-item class="tabpanel-item" title="Tamamlanmış ve İptal Edilmiş Direktifler">
+        <div class="row">
+            <div class="col-sm-12">
+                <dx-data-grid   #emergecyOrderGridComp id="emergecyOrderGridComp" height="700" [dataSource]="EmergencyOrderDetailComp" [columns]="EmergencyOrderDetailCompGridColumns">
+                    <dxo-paging [pageSize]="20"></dxo-paging>
+
+                    <div *dxTemplate="let cellData of 'deleteCellTemplate'">
+                        <i class="fa fa fa-trash" style="cursor:pointer"
+                            (click)="gridEmergecyOrderMaterialCompGrid_CellContentClicked(cellData)"></i>
+                    </div>
+
+                </dx-data-grid>
+            </div>
+        </div>
+    </dxi-item>
+</dx-tab-panel>

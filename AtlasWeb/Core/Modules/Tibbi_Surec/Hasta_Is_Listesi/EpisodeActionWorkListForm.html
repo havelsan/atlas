@@ -1,0 +1,177 @@
+﻿
+<div class="row" id="A28438" [ngStyle]="accordionContainerHeight" data-tid="A348372">
+    <div class="col-md-12" style="height:100%" data-tid="A348373">
+        <dx-accordion #searchAndListAccordion class="margin-bottom-10" collapsible="true" style="height:100%" id="searchAndListAccordion" (onItemTitleClick)="accordionClick($event)" data-tid="A348374">
+            <dxi-item title="İş Listesi" i18n-title="@@M22127" id="A28440" style="height:100%" data-tid="A348375">
+                <div class="row" id="A28441" style="height:160px" data-tid="A348376">
+                    <div class="col-md-4" data-tid="A348377">
+                        <div class="row" data-tid="A348378">
+                            <div class="col-md-6" data-tid="A348379">
+                                <label class="control-label" id="A16485" data-tid="A348380">Başlangıç Tarihi</label>
+                                <dx-date-box width="100%" type="date" displayFormat="dd/MM/yyyy" [(value)]="Model.StartDate" id="A16489" data-tid="A348381">
+                                </dx-date-box>
+                            </div>
+                            <div class="col-md-6" data-tid="A348382">
+                                <label class="control-label" id="A16486" data-tid="A348383">Bitiş Tarihi</label>
+                                <dx-date-box width="100%" type="date" displayFormat="dd/MM/yyyy" [(value)]="Model.EndDate" id="A16491" data-tid="A348384">
+                                </dx-date-box>
+                            </div>
+                            <div class="col-md-12" data-tid="A348385">
+                                <label class="control-label " id="A16514" data-tid="A348386">Birim</label>
+                                <dx-tag-box [items]="Model.UserResourceItems" applyValueMode="useButtons" searchEnabled="true" displayExpr="ResourceName" showDataBeforeSearch="true" showSelectionControls="true" [multiline]="false" placeholder="Seçilen Birimler" [(value)]="Model.SelectedUserResourceItems" (onSelectionChanged)="userResourceItemsSelectionChanged()" i18n-placeholder="@@M21512" id="A16517" data-tid="A348387">
+                                </dx-tag-box>
+                            </div>
+                            <div class="col-md-4" data-tid="A348388">
+                                <label class="control-label" id="A16479" data-tid="A348389">Kabul No</label>
+                                <dx-text-box [showClearButton]="true" [(value)]="txtSEProtocolNo.Text" (onEnterKey)="ontxtSEProtocolNoEnterKeyDown($event)" id="A16483" data-tid="A348390"></dx-text-box>
+                            </div>
+                            <div class="col-md-8" data-tid="A348391">
+                                <label class="control-label" id="A16478" data-tid="A348392">Hasta Arama</label>
+                                <PatientSearchForm Width="100%" (SelectedPatientChanged)="patientChanged($event)" id="A16481" data-tid="A348393"></PatientSearchForm>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3" data-tid="A348394">
+                        <div class="row" data-tid="A348395">
+                            <div class="col-md-12" data-tid="A348396">
+                                <label class="control-label" id="A16504" data-tid="A348397">İşlem Tipi</label>
+                                <dx-tag-box [items]="Model.EpisodeActionWorkListItems" applyValueMode="useButtons" searchEnabled="true" displayExpr="ObjectDefName" showDataBeforeSearch="true" showSelectionControls="true" [multiline]="false" placeholder="İşlem Tipi" [(value)]="Model.SelectedEpisodeActionWorkListItems" (onSelectionChanged)="episodeActionWorkListItemsSelectionChanged()" i18n-placeholder="@@M16893" id="A16507" data-tid="A348398">
+                                </dx-tag-box>
+                            </div>
+                        </div>
+                        <div class="row" data-tid="A348399">
+                            <div class="col-md-12" data-tid="A348400">
+                                <label class="control-label" id="A16509" data-tid="A348401">İşlem Adımı</label>
+                                <dx-tag-box [items]="Model.EpisodeActionWorkListStateItems" applyValueMode="useButtons" searchEnabled="true" displayExpr="StateDefName" showDataBeforeSearch="true" showSelectionControls="true" [multiline]="false" placeholder="İşlem Durumu" [(value)]="Model.SelectedEpisodeActionWorkListStateItems" (onSelectionChanged)="episodeActionWorkListStateItemsSelectionChanged()" i18n-placeholder="@@M16838" id="A16512" data-tid="A348402">
+                                </dx-tag-box>
+                            </div>
+                        </div>
+                        <div class="row" data-tid="A348403">
+                            <div class="col-md-12" data-tid="A348404">
+                                <label class="control-label" id="A16493" data-tid="A348405">İşlem Durumu</label>
+                                <dx-tag-box [items]="actionStatusArray" applyValueMode="useButtons" searchEnabled="true" displayExpr="Text" showDataBeforeSearch="true" showSelectionControls="true" [multiline]="false" placeholder="Durum Seçiniz..." valueExpr="Value" [(value)]="Model.SelectedStateTypes" (onSelectionChanged)="stateTypeSelectionChanged()" i18n-placeholder="@@M13366" id="A16498" data-tid="A348406">
+                                </dx-tag-box>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2" data-tid="A348407">
+                        <br data-tid="A348408" />
+                        <hvl-checkbox #Validation class="hvl-checkbox-align" (ValueChange)="chkOutPatient.Value=$event;" [AllowThreeState]="chkOutPatient?.ThreeState" [BackColor]="chkOutPatient?.BackColor" [Enabled]="chkOutPatient?.Enabled" [Font]="chkOutPatient?.Font" [ForeColor]="chkOutPatient?.ForeColor" [IsTitleLeft]="chkOutPatient?.IsTitleLeft" [Margin]="chkOutPatient?.Margin" [Name]="chkOutPatient?.Name" [ReadOnly]="chkOutPatient?.ReadOnly" [TabIndex]="chkOutPatient?.TabIndex" [TitleTopPadding]="chkOutPatient?.TitleTopPadding" [Title]="chkOutPatient?.Title" [Value]="chkOutPatient?.Value" [Visible]="chkOutPatient?.Visible" id="A16500" data-tid="A348409"></hvl-checkbox>
+                        <hvl-checkbox #Validation class="hvl-checkbox-align" (ValueChange)="chkInPatient.Value=$event;" [AllowThreeState]="chkInPatient?.ThreeState" [BackColor]="chkInPatient?.BackColor" [Enabled]="chkInPatient?.Enabled" [Font]="chkInPatient?.Font" [ForeColor]="chkInPatient?.ForeColor" [IsTitleLeft]="chkInPatient?.IsTitleLeft" [Margin]="chkInPatient?.Margin" [Name]="chkInPatient?.Name" [ReadOnly]="chkInPatient?.ReadOnly" [TabIndex]="chkInPatient?.TabIndex" [TitleTopPadding]="chkInPatient?.TitleTopPadding" [Title]="chkInPatient?.Title" [Value]="chkInPatient?.Value" [Visible]="chkInPatient?.Visible" id="A16502" data-tid="A348410"></hvl-checkbox>
+                        <hvl-checkbox #Validation class="hvl-checkbox-align" (ValueChange)="chkDailyInpatient.Value=$event;" [AllowThreeState]="chkDailyInpatient?.ThreeState" [BackColor]="chkDailyInpatient?.BackColor" [Enabled]="chkDailyInpatient?.Enabled" [Font]="chkDailyInpatient?.Font" [ForeColor]="chkDailyInpatient?.ForeColor" [IsTitleLeft]="chkDailyInpatient?.IsTitleLeft" [Margin]="chkDailyInpatient?.Margin" [Name]="chkDailyInpatient?.Name" [ReadOnly]="chkDailyInpatient?.ReadOnly" [TabIndex]="chkDailyInpatient?.TabIndex" [TitleTopPadding]="chkDailyInpatient?.TitleTopPadding" [Title]="chkDailyInpatient?.Title" [Value]="chkDailyInpatient?.Value" [Visible]="chkDailyInpatient?.Visible" id="A16505" data-tid="A348411"></hvl-checkbox>
+
+                    </div>
+                    <div class="col-md-3" data-tid="A348412">
+                        <span class="pull-right" data-tid="A348413">
+                            <br data-tid="A348414" />
+                            <dx-button icon="save" type="default" text="Kaydet" (onClick)="btnSpecialPanelKaydet_Click()" i18n-text="@@M17386" id="A16474" data-tid="A348415"></dx-button>
+                            &nbsp;
+                            <dx-button icon="fa fa-times" type="danger" text="Sil" (onClick)="btnSpecialPanelSil_Click()" i18n-text="@@M27286" id="A16476" data-tid="A348416"></dx-button>
+                        </span>
+                        <span class="pull-right" data-tid="A348417"> &nbsp; &nbsp;</span>
+                        <span class="pull-right" data-tid="A348418">
+                            <label class="control-label" data-tid="A348419">Özel Paneller</label>
+                            <dx-autocomplete [(value)]="Model.LastSelectedSpecialPanelCaption" (onFocusIn)="openSpecialList()" minSearchLength="0" (onSelectionChanged)="loadSpecialCriteria($event.selectedItem)" [dataSource]="Model.SpecialPanelListItems" placeholder="Özel Paneller..." valueExpr="Caption" i18n-placeholder="@@M20102" id="A16472" data-tid="A348420">
+                            </dx-autocomplete>
+                        </span>
+
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 5px; " id="A28471" data-tid="A348421">
+                    <label class="control-label col-sm-6 info-label" id="A16521" data-tid="A348422">Listelenen İşlem Sayısı : {{this.Model.EpisodeActionList?.length}}<span *ngIf="this.Model.maxWorklistItemCount>0" id="A16522" data-tid="A348423"> (Daha fazla kayıt var!)</span> </label>
+                    <div class="col-sm-6" style="float:right;" id="A28473" data-tid="A348424">
+                        &nbsp;&nbsp;
+                        <dx-button type="default" icon="fa fa-bars" class="pull-right" text="Listele" (onClick)="btnListele_Click()" i18n-text="@@M27337" id="A16525" data-tid="A348425"></dx-button>
+                        <span class="pull-right" data-tid="A348426">&nbsp;</span>
+                        <i data-toggle="tooltip" title="Kolonları Kaydet" (click)="saveGridColumn()" class="fa fa-check-square fa-2x pull-right" style="cursor:pointer" i18n-title="@@M17704" id="A16524" data-tid="A348427"></i>
+                        <span class="pull-right" data-tid="A348428">&nbsp;</span>
+                        <i data-toggle="tooltip" title="Lcd Monitörü Aç" (click)="OpenLcdMonitor()" class="fa fa-desktop fa-2x pull-right" style="cursor:pointer" i18n-title="@@M18264" id="A16523" data-tid="A348429"></i>
+                    </div>
+                </div>
+
+                <div class="row" style="height:calc(100% - 235px)" data-tid="A348430">
+                    <div class="col-sm-12" style="height:100%" data-tid="A348431">
+                        <dx-data-grid #workListGrid height="100%" width="100%" [columns]="WorkListColumns" columnAutoWidth="true" allowColumnReordering="true" allowColumnResizing="true" [dataSource]="Model.EpisodeActionList" (onContextMenuPreparing)="onContextMenuPreparing($event)" (onRowClick)="select($event)" (onRowPrepared)="rowPrepared($event)" [filterRow]="{visible: true}" [paging]="{enable: true, pageSize:100}" [ngStyle]="{'padding-top': '10px', 'min-width':'100%' }" [selection]="{mode: 'single',allowSelectAll: false}" [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" id="A16527" data-tid="A348432">
+                            <dxo-scrolling mode="virtual" id="A28478" data-tid="A348433"></dxo-scrolling>
+                            <dxo-column-chooser [enabled]="true" id="A16528" data-tid="A348434"></dxo-column-chooser>
+                            <dxo-column-fixing [enabled]="true" id="A16529" data-tid="A348435"></dxo-column-fixing>
+
+                            <div *dxTemplate="let cellData of 'PatientCallCellTemplate'" id="A16530" data-tid="A348436">
+                                <div *ngIf="cellData.data.PatientCallStatus != null" class="col-md-8" style="float:left;margin-left: -16px; color:firebrick; font-weight:800" id="A16531" data-tid="A348437">{{cellData.text}}</div>
+                            </div>
+
+                            <div *dxTemplate="let cellData of 'PriorityCellTemplate'" id="A16530">
+                                <div class="col-md-2" style="float:left;margin-left: -16px;" id="A16531">{{cellData.text}}</div>&nbsp;
+                                <i *ngIf="cellData.data.isPregnant" class="fa fa-gratipay" data-toggle="tooltip" data-placement="bottom" title="Hamile" style="float:right;color:#956be0;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M15097" id="A16532">&nbsp;</i>
+                                <i *ngIf="cellData.data.isEmergency" class="fa fa-ambulance" data-toggle="tooltip" data-placement="bottom" title="Acil!" style="float:right;color:#e40d0d;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M10456" id="A16533">&nbsp;</i>
+                                <i *ngIf="cellData.data.isYoung" class="fa fa-child" data-toggle="tooltip" data-placement="bottom" title="7 Yaş Altı" style="float:right;color:#26c281;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M10377" id="A16534">&nbsp;</i>
+                                <i *ngIf="cellData.data.isOld" class="fa fa-blind" data-toggle="tooltip" data-placement="bottom" title="65 Yaş Üstü" style="float:right;color:#2f353b;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M10366" id="A16535">&nbsp;</i>
+                                <i *ngIf="cellData.data.isVetera" class="fa fa-star-half-o" data-toggle="tooltip" data-placement="bottom" title="Harp ve vazife şehitlerinin dul ve yetimleri ile malül ve gaziler" style="float:right;color:#cec00e;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M27738" id="A16536">&nbsp;</i>
+                                <i *ngIf="cellData.data.isDisabled" class="fa fa-wheelchair" data-toggle="tooltip" data-placement="bottom" title="Engelli" style="float:right;color:#52a5ec;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M13739" id="A16537">&nbsp;</i>
+                                <i *ngIf="cellData.data.hasMedicalInformation" class="fa fa-exclamation-triangle" data-toggle="tooltip" data-placement="bottom" title="Önemli Tıbbi Bilgisi Var" style="float:right;color:#e06b6b;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M13739" id="A16537">&nbsp;</i>
+                                <i *ngIf="cellData.data.HasFallingRisk == null ? false: cellData.data.HasFallingRisk" data-toggle="tooltip" data-placement="bottom" title="Düşme Riskli Hasta" style="float:right;padding-right: 13px;height:13px; background-image:url('../../Content/YatanHasta/DusmeRisk.png')" i18n-title="@@M13392" id="A16538"></i>
+                                <i *ngIf="cellData.data.HasAirborneContactIsolation == null ? false: cellData.data.HasAirborneContactIsolation" data-toggle="tooltip" data-placement="bottom" title="Solunum İzolasyonu" style="float:right;height:13px;padding-right: 13px;background-image:url('../../Content/YatanHasta/SolunumIzolasyon.png')" i18n-title="@@M22030" id="A16539"></i>
+                                <i *ngIf="cellData.data.HasDropletIsolation == null ? false: cellData.data.HasDropletIsolation" data-toggle="tooltip" data-placement="bottom" title="Damlacık İzolasyonu" style="float:right;height:13px;padding-right: 15px;background-image:url('../../Content/YatanHasta/DamlacikIzolasyon.png')" i18n-title="@@M12487" id="A16540"></i>
+                                <i *ngIf="cellData.data.HasContactIsolation == null ? false: cellData.data.HasContactIsolation" data-toggle="tooltip" data-placement="bottom" title="Temas İzolasyonu" style="float:right;height:13px;padding-right: 13px;background-image:url('../../Content/YatanHasta/TemasIzolasyon.png')" i18n-title="@@M23155" id="A16541"></i>
+                                <i *ngIf="cellData.data.HasTightContactIsolation == null ? false: cellData.data.HasTightContactIsolation" data-toggle="tooltip" data-placement="bottom" title="Sıkı Temas İzolasyonu" style="float:right;height:11px;padding-right: 19px;background-image:url('../../Content/YatanHasta/SikiTemasIzolasyon.png')" i18n-title="@@M21800" id="A16542"></i>
+                                <i *ngIf="cellData.data.isEmergencyManipulationRequest" class="fa fa-exclamation-circle" data-toggle="tooltip" data-placement="bottom" title="Acil İstek!" style="float:right;color:#e40d0d;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M10456" id="A16533">&nbsp;</i>
+
+                            </div>
+
+                        </dx-data-grid>
+
+                    </div>
+                </div>
+            </dxi-item>
+        </dx-accordion>
+        <div class="row" style="height:98%" id="A28481" [ngStyle]="composeComponentRowContainerVisible" data-tid="A348452">
+            <div class="col-md-12 col-sm-12 col-xs-12" id="A28482" data-tid="A348453">
+                <comp-compose #dynamicComponent [Info]="systemApiService?.componentInfo" [SaveAndCloseCommandVisible]="true" [CloseWithStateTransition]="true" (DynamicComponentClosed)="dynamicComponentClosed($event)" (ComponentCreated)="dynamicComponentCreated($event)" (DynamicComponentViewModelLoaded)="dynamicComponentViewModelLoaded($event)" id="A28483" data-tid="A348454"></comp-compose>
+
+                <!--<comp-compose #dynamicComponent [Info]="systemApiService?.componentInfo" id="A16550"></comp-compose>-->
+            </div>
+        </div>
+
+        <div id="A28484" data-tid="A348455">
+            <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A16543" data-tid="A348456">
+            </dx-load-panel>
+        </div>
+
+
+        <dx-popup width="700" height="auto" [(visible)]="showCallSelectedPatientByDesc" [showCloseButton]="false" [closeOnOutsideClick]="false" title="Hasta Çağırma Açıklaması" data-tid="A348457">
+            <div *dxTemplate="let data of 'content'" data-tid="A348458">
+
+                <div class="row" data-tid="A348459">
+                    <div class="col-md-12" data-tid="A348460">
+                        <!-- <label class="control-label">Hasta Çağırma Açıklaması</label>-->
+                        <hvl-richtextbox #patientCallDesc (change)="onPatientCallDescChanged($event)" [ngModelOptions]="{ standalone: true}" [ngModel]="PatientCallDesc" [ReadOnly]="false" [TemplateGroupName]="PatientCallDescTemplate" [Visible]="true" id="A28356" data-tid="A348461"></hvl-richtextbox>
+                    </div>
+                    <div class="col-md-12" style="text-align:right;" data-tid="A348462">
+                        <br data-tid="A348463" />
+                        <button type="button" class="btn btn-primary" (click)="popCallSelectedPatientByDesc($event)" data-tid="A348464">Tamam</button>
+                        <button type="button" class="btn btn-danger" (click)="cancelCallSelectedPatientByDesc()" data-tid="A348465">Vazgeç</button>
+                    </div>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="700" height="200" [(visible)]="showLCDNotificationForm" [showCloseButton]="false" [closeOnOutsideClick]="false" title="LCD Bilgilendirme" data-tid="A348466">
+            <div *dxTemplate="let data of 'content'" data-tid="A348467">
+
+                <div class="row" data-tid="A348468">
+                    <div class="col-md-12" data-tid="A348469">
+                        <label class="control-label" id="A28452" data-tid="A348470">Bilgilendirme Açıklaması</label>
+                        <dx-select-box [dataSource]="Model.LCDNotificationList" displayExpr="Notification" searchEnabled="true" [showClearButton]="true" [(value)]="Model.LCDNotification" placeholder="Bilgilendirme Seçiniz..." (onValueChanged)="lcdNotificationItemChanged($event.value)" i18n-placeholder="@@M10755" id="A26020" data-tid="A348471"></dx-select-box>
+                    </div>
+                </div>
+                <div class="row" data-tid="A348472">
+                    <div class="col-md-12" style="text-align:right;" data-tid="A348473">
+                        <br data-tid="A348474" />
+                        <button type="button" class="btn btn-primary" (click)="popLCDNotification($event)" data-tid="A348475">Tamam</button>
+                    </div>
+                </div>
+            </div>
+        </dx-popup>
+    </div>
+</div>

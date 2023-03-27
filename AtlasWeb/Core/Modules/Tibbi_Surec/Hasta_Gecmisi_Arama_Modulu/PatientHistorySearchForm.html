@@ -1,0 +1,31 @@
+﻿
+
+<div class="row" id="A16447" data-tid="A348353">
+    <div class="col-md-2" id="AY28451" data-tid="A348354">
+        <label class="control-label" id="A28452" data-tid="A348355">Kabul No</label>
+        <dx-text-box [showClearButton]="true" [(value)]="selectedProtocolNo" (onEnterKey)="onProtocolNoEnterKeyDown($event)" id="AY16483" data-tid="A348356"></dx-text-box>
+    </div>
+    <div class="col-md-4" id="A16448" data-tid="A348357">
+        <div class="margin-top-10" id="A16449" data-tid="A348358">
+            <label class="control-label" id="A28452" data-tid="A348359">Hasta Arama</label>
+            <PatientAdmissionSearchForm (SelectedPatientChanged)="patientChanged($event)" [ClearValue]="clearSelectedPatient" id="A16450" data-tid="A348360"></PatientAdmissionSearchForm>
+        </div>
+    </div>
+
+    <div class="col-md-6" id="A16451" data-tid="A348361">
+        <div class="margin-top-10" *ngIf="loadDemographicForm==true" id="A16452" data-tid="A348362">
+            <patient-demographics-form [PatientId]="selectedPatientInfo" id="A16453" data-tid="A348363"></patient-demographics-form>
+        </div>
+    </div>
+</div>
+<div class="row" id="A16454" data-tid="A348364">
+    <div class="col-sm-12" *ngIf="loadFormByPatient==true" id="A16455" data-tid="A348365">
+        <PatientHistoryForm [patient]="selectedPatient" id="A16456" data-tid="A348366">Hasta Geçmişi</PatientHistoryForm>
+    </div>
+    <div class="col-sm-12" *ngIf="loadFormByPatient==false" id="A16455" data-tid="A348367">
+        <PatientHistoryForm [protocolNo]="selectedProtocolNo" id="A16456" data-tid="A348368">Hasta Geçmişi</PatientHistoryForm>
+    </div>
+</div>
+
+
+

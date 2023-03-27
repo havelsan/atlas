@@ -1,0 +1,146 @@
+﻿<div id="A32524" style="height: 100%;" data-tid="A374155">
+
+    <div class="{{this.collapseSelectedDivProperties()}}" style="float:left; width:30%;height: 100%;" id="A32525" data-tid="A374156">
+        <div class="row" id="A32527" style="height: 100%;" data-tid="A374157">
+            <div class="col-xs-12" id="A32528" style="height: 100%;" data-tid="A374158">
+                <div class="panel panel-default" style="border:0; box-shadow:none;height: 275px;" id="A32529" data-tid="A374159">
+                    <div class="col-sm-12 gradientPanel" style="height: 34px; background-color:#08c" id="A32530" data-tid="A374160">
+                        <h4 style="color:#fff; font-size:19px; " id="A32531" data-tid="A374161">
+                            <div class="btn collapseBtn" (click)="btnCollapse()" style="color:#fff;margin-top: -15px;" id="A32532" data-tid="A374162">
+                                <i class="{{this.collapseIconProperties()}}" id="A32533" data-tid="A374163"></i>
+                            </div>
+                            <span id="A32534" data-tid="A374164">İş Listesi</span>
+                        </h4>
+                    </div>
+                    <br id="A32535" data-tid="A374165" />
+                    <div class="row" id="A32536" style="padding-top: 25px;" data-tid="A374166">
+                        <label class="control-label col-sm-4" id="A32537" data-tid="A374167">İşlem Numarası</label>
+                        <div class="col-sm-8" id="A32538" data-tid="A374168">
+                            <dx-text-box [(value)]="Model.StockActionId" id="A32539" valueChangeEvent="keyup" (keypress)="StockActionIDInfo_KeyPress($event)" data-tid="A374169"></dx-text-box>
+                        </div>
+                    </div>
+                    <div class="row" id="A32540" style="padding-top: 1px;" data-tid="A374170">
+                        <label class="control-label col-sm-4" id="A32541" data-tid="A374171">TİF Numarası</label>
+                        <div class="col-sm-8" id="A32542" data-tid="A374172">
+                            <dx-text-box [(value)]="Model.TIFId" valueChangeEvent="keyup" (keypress)="TIFIDInfo_KeyPress($event)" id="A32543" data-tid="A374173"></dx-text-box>
+                        </div>
+                    </div>
+                    <div class="row" id="A32544" style="padding-top: 1px;" data-tid="A374174">
+                        <label class="control-label col-sm-4" id="A32545" data-tid="A374175">Başlangıç Tarihi</label>
+                        <div class="col-sm-8" id="A32546" data-tid="A374176">
+                            <dx-date-box width="100%" type="datetime" displayFormat="dd.MM.yyyy HH:mm" [(value)]="Model.StartDate" id="A32547" data-tid="A374177">
+                            </dx-date-box>
+                        </div>
+                    </div>
+                    <div class="row" id="A32548" style="padding-top: 1px;" data-tid="A374178">
+                        <label class="control-label col-sm-4" id="A32549" data-tid="A374179">Bitiş Tarihi</label>
+                        <div class="col-sm-8" id="A32550" data-tid="A374180">
+                            <dx-date-box width="100%" type="datetime" displayFormat="dd.MM.yyyy HH:mm" [(value)]="Model.EndDate" id="A32551" data-tid="A374181">
+                            </dx-date-box>
+                        </div>
+                    </div>
+                    <div class="row" id="A32552" style="padding-top: 1px;" data-tid="A374182">
+                        <label class="control-label col-sm-4" id="A32553" data-tid="A374183">İşlem Durumu</label>
+                        <div class="col-sm-8" id="A32554" data-tid="A374184">
+                            <dx-select-box [(value)]="Model.StateType" [dataSource]="[{Disabled:false,Group:null,Selected:false,Text:&#39;İptaller&#39;,Value:&#39;CANCELLED&#39;},{Disabled:false,Group:null,Selected:false,Text:&#39;Başarılı Tamamlanmış&#39;,Value:&#39;SUCCESSFUL&#39;},{Disabled:false,Group:null,Selected:true,Text:&#39;Başarısız Tamamlanmış&#39;,Value:&#39;UNSUCCESSFUL&#39;},{Disabled:false,Group:null,Selected:false,Text:&#39;Tamamlanmamış&#39;,Value:&#39;UNCOMPLETED&#39;}]" displayExpr="Text" placeholder="Durum Seçiniz..." valueExpr="Value" i18n-placeholder="@@M13366" id="A32555" data-tid="A374185"></dx-select-box>
+                        </div>
+                    </div>
+                    <div class="row" id="A32556" style="padding-top: 1px;" data-tid="A374186">
+                        <label class="control-label col-sm-4" id="A32557" data-tid="A374187">Listelenecek İşlem
+                            Sayısı</label>
+                        <div class="col-sm-8" id="A32558" data-tid="A374188">
+                            <dx-text-box [(value)]="Model.WorkListCount" id="A32559" data-tid="A374189"></dx-text-box>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top: 1px;" data-tid="A374190">
+                        <label class="control-label col-sm-4" data-tid="A374191">MKYS Durumu İle Filtrele</label>
+                        <div class="col-sm-8" data-tid="A374192">
+                            <dx-select-box [(value)]="MKYSState" [dataSource]="[{Disabled:false,Group:null,Selected:false,Text:&#39;Tümü&#39;,Value:&#39;ALL&#39;},{Disabled:false,Group:null,Selected:false,Text:&#39;MKYS ye gönderilmişler&#39;,Value:&#39;SUCCESSFUL&#39;},{Disabled:false,Group:null,Selected:true,Text:&#39;MKYS ye gönderilmemişler&#39;,Value:&#39;UNSUCCESSFUL&#39;}]" displayExpr="Text" placeholder="MKYS Durumu Seçiniz..." valueExpr="Value" data-tid="A374193">
+                            </dx-select-box>
+                        </div>
+                    </div>
+                    <div class="row" id="A32560" style="padding-top: 1px;" data-tid="A374194">
+                        <div class="col-sm-12" id="A32561" data-tid="A374195">
+                            <dx-tag-box [items]="workListItems" displayExpr="ObjectDefName" valueExpr="ObjectDefId" multiline="true" showDataBeforeSearch="true" showSelectionControls="true" placeholder="İşlem Tipi" [(selectedItems)]="selectedWorkListItems" i18n-placeholder="@@M16893" id="A32562" data-tid="A374196"></dx-tag-box>
+                        </div>
+                    </div>
+                    <div class="row" id="A32563" style="padding-top: 1px;" data-tid="A374197">
+                        <div class="col-sm-4" style="padding-left: 30px;padding-top: 3px" data-tid="A374198">
+                            <div class="row" data-tid="A374199">
+                                <dx-check-box [(value)]="Model.PartialCancel" [width]="150" text="Kısmi İptalleri Getir" data-tid="A374200"></dx-check-box>
+                            </div>
+                            <div class="row" style="padding-top: 2px;" data-tid="A374201">
+                                <dx-check-box [(value)]="Model.EHUWait" [width]="150" text="EHU Onay Bekleyenler" data-tid="A374202">
+                                </dx-check-box>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" style="padding-left: 30px;padding-top: 3px" data-tid="A374203">
+                            <div class="row" data-tid="A374204">
+                                <dx-check-box [(value)]="Model.IsEmergencyMaterial" [width]="150" text="Acil İstemleri Getir" data-tid="A374205"></dx-check-box>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" style="padding-top: 12px;" data-tid="A374206">
+                            <dx-button style="float: right;margin-right: 0%;" type="default" icon="fa fa-bars" text="Listele" (onClick)="search()" i18n-text="@@M27337" id="A32565" data-tid="A374207"></dx-button>
+                        </div>
+                    </div>
+                </div>
+                <br id="A32566" data-tid="A374208" />
+                <div style="height: calc(100% - 310px);" data-tid="A374209">
+                    <dx-data-grid #workListGrid [columns]="WorkListColumns" [dataSource]="Model.stockactionlist" (onRowPrepared)="onRowPrepared($event)" [groupPanel]="{visible: true}" [filterRow]="{visible: true}" [paging]="{pageSize:Model.WorkListCount}" (onRowClick)="selectStockAction($event)" width="100%" height="100%" [selection]="{mode: 'single',allowSelectAll: false}" [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" id="A32567" showRowLines="true" data-tid="A374210">
+                        <dxo-search-panel [visible]="true" [width]="240" placeholder="İş Listesinde Ara..." i18n-placeholder="@@M16772" id="A32568" data-tid="A374211"></dxo-search-panel>
+                        <!--  <div *dxTemplate="let row of 'buttonCellTemplate'" id="A32569">
+                        <button type="button" class="btn btn-default glyphicon glyphicon-pencil" (click)="select(row)" 
+                        style="height: 21px;padding-top:0px;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;width: 40px;" data-toggle="tooltip"
+                            data-placement="top" title="Görüntüle" id="A32570"></button>
+                    </div> -->
+                    </dx-data-grid>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="{{this.collapseSelectedHiddenDivProperties()}}" style="float:left; width:5%; padding-top: 10px;" id="A32572" data-tid="A374212">
+        <div class="MyVerticalText" (click)="btnCollapse()" style="width:904px !important;" id="A32573" data-tid="A374213">
+            <i class="{{this.collapseIconProperties()}}" id="A32574" data-tid="A374214"></i>
+            <span id="A32575" data-tid="A374215">&nbsp;&nbsp;&nbsp;&nbsp;İş Listesi</span>
+        </div>
+    </div>
+    <dx-accordion #menuAccordion [items]="[{title:&#39;İşlemler&#39;}]" collapsible="true" activeStateEnabled="false" hoverStateEnabled="false" [selectedItem]="selectedAccordionItem" id="A32578" data-tid="A374216">
+        <div *dxTemplate="let a of 'item'" id="A32579" data-tid="A374217">
+            <div style="background-color: #ffffff" id="A32580" data-tid="A374218">
+                <dx-text-box mode="search" style="font-weight:bold" valueChangeEvent="keyup" placeholder="İşlem Arama" [(value)]="searchMenuTxt" (onValueChanged)="txtChange()" i18n-placeholder="@@M16823" id="A32581" data-tid="A374219">
+                </dx-text-box>
+
+
+                <div class="col-sm-12" id="A32584" data-tid="A374220">
+                    <dx-tile-view #tileView class="logisticTileCss" [height]="300" [baseItemHeight]="80" [baseItemWidth]="160" width="100%" direction="vertical" showScrollbar="true" id="A32585" data-tid="A374221">
+
+                        <dxi-item *ngFor="let menuDef of menuList" (click)="onItemClicked(menuDef)" id="A32586" data-tid="A374222">
+                            <div style="padding-top:6px;line-height:10px;" id="A32587" data-tid="A374223">
+                                <div class="col-xs-3" id="A32588" data-tid="A374224">
+                                    <img src="{{menuDef.IconPath}}" id="A32589" data-tid="A374225" />
+                                </div>
+                                <div class="col-xs-9" id="A32590" data-tid="A374226">
+                                    <label class="control-label" style="color:#000;padding-left:10px;" id="A32591" data-tid="A374227">
+                                        {{menuDef.Caption}} </label>
+                                </div>
+                            </div>
+                        </dxi-item>
+                    </dx-tile-view>
+                </div>
+            </div>
+        </div>
+    </dx-accordion>
+
+    <div class="row" id="A32592" [style.width]="actionTab" style="float: right;height: 96%;" data-tid="A374228">
+        <div class="col-xs-12" id="A32595" style="height: 100%;display: block;" data-tid="A374229">
+            <comp-compose style="height: 100%;display: block;overflow-y: scroll;" [Info]="componentInfo" (DynamicComponentActionExecuted)="dynamicComponentActionExecuted($event)" [DestroyComponentOnSave]='true' id="A32596" data-tid="A374230"></comp-compose>
+        </div>
+    </div>
+    <!-- <div [style.width]="actionTab" id="A32576" style="float: left;">
+
+    </div> -->
+</div>
+
+<dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" showIndicator="true" showPane="true" shading="true" [closeOnOutsideClick]="false" [message]="LoadPanelMessage" data-tid="A374231">
+</dx-load-panel>

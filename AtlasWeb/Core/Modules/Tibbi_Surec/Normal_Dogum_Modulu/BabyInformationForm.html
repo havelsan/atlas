@@ -1,0 +1,340 @@
+﻿<style type="text/css" data-tid="A357430">
+    .required:after {
+        content: " *";
+        color: red;
+    }
+</style>
+
+
+<div class="panel panel-default" data-tid="A357431">
+
+    <div class="panel-body" style="background-color:#f9f9f9" data-tid="A357432">
+        <NeStatePanelComponent [SaveButtonCaption]="_saveButtonCaption" [ObjectDefID]="babyInformationFormViewModel._BabyObstetricInformation.ObjectDefID" [CurrentStateDefID]="babyInformationFormViewModel._BabyObstetricInformation.CurrentStateDefID" (onSetState)="setState($event)" (onSaveChanges)="saveForm($event)" id="A22195" (onCancel)="cancelForm($event)" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A357433">
+        </NeStatePanelComponent>
+
+        <form id="BabyInformationForm" class="form-horizontal" role="form" data-tid="A357434">
+
+            <!-- Canlı Bebek-->
+            <div class="row" *ngIf="IsBabyAlive==true" data-tid="A357435">
+                <div class="col-md-3" data-tid="A357436">
+                    <div class="row" data-tid="A357437">
+                        <div class="col-md-12" id="A19699" data-tid="A357438">
+                            <photo-capture-webcamjs [Image]="babyInformationFormViewModel?.PhotoString" Width="100" Height="120" (OnPhotoCaptured)="photoCaptured($event)" id="A19909" data-tid="A357439"></photo-capture-webcamjs>
+                            <div *ngIf="ispCameraShowing == true" id="A19704" data-tid="A357440">
+                                <photo-capture (CapturedPhotoChange)="photoCaptured($event)" id="A19705" data-tid="A357441">
+                                </photo-capture>
+                             </div>
+                        </div>
+                        <div class="col-md-12" data-tid="A357442">
+                            <label class="control-label" id="A22198" data-tid="A357443">
+                                Yaşam Durumu
+                            </label>
+                            <hvl-enum-combobox #Validation (ValueChange)="onBabyStatusChanged($event)" [BackColor]="BabyStatus?.BackColor" [DataTypeName]="BabyStatus?.DataTypeName" [Enabled]="BabyStatus?.Enabled" [Font]="BabyStatus?.Font" [ForeColor]="BabyStatus?.ForeColor" [IncludeOnly]="BabyStatus?.IncludeOnly" [ReadOnly]="BabyStatus?.ReadOnly" [ShowClearButton]="BabyStatus?.ShowClearButton" [SortBy]="BabyStatus?.SortBy" [TabIndex]="BabyStatus?.TabIndex" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.BabyStatus" [Visible]="BabyStatus?.Visible" id="A22203" data-tid="A357444"></hvl-enum-combobox>
+                        </div>
+                        <div class="col-md-12" data-tid="A357445">
+                            <label class="control-label" id="A22209" data-tid="A357446">
+                                Baba Adı
+                            </label>
+                            <hvl-text-box #Validation (TextChange)="onFatherNameChanged($event)" [BackColor]="FatherName?.BackColor" [CharacterCasing]="FatherName?.CharacterCasing" [Enabled]="FatherName?.Enabled" [Font]="FatherName?.Font" [ForeColor]="FatherName?.ForeColor" [height]="FatherName?.Height" [InputFormat]="FatherName?.InputFormat" [InputTurkishCharacter]="FatherName?.InputTurkishCharacter" [IsNonNumeric]="FatherName?.IsNonNumeric" [MultiLine]="FatherName?.Multiline" [ReadOnly]="FatherName?.ReadOnly" [Required]="FatherName?.Required" [TabIndex]="FatherName?.TabIndex" [TextAlign]="FatherName?.TextAlign" [Text]="babyInformationFormViewModel?._BabyObstetricInformation?.FatherName" [Visible]="FatherName?.Visible" [Required]="FatherName?.Required" id="A22212" data-tid="A357447"></hvl-text-box>
+                        </div>
+                        <div class="col-md-12" data-tid="A357448">
+                            <label class="control-label" id="A22214" data-tid="A357449">
+                                Bebeğin Adı
+                            </label>
+                            <hvl-text-box #Validation (TextChange)="onNameChanged($event)" [BackColor]="Name?.BackColor" [CharacterCasing]="Name?.CharacterCasing" [Enabled]="Name?.Enabled" [Font]="Name?.Font" [ForeColor]="Name?.ForeColor" [height]="Name?.Height" [InputFormat]="Name?.InputFormat" [InputTurkishCharacter]="Name?.InputTurkishCharacter" [IsNonNumeric]="Name?.IsNonNumeric" [MultiLine]="Name?.Multiline" [ReadOnly]="Name?.ReadOnly" [Required]="Name?.Required" [TabIndex]="Name?.TabIndex" [TextAlign]="Name?.TextAlign" [Text]="_BabyObstetricInformation.Name" [Visible]="Name?.Visible" data-tid="A357450">
+                            </hvl-text-box>
+                        </div>
+                        <div class="col-md-12" data-tid="A357451">
+                            <label class="control-label" id="A22214" data-tid="A357452">
+                                Bebeğin Soyadı
+                            </label>
+                            <hvl-text-box #Validation (TextChange)="onSurnameChanged($event)" [BackColor]="Surname?.BackColor" [CharacterCasing]="Surname?.CharacterCasing" [Enabled]="Surname?.Enabled" [Font]="Surname?.Font" [ForeColor]="Surname?.ForeColor" [height]="Surname?.Height" [InputFormat]="Surname?.InputFormat" [InputTurkishCharacter]="Surname?.InputTurkishCharacter" [IsNonNumeric]="Surname?.IsNonNumeric" [MultiLine]="Surname?.Multiline" [ReadOnly]="Surname?.ReadOnly" [Required]="Surname?.Required" [TabIndex]="Surname?.TabIndex" [TextAlign]="Surname?.TextAlign" [Text]="babyInformationFormViewModel?._BabyObstetricInformation?.Surname" [Visible]="Surname?.Visible" id="A22217" data-tid="A357453"></hvl-text-box>
+                        </div>
+                        <div class="col-md-12" data-tid="A357454">
+                            <label class="control-label" id="A22232" data-tid="A357455">
+                                Doğum Tarihi ve Saati
+                            </label>
+                            <hvl-date-picker #Validation (ValueChange)="onBirthDateTimeChanged($event)" [BackColor]="BirthDateTime?.BackColor" [CustomFormat]="BirthDateTime?.CustomFormat" [Enabled]="BirthDateTime?.Enabled" [Font]="BirthDateTime?.Font" [ForeColor]="BirthDateTime?.ForeColor" [Format]="BirthDateTime?.Format" [Max]="BirthDateTime?.Max" [Min]="BirthDateTime?.Min" [ReadOnly]="BirthDateTime?.ReadOnly" [Required]="BirthDateTime?.Required" [TabIndex]="BirthDateTime?.TabIndex" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.BirthDateTime" [Visible]="BirthDateTime?.Visible" id="A22239" data-tid="A357456"></hvl-date-picker>
+                        </div>
+                        <div class="col-md-12" data-tid="A357457">
+                            <label class="control-label" id="A22338" data-tid="A357458">
+                                Fetal Anomaliler
+                            </label>
+                            <hvl-enum-combobox #Validation (ValueChange)="onFetalAnomaliesChanged($event)" [BackColor]="FetalAnomalies?.BackColor" [DataTypeName]="FetalAnomalies?.DataTypeName" [Enabled]="FetalAnomalies?.Enabled" [Font]="FetalAnomalies?.Font" [ForeColor]="FetalAnomalies?.ForeColor" [IncludeOnly]="FetalAnomalies?.IncludeOnly" [ReadOnly]="FetalAnomalies?.ReadOnly" [ShowClearButton]="FetalAnomalies?.ShowClearButton" [SortBy]="FetalAnomalies?.SortBy" [TabIndex]="FetalAnomalies?.TabIndex" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.FetalAnomalies" [Visible]="FetalAnomalies?.Visible" id="A22341" data-tid="A357459"></hvl-enum-combobox>
+                        </div>
+                        <br data-tid="A357460" />
+                    </div>
+                </div>
+                <div class="col-md-3" data-tid="A357461">
+                    <div class="row" data-tid="A357462">
+                        <div class="col-md-12" data-tid="A357463">
+                            <hvl-checkbox #Validation (ValueChange)="onPhenylketonuriaBloodChanged($event)" [AllowThreeState]="PhenylketonuriaBlood?.ThreeState" [BackColor]="PhenylketonuriaBlood?.BackColor" [Enabled]="PhenylketonuriaBlood?.Enabled" [Font]="PhenylketonuriaBlood?.Font" [ForeColor]="PhenylketonuriaBlood?.ForeColor" [IsTitleLeft]="PhenylketonuriaBlood?.IsTitleLeft" [Margin]="PhenylketonuriaBlood?.Margin" [ReadOnly]="PhenylketonuriaBlood?.ReadOnly" [TabIndex]="PhenylketonuriaBlood?.TabIndex" [TitleTopPadding]="PhenylketonuriaBlood?.TitleTopPadding" [Title]="PhenylketonuriaBlood?.Title" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.PhenylketonuriaBlood" [Visible]="PhenylketonuriaBlood?.Visible" id="A22348" data-tid="A357464"></hvl-checkbox>
+                            <hvl-checkbox #Validation (ValueChange)="onHepatitisBChanged($event)" [AllowThreeState]="HepatitisB?.ThreeState" [BackColor]="HepatitisB?.BackColor" [Enabled]="HepatitisB?.Enabled" [Font]="HepatitisB?.Font" [ForeColor]="HepatitisB?.ForeColor" [IsTitleLeft]="HepatitisB?.IsTitleLeft" [Margin]="HepatitisB?.Margin" [ReadOnly]="HepatitisB?.ReadOnly" [TabIndex]="HepatitisB?.TabIndex" [TitleTopPadding]="HepatitisB?.TitleTopPadding" [Title]="HepatitisB?.Title" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.HepatitisB" [Visible]="HepatitisB?.Visible" id="A22219" data-tid="A357465"></hvl-checkbox>
+                            <hvl-checkbox #Validation (ValueChange)="onHepatitisImmunoglobulinChanged($event)" [AllowThreeState]="HepatitisImmunoglobulin?.ThreeState" [BackColor]="HepatitisImmunoglobulin?.BackColor" [Enabled]="HepatitisImmunoglobulin?.Enabled" [Font]="HepatitisImmunoglobulin?.Font" [ForeColor]="HepatitisImmunoglobulin?.ForeColor" [IsTitleLeft]="HepatitisImmunoglobulin?.IsTitleLeft" [Margin]="HepatitisImmunoglobulin?.Margin" [ReadOnly]="HepatitisImmunoglobulin?.ReadOnly" [TabIndex]="HepatitisImmunoglobulin?.TabIndex" [TitleTopPadding]="HepatitisImmunoglobulin?.TitleTopPadding" [Title]="HepatitisImmunoglobulin?.Title" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.HepatitisImmunoglobulin" [Visible]="HepatitisImmunoglobulin?.Visible" id="A22228" data-tid="A357466"></hvl-checkbox>
+                            <hvl-checkbox #Validation (ValueChange)="onLactationInfoChanged($event)" [AllowThreeState]="LactationInfo?.ThreeState" [BackColor]="LactationInfo?.BackColor" [Enabled]="LactationInfo?.Enabled" [Font]="LactationInfo?.Font" [ForeColor]="LactationInfo?.ForeColor" [IsTitleLeft]="LactationInfo?.IsTitleLeft" [Margin]="LactationInfo?.Margin" [ReadOnly]="LactationInfo?.ReadOnly" [TabIndex]="LactationInfo?.TabIndex" [TitleTopPadding]="LactationInfo?.TitleTopPadding" [Title]="LactationInfo?.Title" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.LactationInfo" [Visible]="LactationInfo?.Visible" id="A22234" data-tid="A357467"></hvl-checkbox>
+                            <hvl-checkbox #Validation (ValueChange)="onWithoutBreastMilkChanged($event)" [AllowThreeState]="WithoutBreastMilk?.ThreeState" [BackColor]="WithoutBreastMilk?.BackColor" [Enabled]="WithoutBreastMilk?.Enabled" [Font]="WithoutBreastMilk?.Font" [ForeColor]="WithoutBreastMilk?.ForeColor" [IsTitleLeft]="WithoutBreastMilk?.IsTitleLeft" [Margin]="WithoutBreastMilk?.Margin" [ReadOnly]="WithoutBreastMilk?.ReadOnly" [TabIndex]="WithoutBreastMilk?.TabIndex" [TitleTopPadding]="WithoutBreastMilk?.TitleTopPadding" [Title]="WithoutBreastMilk?.Title" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.WithoutBreastMilk" [Visible]="WithoutBreastMilk?.Visible" id="A22242" data-tid="A357468"></hvl-checkbox>
+                            <hvl-checkbox #Validation (ValueChange)="onSuckledTheFirstHalfHourChanged($event)" [AllowThreeState]="SuckledTheFirstHalfHour?.ThreeState" [BackColor]="SuckledTheFirstHalfHour?.BackColor" [Enabled]="SuckledTheFirstHalfHour?.Enabled" [Font]="SuckledTheFirstHalfHour?.Font" [ForeColor]="SuckledTheFirstHalfHour?.ForeColor" [IsTitleLeft]="SuckledTheFirstHalfHour?.IsTitleLeft" [Margin]="SuckledTheFirstHalfHour?.Margin" [ReadOnly]="SuckledTheFirstHalfHour?.ReadOnly" [TabIndex]="SuckledTheFirstHalfHour?.TabIndex" [TitleTopPadding]="SuckledTheFirstHalfHour?.TitleTopPadding" [Title]="SuckledTheFirstHalfHour?.Title" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.SuckledTheFirstHalfHour" [Visible]="SuckledTheFirstHalfHour?.Visible" id="A22346" data-tid="A357469"></hvl-checkbox>
+
+                        </div>
+                        <div class="col-md-12" data-tid="A357470">
+                            <label class="control-label" id="A22342" data-tid="A357471">
+                                Kol Bandı Numarası
+                            </label>
+                            <hvl-number-box #Validation (ValueChange)="onWristbandNumberChanged($event)" [BackColor]="WristbandNumber?.BackColor" [Enabled]="WristbandNumber?.Enabled" [Font]="WristbandNumber?.Font" [ForeColor]="WristbandNumber?.ForeColor" [ReadOnly]="WristbandNumber?.ReadOnly" [TabIndex]="WristbandNumber?.TabIndex" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.WristbandNumber" [Visible]="WristbandNumber?.Visible" id="A22247" data-tid="A357472"></hvl-number-box>
+                        </div>
+                        <div class="col-md-12" data-tid="A357473">
+                            <div class="row" data-tid="A357474">
+                                <div class="col-md-6" data-tid="A357475">
+                                    <label class="control-label" id="A22254" data-tid="A357476">
+                                        Boy
+                                    </label>
+                                    <hvl-number-box #Validation (ValueChange)="onHeightChanged($event)" [BackColor]="Height?.BackColor" [Enabled]="Height?.Enabled" [Font]="Height?.Font" [ForeColor]="Height?.ForeColor" [ReadOnly]="Height?.ReadOnly" [TabIndex]="Height?.TabIndex" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.Height" [Visible]="Height?.Visible" id="A22258" data-tid="A357477"></hvl-number-box>
+                                </div>
+                                <div class="col-md-6" data-tid="A357478">
+                                    <label class="control-label" id="A22255" data-tid="A357479">
+                                        Kilo (gr)
+                                    </label>
+                                    <hvl-number-box #Validation (ValueChange)="onWeigthChanged($event)" [BackColor]="Weigth?.BackColor" [Enabled]="Weigth?.Enabled" [Font]="Weigth?.Font" [ForeColor]="Weigth?.ForeColor" [ReadOnly]="Weigth?.ReadOnly" [TabIndex]="Weigth?.TabIndex" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.Weigth" [Visible]="Weigth?.Visible" id="A22260" data-tid="A357480"></hvl-number-box>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12" data-tid="A357481">
+                            <label class="control-label" id="A22273" data-tid="A357482">
+                                Gebelik Süresi Haftası
+                            </label>
+                            <hvl-number-box #Validation (ValueChange)="onPregnancyWeekChanged($event)" [BackColor]="PregnancyWeek?.BackColor" [Enabled]="PregnancyWeek?.Enabled" [Font]="PregnancyWeek?.Font" [ForeColor]="PregnancyWeek?.ForeColor" [ReadOnly]="PregnancyWeek?.ReadOnly" [TabIndex]="PregnancyWeek?.TabIndex" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.PregnancyWeek" [Visible]="PregnancyWeek?.Visible" id="A22277" data-tid="A357483"></hvl-number-box>
+                        </div>
+                        <div class="col-md-12" data-tid="A357484">
+                            <label class="control-label" id="A22333" data-tid="A357485">
+                                Anestezi
+                            </label>
+                            <hvl-enum-combobox #Validation (ValueChange)="onAnesthesiaTechniqueChanged($event)" [BackColor]="AnesthesiaTechnique?.BackColor" [DataTypeName]="AnesthesiaTechnique?.DataTypeName" [Enabled]="AnesthesiaTechnique?.Enabled" [Font]="AnesthesiaTechnique?.Font" [ForeColor]="AnesthesiaTechnique?.ForeColor" [IncludeOnly]="AnesthesiaTechnique?.IncludeOnly" [ReadOnly]="AnesthesiaTechnique?.ReadOnly" [ShowClearButton]="AnesthesiaTechnique?.ShowClearButton" [SortBy]="AnesthesiaTechnique?.SortBy" [TabIndex]="AnesthesiaTechnique?.TabIndex" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.AnesthesiaTechnique" [Visible]="AnesthesiaTechnique?.Visible" id="A22336" data-tid="A357486"></hvl-enum-combobox>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-tid="A357487">
+                    <div class="row" data-tid="A357488">
+                        <div class="col-md-12" data-tid="A357489">
+                            <hvl-checkbox #Validation (ValueChange)="onVitaminKAppliedChanged($event)" [AllowThreeState]="VitaminKApplied?.ThreeState" [BackColor]="VitaminKApplied?.BackColor" [Enabled]="VitaminKApplied?.Enabled" [Font]="VitaminKApplied?.Font" [ForeColor]="VitaminKApplied?.ForeColor" [IsTitleLeft]="VitaminKApplied?.IsTitleLeft" [Margin]="VitaminKApplied?.Margin" [ReadOnly]="VitaminKApplied?.ReadOnly" [TabIndex]="VitaminKApplied?.TabIndex" [TitleTopPadding]="VitaminKApplied?.TitleTopPadding" [Title]="VitaminKApplied?.Title" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.VitaminKApplied" [Visible]="VitaminKApplied?.Visible" id="A22344" data-tid="A357490"></hvl-checkbox>
+                            <hvl-checkbox #Validation (ValueChange)="onVitaminDSupplementChanged($event)" [AllowThreeState]="VitaminDSupplement?.ThreeState" [BackColor]="VitaminDSupplement?.BackColor" [Enabled]="VitaminDSupplement?.Enabled" [Font]="VitaminDSupplement?.Font" [ForeColor]="VitaminDSupplement?.ForeColor" [IsTitleLeft]="VitaminDSupplement?.IsTitleLeft" [Margin]="VitaminDSupplement?.Margin" [ReadOnly]="VitaminDSupplement?.ReadOnly" [TabIndex]="VitaminDSupplement?.TabIndex" [TitleTopPadding]="VitaminDSupplement?.TitleTopPadding" [Title]="VitaminDSupplement?.Title" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.VitaminDSupplement" [Visible]="VitaminDSupplement?.Visible" id="A22383" data-tid="A357491"></hvl-checkbox>
+                            <hvl-checkbox #Validation (ValueChange)="onIronSupplementChanged($event)" [AllowThreeState]="IronSupplement?.ThreeState" [BackColor]="IronSupplement?.BackColor" [Enabled]="IronSupplement?.Enabled" [Font]="IronSupplement?.Font" [ForeColor]="IronSupplement?.ForeColor" [IsTitleLeft]="IronSupplement?.IsTitleLeft" [Margin]="IronSupplement?.Margin" [ReadOnly]="IronSupplement?.ReadOnly" [TabIndex]="IronSupplement?.TabIndex" [TitleTopPadding]="IronSupplement?.TitleTopPadding" [Title]="IronSupplement?.Title" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.IronSupplement" [Visible]="IronSupplement?.Visible" id="A22381" data-tid="A357492"></hvl-checkbox>
+                            <hvl-checkbox #Validation (ValueChange)="onShowLCDChanged($event)" [AllowThreeState]="ShowLCD?.ThreeState" [BackColor]="ShowLCD?.BackColor" [Enabled]="ShowLCD?.Enabled" [Font]="ShowLCD?.Font" [ForeColor]="ShowLCD?.ForeColor" [IsTitleLeft]="ShowLCD?.IsTitleLeft" [Margin]="ShowLCD?.Margin" [ReadOnly]="ShowLCD?.ReadOnly" [TabIndex]="ShowLCD?.TabIndex" [TitleTopPadding]="ShowLCD?.TitleTopPadding" [Title]="ShowLCD?.Title" [Value]="_BabyObstetricInformation.ShowLCD" [Visible]="ShowLCD?.Visible" data-tid="A357493"></hvl-checkbox>
+                            <hvl-checkbox #Validation (ValueChange)="onAbnormalBabyChanged($event)" [AllowThreeState]="AbnormalBaby?.ThreeState" [BackColor]="AbnormalBaby?.BackColor" [Enabled]="AbnormalBaby?.Enabled" [Font]="AbnormalBaby?.Font" [ForeColor]="AbnormalBaby?.ForeColor" [IsTitleLeft]="AbnormalBaby?.IsTitleLeft" [Margin]="AbnormalBaby?.Margin" [ReadOnly]="AbnormalBaby?.ReadOnly" [TabIndex]="AbnormalBaby?.TabIndex" [TitleTopPadding]="AbnormalBaby?.TitleTopPadding" [Title]="AbnormalBaby?.Title" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.AbnormalBaby" [Visible]="AbnormalBaby?.Visible" id="A22262" data-tid="A357494"></hvl-checkbox>
+                            <hvl-checkbox #Validation (ValueChange)="onPrematureBabyChanged($event)" [AllowThreeState]="PrematureBaby?.ThreeState" [BackColor]="PrematureBaby?.BackColor" [Enabled]="PrematureBaby?.Enabled" [Font]="PrematureBaby?.Font" [ForeColor]="PrematureBaby?.ForeColor" [IsTitleLeft]="PrematureBaby?.IsTitleLeft" [Margin]="PrematureBaby?.Margin" [ReadOnly]="PrematureBaby?.ReadOnly" [TabIndex]="PrematureBaby?.TabIndex" [TitleTopPadding]="PrematureBaby?.TitleTopPadding" [Title]="PrematureBaby?.Title" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.PrematureBaby" [Visible]="PrematureBaby?.Visible" id="A22385" data-tid="A357495"></hvl-checkbox>
+
+                        </div>
+                        <div class="col-md-12" data-tid="A357496">
+                            <label class="control-label" id="A22281" data-tid="A357497">
+                                Doğum Sırası
+                            </label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="onBirthOrderChanged($event)" [AutoCompleteDialogHeight]="BirthOrder?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="BirthOrder?.AutoCompleteDialogWidth" [AutoCompleteMode]="BirthOrder?.AutoCompleteMode" [BackColor]="BirthOrder?.BackColor" [DefinitionName]="BirthOrder?.ListDefName" [DisplayExpressionsCache]="babyInformationFormViewModel?.ListDefDisplayExpressions" [Enabled]="BirthOrder?.Enabled" [Font]="BirthOrder?.Font" [ForeColor]="BirthOrder?.ForeColor" [ListFilterExpression]="BirthOrder?.ListFilterExpression" [MinSearchLength]="BirthOrder?.MinSearchLength" [PopupDialogFieldConfig]="BirthOrder?.PopupDialogFieldConfig" [PopupDialogGridColumns]="BirthOrder?.PopupDialogGridColumns" [PopupDialogHeight]="BirthOrder?.PopupDialogHeight" [PopupDialogTitle]="BirthOrder?.PopupDialogTitle" [PopupDialogWidth]="BirthOrder?.PopupDialogWidth" [ReadOnly]="BirthOrder?.ReadOnly" [SearchMode]="BirthOrder?.SearchMode" [SearchTimeout]="BirthOrder?.SearchTimeout" [SelectedObject]="babyInformationFormViewModel?._BabyObstetricInformation?.BirthOrder" [TabIndex]="BirthOrder?.TabIndex" [Visible]="BirthOrder?.Visible" [width]="BirthOrder?.Width" id="A22316" data-tid="A357498"></hvl-list-box>
+                        </div>
+                        <div class="col-md-12" data-tid="A357499">
+                            <label class="control-label" id="A22266" data-tid="A357500">
+                                Baş Çevresi
+                            </label>
+                            <hvl-number-box #Validation (ValueChange)="onHeadCircumferenceChanged($event)" [BackColor]="HeadCircumference?.BackColor" [Enabled]="HeadCircumference?.Enabled" [Font]="HeadCircumference?.Font" [ForeColor]="HeadCircumference?.ForeColor" [ReadOnly]="HeadCircumference?.ReadOnly" [TabIndex]="HeadCircumference?.TabIndex" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.HeadCircumference" [Visible]="HeadCircumference?.Visible" id="A22269" data-tid="A357501"></hvl-number-box>
+                        </div>
+                        <div class="col-md-12" data-tid="A357502">
+                            <label class="control-label" id="A22323" data-tid="A357503">
+                                Geliş Şekli
+                            </label>
+                            <hvl-enum-combobox #Validation (ValueChange)="onPresentationTypeChanged($event)" [BackColor]="PresentationType?.BackColor" [DataTypeName]="PresentationType?.DataTypeName" [Enabled]="PresentationType?.Enabled" [Font]="PresentationType?.Font" [ForeColor]="PresentationType?.ForeColor" [IncludeOnly]="PresentationType?.IncludeOnly" [ReadOnly]="PresentationType?.ReadOnly" [ShowClearButton]="PresentationType?.ShowClearButton" [SortBy]="PresentationType?.SortBy" [TabIndex]="PresentationType?.TabIndex" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.PresentationType" [Visible]="PresentationType?.Visible" id="A22326" data-tid="A357504"></hvl-enum-combobox>
+                        </div>
+                        <div class="col-md-12" data-tid="A357505">
+                            <br data-tid="A357506" />
+                            <dx-check-box [(value)]="babyProblemsControl" text="Bebekte sorun yaşandı veya riskler tespit edildi" data-tid="A357507"></dx-check-box>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-tid="A357508">
+                    <div class="row" data-tid="A357509">
+                        <div class="col-md-12" data-tid="A357510">
+                            <hvl-checkbox #Validation (ValueChange)="onAsphyxiaChanged($event)" [AllowThreeState]="Asphyxia?.ThreeState" [BackColor]="Asphyxia?.BackColor" [Enabled]="Asphyxia?.Enabled" [Font]="Asphyxia?.Font" [ForeColor]="Asphyxia?.ForeColor" [IsTitleLeft]="Asphyxia?.IsTitleLeft" [Margin]="Asphyxia?.Margin" [ReadOnly]="Asphyxia?.ReadOnly" [TabIndex]="Asphyxia?.TabIndex" [TitleTopPadding]="Asphyxia?.TitleTopPadding" [Title]="Asphyxia?.Title" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.Asphyxia" [Visible]="Asphyxia?.Visible" id="A22221" data-tid="A357511"></hvl-checkbox>
+                            <hvl-checkbox #Validation (ValueChange)="onHypothyroidisBloodChanged($event)" [AllowThreeState]="HypothyroidisBlood?.ThreeState" [BackColor]="HypothyroidisBlood?.BackColor" [Enabled]="HypothyroidisBlood?.Enabled" [Font]="HypothyroidisBlood?.Font" [ForeColor]="HypothyroidisBlood?.ForeColor" [IsTitleLeft]="HypothyroidisBlood?.IsTitleLeft" [Margin]="HypothyroidisBlood?.Margin" [ReadOnly]="HypothyroidisBlood?.ReadOnly" [TabIndex]="HypothyroidisBlood?.TabIndex" [TitleTopPadding]="HypothyroidisBlood?.TitleTopPadding" [Title]="HypothyroidisBlood?.Title" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.HypothyroidisBlood" [Visible]="HypothyroidisBlood?.Visible" id="A22230" data-tid="A357512"></hvl-checkbox>
+                            <hvl-checkbox #Validation (ValueChange)="onHearingScreeningChanged($event)" [AllowThreeState]="HearingScreening?.ThreeState" [BackColor]="HearingScreening?.BackColor" [Enabled]="HearingScreening?.Enabled" [Font]="HearingScreening?.Font" [ForeColor]="HearingScreening?.ForeColor" [IsTitleLeft]="HearingScreening?.IsTitleLeft" [Margin]="HearingScreening?.Margin" [ReadOnly]="HearingScreening?.ReadOnly" [TabIndex]="HearingScreening?.TabIndex" [TitleTopPadding]="HearingScreening?.TitleTopPadding" [Title]="HearingScreening?.Title" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.HearingScreening" [Visible]="HearingScreening?.Visible" id="A22236" data-tid="A357513"></hvl-checkbox>
+                            <hvl-checkbox #Validation (ValueChange)="onVisionScreeningChanged($event)" [AllowThreeState]="VisionScreening?.ThreeState" [BackColor]="VisionScreening?.BackColor" [Enabled]="VisionScreening?.Enabled" [Font]="VisionScreening?.Font" [ForeColor]="VisionScreening?.ForeColor" [IsTitleLeft]="VisionScreening?.IsTitleLeft" [Margin]="VisionScreening?.Margin" [ReadOnly]="VisionScreening?.ReadOnly" [TabIndex]="VisionScreening?.TabIndex" [TitleTopPadding]="VisionScreening?.TitleTopPadding" [Title]="VisionScreening?.Title" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.VisionScreening" [Visible]="VisionScreening?.Visible" id="A22244" data-tid="A357514"></hvl-checkbox>
+                            <hvl-checkbox #Validation (ValueChange)="onTesticleExaminationChanged($event)" [AllowThreeState]="TesticleExamination?.ThreeState" [BackColor]="TesticleExamination?.BackColor" [Enabled]="TesticleExamination?.Enabled" [Font]="TesticleExamination?.Font" [ForeColor]="TesticleExamination?.ForeColor" [IsTitleLeft]="TesticleExamination?.IsTitleLeft" [Margin]="TesticleExamination?.Margin" [ReadOnly]="TesticleExamination?.ReadOnly" [TabIndex]="TesticleExamination?.TabIndex" [TitleTopPadding]="TesticleExamination?.TitleTopPadding" [Title]="TesticleExamination?.Title" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.TesticleExamination" [Visible]="TesticleExamination?.Visible" id="A22264" data-tid="A357515"></hvl-checkbox>
+                            <hvl-checkbox #Validation (ValueChange)="onFontanelExaminationChanged($event)" [AllowThreeState]="FontanelExamination?.ThreeState" [BackColor]="FontanelExamination?.BackColor" [Enabled]="FontanelExamination?.Enabled" [Font]="FontanelExamination?.Font" [ForeColor]="FontanelExamination?.ForeColor" [IsTitleLeft]="FontanelExamination?.IsTitleLeft" [Margin]="FontanelExamination?.Margin" [ReadOnly]="FontanelExamination?.ReadOnly" [TabIndex]="FontanelExamination?.TabIndex" [TitleTopPadding]="FontanelExamination?.TitleTopPadding" [Title]="FontanelExamination?.Title" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.FontanelExamination" [Visible]="FontanelExamination?.Visible" id="A22271" data-tid="A357516"></hvl-checkbox>
+
+                        </div>
+                        <div class="col-md-12" data-tid="A357517">
+                            <label class="control-label" id="A22318" data-tid="A357518">
+                                Doğum Yöntemi
+                            </label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="onBirthTypeChanged($event)" [AutoCompleteDialogHeight]="BirthType?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="BirthType?.AutoCompleteDialogWidth" [AutoCompleteMode]="BirthType?.AutoCompleteMode" [BackColor]="BirthType?.BackColor" [DefinitionName]="BirthType?.ListDefName" [DisplayExpressionsCache]="babyInformationFormViewModel?.ListDefDisplayExpressions" [Enabled]="BirthType?.Enabled" [Font]="BirthType?.Font" [ForeColor]="BirthType?.ForeColor" [ListFilterExpression]="BirthType?.ListFilterExpression" [MinSearchLength]="BirthType?.MinSearchLength" [PopupDialogFieldConfig]="BirthType?.PopupDialogFieldConfig" [PopupDialogGridColumns]="BirthType?.PopupDialogGridColumns" [PopupDialogHeight]="BirthType?.PopupDialogHeight" [PopupDialogTitle]="BirthType?.PopupDialogTitle" [PopupDialogWidth]="BirthType?.PopupDialogWidth" [ReadOnly]="BirthType?.ReadOnly" [SearchMode]="BirthType?.SearchMode" [SearchTimeout]="BirthType?.SearchTimeout" [SelectedObject]="babyInformationFormViewModel?._BabyObstetricInformation?.BirthType" [TabIndex]="BirthType?.TabIndex" [Visible]="BirthType?.Visible" [width]="BirthType?.Width" id="A22321" data-tid="A357519"></hvl-list-box>
+                        </div>
+                        <div class="col-md-12" data-tid="A357520">
+                            <label class="control-label" id="A22249" data-tid="A357521">
+                                Cinsiyet
+                            </label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="onGenderChanged($event)" [AutoCompleteDialogHeight]="Gender?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="Gender?.AutoCompleteDialogWidth" [AutoCompleteMode]="Gender?.AutoCompleteMode" [BackColor]="Gender?.BackColor" [DefinitionName]="Gender?.ListDefName" [DisplayExpressionsCache]="babyInformationFormViewModel?.ListDefDisplayExpressions" [Enabled]="Gender?.Enabled" [Font]="Gender?.Font" [ForeColor]="Gender?.ForeColor" [ListFilterExpression]="Gender?.ListFilterExpression" [MinSearchLength]="Gender?.MinSearchLength" [PopupDialogFieldConfig]="Gender?.PopupDialogFieldConfig" [PopupDialogGridColumns]="Gender?.PopupDialogGridColumns" [PopupDialogHeight]="Gender?.PopupDialogHeight" [PopupDialogTitle]="Gender?.PopupDialogTitle" [PopupDialogWidth]="Gender?.PopupDialogWidth" [ReadOnly]="Gender?.ReadOnly" [SearchMode]="Gender?.SearchMode" [SearchTimeout]="Gender?.SearchTimeout" [SelectedObject]="babyInformationFormViewModel?._BabyObstetricInformation?.Gender" [TabIndex]="Gender?.TabIndex" [Visible]="Gender?.Visible" [width]="Gender?.Width" id="A22252" data-tid="A357522"></hvl-list-box>
+                        </div>
+                        <div class="col-md-12" data-tid="A357523">
+                            <label class="control-label" id="A22328" data-tid="A357524">
+                                Plasenta Ayrılış Şekli
+                            </label>
+                            <hvl-enum-combobox #Validation (ValueChange)="onPlacentaDecollementTypeChanged($event)" [BackColor]="PlacentaDecollementType?.BackColor" [DataTypeName]="PlacentaDecollementType?.DataTypeName" [Enabled]="PlacentaDecollementType?.Enabled" [Font]="PlacentaDecollementType?.Font" [ForeColor]="PlacentaDecollementType?.ForeColor" [IncludeOnly]="PlacentaDecollementType?.IncludeOnly" [ReadOnly]="PlacentaDecollementType?.ReadOnly" [ShowClearButton]="PlacentaDecollementType?.ShowClearButton" [SortBy]="PlacentaDecollementType?.SortBy" [TabIndex]="PlacentaDecollementType?.TabIndex" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.PlacentaDecollementType" [Visible]="PlacentaDecollementType?.Visible" id="A22331" data-tid="A357525"></hvl-enum-combobox>
+                        </div>
+                        <div class="col-md-12" *ngIf="babyProblemsControl ==true" data-tid="A357526">
+                            <div class="row" data-tid="A357527">
+                                <label class="control-label col-md-4" id="A22274" data-tid="A357528">
+                                    Bebekte Yaşanan Sorun/Tespit Edilen Riskler
+                                </label>
+                                <hvl-text-box class="col-md-8" #Validation (TextChange)="onBabyProblemsChanged($event)" [BackColor]="BabyProblems?.BackColor" [CharacterCasing]="BabyProblems?.CharacterCasing" [Enabled]="BabyProblems?.Enabled" [Font]="BabyProblems?.Font" [ForeColor]="BabyProblems?.ForeColor" [height]="BabyProblems?.Height" [InputFormat]="BabyProblems?.InputFormat" [InputTurkishCharacter]="BabyProblems?.InputTurkishCharacter" [IsNonNumeric]="BabyProblems?.IsNonNumeric" [MultiLine]="BabyProblems?.Multiline" [ReadOnly]="BabyProblems?.ReadOnly" [Required]="BabyProblems?.Required" [TabIndex]="BabyProblems?.TabIndex" [TextAlign]="BabyProblems?.TextAlign" [Text]="babyInformationFormViewModel?._BabyObstetricInformation?.BabyProblems" [Visible]="BabyProblems?.Visible" id="A22279" data-tid="A357529"></hvl-text-box>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12" data-tid="A357530">
+                    <br data-tid="A357531" />
+                    <div class="panel-group" id="accordion" data-tid="A357532">
+                        <div class="row" data-tid="A357533">
+                            <div class="col-md-6" data-tid="A357534">
+                                <div class="panel panel-default skorPanelStyle" data-tid="A357535">
+                                    <div class="panel-heading" data-tid="A357536">
+                                        <h4 class="panel-title" data-tid="A357537">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" data-tid="A357538">Apgar Skoru 1. Dakika</a>
+                                            <span class="pull-right" id="A29504" data-tid="A357539"><b id="A29505" data-tid="A357540">Toplam Skor : {{babyInformationFormViewModel?._BabyObstetricInformation?.Apgar1.TotalScore}}</b></span>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse1" class="panel-collapse collapse" data-tid="A357541">
+                                        <div class="panel-body" data-tid="A357542">
+                                            <table class="table table-bordered skorTableStyles" id="A29507" data-tid="A357543">
+                                                <thead id="A29508" data-tid="A357544">
+                                                    <tr id="A29509" data-tid="A357545">
+                                                        <th class="col-md-1 col-sm-2" id="A29510" data-tid="A357546"><u id="A29511" data-tid="A357547">Fiziksel Belirti</u></th>
+                                                        <th class="col-md-11 col-sm-10 scoreStyle" id="A29512" data-tid="A357548">
+                                                            <u id="A29513" data-tid="A357549">Skor</u><br id="A29514" data-tid="A357550" />
+                                                            <div class="btn-group btn-group-justified" id="A29515" data-tid="A357551">
+                                                                <span class="btn" id="A29516" data-tid="A357552">0 Puan</span>
+                                                                <span class="btn" id="A29517" data-tid="A357553">1 Puan</span>
+                                                                <span class="btn" id="A29518" data-tid="A357554">2 Puan</span>
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="A29519" data-tid="A357555">
+                                                    <tr id="A29520" data-tid="A357556">
+                                                        <td id="A29521" data-tid="A357557"><label id="A29522" data-tid="A357558">Kas Tonusu</label></td>
+                                                        <td class="radioGroupStyle" id="A29523" data-tid="A357559">
+                                                            <hvl-enum-button-radio-group [DataTypeName]="MuscularTonusApgar1.DataTypeName" [(Value)]="babyInformationFormViewModel?._BabyObstetricInformation?.Apgar1.MuscularTonus" (ValueChange)="onMuscularTonusApgar1Changed($event)" id="A29524" data-tid="A357560"></hvl-enum-button-radio-group>
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="A29525" data-tid="A357561">
+                                                        <td id="A29526" data-tid="A357562"><label id="A29527" data-tid="A357563">Kalp Hızı</label></td>
+                                                        <td class="radioGroupStyle" id="addSpanId" data-tid="A357564"><hvl-enum-button-radio-group [DataTypeName]="HeartRateApgar1.DataTypeName" [(Value)]="babyInformationFormViewModel?._BabyObstetricInformation?.Apgar1.HeartRate" (ValueChange)="onHeartRateApgar1Changed($event)" id="A29528" data-tid="A357565"></hvl-enum-button-radio-group></td>
+                                                    </tr>
+                                                    <tr id="A29529" data-tid="A357566">
+                                                        <td id="A29530" data-tid="A357567"><label id="A29531" data-tid="A357568">Uyarılara Cevap</label></td>
+                                                        <td class="radioGroupStyle" id="A29532" data-tid="A357569"><hvl-enum-button-radio-group [DataTypeName]="StimulusResponseApgar1.DataTypeName" [(Value)]="babyInformationFormViewModel?._BabyObstetricInformation?.Apgar1.StimulusResponse" (ValueChange)="onStimulusResponseApgar1Changed($event)" id="A29533" data-tid="A357570"></hvl-enum-button-radio-group></td>
+                                                    </tr>
+                                                    <tr id="A29534" data-tid="A357571">
+                                                        <td id="A29535" data-tid="A357572"><label id="A29536" data-tid="A357573">Cilt Rengi</label></td>
+                                                        <td class="radioGroupStyle" id="A29537" data-tid="A357574"><hvl-enum-button-radio-group [DataTypeName]="SkinColorApgar1.DataTypeName" [(Value)]="babyInformationFormViewModel?._BabyObstetricInformation?.Apgar1.SkinColor" (ValueChange)="onSkinColorApgar1Changed($event)" id="A29538" data-tid="A357575"></hvl-enum-button-radio-group></td>
+                                                    </tr>
+                                                    <tr id="A29539" data-tid="A357576">
+                                                        <td id="A29540" data-tid="A357577"><label id="A29541" data-tid="A357578">Solunum</label></td>
+                                                        <td class="radioGroupStyle" id="A29542" data-tid="A357579"><hvl-enum-button-radio-group [DataTypeName]="RespirationApgar1.DataTypeName" [(Value)]="babyInformationFormViewModel?._BabyObstetricInformation?.Apgar1.Respiration" (ValueChange)="onRespirationApgar1Changed($event)" id="A29543" data-tid="A357580"></hvl-enum-button-radio-group></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6" data-tid="A357581">
+                                <div class="panel panel-default skorPanelStyle" data-tid="A357582">
+                                    <div class="panel-heading" data-tid="A357583">
+                                        <h4 class="panel-title" data-tid="A357584">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse2" data-tid="A357585">Apgar Skoru 5. Dakika</a>
+                                            <span class="pull-right" id="A29504" data-tid="A357586"><b id="A29505" data-tid="A357587">Toplam Skor : {{babyInformationFormViewModel?._BabyObstetricInformation?.Apgar5.TotalScore}}</b></span>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse2" class="panel-collapse collapse" data-tid="A357588">
+                                        <div class="panel-body" data-tid="A357589">
+                                            <table class="table table-bordered skorTableStyles" id="A29507" data-tid="A357590">
+                                                <thead id="A29508" data-tid="A357591">
+                                                    <tr id="A29509" data-tid="A357592">
+                                                        <th class="col-md-1 col-sm-2" id="A29510" data-tid="A357593"><u id="A29511" data-tid="A357594">Fiziksel Belirti</u></th>
+                                                        <th class="col-md-11 col-sm-10 scoreStyle" id="A29512" data-tid="A357595">
+                                                            <u id="A29513" data-tid="A357596">Skor</u><br id="A29514" data-tid="A357597" />
+                                                            <div class="btn-group btn-group-justified" id="A29515" data-tid="A357598">
+                                                                <span class="btn" id="A29516" data-tid="A357599">0 Puan</span>
+                                                                <span class="btn" id="A29517" data-tid="A357600">1 Puan</span>
+                                                                <span class="btn" id="A29518" data-tid="A357601">2 Puan</span>
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="A29519" data-tid="A357602">
+                                                    <tr id="A29520" data-tid="A357603">
+                                                        <td id="A29521" data-tid="A357604"><label id="A29522" data-tid="A357605">Kas Tonusu</label></td>
+                                                        <td class="radioGroupStyle" id="A29523" data-tid="A357606">
+                                                            <hvl-enum-button-radio-group [DataTypeName]="MuscularTonusApgar5.DataTypeName" [(Value)]="babyInformationFormViewModel?._BabyObstetricInformation?.Apgar5.MuscularTonus" (ValueChange)="onMuscularTonusApgar5Changed($event)" id="A29524" data-tid="A357607"></hvl-enum-button-radio-group>
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="A29525" data-tid="A357608">
+                                                        <td id="A29526" data-tid="A357609"><label id="A29527" data-tid="A357610">Kalp Hızı</label></td>
+                                                        <td class="radioGroupStyle" id="addSpanId" data-tid="A357611"><hvl-enum-button-radio-group [DataTypeName]="HeartRateApgar5.DataTypeName" [(Value)]="babyInformationFormViewModel?._BabyObstetricInformation?.Apgar5.HeartRate" (ValueChange)="onHeartRateApgar5Changed($event)" id="A29528" data-tid="A357612"></hvl-enum-button-radio-group></td>
+                                                    </tr>
+                                                    <tr id="A29529" data-tid="A357613">
+                                                        <td id="A29530" data-tid="A357614"><label id="A29531" data-tid="A357615">Uyarılara Cevap</label></td>
+                                                        <td class="radioGroupStyle" id="A29532" data-tid="A357616"><hvl-enum-button-radio-group [DataTypeName]="StimulusResponseApgar5.DataTypeName" [(Value)]="babyInformationFormViewModel?._BabyObstetricInformation?.Apgar5.StimulusResponse" (ValueChange)="onStimulusResponseApgar5Changed($event)" id="A29533" data-tid="A357617"></hvl-enum-button-radio-group></td>
+                                                    </tr>
+                                                    <tr id="A29534" data-tid="A357618">
+                                                        <td id="A29535" data-tid="A357619"><label id="A29536" data-tid="A357620">Cilt Rengi</label></td>
+                                                        <td class="radioGroupStyle" id="A29537" data-tid="A357621"><hvl-enum-button-radio-group [DataTypeName]="SkinColorApgar5.DataTypeName" [(Value)]="babyInformationFormViewModel?._BabyObstetricInformation?.Apgar5.SkinColor" (ValueChange)="onSkinColorApgar5Changed($event)" id="A29538" data-tid="A357622"></hvl-enum-button-radio-group></td>
+                                                    </tr>
+                                                    <tr id="A29539" data-tid="A357623">
+                                                        <td id="A29540" data-tid="A357624"><label id="A29541" data-tid="A357625">Solunum</label></td>
+                                                        <td class="radioGroupStyle" id="A29542" data-tid="A357626"><hvl-enum-button-radio-group [DataTypeName]="RespirationApgar5.DataTypeName" [(Value)]="babyInformationFormViewModel?._BabyObstetricInformation?.Apgar5.Respiration" (ValueChange)="onRespirationApgar5Changed($event)" id="A29543" data-tid="A357627"></hvl-enum-button-radio-group></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ./ Canlı Bebek-->
+            <!-- Ölü Bebek-->
+            <div class="row" *ngIf="IsBabyAlive==false" data-tid="A357628">
+                <div class="col-md-3" data-tid="A357629">
+                    <label class="control-label" id="A22198" data-tid="A357630">
+                        Yaşam Durumu
+                    </label>
+                    <hvl-enum-combobox #Validation (ValueChange)="onBabyStatusChanged($event)" [BackColor]="BabyStatus?.BackColor" [DataTypeName]="BabyStatus?.DataTypeName" [Enabled]="BabyStatus?.Enabled" [Font]="BabyStatus?.Font" [ForeColor]="BabyStatus?.ForeColor" [IncludeOnly]="BabyStatus?.IncludeOnly" [ReadOnly]="BabyStatus?.ReadOnly" [ShowClearButton]="BabyStatus?.ShowClearButton" [SortBy]="BabyStatus?.SortBy" [TabIndex]="BabyStatus?.TabIndex" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.BabyStatus" [Visible]="BabyStatus?.Visible" id="A22203" data-tid="A357631"></hvl-enum-combobox>
+                </div>
+                <div class="col-md-3" data-tid="A357632">
+                    <label class="control-label" id="A22199" data-tid="A357633">
+                        Ölüm Nedeni
+                    </label>
+                    <hvl-list-box #Validation (SelectedObjectChange)="onCauseOfDeathChanged($event)" [AutoCompleteDialogHeight]="CauseOfDeath?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="CauseOfDeath?.AutoCompleteDialogWidth" [AutoCompleteMode]="CauseOfDeath?.AutoCompleteMode" [BackColor]="CauseOfDeath?.BackColor" [DefinitionName]="CauseOfDeath?.ListDefName" [DisplayExpressionsCache]="babyInformationFormViewModel?.ListDefDisplayExpressions" [Enabled]="CauseOfDeath?.Enabled" [Font]="CauseOfDeath?.Font" [ForeColor]="CauseOfDeath?.ForeColor" [ListFilterExpression]="CauseOfDeath?.ListFilterExpression" [MinSearchLength]="CauseOfDeath?.MinSearchLength" [PopupDialogFieldConfig]="CauseOfDeath?.PopupDialogFieldConfig" [PopupDialogGridColumns]="CauseOfDeath?.PopupDialogGridColumns" [PopupDialogHeight]="CauseOfDeath?.PopupDialogHeight" [PopupDialogTitle]="CauseOfDeath?.PopupDialogTitle" [PopupDialogWidth]="CauseOfDeath?.PopupDialogWidth" [ReadOnly]="CauseOfDeath?.ReadOnly" [SearchMode]="CauseOfDeath?.SearchMode" [SearchTimeout]="CauseOfDeath?.SearchTimeout" [SelectedObject]="babyInformationFormViewModel?._BabyObstetricInformation?.CauseOfDeath" [TabIndex]="CauseOfDeath?.TabIndex" [Visible]="CauseOfDeath?.Visible" [width]="CauseOfDeath?.Width" id="A22316" data-tid="A357634"></hvl-list-box>
+                </div>
+                <div class="col-md-3" data-tid="A357635">
+                    <label class="control-label" id="A22200" data-tid="A357636">
+                        Ölüm Tarihi ve Saati
+                    </label>
+                    <hvl-date-picker #Validation (ValueChange)="onDatetimeOfDeathChanged($event)" [BackColor]="DatetimeOfDeath?.BackColor" [CustomFormat]="DatetimeOfDeath?.CustomFormat" [Enabled]="DatetimeOfDeath?.Enabled" [Font]="DatetimeOfDeath?.Font" [ForeColor]="DatetimeOfDeath?.ForeColor" [Format]="DatetimeOfDeath?.Format" [Max]="DatetimeOfDeath?.Max" [Min]="DatetimeOfDeath?.Min" [ReadOnly]="DatetimeOfDeath?.ReadOnly" [Required]="DatetimeOfDeath?.Required" [TabIndex]="DatetimeOfDeath?.TabIndex" [Value]="babyInformationFormViewModel?._BabyObstetricInformation?.DatetimeOfDeath" [Visible]="DatetimeOfDeath?.Visible" id="A22207" data-tid="A357637"></hvl-date-picker>
+                </div>
+                <div class="col-md-3" data-tid="A357638">
+                    <br data-tid="A357639" />
+                    <hvl-checkbox #Validation (ValueChange)="onShowLCDChanged($event)" [AllowThreeState]="ShowLCD?.ThreeState" [BackColor]="ShowLCD?.BackColor" [Enabled]="ShowLCD?.Enabled" [Font]="ShowLCD?.Font" [ForeColor]="ShowLCD?.ForeColor" [IsTitleLeft]="ShowLCD?.IsTitleLeft" [Margin]="ShowLCD?.Margin" [ReadOnly]="ShowLCD?.ReadOnly" [TabIndex]="ShowLCD?.TabIndex" [TitleTopPadding]="ShowLCD?.TitleTopPadding" [Title]="ShowLCD?.Title" [Value]="_BabyObstetricInformation.ShowLCD" [Visible]="ShowLCD?.Visible" data-tid="A357640"></hvl-checkbox>
+                </div>
+            </div>
+            <!-- ./ Ölü Bebek-->
+
+        </form>
+    </div>
+</div>
+
+
+
+
+<!--<pre id="A22386">
+    {{ _ViewModel | json }}</pre>-->

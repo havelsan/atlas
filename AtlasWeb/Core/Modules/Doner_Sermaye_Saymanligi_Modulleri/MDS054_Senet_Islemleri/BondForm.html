@@ -1,0 +1,314 @@
+﻿
+
+<NeStatePanelComponent [OutgoingTransitions]="bondFormViewModel?.OutgoingTransitions" [StateReports]="bondFormViewModel?.CurrentStateReports" [ObjectID]="bondFormViewModel?._Bond?.ObjectID" [ObjectDefID]="bondFormViewModel?._Bond?.ObjectDefID" [StateCommandsVisible]="StateCommandsVisible" [SaveCommandVisible]="SaveButtonVisibility" [CancelCommandVisible]="true" [CurrentStateDefID]="bondFormViewModel._Bond.CurrentStateDefID" [DropStateList]="DropStateList" (onSetState)="stateChange($event)" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()" id="A2095" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A324921">
+</NeStatePanelComponent>
+<div class="container-fluid" id="A2096" data-tid="A324922">
+    <form id="BondForm" class="form-horizontal" role="form" data-tid="A324923">
+        
+    </form>
+    <div class="row" id="A2097" data-tid="A324924">
+        <hvl-group-box class="col-sm-12" [Text]="grpBoxBondInfo.Text" id="A2098" data-tid="A324925">
+            <div class="row" id="A2099" data-tid="A324926">
+                <label class="control-label col-sm-2" id="A2100" data-tid="A324927">
+                    Senet No
+                </label>
+                <label class="control-label col-sm-3" id="A2101" data-tid="A324928">
+                    Düzenlenme Tarihi
+                </label>
+                <label class="control-label col-sm-2" id="A2102" data-tid="A324929">
+                    Tutar
+                </label>
+                <label class="control-label col-sm-2" id="A2103" data-tid="A324930">
+                    AvansTutarı
+                </label>
+                <label class="control-label col-sm-2" id="A2104" data-tid="A324931">
+                    Yapılandırılmış Senet No
+                </label>
+            </div>
+            <div class="row" id="A2105" data-tid="A324932">
+                <div class="col-sm-2" id="A2106" data-tid="A324933">
+                    <hvl-text-box #Validation (TextChange)="ontxtBondNoChanged($event)" [BackColor]="txtBondNo?.BackColor" [CharacterCasing]="txtBondNo?.CharacterCasing" [Enabled]="txtBondNo?.Enabled" [Font]="txtBondNo?.Font" [ForeColor]="txtBondNo?.ForeColor" [height]="txtBondNo?.Height" [InputFormat]="txtBondNo?.InputFormat" [InputTurkishCharacter]="txtBondNo?.InputTurkishCharacter" [IsNonNumeric]="txtBondNo?.IsNonNumeric" [MultiLine]="txtBondNo?.Multiline" [ReadOnly]="txtBondNo?.ReadOnly" [Required]="txtBondNo?.Required" [TabIndex]="txtBondNo?.TabIndex" [TextAlign]="txtBondNo?.TextAlign" [Text]="bondFormViewModel?._Bond?.BondDocument?.DocumentNo" [Visible]="txtBondNo?.Visible" id="A2107" data-tid="A324934"></hvl-text-box>
+                </div>
+                <div class="col-sm-3" id="A2108" data-tid="A324935">
+                    <hvl-date-picker #Validation (ValueChange)="ondtPickerBondDateChanged($event)" [BackColor]="dtPickerBondDate?.BackColor" [CustomFormat]="dtPickerBondDate?.CustomFormat" [Enabled]="dtPickerBondDate?.Enabled" [Font]="dtPickerBondDate?.Font" [ForeColor]="dtPickerBondDate?.ForeColor" [Format]="dtPickerBondDate?.Format" [Max]="dtPickerBondDate?.Max" [Min]="dtPickerBondDate?.Min" [ReadOnly]="dtPickerBondDate?.ReadOnly" [Required]="dtPickerBondDate?.Required" [TabIndex]="dtPickerBondDate?.TabIndex" [Value]="bondFormViewModel?._Bond?.Date" [Visible]="dtPickerBondDate?.Visible" id="A2109" data-tid="A324936"></hvl-date-picker>
+                </div>
+                <div class="col-sm-2" id="A2110" data-tid="A324937">
+                    <hvl-text-box #Validation (TextChange)="ontxtBondPriceChanged($event)" [BackColor]="txtBondPrice?.BackColor" [CharacterCasing]="txtBondPrice?.CharacterCasing" [Enabled]="txtBondPrice?.Enabled" [Font]="txtBondPrice?.Font" [ForeColor]="txtBondPrice?.ForeColor" [height]="txtBondPrice?.Height" [InputFormat]="txtBondPrice?.InputFormat" [InputTurkishCharacter]="txtBondPrice?.InputTurkishCharacter" [IsNonNumeric]="txtBondPrice?.IsNonNumeric" [MultiLine]="txtBondPrice?.Multiline" [ReadOnly]="txtBondPrice?.ReadOnly" [Required]="txtBondPrice?.Required" [TabIndex]="txtBondPrice?.TabIndex" [TextAlign]="txtBondPrice?.TextAlign" [Text]="bondFormViewModel?._Bond?.BondDocument?.TotalPrice" [Visible]="txtBondPrice?.Visible" id="A2111" data-tid="A324938"></hvl-text-box>
+                </div>
+                <div class="col-sm-2" id="A2112" data-tid="A324939">
+                    <hvl-text-box #Validation (TextChange)="ontxtAdvanceTakenChanged($event)" [BackColor]="txtAdvanceTaken?.BackColor" [CharacterCasing]="txtAdvanceTaken?.CharacterCasing" [Enabled]="txtAdvanceTaken?.Enabled" [Font]="txtAdvanceTaken?.Font" [ForeColor]="txtAdvanceTaken?.ForeColor" [height]="txtAdvanceTaken?.Height" [InputFormat]="txtAdvanceTaken?.InputFormat" [InputTurkishCharacter]="txtAdvanceTaken?.InputTurkishCharacter" [IsNonNumeric]="txtAdvanceTaken?.IsNonNumeric" [MultiLine]="txtAdvanceTaken?.Multiline" [ReadOnly]="txtAdvanceTaken?.ReadOnly" [Required]="txtAdvanceTaken?.Required" [TabIndex]="txtAdvanceTaken?.TabIndex" [TextAlign]="txtAdvanceTaken?.TextAlign" [Text]="bondFormViewModel?._Bond?.AdvanceTaken" [Visible]="txtAdvanceTaken?.Visible" id="A2113" data-tid="A324940"></hvl-text-box>
+                </div>
+                <div class="col-sm-2" id="A2114" data-tid="A324941">
+                    <hvl-text-box #Validation (TextChange)="ontxtRestructuredBondChanged($event)" [BackColor]="txtRestructuredBond?.BackColor" [CharacterCasing]="txtRestructuredBond?.CharacterCasing" [Enabled]="txtRestructuredBond?.Enabled" [Font]="txtRestructuredBond?.Font" [ForeColor]="txtRestructuredBond?.ForeColor" [height]="txtRestructuredBond?.Height" [InputFormat]="txtRestructuredBond?.InputFormat" [InputTurkishCharacter]="txtRestructuredBond?.InputTurkishCharacter" [IsNonNumeric]="txtRestructuredBond?.IsNonNumeric" [MultiLine]="txtRestructuredBond?.Multiline" [ReadOnly]="txtRestructuredBond?.ReadOnly" [Required]="txtRestructuredBond?.Required" [TabIndex]="txtRestructuredBond?.TabIndex" [TextAlign]="txtRestructuredBond?.TextAlign" [Text]="bondFormViewModel?._Bond?.OriginalBond?.BondDocument?.DocumentNo" [Visible]="txtRestructuredBond?.Visible" id="A2115" data-tid="A324942"></hvl-text-box>
+                </div>
+            </div>
+            <div class="row margin-top-10" id="A2116" data-tid="A324943">
+                <label class="control-label col-sm-3" id="A2117" data-tid="A324944">
+                    1. İhbarname Tarihi
+                </label>
+                <label class="control-label col-sm-3" id="A2118" data-tid="A324945">
+                    2. İhbarname Tarihi
+                </label>
+                <label class="control-label col-sm-5" id="A2119" data-tid="A324946">
+                    Açıklama
+                </label>
+            </div>
+            <div class="row" id="A2120" data-tid="A324947">
+                <div class="col-sm-3" id="A2121" data-tid="A324948">
+                    <hvl-date-picker #Validation (ValueChange)="ondtPickerFirstNoficationDateChanged($event)" [BackColor]="dtPickerFirstNoficationDate?.BackColor" [CustomFormat]="dtPickerFirstNoficationDate?.CustomFormat" [Enabled]="dtPickerFirstNoficationDate?.Enabled" [Font]="dtPickerFirstNoficationDate?.Font" [ForeColor]="dtPickerFirstNoficationDate?.ForeColor" [Format]="dtPickerFirstNoficationDate?.Format" [Max]="dtPickerFirstNoficationDate?.Max" [Min]="dtPickerFirstNoficationDate?.Min" [ReadOnly]="dtPickerFirstNoficationDate?.ReadOnly" [Required]="dtPickerFirstNoficationDate?.Required" [TabIndex]="dtPickerFirstNoficationDate?.TabIndex" [Value]="bondFormViewModel?._Bond?.FirstNotificationDate" [Visible]="dtPickerFirstNoficationDate?.Visible" id="A2122" data-tid="A324949"></hvl-date-picker>
+                </div>
+                <div class="col-sm-3" id="A2123" data-tid="A324950">
+                    <hvl-date-picker #Validation (ValueChange)="ondtPickerSecondNotificationDateChanged($event)" [BackColor]="dtPickerSecondNotificationDate?.BackColor" [CustomFormat]="dtPickerSecondNotificationDate?.CustomFormat" [Enabled]="dtPickerSecondNotificationDate?.Enabled" [Font]="dtPickerSecondNotificationDate?.Font" [ForeColor]="dtPickerSecondNotificationDate?.ForeColor" [Format]="dtPickerSecondNotificationDate?.Format" [Max]="dtPickerSecondNotificationDate?.Max" [Min]="dtPickerSecondNotificationDate?.Min" [ReadOnly]="dtPickerSecondNotificationDate?.ReadOnly" [Required]="dtPickerSecondNotificationDate?.Required" [TabIndex]="dtPickerSecondNotificationDate?.TabIndex" [Value]="bondFormViewModel?._Bond?.SecondNotificationDate" [Visible]="dtPickerSecondNotificationDate?.Visible" id="A2124" data-tid="A324951"></hvl-date-picker>
+                </div>
+                <div class="col-sm-5" id="A2125" data-tid="A324952">
+                    <hvl-text-box #Validation (TextChange)="ontxtBondDescriptionChanged($event)" [BackColor]="txtBondDescription?.BackColor" [CharacterCasing]="txtBondDescription?.CharacterCasing" [Enabled]="txtBondDescription?.Enabled" [Font]="txtBondDescription?.Font" [ForeColor]="txtBondDescription?.ForeColor" [height]="txtBondDescription?.Height" [InputFormat]="txtBondDescription?.InputFormat" [InputTurkishCharacter]="txtBondDescription?.InputTurkishCharacter" [IsNonNumeric]="txtBondDescription?.IsNonNumeric" [MultiLine]="txtBondDescription?.Multiline" [ReadOnly]="txtBondDescription?.ReadOnly" [Required]="txtBondDescription?.Required" [TabIndex]="txtBondDescription?.TabIndex" [TextAlign]="txtBondDescription?.TextAlign" [Text]="bondFormViewModel?._Bond?.BondDocument?.Description" [Visible]="txtBondDescription?.Visible" id="A2126" data-tid="A324953"></hvl-text-box>
+                </div>
+            </div>
+            <div class="row margin-top-10" id="A2127" data-tid="A324954">
+                <label [ngClass]="termsClass" class="control-label" id="A2128" data-tid="A324955">
+                    Vade Sayısı:
+                </label>
+            </div>
+            <div class="row" id="A2129" data-tid="A324956">
+                <div [ngClass]="termsClass" id="A2130" data-tid="A324957">
+                    <dx-text-box [(readOnly)]="txtNumberOfTermsReadOnly" valueChangeEvent="keyup" [(value)]="NumberOfTerms" (keypress)="txtNumberOfTermsKeyPress($event)" id="A2131" data-tid="A324958">
+
+                    </dx-text-box>
+                </div>
+                <div class="col-sm-1" id="A2132" data-tid="A324959">
+                    <hvl-button (BtnClicked)="btnCalcOnLick(false)" [BackColor]="btnCalcBondDetail?.BackColor" [Enabled]="btnCalcBondDetail?.Enabled" [Font]="btnCalcBondDetail?.Font" [ForeColor]="btnCalcBondDetail?.ForeColor" [height]="btnCalcBondDetail?.Height" [ReadOnly]="btnCalcBondDetail?.ReadOnly" [TabIndex]="btnCalcBondDetail?.TabIndex" [Text]="btnCalcBondDetail?.Text" [Visible]="btnCalcBondDetail?.Visible" id="A2133" data-tid="A324960"></hvl-button>
+                </div>
+            </div>
+        </hvl-group-box>
+    </div>
+    <div class="row" id="A2134" data-tid="A324961">
+        <dx-tab-panel [selectedIndex]="0" id="A2135" data-tid="A324962">
+            <dxi-item class="tabpanel-item" title="Borçlu Bilgileri" i18n-title="@@M11977" id="A2136" data-tid="A324963">
+                <div class="row" id="A2137" data-tid="A324964">
+                    <label class="control-label col-sm-2" id="A2138" data-tid="A324965">
+                        TC Kimlik No
+                    </label>
+                    <label class="control-label col-sm-2" id="A2139" data-tid="A324966">
+                        Cüzdan No
+                    </label>
+                    <label class="control-label col-sm-2" id="A2140" data-tid="A324967">
+                        Adı
+                    </label>
+                    <label class="control-label col-sm-2" id="A2141" data-tid="A324968">
+                        Soyadı
+                    </label>
+                </div>
+                <div class="row" id="A2142" data-tid="A324969">
+                    <div class="col-sm-2" id="A2143" data-tid="A324970">
+                        <dx-text-box valueChangeEvent="keyup" [readOnly]="txtUniqueRefNoReadOnly" [(value)]="bondFormViewModel._Bond.BondPayer.UniqueRefNo" [maxLength]="11" (keypress)="txtUniqueRefNoPaymentKeyPress($event,0)" id="A2144" data-tid="A324971">
+                        </dx-text-box>
+
+                    </div>
+                    <div class="col-sm-2" id="A2145" data-tid="A324972">
+                        <hvl-text-box #Validation (TextChange)="ontxtPayerIdentificationCardNoChanged($event)" [BackColor]="txtPayerIdentificationCardNo?.BackColor" [CharacterCasing]="txtPayerIdentificationCardNo?.CharacterCasing" [Enabled]="txtPayerIdentificationCardNo?.Enabled" [Font]="txtPayerIdentificationCardNo?.Font" [ForeColor]="txtPayerIdentificationCardNo?.ForeColor" [height]="txtPayerIdentificationCardNo?.Height" [InputFormat]="txtPayerIdentificationCardNo?.InputFormat" [InputTurkishCharacter]="txtPayerIdentificationCardNo?.InputTurkishCharacter" [IsNonNumeric]="txtPayerIdentificationCardNo?.IsNonNumeric" [MultiLine]="txtPayerIdentificationCardNo?.Multiline" [ReadOnly]="txtPayerIdentificationCardNo?.ReadOnly" [Required]="txtPayerIdentificationCardNo?.Required" [TabIndex]="txtPayerIdentificationCardNo?.TabIndex" [TextAlign]="txtPayerIdentificationCardNo?.TextAlign" [Text]="bondFormViewModel?._Bond?.BondPayer?.IdentificationCardNo" [Visible]="txtPayerIdentificationCardNo?.Visible" id="A2146" data-tid="A324973"></hvl-text-box>
+                    </div>
+                    <div class="col-sm-2" id="A2147" data-tid="A324974">
+                        <hvl-text-box #Validation (TextChange)="ontxtBondPayerNameChanged($event)" [BackColor]="txtBondPayerName?.BackColor" [CharacterCasing]="txtBondPayerName?.CharacterCasing" [Enabled]="txtBondPayerName?.Enabled" [Font]="txtBondPayerName?.Font" [ForeColor]="txtBondPayerName?.ForeColor" [height]="txtBondPayerName?.Height" [InputFormat]="txtBondPayerName?.InputFormat" [InputTurkishCharacter]="txtBondPayerName?.InputTurkishCharacter" [IsNonNumeric]="txtBondPayerName?.IsNonNumeric" [MultiLine]="txtBondPayerName?.Multiline" [ReadOnly]="txtBondPayerName?.ReadOnly" [Required]="txtBondPayerName?.Required" [TabIndex]="txtBondPayerName?.TabIndex" [TextAlign]="txtBondPayerName?.TextAlign" [Text]="bondFormViewModel?._Bond?.BondPayer?.Name" [Visible]="txtBondPayerName?.Visible" id="A2148" data-tid="A324975"></hvl-text-box>
+                    </div>
+                    <div class="col-sm-2" id="A2149" data-tid="A324976">
+                        <hvl-text-box #Validation (TextChange)="ontxtPayerSurnameChanged($event)" [BackColor]="txtPayerSurname?.BackColor" [CharacterCasing]="txtPayerSurname?.CharacterCasing" [Enabled]="txtPayerSurname?.Enabled" [Font]="txtPayerSurname?.Font" [ForeColor]="txtPayerSurname?.ForeColor" [height]="txtPayerSurname?.Height" [InputFormat]="txtPayerSurname?.InputFormat" [InputTurkishCharacter]="txtPayerSurname?.InputTurkishCharacter" [IsNonNumeric]="txtPayerSurname?.IsNonNumeric" [MultiLine]="txtPayerSurname?.Multiline" [ReadOnly]="txtPayerSurname?.ReadOnly" [Required]="txtPayerSurname?.Required" [TabIndex]="txtPayerSurname?.TabIndex" [TextAlign]="txtPayerSurname?.TextAlign" [Text]="bondFormViewModel?._Bond?.BondPayer?.Surname" [Visible]="txtPayerSurname?.Visible" id="A2150" data-tid="A324977"></hvl-text-box>
+                    </div>
+                </div>
+                <div class="row margin-top-10" id="A2151" data-tid="A324978">
+                    <label class="control-label col-sm-2" id="A2152" data-tid="A324979">
+                        Baba Adı
+                    </label>
+                    <label class="control-label col-sm-2" id="A2153" data-tid="A324980">
+                        Anne Adı
+                    </label>
+                    <label class="control-label col-sm-2" id="A2154" data-tid="A324981">
+                        Doğum Yeri
+                    </label>
+                    <label class="control-label col-sm-2" id="A2155" data-tid="A324982">
+                        Doğum Tarihi
+                    </label>
+                </div>
+                <div class="row" id="A2156" data-tid="A324983">
+                    <div class="col-sm-2" id="A2157" data-tid="A324984">
+                        <hvl-text-box #Validation (TextChange)="ontxtPayerFatherNameChanged($event)" [BackColor]="txtPayerFatherName?.BackColor" [CharacterCasing]="txtPayerFatherName?.CharacterCasing" [Enabled]="txtPayerFatherName?.Enabled" [Font]="txtPayerFatherName?.Font" [ForeColor]="txtPayerFatherName?.ForeColor" [height]="txtPayerFatherName?.Height" [InputFormat]="txtPayerFatherName?.InputFormat" [InputTurkishCharacter]="txtPayerFatherName?.InputTurkishCharacter" [IsNonNumeric]="txtPayerFatherName?.IsNonNumeric" [MultiLine]="txtPayerFatherName?.Multiline" [ReadOnly]="txtPayerFatherName?.ReadOnly" [Required]="txtPayerFatherName?.Required" [TabIndex]="txtPayerFatherName?.TabIndex" [TextAlign]="txtPayerFatherName?.TextAlign" [Text]="bondFormViewModel?._Bond?.BondPayer?.FatherName" [Visible]="txtPayerFatherName?.Visible" id="A2158" data-tid="A324985"></hvl-text-box>
+                    </div>
+                    <div class="col-sm-2" id="A2159" data-tid="A324986">
+                        <hvl-text-box #Validation (TextChange)="ontxtPayerMotherNameChanged($event)" [BackColor]="txtPayerMotherName?.BackColor" [CharacterCasing]="txtPayerMotherName?.CharacterCasing" [Enabled]="txtPayerMotherName?.Enabled" [Font]="txtPayerMotherName?.Font" [ForeColor]="txtPayerMotherName?.ForeColor" [height]="txtPayerMotherName?.Height" [InputFormat]="txtPayerMotherName?.InputFormat" [InputTurkishCharacter]="txtPayerMotherName?.InputTurkishCharacter" [IsNonNumeric]="txtPayerMotherName?.IsNonNumeric" [MultiLine]="txtPayerMotherName?.Multiline" [ReadOnly]="txtPayerMotherName?.ReadOnly" [Required]="txtPayerMotherName?.Required" [TabIndex]="txtPayerMotherName?.TabIndex" [TextAlign]="txtPayerMotherName?.TextAlign" [Text]="bondFormViewModel?._Bond?.BondPayer?.MotherName" [Visible]="txtPayerMotherName?.Visible" id="A2160" data-tid="A324987"></hvl-text-box>
+                    </div>
+                    <div class="col-sm-2" id="A2161" data-tid="A324988">
+                        <dx-text-box [(value)]="bondFormViewModel._Bond.BondPayer.BirthPlace" [readOnly]="txtBirthPlaceReadOnly" id="A2162" data-tid="A324989"></dx-text-box>
+                    </div>
+                    <div class="col-sm-2" id="A2163" data-tid="A324990">
+                        <hvl-date-picker #Validation (ValueChange)="ondtPickerPayerBirthDateChanged($event)" [BackColor]="dtPickerPayerBirthDate?.BackColor" [CustomFormat]="dtPickerPayerBirthDate?.CustomFormat" [Enabled]="dtPickerPayerBirthDate?.Enabled" [Font]="dtPickerPayerBirthDate?.Font" [ForeColor]="dtPickerPayerBirthDate?.ForeColor" [Format]="dtPickerPayerBirthDate?.Format" [Max]="dtPickerPayerBirthDate?.Max" [Min]="dtPickerPayerBirthDate?.Min" [ReadOnly]="dtPickerPayerBirthDate?.ReadOnly" [Required]="dtPickerPayerBirthDate?.Required" [TabIndex]="dtPickerPayerBirthDate?.TabIndex" [Value]="bondFormViewModel?._Bond?.BondPayer?.BirthDate" [Visible]="dtPickerPayerBirthDate?.Visible" id="A2164" data-tid="A324991"></hvl-date-picker>
+                    </div>
+                </div>
+                <div class="row margin-top-10" id="A2165" data-tid="A324992">
+                    <label class="control-label col-sm-2" id="A2166" data-tid="A324993">
+                        Nüfusa Kayıtlı Olduğu il
+                    </label>
+                    <label class="control-label col-sm-2" id="A2167" data-tid="A324994">
+                        Nüfusa Kayıtlı Olduğu İlçe
+                    </label>
+                </div>
+                <div class="row" id="A2168" data-tid="A324995">
+                    <div class="col-sm-2" id="A2169" data-tid="A324996">
+                        <hvl-list-box #Validation (SelectedObjectChange)="onTTListBoxPayerCityOfRegistryChanged($event)" [AutoCompleteDialogHeight]="TTListBoxPayerCityOfRegistry?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="TTListBoxPayerCityOfRegistry?.AutoCompleteDialogWidth" [AutoCompleteMode]="TTListBoxPayerCityOfRegistry?.AutoCompleteMode" [BackColor]="TTListBoxPayerCityOfRegistry?.BackColor" [DefinitionName]="TTListBoxPayerCityOfRegistry?.ListDefName" [DisplayExpressionsCache]="bondFormViewModel?.ListDefDisplayExpressions" [Enabled]="TTListBoxPayerCityOfRegistry?.Enabled" [Font]="TTListBoxPayerCityOfRegistry?.Font" [ForeColor]="TTListBoxPayerCityOfRegistry?.ForeColor" [ListFilterExpression]="TTListBoxPayerCityOfRegistry?.ListFilterExpression" [MinSearchLength]="TTListBoxPayerCityOfRegistry?.MinSearchLength" [PopupDialogFieldConfig]="TTListBoxPayerCityOfRegistry?.PopupDialogFieldConfig" [PopupDialogGridColumns]="TTListBoxPayerCityOfRegistry?.PopupDialogGridColumns" [PopupDialogHeight]="TTListBoxPayerCityOfRegistry?.PopupDialogHeight" [PopupDialogTitle]="TTListBoxPayerCityOfRegistry?.PopupDialogTitle" [PopupDialogWidth]="TTListBoxPayerCityOfRegistry?.PopupDialogWidth" [ReadOnly]="TTListBoxPayerCityOfRegistry?.ReadOnly" [SearchMode]="TTListBoxPayerCityOfRegistry?.SearchMode" [SearchTimeout]="TTListBoxPayerCityOfRegistry?.SearchTimeout" [SelectedObject]="bondFormViewModel?._Bond?.BondPayer?.CityOfRegistry" [TabIndex]="TTListBoxPayerCityOfRegistry?.TabIndex" [Visible]="TTListBoxPayerCityOfRegistry?.Visible" [width]="TTListBoxPayerCityOfRegistry?.Width" id="A2170" data-tid="A324997"></hvl-list-box>
+                    </div>
+                    <div class="col-sm-2" id="A2171" data-tid="A324998">
+                        <hvl-list-box #Validation (SelectedObjectChange)="onTTListBoxPayerTownOfRegistryChanged($event)" [AutoCompleteDialogHeight]="TTListBoxPayerTownOfRegistry?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="TTListBoxPayerTownOfRegistry?.AutoCompleteDialogWidth" [AutoCompleteMode]="TTListBoxPayerTownOfRegistry?.AutoCompleteMode" [BackColor]="TTListBoxPayerTownOfRegistry?.BackColor" [DefinitionName]="TTListBoxPayerTownOfRegistry?.ListDefName" [DisplayExpressionsCache]="bondFormViewModel?.ListDefDisplayExpressions" [Enabled]="TTListBoxPayerTownOfRegistry?.Enabled" [Font]="TTListBoxPayerTownOfRegistry?.Font" [ForeColor]="TTListBoxPayerTownOfRegistry?.ForeColor" [ListFilterExpression]="TTListBoxPayerTownOfRegistry?.ListFilterExpression" [MinSearchLength]="TTListBoxPayerTownOfRegistry?.MinSearchLength" [PopupDialogFieldConfig]="TTListBoxPayerTownOfRegistry?.PopupDialogFieldConfig" [PopupDialogGridColumns]="TTListBoxPayerTownOfRegistry?.PopupDialogGridColumns" [PopupDialogHeight]="TTListBoxPayerTownOfRegistry?.PopupDialogHeight" [PopupDialogTitle]="TTListBoxPayerTownOfRegistry?.PopupDialogTitle" [PopupDialogWidth]="TTListBoxPayerTownOfRegistry?.PopupDialogWidth" [ReadOnly]="TTListBoxPayerTownOfRegistry?.ReadOnly" [SearchMode]="TTListBoxPayerTownOfRegistry?.SearchMode" [SearchTimeout]="TTListBoxPayerTownOfRegistry?.SearchTimeout" [SelectedObject]="bondFormViewModel?._Bond?.BondPayer?.TownOfRegistrySKRS" [TabIndex]="TTListBoxPayerTownOfRegistry?.TabIndex" [Visible]="TTListBoxPayerTownOfRegistry?.Visible" [width]="TTListBoxPayerTownOfRegistry?.Width" id="A2172" data-tid="A324999"></hvl-list-box>
+                    </div>
+                </div>
+                <div class="row margin-top-10" id="A2173" data-tid="A325000">
+                    <label class="control-label col-sm-6" id="A2174" data-tid="A325001">
+                        Adres
+                    </label>
+                    <label class="control-label col-sm-2" id="A2175" data-tid="A325002">
+                        İli
+                    </label>
+                    <label class="control-label col-sm-2" id="A2176" data-tid="A325003">
+                        İlçesi
+                    </label>
+                </div>
+                <div class="row" id="A2177" data-tid="A325004">
+                    <div class="col-sm-6" id="A2178" data-tid="A325005">
+                        <hvl-text-box #Validation (TextChange)="ontxtPayerAddressChanged($event)" [BackColor]="txtPayerAddress?.BackColor" [CharacterCasing]="txtPayerAddress?.CharacterCasing" [Enabled]="txtPayerAddress?.Enabled" [Font]="txtPayerAddress?.Font" [ForeColor]="txtPayerAddress?.ForeColor" [height]="txtPayerAddress?.Height" [InputFormat]="txtPayerAddress?.InputFormat" [InputTurkishCharacter]="txtPayerAddress?.InputTurkishCharacter" [IsNonNumeric]="txtPayerAddress?.IsNonNumeric" [MultiLine]="txtPayerAddress?.Multiline" [ReadOnly]="txtPayerAddress?.ReadOnly" [Required]="txtPayerAddress?.Required" [TabIndex]="txtPayerAddress?.TabIndex" [TextAlign]="txtPayerAddress?.TextAlign" [Text]="bondFormViewModel?._Bond?.BondPayer?.Address" [Visible]="txtPayerAddress?.Visible" id="A2179" data-tid="A325006"></hvl-text-box>
+                    </div>
+                    <div class="col-sm-2" id="A2180" data-tid="A325007">
+                        <hvl-list-box #Validation (SelectedObjectChange)="onTTListBoxPayerHomeCityChanged($event)" [AutoCompleteDialogHeight]="TTListBoxPayerHomeCity?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="TTListBoxPayerHomeCity?.AutoCompleteDialogWidth" [AutoCompleteMode]="TTListBoxPayerHomeCity?.AutoCompleteMode" [BackColor]="TTListBoxPayerHomeCity?.BackColor" [DefinitionName]="TTListBoxPayerHomeCity?.ListDefName" [DisplayExpressionsCache]="bondFormViewModel?.ListDefDisplayExpressions" [Enabled]="TTListBoxPayerHomeCity?.Enabled" [Font]="TTListBoxPayerHomeCity?.Font" [ForeColor]="TTListBoxPayerHomeCity?.ForeColor" [ListFilterExpression]="TTListBoxPayerHomeCity?.ListFilterExpression" [MinSearchLength]="TTListBoxPayerHomeCity?.MinSearchLength" [PopupDialogFieldConfig]="TTListBoxPayerHomeCity?.PopupDialogFieldConfig" [PopupDialogGridColumns]="TTListBoxPayerHomeCity?.PopupDialogGridColumns" [PopupDialogHeight]="TTListBoxPayerHomeCity?.PopupDialogHeight" [PopupDialogTitle]="TTListBoxPayerHomeCity?.PopupDialogTitle" [PopupDialogWidth]="TTListBoxPayerHomeCity?.PopupDialogWidth" [ReadOnly]="TTListBoxPayerHomeCity?.ReadOnly" [SearchMode]="TTListBoxPayerHomeCity?.SearchMode" [SearchTimeout]="TTListBoxPayerHomeCity?.SearchTimeout" [SelectedObject]="bondFormViewModel?._Bond?.BondPayer?.HomeCity" [TabIndex]="TTListBoxPayerHomeCity?.TabIndex" [Visible]="TTListBoxPayerHomeCity?.Visible" [width]="TTListBoxPayerHomeCity?.Width" id="A2181" data-tid="A325008"></hvl-list-box>
+                    </div>
+                    <div class="col-sm-2" id="A2182" data-tid="A325009">
+                        <hvl-list-box #Validation (SelectedObjectChange)="onTTListBoxPayerHomeTownChanged($event)" [AutoCompleteDialogHeight]="TTListBoxPayerHomeTown?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="TTListBoxPayerHomeTown?.AutoCompleteDialogWidth" [AutoCompleteMode]="TTListBoxPayerHomeTown?.AutoCompleteMode" [BackColor]="TTListBoxPayerHomeTown?.BackColor" [DefinitionName]="TTListBoxPayerHomeTown?.ListDefName" [DisplayExpressionsCache]="bondFormViewModel?.ListDefDisplayExpressions" [Enabled]="TTListBoxPayerHomeTown?.Enabled" [Font]="TTListBoxPayerHomeTown?.Font" [ForeColor]="TTListBoxPayerHomeTown?.ForeColor" [ListFilterExpression]="TTListBoxPayerHomeTown?.ListFilterExpression" [MinSearchLength]="TTListBoxPayerHomeTown?.MinSearchLength" [PopupDialogFieldConfig]="TTListBoxPayerHomeTown?.PopupDialogFieldConfig" [PopupDialogGridColumns]="TTListBoxPayerHomeTown?.PopupDialogGridColumns" [PopupDialogHeight]="TTListBoxPayerHomeTown?.PopupDialogHeight" [PopupDialogTitle]="TTListBoxPayerHomeTown?.PopupDialogTitle" [PopupDialogWidth]="TTListBoxPayerHomeTown?.PopupDialogWidth" [ReadOnly]="TTListBoxPayerHomeTown?.ReadOnly" [SearchMode]="TTListBoxPayerHomeTown?.SearchMode" [SearchTimeout]="TTListBoxPayerHomeTown?.SearchTimeout" [SelectedObject]="bondFormViewModel?._Bond?.BondPayer?.HomeTown" [TabIndex]="TTListBoxPayerHomeTown?.TabIndex" [Visible]="TTListBoxPayerHomeTown?.Visible" [width]="TTListBoxPayerHomeTown?.Width" id="A2183" data-tid="A325010"></hvl-list-box>
+                    </div>
+                </div>
+                <div class="row margin-top-10" id="A2184" data-tid="A325011">
+                    <label class="control-label col-sm-2" id="A2185" data-tid="A325012">
+                        Telefon
+                    </label>
+                    <label class="control-label col-sm-8" id="A2186" data-tid="A325013">
+                        Açıklama
+                    </label>
+                </div>
+                <div class="row" id="A2187" data-tid="A325014">
+                    <div class="col-sm-2" id="A2188" data-tid="A325015">
+                        <hvl-masktext-box #Validation (TextChange)="onBondPayerPhoneChanged($event)" [BackColor]="BONDPAYERPHONE?.BackColor" [Enabled]="BONDPAYERPHONE?.Enabled" [Font]="BONDPAYERPHONE?.Font" [ForeColor]="BONDPAYERPHONE?.ForeColor" [InputTurkishCharacter]="BONDPAYERPHONE?.InputTurkishCharacter" [Mask]="BONDPAYERPHONE?.Mask" [ReadOnly]="BONDPAYERPHONE?.ReadOnly" [TabIndex]="BONDPAYERPHONE?.TabIndex" [TextAlign]="BONDPAYERPHONE?.TextAlign" [Text]="bondFormViewModel?._Bond?.BondPayer?.Phone" [Visible]="BONDPAYERPHONE?.Visible" id="A2189" data-tid="A325016"></hvl-masktext-box>
+                    </div>
+                    <div class="col-sm-8" id="A2190" data-tid="A325017">
+                        <hvl-text-box #Validation (TextChange)="ontxtBondPayerDescriptionChanged($event)" [BackColor]="txtBondPayerDescription?.BackColor" [CharacterCasing]="txtBondPayerDescription?.CharacterCasing" [Enabled]="txtBondPayerDescription?.Enabled" [Font]="txtBondPayerDescription?.Font" [ForeColor]="txtBondPayerDescription?.ForeColor" [height]="txtBondPayerDescription?.Height" [InputFormat]="txtBondPayerDescription?.InputFormat" [InputTurkishCharacter]="txtBondPayerDescription?.InputTurkishCharacter" [IsNonNumeric]="txtBondPayerDescription?.IsNonNumeric" [MultiLine]="txtBondPayerDescription?.Multiline" [ReadOnly]="txtBondPayerDescription?.ReadOnly" [Required]="txtBondPayerDescription?.Required" [TabIndex]="txtBondPayerDescription?.TabIndex" [TextAlign]="txtBondPayerDescription?.TextAlign" [Text]="bondFormViewModel?._Bond?.BondPayer?.Description" [Visible]="txtBondPayerDescription?.Visible" id="A2191" data-tid="A325018"></hvl-text-box>
+                    </div>
+                </div>
+            </dxi-item>
+            <dxi-item class="tabpanel-item" title="Kefil Bilgileri" i18n-title="@@M17473" id="A2192" data-tid="A325019">
+                <div class="row" id="A2193" data-tid="A325020">
+                    <label class="control-label col-sm-2" id="A2194" data-tid="A325021">
+                        TC Kimlik No
+                    </label>
+                    <label class="control-label col-sm-2" id="A2195" data-tid="A325022">
+                        Cüzdan No
+                    </label>
+                    <label class="control-label col-sm-2" id="A2196" data-tid="A325023">
+                        Adı
+                    </label>
+                    <label class="control-label col-sm-2" id="A2197" data-tid="A325024">
+                        Soyadı
+                    </label>
+                </div>
+                <div class="row" id="A2198" data-tid="A325025">
+                    <div class="col-sm-2" id="A2199" data-tid="A325026">
+                        <dx-text-box valueChangeEvent="keyup" [readOnly]="txtUniqueRefNoReadOnly" [(value)]="bondFormViewModel._Bond.FirstBondGuarantor.UniqueRefNo" [maxLength]="11" (keypress)="txtUniqueRefNoPaymentKeyPress($event,1)" (onValueChanged)="ontxtFirstGuarantorUniqueRefNoChanged($event)" id="A2200" data-tid="A325027">
+
+                        </dx-text-box>
+                    </div>
+                    <div class="col-sm-2" id="A2201" data-tid="A325028">
+                        <hvl-text-box #Validation (TextChange)="ontxtFirstGuarantorIdentificationCardNoChanged($event)" [BackColor]="txtFirstGuarantorIdentificationCardNo?.BackColor" [CharacterCasing]="txtFirstGuarantorIdentificationCardNo?.CharacterCasing" [Enabled]="txtFirstGuarantorIdentificationCardNo?.Enabled" [Font]="txtFirstGuarantorIdentificationCardNo?.Font" [ForeColor]="txtFirstGuarantorIdentificationCardNo?.ForeColor" [height]="txtFirstGuarantorIdentificationCardNo?.Height" [InputFormat]="txtFirstGuarantorIdentificationCardNo?.InputFormat" [InputTurkishCharacter]="txtFirstGuarantorIdentificationCardNo?.InputTurkishCharacter" [IsNonNumeric]="txtFirstGuarantorIdentificationCardNo?.IsNonNumeric" [MultiLine]="txtFirstGuarantorIdentificationCardNo?.Multiline" [ReadOnly]="txtFirstGuarantorIdentificationCardNo?.ReadOnly" [Required]="txtFirstGuarantorIdentificationCardNo?.Required" [TabIndex]="txtFirstGuarantorIdentificationCardNo?.TabIndex" [TextAlign]="txtFirstGuarantorIdentificationCardNo?.TextAlign" [Text]="bondFormViewModel?._Bond?.FirstBondGuarantor?.IdentificationCardNo" [Visible]="txtFirstGuarantorIdentificationCardNo?.Visible" id="A2202" data-tid="A325029"></hvl-text-box>
+                    </div>
+                    <div class="col-sm-2" id="A2203" data-tid="A325030">
+                        <hvl-text-box #Validation (TextChange)="ontxtFirstGuarantorNameChanged($event)" [BackColor]="txtFirstGuarantorName?.BackColor" [CharacterCasing]="txtFirstGuarantorName?.CharacterCasing" [Enabled]="txtFirstGuarantorName?.Enabled" [Font]="txtFirstGuarantorName?.Font" [ForeColor]="txtFirstGuarantorName?.ForeColor" [height]="txtFirstGuarantorName?.Height" [InputFormat]="txtFirstGuarantorName?.InputFormat" [InputTurkishCharacter]="txtFirstGuarantorName?.InputTurkishCharacter" [IsNonNumeric]="txtFirstGuarantorName?.IsNonNumeric" [MultiLine]="txtFirstGuarantorName?.Multiline" [ReadOnly]="txtFirstGuarantorName?.ReadOnly" [Required]="txtFirstGuarantorName?.Required" [TabIndex]="txtFirstGuarantorName?.TabIndex" [TextAlign]="txtFirstGuarantorName?.TextAlign" [Text]="bondFormViewModel?._Bond?.FirstBondGuarantor?.Name" [Visible]="txtFirstGuarantorName?.Visible" id="A2204" data-tid="A325031"></hvl-text-box>
+                    </div>
+                    <div class="col-sm-2" id="A2205" data-tid="A325032">
+                        <hvl-text-box #Validation (TextChange)="ontxtFirstGuarantorSurnameChanged($event)" [BackColor]="txtFirstGuarantorSurname?.BackColor" [CharacterCasing]="txtFirstGuarantorSurname?.CharacterCasing" [Enabled]="txtFirstGuarantorSurname?.Enabled" [Font]="txtFirstGuarantorSurname?.Font" [ForeColor]="txtFirstGuarantorSurname?.ForeColor" [height]="txtFirstGuarantorSurname?.Height" [InputFormat]="txtFirstGuarantorSurname?.InputFormat" [InputTurkishCharacter]="txtFirstGuarantorSurname?.InputTurkishCharacter" [IsNonNumeric]="txtFirstGuarantorSurname?.IsNonNumeric" [MultiLine]="txtFirstGuarantorSurname?.Multiline" [ReadOnly]="txtFirstGuarantorSurname?.ReadOnly" [Required]="txtFirstGuarantorSurname?.Required" [TabIndex]="txtFirstGuarantorSurname?.TabIndex" [TextAlign]="txtFirstGuarantorSurname?.TextAlign" [Text]="bondFormViewModel?._Bond?.FirstBondGuarantor?.Surname" [Visible]="txtFirstGuarantorSurname?.Visible" id="A2206" data-tid="A325033"></hvl-text-box>
+                    </div>
+                </div>
+                <div class="row margin-top-10" id="A2207" data-tid="A325034">
+                    <label class="control-label col-sm-2" id="A2208" data-tid="A325035">
+                        Baba Adı
+                    </label>
+                    <label class="control-label col-sm-2" id="A2209" data-tid="A325036">
+                        Anne Adı
+                    </label>
+                    <label class="control-label col-sm-2" id="A2210" data-tid="A325037">
+                        Doğum Yeri
+                    </label>
+                    <label class="control-label col-sm-2" id="A2211" data-tid="A325038">
+                        Doğum Tarihi
+                    </label>
+                </div>
+                <div class="row" id="A2212" data-tid="A325039">
+                    <div class="col-sm-2" id="A2213" data-tid="A325040">
+                        <hvl-text-box #Validation (TextChange)="ontxtFirstGuarantorFatherNameChanged($event)" [BackColor]="txtFirstGuarantorFatherName?.BackColor" [CharacterCasing]="txtFirstGuarantorFatherName?.CharacterCasing" [Enabled]="txtFirstGuarantorFatherName?.Enabled" [Font]="txtFirstGuarantorFatherName?.Font" [ForeColor]="txtFirstGuarantorFatherName?.ForeColor" [height]="txtFirstGuarantorFatherName?.Height" [InputFormat]="txtFirstGuarantorFatherName?.InputFormat" [InputTurkishCharacter]="txtFirstGuarantorFatherName?.InputTurkishCharacter" [IsNonNumeric]="txtFirstGuarantorFatherName?.IsNonNumeric" [MultiLine]="txtFirstGuarantorFatherName?.Multiline" [ReadOnly]="txtFirstGuarantorFatherName?.ReadOnly" [Required]="txtFirstGuarantorFatherName?.Required" [TabIndex]="txtFirstGuarantorFatherName?.TabIndex" [TextAlign]="txtFirstGuarantorFatherName?.TextAlign" [Text]="bondFormViewModel?._Bond?.FirstBondGuarantor?.FatherName" [Visible]="txtFirstGuarantorFatherName?.Visible" id="A2214" data-tid="A325041"></hvl-text-box>
+                    </div>
+                    <div class="col-sm-2" id="A2215" data-tid="A325042">
+                        <hvl-text-box #Validation (TextChange)="ontxtFirstGuarantorMotherNameChanged($event)" [BackColor]="txtFirstGuarantorMotherName?.BackColor" [CharacterCasing]="txtFirstGuarantorMotherName?.CharacterCasing" [Enabled]="txtFirstGuarantorMotherName?.Enabled" [Font]="txtFirstGuarantorMotherName?.Font" [ForeColor]="txtFirstGuarantorMotherName?.ForeColor" [height]="txtFirstGuarantorMotherName?.Height" [InputFormat]="txtFirstGuarantorMotherName?.InputFormat" [InputTurkishCharacter]="txtFirstGuarantorMotherName?.InputTurkishCharacter" [IsNonNumeric]="txtFirstGuarantorMotherName?.IsNonNumeric" [MultiLine]="txtFirstGuarantorMotherName?.Multiline" [ReadOnly]="txtFirstGuarantorMotherName?.ReadOnly" [Required]="txtFirstGuarantorMotherName?.Required" [TabIndex]="txtFirstGuarantorMotherName?.TabIndex" [TextAlign]="txtFirstGuarantorMotherName?.TextAlign" [Text]="bondFormViewModel?._Bond?.FirstBondGuarantor?.MotherName" [Visible]="txtFirstGuarantorMotherName?.Visible" id="A2216" data-tid="A325043"></hvl-text-box>
+                    </div>
+                    <div class="col-sm-2" id="A2217" data-tid="A325044">
+                        <dx-text-box [(value)]="bondFormViewModel._Bond.FirstBondGuarantor.BirthPlace" [readOnly]="txtBirthPlaceReadOnly" id="A2218" data-tid="A325045"></dx-text-box>
+                    </div>
+                    <div class="col-sm-2" id="A2219" data-tid="A325046">
+                        <hvl-date-picker #Validation (ValueChange)="onTTListBoxFirstGuarantorBirthDateChanged($event)" [BackColor]="TTListBoxFirstGuarantorBirthDate?.BackColor" [CustomFormat]="TTListBoxFirstGuarantorBirthDate?.CustomFormat" [Enabled]="TTListBoxFirstGuarantorBirthDate?.Enabled" [Font]="TTListBoxFirstGuarantorBirthDate?.Font" [ForeColor]="TTListBoxFirstGuarantorBirthDate?.ForeColor" [Format]="TTListBoxFirstGuarantorBirthDate?.Format" [Max]="TTListBoxFirstGuarantorBirthDate?.Max" [Min]="TTListBoxFirstGuarantorBirthDate?.Min" [ReadOnly]="TTListBoxFirstGuarantorBirthDate?.ReadOnly" [Required]="TTListBoxFirstGuarantorBirthDate?.Required" [TabIndex]="TTListBoxFirstGuarantorBirthDate?.TabIndex" [Value]="bondFormViewModel?._Bond?.FirstBondGuarantor?.BirthDate" [Visible]="TTListBoxFirstGuarantorBirthDate?.Visible" id="A2220" data-tid="A325047"></hvl-date-picker>
+                    </div>
+                </div>
+                <div class="row margin-top-10" id="A2221" data-tid="A325048">
+                    <label class="control-label col-sm-2" id="A2222" data-tid="A325049">
+                        İli
+                    </label>
+                    <label class="control-label col-sm-2" id="A2223" data-tid="A325050">
+                        İlçesi
+                    </label>
+                    <label class="control-label col-sm-2" id="A2224" data-tid="A325051">
+                        Adres
+                    </label>
+                </div>
+                <div class="row" id="A2225" data-tid="A325052">
+                    <div class="col-sm-2" id="A2226" data-tid="A325053">
+                        <hvl-list-box #Validation (SelectedObjectChange)="onTTListBoxFirstGuarantorHomeCityChanged($event)" [AutoCompleteDialogHeight]="TTListBoxFirstGuarantorHomeCity?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="TTListBoxFirstGuarantorHomeCity?.AutoCompleteDialogWidth" [AutoCompleteMode]="TTListBoxFirstGuarantorHomeCity?.AutoCompleteMode" [BackColor]="TTListBoxFirstGuarantorHomeCity?.BackColor" [DefinitionName]="TTListBoxFirstGuarantorHomeCity?.ListDefName" [DisplayExpressionsCache]="bondFormViewModel?.ListDefDisplayExpressions" [Enabled]="TTListBoxFirstGuarantorHomeCity?.Enabled" [Font]="TTListBoxFirstGuarantorHomeCity?.Font" [ForeColor]="TTListBoxFirstGuarantorHomeCity?.ForeColor" [ListFilterExpression]="TTListBoxFirstGuarantorHomeCity?.ListFilterExpression" [MinSearchLength]="TTListBoxFirstGuarantorHomeCity?.MinSearchLength" [PopupDialogFieldConfig]="TTListBoxFirstGuarantorHomeCity?.PopupDialogFieldConfig" [PopupDialogGridColumns]="TTListBoxFirstGuarantorHomeCity?.PopupDialogGridColumns" [PopupDialogHeight]="TTListBoxFirstGuarantorHomeCity?.PopupDialogHeight" [PopupDialogTitle]="TTListBoxFirstGuarantorHomeCity?.PopupDialogTitle" [PopupDialogWidth]="TTListBoxFirstGuarantorHomeCity?.PopupDialogWidth" [ReadOnly]="TTListBoxFirstGuarantorHomeCity?.ReadOnly" [SearchMode]="TTListBoxFirstGuarantorHomeCity?.SearchMode" [SearchTimeout]="TTListBoxFirstGuarantorHomeCity?.SearchTimeout" [SelectedObject]="bondFormViewModel?._Bond?.FirstBondGuarantor?.HomeCity" [TabIndex]="TTListBoxFirstGuarantorHomeCity?.TabIndex" [Visible]="TTListBoxFirstGuarantorHomeCity?.Visible" [width]="TTListBoxFirstGuarantorHomeCity?.Width" id="A2227" data-tid="A325054"></hvl-list-box>
+                    </div>
+                    <div class="col-sm-2" id="A2228" data-tid="A325055">
+                        <hvl-list-box #Validation (SelectedObjectChange)="onTTListBoxFirstGuarantorHomeTownChanged($event)" [AutoCompleteDialogHeight]="TTListBoxFirstGuarantorHomeTown?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="TTListBoxFirstGuarantorHomeTown?.AutoCompleteDialogWidth" [AutoCompleteMode]="TTListBoxFirstGuarantorHomeTown?.AutoCompleteMode" [BackColor]="TTListBoxFirstGuarantorHomeTown?.BackColor" [DefinitionName]="TTListBoxFirstGuarantorHomeTown?.ListDefName" [DisplayExpressionsCache]="bondFormViewModel?.ListDefDisplayExpressions" [Enabled]="TTListBoxFirstGuarantorHomeTown?.Enabled" [Font]="TTListBoxFirstGuarantorHomeTown?.Font" [ForeColor]="TTListBoxFirstGuarantorHomeTown?.ForeColor" [ListFilterExpression]="TTListBoxFirstGuarantorHomeTown?.ListFilterExpression" [MinSearchLength]="TTListBoxFirstGuarantorHomeTown?.MinSearchLength" [PopupDialogFieldConfig]="TTListBoxFirstGuarantorHomeTown?.PopupDialogFieldConfig" [PopupDialogGridColumns]="TTListBoxFirstGuarantorHomeTown?.PopupDialogGridColumns" [PopupDialogHeight]="TTListBoxFirstGuarantorHomeTown?.PopupDialogHeight" [PopupDialogTitle]="TTListBoxFirstGuarantorHomeTown?.PopupDialogTitle" [PopupDialogWidth]="TTListBoxFirstGuarantorHomeTown?.PopupDialogWidth" [ReadOnly]="TTListBoxFirstGuarantorHomeTown?.ReadOnly" [SearchMode]="TTListBoxFirstGuarantorHomeTown?.SearchMode" [SearchTimeout]="TTListBoxFirstGuarantorHomeTown?.SearchTimeout" [SelectedObject]="bondFormViewModel?._Bond?.FirstBondGuarantor?.HomeTown" [TabIndex]="TTListBoxFirstGuarantorHomeTown?.TabIndex" [Visible]="TTListBoxFirstGuarantorHomeTown?.Visible" [width]="TTListBoxFirstGuarantorHomeTown?.Width" id="A2229" data-tid="A325056"></hvl-list-box>
+                    </div>
+                    <div class="col-sm-6" id="A2230" data-tid="A325057">
+                        <hvl-text-box #Validation (TextChange)="ontxtFirstGuarantorAddressChanged($event)" [BackColor]="txtFirstGuarantorAddress?.BackColor" [CharacterCasing]="txtFirstGuarantorAddress?.CharacterCasing" [Enabled]="txtFirstGuarantorAddress?.Enabled" [Font]="txtFirstGuarantorAddress?.Font" [ForeColor]="txtFirstGuarantorAddress?.ForeColor" [height]="txtFirstGuarantorAddress?.Height" [InputFormat]="txtFirstGuarantorAddress?.InputFormat" [InputTurkishCharacter]="txtFirstGuarantorAddress?.InputTurkishCharacter" [IsNonNumeric]="txtFirstGuarantorAddress?.IsNonNumeric" [MultiLine]="txtFirstGuarantorAddress?.Multiline" [ReadOnly]="txtFirstGuarantorAddress?.ReadOnly" [Required]="txtFirstGuarantorAddress?.Required" [TabIndex]="txtFirstGuarantorAddress?.TabIndex" [TextAlign]="txtFirstGuarantorAddress?.TextAlign" [Text]="bondFormViewModel?._Bond?.FirstBondGuarantor?.Address" [Visible]="txtFirstGuarantorAddress?.Visible" id="A2231" data-tid="A325058"></hvl-text-box>
+                    </div>
+                </div>
+                <div class="row margin-top-10" id="A2232" data-tid="A325059">
+                    <label class="control-label col-sm-2" id="A2233" data-tid="A325060">
+                        Telefon
+                    </label>
+                    <label class="control-label col-sm-2" id="A2234" data-tid="A325061">
+                        Açıklama
+                    </label>
+                </div>
+                <div class="row" id="A2235" data-tid="A325062">
+                    <div class="col-sm-2" id="A2236" data-tid="A325063">
+                        <hvl-masktext-box #Validation (TextChange)="onFirstGuarantorPhoneChanged($event)" [BackColor]="FIRSTGUARANTORPHONE?.BackColor" [Enabled]="FIRSTGUARANTORPHONE?.Enabled" [Font]="FIRSTGUARANTORPHONE?.Font" [ForeColor]="FIRSTGUARANTORPHONE?.ForeColor" [InputTurkishCharacter]="FIRSTGUARANTORPHONE?.InputTurkishCharacter" [Mask]="FIRSTGUARANTORPHONE?.Mask" [ReadOnly]="FIRSTGUARANTORPHONE?.ReadOnly" [TabIndex]="FIRSTGUARANTORPHONE?.TabIndex" [TextAlign]="FIRSTGUARANTORPHONE?.TextAlign" [Text]="bondFormViewModel?._Bond?.FirstBondGuarantor?.Phone" [Visible]="FIRSTGUARANTORPHONE?.Visible" id="A2237" data-tid="A325064"></hvl-masktext-box>
+                    </div>
+                    <div class="col-sm-8" id="A2238" data-tid="A325065">
+                        <hvl-text-box #Validation (TextChange)="ontxtFirstGuarantorDescriptionChanged($event)" [BackColor]="txtFirstGuarantorDescription?.BackColor" [CharacterCasing]="txtFirstGuarantorDescription?.CharacterCasing" [Enabled]="txtFirstGuarantorDescription?.Enabled" [Font]="txtFirstGuarantorDescription?.Font" [ForeColor]="txtFirstGuarantorDescription?.ForeColor" [height]="txtFirstGuarantorDescription?.Height" [InputFormat]="txtFirstGuarantorDescription?.InputFormat" [InputTurkishCharacter]="txtFirstGuarantorDescription?.InputTurkishCharacter" [IsNonNumeric]="txtFirstGuarantorDescription?.IsNonNumeric" [MultiLine]="txtFirstGuarantorDescription?.Multiline" [ReadOnly]="txtFirstGuarantorDescription?.ReadOnly" [Required]="txtFirstGuarantorDescription?.Required" [TabIndex]="txtFirstGuarantorDescription?.TabIndex" [TextAlign]="txtFirstGuarantorDescription?.TextAlign" [Text]="bondFormViewModel?._Bond?.FirstBondGuarantor?.Description" [Visible]="txtFirstGuarantorDescription?.Visible" id="A2239" data-tid="A325066"></hvl-text-box>
+                    </div>
+                </div>
+            </dxi-item>
+            <dxi-item class="tabpanel-item" title="Senet Detay" i18n-title="@@M21598" id="A2240" data-tid="A325067">
+                <div class="row" id="A2241" data-tid="A325068">
+                    <div class="col-sm-12" id="A2242" data-tid="A325069">
+                        <hvl-datagrid (CellValueChange)="onCellValueChanged($event)" (RowPrepared)="onRowPrepared($event)" [AllowUserToAddRows]="GrdBondDetails?.AllowUserToAddRows" [AllowUserToDeleteRows]="GrdBondDetails?.AllowUserToDeleteRows" [Columns]="GrdBondDetailsColumns" [dataSource]="bondFormViewModel?._Bond?.BondDetails" [DeleteButtonWidth]="GrdBondDetails?.DeleteButtonWidth" [DisplayExpressionsCache]="bondFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="GrdBondDetails?.ShowFilterRow" [FilterColumnName]="GrdBondDetails?.FilterColumnName" [FilterLabel]="GrdBondDetails?.FilterLabel" [Filter]="GrdBondDetails?.Filter" [height]="GrdBondDetails?.Height" [IsFilterLabelSingleLine]="GrdBondDetails?.IsFilterLabelSingleLine" [ShowColumnHeaders]="GrdBondDetails?.ColumnHeadersVisible" [ShowFilterCombo]="GrdBondDetails?.ShowFilterCombo" [ShowTotalNumberOfRows]="GrdBondDetails?.ShowTotalNumberOfRows" id="A2243" data-tid="A325070"></hvl-datagrid>
+                    </div>
+                </div>
+            </dxi-item>
+            <dxi-item class="tabpanel-item" title="Hizmetler" i18n-title="@@M15953" id="A2244" data-tid="A325071">
+                <div class="row" id="A2245" data-tid="A325072">
+                    <div class="col-sm-12" id="A2246" data-tid="A325073">
+                        <hvl-datagrid [AllowUserToAddRows]="GrdBondProcedure?.AllowUserToAddRows" [AllowUserToDeleteRows]="GrdBondProcedure?.AllowUserToDeleteRows" [Columns]="GrdBondProcedureColumns" [dataSource]="bondFormViewModel?._Bond?.BondProcedures" [DeleteButtonWidth]="GrdBondProcedure?.DeleteButtonWidth" [DisplayExpressionsCache]="bondFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="GrdBondProcedure?.ShowFilterRow" [FilterColumnName]="GrdBondProcedure?.FilterColumnName" [FilterLabel]="GrdBondProcedure?.FilterLabel" [Filter]="GrdBondProcedure?.Filter" [height]="GrdBondProcedure?.Height" [IsFilterLabelSingleLine]="GrdBondProcedure?.IsFilterLabelSingleLine" [ShowColumnHeaders]="GrdBondProcedure?.ColumnHeadersVisible" [ShowFilterCombo]="GrdBondProcedure?.ShowFilterCombo" [ShowTotalNumberOfRows]="GrdBondProcedure?.ShowTotalNumberOfRows" id="A2247" data-tid="A325074"></hvl-datagrid>
+                    </div>
+                </div>
+            </dxi-item>
+        </dx-tab-panel>
+    </div>
+</div>

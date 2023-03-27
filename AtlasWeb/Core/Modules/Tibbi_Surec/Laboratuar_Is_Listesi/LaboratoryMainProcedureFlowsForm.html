@@ -1,0 +1,139 @@
+﻿
+
+<style type="text/css" id="A21001" data-tid="A355981">
+    @media(max-width:1920px){
+        .procedure-list-grid {
+            height: 76%;
+        }
+    }
+    @media(max-width:1800px) {
+        .procedure-list-grid {
+            height: 78%;
+        }
+    }
+    @media(max-width:1680px) {
+        .procedure-list-grid {
+            height: 76%;
+        }
+    }
+    @media(max-width:1600px) {
+        .procedure-list-grid {
+            height: 73%;
+        }
+    }
+    @media(max-width:1366px) {
+        .procedure-list-grid {
+            height: 66%;
+        }
+    }
+    @media(max-width:1280px) {
+        .procedure-list-grid {
+            height: 70%;
+        }
+    }
+    @media(max-width:1024px) {
+        .procedure-list-grid {
+            height: 71%;
+        }
+    }
+</style>
+
+<form id="LaboratoryMainProcedureFlowsForm" class="form-horizontal" role="form" data-tid="A355982">
+    
+</form>
+
+<div class="col-sm-12 gradientPanel" style="height:4%;" id="A21002" data-tid="A355983">
+    <h4 style="color:#fff; font-size:19px;text-align:center;" id="A21003" data-tid="A355984">Laboratuvar Prosedür</h4>
+</div>
+<div class="col-sm-12" id="A21004" data-tid="A355985">
+    <div class="col-md-6" id="A21005" data-tid="A355986">
+        <patient-demographics-form [actionId]="ViewModel?.LabRequestObjectID" id="A21006" data-tid="A355987"></patient-demographics-form>
+    </div>
+</div>
+
+<br id="A21007" data-tid="A355988" />
+<br id="A21008" data-tid="A355989" />
+
+
+<div class="col-sm-2" id="A21009" data-tid="A355990">
+    <dx-popup showTitle="false" title="Panel Testler" [width]="1000" [height]="600" [(visible)]="showPanelTestResultPopup" i18n-title="@@M27531" id="A21010" data-tid="A355991">
+        <div *dxTemplate="let data of 'content'" id="A21011" data-tid="A355992">
+            <div style="float:right ; width :100%" id="A21012" data-tid="A355993">
+                <br id="A21013" data-tid="A355994" />
+                <br id="A21014" data-tid="A355995" />
+                <dx-data-grid showColumnLines="true" [paging]="{enable: true, pageSize:1000000}" showRowLines="true" style="margin-left: -10px;" height="540" [columns]="PanelTestProcedureColumns" [dataSource]="this.LaboratorySubProcedureList" allowColumnReordering="true" allowColumnResizing="true" id="A21015" data-tid="A355996">
+
+                </dx-data-grid>
+                <span id="A21016" data-tid="A355997">PanelTestProcedureColumns</span>
+
+            </div>
+        </div>
+    </dx-popup>
+</div>
+<br id="A21017" data-tid="A355998" />
+<br id="A21018" data-tid="A355999" />
+<div class="row" id="A21019" data-tid="A356000">
+    <div class="col-md-10" id="A21020" data-tid="A356001">
+        <dx-button id="A1035" type="default" text="Barkod Bas" (onClick)="btnPrintBarcodeClick()" i18n-text="@@M27400" data-tid="A356002"></dx-button>
+        <dx-button id="A1036" type="default" text="Sonuç Raporu Bas" (onClick)="btnPrintResultReportClick()" i18n-text="@@M22108" data-tid="A356003"></dx-button>
+        <dx-button id="A1037" type="default" text="Dış İstem Formu Bas" (onClick)="btnPrintExternalProcedureRequestReport_Click()" i18n-text="@@M12744" data-tid="A356004"></dx-button>
+
+        <dx-button id="A1039" type="danger" text="İşlem İptal Et" style="float:right" (onClick)="Cancel_SelectedLaboratoryProcedure()" data-tid="A356005"></dx-button>
+        <dx-button id="A1038" type="default" text="İşlem Geri Al" style="float:right" (onClick)="UndoLastTransition_SelectedLaboratoryProcedure()" data-tid="A356006"></dx-button>
+
+    </div>
+</div>
+<br id="A21023" data-tid="A356007" />
+<br id="A21024" data-tid="A356008" />
+
+<div class="row procedure-list-grid" id="A21025" data-tid="A356009">
+    <div class="col-sm-12" style="height:100%;padding-top:5px;" id="A21026" data-tid="A356010">
+        <dx-data-grid showColumnLines="true" [paging]="{enable: true, pageSize:60}" showRowLines="true" style="margin-left: -10px;" height="100%" [columns]="ProcedureListColumns" [dataSource]="ViewModel.LaboratoryProcedureList" allowColumnReordering="true" allowColumnResizing="true" id="A21027" data-tid="A356011">
+            <div *dxTemplate="let row of 'checkBoxTemplate'" id="A21028" data-tid="A356012">
+                <hvl-checkbox id="A1040" [(Value)]="row.data.isSelected" data-tid="A356013"></hvl-checkbox>
+            </div>
+            <div *dxTemplate="let row of 'resultTemplate'" id="A21029" data-tid="A356014">
+                <div class=row>
+                    <div class="col-sm-12" *ngIf="row.data.isPanelTest==false">
+                            <dx-text-box height="18px" style="margin-top: -4px;margin-bottom: -5px;padding-top:0px" [(value)]="row.data.Result" readOnly="true" id="A21030" data-tid="A356015"></dx-text-box>
+                    </div>
+                    <div class="col-sm-12" *ngIf="row.data.isPanelTest" >
+                        <button class="btn btn-xs btn-default" style="margin-top: -15px;margin-bottom: -10px;margin-left: 17px;height: 16px !important;" (click)="openPanelTestResultView(row)" id="A21031" data-tid="A356016"><i class="fa fa-desktop" id="A21032" data-tid="A356017"></i></button>
+                    </div>
+                    <br/>
+                    <div class="col-sm-12" *ngIf="row.data.isMicroscopicExamination" style="text-align:center;padding-top: 10px;">
+                        <a  class="nav-link" (click)="openResultDescription(row)" id="A13870" data-tid="A365227">
+                                <i class="fa fa-info-circle fa-lg" data-toggle="tooltip" data-placement="bottom" title="Sonuç Açıklaması" i18n-title="@@M14924" id="A13871" data-tid="A365228"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <div *dxTemplate="let row of 'ExternalRequestCellTemplate'" id="A21033" data-tid="A356018">
+                <div class="col-md-2" style="float:left;margin-left: -16px;" id="A21034" data-tid="A356019">{{row.text}}</div>&nbsp;
+                <i *ngIf="row.data.isExternalProcedureRequest" class="fa fa-file-pdf-o" data-toggle="tooltip" data-placement="bottom" title="Dış Tetkik" style="float:right;color:#e40d0d;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M12761" id="A21035" data-tid="A356020">&nbsp;</i>
+            </div>
+            <div *dxTemplate="let row of 'BarcodeCellTemplate'" id="A21036" data-tid="A356021">
+                <div class="col-md-2" style="float:left;margin-left: -16px;" id="A21037" data-tid="A356022">{{row.text}}</div>&nbsp;
+                <i class="fa fa-barcode" id="A1041" data-toggle="tooltip" data-placement="bottom" (click)="btnPrintUniqueBarcodeCode_Click($event,row)" title="Barkod Bas" style="float:right;color:#e40d0d;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M27400" data-tid="A356023">&nbsp;</i>
+            </div>
+
+            <div *dxTemplate="let cellData of 'TestPriorityCellTemplate'" id="A21038" data-tid="A356024">
+                <i *ngIf="cellData.data.isLabTestEmergency" class="fa fa-ambulance" data-toggle="tooltip" data-placement="bottom" title="Acil İstem!" style="float:left;color:#e40d0d;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M10432" id="A21039" data-tid="A356025">&nbsp;</i>
+                <div *ngIf="cellData.data.isLabTestEmergency==false" class="col-md-2" style="float:left;margin-left: 6px;" id="A21040" data-tid="A356026">{{cellData.text}}</div>
+                <div *ngIf="cellData.data.isLabTestEmergency==true" class="col-md-2" style="float:left;margin-left: -10px;" id="A21041" data-tid="A356027">{{cellData.text}}</div>
+            </div>
+
+            <dxo-group-panel [visible]="false" id="A21042" data-tid="A356028"></dxo-group-panel>
+            <dxo-grouping #expand [autoExpandAll]="true" id="A21043" data-tid="A356029"></dxo-grouping>
+
+
+        </dx-data-grid>
+    </div>
+</div>
+
+    <dx-popup showTitle="false" title="Sonuç Açıklaması" [width]="600" [height]="250" [(visible)]="resultDescPopup" i18n-title="@@M27531" id="A21010" data-tid="A355991">
+        <div *dxTemplate="let data of 'content'" id="A21011" data-tid="A355992">
+                <span [innerHtml]="resultDescValue" data-tid="A365269"></span>
+        </div>
+    </dx-popup>

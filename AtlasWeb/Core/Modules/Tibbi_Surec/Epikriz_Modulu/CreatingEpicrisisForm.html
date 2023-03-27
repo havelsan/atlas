@@ -1,0 +1,412 @@
+﻿<dx-scroll-view data-tid="A341804">
+	<div class="container-fluid" data-tid="A341805">
+		<form #epicrisisform id="CreatingEpicrisisForm" class="form-horizontal" role="form" data-tid="A341806">
+
+		</form>
+		<!-- <NeStatePanelComponent [ObjectDefID]="creatingEpicrisisFormViewModel._CreatingEpicrisis.ObjectDefID" [CurrentStateDefID]="creatingEpicrisisFormViewModel._CreatingEpicrisis.CurrentStateDefID"
+ (onSetState)="setState($event)" (onSaveChanges)="save($event)"> 
+</NeStatePanelComponent> -->
+		<div class="row" style="background-color: #f0f8ff94;" data-tid="A341807">
+			<div class="col-sm-4" data-tid="A341808">
+				<label class="control-label col-sm-5" style="margin-top: 6px; margin-left: -28px;" data-tid="A341809"> Hastanın Yattığı
+					Birim</label>
+				<div class="col-sm-7" style="padding-left: 0px;" data-tid="A341810">
+					<dx-text-box [readOnly]="true" [value]="creatingEpicrisisFormViewModel.DepartmentName" data-tid="A341811">
+					</dx-text-box>
+					<!--	<dx-select-box [items]="creatingEpicrisisFormViewModel.InpatientClinicList"
+						(onSelectionChanged)="onClinicChange($event)" placeholder="Seçiniz" displayExpr="Name"
+						showClearButton="true" searchEnabled="true" (showSelectionControls)="false"
+						[value]="creatingEpicrisisFormViewModel?.Clinic?.ObjectID" valueExpr="ObjectID"
+						[readOnly]="true">
+					</dx-select-box>-->
+				</div>
+			</div>
+			<div class="col-sm-3" data-tid="A341812">
+				<label class="control-label col-sm-4" style="margin-top: 6px;" data-tid="A341813"> Doktoru</label>
+				<div class="col-sm-8" style="padding-left: 0px;" data-tid="A341814">
+					<dx-text-box [readOnly]="true" [value]="creatingEpicrisisFormViewModel.DoctorName" data-tid="A341815">
+					</dx-text-box>
+					<!--	<dx-select-box [items]="creatingEpicrisisFormViewModel.DoctorList" placeholder="Seçiniz"
+						displayExpr="Name" showClearButton="true" searchEnabled="true" (showSelectionControls)="false"
+						[value]="creatingEpicrisisFormViewModel?.Doctor?.ObjectID" valueExpr="ObjectID"
+						[readOnly]="true">
+					</dx-select-box> -->
+				</div>
+			</div>
+
+			<div class="col-sm-5" data-tid="A341816">
+				<div class="col-sm-6" data-tid="A341817">
+					<label class="control-label col-sm-9" style="margin-top: 6px;" data-tid="A341818"> Planlanan Yatış Süresi</label>
+					<div class="col-sm-3" style="padding-left: 0px;" data-tid="A341819">
+						<dx-text-box [(value)]="creatingEpicrisisFormViewModel.StayLength" [readOnly]="true" data-tid="A341820">
+						</dx-text-box>
+					</div>
+				</div>
+				<div class="col-sm-6" data-tid="A341821">
+					<label class="control-label col-sm-9" style="margin-top: 6px;" data-tid="A341822"> Yattığı Gün Sayısı</label>
+					<div class="col-sm-3" style="padding-left: 0px;" data-tid="A341823">
+						<dx-text-box [(value)]="creatingEpicrisisFormViewModel.DayNumber" [readOnly]="true" data-tid="A341824">
+						</dx-text-box>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<br data-tid="A341825" />
+
+		<div class="row" style="margin-left: -30px;" [hidden]="!showEpicrisisGrid" data-tid="A341826">
+			<div class="col-md-12" style="margin-top:15px;" id="A5672" data-tid="A341827">
+				<label class="control-label" data-tid="A341828">Hastanın Geçmiş Epikrizleri</label>
+				<div id="epicrisis" data-tid="A341829">
+					<dx-data-grid #grid id="grid-container" [dataSource]="this.EpicrisisList" keyExpr="ObjectID" [selectedRowKeys]="[]" (onRowClick)="selectionChangedHandlerOnReport($event)" data-tid="A341830">
+
+						<dxo-selection mode="single" data-tid="A341831"></dxo-selection>
+						<dxo-paging [pageSize]="10" data-tid="A341832"></dxo-paging>
+						<dxo-filter-row [visible]="true" id="A5673" data-tid="A341833"> </dxo-filter-row>
+						<dxi-column dataField="Clinic" caption="Birim" data-tid="A341834"></dxi-column>
+						<dxi-column dataField="Doctor" caption="Doktor" data-tid="A341835"></dxi-column>
+						<dxi-column dataField="Date" caption="Tarih" dataType="date" format="dd/MM/yyyy" [width]="100" data-tid="A341836">
+						</dxi-column>
+					</dx-data-grid>
+				</div>
+			</div>
+		</div>
+
+
+		<br data-tid="A341837" />
+
+	<!--	<div class="row" id="A28350" *ngIf="showEpicrisisGrid == true &&  creatingEpicrisisFormViewModel.IsNew != true">
+			<dx-button type="default" text="Yeni Epikriz Oluştur" (onClick)="openNewEpicrisis()" i18n-text="@@M17386"
+				id="A1116"></dx-button>
+
+		</div> -->
+
+		
+
+		<div class="row" *ngIf="creatingEpicrisisFormViewModel.IsNew == true" data-tid="A341838">
+			<div class="col-sm-3" style="margin-top: 12px;" data-tid="A341839">
+					<div class="row" data-tid="A341840">
+							<div class="col-md-12" data-tid="A341841">
+								<div class="row" data-tid="A341842">
+									<div class="col-md-12" data-tid="A341843">
+										<b data-tid="A341844">
+											Birim
+										</b>
+									</div>
+								</div>
+								<div class="row" data-tid="A341845">
+									<div class="col-md-8" data-tid="A341846">
+											<dx-select-box [items]="creatingEpicrisisFormViewModel.InpatientClinicList" (onSelectionChanged)="onSectionChange($event)" placeholder="Seçiniz" displayExpr="Name" showClearButton="true" searchEnabled="true" (showSelectionControls)="false" [value]="creatingEpicrisisFormViewModel._CreatingEpicrisis.MasterResource" [readOnly]="false" data-tid="A341847">
+										</dx-select-box>
+									</div>
+								</div>
+							</div>
+						</div> 
+			</div>
+			<div class="col-sm-3" style="margin-top: 12px;" data-tid="A341848">
+					<div class="row" data-tid="A341849">
+							<div class="col-md-12" data-tid="A341850">
+								<div class="row" data-tid="A341851">
+									<div class="col-md-12" data-tid="A341852">
+										<b data-tid="A341853">
+											Doktor
+										</b>
+									</div>
+								</div>
+								<div class="row" data-tid="A341854">
+									<div class="col-md-8" data-tid="A341855">
+											<dx-select-box [items]="creatingEpicrisisFormViewModel.DoctorList" (onSelectionChanged)="onDoctorChange($event)" placeholder="Seçiniz" displayExpr="Name" showClearButton="true" searchEnabled="true" (showSelectionControls)="false" [value]="creatingEpicrisisFormViewModel._CreatingEpicrisis.ProcedureDoctor" [readOnly]="false" data-tid="A341856">
+										</dx-select-box>
+									</div>
+								</div>
+							</div>
+						</div> 
+			</div>
+			<div class="col-sm-6" style="margin-top: 12px;" data-tid="A341857">
+					<div class="row" data-tid="A341858">
+						<div class="col-md-12" data-tid="A341859">
+							<div class="row" data-tid="A341860">
+								<div class="col-md-12" data-tid="A341861">
+									<b data-tid="A341862">
+										Kullanıcı Şablonları
+									</b>
+								</div>
+							</div>
+							<div class="row" data-tid="A341863">
+								<div class="col-md-8" data-tid="A341864">
+									<dx-select-box #TemplateCombo [dataSource]="creatingEpicrisisFormViewModel.userTemplateList" (onItemClick)="SelectUserTemplate($event)" noDataText="Kullanıcı Şablonu Bulunamadı!" displayExpr="Description" searchEnabled="true" searchMode="contains" valueExpr="ObjectID" data-tid="A341865">
+									</dx-select-box>
+								</div>
+								<div class="col-md-2" style="text-align: center" data-tid="A341866">
+									<dx-button type="default" *ngIf="creatingEpicrisisFormViewModel.selectedUserTemplate != null" (onClick)="btnClearUserTemplate_Click()" text="Temizle" style="margin-left:0px;" data-tid="A341867">
+									</dx-button>
+								</div>
+								<div class="col-md-2" data-tid="A341868">
+									<dx-button type="danger" *ngIf="creatingEpicrisisFormViewModel.selectedUserTemplate != nulll" (onClick)="btnDeleteSelectedUserTemplate_Click()" text="Sil" style="margin-left:0px;" data-tid="A341869">
+									</dx-button>
+								</div>
+							</div>
+						</div>
+					</div> 
+		</div>
+	</div>
+
+
+		<div class="row" *ngIf="!creatingEpicrisisFormViewModel._CreatingEpicrisis?.IsNew" data-tid="A341870">
+		<div class="col-md-10" style="margin-top: 12px;" data-tid="A341871">
+			
+					<div class="row" style="padding-top:5px" data-tid="A341872">
+						<div class="col-md-5" *ngIf="!creatingEpicrisisFormViewModel._CreatingEpicrisis?.IsNew" data-tid="A341873">
+		
+							<dx-text-box [(value)]="userTemplateName" placeholder="Eklenecek Şablon Adı" id="A30432" data-tid="A341874">
+							</dx-text-box>
+						</div>
+						<div class="col-md-3" *ngIf="!creatingEpicrisisFormViewModel._CreatingEpicrisis?.IsNew" data-tid="A341875">
+		
+							<dx-button type="success" (onClick)="btnAddUserTemplate_Click()" text="Şablon Oluştur" style="margin-left:0px;" data-tid="A341876"></dx-button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		<br data-tid="A341877" />
+
+		<div class="row" id="A28350" data-tid="A341878">
+			<dx-accordion #Complaint [items]="[{title:'Şikayeti'}]" collapsible="true" id="A26820" data-tid="A341879">
+				<div *dxTemplate="let a of 'item'" id="A26821" data-tid="A341880">
+					<div class="row" [hidden]="showEpicrisisGrid" data-tid="A341881">
+						<div class="col-sm-2" id="A26822" data-tid="A341882">
+							<button type="button" class="btn btn-default" (click)="copyOldComponentContext(creatingEpicrisisFormViewModel._CreatingEpicrisis.COMPLAINTANDSTORY,'complaint') " data-tid="A341883">Kopyala</button>
+						</div>
+					</div>
+					<br data-tid="A341884" />
+
+					<div class="row" id="A26822" data-tid="A341885">
+						<div class="col-sm-12" id="A26823" data-tid="A341886">
+							<hvl-richtextbox (change)="onComplaintChanged($event)" [ngModelOptions]="{ standalone: true }" [(ngModel)]="creatingEpicrisisFormViewModel._CreatingEpicrisis.COMPLAINTANDSTORY" [TemplateGroupName]="complaint?.TemplateGroupName" [Visible]="complaint?.Visible" data-tid="A341887">
+							</hvl-richtextbox>
+						</div>
+					</div>
+				</div>
+			</dx-accordion>
+		</div>
+
+
+		<div class="row" id="A28354" data-tid="A341888">
+
+			<dx-accordion #Story [items]="[{title:'Hikayesi'}]" collapsible="true" id="A26820" data-tid="A341889">
+				<div *dxTemplate="let a of 'item'" id="A26821" data-tid="A341890">
+					<div class="row" [hidden]="showEpicrisisGrid" data-tid="A341891">
+						<div class="col-sm-2" id="A26822" data-tid="A341892">
+							<button type="button" class="btn btn-default" (click)="copyOldComponentContext(creatingEpicrisisFormViewModel._CreatingEpicrisis.STORY,'story') " data-tid="A341893">Kopyala</button>
+						</div>
+					</div>
+					<br data-tid="A341894" />
+					<div class="row" id="A26822" data-tid="A341895">
+						<div class="col-sm-12" id="A26823" data-tid="A341896">
+							<hvl-richtextbox (change)="onStoryChanged($event)" [ngModelOptions]="{ standalone: true }" [(ngModel)]="creatingEpicrisisFormViewModel._CreatingEpicrisis.STORY" [TemplateGroupName]="story?.TemplateGroupName" [Visible]="story?.Visible" data-tid="A341897">
+							</hvl-richtextbox>
+						</div>
+					</div>
+				</div>
+			</dx-accordion>
+		</div>
+
+		<div class="row" id="A28354" data-tid="A341898">
+
+			<dx-accordion #Symptom [items]="[{title:'Bulguları'}]" collapsible="true" id="A26820" data-tid="A341899">
+				<div *dxTemplate="let a of 'item'" id="A26821" data-tid="A341900">
+
+					<div class="row" [hidden]="showEpicrisisGrid" data-tid="A341901">
+						<div class="col-sm-2" id="A26822" data-tid="A341902">
+							<button type="button" class="btn btn-default" (click)="copyOldComponentContext(creatingEpicrisisFormViewModel._CreatingEpicrisis.SYMPTOM,'symptom') " data-tid="A341903">Kopyala</button>
+						</div>
+					</div>
+					<br data-tid="A341904" />
+
+					<div class="row" id="A26822" data-tid="A341905">
+						<div class="col-sm-12" id="A26823" data-tid="A341906">
+							<hvl-richtextbox (change)="onSymptomChanged($event)" [ngModelOptions]="{ standalone: true }" [(ngModel)]="creatingEpicrisisFormViewModel._CreatingEpicrisis.SYMPTOM" [TemplateGroupName]="symptom?.TemplateGroupName" [Visible]="symptom?.Visible" data-tid="A341907">
+							</hvl-richtextbox>
+						</div>
+					</div>
+
+
+				</div>
+			</dx-accordion>
+		</div>
+
+
+		<div class="row" id="A28354" data-tid="A341908">
+			<dx-accordion #PhsyicalExamination [items]="[{title:'Fizik Muayanesi'}]" collapsible="true" id="A26820" data-tid="A341909">
+				<div *dxTemplate="let a of 'item'" id="A26821" data-tid="A341910">
+
+					<div class="row" [hidden]="showEpicrisisGrid" data-tid="A341911">
+						<div class="col-sm-2" id="A26822" data-tid="A341912">
+							<button type="button" class="btn btn-default" (click)="copyOldComponentContext(creatingEpicrisisFormViewModel._CreatingEpicrisis.PHYSICALEXAMINATION,'physicalExamination') " data-tid="A341913">Kopyala</button>
+						</div>
+					</div>
+					<br data-tid="A341914" />
+					<div class="row" id="A26822" data-tid="A341915">
+						<div class="col-sm-12" id="A26823" data-tid="A341916">
+							<hvl-richtextbox (change)="onPhysicalExaminationChanged($event)" [ngModelOptions]="{ standalone: true }" [(ngModel)]="creatingEpicrisisFormViewModel._CreatingEpicrisis.PHYSICALEXAMINATION" [TemplateGroupName]="physicalExamination?.TemplateGroupName" [Visible]="physicalExamination?.Visible" data-tid="A341917">
+							</hvl-richtextbox>
+						</div>
+					</div>
+				</div>
+			</dx-accordion>
+
+		</div>
+
+		<div class="row" id="A28354" data-tid="A341918">
+
+			<dx-accordion #Autobiyography [items]="[{title:'Öz Soy Geçmiş'}]" collapsible="true" id="A26820" data-tid="A341919">
+				<div *dxTemplate="let a of 'item'" id="A26821" data-tid="A341920">
+					<div class="row" id="A26822" data-tid="A341921">
+						<div class="row" [hidden]="showEpicrisisGrid" data-tid="A341922">
+							<div class="col-sm-2" id="A26822" data-tid="A341923">
+								<button type="button" class="btn btn-default" (click)="copyOldComponentContext(creatingEpicrisisFormViewModel._CreatingEpicrisis.AUTOBIOGRAPHY,'autobiyography') " data-tid="A341924">Kopyala</button>
+							</div>
+						</div>
+						<br data-tid="A341925" />
+
+						<div class="col-sm-12" id="A26823" data-tid="A341926">
+							<hvl-richtextbox (change)="onAutobiographyChanged($event)" [ngModelOptions]="{ standalone: true }" [(ngModel)]="creatingEpicrisisFormViewModel._CreatingEpicrisis.AUTOBIOGRAPHY" [TemplateGroupName]="autobiography?.TemplateGroupName" [Visible]="autobiography?.Visible" data-tid="A341927">
+							</hvl-richtextbox>
+						</div>
+					</div>
+				</div>
+			</dx-accordion>
+
+		</div>
+
+		<div class="row" id="A28354" data-tid="A341928">
+
+			<dx-accordion #Procedures [items]="[{title:'Yapılan Tedavisi'}]" collapsible="true" id="A26820" data-tid="A341929">
+				<div *dxTemplate="let a of 'item'" id="A26821" data-tid="A341930">
+					<div class="row" [hidden]="showEpicrisisGrid" data-tid="A341931">
+						<div class="col-sm-2" id="A26822" data-tid="A341932">
+							<button type="button" class="btn btn-default" (click)="copyOldComponentContext(creatingEpicrisisFormViewModel._CreatingEpicrisis.PROCEDURE,'procedure') " data-tid="A341933">Kopyala</button>
+						</div>
+					</div>
+					<br data-tid="A341934" />
+					<div class="row" id="A26822" data-tid="A341935">
+						<div class="col-sm-12" id="A26823" data-tid="A341936">
+							<hvl-richtextbox (change)="onProceduresChanged($event)" [ngModelOptions]="{ standalone: true }" [(ngModel)]="creatingEpicrisisFormViewModel._CreatingEpicrisis.PROCEDURE" [TemplateGroupName]="procedures?.TemplateGroupName" [Visible]="procedures?.Visible" data-tid="A341937">
+							</hvl-richtextbox>
+						</div>
+					</div>
+				</div>
+			</dx-accordion>
+
+
+		</div>
+
+		<div class="row" id="A28354" data-tid="A341938">
+
+			<dx-accordion #Suggestions [items]="[{title:'Öneriler'}]" collapsible="true" id="A26820" data-tid="A341939">
+				<div *dxTemplate="let a of 'item'" id="A26821" data-tid="A341940">
+					<div class="row" [hidden]="showEpicrisisGrid" data-tid="A341941">
+						<div class="col-sm-2" id="A26822" data-tid="A341942">
+							<button type="button" class="btn btn-default" (click)="copyOldComponentContext(creatingEpicrisisFormViewModel._CreatingEpicrisis.Suggestion,'suggestion') " data-tid="A341943">Kopyala</button>
+						</div>
+					</div>
+					<br data-tid="A341944" />
+					<div class="row" id="A26822" data-tid="A341945">
+						<div class="col-sm-12" id="A26823" data-tid="A341946">
+							<hvl-richtextbox (change)="onSuggestionChanged($event)" [ngModelOptions]="{ standalone: true }" [(ngModel)]="creatingEpicrisisFormViewModel._CreatingEpicrisis.Suggestion" [TemplateGroupName]="suggestion?.TemplateGroupName" [Visible]="suggestion?.Visible" data-tid="A341947">
+							</hvl-richtextbox>
+						</div>
+					</div>
+				</div>
+			</dx-accordion>
+
+		</div>
+
+		<div class="row" id="A28354" data-tid="A341948">
+			<div class="col-sm-5" data-tid="A341949">
+			</div>
+			<div class="col-sm-1" data-tid="A341950">
+				<dx-button text="Kaydet" [disabled]="creatingEpicrisisFormViewModel.isReportConfirmByDoctor || creatingEpicrisisFormViewModel.WaitConfirmation" (onClick)="save()" style="background-color: #4b93d2;color: white;" data-tid="A341951">
+				</dx-button>
+			</div>
+			<div class="col-sm-2" *ngIf="creatingEpicrisisFormViewModel.DoctorAuthority" style="text-align: center;" data-tid="A341952">
+				<dx-button text="Raporu Onayla" (onClick)="onReportConfirmation()" [disabled]="creatingEpicrisisFormViewModel.isReportConfirmByDoctor" style="background-color: #4b93d2;color: white;" data-tid="A341953"> </dx-button>
+			</div>
+			<div class="col-sm-2" *ngIf="creatingEpicrisisFormViewModel.NurseAuthority" style="text-align: center;" data-tid="A341954">
+				<dx-button text="Onaya Gönder" (onClick)="onReportConfirmation()" [disabled]="creatingEpicrisisFormViewModel.isReportConfirmByDoctor || creatingEpicrisisFormViewModel.WaitConfirmation" style="background-color: #4b93d2;color: white;" data-tid="A341955"> </dx-button>
+			</div>
+
+			<div class="col-sm-2" data-tid="A341956">
+				<dx-button text="Rapor Al" (onClick)="onPrintEpicrisisReport()" style="background-color: #4b93d2;color: white;" [disabled]="!creatingEpicrisisFormViewModel.isReportConfirmByDoctor" data-tid="A341957"> </dx-button>
+			</div>
+
+			<div class="col-sm-2" *ngIf="creatingEpicrisisFormViewModel.DoctorAuthority" style="text-align: center;" data-tid="A341958">
+				<dx-button text="Onayı Kaldır" (onClick)="onReportRemoveConfirmation()" [disabled]="!creatingEpicrisisFormViewModel.isReportConfirmByDoctor" style="background-color: #4b93d2;color: white;" data-tid="A341959"> </dx-button>
+			</div>
+
+		</div>
+
+
+		<dx-popup [(visible)]="showOldEpicrisis" [closeOnOutsideClick]="false" width="1250" height="800" i18n-title="@@M30219" id="A24169" (onHiding)="popUpClosed($event)" data-tid="A341960">
+			<div *dxTemplate="let data of 'content'" id="A24170" data-tid="A341961">
+				<div class="container-fluid" id="A24161" data-tid="A341962">
+					<CreatingEpicrisisForm *ngIf="showOldEpicrisis == true" [EpicrisisForm]="this.oldEpicrisisFormID" (complaintOldContextChange)="getComplaint($event)" (SendPopupInfo)="onSetPopupVisible($event)" data-tid="A341963">
+					</CreatingEpicrisisForm>
+				</div>
+			</div>
+		</dx-popup>
+	</div>
+
+</dx-scroll-view>
+
+<!--<div class="row">
+	<dx-tab-panel [selectedIndex]="0">
+		<dxi-item class="tabpanel-item" title="Şikayet ve Öyküsü">
+			<div class="row">
+				<div class="col-sm-12">
+					<hvl-richtextbox (change)="onReportChanged($event)" [ngModelOptions]="{ standalone: true }" [ngModel]="_CreatingEpicrisis.Episode.Complaint"
+					 [ReadOnly]="complaint?.ReadOnly" [TemplateGroupName]="complaint?.TemplateGroupName" [Visible]="complaint?.Visible">
+					</hvl-richtextbox>
+				</div>
+			</div>
+		</dxi-item>
+		<dxi-item class="tabpanel-item" title="Öz Geçmiş">
+			<div class="row">
+				<div class="col-sm-12">
+					<hvl-richtextbox (change)="onautobiographyChanged($event)" [ngModelOptions]="{ standalone: true }" [ngModel]="_CreatingEpicrisis.Episode.PatientHistory"
+					 [ReadOnly]="autobiography?.ReadOnly" [TemplateGroupName]="autobiography?.TemplateGroupName" [Visible]="autobiography?.Visible">
+					</hvl-richtextbox>
+				</div>
+			</div>
+		</dxi-item>
+		<dxi-item class="tabpanel-item" title="Fizik Muayene">
+			<div class="row">
+				<div class="col-sm-12">
+					<hvl-richtextbox (change)="onphysicalExaminationChanged($event)" [ngModelOptions]="{ standalone: true }" [ngModel]="_CreatingEpicrisis.Episode.PhysicalExamination"
+					 [ReadOnly]="physicalExamination?.ReadOnly" [TemplateGroupName]="physicalExamination?.TemplateGroupName" [Visible]="physicalExamination?.Visible">
+					</hvl-richtextbox>
+				</div>
+			</div>
+		</dxi-item>
+		<dxi-item class="tabpanel-item" title="Öneriler">
+			<div class="row">
+				<div class="col-sm-12">
+					<hvl-richtextbox (change)="onsuggestionChanged($event)" [ngModelOptions]="{ standalone: true }" [ngModel]="_CreatingEpicrisis.Suggestion"
+					 [ReadOnly]="suggestion?.ReadOnly" [TemplateGroupName]="suggestion?.TemplateGroupName" [Visible]="suggestion?.Visible">
+					</hvl-richtextbox>
+				</div>
+			</div>
+		</dxi-item>
+		<dxi-item class="tabpanel-item" title="İşlemler">
+			<div class="row">
+				<div class="col-sm-12">
+					<hvl-richtextbox (change)="onproceduresChanged($event)" [ngModelOptions]="{ standalone: true }" [ngModel]="_CreatingEpicrisis.PROCEDURE"
+					 [ReadOnly]="procedures?.ReadOnly" [TemplateGroupName]="procedures?.TemplateGroupName" [Visible]="procedures?.Visible">
+					</hvl-richtextbox>
+				</div>
+			</div>
+		</dxi-item>
+	</dx-tab-panel>
+</div> -->

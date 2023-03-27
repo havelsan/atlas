@@ -1,0 +1,222 @@
+﻿
+
+<form id="PathologyMainForm" class="form-horizontal" role="form" data-tid="A359059">
+    <ul class="nav nav-tabs" id="A13358" data-tid="A359060">
+        <li class="active" data-tid="A359061"><a data-toggle="tab" href="#patoloji" data-tid="A359062">Patoloji</a></li>
+        <li id="A13361" data-tid="A359063"><a data-toggle="tab" href="#hastagecmisi" (click)="openHastaGecmisi()" data-tid="A359064">Hasta Geçmişi</a></li>
+    </ul>
+    <div class="tab-content" data-tid="A359065">
+        <div id="patoloji" class="col-sm-12 tab-pane fade in active" data-tid="A359066">
+
+            <div class="col-sm-12" style="margin-bottom:10px;margin-top:10px;" data-tid="A359067">
+            <NeStatePanelComponent *ngIf="_showStateButtons" [ObjectDefID]="pathologyMainFormViewModel._Pathology.ObjectDefID" [CurrentStateDefID]="pathologyMainFormViewModel._Pathology.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" id="A23692" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A359068">
+            </NeStatePanelComponent>
+                 </div>
+            <div class="col-sm-12" id="A23693" data-tid="A359069">
+                <div class="col-md-4 col-sm-12" id="A23694" data-tid="A359070">
+                    <patient-demographics-form [actionId]="pathologyMainFormViewModel._Pathology.ObjectID" id="A23695" data-tid="A359071"></patient-demographics-form>
+                </div>
+                <div class="col-md-2 col-sm-12" id="A23696" data-tid="A359072">
+
+                    <div class="col-md-12" id="A23698" data-tid="A359073">
+                        <label class="control-label" id="A23699" data-tid="A359074">Protokol Numarası</label>
+                        <div title="Protokol Numarası" style="font-size:15px; font-weight:bold;color:indianred;float:left;" i18n-title="@@M20567" id="A23700" data-tid="A359075">{{pathologyMainFormViewModel?._Pathology.MatPrtNoString}}</div>
+
+                    </div>
+                    <div class="col-md-12" data-tid="A359076">
+                        <label class="control-label" data-tid="A359077">Patoloji Defter Numarası</label>
+                        <dx-text-box [(value)]="pathologyMainFormViewModel._Pathology.PathologyArchiveNo" placeholder="Patoloji Defter Numarasını Giriniz..." [disabled]="isReadOnly" data-tid="A359078">
+                        </dx-text-box>
+                    </div>
+
+                    <div class="col-md-12" id="A23702" data-tid="A359079">
+                        <label class="control-label" id="A23703" data-tid="A359080">İstek Tarihi</label>
+                        <dx-date-box [(value)]="pathologyMainFormViewModel._Pathology.PathologyRequest.RequestDate" type="datetime" [disabled]="true" id="A23704" data-tid="A359081">
+                        </dx-date-box>
+                    </div>
+                    <div class="col-md-12" id="A23706" data-tid="A359082">
+                        <label class="control-label" id="A23707" data-tid="A359083">İstek Yapan Doktor</label>
+                        <hvl-list-box #Validation (SelectedObjectChange)="onRequestDoctorPathologyRequestChanged($event)" [AutoCompleteDialogHeight]="RequestDoctorPathologyRequest?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="RequestDoctorPathologyRequest?.AutoCompleteDialogWidth" [AutoCompleteMode]="RequestDoctorPathologyRequest?.AutoCompleteMode" [BackColor]="RequestDoctorPathologyRequest?.BackColor" [DefinitionName]="RequestDoctorPathologyRequest?.ListDefName" [DisplayExpressionsCache]="pathologyMainFormViewModel?.ListDefDisplayExpressions" [Enabled]="RequestDoctorPathologyRequest?.Enabled" [Font]="RequestDoctorPathologyRequest?.Font" [ForeColor]="RequestDoctorPathologyRequest?.ForeColor" [ListFilterExpression]="RequestDoctorPathologyRequest?.ListFilterExpression" [MinSearchLength]="RequestDoctorPathologyRequest?.MinSearchLength" [PopupDialogFieldConfig]="RequestDoctorPathologyRequest?.PopupDialogFieldConfig" [PopupDialogGridColumns]="RequestDoctorPathologyRequest?.PopupDialogGridColumns" [PopupDialogHeight]="RequestDoctorPathologyRequest?.PopupDialogHeight" [PopupDialogTitle]="RequestDoctorPathologyRequest?.PopupDialogTitle" [PopupDialogWidth]="RequestDoctorPathologyRequest?.PopupDialogWidth" [ReadOnly]="RequestDoctorPathologyRequest?.ReadOnly" [SearchMode]="RequestDoctorPathologyRequest?.SearchMode" [SearchTimeout]="RequestDoctorPathologyRequest?.SearchTimeout" [SelectedObject]="pathologyMainFormViewModel?._Pathology?.PathologyRequest?.RequestDoctor" [TabIndex]="RequestDoctorPathologyRequest?.TabIndex" [Visible]="RequestDoctorPathologyRequest?.Visible" [width]="RequestDoctorPathologyRequest?.Width" id="A23708" data-tid="A359084"></hvl-list-box>
+                    </div>
+
+                </div>
+                <div class="col-md-6 col-sm-12" id="A23709" data-tid="A359085">
+                    <DiagnosisGridForm [GridDiagnosisGridList]="pathologyMainFormViewModel.DiagnosisDiagnosisGridGridList" [EpisodeAction]="pathologyMainFormViewModel._Pathology" [CheckENabiz]="false" [ProcedureDoctor]="pathologyMainFormViewModel._Pathology.ProcedureDoctor" [RemoveDeletedRow]="isContextSaved" id="A23710" data-tid="A359086"></DiagnosisGridForm>
+                </div>
+            </div>
+            <div class="col-sm-12" id="A23711" data-tid="A359087">
+                <div class="col-sm-6" id="A23712" data-tid="A359088">
+                    <div title="Rapor Durumu" style="font-size:15px; font-weight:bold;color:indianred;float:left;" i18n-title="@@M20796" id="A23713" data-tid="A359089">{{pathologyMainFormViewModel?._StateName}}</div>
+
+                </div>
+            </div>
+            <div class="col-md-12" id="A23715" data-tid="A359090">
+                <hr id="A23716" data-tid="A359091" />
+            </div>
+            <div #scrollPanel class="col-sm-12" style="padding-left:3px; overflow-y:auto" data-tid="A359092">
+
+                <div class="col-sm-12" id="A23718" data-tid="A359093">
+                    <div class="col-sm-5" id="A23719" data-tid="A359094">
+
+                        <div class="col-sm-12" id="A23721" data-tid="A359095">
+                            <label class="control-label" id="A23722" data-tid="A359096">Şikayet</label>
+                            <hvl-richtextbox (change)="onComplaintEpisodeChanged($event)" [Height]="&#x27;100px&#x27;" [ngModelOptions]="{ standalone: true}" [ngModel]="pathologyMainFormViewModel?._Pathology?.Episode?.Complaint" [ReadOnly]="ComplaintEpisode?.ReadOnly" [TemplateGroupName]="ComplaintEpisode?.TemplateGroupName" [Visible]="ComplaintEpisode?.Visible" id="A23723" data-tid="A359097"></hvl-richtextbox>
+                        </div>
+
+
+                        <div class="col-sm-12" id="A23725" data-tid="A359098">
+                            <label class="control-label" id="A23726" data-tid="A359099">Fizik Muayene</label>
+                            <hvl-richtextbox (change)="onPhysicalExaminationEpisodeChanged($event)" [Height]="&#x27;100px&#x27;" [ngModelOptions]="{ standalone: true}" [ngModel]="pathologyMainFormViewModel?._Pathology?.Episode?.PhysicalExamination" [ReadOnly]="PhysicalExaminationEpisode?.ReadOnly" [TemplateGroupName]="PhysicalExaminationEpisode?.TemplateGroupName" [Visible]="PhysicalExaminationEpisode?.Visible" id="A23727" data-tid="A359100"></hvl-richtextbox>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4" id="A23728" data-tid="A359101">
+
+                        <div class="col-sm-12" id="A23730" data-tid="A359102">
+                            <label class="control-label" id="A23731" data-tid="A359103">Materyal Kabul Notu</label>
+                            <hvl-text-box #Validation (TextChange)="onAcceptionNotePathologyRequestChanged($event)" [BackColor]="AcceptionNotePathologyRequest?.BackColor" [CharacterCasing]="AcceptionNotePathologyRequest?.CharacterCasing" [Enabled]="AcceptionNotePathologyRequest?.Enabled" [Font]="AcceptionNotePathologyRequest?.Font" [ForeColor]="AcceptionNotePathologyRequest?.ForeColor" [height]="130" [InputFormat]="AcceptionNotePathologyRequest?.InputFormat" [InputTurkishCharacter]="AcceptionNotePathologyRequest?.InputTurkishCharacter" [IsNonNumeric]="AcceptionNotePathologyRequest?.IsNonNumeric" [MultiLine]="AcceptionNotePathologyRequest?.Multiline" [ReadOnly]="AcceptionNotePathologyRequest?.ReadOnly" [Required]="AcceptionNotePathologyRequest?.Required" [TabIndex]="AcceptionNotePathologyRequest?.TabIndex" [TextAlign]="AcceptionNotePathologyRequest?.TextAlign" [Text]="pathologyMainFormViewModel?._Pathology?.PathologyRequest?.AcceptionNote" [Visible]="AcceptionNotePathologyRequest?.Visible" id="A23732" data-tid="A359104"></hvl-text-box>
+
+
+                        </div>
+
+                        <div class="col-sm-12" id="A23734" data-tid="A359105">
+                            <label class="control-label" id="A23735" data-tid="A359106">Teknisyen Notu</label>
+                            <hvl-text-box #Validation (TextChange)="onTechnicianNoteChanged($event)" [BackColor]="TechnicianNote?.BackColor" [CharacterCasing]="TechnicianNote?.CharacterCasing" [Enabled]="TechnicianNote?.Enabled" [Font]="TechnicianNote?.Font" [ForeColor]="TechnicianNote?.ForeColor" [height]="130" [InputFormat]="TechnicianNote?.InputFormat" [InputTurkishCharacter]="TechnicianNote?.InputTurkishCharacter" [IsNonNumeric]="TechnicianNote?.IsNonNumeric" [MultiLine]="TechnicianNote?.Multiline" [ReadOnly]="TechnicianNote?.ReadOnly" [Required]="TechnicianNote?.Required" [TabIndex]="TechnicianNote?.TabIndex" [TextAlign]="TechnicianNote?.TextAlign" [Text]="pathologyMainFormViewModel?._Pathology?.TechnicianNote" [Visible]="TechnicianNote?.Visible" id="A23736" data-tid="A359107"></hvl-text-box>
+
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="col-sm-3" id="A23749" data-tid="A359108">
+
+                        <div class="col-sm-12" id="A23751" data-tid="A359109">
+                            <label class="control-label" id="A23752" data-tid="A359110">Materyal Kabul Tarihi</label>
+                            <hvl-date-picker #Validation (ValueChange)="onAcceptionDatePathologyRequestChanged($event)" [BackColor]="AcceptionDatePathologyRequest?.BackColor" [CustomFormat]="AcceptionDatePathologyRequest?.CustomFormat" [Enabled]="AcceptionDatePathologyRequest?.Enabled" [Font]="AcceptionDatePathologyRequest?.Font" [ForeColor]="AcceptionDatePathologyRequest?.ForeColor" [Format]="AcceptionDatePathologyRequest?.Format" [Max]="AcceptionDatePathologyRequest?.Max" [Min]="AcceptionDatePathologyRequest?.Min" [ReadOnly]="AcceptionDatePathologyRequest?.ReadOnly" [Required]="AcceptionDatePathologyRequest?.Required" [TabIndex]="AcceptionDatePathologyRequest?.TabIndex" [Value]="pathologyMainFormViewModel?._Pathology?.PathologyRequest?.AcceptionDate" [Visible]="AcceptionDatePathologyRequest?.Visible" id="A23753" data-tid="A359111"></hvl-date-picker>
+                        </div>
+
+                        <div class="col-sm-12" id="A23755" data-tid="A359112">
+                            <label class="control-label" id="A23756" data-tid="A359113">Onaya Gönderilme Tarihi</label>
+                            <hvl-date-picker #Validation (ValueChange)="onSendToApproveDateChanged($event)" [BackColor]="SendToApproveDate?.BackColor" [CustomFormat]="SendToApproveDate?.CustomFormat" [Enabled]="SendToApproveDate?.Enabled" [Font]="SendToApproveDate?.Font" [ForeColor]="SendToApproveDate?.ForeColor" [Format]="SendToApproveDate?.Format" [Max]="SendToApproveDate?.Max" [Min]="SendToApproveDate?.Min" [ReadOnly]="SendToApproveDate?.ReadOnly" [Required]="SendToApproveDate?.Required" [TabIndex]="SendToApproveDate?.TabIndex" [Value]="pathologyMainFormViewModel?._Pathology?.SendToApproveDate" [Visible]="SendToApproveDate?.Visible" id="A23757" data-tid="A359114"></hvl-date-picker>
+                        </div>
+
+
+                        <div class="col-sm-12" id="A23759" data-tid="A359115">
+                            <label class="control-label" id="A23760" data-tid="A359116">Onay Tarih</label>
+                            <hvl-date-picker #Validation (ValueChange)="onApproveDateChanged($event)" [BackColor]="ApproveDate?.BackColor" [CustomFormat]="ApproveDate?.CustomFormat" [Enabled]="ApproveDate?.Enabled" [Font]="ApproveDate?.Font" [ForeColor]="ApproveDate?.ForeColor" [Format]="ApproveDate?.Format" [Max]="ApproveDate?.Max" [Min]="ApproveDate?.Min" [ReadOnly]="ApproveDate?.ReadOnly" [Required]="ApproveDate?.Required" [TabIndex]="ApproveDate?.TabIndex" [Value]="pathologyMainFormViewModel?._Pathology?.ApproveDate" [Visible]="ApproveDate?.Visible" id="A23761" data-tid="A359117"></hvl-date-picker>
+                        </div>
+
+                        <div class="col-sm-12" id="A23763" data-tid="A359118">
+                            <label class="control-label" id="A23764" data-tid="A359119">Rapor Tarihi</label>
+                            <hvl-date-picker #Validation (ValueChange)="onReportDateChanged($event)" [BackColor]="ReportDate?.BackColor" [CustomFormat]="ReportDate?.CustomFormat" [Enabled]="ReportDate?.Enabled" [Font]="ReportDate?.Font" [ForeColor]="ReportDate?.ForeColor" [Format]="ReportDate?.Format" [Max]="ReportDate?.Max" [Min]="ReportDate?.Min" [ReadOnly]="ReportDate?.ReadOnly" [Required]="ReportDate?.Required" [TabIndex]="ReportDate?.TabIndex" [Value]="pathologyMainFormViewModel?._Pathology?.ReportDate" [Visible]="ReportDate?.Visible" id="A23765" data-tid="A359120"></hvl-date-picker>
+
+                        </div>
+
+                        <div class="col-sm-12" id="A23738" data-tid="A359121">
+                            <label class="control-label" id="A23739" data-tid="A359122">İşlemi Uygulayan Doktor</label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="onProcedureDoctorChanged($event)" [AutoCompleteDialogHeight]="ProcedureDoctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ProcedureDoctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="ProcedureDoctor?.AutoCompleteMode" [BackColor]="ProcedureDoctor?.BackColor" [DefinitionName]="ProcedureDoctor?.ListDefName" [DisplayExpressionsCache]="pathologyMainFormViewModel?.ListDefDisplayExpressions" [Enabled]="ProcedureDoctor?.Enabled" [Font]="ProcedureDoctor?.Font" [ForeColor]="ProcedureDoctor?.ForeColor" [ListFilterExpression]="ProcedureDoctor?.ListFilterExpression" [MinSearchLength]="ProcedureDoctor?.MinSearchLength" [PopupDialogFieldConfig]="ProcedureDoctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ProcedureDoctor?.PopupDialogGridColumns" [PopupDialogHeight]="ProcedureDoctor?.PopupDialogHeight" [PopupDialogTitle]="ProcedureDoctor?.PopupDialogTitle" [PopupDialogWidth]="ProcedureDoctor?.PopupDialogWidth" [ReadOnly]="ProcedureDoctor?.ReadOnly" [SearchMode]="ProcedureDoctor?.SearchMode" [SearchTimeout]="ProcedureDoctor?.SearchTimeout" [SelectedObject]="pathologyMainFormViewModel?._Pathology?.ProcedureDoctor" [TabIndex]="ProcedureDoctor?.TabIndex" [Visible]="ProcedureDoctor?.Visible" [width]="ProcedureDoctor?.Width" id="A23740" data-tid="A359123"></hvl-list-box>
+
+                        </div>
+                        <div class="col-sm-12" id="A23742" data-tid="A359124">
+                            <label class="control-label" id="A23743" data-tid="A359125">Uzman Tabip</label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="onSpecialDoctorChanged($event)" [AutoCompleteDialogHeight]="SpecialDoctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="SpecialDoctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="SpecialDoctor?.AutoCompleteMode" [BackColor]="SpecialDoctor?.BackColor" [DefinitionName]="SpecialDoctor?.ListDefName" [DisplayExpressionsCache]="pathologyMainFormViewModel?.ListDefDisplayExpressions" [Enabled]="SpecialDoctor?.Enabled" [Font]="SpecialDoctor?.Font" [ForeColor]="SpecialDoctor?.ForeColor" [ListFilterExpression]="SpecialDoctor?.ListFilterExpression" [MinSearchLength]="SpecialDoctor?.MinSearchLength" [PopupDialogFieldConfig]="SpecialDoctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="SpecialDoctor?.PopupDialogGridColumns" [PopupDialogHeight]="SpecialDoctor?.PopupDialogHeight" [PopupDialogTitle]="SpecialDoctor?.PopupDialogTitle" [PopupDialogWidth]="SpecialDoctor?.PopupDialogWidth" [ReadOnly]="SpecialDoctor?.ReadOnly" [SearchMode]="SpecialDoctor?.SearchMode" [SearchTimeout]="SpecialDoctor?.SearchTimeout" [SelectedObject]="pathologyMainFormViewModel?._Pathology?.SpecialDoctor" [TabIndex]="SpecialDoctor?.TabIndex" [Visible]="SpecialDoctor?.Visible" [width]="SpecialDoctor?.Width" id="A23744" data-tid="A359126"></hvl-list-box>
+
+                        </div>
+
+                        <div class="col-sm-12" id="A23746" data-tid="A359127">
+                            <label class="control-label" id="A23747" data-tid="A359128">Asistan Doktor</label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="onAssistantDoctorChanged($event)" [AutoCompleteDialogHeight]="AssistantDoctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="AssistantDoctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="AssistantDoctor?.AutoCompleteMode" [BackColor]="AssistantDoctor?.BackColor" [DefinitionName]="AssistantDoctor?.ListDefName" [DisplayExpressionsCache]="pathologyMainFormViewModel?.ListDefDisplayExpressions" [Enabled]="AssistantDoctor?.Enabled" [Font]="AssistantDoctor?.Font" [ForeColor]="AssistantDoctor?.ForeColor" [ListFilterExpression]="AssistantDoctor?.ListFilterExpression" [MinSearchLength]="AssistantDoctor?.MinSearchLength" [PopupDialogFieldConfig]="AssistantDoctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="AssistantDoctor?.PopupDialogGridColumns" [PopupDialogHeight]="AssistantDoctor?.PopupDialogHeight" [PopupDialogTitle]="AssistantDoctor?.PopupDialogTitle" [PopupDialogWidth]="AssistantDoctor?.PopupDialogWidth" [ReadOnly]="AssistantDoctor?.ReadOnly" [SearchMode]="AssistantDoctor?.SearchMode" [SearchTimeout]="AssistantDoctor?.SearchTimeout" [SelectedObject]="pathologyMainFormViewModel?._Pathology?.AssistantDoctor" [TabIndex]="AssistantDoctor?.TabIndex" [Visible]="AssistantDoctor?.Visible" [width]="AssistantDoctor?.Width" id="A23748" data-tid="A359129"></hvl-list-box>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <div class="col-md-12" id="A23770" data-tid="A359130">
+                    <hr id="A23771" data-tid="A359131" />
+                </div>
+
+
+
+                <div class="col-md-12" id="A23773" data-tid="A359132">
+                    <dx-tab-panel [selectedIndex]="0" id="A23774" data-tid="A359133">
+                        <dxi-item class="tabpanel-item" title="Patoloji Materyaller" i18n-title="@@M20246" id="A23775" data-tid="A359134">
+                            <div class="row" id="A23776" data-tid="A359135">
+
+
+
+                            </div>
+                            <div class="fixpopup" data-tid="AY361619">
+                                <div class="panel-group" id="accordion" *ngFor="let material of pathologyMainFormViewModel?._Pathology?.PathologyMaterial;let i=index" data-tid="A359136">
+                                    <div class="panel panel-default" id="A23777" data-tid="A359137">
+                                        <div class="panel-heading" id="A23778" data-tid="A359138">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#{{i}}" id="A23779" data-tid="A359139">
+                                                <h4 class="panel-title" id="A23780" data-tid="A359140">
+
+                                                    <b id="A23781" data-tid="A359141"> {{material.MaterialNumber}} </b>
+                                                    <span class="right-float margin-right-10" id="A23782" data-tid="A359142">
+                                                        Tanı
+                                                        <i *ngIf="material.PathologicDiagnosis != null && material.PathologicDiagnosis != ''" style="width: 10px;" class="fa fa-check" data-toggle="tooltip" data-placement="bottom" title="Tanı Yazılmış" i18n-title="@@M22785" id="A23783" data-tid="A359143"></i>
+                                                        <i *ngIf="material.PathologicDiagnosis == null || material.PathologicDiagnosis == ''" style="width: 10px;" class="fa fa-times" data-toggle="tooltip" data-placement="bottom" title="Tanı Yazılmamış" i18n-title="@@M22784" id="A23784" data-tid="A359144"></i>
+                                                    </span>
+
+                                                    <span class="right-float margin-right-10" id="A23785" data-tid="A359145">
+                                                        Not/Yorum
+                                                        <i *ngIf="material.Note != null && material.Note != ''" style="width: 10px;" class="fa fa-check" data-toggle="tooltip" data-placement="bottom" title="Not/Yorum Yazılmış" i18n-title="@@M19484" id="A23786" data-tid="A359146"></i>
+                                                        <i *ngIf="material.Note == null || material.Note == ''" style="width: 10px;" class="fa fa-times" data-toggle="tooltip" data-placement="bottom" title="Not/Yorum Yazılmamış" i18n-title="@@M19483" id="A23787" data-tid="A359147"></i>
+                                                    </span>
+
+                                                    <span class="right-float margin-right-10" id="A23788" data-tid="A359148">
+                                                        Mikroskopi
+                                                        <i *ngIf="material.Microscopy != null && material.Microscopy != ''" style="width: 10px;" class="fa fa-check" data-toggle="tooltip" data-placement="bottom" title="Mikroskopi Yazılmış" i18n-title="@@M19029" id="A23789" data-tid="A359149"></i>
+                                                        <i *ngIf="material.Microscopy == null || material.Microscopy == ''" style="width: 10px;" class="fa fa-times" data-toggle="tooltip" data-placement="bottom" title="Mikroskopi Yazılmamış" i18n-title="@@M19028" id="A23790" data-tid="A359150"></i>
+                                                    </span>
+
+                                                    <span class="right-float margin-right-10" id="A23791" data-tid="A359151">
+                                                        Makroskopi
+                                                        <i *ngIf="material.Macroscopy != null && material.Macroscopy != ''" style="width: 10px;" class="fa fa-check " data-toggle="tooltip" data-placement="bottom" title="Makroskopi Yazılmış" i18n-title="@@M18494" id="A23792" data-tid="A359152"></i>
+                                                        <i *ngIf="material.Macroscopy == null || material.Macroscopy == ''" style="width: 10px;" class="fa fa-times" data-toggle="tooltip" data-placement="bottom" title="Makroskopi Yazılmamış" i18n-title="@@M18493" id="A23793" data-tid="A359153"></i>
+                                                    </span>
+                                                </h4>
+                                            </a>
+
+                                        </div>
+                                        <div attr.id="{{i}}" class="panel-collapse collapse in" id="A23794" data-tid="A359154">
+                                            <div class="panel-body" id="A23795" data-tid="A359155">
+                                                <PathologyMaterialInfo [RequestedPathologyProcedureList]="pathologyMainFormViewModel._RequestedPathologyProceduresArray" [pathologyMaterial]="material" [isReadOnly]="isReadOnly" [hasRolePathologist]="pathologyMainFormViewModel?.hasRolePathologist" id="A23796" data-tid="A359156"></PathologyMaterialInfo>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </dxi-item>
+                        <dxi-item class="tabpanel-item" title="Patoloji Sarf Malzemeler" i18n-title="@@M20263" id="A23797" data-tid="A359157">
+
+
+                            <div class="col-sm-12" id="A23800" data-tid="A359158">
+                                <TreatmentMaterialForm [EpisodeAction]="pathologyMainFormViewModel?._Pathology" [StoreResourceId]="pathologyMainFormViewModel?._Pathology?.MasterResource" [TreatmentMaterialGridList]="pathologyMainFormViewModel?._Pathology?.TreatmentMaterials" [IsReadOnly]="ReadOnly" id="A23801" data-tid="A359159"></TreatmentMaterialForm>
+                            </div>
+
+                        </dxi-item>
+                    </dx-tab-panel>
+                </div>
+
+
+            </div>
+        </div>
+            <div id="hastagecmisi" class="tab-pane fade" data-tid="A359160">
+                <div *ngIf="openHastaGecmisiTab" data-tid="A359161">
+                    <PatientHistoryForm [patient]="pathologyMainFormViewModel?._PatientObjectID" data-tid="A359162">Hasta Geçmişi</PatientHistoryForm>
+                </div>
+            </div>
+        </div>
+
+
+</form>
+
+
+
+

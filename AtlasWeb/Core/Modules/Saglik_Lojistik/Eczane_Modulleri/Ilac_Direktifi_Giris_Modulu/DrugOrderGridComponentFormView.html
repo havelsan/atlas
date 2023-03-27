@@ -1,0 +1,408 @@
+﻿<div class="col-sm-12" style="padding:0;" *ngIf="_isVisible" data-tid="A329460">
+    <div class="col-sm-12 col-lg-6" style="padding:0;" data-tid="A329461">
+        <div class="col-sm-12" data-tid="A329462">
+            <div class="btn-group" role="group" data-tid="A329463">
+                <div class="col-sm-3" id="A4023" data-tid="A329464">
+                    <dx-check-box [(value)]="isFavoriteDrugList" text="Sık Kullanılan İlaçlar" [width]="150" (onValueChanged)="onFavoriteDrugListValueChanged($event)" i18n-text="@@M21798" id="A4024" data-tid="A329465">
+                    </dx-check-box>
+                </div>
+                <div class="col-sm-3" id="A4025" data-tid="A329466">
+                    <dx-check-box [(value)]="isInheldDrugList" text="Mevcutlu İlaçlar" [width]="150" (onValueChanged)="onInheldValueChanged($event)" i18n-text="@@M18968" id="A4026" data-tid="A329467"></dx-check-box>
+                </div>
+                <div class="col-sm-3" id="A4027" data-tid="A329468">
+                    <dx-check-box [(value)]="searchIsPatientOwnDrug" text="Hastanın İlaçları" [width]="150" (onValueChanged)="onOwnDrugValueChanged($event)" i18n-text="@@M15458" id="A4028" data-tid="A329469"></dx-check-box>
+                </div>
+                <div class="col-sm-3" id="A4027" data-tid="A329470">
+                    <dx-check-box [(value)]="drugListShowSelectionControl" text="Detaylı Arama" [width]="150" (onValueChanged)="onDrugListSelectionModeValueChange($event)" i18n-text="@@M15458" id="A4028" data-tid="A329471">
+                    </dx-check-box>
+                </div>
+            </div>
+            <div class="col-sm-12" data-tid="A329472">
+                <div class="dx-searchbar col-sm-10" id="A4016" style="padding:0" data-tid="A329473">
+                    <dx-text-box [(value)]="searchText" valueChangeEvent="keyup" placeholder="İlaç Ara" mode="search" (onValueChanged)="onSearchValueChanged($event)" i18n-placeholder="@@M27276" id="A4017" data-tid="A329474">
+                    </dx-text-box>
+                </div>
+                <div class="col-sm-2" data-tid="A329475">
+                    <dx-button icon="close" (onClick)="CloseSearchList()" style="float:right;" data-tid="A329476">
+
+                    </dx-button>
+                </div>
+                <div class="col-sm-12" style="padding:0;" *ngIf="drugSearchEnabled" data-tid="A329477">
+                    <dx-list #drugSearchList [dataSource]="drugSource" height="150" (onItemClick)="drugListOnItemClick($event)" id="A4018" selectionMode="single" [(selectedItems)]="selectedDrugListItems" [showSelectionControls]="false" pageLoadMode="scrollBottom" style="position:absolute!important; z-index:999; background-color:white;" data-tid="A329478">
+                        <div *dxTemplate="let data of 'item'" id="A4019" data-tid="A329479">
+                            <img src="{{GetDrugItemWithType(data.drugShapeTypeEnum)}}" style="float:left; margin-right:10px;" id="A14411" data-tid="A329480" />
+                            <div style="float:left; width:65%;" id="A4020" data-tid="A329481">{{data.name}}</div>
+                            <div *ngIf="isInpatient" style="float:right; width:8%;" id="A4021" data-tid="A329482">{{data.inheldStatus}}
+                            </div>
+                        </div>
+                    </dx-list>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="col-sm-12 col-lg-6" style="padding:0;" *ngIf="drugListShowSelectionControl">
+        <div class="col-sm-12">
+            <label class="col-sm-12 control-label" style="padding:0;">Seçilen İlaçlar</label>
+        </div>
+        <div class="col-sm-12">
+            <dx-tag-box [dataSource]="selectedMaterials" [(value)]="selectedMaterials" displayExpr="name" [multiline]="false">
+
+            </dx-tag-box>
+        </div>
+        <div class="col-sm-12" style="padding:0;">
+            <div class="row">
+                <div class="col-sm-2">
+                    <label class="col-sm-12">
+                        Doz Aralığı
+                    </label>
+                    <div class="col-sm-12">
+                        <dx-select-box [dataSource]="timeScheduleDataSource" valueExpr="ObjectID" displayExpr="Name" [(value)]="selectedTimeSchedule" (onValueChanged)="onTimeScheduleChanged($event)">
+                        </dx-select-box>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <label class="col-sm-12">
+                        Doz
+                    </label>
+                    <div class="col-sm-12">
+                        <dx-number-box [showSpinButtons]="false" [(value)]="doseAmount">
+                        </dx-number-box>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <label class="col-sm-12">
+                        Gün
+                    </label>
+                    <div class="col-sm-12">
+                        <dx-number-box [showSpinButtons]="false" [(value)]="day">
+                        </dx-number-box>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <label class="col-sm-12">
+                        Uyg. Baş. Zamanı
+                    </label>
+                    <div class="col-sm-12">
+                        <dx-date-box [(value)]="plannedStartTime" type="datetime" [min]="drugOrderMinDate" [max]="drugOrderMaxDate" (onValueChanged)="onPlannedStartTimeValueChanged($event)" style="width:100%">
+
+                        </dx-date-box>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label class="col-sm-12">
+                        Kullanım Şekli
+                    </label>
+                    <div class="col-sm-12">
+                        <dx-select-box [dataSource]="DrugUsageTypeDataSource" valueExpr="ordinal" displayExpr="description" [readOnly]="drugListShowSelectionControl" [(value)]="selectedDrugUsageType">
+                        </dx-select-box>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <label class="col-sm-12">
+                        Tedavi Türü
+                    </label>
+                    <div class="col-sm-12">
+                        <dx-select-box [dataSource]="DrugOrderTypeDataSource" valueExpr="ordinal" displayExpr="description" [(value)]="selectedDrugOrderType">
+                        </dx-select-box>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-9">
+                    <label class="col-sm-12">
+                        Kullanım Açıklaması
+                    </label>
+                    <div class="col-sm-12">
+                        <dx-text-box [(value)]="usageNote">
+                        </dx-text-box>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-2" style="padding:0;">
+                    <dx-check-box [(value)]="isPatientOwnDrug" text="Hasta Yanında Getirdi" (onValueChanged)="patientOwnDrugValueChanged($event)">
+                    </dx-check-box>
+                </div>
+                <div class="col-sm-2">
+                    <dx-check-box [(value)]="isImmediate" text="Acil İlaç" (onValueChanged)="isImmediateValueChanged($event)">
+                    </dx-check-box>
+                </div>
+                <div class="col-sm-2">
+                    <dx-check-box [(value)]="caseOfNeed" text="Lüzumlu Halinde" (onValueChanged)="caseOfNeedValueChanged($event)">
+                    </dx-check-box>
+                </div>
+            </div>
+        </div>
+    </div>-->
+</div>
+<div class="col-sm-12" *ngIf="_isVisible" data-tid="A329483">
+    <dx-radio-group #eventRadioGroup id="radio-group-with-selection" [items]="OrderStatus" style="margin-bottom: 10px; float: left; padding-left: 15px" [(value)]="SelectedOrderStatus" (onValueChanged)="onValueChangedOrderStatus($event)" layout="horizontal" data-tid="A329484"></dx-radio-group>
+    <!--<dx-button text="Ekle" (onClick)="CreateDrugOrderGridModel()" icon="add" type="default" style="float:right;"></dx-button>
+    <dx-button text="Bütün Direktifleri Getir" (onClick)="AllDrugOrderGridModel()" icon="chevrondoubleleft"
+        type="default" [(disabled)]="loadingVisible" style="float:right;"></dx-button>
+     <dx-button text="Şablondan Seç" (onClick)="orderTemplateSelect()" icon="save" type="default"
+        [(disabled)]="loadingVisible" style="float:right;"></dx-button> 
+    <dx-button text="Yeni Direktifleri Sil" (onClick)="DeleteDrugOrderGridModel()" icon="trash" type="btn btn-default"
+        [(disabled)]="loadingVisible" style="float:right;"></dx-button>-->
+
+    <dx-button id="btnAction" icon="fa fa-undo" type="default" icon="spindown" style="margin: 0px 5px 0px 0px; float:right;" text="Diğer İşlemler" (onClick)="showActionMenu()" data-tid="A329485">
+    </dx-button>
+    <dx-context-menu [(visible)]="actionMenuVisible" [dataSource]="stateAction" target="#btnAction" [position]="{at: 'left bottom'}" (onItemClick)="onActionMenuClick($event)" data-tid="A329486">
+        <div *dxTemplate="let e of 'item'" data-tid="A329487">
+            <div data-tid="A329488">
+                <span [ngClass]="e.Icon" data-tid="A329489"></span>
+                {{e.Caption}}
+            </div>
+        </div>
+    </dx-context-menu>
+    <dx-button text="Tedavi Dışı" (onClick)="OutOfTreatmentDrugOrders()" icon="unpin" type="default" [(disabled)]="loadingVisible" style="float:right;" data-tid="A329490"></dx-button>
+    <dx-button text="Durdur & İptal Et" (onClick)="StopDrugOrders()" icon="clear" type="danger" [(disabled)]="loadingVisible" style="float:right;" data-tid="A329491"></dx-button>
+    <dx-button text="Tedavi Gün." (onClick)="RepeatDrugOrders()" icon="refresh" type="btn btn-warning" [(disabled)]="loadingVisible" style="float:right; background-color: #efb050; color:white;" data-tid="A329492"></dx-button>
+    <dx-button text="Order Ver" (onClick)="SaveDrugOrders()" icon="save" type="success" [(disabled)]="loadingVisible" style="float:right;" data-tid="A329493"></dx-button>
+
+</div>
+
+<div class="col-sm-12" data-tid="A329494">
+    <!--(onRowInserting)="onDrugOrderGridRowInserting($event)"-->
+    <!--(onSelectionChanged)="onMasterGridSelectionChanged($event)" [(selectedRowKeys)]="selectedMasterGridRowKeys" [selection]="{mode:'multiple', showCheckBoxesMode:'always', allowSelectAll:'false'}" columnResizingMode="widget" (onEditingStart)="onMasterGridEditingStart($event)"  (onRowUpdating)="onDrugOrderIntroductionGridUpdating($event)" (onRowUpdated)="onDrugOrderIntroductionGridUpdated($event)"-->
+
+    <dx-data-grid #orderMasterGrid id="orderMasterGrid" keyExpr="ID" [masterDetail]="{ enabled: true, template: 'detail' }" [dataSource]="drugOrderIntroductionFormViewModel.DrugOrderIntroductionGridViewModel" [columns]="MasterGridColumns" [columnFixing]="{eneabled:'true'}" columnResizingMode="widget" height="500" [(selectedRowKeys)]="selectedMasterGridRowKeys" (onEditorPreparing)="onMasterGridEditorPreparing($event)" (onEditorPrepared)="onEditorPrepared($event)" (onSelectionChanged)="onMasterGridSelectionChanged($event)" (onEditingStart)="onMasterGridEditingStart($event)" (onRowUpdating)="onDrugOrderIntroductionGridUpdating($event)" (onRowUpdated)="onDrugOrderIntroductionGridUpdated($event)" (onRowRemoving)="onMasterGirdRowRemoving($event)" (onRowPrepared)="onRowPrepared($event)" data-tid="A329495">
+        <dxo-selection [showCheckBoxesMode]="checkBoxesMode" [allowSelectAll]="false" mode="multiple" data-tid="A329496">
+        </dxo-selection>
+        <dxo-editing mode="popup" [allowUpdating]="_isVisible" [allowDeleting]="_isVisible" [allowAdding]="false" data-tid="A329497">
+            <dxo-popup title="Direktif" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }" data-tid="A329498">
+
+
+                <dxi-toolbar-item toolbar="bottom" location="after" widget="dxButton" [options]="{ type: 'success', text: 'Kaydet', onClick: saveClickHandler }" data-tid="A329499">
+                </dxi-toolbar-item>
+                <dxi-toolbar-item toolbar="bottom" location="after" widget="dxButton" [options]="{ type:'danger', text: 'İptal', onClick: cancelClickHandler }" data-tid="A329500">
+                </dxi-toolbar-item>
+
+
+            </dxo-popup>
+
+            <dxo-form data-tid="A329501">
+                <dxi-item itemType="group" [colCount]="2" [colSpan]="2" data-tid="A329502">
+                    <dxi-item dataField="PlannedStartTime" [editorOptions]="{  min: this.drugOrderMinDate, max: this.drugOrderMaxDate }" data-tid="A329503"></dxi-item>
+                    <dxi-item dataField="OrderStartTime" [editorOptions]="{ type: 'time' ,min: this.drugOrderMinDate }" data-tid="A329504">
+                    </dxi-item>
+                    <dxi-item dataField="Material.name" data-tid="A329505"></dxi-item>
+                    <dxi-item dataField="HospitalTimeScheduleObjectID" data-tid="A329506"></dxi-item>
+                    <dxi-item dataField="DoseAmount" data-tid="A329507"></dxi-item>
+                    <dxi-item dataField="Day" data-tid="A329508"></dxi-item>
+                    <dxi-item dataField="UsageNote" data-tid="A329509"></dxi-item>
+                    <dxi-item dataField="IsImmediate" data-tid="A329510"></dxi-item>
+                    <dxi-item dataField="PatientOwnDrug" data-tid="A329511"></dxi-item>
+                    <dxi-item dataField="CaseOfNeed" data-tid="A329512"></dxi-item>
+                    <dxi-item dataField="DrugUsageType" data-tid="A329513"></dxi-item>
+                    <dxi-item dataField="DrugOrderType" data-tid="A329514"></dxi-item>
+                </dxi-item>
+            </dxo-form>
+
+        </dxo-editing>
+        <div *dxTemplate="let data of 'buttonCellTemplate'" data-tid="A329515">
+            <dx-button [ngStyle]="{'height':'22px', 'font-size':'5px', 'padding':'0', 'width':'25%'}" text icon="refresh" hint="Geri Al" (onClick)="UndoDrugOrder(data)" data-tid="A329516"></dx-button>
+            <dx-button [ngStyle]="{'height':'22px', 'font-size':'5px', 'padding':'0', 'width':'25%'}" text icon="info" hint="İnfo" (onClick)="InfoDrugOrder(data)" data-tid="A329517"></dx-button>
+            <dx-button [ngStyle]="{'height':'22px', 'font-size':'5px', 'padding':'0', 'width':'25%'}" text icon="clock" hint="Saat Güncelle" (onClick)="changeDrugOrderClick(data)" data-tid="A329518"></dx-button>
+            <dx-button [ngStyle]="{'height':'22px', 'font-size':'5px', 'padding':'0', 'width':'25%'}" text icon="upload" hint="Order Güncelle" (onClick)="upgradeDrugOrderClick(data)" data-tid="A329519"></dx-button>
+        </div>
+        <div *dxTemplate="let item of 'detail'" data-tid="A329520">
+            <label class="col-sm-12" data-tid="A329521">Order Detayları</label>
+            <div class="col-sm-12 remove-padding" data-tid="A329522">
+                <dx-data-grid #orderDetailGrid [dataSource]="item.data.DrugOrderIntroDuctionTimeSchedule" [columns]="DrugOrderDetailGridColumns" (onRowUpdated)="onDrugOrderIntroductionTimeScheduleGridUpdated($event)" (onRowUpdating)="onDrugOrderIntroductionTimeScheduleGridUpdating($event)" (onEditingStart)="onDetailGridEditingStart($event)" data-tid="A329523">
+                    <dxo-editing mode="cell" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="false" data-tid="A329524">
+                    </dxo-editing>
+                    <dxo-scrolling mode="infinite" data-tid="A329525"></dxo-scrolling>
+                    <dxo-sorting mode="none" data-tid="A329526"></dxo-sorting>
+                </dx-data-grid>
+            </div>
+        </div>
+    </dx-data-grid>
+</div>
+
+<dx-popup *ngIf="_isVisible" width="90%" height="60%" [showTitle]="true" title="Detaylı Arama" [dragEnabled]="false" [closeOnOutsideClick]="false" [showCloseButton]="false" [(visible)]="drugListShowSelectionControl" data-tid="A329527">
+    <div *dxTemplate="let data of 'content'" id="A30392" data-tid="A329528">
+        <div class="col-sm-12 col-lg-6" style="padding:0;" data-tid="A329529">
+            <div class="col-sm-12" data-tid="A329530">
+                <div class="btn-group" role="group" data-tid="A329531">
+                    <div class="col-sm-3" id="A4023" data-tid="A329532">
+                        <dx-check-box [(value)]="isFavoriteDrugList" text="Sık Kullanılan İlaçlar" [width]="150" (onValueChanged)="onFavoriteDrugListValueChanged($event)" i18n-text="@@M21798" id="A4024" data-tid="A329533">
+                        </dx-check-box>
+                    </div>
+                    <div class="col-sm-3" id="A4025" data-tid="A329534">
+                        <dx-check-box [(value)]="isInheldDrugList" text="Mevcutlu İlaçlar" [width]="150" (onValueChanged)="onInheldValueChanged($event)" i18n-text="@@M18968" id="A4026" data-tid="A329535">
+                        </dx-check-box>
+                    </div>
+                    <div class="col-sm-3" id="A4027" data-tid="A329536">
+                        <dx-check-box [(value)]="searchIsPatientOwnDrug" text="Hastanın İlaçları" [width]="150" (onValueChanged)="onOwnDrugValueChanged($event)" i18n-text="@@M15458" id="A4028" data-tid="A329537">
+                        </dx-check-box>
+                    </div>
+                    <div class="col-sm-3" id="A4027" data-tid="A329538">
+                        <dx-check-box [(value)]="isIngredientSearch" text="Etken Madde" [width]="150" (onValueChanged)="onIngredientSearchValueChange($event)" i18n-text="@@M15458" id="A4028" data-tid="A329539">
+                        </dx-check-box>
+                    </div>
+                </div>
+                <div class="col-sm-12" data-tid="A329540">
+                    <div class="dx-searchbar col-sm-10" id="A4016" style="padding:0" data-tid="A329541">
+                        <dx-text-box [(value)]="searchText" valueChangeEvent="keyup" placeholder="İlaç Ara" mode="search" (onValueChanged)="onSearchValueChanged($event)" i18n-placeholder="@@M27276" id="A4017" data-tid="A329542">
+                        </dx-text-box>
+                    </div>
+                    <div class="col-sm-12" style="padding:0;" *ngIf="drugSearchEnabled" data-tid="A329543">
+                        <!--[selectionMode]="drugListSelectionMode"-->
+                        <dx-list #drugSearchList [dataSource]="drugSource" height="150" (onItemClick)="drugListOnItemClick($event)" id="A4018" selectionMode="single" [(selectedItems)]="selectedDrugListItems" [showSelectionControls]="false" pageLoadMode="scrollBottom" style="position:absolute!important; z-index:999; background-color:white;" data-tid="A329544">
+                            <div *dxTemplate="let data of 'item'" id="A4019" data-tid="A329545">
+                                <img src="{{GetDrugItemWithType(data.drugShapeTypeEnum)}}" style="float:left; margin-right:10px;" id="A14411" data-tid="A329546" />
+                                <div style="float:left; width:65%;" id="A4020" data-tid="A329547">{{data.name}}</div>
+                                <div *ngIf="isInpatient" style="float:right; width:8%;" id="A4021" data-tid="A329548">{{data.inheldStatus}}
+                                </div>
+                                <!--<div style="float:right; width:22%;" id="A4022">{{data.SgkReturnPay}}</div>-->
+                            </div>
+                        </dx-list>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-lg-6" style="padding:0;" *ngIf="drugListShowSelectionControl" data-tid="A329549">
+            <div class="col-sm-12" style="padding:0;" *ngIf="isIngredientSearch" data-tid="A329550">
+                <div class="col-sm-2" data-tid="A329551">
+                    <label data-tid="A329552">Etken Madde</label>
+                </div>
+                <div class="col-sm-10" data-tid="A329553">
+                    <dx-tag-box [dataSource]="activeIngeridents" [(value)]="selectedActiveIngeridents" displayExpr="Name" [multiline]="false" [searchEnabled]="true" [showSelectionControls]="true" applyValueMode="useButtons" (onValueChanged)="onIngeridentsValueChanged($event)" data-tid="A329554">
+                    </dx-tag-box>
+                </div>
+            </div>
+            <div class="col-sm-12" data-tid="A329555">
+                <label class="col-sm-12 control-label" style="padding:0;" data-tid="A329556">Seçilen İlaçlar</label>
+            </div>
+            <div class="col-sm-12" data-tid="A329557">
+                <dx-tag-box [dataSource]="selectedMaterials" [(value)]="selectedMaterials" displayExpr="name" [multiline]="false" (onSelectionChanged)="onMultiSelectTagSelectionChanged($event)" data-tid="A329558">
+                </dx-tag-box>
+            </div>
+            <div class="col-sm-12" style="padding:0;" data-tid="A329559">
+                <div class="row" data-tid="A329560">
+                    <div class="col-sm-2" data-tid="A329561">
+                        <label class="col-sm-12" data-tid="A329562">
+                            Doz Aralığı
+                        </label>
+                        <div class="col-sm-12" data-tid="A329563">
+                            <dx-select-box [dataSource]="timeScheduleDataSource" valueExpr="ObjectID" displayExpr="Name" [(value)]="selectedTimeSchedule" (onValueChanged)="onTimeScheduleChanged($event)" data-tid="A329564">
+                            </dx-select-box>
+                        </div>
+                    </div>
+                    <div class="col-sm-2" data-tid="A329565">
+                        <label class="col-sm-12" data-tid="A329566">
+                            Doz
+                        </label>
+                        <div class="col-sm-12" data-tid="A329567">
+                            <dx-number-box [showSpinButtons]="false" [(value)]="doseAmount" data-tid="A329568">
+                            </dx-number-box>
+                        </div>
+                    </div>
+                    <div class="col-sm-2" data-tid="A329569">
+                        <label class="col-sm-12" data-tid="A329570">
+                            Gün
+                        </label>
+                        <div class="col-sm-12" data-tid="A329571">
+                            <dx-number-box [showSpinButtons]="false" [(value)]="day" data-tid="A329572">
+                            </dx-number-box>
+                        </div>
+                    </div>
+                    <div class="col-sm-3" data-tid="A329573">
+                        <label class="col-sm-12" data-tid="A329574">
+                            Uyg. Baş. Zamanı
+                        </label>
+                        <div class="col-sm-12" data-tid="A329575">
+                            <dx-date-box [(value)]="plannedStartTime" type="datetime" [min]="drugOrderMinDate" [max]="drugOrderMaxDate" (onValueChanged)="onPlannedStartTimeValueChanged($event)" style="width:100%" data-tid="A329576">
+
+                            </dx-date-box>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" data-tid="A329577">
+                    <!--<div class="col-sm-4">
+                        <label class="col-sm-12">
+                            Kullanım Şekli
+                        </label>
+                        <div class="col-sm-12">
+                            <dx-select-box [dataSource]="DrugUsageTypeDataSource" valueExpr="ordinal" displayExpr="description"
+                                [readOnly]="drugListShowSelectionControl" [(value)]="selectedDrugUsageType">
+                            </dx-select-box>
+                        </div>
+                    </div>-->
+                    <div class="col-sm-12" data-tid="A329578">
+                        <label class="col-sm-12" data-tid="A329579">
+                            Tedavi Türü
+                        </label>
+                        <div class="col-sm-12" data-tid="A329580">
+                            <dx-select-box [dataSource]="DrugOrderTypeDataSource" valueExpr="ordinal" displayExpr="description" [(value)]="selectedDrugOrderType" data-tid="A329581">
+                            </dx-select-box>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" data-tid="A329582">
+                    <div class="col-sm-9" data-tid="A329583">
+                        <label class="col-sm-12" data-tid="A329584">
+                            Kullanım Açıklaması
+                        </label>
+                        <div class="col-sm-12" data-tid="A329585">
+                            <dx-text-box [(value)]="usageNote" data-tid="A329586">
+                            </dx-text-box>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12" data-tid="A329587">
+                    <div class="col-sm-2" style="padding:0;" data-tid="A329588">
+                        <dx-check-box [(value)]="isPatientOwnDrug" text="Hasta Yanında Getirdi" (onValueChanged)="patientOwnDrugValueChanged($event)" data-tid="A329589">
+                        </dx-check-box>
+                    </div>
+                    <div class="col-sm-2" data-tid="A329590">
+                        <dx-check-box [(value)]="isImmediate" text="Acil İlaç" (onValueChanged)="isImmediateValueChanged($event)" data-tid="A329591">
+                        </dx-check-box>
+                    </div>
+                    <div class="col-sm-2" data-tid="A329592">
+                        <dx-check-box [(value)]="caseOfNeed" text="Lüzumlu Halinde" (onValueChanged)="caseOfNeedValueChanged($event)" data-tid="A329593">
+                        </dx-check-box>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br data-tid="A329594" />
+        <div class="row" data-tid="A329595">
+            <div class="col-sm-12" data-tid="A329596">
+                <dx-data-grid id="gridContainer" [dataSource]="MultiSelectGridDataSource" keyExpr="ID" [columns]="MultiSelectGridColumns" [columnFixing]="{eneabled:'true'}" columnResizingMode="widget" height="300" (onRowRemoving)="onMultiSelectGirdRowRemoving($event)" data-tid="A329597">
+                    <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="false" data-tid="A329598">
+                        <dxo-popup title="Direktif" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }" data-tid="A329599">
+                        </dxo-popup>
+
+                        <dxo-form data-tid="A329600">
+                            <dxi-item itemType="group" [colCount]="2" [colSpan]="2" data-tid="A329601">
+                                <dxi-item dataField="Material.name" data-tid="A329602"></dxi-item>
+                                <dxi-item dataField="HospitalTimeScheduleObjectID" data-tid="A329603"></dxi-item>
+                                <dxi-item dataField="DoseAmount" data-tid="A329604"></dxi-item>
+                                <dxi-item dataField="Day" data-tid="A329605"></dxi-item>
+                                <dxi-item dataField="UsageNote" data-tid="A329606"></dxi-item>
+                                <dxi-item dataField="IsImmediate" data-tid="A329607"></dxi-item>
+                                <dxi-item dataField="PatientOwnDrug" data-tid="A329608"></dxi-item>
+                                <dxi-item dataField="CaseOfNeed" data-tid="A329609"></dxi-item>
+                                <dxi-item dataField="DrugUsageType" data-tid="A329610"></dxi-item>
+                                <dxi-item dataField="DrugOrderType" data-tid="A329611"></dxi-item>
+                            </dxi-item>
+                        </dxo-form>
+                    </dxo-editing>
+                </dx-data-grid>
+            </div>
+        </div>
+        <div class="row" data-tid="A329612">
+            <div class="col-sm-12" data-tid="A329613">
+                <dx-button text="Vazgeç" (onClick)="CancelMultiSelectDrugOrderGridModel()" icon="close" type="danger" style="float:right;" data-tid="A329614"></dx-button>
+                <dx-button text="Ekle" (onClick)="CreateMultiSelectDrugOrderGridModel()" icon="add" type="default" style="float:right;" data-tid="A329615"></dx-button>
+
+            </div>
+        </div>
+    </div>
+</dx-popup>
+<dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#orderMasterGrid' }" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" message="İşlem Yapılıyor.." [closeOnOutsideClick]="false" data-tid="A329616">
+</dx-load-panel>

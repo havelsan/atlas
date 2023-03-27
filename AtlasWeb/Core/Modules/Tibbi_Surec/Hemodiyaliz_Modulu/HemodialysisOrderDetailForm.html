@@ -1,0 +1,470 @@
+﻿<NeStatePanelComponent [ObjectDefID]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.ObjectDefID" [CurrentStateDefID]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="save($event)" data-tid="A350017">
+</NeStatePanelComponent>
+<form id="HemodialysisOrderDetailForm" class="form-horizontal" role="form" data-tid="A350018"></form>
+
+<a href="javascript:void(0)" class="nav-link" (click)="getPreviousOrderDetail()" id="A14444" data-tid="A350019">
+    <i style="float:right;margin-right:5px" class="fa fa-address-card-o fa-2x" data-toggle="tooltip" data-placement="bottom" title="Seans Bilgileri Aktar" i18n-title="@@M20020" id="A14445" data-tid="A350020"></i>
+</a>
+
+<dx-tab-panel [selectedIndex]="0" data-tid="A350021">
+    <dxi-item class="tabpanel-item" title="Genel Bilgiler" data-tid="A350022">
+        <br data-tid="A350023" />
+        <div class="col-md-3" data-tid="A350024">
+            <div class="panel panel-default" data-tid="A350025">
+                <div class="panel-body" data-tid="A350026">
+                    <div class="row" data-tid="A350027">
+                        <div class="col-md-12" data-tid="A350028">
+                            <label class="control-label" data-tid="A350029">
+                                Diyalize BaşlamaTarihi
+                            </label>
+                            <hvl-date-picker #Validation (ValueChange)="onSessionDateChanged($event)" [BackColor]="SessionDate?.BackColor" [CustomFormat]="SessionDate?.CustomFormat" [Enabled]="SessionDate?.Enabled" [Font]="SessionDate?.Font" [ForeColor]="SessionDate?.ForeColor" [Format]="SessionDate?.Format" [Max]="SessionDate?.Max" [Min]="SessionDate?.Min" [ReadOnly]="SessionDate?.ReadOnly" [Required]="SessionDate?.Required" [TabIndex]="SessionDate?.TabIndex" [Value]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.SessionDate" [Visible]="SessionDate?.Visible" data-tid="A350030">
+                            </hvl-date-picker>
+                        </div>
+                        <div class="col-md-12" data-tid="A350031">
+                            <label class="control-label" data-tid="A350032">
+                                Önceki RRT Yöntemi
+                            </label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="onPreviousRRTChanged($event)" [AutoCompleteDialogHeight]="PreviousRRT?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="PreviousRRT?.AutoCompleteDialogWidth" [AutoCompleteMode]="PreviousRRT?.AutoCompleteMode" [BackColor]="PreviousRRT?.BackColor" [DefinitionName]="PreviousRRT?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="PreviousRRT?.Enabled" [Font]="PreviousRRT?.Font" [ForeColor]="PreviousRRT?.ForeColor" [ListFilterExpression]="PreviousRRT?.ListFilterExpression" [MinSearchLength]="PreviousRRT?.MinSearchLength" [PopupDialogFieldConfig]="PreviousRRT?.PopupDialogFieldConfig" [PopupDialogGridColumns]="PreviousRRT?.PopupDialogGridColumns" [PopupDialogHeight]="PreviousRRT?.PopupDialogHeight" [PopupDialogTitle]="PreviousRRT?.PopupDialogTitle" [PopupDialogWidth]="PreviousRRT?.PopupDialogWidth" [ReadOnly]="PreviousRRT?.ReadOnly" [SearchMode]="PreviousRRT?.SearchMode" [SearchTimeout]="PreviousRRT?.SearchTimeout" [SelectedObject]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.PreviousRRT" [TabIndex]="PreviousRRT?.TabIndex" [Visible]="PreviousRRT?.Visible" [width]="PreviousRRT?.Width" data-tid="A350033">
+                            </hvl-list-box>
+                        </div>
+                        <div class="col-md-12" data-tid="A350034">
+                            <label class="control-label" data-tid="A350035">
+                                Katater
+                            </label>                                          
+
+                            <hvl-list-box #Validation (SelectedObjectChange)="onCatheterChanged($event)" [AutoCompleteDialogHeight]="Catheter?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="Catheter?.AutoCompleteDialogWidth" [AutoCompleteMode]="Catheter?.AutoCompleteMode" [BackColor]="Catheter?.BackColor" [DefinitionName]="Catheter?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="Catheter?.Enabled" [Font]="Catheter?.Font" [ForeColor]="Catheter?.ForeColor" [ListFilterExpression]="Catheter?.ListFilterExpression" [MinSearchLength]="Catheter?.MinSearchLength" [PopupDialogFieldConfig]="Catheter?.PopupDialogFieldConfig" [PopupDialogGridColumns]="Catheter?.PopupDialogGridColumns" [PopupDialogHeight]="Catheter?.PopupDialogHeight" [PopupDialogTitle]="Catheter?.PopupDialogTitle" [PopupDialogWidth]="Catheter?.PopupDialogWidth" [ReadOnly]="Catheter?.ReadOnly" [SearchMode]="Catheter?.SearchMode" [SearchTimeout]="Catheter?.SearchTimeout" [SelectedObject]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.Catheter" [TabIndex]="Catheter?.TabIndex" [Visible]="Catheter?.Visible" [width]="Catheter?.Width" data-tid="A350036">
+                            </hvl-list-box>
+                        </div>
+                        <div class="col-md-12" data-tid="A350037">
+                            <label class="control-label" data-tid="A350038">
+                                Kullanılan Diyaliz Tedavisi
+                            </label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="onDialysisTreatmentChanged($event)" [AutoCompleteDialogHeight]="DialysisTreatment?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="DialysisTreatment?.AutoCompleteDialogWidth" [AutoCompleteMode]="DialysisTreatment?.AutoCompleteMode" [BackColor]="DialysisTreatment?.BackColor" [DefinitionName]="DialysisTreatment?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="DialysisTreatment?.Enabled" [Font]="DialysisTreatment?.Font" [ForeColor]="DialysisTreatment?.ForeColor" [ListFilterExpression]="DialysisTreatment?.ListFilterExpression" [MinSearchLength]="DialysisTreatment?.MinSearchLength" [PopupDialogFieldConfig]="DialysisTreatment?.PopupDialogFieldConfig" [PopupDialogGridColumns]="DialysisTreatment?.PopupDialogGridColumns" [PopupDialogHeight]="DialysisTreatment?.PopupDialogHeight" [PopupDialogTitle]="DialysisTreatment?.PopupDialogTitle" [PopupDialogWidth]="DialysisTreatment?.PopupDialogWidth" [ReadOnly]="DialysisTreatment?.ReadOnly" [SearchMode]="DialysisTreatment?.SearchMode" [SearchTimeout]="DialysisTreatment?.SearchTimeout" [SelectedObject]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.DialysisTreatment" [TabIndex]="DialysisTreatment?.TabIndex" [Visible]="DialysisTreatment?.Visible" [width]="DialysisTreatment?.Width" data-tid="A350039">
+                            </hvl-list-box>
+                        </div>
+                        <div class="col-md-12" data-tid="A350040">
+                            <label class="control-label" data-tid="A350041">
+                                Diyalize Girme Sıklığı
+                            </label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="onDialysisFrequencyChanged($event)" [AutoCompleteDialogHeight]="DialysisFrequency?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="DialysisFrequency?.AutoCompleteDialogWidth" [AutoCompleteMode]="DialysisFrequency?.AutoCompleteMode" [BackColor]="DialysisFrequency?.BackColor" [DefinitionName]="DialysisFrequency?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="DialysisFrequency?.Enabled" [Font]="DialysisFrequency?.Font" [ForeColor]="DialysisFrequency?.ForeColor" [ListFilterExpression]="DialysisFrequency?.ListFilterExpression" [MinSearchLength]="DialysisFrequency?.MinSearchLength" [PopupDialogFieldConfig]="DialysisFrequency?.PopupDialogFieldConfig" [PopupDialogGridColumns]="DialysisFrequency?.PopupDialogGridColumns" [PopupDialogHeight]="DialysisFrequency?.PopupDialogHeight" [PopupDialogTitle]="DialysisFrequency?.PopupDialogTitle" [PopupDialogWidth]="DialysisFrequency?.PopupDialogWidth" [ReadOnly]="DialysisFrequency?.ReadOnly" [SearchMode]="DialysisFrequency?.SearchMode" [SearchTimeout]="DialysisFrequency?.SearchTimeout" [SelectedObject]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.DialysisFrequency" [TabIndex]="DialysisFrequency?.TabIndex" [Visible]="DialysisFrequency?.Visible" [width]="DialysisFrequency?.Width" data-tid="A350042">
+                            </hvl-list-box>
+                        </div>
+                        <div class="col-md-12" data-tid="A350043">
+                            <label class="control-label" data-tid="A350044">
+                                Fosfor Bağlayıcı Ajan
+                            </label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="onPhosphorusAgentChanged($event)" [AutoCompleteDialogHeight]="PhosphorusAgent?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="PhosphorusAgent?.AutoCompleteDialogWidth" [AutoCompleteMode]="PhosphorusAgent?.AutoCompleteMode" [BackColor]="PhosphorusAgent?.BackColor" [DefinitionName]="PhosphorusAgent?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="PhosphorusAgent?.Enabled" [Font]="PhosphorusAgent?.Font" [ForeColor]="PhosphorusAgent?.ForeColor" [ListFilterExpression]="PhosphorusAgent?.ListFilterExpression" [MinSearchLength]="PhosphorusAgent?.MinSearchLength" [PopupDialogFieldConfig]="PhosphorusAgent?.PopupDialogFieldConfig" [PopupDialogGridColumns]="PhosphorusAgent?.PopupDialogGridColumns" [PopupDialogHeight]="PhosphorusAgent?.PopupDialogHeight" [PopupDialogTitle]="PhosphorusAgent?.PopupDialogTitle" [PopupDialogWidth]="PhosphorusAgent?.PopupDialogWidth" [ReadOnly]="PhosphorusAgent?.ReadOnly" [SearchMode]="PhosphorusAgent?.SearchMode" [SearchTimeout]="PhosphorusAgent?.SearchTimeout" [SelectedObject]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.PhosphorusAgent" [TabIndex]="PhosphorusAgent?.TabIndex" [Visible]="PhosphorusAgent?.Visible" [width]="PhosphorusAgent?.Width" data-tid="A350045">
+                            </hvl-list-box>
+                        </div>
+                        <div class="col-md-12" data-tid="A350046">
+                            <label class="control-label" data-tid="A350047">
+                                Sinekalset Kullanımı
+                            </label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="onSinekalsetUsageChanged($event)" [AutoCompleteDialogHeight]="SinekalsetUsage?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="SinekalsetUsage?.AutoCompleteDialogWidth" [AutoCompleteMode]="SinekalsetUsage?.AutoCompleteMode" [BackColor]="SinekalsetUsage?.BackColor" [DefinitionName]="SinekalsetUsage?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="SinekalsetUsage?.Enabled" [Font]="SinekalsetUsage?.Font" [ForeColor]="SinekalsetUsage?.ForeColor" [ListFilterExpression]="SinekalsetUsage?.ListFilterExpression" [MinSearchLength]="SinekalsetUsage?.MinSearchLength" [PopupDialogFieldConfig]="SinekalsetUsage?.PopupDialogFieldConfig" [PopupDialogGridColumns]="SinekalsetUsage?.PopupDialogGridColumns" [PopupDialogHeight]="SinekalsetUsage?.PopupDialogHeight" [PopupDialogTitle]="SinekalsetUsage?.PopupDialogTitle" [PopupDialogWidth]="SinekalsetUsage?.PopupDialogWidth" [ReadOnly]="SinekalsetUsage?.ReadOnly" [SearchMode]="SinekalsetUsage?.SearchMode" [SearchTimeout]="SinekalsetUsage?.SearchTimeout" [SelectedObject]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.SinekalsetUsage" [TabIndex]="SinekalsetUsage?.TabIndex" [Visible]="SinekalsetUsage?.Visible" [width]="SinekalsetUsage?.Width" data-tid="A350048">
+                            </hvl-list-box>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3" data-tid="A350049">
+            <div class="panel panel-default" data-tid="A350050">
+                <div class="panel-body" data-tid="A350051">
+                    <div class="row" data-tid="A350052">
+                        <div class="col-md-12" data-tid="A350053">
+                            <label class="control-label" data-tid="A350054">
+                                Peritoneal Gecirgenlik (PET)
+                            </label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="onPETChanged($event)" [AutoCompleteDialogHeight]="PET?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="PET?.AutoCompleteDialogWidth" [AutoCompleteMode]="PET?.AutoCompleteMode" [BackColor]="PET?.BackColor" [DefinitionName]="PET?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="PET?.Enabled" [Font]="PET?.Font" [ForeColor]="PET?.ForeColor" [ListFilterExpression]="PET?.ListFilterExpression" [MinSearchLength]="PET?.MinSearchLength" [PopupDialogFieldConfig]="PET?.PopupDialogFieldConfig" [PopupDialogGridColumns]="PET?.PopupDialogGridColumns" [PopupDialogHeight]="PET?.PopupDialogHeight" [PopupDialogTitle]="PET?.PopupDialogTitle" [PopupDialogWidth]="PET?.PopupDialogWidth" [ReadOnly]="PET?.ReadOnly" [SearchMode]="PET?.SearchMode" [SearchTimeout]="PET?.SearchTimeout" [SelectedObject]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.PET" [TabIndex]="PET?.TabIndex" [Visible]="PET?.Visible" [width]="PET?.Width" data-tid="A350055">
+                            </hvl-list-box>
+                        </div>
+                        <div class="col-md-12" data-tid="A350056">
+                            <label class="control-label" data-tid="A350057">
+                                Periton Diyalizi Kateter Tipi
+                            </label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="onCatheterTypeChanged($event)" [AutoCompleteDialogHeight]="CatheterType?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="CatheterType?.AutoCompleteDialogWidth" [AutoCompleteMode]="CatheterType?.AutoCompleteMode" [BackColor]="CatheterType?.BackColor" [DefinitionName]="CatheterType?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="CatheterType?.Enabled" [Font]="CatheterType?.Font" [ForeColor]="CatheterType?.ForeColor" [ListFilterExpression]="CatheterType?.ListFilterExpression" [MinSearchLength]="CatheterType?.MinSearchLength" [PopupDialogFieldConfig]="CatheterType?.PopupDialogFieldConfig" [PopupDialogGridColumns]="CatheterType?.PopupDialogGridColumns" [PopupDialogHeight]="CatheterType?.PopupDialogHeight" [PopupDialogTitle]="CatheterType?.PopupDialogTitle" [PopupDialogWidth]="CatheterType?.PopupDialogWidth" [ReadOnly]="CatheterType?.ReadOnly" [SearchMode]="CatheterType?.SearchMode" [SearchTimeout]="CatheterType?.SearchTimeout" [SelectedObject]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.CatheterType" [TabIndex]="CatheterType?.TabIndex" [Visible]="CatheterType?.Visible" [width]="CatheterType?.Width" data-tid="A350058">
+                            </hvl-list-box>
+                        </div>
+                        <div class="col-md-12" data-tid="A350059">
+                            <label class="control-label" data-tid="A350060">
+                                Periton Diyaliz Kateter Yerleştirme Yöntemi
+                            </label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="onCatheterInsertionMethodChanged($event)" [AutoCompleteDialogHeight]="CatheterInsertionMethod?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="CatheterInsertionMethod?.AutoCompleteDialogWidth" [AutoCompleteMode]="CatheterInsertionMethod?.AutoCompleteMode" [BackColor]="CatheterInsertionMethod?.BackColor" [DefinitionName]="CatheterInsertionMethod?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="CatheterInsertionMethod?.Enabled" [Font]="CatheterInsertionMethod?.Font" [ForeColor]="CatheterInsertionMethod?.ForeColor" [ListFilterExpression]="CatheterInsertionMethod?.ListFilterExpression" [MinSearchLength]="CatheterInsertionMethod?.MinSearchLength" [PopupDialogFieldConfig]="CatheterInsertionMethod?.PopupDialogFieldConfig" [PopupDialogGridColumns]="CatheterInsertionMethod?.PopupDialogGridColumns" [PopupDialogHeight]="CatheterInsertionMethod?.PopupDialogHeight" [PopupDialogTitle]="CatheterInsertionMethod?.PopupDialogTitle" [PopupDialogWidth]="CatheterInsertionMethod?.PopupDialogWidth" [ReadOnly]="CatheterInsertionMethod?.ReadOnly" [SearchMode]="CatheterInsertionMethod?.SearchMode" [SearchTimeout]="CatheterInsertionMethod?.SearchTimeout" [SelectedObject]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.CatheterInsertionMethod" [TabIndex]="CatheterInsertionMethod?.TabIndex" [Visible]="CatheterInsertionMethod?.Visible" [width]="CatheterInsertionMethod?.Width" data-tid="A350061">
+                            </hvl-list-box>
+                        </div>
+                        <div class="col-md-12" data-tid="A350062">
+                            <label class="control-label" data-tid="A350063">
+                                Periton Diyaliz Tünel Yönü
+                            </label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="onPeritonealDialysisTunnelChanged($event)" [AutoCompleteDialogHeight]="PeritonealDialysisTunnel?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="PeritonealDialysisTunnel?.AutoCompleteDialogWidth" [AutoCompleteMode]="PeritonealDialysisTunnel?.AutoCompleteMode" [BackColor]="PeritonealDialysisTunnel?.BackColor" [DefinitionName]="PeritonealDialysisTunnel?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="PeritonealDialysisTunnel?.Enabled" [Font]="PeritonealDialysisTunnel?.Font" [ForeColor]="PeritonealDialysisTunnel?.ForeColor" [ListFilterExpression]="PeritonealDialysisTunnel?.ListFilterExpression" [MinSearchLength]="PeritonealDialysisTunnel?.MinSearchLength" [PopupDialogFieldConfig]="PeritonealDialysisTunnel?.PopupDialogFieldConfig" [PopupDialogGridColumns]="PeritonealDialysisTunnel?.PopupDialogGridColumns" [PopupDialogHeight]="PeritonealDialysisTunnel?.PopupDialogHeight" [PopupDialogTitle]="PeritonealDialysisTunnel?.PopupDialogTitle" [PopupDialogWidth]="PeritonealDialysisTunnel?.PopupDialogWidth" [ReadOnly]="PeritonealDialysisTunnel?.ReadOnly" [SearchMode]="PeritonealDialysisTunnel?.SearchMode" [SearchTimeout]="PeritonealDialysisTunnel?.SearchTimeout" [SelectedObject]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.PeritonealDialysisTunnel" [TabIndex]="PeritonealDialysisTunnel?.TabIndex" [Visible]="PeritonealDialysisTunnel?.Visible" [width]="PeritonealDialysisTunnel?.Width" data-tid="A350064">
+                            </hvl-list-box>
+                        </div>
+                        <div class="col-md-12" data-tid="A350065">
+                            <label class="control-label" data-tid="A350066">
+                                Periton Diyaliz Komplikasyon
+                            </label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="onPeritonealComplicationChanged($event)" [AutoCompleteDialogHeight]="PeritonealComplication?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="PeritonealComplication?.AutoCompleteDialogWidth" [AutoCompleteMode]="PeritonealComplication?.AutoCompleteMode" [BackColor]="PeritonealComplication?.BackColor" [DefinitionName]="PeritonealComplication?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="PeritonealComplication?.Enabled" [Font]="PeritonealComplication?.Font" [ForeColor]="PeritonealComplication?.ForeColor" [ListFilterExpression]="PeritonealComplication?.ListFilterExpression" [MinSearchLength]="PeritonealComplication?.MinSearchLength" [PopupDialogFieldConfig]="PeritonealComplication?.PopupDialogFieldConfig" [PopupDialogGridColumns]="PeritonealComplication?.PopupDialogGridColumns" [PopupDialogHeight]="PeritonealComplication?.PopupDialogHeight" [PopupDialogTitle]="PeritonealComplication?.PopupDialogTitle" [PopupDialogWidth]="PeritonealComplication?.PopupDialogWidth" [ReadOnly]="PeritonealComplication?.ReadOnly" [SearchMode]="PeritonealComplication?.SearchMode" [SearchTimeout]="PeritonealComplication?.SearchTimeout" [SelectedObject]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.PeritonealComplication" [TabIndex]="PeritonealComplication?.TabIndex" [Visible]="PeritonealComplication?.Visible" [width]="PeritonealComplication?.Width" data-tid="A350067">
+                            </hvl-list-box>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-3" data-tid="A350068">
+            <div class="row" data-tid="A350069">
+                <div class="col-md-12" data-tid="A350070">
+                    <label class="control-label" data-tid="A350071">
+                        Etiyolojisi
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onEtiologyChanged($event)" [BackColor]="Etiology?.BackColor" [CharacterCasing]="Etiology?.CharacterCasing" [Enabled]="Etiology?.Enabled" [Font]="Etiology?.Font" [ForeColor]="Etiology?.ForeColor" [height]="Etiology?.Height" [InputFormat]="Etiology?.InputFormat" [InputTurkishCharacter]="Etiology?.InputTurkishCharacter" [IsNonNumeric]="Etiology?.IsNonNumeric" [MultiLine]="Etiology?.Multiline" [ReadOnly]="Etiology?.ReadOnly" [Required]="Etiology?.Required" [TabIndex]="Etiology?.TabIndex" [TextAlign]="Etiology?.TextAlign" [Text]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.Etiology" [Visible]="Etiology?.Visible" data-tid="A350072">
+                    </hvl-text-box>
+                </div>
+                <div class="col-md-12" data-tid="A350073">
+                    <label class="control-label" data-tid="A350074">
+                        Öneriler
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onSuggestionsChanged($event)" [BackColor]="Suggestions?.BackColor" [CharacterCasing]="Suggestions?.CharacterCasing" [Enabled]="Suggestions?.Enabled" [Font]="Suggestions?.Font" [ForeColor]="Suggestions?.ForeColor" [height]="Suggestions?.Height" [InputFormat]="Suggestions?.InputFormat" [InputTurkishCharacter]="Suggestions?.InputTurkishCharacter" [IsNonNumeric]="Suggestions?.IsNonNumeric" [MultiLine]="Suggestions?.Multiline" [ReadOnly]="Suggestions?.ReadOnly" [Required]="Suggestions?.Required" [TabIndex]="Suggestions?.TabIndex" [TextAlign]="Suggestions?.TextAlign" [Text]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.Suggestions" [Visible]="Suggestions?.Visible" data-tid="A350075">
+                    </hvl-text-box>
+                </div>
+                <div class="col-md-12" data-tid="A350076">
+                    <label class="control-label" data-tid="A350077">
+                        Heparinizasyon
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onHeparinizationChanged($event)" [BackColor]="Heparinization?.BackColor" [CharacterCasing]="Heparinization?.CharacterCasing" [Enabled]="Heparinization?.Enabled" [Font]="Heparinization?.Font" [ForeColor]="Heparinization?.ForeColor" [height]="Heparinization?.Height" [InputFormat]="Heparinization?.InputFormat" [InputTurkishCharacter]="Heparinization?.InputTurkishCharacter" [IsNonNumeric]="Heparinization?.IsNonNumeric" [MultiLine]="Heparinization?.Multiline" [ReadOnly]="Heparinization?.ReadOnly" [Required]="Heparinization?.Required" [TabIndex]="Heparinization?.TabIndex" [TextAlign]="Heparinization?.TextAlign" [Text]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.Heparinization" [Visible]="Heparinization?.Visible" data-tid="A350078">
+                    </hvl-text-box>
+                </div>
+                <div class="col-md-12" data-tid="A350079">
+                    <label class="control-label" data-tid="A350080">
+                        Alerji
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onAllergyChanged($event)" [BackColor]="Allergy?.BackColor" [CharacterCasing]="Allergy?.CharacterCasing" [Enabled]="Allergy?.Enabled" [Font]="Allergy?.Font" [ForeColor]="Allergy?.ForeColor" [height]="Allergy?.Height" [InputFormat]="Allergy?.InputFormat" [InputTurkishCharacter]="Allergy?.InputTurkishCharacter" [IsNonNumeric]="Allergy?.IsNonNumeric" [MultiLine]="Allergy?.Multiline" [ReadOnly]="Allergy?.ReadOnly" [Required]="Allergy?.Required" [TabIndex]="Allergy?.TabIndex" [TextAlign]="Allergy?.TextAlign" [Text]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.Allergy" [Visible]="Allergy?.Visible" data-tid="A350081">
+                    </hvl-text-box>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3" data-tid="A350082">
+            <div class="row" data-tid="A350083">
+                <div class="col-md-12" data-tid="A350084">
+                    <label class="control-label" data-tid="A350085">
+                        Tanı Açıklama
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onDiagnosisChanged($event)" [BackColor]="Diagnosis?.BackColor" [CharacterCasing]="Diagnosis?.CharacterCasing" [Enabled]="Diagnosis?.Enabled" [Font]="Diagnosis?.Font" [ForeColor]="Diagnosis?.ForeColor" [height]="Diagnosis?.Height" [InputFormat]="Diagnosis?.InputFormat" [InputTurkishCharacter]="Diagnosis?.InputTurkishCharacter" [IsNonNumeric]="Diagnosis?.IsNonNumeric" [MultiLine]="Diagnosis?.Multiline" [ReadOnly]="Diagnosis?.ReadOnly" [Required]="Diagnosis?.Required" [TabIndex]="Diagnosis?.TabIndex" [TextAlign]="Diagnosis?.TextAlign" [Text]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.Diagnosis" [Visible]="Diagnosis?.Visible" data-tid="A350086">
+                    </hvl-text-box>
+                </div>
+                <div class="col-md-12" data-tid="A350087">
+                    <label class="control-label" data-tid="A350088">
+                        Hepatit Açıklama
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onHepatitisChanged($event)" [BackColor]="Hepatitis?.BackColor" [CharacterCasing]="Hepatitis?.CharacterCasing" [Enabled]="Hepatitis?.Enabled" [Font]="Hepatitis?.Font" [ForeColor]="Hepatitis?.ForeColor" [height]="Hepatitis?.Height" [InputFormat]="Hepatitis?.InputFormat" [InputTurkishCharacter]="Hepatitis?.InputTurkishCharacter" [IsNonNumeric]="Hepatitis?.IsNonNumeric" [MultiLine]="Hepatitis?.Multiline" [ReadOnly]="Hepatitis?.ReadOnly" [Required]="Hepatitis?.Required" [TabIndex]="Hepatitis?.TabIndex" [TextAlign]="Hepatitis?.TextAlign" [Text]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.Hepatitis" [Visible]="Hepatitis?.Visible" data-tid="A350089">
+                    </hvl-text-box>
+                </div>
+                <div class="col-md-12" data-tid="A350090">
+                    <label class="control-label" data-tid="A350091">
+                        Antihipertansif İlaç Kullanımı
+                    </label>
+                    <hvl-list-box #Validation (SelectedObjectChange)="onAntihypertensiveChanged($event)" [AutoCompleteDialogHeight]="Antihypertensive?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="Antihypertensive?.AutoCompleteDialogWidth" [AutoCompleteMode]="Antihypertensive?.AutoCompleteMode" [BackColor]="Antihypertensive?.BackColor" [DefinitionName]="Antihypertensive?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="Antihypertensive?.Enabled" [Font]="Antihypertensive?.Font" [ForeColor]="Antihypertensive?.ForeColor" [ListFilterExpression]="Antihypertensive?.ListFilterExpression" [MinSearchLength]="Antihypertensive?.MinSearchLength" [PopupDialogFieldConfig]="Antihypertensive?.PopupDialogFieldConfig" [PopupDialogGridColumns]="Antihypertensive?.PopupDialogGridColumns" [PopupDialogHeight]="Antihypertensive?.PopupDialogHeight" [PopupDialogTitle]="Antihypertensive?.PopupDialogTitle" [PopupDialogWidth]="Antihypertensive?.PopupDialogWidth" [ReadOnly]="Antihypertensive?.ReadOnly" [SearchMode]="Antihypertensive?.SearchMode" [SearchTimeout]="Antihypertensive?.SearchTimeout" [SelectedObject]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.Antihypertensive" [TabIndex]="Antihypertensive?.TabIndex" [Visible]="Antihypertensive?.Visible" [width]="Antihypertensive?.Width" data-tid="A350092">
+                    </hvl-list-box>
+                </div>
+                <div class="col-md-12" data-tid="A350093">
+                    <label class="control-label" data-tid="A350094">
+                        Açıklama
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onGeneralInfoChanged($event)" [BackColor]="GeneralInfo?.BackColor" [CharacterCasing]="GeneralInfo?.CharacterCasing" [Enabled]="GeneralInfo?.Enabled" [Font]="GeneralInfo?.Font" [ForeColor]="GeneralInfo?.ForeColor" [height]="GeneralInfo?.Height" [InputFormat]="GeneralInfo?.InputFormat" [InputTurkishCharacter]="GeneralInfo?.InputTurkishCharacter" [IsNonNumeric]="GeneralInfo?.IsNonNumeric" [MultiLine]="GeneralInfo?.Multiline" [ReadOnly]="GeneralInfo?.ReadOnly" [Required]="GeneralInfo?.Required" [TabIndex]="GeneralInfo?.TabIndex" [TextAlign]="GeneralInfo?.TextAlign" [Text]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.GeneralInfo" [Visible]="GeneralInfo?.Visible" data-tid="A350095">
+                    </hvl-text-box>
+                </div>
+            </div>
+        </div>
+    </dxi-item>
+    <dxi-item class="tabpanel-item" title="Seans Bilgileri" data-tid="A350096">
+        <br data-tid="A350097" />
+        <div class="col-md-3" data-tid="A350098">
+            <div class="panel panel-default" data-tid="A350099">
+                <div class="panel-body" data-tid="A350100">
+                    <div class="row" data-tid="A350101">
+                        <div class="col-md-12" data-tid="A350102">
+                            <label class="control-label" data-tid="A350103">
+                                Diyalize BaşlamaTarihi
+                            </label>
+                            <hvl-date-picker #Validation (ValueChange)="onSessionDateChanged($event)" [BackColor]="SessionDate?.BackColor" [CustomFormat]="SessionDate?.CustomFormat" [Enabled]="SessionDate?.Enabled" [Font]="SessionDate?.Font" [ForeColor]="SessionDate?.ForeColor" [Format]="SessionDate?.Format" [Max]="SessionDate?.Max" [Min]="SessionDate?.Min" [ReadOnly]="SessionDate?.ReadOnly" [Required]="SessionDate?.Required" [TabIndex]="SessionDate?.TabIndex" [Value]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.SessionDate" [Visible]="SessionDate?.Visible" data-tid="A350104">
+                            </hvl-date-picker>
+                            <!--<hvl-date-picker #Validation="" (ValueChange)="onttdatetimepicker1Changed($event)" [BackColor]="ttdatetimepicker1?.BackColor" [CustomFormat]="ttdatetimepicker1?.CustomFormat" [Enabled]="ttdatetimepicker1?.Enabled" [Font]="ttdatetimepicker1?.Font" [ForeColor]="ttdatetimepicker1?.ForeColor" [Format]="ttdatetimepicker1?.Format" [Max]="ttdatetimepicker1?.Max" [Min]="ttdatetimepicker1?.Min" [ReadOnly]="ttdatetimepicker1?.ReadOnly" [Required]="ttdatetimepicker1?.Required" [TabIndex]="ttdatetimepicker1?.TabIndex" [Value]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.SessionDate" [Visible]="ttdatetimepicker1?.Visible">
+                            </hvl-date-picker>-->
+                        </div>
+                        <div class="col-md-12" data-tid="A350105">
+                            <div class="row" data-tid="A350106">
+                                <div class="col-md-6" data-tid="A350107">
+                                    <label class="control-label" data-tid="A350108">
+                                        Başlangıç Saati
+                                    </label>
+                                    <hvl-date-picker #Validation (ValueChange)="onSessionStartTimeChanged($event)" [BackColor]="SessionStartTime?.BackColor" [CustomFormat]="SessionStartTime?.CustomFormat" [Enabled]="SessionStartTime?.Enabled" [Font]="SessionStartTime?.Font" [ForeColor]="SessionStartTime?.ForeColor" [Format]="SessionStartTime?.Format" [Max]="SessionStartTime?.Max" [Min]="SessionStartTime?.Min" [ReadOnly]="SessionStartTime?.ReadOnly" [Required]="SessionStartTime?.Required" [TabIndex]="SessionStartTime?.TabIndex" [Value]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.SessionStartTime" [Visible]="SessionStartTime?.Visible" data-tid="A350109">
+                                    </hvl-date-picker>
+                                </div>
+                                <div class="col-md-6" data-tid="A350110">
+                                    <label class="control-label" data-tid="A350111">
+                                        Bitiş Saati
+                                    </label>
+                                    <hvl-date-picker #Validation (ValueChange)="onSessionFinishTimeChanged($event)" [BackColor]="SessionFinishTime?.BackColor" [CustomFormat]="SessionFinishTime?.CustomFormat" [Enabled]="SessionFinishTime?.Enabled" [Font]="SessionFinishTime?.Font" [ForeColor]="SessionFinishTime?.ForeColor" [Format]="SessionFinishTime?.Format" [Max]="SessionFinishTime?.Max" [Min]="SessionFinishTime?.Min" [ReadOnly]="SessionFinishTime?.ReadOnly" [Required]="SessionFinishTime?.Required" [TabIndex]="SessionFinishTime?.TabIndex" [Value]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.SessionFinishTime" [Visible]="SessionFinishTime?.Visible" data-tid="A350112">
+                                    </hvl-date-picker>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12" data-tid="A350113">
+                            <label class="control-label" data-tid="A350114">
+                                Cihaz
+                            </label>
+                            <hvl-text-box #Validation (TextChange)="onDeviceChanged($event)" [BackColor]="Device?.BackColor" [CharacterCasing]="Device?.CharacterCasing" [Enabled]="Device?.Enabled" [Font]="Device?.Font" [ForeColor]="Device?.ForeColor" [height]="Device?.Height" [InputFormat]="Device?.InputFormat" [InputTurkishCharacter]="Device?.InputTurkishCharacter" [IsNonNumeric]="Device?.IsNonNumeric" [MultiLine]="Device?.Multiline" [ReadOnly]="Device?.ReadOnly" [Required]="Device?.Required" [TabIndex]="Device?.TabIndex" [TextAlign]="Device?.TextAlign" [Text]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.Device" [Visible]="Device?.Visible" data-tid="A350115">
+                            </hvl-text-box>
+                        </div>
+                        <div class="col-md-12" data-tid="A350116">
+                            <label class="control-label" data-tid="A350117">
+                                Doktor
+                            </label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="onDoctorChanged($event)" [AutoCompleteDialogHeight]="Doctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="Doctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="Doctor?.AutoCompleteMode" [BackColor]="Doctor?.BackColor" [DefinitionName]="Doctor?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="Doctor?.Enabled" [Font]="Doctor?.Font" [ForeColor]="Doctor?.ForeColor" [ListFilterExpression]="Doctor?.ListFilterExpression" [MinSearchLength]="Doctor?.MinSearchLength" [PopupDialogFieldConfig]="Doctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="Doctor?.PopupDialogGridColumns" [PopupDialogHeight]="Doctor?.PopupDialogHeight" [PopupDialogTitle]="Doctor?.PopupDialogTitle" [PopupDialogWidth]="Doctor?.PopupDialogWidth" [ReadOnly]="Doctor?.ReadOnly" [SearchMode]="Doctor?.SearchMode" [SearchTimeout]="Doctor?.SearchTimeout" [SelectedObject]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.Doctor" [TabIndex]="Doctor?.TabIndex" [Visible]="Doctor?.Visible" [width]="Doctor?.Width" data-tid="A350118">
+                            </hvl-list-box>
+                        </div>
+                        <div class="col-md-12" data-tid="A350119">
+                            <label class="control-label" data-tid="A350120">
+                                Hemşire
+                            </label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="onNurseChanged($event)" [AutoCompleteDialogHeight]="Nurse?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="Nurse?.AutoCompleteDialogWidth" [AutoCompleteMode]="Nurse?.AutoCompleteMode" [BackColor]="Nurse?.BackColor" [DefinitionName]="Nurse?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="Nurse?.Enabled" [Font]="Nurse?.Font" [ForeColor]="Nurse?.ForeColor" [ListFilterExpression]="Nurse?.ListFilterExpression" [MinSearchLength]="Nurse?.MinSearchLength" [PopupDialogFieldConfig]="Nurse?.PopupDialogFieldConfig" [PopupDialogGridColumns]="Nurse?.PopupDialogGridColumns" [PopupDialogHeight]="Nurse?.PopupDialogHeight" [PopupDialogTitle]="Nurse?.PopupDialogTitle" [PopupDialogWidth]="Nurse?.PopupDialogWidth" [ReadOnly]="Nurse?.ReadOnly" [SearchMode]="Nurse?.SearchMode" [SearchTimeout]="Nurse?.SearchTimeout" [SelectedObject]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.Nurse" [TabIndex]="Nurse?.TabIndex" [Visible]="Nurse?.Visible" [width]="Nurse?.Width" data-tid="A350121">
+                            </hvl-list-box>
+                        </div>
+                        <div class="col-md-12" data-tid="A350122">
+                            <label class="control-label" data-tid="A350123">
+                                Destek Tedavi Hemşiresi
+                            </label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="onCareNurseChanged($event)" [AutoCompleteDialogHeight]="CareNurse?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="CareNurse?.AutoCompleteDialogWidth" [AutoCompleteMode]="CareNurse?.AutoCompleteMode" [BackColor]="CareNurse?.BackColor" [DefinitionName]="CareNurse?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="CareNurse?.Enabled" [Font]="CareNurse?.Font" [ForeColor]="CareNurse?.ForeColor" [ListFilterExpression]="CareNurse?.ListFilterExpression" [MinSearchLength]="CareNurse?.MinSearchLength" [PopupDialogFieldConfig]="CareNurse?.PopupDialogFieldConfig" [PopupDialogGridColumns]="CareNurse?.PopupDialogGridColumns" [PopupDialogHeight]="CareNurse?.PopupDialogHeight" [PopupDialogTitle]="CareNurse?.PopupDialogTitle" [PopupDialogWidth]="CareNurse?.PopupDialogWidth" [ReadOnly]="CareNurse?.ReadOnly" [SearchMode]="CareNurse?.SearchMode" [SearchTimeout]="CareNurse?.SearchTimeout" [SelectedObject]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.CareNurse" [TabIndex]="CareNurse?.TabIndex" [Visible]="CareNurse?.Visible" [width]="CareNurse?.Width" data-tid="A350124">
+                            </hvl-list-box>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3" data-tid="A350125">
+            <div class="panel panel-default" data-tid="A350126">
+                <div class="panel-body" data-tid="A350127">
+                    <div class="row" data-tid="A350128">
+                        <div class="col-md-12" data-tid="A350129">
+                            <label class="control-label" data-tid="A350130">
+                                Çekilecek Sıvı (ml)
+                            </label>
+                            <hvl-text-box #Validation (TextChange)="onLiquidChanged($event)" [BackColor]="Liquid?.BackColor" [CharacterCasing]="Liquid?.CharacterCasing" [Enabled]="Liquid?.Enabled" [Font]="Liquid?.Font" [ForeColor]="Liquid?.ForeColor" [height]="Liquid?.Height" [InputFormat]="Liquid?.InputFormat" [InputTurkishCharacter]="Liquid?.InputTurkishCharacter" [IsNonNumeric]="Liquid?.IsNonNumeric" [MultiLine]="Liquid?.Multiline" [ReadOnly]="Liquid?.ReadOnly" [Required]="Liquid?.Required" [TabIndex]="Liquid?.TabIndex" [TextAlign]="Liquid?.TextAlign" [Text]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.Liquid" [Visible]="Liquid?.Visible" data-tid="A350131">
+                            </hvl-text-box>
+                        </div>
+                        <div class="col-md-12" data-tid="A350132">
+                            <label class="control-label" data-tid="A350133">
+                                Diyalizat Aktarım Hızı
+                            </label>
+                            <hvl-text-box #Validation (TextChange)="onDialysateTransferSpeedChanged($event)" [BackColor]="DialysateTransferSpeed?.BackColor" [CharacterCasing]="DialysateTransferSpeed?.CharacterCasing" [Enabled]="DialysateTransferSpeed?.Enabled" [Font]="DialysateTransferSpeed?.Font" [ForeColor]="DialysateTransferSpeed?.ForeColor" [height]="DialysateTransferSpeed?.Height" [InputFormat]="DialysateTransferSpeed?.InputFormat" [InputTurkishCharacter]="DialysateTransferSpeed?.InputTurkishCharacter" [IsNonNumeric]="DialysateTransferSpeed?.IsNonNumeric" [MultiLine]="DialysateTransferSpeed?.Multiline" [ReadOnly]="DialysateTransferSpeed?.ReadOnly" [Required]="DialysateTransferSpeed?.Required" [TabIndex]="DialysateTransferSpeed?.TabIndex" [TextAlign]="DialysateTransferSpeed?.TextAlign" [Text]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.DialysateTransferSpeed" [Visible]="DialysateTransferSpeed?.Visible" data-tid="A350134">
+                            </hvl-text-box>
+                        </div>
+                        <div class="col-md-12" data-tid="A350135">
+                            <label class="control-label" data-tid="A350136">
+                                Kan Akım Hız Aralığı (ml/dk)
+                            </label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="onBloodFlowChanged($event)" [AutoCompleteDialogHeight]="BloodFlow?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="BloodFlow?.AutoCompleteDialogWidth" [AutoCompleteMode]="BloodFlow?.AutoCompleteMode" [BackColor]="BloodFlow?.BackColor" [DefinitionName]="BloodFlow?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="BloodFlow?.Enabled" [Font]="BloodFlow?.Font" [ForeColor]="BloodFlow?.ForeColor" [ListFilterExpression]="BloodFlow?.ListFilterExpression" [MinSearchLength]="BloodFlow?.MinSearchLength" [PopupDialogFieldConfig]="BloodFlow?.PopupDialogFieldConfig" [PopupDialogGridColumns]="BloodFlow?.PopupDialogGridColumns" [PopupDialogHeight]="BloodFlow?.PopupDialogHeight" [PopupDialogTitle]="BloodFlow?.PopupDialogTitle" [PopupDialogWidth]="BloodFlow?.PopupDialogWidth" [ReadOnly]="BloodFlow?.ReadOnly" [SearchMode]="BloodFlow?.SearchMode" [SearchTimeout]="BloodFlow?.SearchTimeout" [SelectedObject]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.BloodFlow" [TabIndex]="BloodFlow?.TabIndex" [Visible]="BloodFlow?.Visible" [width]="BloodFlow?.Width" data-tid="A350137">
+                            </hvl-list-box>
+                        </div>
+                        <div class="col-md-12" data-tid="A350138">
+                            <label class="control-label" data-tid="A350139">
+                                Damar Yolu
+                            </label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="onIntravenousChanged($event)" [AutoCompleteDialogHeight]="Intravenous?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="Intravenous?.AutoCompleteDialogWidth" [AutoCompleteMode]="Intravenous?.AutoCompleteMode" [BackColor]="Intravenous?.BackColor" [DefinitionName]="Intravenous?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="Intravenous?.Enabled" [Font]="Intravenous?.Font" [ForeColor]="Intravenous?.ForeColor" [ListFilterExpression]="Intravenous?.ListFilterExpression" [MinSearchLength]="Intravenous?.MinSearchLength" [PopupDialogFieldConfig]="Intravenous?.PopupDialogFieldConfig" [PopupDialogGridColumns]="Intravenous?.PopupDialogGridColumns" [PopupDialogHeight]="Intravenous?.PopupDialogHeight" [PopupDialogTitle]="Intravenous?.PopupDialogTitle" [PopupDialogWidth]="Intravenous?.PopupDialogWidth" [ReadOnly]="Intravenous?.ReadOnly" [SearchMode]="Intravenous?.SearchMode" [SearchTimeout]="Intravenous?.SearchTimeout" [SelectedObject]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.Intravenous" [TabIndex]="Intravenous?.TabIndex" [Visible]="Intravenous?.Visible" [width]="Intravenous?.Width" data-tid="A350140">
+                            </hvl-list-box>
+                        </div>
+                        <div class="col-md-12" data-tid="A350141">
+                            <label class="control-label" data-tid="A350142">
+                                Diyalizör Tipi
+                            </label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="onDialyzatorTypeChanged($event)" [AutoCompleteDialogHeight]="DialyzatorType?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="DialyzatorType?.AutoCompleteDialogWidth" [AutoCompleteMode]="DialyzatorType?.AutoCompleteMode" [BackColor]="DialyzatorType?.BackColor" [DefinitionName]="DialyzatorType?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="DialyzatorType?.Enabled" [Font]="DialyzatorType?.Font" [ForeColor]="DialyzatorType?.ForeColor" [ListFilterExpression]="DialyzatorType?.ListFilterExpression" [MinSearchLength]="DialyzatorType?.MinSearchLength" [PopupDialogFieldConfig]="DialyzatorType?.PopupDialogFieldConfig" [PopupDialogGridColumns]="DialyzatorType?.PopupDialogGridColumns" [PopupDialogHeight]="DialyzatorType?.PopupDialogHeight" [PopupDialogTitle]="DialyzatorType?.PopupDialogTitle" [PopupDialogWidth]="DialyzatorType?.PopupDialogWidth" [ReadOnly]="DialyzatorType?.ReadOnly" [SearchMode]="DialyzatorType?.SearchMode" [SearchTimeout]="DialyzatorType?.SearchTimeout" [SelectedObject]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.DialyzatorType" [TabIndex]="DialyzatorType?.TabIndex" [Visible]="DialyzatorType?.Visible" [width]="DialyzatorType?.Width" data-tid="A350143">
+                            </hvl-list-box>
+                        </div>
+                        <div class="col-md-12" data-tid="A350144">
+                            <label class="control-label" data-tid="A350145">
+                                Diyalizör Alanı
+                            </label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="onDialyzatorAreaChanged($event)" [AutoCompleteDialogHeight]="DialyzatorArea?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="DialyzatorArea?.AutoCompleteDialogWidth" [AutoCompleteMode]="DialyzatorArea?.AutoCompleteMode" [BackColor]="DialyzatorArea?.BackColor" [DefinitionName]="DialyzatorArea?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="DialyzatorArea?.Enabled" [Font]="DialyzatorArea?.Font" [ForeColor]="DialyzatorArea?.ForeColor" [ListFilterExpression]="DialyzatorArea?.ListFilterExpression" [MinSearchLength]="DialyzatorArea?.MinSearchLength" [PopupDialogFieldConfig]="DialyzatorArea?.PopupDialogFieldConfig" [PopupDialogGridColumns]="DialyzatorArea?.PopupDialogGridColumns" [PopupDialogHeight]="DialyzatorArea?.PopupDialogHeight" [PopupDialogTitle]="DialyzatorArea?.PopupDialogTitle" [PopupDialogWidth]="DialyzatorArea?.PopupDialogWidth" [ReadOnly]="DialyzatorArea?.ReadOnly" [SearchMode]="DialyzatorArea?.SearchMode" [SearchTimeout]="DialyzatorArea?.SearchTimeout" [SelectedObject]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.DialyzatorArea" [TabIndex]="DialyzatorArea?.TabIndex" [Visible]="DialyzatorArea?.Visible" [width]="DialyzatorArea?.Width" data-tid="A350146">
+                            </hvl-list-box>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3" data-tid="A350147">
+            <div class="panel panel-default" data-tid="A350148">
+                <div class="panel-body" data-tid="A350149">
+                    <div class="row" data-tid="A350150">
+                        <div class="col-md-6" data-tid="A350151">
+                            <label class="control-label" data-tid="A350152">
+                                Na
+                            </label>
+                            <hvl-text-box #Validation (TextChange)="onLiquidNaChanged($event)" [BackColor]="LiquidNa?.BackColor" [CharacterCasing]="LiquidNa?.CharacterCasing" [Enabled]="LiquidNa?.Enabled" [Font]="LiquidNa?.Font" [ForeColor]="LiquidNa?.ForeColor" [height]="LiquidNa?.Height" [InputFormat]="LiquidNa?.InputFormat" [InputTurkishCharacter]="LiquidNa?.InputTurkishCharacter" [IsNonNumeric]="LiquidNa?.IsNonNumeric" [MultiLine]="LiquidNa?.Multiline" [ReadOnly]="LiquidNa?.ReadOnly" [Required]="LiquidNa?.Required" [TabIndex]="LiquidNa?.TabIndex" [TextAlign]="LiquidNa?.TextAlign" [Text]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.LiquidNa" [Visible]="LiquidNa?.Visible" data-tid="A350153">
+                            </hvl-text-box>
+                        </div>
+                        <div class="col-md-6" data-tid="A350154">
+                            <label class="control-label" data-tid="A350155">
+                                Cl
+                            </label>
+                            <hvl-text-box #Validation (TextChange)="onLiquidClChanged($event)" [BackColor]="LiquidCl?.BackColor" [CharacterCasing]="LiquidCl?.CharacterCasing" [Enabled]="LiquidCl?.Enabled" [Font]="LiquidCl?.Font" [ForeColor]="LiquidCl?.ForeColor" [height]="LiquidCl?.Height" [InputFormat]="LiquidCl?.InputFormat" [InputTurkishCharacter]="LiquidCl?.InputTurkishCharacter" [IsNonNumeric]="LiquidCl?.IsNonNumeric" [MultiLine]="LiquidCl?.Multiline" [ReadOnly]="LiquidCl?.ReadOnly" [Required]="LiquidCl?.Required" [TabIndex]="LiquidCl?.TabIndex" [TextAlign]="LiquidCl?.TextAlign" [Text]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.LiquidCl" [Visible]="LiquidCl?.Visible" data-tid="A350156">
+                            </hvl-text-box>
+                        </div>
+                        <div class="col-md-6" data-tid="A350157">
+                            <label class="control-label" data-tid="A350158">
+                                K
+                            </label>
+                            <hvl-text-box #Validation (TextChange)="onLiquidKChanged($event)" [BackColor]="LiquidK?.BackColor" [CharacterCasing]="LiquidK?.CharacterCasing" [Enabled]="LiquidK?.Enabled" [Font]="LiquidK?.Font" [ForeColor]="LiquidK?.ForeColor" [height]="LiquidK?.Height" [InputFormat]="LiquidK?.InputFormat" [InputTurkishCharacter]="LiquidK?.InputTurkishCharacter" [IsNonNumeric]="LiquidK?.IsNonNumeric" [MultiLine]="LiquidK?.Multiline" [ReadOnly]="LiquidK?.ReadOnly" [Required]="LiquidK?.Required" [TabIndex]="LiquidK?.TabIndex" [TextAlign]="LiquidK?.TextAlign" [Text]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.LiquidK" [Visible]="LiquidK?.Visible" data-tid="A350159">
+                            </hvl-text-box>
+                        </div>
+                        <div class="col-md-6" data-tid="A350160">
+                            <label class="control-label" data-tid="A350161">
+                                CH3COO
+                            </label>
+                            <hvl-text-box #Validation (TextChange)="onLiquidCH3COOChanged($event)" [BackColor]="LiquidCH3COO?.BackColor" [CharacterCasing]="LiquidCH3COO?.CharacterCasing" [Enabled]="LiquidCH3COO?.Enabled" [Font]="LiquidCH3COO?.Font" [ForeColor]="LiquidCH3COO?.ForeColor" [height]="LiquidCH3COO?.Height" [InputFormat]="LiquidCH3COO?.InputFormat" [InputTurkishCharacter]="LiquidCH3COO?.InputTurkishCharacter" [IsNonNumeric]="LiquidCH3COO?.IsNonNumeric" [MultiLine]="LiquidCH3COO?.Multiline" [ReadOnly]="LiquidCH3COO?.ReadOnly" [Required]="LiquidCH3COO?.Required" [TabIndex]="LiquidCH3COO?.TabIndex" [TextAlign]="LiquidCH3COO?.TextAlign" [Text]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.LiquidCH3COO" [Visible]="LiquidCH3COO?.Visible" data-tid="A350162">
+                            </hvl-text-box>
+                        </div>
+                        <div class="col-md-6" data-tid="A350163">
+                            <label class="control-label" data-tid="A350164">
+                                Ca
+                            </label>
+                            <hvl-text-box #Validation (TextChange)="onLiquidCaChanged($event)" [BackColor]="LiquidCa?.BackColor" [CharacterCasing]="LiquidCa?.CharacterCasing" [Enabled]="LiquidCa?.Enabled" [Font]="LiquidCa?.Font" [ForeColor]="LiquidCa?.ForeColor" [height]="LiquidCa?.Height" [InputFormat]="LiquidCa?.InputFormat" [InputTurkishCharacter]="LiquidCa?.InputTurkishCharacter" [IsNonNumeric]="LiquidCa?.IsNonNumeric" [MultiLine]="LiquidCa?.Multiline" [ReadOnly]="LiquidCa?.ReadOnly" [Required]="LiquidCa?.Required" [TabIndex]="LiquidCa?.TabIndex" [TextAlign]="LiquidCa?.TextAlign" [Text]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.LiquidCa" [Visible]="LiquidCa?.Visible" data-tid="A350165">
+                            </hvl-text-box>
+                        </div>
+                        <div class="col-md-6" data-tid="A350166">
+                            <label class="control-label" data-tid="A350167">
+                                HCO3
+                            </label>
+                            <hvl-text-box #Validation (TextChange)="onLiquidHCO3Changed($event)" [BackColor]="LiquidHCO3?.BackColor" [CharacterCasing]="LiquidHCO3?.CharacterCasing" [Enabled]="LiquidHCO3?.Enabled" [Font]="LiquidHCO3?.Font" [ForeColor]="LiquidHCO3?.ForeColor" [height]="LiquidHCO3?.Height" [InputFormat]="LiquidHCO3?.InputFormat" [InputTurkishCharacter]="LiquidHCO3?.InputTurkishCharacter" [IsNonNumeric]="LiquidHCO3?.IsNonNumeric" [MultiLine]="LiquidHCO3?.Multiline" [ReadOnly]="LiquidHCO3?.ReadOnly" [Required]="LiquidHCO3?.Required" [TabIndex]="LiquidHCO3?.TabIndex" [TextAlign]="LiquidHCO3?.TextAlign" [Text]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.LiquidHCO3" [Visible]="LiquidHCO3?.Visible" data-tid="A350168">
+                            </hvl-text-box>
+                        </div>
+                        <div class="col-md-6" data-tid="A350169">
+                            <label class="control-label" data-tid="A350170">
+                                Mg
+                            </label>
+                            <hvl-text-box #Validation (TextChange)="onLiquidMgChanged($event)" [BackColor]="LiquidMg?.BackColor" [CharacterCasing]="LiquidMg?.CharacterCasing" [Enabled]="LiquidMg?.Enabled" [Font]="LiquidMg?.Font" [ForeColor]="LiquidMg?.ForeColor" [height]="LiquidMg?.Height" [InputFormat]="LiquidMg?.InputFormat" [InputTurkishCharacter]="LiquidMg?.InputTurkishCharacter" [IsNonNumeric]="LiquidMg?.IsNonNumeric" [MultiLine]="LiquidMg?.Multiline" [ReadOnly]="LiquidMg?.ReadOnly" [Required]="LiquidMg?.Required" [TabIndex]="LiquidMg?.TabIndex" [TextAlign]="LiquidMg?.TextAlign" [Text]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.LiquidMg" [Visible]="LiquidMg?.Visible" data-tid="A350171">
+                            </hvl-text-box>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3" data-tid="A350172">
+            <div class="panel panel-default" data-tid="A350173">
+                <div class="panel-body" data-tid="A350174">
+                    <div class="row" data-tid="A350175">
+                        <div class="col-md-12" data-tid="A350176">
+                            <label class="control-label" data-tid="A350177">
+                                Seans Öncesi Ağırlık (KG)
+                            </label>
+                            <hvl-text-box #Validation (TextChange)="onWeightBeforeChanged($event)" [BackColor]="WeightBefore?.BackColor" [CharacterCasing]="WeightBefore?.CharacterCasing" [Enabled]="WeightBefore?.Enabled" [Font]="WeightBefore?.Font" [ForeColor]="WeightBefore?.ForeColor" [height]="WeightBefore?.Height" [InputFormat]="WeightBefore?.InputFormat" [InputTurkishCharacter]="WeightBefore?.InputTurkishCharacter" [IsNonNumeric]="WeightBefore?.IsNonNumeric" [MultiLine]="WeightBefore?.Multiline" [ReadOnly]="WeightBefore?.ReadOnly" [Required]="WeightBefore?.Required" [TabIndex]="WeightBefore?.TabIndex" [TextAlign]="WeightBefore?.TextAlign" [Text]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.WeightBefore" [Visible]="WeightBefore?.Visible" data-tid="A350178">
+                            </hvl-text-box>
+                        </div>
+                        <div class="col-md-12" data-tid="A350179">
+                            <label class="control-label" data-tid="A350180">
+                                Seans Sonrası Ağırlık (KG)
+                            </label>
+                            <hvl-text-box #Validation (TextChange)="onWeightAfterChanged($event)" [BackColor]="WeightAfter?.BackColor" [CharacterCasing]="WeightAfter?.CharacterCasing" [Enabled]="WeightAfter?.Enabled" [Font]="WeightAfter?.Font" [ForeColor]="WeightAfter?.ForeColor" [height]="WeightAfter?.Height" [InputFormat]="WeightAfter?.InputFormat" [InputTurkishCharacter]="WeightAfter?.InputTurkishCharacter" [IsNonNumeric]="WeightAfter?.IsNonNumeric" [MultiLine]="WeightAfter?.Multiline" [ReadOnly]="WeightAfter?.ReadOnly" [Required]="WeightAfter?.Required" [TabIndex]="WeightAfter?.TabIndex" [TextAlign]="WeightAfter?.TextAlign" [Text]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.WeightAfter" [Visible]="WeightAfter?.Visible" data-tid="A350181">
+                            </hvl-text-box>
+                        </div>
+                        <div class="col-md-12" data-tid="A350182">
+                            <hvl-checkbox #Validation (ValueChange)="onCatheterCareChanged($event)" [AllowThreeState]="CatheterCare?.ThreeState" [BackColor]="CatheterCare?.BackColor" [Enabled]="CatheterCare?.Enabled" [Font]="CatheterCare?.Font" [ForeColor]="CatheterCare?.ForeColor" [IsTitleLeft]="CatheterCare?.IsTitleLeft" [Margin]="CatheterCare?.Margin" [ReadOnly]="CatheterCare?.ReadOnly" [TabIndex]="CatheterCare?.TabIndex" [TitleTopPadding]="CatheterCare?.TitleTopPadding" [Title]="CatheterCare?.Title" [Value]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.CatheterCare" [Visible]="CatheterCare?.Visible" data-tid="A350183">
+                            </hvl-checkbox>
+                        </div>
+                        <div class="col-md-12" data-tid="A350184">
+                            <hvl-checkbox #Validation (ValueChange)="onAVFCareChanged($event)" [AllowThreeState]="AVFCare?.ThreeState" [BackColor]="AVFCare?.BackColor" [Enabled]="AVFCare?.Enabled" [Font]="AVFCare?.Font" [ForeColor]="AVFCare?.ForeColor" [IsTitleLeft]="AVFCare?.IsTitleLeft" [Margin]="AVFCare?.Margin" [ReadOnly]="AVFCare?.ReadOnly" [TabIndex]="AVFCare?.TabIndex" [TitleTopPadding]="AVFCare?.TitleTopPadding" [Title]="AVFCare?.Title" [Value]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.AVFCare" [Visible]="AVFCare?.Visible" data-tid="A350185">
+                            </hvl-checkbox>
+                        </div>
+                        <div class="col-md-12" data-tid="A350186">
+                            <label class="control-label" data-tid="A350187">
+                                Seans Açıklama
+                            </label>
+                            <hvl-text-box #Validation (TextChange)="onInformationChanged($event)" [BackColor]="Information?.BackColor" [CharacterCasing]="Information?.CharacterCasing" [Enabled]="Information?.Enabled" [Font]="Information?.Font" [ForeColor]="Information?.ForeColor" [height]="Information?.Height" [InputFormat]="Information?.InputFormat" [InputTurkishCharacter]="Information?.InputTurkishCharacter" [IsNonNumeric]="Information?.IsNonNumeric" [MultiLine]="Information?.Multiline" [ReadOnly]="Information?.ReadOnly" [Required]="Information?.Required" [TabIndex]="Information?.TabIndex" [TextAlign]="Information?.TextAlign" [Text]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.Information" [Visible]="Information?.Visible" data-tid="A350188">
+                            </hvl-text-box>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </dxi-item>
+    <dxi-item class="tabpanel-item" title="Sağlık Net / Kt/V" data-tid="A350189">
+        <br data-tid="A350190" />
+        <hvl-group-box class="col-md-6" [Text]="grpSaglikNet.Text" data-tid="A350191">
+            <div class="row" data-tid="A350192">
+                <div class="col-md-12" data-tid="A350193">
+                    <label class="control-label" data-tid="A350194">
+                        Diyaliz Tedavi Yöntemi
+                    </label>
+                    <hvl-list-box #Validation (SelectedObjectChange)="onDialysisTreatmentMethodChanged($event)" [AutoCompleteDialogHeight]="DialysisTreatmentMethod?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="DialysisTreatmentMethod?.AutoCompleteDialogWidth" [AutoCompleteMode]="DialysisTreatmentMethod?.AutoCompleteMode" [BackColor]="DialysisTreatmentMethod?.BackColor" [DefinitionName]="DialysisTreatmentMethod?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="DialysisTreatmentMethod?.Enabled" [Font]="DialysisTreatmentMethod?.Font" [ForeColor]="DialysisTreatmentMethod?.ForeColor" [ListFilterExpression]="DialysisTreatmentMethod?.ListFilterExpression" [MinSearchLength]="DialysisTreatmentMethod?.MinSearchLength" [PopupDialogFieldConfig]="DialysisTreatmentMethod?.PopupDialogFieldConfig" [PopupDialogGridColumns]="DialysisTreatmentMethod?.PopupDialogGridColumns" [PopupDialogHeight]="DialysisTreatmentMethod?.PopupDialogHeight" [PopupDialogTitle]="DialysisTreatmentMethod?.PopupDialogTitle" [PopupDialogWidth]="DialysisTreatmentMethod?.PopupDialogWidth" [ReadOnly]="DialysisTreatmentMethod?.ReadOnly" [SearchMode]="DialysisTreatmentMethod?.SearchMode" [SearchTimeout]="DialysisTreatmentMethod?.SearchTimeout" [SelectedObject]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.DialysisTreatmentMethod" [TabIndex]="DialysisTreatmentMethod?.TabIndex" [Visible]="DialysisTreatmentMethod?.Visible" [width]="DialysisTreatmentMethod?.Width" data-tid="A350195">
+                    </hvl-list-box>
+                </div>
+                <div class="col-md-12" data-tid="A350196">
+                    <label class="control-label" data-tid="A350197">
+                        Diyalize Girme Sıklığı
+                    </label>
+                    <hvl-list-box #Validation (SelectedObjectChange)="onDialysisFrequencyChanged($event)" [AutoCompleteDialogHeight]="DialysisFrequency?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="DialysisFrequency?.AutoCompleteDialogWidth" [AutoCompleteMode]="DialysisFrequency?.AutoCompleteMode" [BackColor]="DialysisFrequency?.BackColor" [DefinitionName]="DialysisFrequency?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="DialysisFrequency?.Enabled" [Font]="DialysisFrequency?.Font" [ForeColor]="DialysisFrequency?.ForeColor" [ListFilterExpression]="DialysisFrequency?.ListFilterExpression" [MinSearchLength]="DialysisFrequency?.MinSearchLength" [PopupDialogFieldConfig]="DialysisFrequency?.PopupDialogFieldConfig" [PopupDialogGridColumns]="DialysisFrequency?.PopupDialogGridColumns" [PopupDialogHeight]="DialysisFrequency?.PopupDialogHeight" [PopupDialogTitle]="DialysisFrequency?.PopupDialogTitle" [PopupDialogWidth]="DialysisFrequency?.PopupDialogWidth" [ReadOnly]="DialysisFrequency?.ReadOnly" [SearchMode]="DialysisFrequency?.SearchMode" [SearchTimeout]="DialysisFrequency?.SearchTimeout" [SelectedObject]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.DialysisFrequency" [TabIndex]="DialysisFrequency?.TabIndex" [Visible]="DialysisFrequency?.Visible" [width]="DialysisFrequency?.Width" data-tid="A350198">
+                    </hvl-list-box>
+                    <!--<hvl-list-box #Validation="" (SelectedObjectChange)="onttobjectlistbox1Changed($event)" [AutoCompleteDialogHeight]="ttobjectlistbox1?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ttobjectlistbox1?.AutoCompleteDialogWidth" [AutoCompleteMode]="ttobjectlistbox1?.AutoCompleteMode" [BackColor]="ttobjectlistbox1?.BackColor" [DefinitionName]="ttobjectlistbox1?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="ttobjectlistbox1?.Enabled" [Font]="ttobjectlistbox1?.Font" [ForeColor]="ttobjectlistbox1?.ForeColor" [ListFilterExpression]="ttobjectlistbox1?.ListFilterExpression" [MinSearchLength]="ttobjectlistbox1?.MinSearchLength" [PopupDialogFieldConfig]="ttobjectlistbox1?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ttobjectlistbox1?.PopupDialogGridColumns" [PopupDialogHeight]="ttobjectlistbox1?.PopupDialogHeight" [PopupDialogTitle]="ttobjectlistbox1?.PopupDialogTitle" [PopupDialogWidth]="ttobjectlistbox1?.PopupDialogWidth" [ReadOnly]="ttobjectlistbox1?.ReadOnly" [SearchMode]="ttobjectlistbox1?.SearchMode" [SearchTimeout]="ttobjectlistbox1?.SearchTimeout" [SelectedObject]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.DialysisFrequency" [TabIndex]="ttobjectlistbox1?.TabIndex" [Visible]="ttobjectlistbox1?.Visible" [width]="ttobjectlistbox1?.Width">
+                    </hvl-list-box>-->
+                </div>
+                <div class="col-md-12" data-tid="A350199">
+                    <label class="control-label" data-tid="A350200">
+                        Anemi Tedavi Yöntemi
+                    </label>
+                    <hvl-list-box #Validation (SelectedObjectChange)="onAnemiaTreatmentMethodChanged($event)" [AutoCompleteDialogHeight]="AnemiaTreatmentMethod?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="AnemiaTreatmentMethod?.AutoCompleteDialogWidth" [AutoCompleteMode]="AnemiaTreatmentMethod?.AutoCompleteMode" [BackColor]="AnemiaTreatmentMethod?.BackColor" [DefinitionName]="AnemiaTreatmentMethod?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="AnemiaTreatmentMethod?.Enabled" [Font]="AnemiaTreatmentMethod?.Font" [ForeColor]="AnemiaTreatmentMethod?.ForeColor" [ListFilterExpression]="AnemiaTreatmentMethod?.ListFilterExpression" [MinSearchLength]="AnemiaTreatmentMethod?.MinSearchLength" [PopupDialogFieldConfig]="AnemiaTreatmentMethod?.PopupDialogFieldConfig" [PopupDialogGridColumns]="AnemiaTreatmentMethod?.PopupDialogGridColumns" [PopupDialogHeight]="AnemiaTreatmentMethod?.PopupDialogHeight" [PopupDialogTitle]="AnemiaTreatmentMethod?.PopupDialogTitle" [PopupDialogWidth]="AnemiaTreatmentMethod?.PopupDialogWidth" [ReadOnly]="AnemiaTreatmentMethod?.ReadOnly" [SearchMode]="AnemiaTreatmentMethod?.SearchMode" [SearchTimeout]="AnemiaTreatmentMethod?.SearchTimeout" [SelectedObject]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.AnemiaTreatmentMethod" [TabIndex]="AnemiaTreatmentMethod?.TabIndex" [Visible]="AnemiaTreatmentMethod?.Visible" [width]="AnemiaTreatmentMethod?.Width" data-tid="A350201">
+                    </hvl-list-box>
+                </div>
+                <div class="col-md-12" data-tid="A350202">
+                    <label class="control-label" data-tid="A350203">
+                        Aktif Vitamin D Kullanımı
+                    </label>
+                    <hvl-list-box #Validation (SelectedObjectChange)="onVitaminDusageChanged($event)" [AutoCompleteDialogHeight]="VitaminDusage?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="VitaminDusage?.AutoCompleteDialogWidth" [AutoCompleteMode]="VitaminDusage?.AutoCompleteMode" [BackColor]="VitaminDusage?.BackColor" [DefinitionName]="VitaminDusage?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="VitaminDusage?.Enabled" [Font]="VitaminDusage?.Font" [ForeColor]="VitaminDusage?.ForeColor" [ListFilterExpression]="VitaminDusage?.ListFilterExpression" [MinSearchLength]="VitaminDusage?.MinSearchLength" [PopupDialogFieldConfig]="VitaminDusage?.PopupDialogFieldConfig" [PopupDialogGridColumns]="VitaminDusage?.PopupDialogGridColumns" [PopupDialogHeight]="VitaminDusage?.PopupDialogHeight" [PopupDialogTitle]="VitaminDusage?.PopupDialogTitle" [PopupDialogWidth]="VitaminDusage?.PopupDialogWidth" [ReadOnly]="VitaminDusage?.ReadOnly" [SearchMode]="VitaminDusage?.SearchMode" [SearchTimeout]="VitaminDusage?.SearchTimeout" [SelectedObject]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.VitaminDusage" [TabIndex]="VitaminDusage?.TabIndex" [Visible]="VitaminDusage?.Visible" [width]="VitaminDusage?.Width" data-tid="A350204">
+                    </hvl-list-box>
+                </div>
+                <div class="col-md-12" data-tid="A350205">
+                    <label class="control-label" data-tid="A350206">
+                        Tedavinin Seyri
+                    </label>
+                    <hvl-list-box #Validation (SelectedObjectChange)="onTreatmentCourseChanged($event)" [AutoCompleteDialogHeight]="TreatmentCourse?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="TreatmentCourse?.AutoCompleteDialogWidth" [AutoCompleteMode]="TreatmentCourse?.AutoCompleteMode" [BackColor]="TreatmentCourse?.BackColor" [DefinitionName]="TreatmentCourse?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="TreatmentCourse?.Enabled" [Font]="TreatmentCourse?.Font" [ForeColor]="TreatmentCourse?.ForeColor" [ListFilterExpression]="TreatmentCourse?.ListFilterExpression" [MinSearchLength]="TreatmentCourse?.MinSearchLength" [PopupDialogFieldConfig]="TreatmentCourse?.PopupDialogFieldConfig" [PopupDialogGridColumns]="TreatmentCourse?.PopupDialogGridColumns" [PopupDialogHeight]="TreatmentCourse?.PopupDialogHeight" [PopupDialogTitle]="TreatmentCourse?.PopupDialogTitle" [PopupDialogWidth]="TreatmentCourse?.PopupDialogWidth" [ReadOnly]="TreatmentCourse?.ReadOnly" [SearchMode]="TreatmentCourse?.SearchMode" [SearchTimeout]="TreatmentCourse?.SearchTimeout" [SelectedObject]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.TreatmentCourse" [TabIndex]="TreatmentCourse?.TabIndex" [Visible]="TreatmentCourse?.Visible" [width]="TreatmentCourse?.Width" data-tid="A350207">
+                    </hvl-list-box>
+                </div>
+            </div>
+        </hvl-group-box>
+
+        <hvl-group-box class="col-md-6" [Text]="grpKtv.Text" data-tid="A350208">
+            <div class="row" data-tid="A350209">
+                <div class="col-md-12" data-tid="A350210">
+                    <label class="control-label" data-tid="A350211">
+                        BUN Pre
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onBunPreChanged($event)" [BackColor]="BunPre?.BackColor" [CharacterCasing]="BunPre?.CharacterCasing" [Enabled]="BunPre?.Enabled" [Font]="BunPre?.Font" [ForeColor]="BunPre?.ForeColor" [height]="BunPre?.Height" [InputFormat]="BunPre?.InputFormat" [InputTurkishCharacter]="BunPre?.InputTurkishCharacter" [IsNonNumeric]="BunPre?.IsNonNumeric" [MultiLine]="BunPre?.Multiline" [ReadOnly]="BunPre?.ReadOnly" [Required]="BunPre?.Required" [TabIndex]="BunPre?.TabIndex" [TextAlign]="BunPre?.TextAlign" [Text]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.BunPre" [Visible]="BunPre?.Visible" data-tid="A350212">
+                    </hvl-text-box>
+                </div>
+                <div class="col-md-12" data-tid="A350213">
+                    <label class="control-label" data-tid="A350214">
+                        BUN Post
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onBunPostChanged($event)" [BackColor]="BunPost?.BackColor" [CharacterCasing]="BunPost?.CharacterCasing" [Enabled]="BunPost?.Enabled" [Font]="BunPost?.Font" [ForeColor]="BunPost?.ForeColor" [height]="BunPost?.Height" [InputFormat]="BunPost?.InputFormat" [InputTurkishCharacter]="BunPost?.InputTurkishCharacter" [IsNonNumeric]="BunPost?.IsNonNumeric" [MultiLine]="BunPost?.Multiline" [ReadOnly]="BunPost?.ReadOnly" [Required]="BunPost?.Required" [TabIndex]="BunPost?.TabIndex" [TextAlign]="BunPost?.TextAlign" [Text]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.BunPost" [Visible]="BunPost?.Visible" data-tid="A350215">
+                    </hvl-text-box>
+                </div>
+                <div class="col-md-12" data-tid="A350216">
+                    <label class="control-label" data-tid="A350217">
+                        URR
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onURRChanged($event)" [BackColor]="URR?.BackColor" [CharacterCasing]="URR?.CharacterCasing" [Enabled]="URR?.Enabled" [Font]="URR?.Font" [ForeColor]="URR?.ForeColor" [height]="URR?.Height" [InputFormat]="URR?.InputFormat" [InputTurkishCharacter]="URR?.InputTurkishCharacter" [IsNonNumeric]="URR?.IsNonNumeric" [MultiLine]="URR?.Multiline" [ReadOnly]="URR?.ReadOnly" [Required]="URR?.Required" [TabIndex]="URR?.TabIndex" [TextAlign]="URR?.TextAlign" [Text]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.URR" [Visible]="URR?.Visible" data-tid="A350218">
+                    </hvl-text-box>
+                </div>
+                <div class="col-md-12" data-tid="A350219">
+                    <label class="control-label" data-tid="A350220">
+                        Kt/V
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onKtvChanged($event)" [BackColor]="Ktv?.BackColor" [CharacterCasing]="Ktv?.CharacterCasing" [Enabled]="Ktv?.Enabled" [Font]="Ktv?.Font" [ForeColor]="Ktv?.ForeColor" [height]="Ktv?.Height" [InputFormat]="Ktv?.InputFormat" [InputTurkishCharacter]="Ktv?.InputTurkishCharacter" [IsNonNumeric]="Ktv?.IsNonNumeric" [MultiLine]="Ktv?.Multiline" [ReadOnly]="Ktv?.ReadOnly" [Required]="Ktv?.Required" [TabIndex]="Ktv?.TabIndex" [TextAlign]="Ktv?.TextAlign" [Text]="hemodialysisOrderDetailFormViewModel._HemodialysisOrderDetail.Ktv" [Visible]="Ktv?.Visible" data-tid="A350221">
+                    </hvl-text-box>
+                </div>
+            </div>
+        </hvl-group-box>
+
+    </dxi-item>
+</dx-tab-panel>
+
+
+

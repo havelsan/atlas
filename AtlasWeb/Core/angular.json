@@ -1,0 +1,394 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "atlasweb": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": ".",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-builders/custom-webpack:browser",
+          "options": {
+            "customWebpackConfig": {
+              "path": "./func-webpack.config.js"
+            },
+            "outputPath": "dist/wwwroot",
+            "index": "wwwroot/app/index.html",
+            "main": "wwwroot/app/main.ts",
+            "polyfills": "wwwroot/app//polyfills.ts",
+            "forkTypeChecker": false,
+            "tsConfig": "tsconfig.json",
+            "assets": [
+              {
+                "glob": "favicon.ico",
+                "input": ".wwwroot/",
+                "output": "./"
+              },
+              {
+                "glob": "**/*",
+                "input": "./wwwroot/assets",
+                "output": "/assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "./wwwroot/Content",
+                "output": "/Content"
+              },
+              {
+                "glob": "**/*",
+                "input": "./wwwroot/help",
+                "output": "/help"
+              },
+              {
+                "glob": "**/*",
+                "input": "./wwwroot/js",
+                "output": "/js"
+              }
+            ],
+            "styles": [
+              "wwwroot/assets/bootstrap/less/bootstrap.less",
+              "wwwroot/assets/global/plugins/simple-line-icons/simple-line-icons.min.css",
+              "./node_modules/devextreme/dist/css/dx.common.css",
+              "wwwroot/assets/metronic/vendors/base/vendors.bundle.css",
+              "wwwroot/assets/global/plugins/font-awesome/css/font-awesome.min.css",
+              "wwwroot/assets/metronic/sass/demo/default/style.css",
+              "./node_modules/summernote/dist/summernote.css",
+              "./node_modules/@devexpress/analytics-core/dist/css/dx-analytics.common.css",
+              "./node_modules/@devexpress/analytics-core/dist/css/dx-analytics.light.css",
+              "./node_modules/@devexpress/analytics-core/dist/css/dx-querybuilder.css",
+              "./node_modules/devexpress-reporting/dist/css/dx-webdocumentviewer.css",
+              "./node_modules/devexpress-reporting/dist/css/dx-reportdesigner.css",
+              "./node_modules/devexpress-dashboard/dist/css/dx-dashboard.light.css",
+              "./node_modules/prism-themes/themes/prism-vs.css",
+              "wwwroot/assets/imageannotation/css/annotate.css",
+              {
+                "input": "wwwroot/assets/devextreme/css/theme.css",
+                "bundleName": "theme"
+              },
+              {
+                "input": "wwwroot/Content/Site.css",
+                "bundleName": "sitecss"
+              }
+            ],
+            "scripts": [
+              "wwwroot/js/applicationglobalfunctions.js",
+              "wwwroot/assets/metronic/vendors/base/jquery.min.js",
+              "wwwroot/assets/metronic/vendors/base/vendors.bundle.js",
+              "wwwroot/assets/metronic/demo/default/base/scripts.bundle.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.js",
+              "./node_modules/lodash/lodash.js",
+              "./node_modules/summernote/dist/summernote.js",
+              "./node_modules/summernote/lang/summernote-tr-TR.js",
+              "./node_modules/@webcomponents/custom-elements/src/native-shim.js",
+              "./node_modules/prismjs/prism.js",
+              "./node_modules/prismjs/components/prism-markup.min.js",
+              "./node_modules/prismjs/components/prism-json.min.js",
+              "./node_modules/prismjs/components/prism-javascript.min.js",
+              "./node_modules/prismjs/components/prism-typescript.min.js",
+              "wwwroot/assets/imageannotation/djaodjin-annotate.js"
+            ],
+            "lazyModules": [
+              "wwwroot/app/auth.module",
+              "wwwroot/app/CashOfficeForms/CashOfficeFormModule",
+              "wwwroot/app/CashOfficePatient/CashOfficePatientModule",
+              "wwwroot/app/CashOfficeWorkList/CashOfficeWorkListModule",
+              "wwwroot/app/ConvTestPad/ConvTestPadModule",
+              "wwwroot/app/DefinitionForm/definition-form.module",
+              "wwwroot/app/DevexpressReporting/DevexpressReportingModule",
+              "wwwroot/app/DoctorPerformance/DoctorPerformanceModule",
+              "wwwroot/app/DocumentDefinition/DocumentDefinitionFormsModule",
+              "wwwroot/app/DynamicForm/AtlasDynamicFormModule",
+              "wwwroot/app/DynamicFormDesigner/DynamicFormModule",
+              "wwwroot/app/ESignature/esignature.module",
+              "wwwroot/app/EditorTemplate/AtlasEditorTemplateModule",
+              "wwwroot/app/FormEditor/form-editor.module",
+              "wwwroot/app/Fw/CoreModule",
+              "wwwroot/app/Fw/ModalModule",
+              "wwwroot/app/Invoice/InvoiceModule",
+              "wwwroot/app/Logistic/LogisticFormsModule",
+              "wwwroot/app/MedicalAction/MedicalActionModule",
+              "wwwroot/app/Patient/PatientModule",
+              "wwwroot/app/PatientRecord/PatientRecordModule",
+              "wwwroot/app/QueryList/query-list.module",
+              "wwwroot/app/Report/AtlasReportModule",
+              "wwwroot/app/SummerNote/lib/ngx-summernote.module",
+              "wwwroot/app/System/BarcodeModule",
+              "wwwroot/app/System/LoginModule",
+              "wwwroot/app/System/SystemModule",
+              "wwwroot/app/System/UserResourceSelectionModule",
+              "wwwroot/app/TestPad/DynamicTestModule",
+              "wwwroot/app/TestPad/EditorTestModule",
+              "wwwroot/app/TestPad/ObjectTestModule",
+              "wwwroot/app/TestPad/TestPadModule",
+              "wwwroot/app/TestPad/dynamic-form.module",
+              "wwwroot/app/template/content/layout/layout.module",
+              "wwwroot/app/template/content/partials/layout/quick-sidebar/list-timeline/list-timeline.module",
+              "wwwroot/app/template/content/partials/layout/quick-sidebar/messenger/messenger.module",
+              "wwwroot/app/template/core/core.module",
+              "Modules/Core_Destek_Modulleri/Doktor_Kota_Tanimlama_Modulu/DoktorKotaTanimlamaModule",
+              "Modules/Core_Destek_Modulleri/ErrorWatcherModule/ErrorWatcherModule",
+              "Modules/Core_Destek_Modulleri/Kullanici_Mesajlari_Modulu/KullaniciMesajlariModule",
+              "Modules/Core_Destek_Modulleri/Log_Modulu/LogModule",
+              "Modules/Core_Destek_Modulleri/Resource_User_Modulleri/ResourceUserModule",
+              "Modules/Core_Destek_Modulleri/Test_Modulu/TestModule",
+              "Modules/Doner_Sermaye_Saymanligi_Modulleri/Account_Base_Classes_Module/AccountBaseClassesModuleModule",
+              "Modules/Doner_Sermaye_Saymanligi_Modulleri/Banka_Odeme_Fisi_Modulu/BankaOdemeFisiModule",
+              "Modules/Doner_Sermaye_Saymanligi_Modulleri/MDS014_Hizmet_Karsiligi_Makbuz_Kesimi/MDS014HizmetKarsiligiMakbuzKesimiModule",
+              "Modules/Doner_Sermaye_Saymanligi_Modulleri/MDS015_Makbuz_Iade/MDS015MakbuzIadeModule",
+              "Modules/Doner_Sermaye_Saymanligi_Modulleri/MDS016_Avans_Alma/MDS016AvansAlmaModule",
+              "Modules/Doner_Sermaye_Saymanligi_Modulleri/MDS017_Avans_Iade/MDS017AvansIadeModule",
+              "Modules/Doner_Sermaye_Saymanligi_Modulleri/MDS018_Ana_Vezne_Tahsilat_Islemi/MDS018AnaVezneTahsilatIslemiModule",
+              "Modules/Doner_Sermaye_Saymanligi_Modulleri/MDS050_Fatura_Icmal/MDS050FaturaIcmalModule",
+              "Modules/Doner_Sermaye_Saymanligi_Modulleri/MDS054_Senet_Islemleri/MDS054SenetIslemleriModule",
+              "Modules/Doner_Sermaye_Saymanligi_Modulleri/MDS056_Senet_Tahsilat_Islemleri/MDS056SenetTahsilatIslemleriModule",
+              "Modules/Doner_Sermaye_Saymanligi_Modulleri/MDS058_Gelir_Gider_Takip_Islemleri/MDS058GelirGiderTakipIslemleriModule",
+              "Modules/ExternalWebServices/XXXXXX_EHIP_Module/XXXXXXEHIPModuleModule",
+              "Modules/Merkezi_Yonetim_Sistemi/Eczane_Modulleri/Ilac_Vademecum_Tanimlari_Modulu/IlacVademecumTanimlariModule",
+              "Modules/Merkezi_Yonetim_Sistemi/Stok_Modulleri/Sarf_Edilebilen_Malzeme_Tanimlari/SarfEdilebilenMalzemeTanimlariModule",
+              "Modules/Merkezi_Yonetim_Sistemi/Tibbi_Surec_Tanim/Hizmet_Tanimlama_Modulu/HizmetTanimlamaModule",
+              "Modules/Saglik_Lojistik/Eczane_Evrensel_Modulu/EczaneEvrenselModule",
+              "Modules/Saglik_Lojistik/Eczane_Modulleri/Ayaktan_Hasta_Recetesi_Modulu/AyaktanHastaRecetesiModule",
+              "Modules/Saglik_Lojistik/Eczane_Modulleri/Eczaneye_Ilac_Iade_Modulu/EczaneyeIlacIadeModule",
+              "Modules/Saglik_Lojistik/Eczane_Modulleri/Enfeksiyon_Komitesi_Modulu/EnfeksiyonKomitesiModule",
+              "Modules/Saglik_Lojistik/Eczane_Modulleri/Gunluk_Ilac_Cizelgesi_Modulu/GunlukIlacCizelgesiModule",
+              "Modules/Saglik_Lojistik/Eczane_Modulleri/Hastanin_Ilaclari_Giris_Modulu/HastaninIlaclariGirisModule",
+              "Modules/Saglik_Lojistik/Eczane_Modulleri/Hastanin_Ilaclari_Iade_Modulu/HastaninIlaclariIadeModule",
+              "Modules/Saglik_Lojistik/Eczane_Modulleri/Ilac_Direktifi_Giris_Modulu/HospitalTimeScheduleModule",
+              "Modules/Saglik_Lojistik/Eczane_Modulleri/Ilac_Direktifi_Giris_Modulu/IlacDirektifiGirisModule",
+              "Modules/Saglik_Lojistik/Eczane_Modulleri/Ilac_Doz_Bitirme_Modulu/IlacDozBitirmeModule",
+              "Modules/Saglik_Lojistik/Eczane_Modulleri/Ilac_Teslim_Islemi_Modulu/IlacTeslimIslemiModule",
+              "Modules/Saglik_Lojistik/Eczane_Modulleri/Majistral_Ilac_Hazirlama_Modulu/MajistralIlacHazirlamaModule",
+              "Modules/Saglik_Lojistik/Eczane_Modulleri/Tedavi_Ilac_Ugulama_Modulu/TedaviIlacUgulamaModule",
+              "Modules/Saglik_Lojistik/Eczane_Modulleri/Yatan_Hasta_Recetesi_Modulu/YatanHastaRecetesiModule",
+              "Modules/Saglik_Lojistik/Eczane_Modulleri/Yarim_Doz_Imha_Modulu/YarimDozImhaModule",
+              "Modules/Saglik_Lojistik/Lojistik_Tanımlar_Modulleri/Ilac_Tanimlari/DrugDefinitionModule",
+              "Modules/Saglik_Lojistik/Lojistik_Tanımlar_Modulleri/Sarf_Malzeme_Tanimlari/ConsumableMaterialDefinitionModule",
+              "Modules/Saglik_Lojistik/Lojistik_Tanımlar_Modulleri/Tuketim_Malzeme_Tanimlari/DepletionMaterialDefinitionModule",
+              "Modules/Saglik_Lojistik/Satinalma_Modulleri/F_Dogrudan_Temin_Modulleri/DogrudanTeminModule",
+              "Modules/Saglik_Lojistik/Satinalma_Modulleri/Satinalma_Istek_Modulu/SatinalmaIstekModule",
+              "Modules/Saglik_Lojistik/Stok_Evrensel_Modulu/StokEvrenselModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/Ana_Depo_Saymanlik_Tanimlama_Modulu/AnaDepoSaymanlikTanimlamaModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/Aylik_Maliyet_Analizi/AylikMaliyetAnaliziModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/Iade_Raporlari_Modulu/IadeRaporlariModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/Ilac_Iade_Raporu/ReturnFormModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/Ilac_Kullanim_Raporlari_Modulu/IlacKullanimRaporlariModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/Kullanilmayan_Malzeme_Raporu/UnusedMaterialFormModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/Malzeme_Tanimlari_Modulu/MaterialDefinitionModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/MaterialExpirationDateInfo/MaterialExpirationDateInfoModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/MaterialMultiSelect/MaterialMultiSelectModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/Muadil_Malzeme_Tuketim_Raporu_Modulu/MuadilMalzemeTuketimRaporuModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/PatientBasedMaterialSelect/PatientBasedMaterialSelectModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/SKT_Gore_Malzeme_Raporu/SKTGoreMalzemeRaporuModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/Sihhiye_Modulleri/Bagis_Yardim_Modulu/BagisYardimModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/Sihhiye_Modulleri/Ana_Depo_Dagitim_Belgesi_Modulu/AnaDepoDagitimBelgesiModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/Sihhiye_Modulleri/Dagitim_Belgesi_Modulu/DagitimBelgesiModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/Sihhiye_Modulleri/Depodan_Sarf_Islemi_Modulu/DepodanSarfIslemiModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/Sihhiye_Modulleri/Genel_Uretim_Islemi_Modulu/GenelUretimIslemiModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/Sihhiye_Modulleri/XXXXXX_Ici_AnaDepo_Transfer/XXXXXXIciAnaDepoTransferModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/Sihhiye_Modulleri/XXXXXXici_Dagitim_Belgesi_Modulu/XXXXXXiciDagitimBelgesiModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/Sihhiye_Modulleri/Iade_Belgesi_Modulu/IadeBelgesiModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/Sihhiye_Modulleri/Icmal_Modulu/IcmalModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/Sihhiye_Modulleri/Mal_Durumu_Degistirme_Modulu/MalDurumuDegistirmeModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/Sihhiye_Modulleri/Miad_Uzatim_Cikis_Modulu/MiadUzatimCikisModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/Sihhiye_Modulleri/Miad_Uzatim_Giris_Modulu/MiadUzatimGirisModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/Sihhiye_Modulleri/Miad_Uzatim_Modulu/MiadUzatimModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/Sihhiye_Modulleri/Sayim_Duzeltme_Belgesi_Modulu/SayimDuzeltmeBelgesiModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/Sihhiye_Modulleri/Tasinir_Mal_Islem_Modulu/TasinirMalIslemModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/Sihhiye_Modulleri/Tasinir_Mal_Kayit_Silme_Belgesi/TasinirMalKayitSilmeBelgesiModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/Sihhiye_Modulleri/Ana_Depo_Giris_Duzeltme_Modulu/AnaDepoGirisDuzeltmeModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/UTS_Islemleri_Modulu/UTSIslemleriModule",
+              "Modules/Saglik_Lojistik/Stok_Modulleri/Yilsonu_Devir_Modulleri/Donem_Acma_Kapatma_Islemi_Modulu/DonemAcmaKapatmaIslemiModule",
+              "Modules/Saglik_Lojistik/Tasinir_Islem_Fisi_Rapor_Modulleri/Cikis_Rapor_Modulu/MovableTransactionOutVoucherModule",
+              "Modules/Saglik_Lojistik/Tasinir_Islem_Fisi_Rapor_Modulleri/Giris_Rapor_Modulu/MovableTransactionInputVoucherModule",
+              "Modules/Sorgulama_ve_Cikartma_Formlari/MHRS_Randevu_Plani_Sorgulama_Formlari/MHRSRandevuPlaniSorgulamaFormlariModule",
+              "Modules/Sorgulama_ve_Cikartma_Formlari/Rapor_Yazdirma_Formu/PrintReportFormModule",
+              "Modules/Tibbi_Surec/Acil_Modulu/AcilModule",
+              "Modules/Tibbi_Surec/Ameliyat_Modulu/AmeliyatModule",
+              "Modules/Tibbi_Surec/Anestezi_ve_Reanimasyon_Modulu/AnesteziveReanimasyonModule",
+              "Modules/Tibbi_Surec/Arsiv_Modulu/ArsivModule",
+              "Modules/Tibbi_Surec/Asi_Takip_Modulu/AsiTakipModule",
+              "Modules/Tibbi_Surec/Cocuk_Takip_Modulu/CocukTakipModule",
+              "Modules/Tibbi_Surec/Danisma_Modulu/DanismaModule",
+              "Modules/Tibbi_Surec/Danisma_Modulu/HospitalInformationPatientSearch/HospitalInformationPatientSearchModule",
+              "Modules/Tibbi_Surec/Dis_Islemleri_Modulu/DisIslemleriModule",
+              "Modules/Tibbi_Surec/Dis_Muayene_Modulu/DisMuayeneModule",
+              "Modules/Tibbi_Surec/Diyet_Modulu/DiyetModule",
+              "Modules/Tibbi_Surec/E_Nabiz_Modulu/ENabizModule",
+              "Modules/Tibbi_Surec/E_Nabiz_Paket_Yonetim_Modulu/ENabizPackageManagementModule",
+              "Modules/Tibbi_Surec/Evde_Saglik_Hizmetleri_Modulu/EvdeSaglikHizmetleriModule",
+              "Modules/Tibbi_Surec/Fizyoterapi_Is_Listesi/PhysiotherapyWorkListModule",
+              "Modules/Tibbi_Surec/Fizyoterapi_Modulu/FizyoterapiModule",
+              "Modules/Tibbi_Surec/FollowingPatientandAdmission/FollowingPatientandAdmissionModule",
+              "Modules/Tibbi_Surec/Goz_Muayene_Modulu/GozMuayeneModule",
+              "Modules/Tibbi_Surec/Hasta_Cagri_Modulu/HastaCagriModule",
+              "Modules/Tibbi_Surec/Hasta_Demografik_Bilgileri/PatientDemographicsModule",
+              "Modules/Tibbi_Surec/Hasta_Dokumantasyon_Modulu/HastaDokumantasyonModule",
+              "Modules/Tibbi_Surec/Hasta_Dosyasi/HastaDosyasiModule",
+              "Modules/Tibbi_Surec/Hasta_Gecmisi/PatientHistoryModule",
+              "Modules/Tibbi_Surec/Hasta_Gecmisi_Arama_Modulu/PatientHistorySearchModule",
+              "Modules/Tibbi_Surec/Hasta_Is_Listesi/EpisodeActionWorkListModule",
+              "Modules/Tibbi_Surec/Hasta_Islemi_Goruntuleme/EpisodeActionDisplayFormModule",
+              "Modules/Tibbi_Surec/Hasta_Raporlari_Modulu/HastaRaporlariModule",
+              "Modules/Tibbi_Surec/XXXXXXler_Arasi_Sevk_Modulu/XXXXXXlerArasiSevkModule",
+              "Modules/Tibbi_Surec/Hemodiyaliz_Modulu/HemodiyalizModule",
+              "Modules/Tibbi_Surec/Hemsirelik_Islemleri_Modulu/HemsirelikIslemleriModule",
+              "Modules/Tibbi_Surec/Hemsirelik_Islemleri_Modulu/Hasta_Ilac_Dogrulama/DrugCorrection",
+              "Modules/Tibbi_Surec/Hemsirelik_Islemleri_Modulu/Hemsirelik_Is_Listesi/NursingWorkList",
+              "Modules/Tibbi_Surec/Kadin_Dogum_Modulu/KadinDogumModule",
+              "Modules/Tibbi_Surec/Kan_Merkezi_Modulu/KanMerkeziModule",
+              "Modules/Tibbi_Surec/Kayit_Kabul_Modulu/KayitKabulModule",
+              "Modules/Tibbi_Surec/Kayit_Kabul_Modulu/PatientCompareModule",
+              "Modules/Tibbi_Surec/Kayit_Kabul_Modulu/DispatchExamination/DispatchExaminationPanelModule",
+              "Modules/Tibbi_Surec/Kayit_Kabul_Modulu/MergePatient/MergePatientModule",
+              "Modules/Tibbi_Surec/Kayit_Kabul_Modulu/PatientAdmissionSearch/PatientAdmissionSearchModule",
+              "Modules/Tibbi_Surec/Kayit_Kabul_Modulu/PatientSearchWithDetails/PatientSearchWithDetailsModule",
+              "Modules/Tibbi_Surec/Ketem_Modulu/KetemModule",
+              "Modules/Tibbi_Surec/Konsultasyon_Istem_Modulu/ConsultationRequestModule",
+              "Modules/Tibbi_Surec/Konsultasyon_Modulu/KonsultasyonModule",
+              "Modules/Tibbi_Surec/Laboratuar_Is_Listesi/LaboratoryWorkListModule",
+              "Modules/Tibbi_Surec/Laboratuar_Modulu/LaboratuarModule",
+              "Modules/Tibbi_Surec/Manipulasyon_Modulu/ManipulasyonModule",
+              "Modules/Tibbi_Surec/Morg_Modulu/MorgModule",
+              "Modules/Tibbi_Surec/Nabiz_HBYS_Modulu/NabizHBYSModule",
+              "Modules/Tibbi_Surec/Normal_Dogum_Modulu/NormalDogumModule",
+              "Modules/Tibbi_Surec/Nukleer_Tip_Is_Listesi/NuclearMedicineWorkListModule",
+              "Modules/Tibbi_Surec/Nukleer_Tip_Is_Listesi/NuclearWorkListModule",
+              "Modules/Tibbi_Surec/Nukleer_Tip_Modulu/NukleerTipModule",
+              "Modules/Tibbi_Surec/Onemli_Tibbi_Bilgiler/OnemliTibbiBilgilerModule",
+              "Modules/Tibbi_Surec/Ortez_Protez_Modulu/OrtezProtezModule",
+              "Modules/Tibbi_Surec/Ortez_Protez_Modulu/Ortez_Protez_Is_Listesi/OrtezProtezIsModule",
+              "Modules/Tibbi_Surec/PatientSearch/PatientSearchModule",
+              "Modules/Tibbi_Surec/Patoloji_Modulu/PatolojiModule",
+              "Modules/Tibbi_Surec/Personel_Entegrasyon_Modulu/PersonelEntegrasyonModule",
+              "Modules/Tibbi_Surec/Poliklinik_Modulu/PoliklinikModule",
+              "Modules/Tibbi_Surec/Psikolog_Modulu/PsikologModule",
+              "Modules/Tibbi_Surec/Radyoloji_Is_Listesi/RadiologyWorkListModule",
+              "Modules/Tibbi_Surec/Radyoloji_Modulu/RadyolojiModule",
+              "Modules/Tibbi_Surec/Randevu_Modulu/MHRSExceptionalModule",
+              "Modules/Tibbi_Surec/Randevu_Modulu/RandevuModule",
+              "Modules/Tibbi_Surec/Saglik_Kurulu_Modulu/SaglikKuruluModule",
+              "Modules/Tibbi_Surec/Sarf_Malzeme_Modulu/TreatmentMaterialModule",
+              "Modules/Tibbi_Surec/Sosyal_Hizmetler_Modulu/SosyalHizmetlerModule",
+              "Modules/Tibbi_Surec/Sosyal_Hizmetler_Modulu/PopupTextArea/PopupTextAreaModule",
+              "Modules/Tibbi_Surec/Sosyal_Hizmetler_Modulu/Sosyal_Hizmetler_Is_Listesi/SosyalHizmetlerWorkListModule",
+              "Modules/Tibbi_Surec/TIG_Modulu/TIGModule",
+              "Modules/Tibbi_Surec/Taburcu_Islemleri_Modulu/TaburcuIslemleriModule",
+              "Modules/Tibbi_Surec/Tani_Modulu/DiagnosisGridModule",
+              "Modules/Tibbi_Surec/Tani_Modulu/DiagnosisGridReadOnlyModule",
+              "Modules/Tibbi_Surec/Tani_Modulu/ReportDiagnosisModule",
+              "Modules/Tibbi_Surec/Tetkik_Istem_Modulu/ProcedureRequestModule",
+              "Modules/Tibbi_Surec/Tibbi_Malzeme_Modulu/TibbiMalzemeModule",
+              "Modules/Tibbi_Surec/Tibbi_Surec_Evrensel_Modulu/AnamnezModule",
+              "Modules/Tibbi_Surec/Tibbi_Surec_Evrensel_Modulu/TibbiSurecEvrenselModule",
+              "Modules/Tibbi_Surec/Tibbi_Surec_Evrensel_Modulu/Dinamik_MultiData_Formu/MultipleDataComponentModule",
+              "Modules/Tibbi_Surec/Tibbi_Surec_Is_Listeleri/BaseEpisodeActionWorkListModule",
+              "Modules/Tibbi_Surec/Tibbi_Surec_Is_Listeleri/Ameliyat_Hasta_Is_Listesi/SurgeryWorkListModule",
+              "Modules/Tibbi_Surec/Tibbi_Surec_Is_Listeleri/Ayaktan_Hasta_Is_Listesi/ExaminationWorkListModule",
+              "Modules/Tibbi_Surec/Tibbi_Surec_Is_Listeleri/Hemsirelik_Modulu_Is_Listesi/NursingModuleWorkListModule",
+              "Modules/Tibbi_Surec/Tibbi_Surec_Is_Listeleri/Saglik_Kurulu_Is_Listesi/HealthCommitteeWorkListModule",
+              "Modules/Tibbi_Surec/Tibbi_Surec_Is_Listeleri/Yatan_Hasta_Is_Listesi/InPatientWorkListModule",
+              "Modules/Tibbi_Surec/Tibbi_Tehlikeli_Atik_Modulu/TibbiTehlikeliAtikModule",
+              "Modules/Tibbi_Surec/Tıbbi_Surec_Ana_Ekrani/MedicalProcessMainModule",
+              "Modules/Tibbi_Surec/Vital_Bulgular/VitalSingsModule",
+              "Modules/Tibbi_Surec/Yatan_Hasta_Modulu/YatanHastaModule",
+              "Modules/Tibbi_Surec/Yogun_Bakim_Modulu/YogunBakimModule",
+              "Modules/Tibbi_ve_Teknik_Destek_Modulleri/Sterilizasyon_Modulu/SterilizasyonModule",
+              "Modules/Tibbi_ve_Teknik_Destek_Modulleri/Sterilizasyon_Modulu/Sterilizasyon_Is_Listesi/SterilizationIsModule",
+              "Modules/Tibbi_Surec/Onkoloji_Modulu/OnkolojiModule",
+              "Modules/Tibbi_Surec/Epikriz_Modulu/EpikrizModule",
+              "Modules/Tibbi_Surec/Geleneksel_Alternatif_Tamamlayici_Uygulamalar_Modulu/GelenekselAlternatifTamamlayiciUygulamalarModule",
+              "Modules/Tibbi_Surec/Kemoterapi_ve_Radyoterapi_Modulu/KemoterapiveRadyoterapiModule"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "wwwroot/app/environments/environment.ts",
+                  "with": "wwwroot/app/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "wwwroot/app/Fw/Services/AtlasModuleLoader.ts",
+                  "with": "wwwroot/app/Fw/Services/AtlasModuleLoader.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": true,
+              "aot": true,
+              "extractLicenses": false,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder":  "@angular-builders/dev-server:generic",
+          "options": {
+            "browserTarget": "atlasweb:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "atlasweb:build:prod"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "atlasweb:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.json",
+              "tsconfig.json",
+              "e2e/tsconfig.json"
+            ],
+            "tslintConfig": "tslint.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "testapp:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "testapp:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "defaultProject": "atlasweb"
+}

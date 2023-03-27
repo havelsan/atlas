@@ -1,0 +1,136 @@
+﻿
+<form id="PhysiotherapyWorkListForm" class="form-horizontal" role="form" style="height:100%" data-tid="A343057">
+    <fieldset style="height:100%" id="A12681" data-tid="A343058">
+        <legend class="bottomOrangeBorder" id="A12682" data-tid="A343059">Fizyoterapi İş Listesi</legend>
+
+        <div class="row" style="margin-bottom: 10px;" id="A12683" data-tid="A343060">
+            <div class="col-md-12" id="A12684" data-tid="A343061">
+
+                <div class="panel-group" id="A12685" data-tid="A343062">
+                    <div class="panel panel-default" id="A12686" data-tid="A343063">
+                        <div class="panel-heading" (click)="changeAcoordionCollapse()" data-toggle="collapse" id="A12687" data-tid="A343064">
+                            <h4 class="panel-title" id="A12688" data-tid="A343065">
+                                <a i18n-title="@@M22127" id="A12689" data-tid="A343066">Sorgulama Paneli</a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse" [class.out]="isAccordionOpened==false" [class.in]="isAccordionOpened==true" data-tid="A343067">
+                            <div class="panel-body" id="A12690" data-tid="A343068">
+
+                                <div class="row" id="A12691" data-tid="A343069">
+                                    <div class="col-md-3" id="A12692" data-tid="A343070">
+                                        <label class="control-label" id="A12693" data-tid="A343071">Başlangıç Tarihi</label>
+                                        <dx-date-box width="100%" type="date" displayFormat="dd/MM/yyyy" [(value)]="physiotherapyWorkListFormViewModel._physiotherapyWorkListSearchCriteria.WorkListStartDate" id="A12694" data-tid="A343072"></dx-date-box>
+                                    </div>
+                                    <div class="col-md-3" id="A12695" data-tid="A343073">
+                                        <label class="control-label" id="A12696" data-tid="A343074">Bitiş Tarihi</label>
+                                        <dx-date-box width="100%" type="date" displayFormat="dd/MM/yyyy" [(value)]="physiotherapyWorkListFormViewModel._physiotherapyWorkListSearchCriteria.WorkListEndDate" id="A12697" data-tid="A343075"></dx-date-box>
+                                    </div>
+                                    <div class="col-md-3" id="A12698" data-tid="A343076">
+                                        <label class="control-label" id="A12699" data-tid="A343077">Kabul No</label>
+                                        <hvl-text-box [(Text)]="physiotherapyWorkListFormViewModel._physiotherapyWorkListSearchCriteria.AdmissionNumber" id="A12700" data-tid="A343078"></hvl-text-box>
+                                    </div>
+
+                                    <div class="col-md-3" id="A12701" data-tid="A343079">
+                                        <!--<PatientSearchForm Width="100%" (SelectedPatientChanged)="patientChanged($event)"></PatientSearchForm>-->
+                                    </div>
+
+                                    <!--<div class="col-md-3" id="A12702">
+                                        <label class="control-label"  id="A12703">Kimlik Numarası</label>
+                                        <hvl-text-box [(Text)]="physiotherapyWorkListFormViewModel._physiotherapyWorkListSearchCriteria.RefNo" id="A12704"></hvl-text-box>
+                                    </div>-->
+
+                                    <div class="col-md-3" id="A12702" data-tid="A343080">
+                                        <label class="control-label" id="A12703" data-tid="A343081">Hasta</label>
+                                        <PatientSearchForm Width="100%" (SelectedPatientChanged)="patientChanged($event)" id="A23653" data-tid="A343082"></PatientSearchForm>
+                                    </div>
+                                    <div class="col-md-3" id="A12705" data-tid="A343083">
+                                        <label class="control-label" id="A12706" data-tid="A343084">Tanı Tedavi Ünitesi</label>
+                                        <dx-tag-box [items]="physiotherapyWorkListFormViewModel.TreatmentDiagnosisUnitList" [(value)]="physiotherapyWorkListFormViewModel._physiotherapyWorkListSearchCriteria.TreatmentDiagnosisUnit" placeholder="FTR İşlemleri" [searchEnabled]="true" [showSelectionControls]="true" displayExpr="Name" [multiline]="false" i18n-placeholder="@@M14486" id="A12707" data-tid="A343085">
+                                        </dx-tag-box>
+
+                                    </div>
+                                    <div class="col-md-3" id="A12708" data-tid="A343086">
+                                        <!--Seans Durumu-->
+                                        <label class="control-label" id="A12709" data-tid="A343087">İşlem Adımı</label>
+                                        <dx-tag-box displayExpr="StateDefName" [multiline]="false" [showSelectionControls]="true" applyValueMode="useButtons" [(items)]="PhysiotherapyStateItems" [(value)]="this.physiotherapyWorkListFormViewModel._physiotherapyWorkListSearchCriteria.PhysiotherapyState" id="A12710" data-tid="A343088"></dx-tag-box>
+                                    </div>
+                                    <div class="col-md-3" id="A12711" data-tid="A343089">
+                                        <label class="control-label" id="A12712" data-tid="A343090">İstek Yapan Birim</label>
+                                        <dx-tag-box [(items)]="physiotherapyWorkListFormViewModel.FromResourceList" [(value)]="physiotherapyWorkListFormViewModel._physiotherapyWorkListSearchCriteria.FromResource" placeholder="İstek Yapan Birim" [searchEnabled]="true" [showSelectionControls]="true" displayExpr="Name" [multiline]="false" i18n-placeholder="@@M14486" id="A12713" data-tid="A343091">
+                                        </dx-tag-box>
+                                    </div>
+                                    <div class="col-md-3" id="A12714" data-tid="A343092">
+                                        <label class="control-label" id="A12715" data-tid="A343093">Hasta Durumu</label>
+                                        <dx-select-box [items]="PatientTypeList" displayExpr="TypeName" valueExpr="TypeID" [searchEnabled]="true" [value]="physiotherapyWorkListFormViewModel._physiotherapyWorkListSearchCriteria.Patienttype" (onValueChanged)="onPatientTypeChanged($event)" id="A12716" data-tid="A343094"></dx-select-box>
+                                    </div>
+                                </div>
+
+                                <dx-button type="default" icon="fa fa-bars" text="Listele" (onClick)="btnSearchClicked()" i18n-text="@@M27496" style="float:right;margin-right:16px" data-tid="A343095"></dx-button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="row" id="A12719" data-tid="A343096">
+            <div class="col-sm-12" id="A12720" data-tid="A343097">
+
+                <dx-data-grid id="physiotherapyWorkListGrid" [class.physiotherapyWorkListGridMinimize]="isAccordionOpened==true" [class.physiotherapyWorkListGridMaximize]="isAccordionOpened==false" #physiotherapyWorkListGrid [columns]="WorkListColumns" allowColumnReordering="true" allowColumnResizing="true" [dataSource]="physiotherapyWorkListFormViewModel.PhysiotherapyActionList" (onRowClick)="select($event)" (onRowPrepared)="onRowPrepared($event)" (onContextMenuPreparing)="onContextMenuPreparingPhysiotherapyActionList($event)" [filterRow]="{visible: true}" style="padding-top: 10px;" [selection]="{mode: 'single',allowSelectAll: false, showCheckBoxesMode: 'none'}" [editing]="{mode: 'row' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" data-tid="A343098">
+
+                    <dxo-scrolling mode="virtual" id="A12721" data-tid="A343099"></dxo-scrolling>
+                </dx-data-grid>
+
+                <div class="col-sm-12" style="margin-top: 20px;font-weight: bold;" id="A12722" data-tid="A343100">
+                    <span id="A12723" data-tid="A343101">Toplam İşlem Sayısı:{{physiotherapyWorkListFormViewModel.PhysiotherapyActionList.length}}</span>
+                </div>
+
+                <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A12724" data-tid="A343102">
+                </dx-load-panel>
+            </div>
+        </div>
+
+
+
+    </fieldset>
+</form>
+
+
+<dx-popup [showTitle]="true" class="reportStyle" [fullScreen]="true" title="Fizyoterapi İşlemi" [width]="1600" [(visible)]="isDynamicComponentOpened" id="A12725" data-tid="A343103">
+    <div *dxTemplate="let data of 'content'" id="A12726" data-tid="A343104">
+        <div *ngIf="isDynamicComponentOpened==true" id="A12727" data-tid="A343105">
+            <comp-compose [Info]="componentInfo" (DynamicComponentClosed)="dynamicComponentClosed($event)" (ComponentCreated)="componentCreated($event)" id="A12728" data-tid="A343106"></comp-compose>
+        </div>
+    </div>
+</dx-popup>
+
+
+<dx-popup width="300px" height="200" [(visible)]="showPatientContactStatus" [closeOnOutsideClick]="false" title="Hasta Temas Durumu" id="AYY20468" data-tid="AYY20468">
+    <div *dxTemplate="let data of 'content'" id="AYY20469" data-tid="AYY20469">
+        <div class="col-sm-12" data-tid="A/343032">
+            <label class="control-label" data-tid="A343033">TC Kimlik No</label>
+            <dx-text-box [showClearButton]="true" [(value)]="uniqueRefNo"  data-tid="A343034"></dx-text-box>
+        </div>
+        <div class="col-sm-12" id="AYY20487" data-tid="AYY20487">
+            <label class="control-label" id="A19922" data-tid="A353365">Doktor</label>
+            <dx-select-box [items]="PatientContactStatusDoctorList"
+                           displayExpr="Name"
+                           valueExpr="ObjectID"
+                           [searchEnabled]="true"
+                           [(value)]="selectedDoctorForPatientContactStatus"
+                           id="CY23643" data-tid="AY354416"></dx-select-box>
+
+
+        </div>
+
+        <div class="col-sm-12" style="margin-top:10px" id="AYY20492" data-tid="AYY20492">
+
+            <dx-button type="success" style="float: right;" (onClick)="ShowPatientContactStatus()" text="Sorgula" id="AYY20494" data-tid="AYY354355"></dx-button>
+
+        </div>
+    </div>
+</dx-popup>
+

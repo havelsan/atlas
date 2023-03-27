@@ -1,0 +1,54 @@
+﻿<dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#auditQuery' }" [visible]="loadingVisible" [showIndicator]="true" message="Yükleniyor..." [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" i18n-message="@@M24737" id="A1572" data-tid="A323832">
+</dx-load-panel>
+<div class="col-sm-3" style="height:100%" id="A1573" data-tid="A323833">
+    <div class="col-sm-12 gradientPanel" style="height:4%; background-color:#08c" id="A1574" data-tid="A323834">
+        <h4 style="color:#fff; font-size:19px;text-align:center;" id="A1575" data-tid="A323835">Log Sorgulama</h4>
+    </div>
+    <div class="panel-body" style="background-color:#f6f6f6;padding-bottom:0;height:100%" id="A1576" data-tid="A323836">
+        <div class="row" id="A1577" data-tid="A323837">
+            <label class="control-label col-sm-5" id="A1578" data-tid="A323838">Iz Id</label>
+            <div class="col-sm-7" id="A1579" data-tid="A323839">
+                <dx-text-box valueChangeEvent="keyup" [(value)]="QueryModel.ObjectID" id="A1580" data-tid="A323840"></dx-text-box>
+            </div>
+        </div>
+        <div class="row" id="A1581" data-tid="A323841">
+            <label class="control-label col-sm-5" id="A1582" data-tid="A323842">Kullanıcı</label>
+            <div class="col-sm-7" id="A1583" data-tid="A323843">
+                <dx-select-box searchEnabled="true" [(value)]="QueryModel.UserID" [items]="ViewModel.users" placeholder="Kullanıcı Seçiniz..." displayExpr="Name" valueExpr="UserID" i18n-placeholder="@@M17912" id="A1584" data-tid="A323844"></dx-select-box>
+            </div>
+        </div>
+        <div class="row" id="A1585" data-tid="A323845">
+            <label class="control-label col-sm-5" id="A1586" data-tid="A323846">Nesne</label>
+            <div class="col-sm-7" id="A1587" data-tid="A323847">
+                <dx-select-box searchEnabled="true" [(value)]="QueryModel.ObjectDefID" [items]="ViewModel._object" displayExpr="ObjectName" placeholder="Nesne Seçiniz..." valueExpr="ObjectDefId" i18n-placeholder="@@M19446" id="A1588" data-tid="A323848"></dx-select-box>
+            </div>
+        </div>
+        <div class="row" id="A1589" data-tid="A323849">
+            <label class="control-label col-sm-5" id="A1590" data-tid="A323850">Başlangıç Tarihi</label>
+            <div class="col-sm-7" id="A1591" data-tid="A323851">
+                <dx-date-box width="100%" type="date" [(value)]="QueryModel.StartDate" id="A1592" data-tid="A323852">
+                </dx-date-box>
+            </div>
+        </div>
+        <div class="row" id="A1593" data-tid="A323853">
+            <label class="control-label col-sm-5" id="A1594" data-tid="A323854">Bitiş Tarihi</label>
+            <div class="col-sm-7" id="A1595" data-tid="A323855">
+                <dx-date-box width="100%" type="date" [(value)]="QueryModel.EndDate" id="A1596" data-tid="A323856">
+                </dx-date-box>
+            </div>
+        </div>
+        <div class="row" style="float:right;margin-right:1px" id="A1597" data-tid="A323857">
+            <dx-button type="btn btn-info" icon="fa fa-bars" (onClick)="query()" text="Listele" i18n-text="@@M27337" id="A1598" data-tid="A323858"></dx-button>
+        </div>
+        <br id="A1599" data-tid="A323859" />
+    </div>
+</div>
+<div id="auditQuery" class="col-sm-9" style="height:50%" data-tid="A323860">
+    <dx-data-grid [columns]="AuditColumns" [dataSource]="ViewModel.LogDataSource" (onSelectionChanged)="selectLog($event)" [selection]="{mode: 'single',allowSelectAll: false}" allowColumnReordering="true" allowColumnResizing="true" [paging]="{enable: true, pageSize:60}" [groupPanel]="{visible: true}" [filterRow]="{visible: true}" style="height : 100%" id="A1600" data-tid="A323861">
+    </dx-data-grid>
+</div>
+<div class="col-sm-9" style="height:48%" id="A1601" data-tid="A323862">
+    <dx-data-grid [columns]="AuditDetailsColumns" [dataSource]="ViewModel.LogDataSourceDetails" [selection]="{mode: 'single',allowSelectAll: false}" allowColumnReordering="true" allowColumnResizing="true" [paging]="{enable: true, pageSize:60}" [groupPanel]="{visible: true}" [filterRow]="{visible: true}" style="height : 100%" id="A1602" data-tid="A323863">
+    </dx-data-grid>
+</div>
+

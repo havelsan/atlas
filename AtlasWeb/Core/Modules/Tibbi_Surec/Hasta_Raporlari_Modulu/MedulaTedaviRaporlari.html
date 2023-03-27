@@ -1,0 +1,507 @@
+﻿
+
+<div class="container-fluid" style="font-size:12px;" data-tid="A349018">
+    <form id="MedulaTedaviRaporlari" class="form-horizontal" role="form" data-tid="A349019"></form>
+
+    <div style="width: 100%; height: 25px; text-align: center;margin-bottom:20px; background-color: #e2ecf8;" data-tid="A349020">
+        <span style="font-size: 18px;font-weight:bold;" data-tid="A349021">
+            HASTA BİLGİLERİ
+        </span>
+    </div>
+    <patient-demographics-simply-form [actionId]="actionIdForDemografic()" data-tid="A349022"></patient-demographics-simply-form>
+    <br data-tid="A349023" />
+    <div style="width: 100%; height: 25px; text-align: center;margin-bottom:20px; background-color: #e2ecf8;" data-tid="A349024">
+        <span style="font-size: 18px;font-weight:bold;" data-tid="A349025">
+            RAPOR BİLGİLERİ
+        </span>
+    </div>
+    <div class="row" data-tid="A349026">
+        <div class="col-sm-4" data-tid="A349027">
+            <span data-tid="A349028">
+                <b data-tid="A349029">
+                    Rapor Türü
+                </b>
+                <hvl-enum-combobox #Validation (ValueChange)="oncmbRaporTuruChanged($event)" [BackColor]="cmbRaporTuru?.BackColor" [DataTypeName]="cmbRaporTuru?.DataTypeName" [Enabled]="cmbRaporTuru?.Enabled" [Font]="cmbRaporTuru?.Font" [ForeColor]="cmbRaporTuru?.ForeColor" [IncludeOnly]="cmbRaporTuru?.IncludeOnly" [ReadOnly]="cmbRaporTuru?.ReadOnly" [ShowClearButton]="cmbRaporTuru?.ShowClearButton" [SortBy]="cmbRaporTuru?.SortBy" [TabIndex]="cmbRaporTuru?.TabIndex" [Value]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.TedaviRaporTuru" [Visible]="cmbRaporTuru?.Visible" data-tid="A349030"></hvl-enum-combobox>
+            </span>
+        </div>
+        <div class="col-sm-3" data-tid="A349031">
+            <span data-tid="A349032">
+                <b data-tid="A349033">
+                    Başlangıç Tarihi
+                </b>
+                <hvl-date-picker #Validation (ValueChange)="onRaporBaslangicTarihiChanged($event)" [BackColor]="RaporBaslangicTarihi?.BackColor" [CustomFormat]="RaporBaslangicTarihi?.CustomFormat" [Enabled]="RaporBaslangicTarihi?.Enabled" [Font]="RaporBaslangicTarihi?.Font" [ForeColor]="RaporBaslangicTarihi?.ForeColor" [Format]="RaporBaslangicTarihi?.Format" [Max]="RaporBaslangicTarihi?.Max" [Min]="RaporBaslangicTarihi?.Min" [ReadOnly]="RaporBaslangicTarihi?.ReadOnly" [Required]="RaporBaslangicTarihi?.Required" [TabIndex]="RaporBaslangicTarihi?.TabIndex" [Value]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.StartDate" [Visible]="RaporBaslangicTarihi?.Visible" data-tid="A349034"></hvl-date-picker>
+            </span>
+        </div>
+        <div class="col-sm-2" data-tid="A349035">
+            <span class="col-md-6" style="padding-left:0" data-tid="A349036">
+                <b data-tid="A349037">
+                    R.Süresi
+                </b>
+                <dx-number-box [value]="medulaTedaviRaporlariViewModel._MedulaTreatmentReport.Duration" (onValueChanged)="reportDurationChanged($event)" [max]="999" style="padding-bottom:2px; text-align:center;" data-tid="A349038"></dx-number-box>
+            </span>
+            <span class="col-md-6" style="padding-right:0" data-tid="A349039">
+                <b data-tid="A349040">
+                    R.Süre Türü
+                </b>
+                <hvl-enum-combobox #Validation (ValueChange)="cmbRaporSureTuruChanged($event)" [BackColor]="cmbRaporSureTuru?.BackColor" [DataTypeName]="cmbRaporSureTuru?.DataTypeName" [Enabled]="cmbRaporSureTuru?.Enabled" [Font]="cmbRaporSureTuru?.Font" [ForeColor]="cmbRaporSureTuru?.ForeColor" [IncludeOnly]="cmbRaporSureTuru?.IncludeOnly" [ReadOnly]="cmbRaporSureTuru?.ReadOnly" [ShowClearButton]="cmbRaporSureTuru?.ShowClearButton" [SortBy]="cmbRaporSureTuru?.SortBy" [TabIndex]="cmbRaporSureTuru?.TabIndex" [Value]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.DurationType" [Visible]="cmbRaporSureTuru?.Visible" data-tid="A349041"></hvl-enum-combobox>
+            </span>
+        </div>
+        <div class="col-sm-3" data-tid="A349042">
+            <span data-tid="A349043">
+                <b data-tid="A349044">
+                    Bitiş Tarihi
+                </b>
+                <hvl-date-picker #Validation (ValueChange)="onRaporBitisTarihiChanged($event)" [BackColor]="RaporBitisTarihi?.BackColor" [CustomFormat]="RaporBitisTarihi?.CustomFormat" [Enabled]="RaporBitisTarihi?.Enabled" [Font]="RaporBitisTarihi?.Font" [ForeColor]="RaporBitisTarihi?.ForeColor" [Format]="RaporBitisTarihi?.Format" [Max]="RaporBitisTarihi?.Max" [Min]="RaporBitisTarihi?.Min" [ReadOnly]="RaporBitisTarihi?.ReadOnly" [Required]="RaporBitisTarihi?.Required" [TabIndex]="RaporBitisTarihi?.TabIndex" [Value]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.EndDate" [Visible]="RaporBitisTarihi?.Visible" data-tid="A349045"></hvl-date-picker>
+            </span>
+        </div>
+
+    </div>
+    <div class="row" data-tid="A349046">
+        <div class="col-sm-4" data-tid="A349047">
+            <span data-tid="A349048">
+                <b data-tid="A349049">
+                    1. Doktor
+                </b>
+                <hvl-list-box #Validation (SelectedObjectChange)="onlstTabipChanged($event)" [AutoCompleteDialogHeight]="lstTabip?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="lstTabip?.AutoCompleteDialogWidth" [AutoCompleteMode]="lstTabip?.AutoCompleteMode" [BackColor]="lstTabip?.BackColor" [DefinitionName]="lstTabip?.ListDefName" [DisplayExpressionsCache]="medulaTedaviRaporlariViewModel?.ListDefDisplayExpressions" [Enabled]="lstTabip?.Enabled" [Font]="lstTabip?.Font" [ForeColor]="lstTabip?.ForeColor" [ListFilterExpression]="lstTabip?.ListFilterExpression" [MinSearchLength]="lstTabip?.MinSearchLength" [PopupDialogFieldConfig]="lstTabip?.PopupDialogFieldConfig" [PopupDialogGridColumns]="lstTabip?.PopupDialogGridColumns" [PopupDialogHeight]="lstTabip?.PopupDialogHeight" [PopupDialogTitle]="lstTabip?.PopupDialogTitle" [PopupDialogWidth]="lstTabip?.PopupDialogWidth" [ReadOnly]="lstTabip?.ReadOnly" [SearchMode]="lstTabip?.SearchMode" [SearchTimeout]="lstTabip?.SearchTimeout" [SelectedObject]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.ProcedureDoctor" [TabIndex]="lstTabip?.TabIndex" [Visible]="lstTabip?.Visible" [width]="lstTabip?.Width" data-tid="A349050"></hvl-list-box>
+            </span>
+        </div>
+        <div class="col-sm-4" data-tid="A349051">
+            <span data-tid="A349052">
+                <span class="col-md-2" style="padding-left:0" data-tid="A349053">
+                    <b data-tid="A349054">
+                        Heyet
+                    </b>
+                    <hvl-checkbox #Validation (ValueChange)="onchkFtrHeyetRaporuChanged($event)" [AllowThreeState]="chkFtrHeyetRaporu?.ThreeState" [BackColor]="chkFtrHeyetRaporu?.BackColor" [Enabled]="chkFtrHeyetRaporu?.Enabled" [Font]="chkFtrHeyetRaporu?.Font" [ForeColor]="chkFtrHeyetRaporu?.ForeColor" [IsTitleLeft]="chkFtrHeyetRaporu?.IsTitleLeft" [Margin]="chkFtrHeyetRaporu?.Margin" [ReadOnly]="chkFtrHeyetRaporu?.ReadOnly" [TabIndex]="chkFtrHeyetRaporu?.TabIndex" [TitleTopPadding]="chkFtrHeyetRaporu?.TitleTopPadding" [Title]="chkFtrHeyetRaporu?.Title" [Value]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.CommitteeReport" [Visible]="chkFtrHeyetRaporu?.Visible" data-tid="A349055"></hvl-checkbox>
+
+                </span>
+                <span class="col-md-10" style="padding-right:0" data-tid="A349056">
+                    <b data-tid="A349057">
+                        2. Doktor
+                    </b>
+                    <hvl-list-box #Validation (SelectedObjectChange)="onlstTabip2Changed($event)" [AutoCompleteDialogHeight]="lstTabip2?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="lstTabip2?.AutoCompleteDialogWidth" [AutoCompleteMode]="lstTabip2?.AutoCompleteMode" [BackColor]="lstTabip2?.BackColor" [DefinitionName]="lstTabip2?.ListDefName" [DisplayExpressionsCache]="medulaTedaviRaporlariViewModel?.ListDefDisplayExpressions" [Enabled]="lstTabip2?.Enabled" [Font]="lstTabip2?.Font" [ForeColor]="lstTabip2?.ForeColor" [ListFilterExpression]="lstTabip2?.ListFilterExpression" [MinSearchLength]="lstTabip2?.MinSearchLength" [PopupDialogFieldConfig]="lstTabip2?.PopupDialogFieldConfig" [PopupDialogGridColumns]="lstTabip2?.PopupDialogGridColumns" [PopupDialogHeight]="lstTabip2?.PopupDialogHeight" [PopupDialogTitle]="lstTabip2?.PopupDialogTitle" [PopupDialogWidth]="lstTabip2?.PopupDialogWidth" [ReadOnly]="lstTabip2?.ReadOnly" [SearchMode]="lstTabip2?.SearchMode" [SearchTimeout]="lstTabip2?.SearchTimeout" [SelectedObject]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.SecondDoctor" [TabIndex]="lstTabip2?.TabIndex" [Visible]="lstTabip2?.Visible" [width]="lstTabip2?.Width" data-tid="A349058"></hvl-list-box>
+                </span>
+            </span>
+        </div>
+        <div class="col-sm-4" data-tid="A349059">
+            <span data-tid="A349060">
+                <b data-tid="A349061">
+                    3. Doktor
+                </b>
+                <hvl-list-box #Validation (SelectedObjectChange)="onlstTabip3Changed($event)" [AutoCompleteDialogHeight]="lstTabip3?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="lstTabip3?.AutoCompleteDialogWidth" [AutoCompleteMode]="lstTabip3?.AutoCompleteMode" [BackColor]="lstTabip3?.BackColor" [DefinitionName]="lstTabip3?.ListDefName" [DisplayExpressionsCache]="medulaTedaviRaporlariViewModel?.ListDefDisplayExpressions" [Enabled]="lstTabip3?.Enabled" [Font]="lstTabip3?.Font" [ForeColor]="lstTabip3?.ForeColor" [ListFilterExpression]="lstTabip3?.ListFilterExpression" [MinSearchLength]="lstTabip3?.MinSearchLength" [PopupDialogFieldConfig]="lstTabip3?.PopupDialogFieldConfig" [PopupDialogGridColumns]="lstTabip3?.PopupDialogGridColumns" [PopupDialogHeight]="lstTabip3?.PopupDialogHeight" [PopupDialogTitle]="lstTabip3?.PopupDialogTitle" [PopupDialogWidth]="lstTabip3?.PopupDialogWidth" [ReadOnly]="lstTabip3?.ReadOnly" [SearchMode]="lstTabip3?.SearchMode" [SearchTimeout]="lstTabip3?.SearchTimeout" [SelectedObject]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.ThirdDoctor" [TabIndex]="lstTabip3?.TabIndex" [Visible]="lstTabip3?.Visible" [width]="lstTabip3?.Width" data-tid="A349062"></hvl-list-box>
+            </span>
+        </div>
+    </div>
+    <br data-tid="A349063" />
+    <div style="width: 100%; height: 25px; text-align: center;margin-bottom:20px; background-color: #e2ecf8;" data-tid="A349064">
+        <span style="font-size: 18px;font-weight:bold;" data-tid="A349065">
+            RAPOR DETAY BİLGİLERİ
+        </span>
+    </div>
+
+    <div class="col-md-12 col-sm-12" data-tid="A349066">
+        <div class="row" data-tid="A349067">
+            <div class="col-md-6" style="padding-left:0" data-tid="A349068">
+                <ReportDiagnosisForm #Report [EpisodeAction]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.ObjectID" [Episode]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.Episode" [IsNew]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.IsNew" [IsReadOnly]="medulaTedaviRaporlariViewModel.ReadOnly" (sendDiagnosisViewModel)="comingViewModel($event)" data-tid="A349069"></ReportDiagnosisForm>
+            </div>
+
+            <div class="col-md-6" style="padding-right:0" data-tid="A349070">
+                <span data-tid="A349071">
+                    <b data-tid="A349072">Açıklama</b>
+                    <i style="color:#08c;float:right" class="fa fa-clone fa-1" data-toggle="tooltip" data-placement="bottom" (click)="fun(this.Description)" data-tid="A349073"></i>
+                </span>
+                <hvl-text-box #Validation (TextChange)="onDescriptionChanged($event)" [BackColor]="Description?.BackColor" [CharacterCasing]="Description?.CharacterCasing" [Enabled]="Description?.Enabled" [Font]="Description?.Font" [ForeColor]="Description?.ForeColor" [height]="105" [InputFormat]="Description?.InputFormat" [InputTurkishCharacter]="Description?.InputTurkishCharacter" [IsNonNumeric]="Description?.IsNonNumeric" [MultiLine]="Description?.Multiline" [ReadOnly]="Description?.ReadOnly" [Required]="Description?.Required" [TabIndex]="Description?.TabIndex" [TextAlign]="Description?.TextAlign" [Text]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.Description" [Visible]="Description?.Visible" data-tid="A349074">
+
+                </hvl-text-box>
+            </div>
+        </div>
+        <div class="row" data-tid="A349075">
+            <div class="col-md-1" style="padding-right:0;padding-left:0" data-tid="A349076">
+                <span data-tid="A349077">
+                    <b data-tid="A349078">Sonuç Kodu</b>
+                </span>
+                <hvl-text-box #Validation (TextChange)="onSonucKoduChanged($event)" [BackColor]="SonucKodu?.BackColor" [CharacterCasing]="SonucKodu?.CharacterCasing" [Enabled]="SonucKodu?.Enabled" [Font]="SonucKodu?.Font" [ForeColor]="SonucKodu?.ForeColor" [height]="25" [InputFormat]="SonucKodu?.InputFormat" [InputTurkishCharacter]="SonucKodu?.InputTurkishCharacter" [IsNonNumeric]="SonucKodu?.IsNonNumeric" [MultiLine]="SonucKodu?.Multiline" [ReadOnly]="SonucKodu?.ReadOnly" [Required]="SonucKodu?.Required" [TabIndex]="SonucKodu?.TabIndex" [TextAlign]="SonucKodu?.TextAlign" [Text]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.SonucKodu" [Visible]="SonucKodu?.Visible" data-tid="A349079">
+
+                </hvl-text-box>
+            </div>
+            <div class="col-md-11" style="padding-right:0;padding-left:0" data-tid="A349080">
+                <span data-tid="A349081">
+                    <b data-tid="A349082">Medula Sonuç</b>
+                </span>
+                <hvl-text-box #Validation (TextChange)="onSonucAciklamasiChanged($event)" [BackColor]="SonucAciklamasi?.BackColor" [CharacterCasing]="SonucAciklamasi?.CharacterCasing" [Enabled]="SonucAciklamasi?.Enabled" [Font]="Description?.Font" [ForeColor]="SonucAciklamasi?.ForeColor" [height]="25" [InputFormat]="SonucAciklamasi?.InputFormat" [InputTurkishCharacter]="SonucAciklamasi?.InputTurkishCharacter" [IsNonNumeric]="SonucAciklamasi?.IsNonNumeric" [MultiLine]="SonucAciklamasi?.Multiline" [ReadOnly]="SonucAciklamasi?.ReadOnly" [Required]="SonucAciklamasi?.Required" [TabIndex]="SonucAciklamasi?.TabIndex" [TextAlign]="SonucAciklamasi?.TextAlign" [Text]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.SonucAciklamasi" [Visible]="SonucAciklamasi?.Visible" data-tid="A349083">
+
+                </hvl-text-box>
+            </div>
+        </div>
+        <br data-tid="A349084" />
+        <div class="row" data-tid="A349085">
+            <div class="col-sm-12" style="padding-left:0;padding-right:0" data-tid="A349086">
+                <div class="row" data-tid="A349087">
+                    <div class="col-sm-12" style="padding-left:0;padding-right:0" data-tid="A349088">
+                        <div class="row" data-tid="A349089">
+                            <div class="col-sm-12" data-tid="A349090">
+                                <ul *ngIf="tabSearchBenchMarks==true" class="nav nav-tabs" role="tablist" data-tid="A349091">
+                                    <li *ngIf="kaydetSelected" class="active" data-tid="A349092"><a href="#RaporKaydet" data-toggle="tab" data-tid="A349093">Rapor Kaydet</a></li>
+                                    <li *ngIf="kimlikNoIleSorgulaSelected" data-tid="A349094"><a href="#KimlikNoIleSorgula" data-toggle="tab" data-tid="A349095">Kimlik Numarası İle Rapor Sorgula</a></li>
+                                    <li *ngIf="takipNoIleSorgulaSelected" data-tid="A349096"><a href="#TakipNoIleSorgula" data-toggle="tab" data-tid="A349097">Rapor Takip Numarası İle Rapor Sorgula</a></li>
+                                    <li *ngIf="raporBilgisiIleSorgulaSelected" data-tid="A349098"><a href="#RaporBilgisiIleSorgula" data-toggle="tab" data-tid="A349099">Rapor Bilgisi İle Rapor Sorgula</a></li>
+                                </ul>
+                                <div class="tab-content" style="background-color:#fff;" data-tid="A349100">
+                                    <div *ngIf="kaydetSelected" id="RaporKaydet" class="tab-pane fade in active" data-tid="A349101">
+                                        <div class="col-md-12" data-tid="A349102">
+                                            <div class="row" data-tid="A349103">
+                                                <div class="col-xs-12" data-tid="A349104">
+                                                    <ul class="nav nav-tabs" role="tablist" data-tid="A349105">
+                                                        <li *ngIf="ftrSelected" class="active" style="display:none;" data-tid="A349106"><a href="#FTR" data-toggle="tab" data-tid="A349107">FTR</a></li>
+                                                        <li *ngIf="eswtSelected" style="display:none;" data-tid="A349108"><a href="#ESWT" data-toggle="tab" data-tid="A349109">ESWT</a></li>
+                                                        <li *ngIf="eswlSelected" style="display:none;" data-tid="A349110"><a href="#ESWL" data-toggle="tab" data-tid="A349111">ESWL</a></li>
+                                                        <li *ngIf="diyalizSelected" style="display:none;" data-tid="A349112"><a href="#Diyaliz" data-toggle="tab" data-tid="A349113">Diyaliz</a></li>
+                                                        <li *ngIf="evHemodiyaliziSelected" style="display:none;" data-tid="A349114"><a href="#EvHemodiyaliz" data-toggle="tab" data-tid="A349115">Ev Hemodiyalizi</a></li>
+                                                        <li *ngIf="hbtSelected" style="display:none;" data-tid="A349116"><a href="#HBT" data-toggle="tab" data-tid="A349117">HBT</a></li>
+                                                        <li *ngIf="tupBebekSelected" style="display:none;" data-tid="A349118"><a href="#TupBebek" data-toggle="tab" data-tid="A349119">Tüp Bebek</a></li>
+                                                    </ul>
+                                                    <div class="tab-content" style="background-color:#fff;" data-tid="A349120">
+                                                        <div id="FTR" class="tab-pane fade in" [class.active]="ftrSelected" data-tid="A349121">
+                                                            <div data-tid="A349122">
+                                                                <br data-tid="A349123" />
+                                                                <div class="row" data-tid="A349124">
+                                                                    <label class="control-label col-sm-1" data-tid="A349125">
+                                                                        Fizyoterapi İşlemi
+                                                                    </label>
+                                                                    <div class="col-sm-5" data-tid="A349126">
+                                                                        <hvl-list-box #Validation (SelectedObjectChange)="FizyoterapiList.SelectedObject=$event;fizyoterapiSelected($event)" [AutoCompleteDialogHeight]="FizyoterapiList?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="FizyoterapiList?.AutoCompleteDialogWidth" [AutoCompleteMode]="FizyoterapiList?.AutoCompleteMode" [BackColor]="FizyoterapiList?.BackColor" [DefinitionName]="FizyoterapiList?.ListDefName" [Enabled]="FizyoterapiList?.Enabled" [Font]="FizyoterapiList?.Font" [ForeColor]="FizyoterapiList?.ForeColor" [ListFilterExpression]="FizyoterapiList?.ListFilterExpression" [MinSearchLength]="FizyoterapiList?.MinSearchLength" [PopupDialogFieldConfig]="FizyoterapiList?.PopupDialogFieldConfig" [PopupDialogGridColumns]="FizyoterapiList?.PopupDialogGridColumns" [PopupDialogHeight]="FizyoterapiList?.PopupDialogHeight" [PopupDialogTitle]="FizyoterapiList?.PopupDialogTitle" [PopupDialogWidth]="FizyoterapiList?.PopupDialogWidth" [ReadOnly]="FizyoterapiList?.ReadOnly" [SearchMode]="FizyoterapiList?.SearchMode" [SearchTimeout]="FizyoterapiList?.SearchTimeout" [SelectedObject]="FizyoterapiList?.SelectedObject" [TabIndex]="FizyoterapiList?.TabIndex" [Visible]="FizyoterapiList?.Visible" [width]="FizyoterapiList?.Width" data-tid="A349127"></hvl-list-box>
+                                                                    </div>
+                                                                    <label class="control-label col-sm-1" data-tid="A349128">
+                                                                        Özel Durum
+                                                                    </label>
+                                                                    <div class="col-sm-5" data-tid="A349129">
+                                                                        <hvl-enum-combobox #Validation (ValueChange)="oncmbOzelDurumChanged($event)" [BackColor]="cmbOzelDurum?.BackColor" [DataTypeName]="cmbOzelDurum?.DataTypeName" [Enabled]="cmbOzelDurum?.Enabled" [Font]="cmbOzelDurum?.Font" [ForeColor]="cmbOzelDurum?.ForeColor" [IncludeOnly]="cmbOzelDurum?.IncludeOnly" [ReadOnly]="cmbOzelDurum?.ReadOnly" [ShowClearButton]="cmbOzelDurum?.ShowClearButton" [SortBy]="cmbOzelDurum?.SortBy" [TabIndex]="cmbOzelDurum?.TabIndex" [Value]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.FTRReport?.SpacialCase" [Visible]="cmbOzelDurum?.Visible" data-tid="A349130"></hvl-enum-combobox>
+                                                                    </div>
+                                                                </div>
+                                                                <br data-tid="A349131" />
+                                                                <div class="row" data-tid="A349132">
+                                                                    <div class="col-sm-12" data-tid="A349133">
+                                                                        <dx-data-grid #FTRGrid showColumnLines="true" showRowLines="true" showBorders="true" [dataSource]="medulaTedaviRaporlariViewModel.FizyoterapiIslemleriList" [columns]="FizyoTerapiIslemleriColumns" [editing]="{allowUpdating: true, mode: 'cell',allowDeleting:true}" [height]="80" (onEditorPreparing)="onRowClickFtr($event)" data-tid="A349134">
+                                                                        </dx-data-grid>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-9" data-tid="A349135">
+                                                                    <hvl-checkbox #Validation [(Value)]="medulaTedaviRaporlariViewModel.chkOzelDurum" [AllowThreeState]="chkOzelDurum?.ThreeState" [BackColor]="chkOzelDurum?.BackColor" [Enabled]="chkOzelDurum?.Enabled" [Font]="chkOzelDurum?.Font" [ForeColor]="chkOzelDurum?.ForeColor" [IsTitleLeft]="chkOzelDurum?.IsTitleLeft" [Margin]="chkOzelDurum?.Margin" [ReadOnly]="chkOzelDurum?.ReadOnly" [TabIndex]="chkOzelDurum?.TabIndex" [TitleTopPadding]="chkOzelDurum?.TitleTopPadding" [Title]="chkOzelDurum?.Title" [Visible]="chkOzelDurum?.Visible" data-tid="A349136"></hvl-checkbox>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div id="ESWT" class="tab-pane fade in" [class.active]="eswtSelected" data-tid="A349137">
+                                                            <div class="row" data-tid="A349138">
+                                                                <label class="control-label col-sm-2" data-tid="A349139">
+                                                                    Fizyoterapi İşlemi
+                                                                </label>
+                                                                <div class="col-sm-5" data-tid="A349140">
+                                                                    <hvl-list-box #Validation (SelectedObjectChange)="ESWTFizyoterapiList.SelectedObject=$event;ESWTfizyoterapiSelected($event)" [AutoCompleteDialogHeight]="ESWTFizyoterapiList?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ESWTFizyoterapiList?.AutoCompleteDialogWidth" [AutoCompleteMode]="ESWTFizyoterapiList?.AutoCompleteMode" [BackColor]="ESWTFizyoterapiList?.BackColor" [DefinitionName]="ESWTFizyoterapiList?.ListDefName" [Enabled]="ESWTFizyoterapiList?.Enabled" [Font]="ESWTFizyoterapiList?.Font" [ForeColor]="ESWTFizyoterapiList?.ForeColor" [ListFilterExpression]="ESWTFizyoterapiList?.ListFilterExpression" [MinSearchLength]="ESWTFizyoterapiList?.MinSearchLength" [PopupDialogFieldConfig]="ESWTFizyoterapiList?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ESWTFizyoterapiList?.PopupDialogGridColumns" [PopupDialogHeight]="ESWTFizyoterapiList?.PopupDialogHeight" [PopupDialogTitle]="ESWTFizyoterapiList?.PopupDialogTitle" [PopupDialogWidth]="ESWTFizyoterapiList?.PopupDialogWidth" [ReadOnly]="ESWTFizyoterapiList?.ReadOnly" [SearchMode]="ESWTFizyoterapiList?.SearchMode" [SearchTimeout]="ESWTFizyoterapiList?.SearchTimeout" [SelectedObject]="ESWTFizyoterapiList?.SelectedObject" [TabIndex]="ESWTFizyoterapiList?.TabIndex" [Visible]="ESWTFizyoterapiList?.Visible" [width]="ESWTFizyoterapiList?.Width" data-tid="A349141"></hvl-list-box>
+                                                                </div>
+                                                            </div>
+                                                            <br data-tid="A349142" />
+                                                            <div class="row" data-tid="A349143">
+                                                                <div class="col-sm-12" data-tid="A349144">
+                                                                    <dx-data-grid showColumnLines="true" showRowLines="true" showBorders="true" [dataSource]="medulaTedaviRaporlariViewModel.ESWTIslemleriList" [columns]="ESWTIslemleriColumns" [editing]="{allowUpdating: true, mode: 'cell',allowDeleting:true}" [height]="80" data-tid="A349145">
+                                                                    </dx-data-grid>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div id="ESWL" class="tab-pane fade in" [class.active]="eswlSelected" data-tid="A349146">
+                                                            <br data-tid="A349147" />
+                                                            <div class="row" data-tid="A349148">
+                                                                <div class="col-sm-6" data-tid="A349149">
+                                                                    <label class="control-label" data-tid="A349150">
+                                                                        Lokalizasyon
+                                                                    </label>
+                                                                    <hvl-list-box #Validation (SelectedObjectChange)="lokalizasyonList.SelectedObject=$event;lokalizasyonSelected($event)" [AutoCompleteDialogHeight]="lokalizasyonList?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="lokalizasyonList?.AutoCompleteDialogWidth" [AutoCompleteMode]="lokalizasyonList?.AutoCompleteMode" [BackColor]="lokalizasyonList?.BackColor" [DefinitionName]="lokalizasyonList?.ListDefName" [Enabled]="lokalizasyonList?.Enabled" [Font]="lokalizasyonList?.Font" [ForeColor]="lokalizasyonList?.ForeColor" [ListFilterExpression]="lokalizasyonList?.ListFilterExpression" [MinSearchLength]="lokalizasyonList?.MinSearchLength" [PopupDialogFieldConfig]="lokalizasyonList?.PopupDialogFieldConfig" [PopupDialogGridColumns]="lokalizasyonList?.PopupDialogGridColumns" [PopupDialogHeight]="lokalizasyonList?.PopupDialogHeight" [PopupDialogTitle]="lokalizasyonList?.PopupDialogTitle" [PopupDialogWidth]="lokalizasyonList?.PopupDialogWidth" [ReadOnly]="lokalizasyonList?.ReadOnly" [SearchMode]="lokalizasyonList?.SearchMode" [SearchTimeout]="lokalizasyonList?.SearchTimeout" [SelectedObject]="lokalizasyonList?.SelectedObject" [TabIndex]="lokalizasyonList?.TabIndex" [Visible]="lokalizasyonList?.Visible" [width]="lokalizasyonList?.Width" data-tid="A349151"></hvl-list-box>
+                                                                    <br data-tid="A349152" />
+                                                                    <dx-data-grid showColumnLines="true" showRowLines="true" showBorders="true" [dataSource]="medulaTedaviRaporlariViewModel.TasBilgisiIslemleriList" [columns]="TasBilgisiIslemleriColumns" [editing]="{allowUpdating: true, mode: 'cell',allowDeleting:true}" [height]="80" data-tid="A349153">
+                                                                    </dx-data-grid>
+                                                                </div>
+                                                                <div class="col-sm-6" data-tid="A349154">
+                                                                    <div class="col-sm-6" data-tid="A349155">
+                                                                        <label class="control-label" data-tid="A349156">
+                                                                            İşlem Kodu
+                                                                        </label>
+                                                                        <hvl-list-box #Validation (SelectedObjectChange)="onlstEswlRaporKoduChanged($event)" [AutoCompleteDialogHeight]="lstEswlRaporKodu?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="lstEswlRaporKodu?.AutoCompleteDialogWidth" [AutoCompleteMode]="lstEswlRaporKodu?.AutoCompleteMode" [BackColor]="lstEswlRaporKodu?.BackColor" [DefinitionName]="lstEswlRaporKodu?.ListDefName" [DisplayExpressionsCache]="medulaTedaviRaporlariViewModel?.ListDefDisplayExpressions" [Enabled]="lstEswlRaporKodu?.Enabled" [Font]="lstEswlRaporKodu?.Font" [ForeColor]="lstEswlRaporKodu?.ForeColor" [ListFilterExpression]="lstEswlRaporKodu?.ListFilterExpression" [MinSearchLength]="lstEswlRaporKodu?.MinSearchLength" [PopupDialogFieldConfig]="lstEswlRaporKodu?.PopupDialogFieldConfig" [PopupDialogGridColumns]="lstEswlRaporKodu?.PopupDialogGridColumns" [PopupDialogHeight]="lstEswlRaporKodu?.PopupDialogHeight" [PopupDialogTitle]="lstEswlRaporKodu?.PopupDialogTitle" [PopupDialogWidth]="lstEswlRaporKodu?.PopupDialogWidth" [ReadOnly]="lstEswlRaporKodu?.ReadOnly" [SearchMode]="lstEswlRaporKodu?.SearchMode" [SearchTimeout]="lstEswlRaporKodu?.SearchTimeout" [SelectedObject]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.ESWLReport?.TedaviRaporiIslemKodlari" [TabIndex]="lstEswlRaporKodu?.TabIndex" [Visible]="lstEswlRaporKodu?.Visible" [width]="lstEswlRaporKodu?.Width" data-tid="A349157"></hvl-list-box>
+                                                                    </div>
+                                                                    <div class="col-sm-6" data-tid="A349158">
+                                                                        <label class="control-label " data-tid="A349159">
+                                                                            Böbrek Bilgisi
+                                                                        </label>
+                                                                        <div data-tid="A349160">
+                                                                            <hvl-list-box #Validation (SelectedObjectChange)="onlstBobrekBilgisiChanged($event)" [AutoCompleteDialogHeight]="lstBobrekBilgisi?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="lstBobrekBilgisi?.AutoCompleteDialogWidth" [AutoCompleteMode]="lstBobrekBilgisi?.AutoCompleteMode" [BackColor]="lstBobrekBilgisi?.BackColor" [DefinitionName]="lstBobrekBilgisi?.ListDefName" [DisplayExpressionsCache]="medulaTedaviRaporlariViewModel?.ListDefDisplayExpressions" [Enabled]="lstBobrekBilgisi?.Enabled" [Font]="lstBobrekBilgisi?.Font" [ForeColor]="lstBobrekBilgisi?.ForeColor" [ListFilterExpression]="lstBobrekBilgisi?.ListFilterExpression" [MinSearchLength]="lstBobrekBilgisi?.MinSearchLength" [PopupDialogFieldConfig]="lstBobrekBilgisi?.PopupDialogFieldConfig" [PopupDialogGridColumns]="lstBobrekBilgisi?.PopupDialogGridColumns" [PopupDialogHeight]="lstBobrekBilgisi?.PopupDialogHeight" [PopupDialogTitle]="lstBobrekBilgisi?.PopupDialogTitle" [PopupDialogWidth]="lstBobrekBilgisi?.PopupDialogWidth" [ReadOnly]="lstBobrekBilgisi?.ReadOnly" [SearchMode]="lstBobrekBilgisi?.SearchMode" [SearchTimeout]="lstBobrekBilgisi?.SearchTimeout" [SelectedObject]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.ESWLReport?.Bobrek" [TabIndex]="lstBobrekBilgisi?.TabIndex" [Visible]="lstBobrekBilgisi?.Visible" [width]="lstBobrekBilgisi?.Width" data-tid="A349161"></hvl-list-box>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <br data-tid="A349162" />
+                                                                <div class="col-sm-6" data-tid="A349163">
+                                                                    <div class="col-sm-6" data-tid="A349164">
+                                                                        <label class="control-label" data-tid="A349165">
+                                                                            Taş Sayısı
+                                                                        </label>
+                                                                        <div data-tid="A349166">
+                                                                            <hvl-number-box #Validation (ValueChange)="ontxtTasSayisiChanged($event)" [BackColor]="txtTasSayisi?.BackColor" [Enabled]="txtTasSayisi?.Enabled" [Font]="txtTasSayisi?.Font" [ForeColor]="txtTasSayisi?.ForeColor" [ReadOnly]="txtTasSayisi?.ReadOnly" [TabIndex]="txtTasSayisi?.TabIndex" [Value]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.ESWLReport?.NumberOfStone" [Visible]="txtTasSayisi?.Visible" data-tid="A349167"></hvl-number-box>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-6" data-tid="A349168">
+                                                                        <label class="control-label " data-tid="A349169">
+                                                                            Seans Sayısı
+                                                                        </label>
+                                                                        <div data-tid="A349170">
+                                                                            <hvl-number-box #Validation (ValueChange)="ontxtEswlSeansSayisiChanged($event)" [BackColor]="txtEswlSeansSayisi?.BackColor" [Enabled]="txtEswlSeansSayisi?.Enabled" [Font]="txtEswlSeansSayisi?.Font" [ForeColor]="txtEswlSeansSayisi?.ForeColor" [ReadOnly]="txtEswlSeansSayisi?.ReadOnly" [TabIndex]="txtEswlSeansSayisi?.TabIndex" [Value]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.ESWLReport?.NumberOfSessions" [Visible]="txtEswlSeansSayisi?.Visible" data-tid="A349171"></hvl-number-box>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div id="Diyaliz" class="tab-pane fade in" [class.active]="diyalizSelected" data-tid="A349172">
+                                                            <br data-tid="A349173" />
+                                                            <div class="row" data-tid="A349174">
+                                                                <div class="col-sm-2" data-tid="A349175">
+                                                                    <hvl-checkbox #Validation (ValueChange)="onchkRefakatVarYokChanged($event)" [AllowThreeState]="chkRefakatVarYok?.ThreeState" [BackColor]="chkRefakatVarYok?.BackColor" [Enabled]="chkRefakatVarYok?.Enabled" [Font]="chkRefakatVarYok?.Font" [ForeColor]="chkRefakatVarYok?.ForeColor" [IsTitleLeft]="chkRefakatVarYok?.IsTitleLeft" [Margin]="chkRefakatVarYok?.Margin" [ReadOnly]="chkRefakatVarYok?.ReadOnly" [TabIndex]="chkRefakatVarYok?.TabIndex" [TitleTopPadding]="chkRefakatVarYok?.TitleTopPadding" [Title]="chkRefakatVarYok?.Title" [Value]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.DialysisReport?.IsCompanion" [Visible]="chkRefakatVarYok?.Visible" data-tid="A349176"></hvl-checkbox>
+                                                                </div>
+                                                            </div>
+                                                            <br data-tid="A349177" />
+                                                            <div class="row" data-tid="A349178">
+                                                                <label class="control-label col-sm-4" data-tid="A349179">
+                                                                    Diyaliz Rapor Kodu
+                                                                </label>
+                                                                <label class="control-label col-sm-2" data-tid="A349180">
+                                                                    Seans Sayısı
+                                                                </label>
+                                                                <label class="control-label col-sm-3" data-tid="A349181">
+                                                                    Seans Gün
+                                                                </label>
+                                                            </div>
+                                                            <div class="row" data-tid="A349182">
+                                                                <div class="col-sm-4" data-tid="A349183">
+                                                                    <hvl-list-box #Validation (SelectedObjectChange)="onlstDiyalizRaporKoduChanged($event)" [AutoCompleteDialogHeight]="lstDiyalizRaporKodu?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="lstDiyalizRaporKodu?.AutoCompleteDialogWidth" [AutoCompleteMode]="lstDiyalizRaporKodu?.AutoCompleteMode" [BackColor]="lstDiyalizRaporKodu?.BackColor" [DefinitionName]="lstDiyalizRaporKodu?.ListDefName" [DisplayExpressionsCache]="medulaTedaviRaporlariViewModel?.ListDefDisplayExpressions" [Enabled]="lstDiyalizRaporKodu?.Enabled" [Font]="lstDiyalizRaporKodu?.Font" [ForeColor]="lstDiyalizRaporKodu?.ForeColor" [ListFilterExpression]="lstDiyalizRaporKodu?.ListFilterExpression" [MinSearchLength]="lstDiyalizRaporKodu?.MinSearchLength" [PopupDialogFieldConfig]="lstDiyalizRaporKodu?.PopupDialogFieldConfig" [PopupDialogGridColumns]="lstDiyalizRaporKodu?.PopupDialogGridColumns" [PopupDialogHeight]="lstDiyalizRaporKodu?.PopupDialogHeight" [PopupDialogTitle]="lstDiyalizRaporKodu?.PopupDialogTitle" [PopupDialogWidth]="lstDiyalizRaporKodu?.PopupDialogWidth" [ReadOnly]="lstDiyalizRaporKodu?.ReadOnly" [SearchMode]="lstDiyalizRaporKodu?.SearchMode" [SearchTimeout]="lstDiyalizRaporKodu?.SearchTimeout" [SelectedObject]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.DialysisReport?.TedaviRaporiIslemKodlari" [TabIndex]="lstDiyalizRaporKodu?.TabIndex" [Visible]="lstDiyalizRaporKodu?.Visible" [width]="lstDiyalizRaporKodu?.Width" data-tid="A349184"></hvl-list-box>
+                                                                </div>
+                                                                <div class="col-sm-2" data-tid="A349185">
+                                                                    <hvl-number-box #Validation (ValueChange)="ontxtDiyalizSeansSayisiChanged($event)" [BackColor]="txtDiyalizSeansSayisi?.BackColor" [Enabled]="txtDiyalizSeansSayisi?.Enabled" [Font]="txtDiyalizSeansSayisi?.Font" [ForeColor]="txtDiyalizSeansSayisi?.ForeColor" [ReadOnly]="txtDiyalizSeansSayisi?.ReadOnly" [TabIndex]="txtDiyalizSeansSayisi?.TabIndex" [Value]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.DialysisReport?.NumberOfSessions" [Visible]="txtDiyalizSeansSayisi?.Visible" data-tid="A349186"></hvl-number-box>
+                                                                </div>
+                                                                <div class="col-sm-3" data-tid="A349187">
+                                                                    <hvl-enum-combobox #Validation (ValueChange)="oncmbDiyalizSeansGunChanged($event)" [BackColor]="cmbDiyalizSeansGun?.BackColor" [DataTypeName]="cmbDiyalizSeansGun?.DataTypeName" [Enabled]="cmbDiyalizSeansGun?.Enabled" [Font]="cmbDiyalizSeansGun?.Font" [ForeColor]="cmbDiyalizSeansGun?.ForeColor" [IncludeOnly]="cmbDiyalizSeansGun?.IncludeOnly" [ReadOnly]="cmbDiyalizSeansGun?.ReadOnly" [ShowClearButton]="cmbDiyalizSeansGun?.ShowClearButton" [SortBy]="cmbDiyalizSeansGun?.SortBy" [TabIndex]="cmbDiyalizSeansGun?.TabIndex" [Value]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.DialysisReport?.DialysisSessionsDay" [Visible]="cmbDiyalizSeansGun?.Visible" data-tid="A349188"></hvl-enum-combobox>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div id="EvHemodiyaliz" class="tab-pane fade in" [class.active]="evHemodiyaliziSelected" data-tid="A349189">
+                                                            <div class="row" data-tid="A349190">
+                                                                <label class="control-label col-sm-4" data-tid="A349191">
+                                                                    Ev Hemodiyalizi Kodu
+                                                                </label>
+                                                                <label class="control-label col-sm-2" data-tid="A349192">
+                                                                    Seans Sayısı
+                                                                </label>
+                                                                <label class="control-label col-sm-2" data-tid="A349193">
+                                                                    Tedavi Süresi
+                                                                </label>
+                                                                <label class="control-label col-sm-3" data-tid="A349194">
+                                                                    Seans Gün
+                                                                </label>
+                                                            </div>
+                                                            <div class="row" data-tid="A349195">
+                                                                <div class="col-sm-4" data-tid="A349196">
+                                                                    <hvl-list-box #Validation (SelectedObjectChange)="onlstEvHemodiyalizRaporKoduChanged($event)" [AutoCompleteDialogHeight]="lstEvHemodiyalizRaporKodu?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="lstEvHemodiyalizRaporKodu?.AutoCompleteDialogWidth" [AutoCompleteMode]="lstEvHemodiyalizRaporKodu?.AutoCompleteMode" [BackColor]="lstEvHemodiyalizRaporKodu?.BackColor" [DefinitionName]="lstEvHemodiyalizRaporKodu?.ListDefName" [DisplayExpressionsCache]="medulaTedaviRaporlariViewModel?.ListDefDisplayExpressions" [Enabled]="lstEvHemodiyalizRaporKodu?.Enabled" [Font]="lstEvHemodiyalizRaporKodu?.Font" [ForeColor]="lstEvHemodiyalizRaporKodu?.ForeColor" [ListFilterExpression]="lstEvHemodiyalizRaporKodu?.ListFilterExpression" [MinSearchLength]="lstEvHemodiyalizRaporKodu?.MinSearchLength" [PopupDialogFieldConfig]="lstEvHemodiyalizRaporKodu?.PopupDialogFieldConfig" [PopupDialogGridColumns]="lstEvHemodiyalizRaporKodu?.PopupDialogGridColumns" [PopupDialogHeight]="lstEvHemodiyalizRaporKodu?.PopupDialogHeight" [PopupDialogTitle]="lstEvHemodiyalizRaporKodu?.PopupDialogTitle" [PopupDialogWidth]="lstEvHemodiyalizRaporKodu?.PopupDialogWidth" [ReadOnly]="lstEvHemodiyalizRaporKodu?.ReadOnly" [SearchMode]="lstEvHemodiyalizRaporKodu?.SearchMode" [SearchTimeout]="lstEvHemodiyalizRaporKodu?.SearchTimeout" [SelectedObject]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.HomeHemodialysisReport?.TedaviRaporiIslemKodlari" [TabIndex]="lstEvHemodiyalizRaporKodu?.TabIndex" [Visible]="lstEvHemodiyalizRaporKodu?.Visible" [width]="lstEvHemodiyalizRaporKodu?.Width" data-tid="A349197"></hvl-list-box>
+                                                                </div>
+                                                                <div class="col-sm-2" data-tid="A349198">
+                                                                    <hvl-number-box #Validation (ValueChange)="ontxtEvHemodiyalizSeansSayisiChanged($event)" [BackColor]="txtEvHemodiyalizSeansSayisi?.BackColor" [Enabled]="txtEvHemodiyalizSeansSayisi?.Enabled" [Font]="txtEvHemodiyalizSeansSayisi?.Font" [ForeColor]="txtEvHemodiyalizSeansSayisi?.ForeColor" [ReadOnly]="txtEvHemodiyalizSeansSayisi?.ReadOnly" [TabIndex]="txtEvHemodiyalizSeansSayisi?.TabIndex" [Value]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.HomeHemodialysisReport?.NumberOfSessions" [Visible]="txtEvHemodiyalizSeansSayisi?.Visible" data-tid="A349199"></hvl-number-box>
+                                                                </div>
+                                                                <div class="col-sm-2" data-tid="A349200">
+                                                                    <hvl-number-box #Validation (ValueChange)="ontxtEvHemodiyalizTedaviSuresiChanged($event)" [BackColor]="txtEvHemodiyalizTedaviSuresi?.BackColor" [Enabled]="txtEvHemodiyalizTedaviSuresi?.Enabled" [Font]="txtEvHemodiyalizTedaviSuresi?.Font" [ForeColor]="txtEvHemodiyalizTedaviSuresi?.ForeColor" [ReadOnly]="txtEvHemodiyalizTedaviSuresi?.ReadOnly" [TabIndex]="txtEvHemodiyalizTedaviSuresi?.TabIndex" [Value]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.HomeHemodialysisReport?.TreatmenDuration" [Visible]="txtEvHemodiyalizTedaviSuresi?.Visible" data-tid="A349201"></hvl-number-box>
+                                                                </div>
+                                                                <div class="col-sm-3" data-tid="A349202">
+                                                                    <hvl-enum-combobox #Validation (ValueChange)="oncmbEvHemodiyalizSeansGunChanged($event)" [BackColor]="cmbEvHemodiyalizSeansGun?.BackColor" [DataTypeName]="cmbEvHemodiyalizSeansGun?.DataTypeName" [Enabled]="cmbEvHemodiyalizSeansGun?.Enabled" [Font]="cmbEvHemodiyalizSeansGun?.Font" [ForeColor]="cmbEvHemodiyalizSeansGun?.ForeColor" [IncludeOnly]="cmbEvHemodiyalizSeansGun?.IncludeOnly" [ReadOnly]="cmbEvHemodiyalizSeansGun?.ReadOnly" [ShowClearButton]="cmbEvHemodiyalizSeansGun?.ShowClearButton" [SortBy]="cmbEvHemodiyalizSeansGun?.SortBy" [TabIndex]="cmbEvHemodiyalizSeansGun?.TabIndex" [Value]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.HomeHemodialysisReport?.DialysisSessionsDay" [Visible]="cmbEvHemodiyalizSeansGun?.Visible" data-tid="A349203"></hvl-enum-combobox>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div id="HBT" class="tab-pane fade in" [class.active]="hbtSelected" data-tid="A349204">
+                                                            <div class="row" data-tid="A349205">
+                                                                <label class="control-label col-sm-2" data-tid="A349206">
+                                                                    Seans Sayısı
+                                                                </label>
+                                                                <label class="control-label col-sm-2" data-tid="A349207">
+                                                                    Tedavi Süresi
+                                                                </label>
+                                                            </div>
+                                                            <div class="row" data-tid="A349208">
+                                                                <div class="col-sm-2" data-tid="A349209">
+                                                                    <hvl-number-box #Validation (ValueChange)="ontxtHOTSeansSayisiChanged($event)" [BackColor]="txtHOTSeansSayisi?.BackColor" [Enabled]="txtHOTSeansSayisi?.Enabled" [Font]="txtHOTSeansSayisi?.Font" [ForeColor]="txtHOTSeansSayisi?.ForeColor" [ReadOnly]="txtHOTSeansSayisi?.ReadOnly" [TabIndex]="txtHOTSeansSayisi?.TabIndex" [Value]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.HBTReport?.NumberOfSessions" [Visible]="txtHOTSeansSayisi?.Visible" data-tid="A349210"></hvl-number-box>
+                                                                </div>
+                                                                <div class="col-sm-2" data-tid="A349211">
+                                                                    <hvl-number-box #Validation (ValueChange)="ontxtHOTTedaviSuresiChanged($event)" [BackColor]="txtHOTTedaviSuresi?.BackColor" [Enabled]="txtHOTTedaviSuresi?.Enabled" [Font]="txtHOTTedaviSuresi?.Font" [ForeColor]="txtHOTTedaviSuresi?.ForeColor" [ReadOnly]="txtHOTTedaviSuresi?.ReadOnly" [TabIndex]="txtHOTTedaviSuresi?.TabIndex" [Value]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.HBTReport?.TreatmenDuration" [Visible]="txtHOTTedaviSuresi?.Visible" data-tid="A349212"></hvl-number-box>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div id="TupBebek" class="tab-pane fade in" [class.active]="tupBebekSelected" data-tid="A349213">
+                                                            <div class="row" data-tid="A349214">
+                                                                <label class="control-label col-sm-4" data-tid="A349215">
+                                                                    Tüp Bebek Rapor Kodu
+                                                                </label>
+                                                                <label class="control-label col-sm-7" data-tid="A349216">
+                                                                    Tüp Bebek Rapor Turu
+                                                                </label>
+                                                            </div>
+                                                            <div class="row" data-tid="A349217">
+                                                                <div class="col-sm-4" data-tid="A349218">
+                                                                    <hvl-list-box #Validation (SelectedObjectChange)="onlstTupBebekRaporKoduChanged($event)" [AutoCompleteDialogHeight]="lstTupBebekRaporKodu?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="lstTupBebekRaporKodu?.AutoCompleteDialogWidth" [AutoCompleteMode]="lstTupBebekRaporKodu?.AutoCompleteMode" [BackColor]="lstTupBebekRaporKodu?.BackColor" [DefinitionName]="lstTupBebekRaporKodu?.ListDefName" [DisplayExpressionsCache]="medulaTedaviRaporlariViewModel?.ListDefDisplayExpressions" [Enabled]="lstTupBebekRaporKodu?.Enabled" [Font]="lstTupBebekRaporKodu?.Font" [ForeColor]="lstTupBebekRaporKodu?.ForeColor" [ListFilterExpression]="lstTupBebekRaporKodu?.ListFilterExpression" [MinSearchLength]="lstTupBebekRaporKodu?.MinSearchLength" [PopupDialogFieldConfig]="lstTupBebekRaporKodu?.PopupDialogFieldConfig" [PopupDialogGridColumns]="lstTupBebekRaporKodu?.PopupDialogGridColumns" [PopupDialogHeight]="lstTupBebekRaporKodu?.PopupDialogHeight" [PopupDialogTitle]="lstTupBebekRaporKodu?.PopupDialogTitle" [PopupDialogWidth]="lstTupBebekRaporKodu?.PopupDialogWidth" [ReadOnly]="lstTupBebekRaporKodu?.ReadOnly" [SearchMode]="lstTupBebekRaporKodu?.SearchMode" [SearchTimeout]="lstTupBebekRaporKodu?.SearchTimeout" [SelectedObject]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.TubeBabyReport?.TedaviRaporiIslemKodlari" [TabIndex]="lstTupBebekRaporKodu?.TabIndex" [Visible]="lstTupBebekRaporKodu?.Visible" [width]="lstTupBebekRaporKodu?.Width" data-tid="A349219"></hvl-list-box>
+                                                                </div>
+                                                                <div class="col-sm-7" data-tid="A349220">
+                                                                    <hvl-enum-combobox #Validation (ValueChange)="oncmbTupBebekTuruChanged($event)" [BackColor]="cmbTupBebekTuru?.BackColor" [DataTypeName]="cmbTupBebekTuru?.DataTypeName" [Enabled]="cmbTupBebekTuru?.Enabled" [Font]="cmbTupBebekTuru?.Font" [ForeColor]="cmbTupBebekTuru?.ForeColor" [IncludeOnly]="cmbTupBebekTuru?.IncludeOnly" [ReadOnly]="cmbTupBebekTuru?.ReadOnly" [ShowClearButton]="cmbTupBebekTuru?.ShowClearButton" [SortBy]="cmbTupBebekTuru?.SortBy" [TabIndex]="cmbTupBebekTuru?.TabIndex" [Value]="medulaTedaviRaporlariViewModel?._MedulaTreatmentReport?.TubeBabyReport?.TubeBabyReportType" [Visible]="cmbTupBebekTuru?.Visible" data-tid="A349221"></hvl-enum-combobox>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="kimlikNoIleSorgulaSelected" id="KimlikNoIleSorgula" class="tab-pane fade" data-tid="A349222">
+                                        eswt
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <br data-tid="A349223" />
+        <div class="row" style="height:60%;" data-tid="A349224">
+            <div class="col-sm-12" data-tid="A349225">
+                <div class="row" data-tid="A349226">
+                    <div class="col-sm-12" data-tid="A349227">
+                        <ul class="nav nav-tabs" role="tablist" data-tid="A349228">
+                            <li *ngIf="raporlarSelected" class="active" style="display:none;" data-tid="A349229"><a href="#FTRRaporlari" data-toggle="tab" data-tid="A349230"></a></li>
+                            <li *ngIf="eswlRaporlarSelected" style="display:none;" data-tid="A349231"><a href="#ESWLRaporlari" data-toggle="tab" data-tid="A349232"></a></li>
+                            <li *ngIf="diyalizRaporlarSelected" style="display:none;" data-tid="A349233"><a href="#DiyalizRaporlari" data-toggle="tab" data-tid="A349234"></a></li>
+                            <li *ngIf="evHemodiyalizRaporlarSelected" style="display:none;" data-tid="A349235"><a href="#EvHemodiyalizRaporlari" data-toggle="tab" data-tid="A349236"></a></li>
+                            <li *ngIf="hbtRaporlarSelected" style="display:none;" data-tid="A349237"><a href="#HOTRaporlari" data-toggle="tab" data-tid="A349238"></a></li>
+                            <li *ngIf="tupBebekRaporlarSelected" style="display:none;" data-tid="A349239"><a href="#TupBebekRaporlari" data-toggle="tab" data-tid="A349240"></a></li>
+                        </ul>
+                        <div style="height: 25px;text-align: center;margin-top: 20px;margin-bottom: 20px;background-color: #e2ecf8;" data-tid="A349241">
+                            <span style="font-size: 18px;font-weight:bold;" data-tid="A349242">
+                                HASTANIN TÜM SAĞLIK TESİSLERİNDEKİ RAPORLARI
+                            </span>
+                        </div>
+                        <div class="tab-content" style="background-color:#fff;" data-tid="A349243">
+                            <div id="FTRRaporlari" class="tab-pane fade in" [class.active]="raporlarSelected" data-tid="A349244">
+                                <div class="row" data-tid="A349245">
+                                    <div class="col-sm-12" data-tid="A349246">
+                                        <dx-data-grid showColumnLines="true" showRowLines="true" showBorders="true" [dataSource]="medulaTedaviRaporlariViewModel.GridFtrRaporlariList" [columns]="gridFtrRaporlariColumns" [editing]="{mode: 'row' ,allowUpdating:false , allowDeleting:false}" [height]="190" data-tid="A349247">
+                                            <div *dxTemplate="let row of 'linkCellTemplateSil'" data-tid="A349248">
+                                                <button class="btn btn-xs btn-default" style="margin-top: -15px;margin-bottom: -10px;margin-left: 17px;height: 16px !important;" (click)="deleteFTR(row)" data-tid="A349249"><i class="fa fa-trash" title="Sil" i18n-title="@@M27286" data-tid="A349250"></i></button>
+                                            </div>
+                                            <div *dxTemplate="let row of 'linkCellTemplateDetail'" data-tid="A349251">
+                                                <button class="btn btn-xs btn-default" style="margin-top: -15px;margin-bottom: -10px;margin-left: 17px;height: 16px !important;" (click)="detailFTR(row)" data-tid="A349252"><i class="fa fa-info" data-tid="A349253"></i></button>
+                                            </div>
+                                        </dx-data-grid>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="ESWLRaporlari" class="tab-pane fade in" [class.active]="eswlRaporlarSelected" data-tid="A349254">
+                                <div class="row" data-tid="A349255">
+                                    <div class="col-sm-12" data-tid="A349256">
+                                        <dx-data-grid showColumnLines="true" showRowLines="true" showBorders="true" [dataSource]="medulaTedaviRaporlariViewModel.GridEswlRaporlariList" [columns]="gridEswlRaporlariColumns" [editing]="{mode: 'row' ,allowUpdating:false, allowDeleting:false}" [height]="80" data-tid="A349257">
+                                            <div *dxTemplate="let row of 'linkCellTemplateSil'" data-tid="A349258">
+                                                <button class="btn btn-xs btn-default" style="margin-top: -15px;margin-bottom: -10px;margin-left: 17px;height: 16px !important;" (click)="deleteESWL(row)" data-tid="A349259"><i class="fa fa-trash" title="Sil" i18n-title="@@M27286" data-tid="A349260"></i></button>
+                                            </div>
+                                            <div *dxTemplate="let row of 'linkCellTemplateDetail'" data-tid="A349261">
+                                                <button class="btn btn-xs btn-default" style="margin-top: -15px;margin-bottom: -10px;margin-left: 17px;height: 16px !important;" (click)="detailESWL(row)" data-tid="A349262"><i class="fa fa-info" data-tid="A349263"></i></button>
+                                            </div>
+                                        </dx-data-grid>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="DiyalizRaporlari" class="tab-pane fade in" [class.active]="diyalizRaporlarSelected" data-tid="A349264">
+                                <div class="row" data-tid="A349265">
+                                    <div class="col-sm-12" data-tid="A349266">
+                                        <dx-data-grid showColumnLines="true" showRowLines="true" showBorders="true" [dataSource]="medulaTedaviRaporlariViewModel.GridDiyalizRaporlariList" [columns]="gridDiyalizRaporlariColumns" [editing]="{mode: 'row' ,allowUpdating:false , allowDeleting:false}" [height]="80" data-tid="A349267">
+                                            <div *dxTemplate="let row of 'linkCellTemplateSil'" data-tid="A349268">
+                                                <button class="btn btn-xs btn-default" style="margin-top: -15px;margin-bottom: -10px;margin-left: 17px;height: 16px !important;" (click)="deleteDiyaliz(row)" data-tid="A349269"><i class="fa fa-trash" title="Sil" i18n-title="@@M27286" data-tid="A349270"></i></button>
+                                            </div>
+                                            <div *dxTemplate="let row of 'linkCellTemplateDetail'" data-tid="A349271">
+                                                <button class="btn btn-xs btn-default" style="margin-top: -15px;margin-bottom: -10px;margin-left: 17px;height: 16px !important;" (click)="detailDiyaliz(row)" data-tid="A349272"><i class="fa fa-info" data-tid="A349273"></i></button>
+                                            </div>
+                                        </dx-data-grid>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="EvHemodiyalizRaporlari" class="tab-pane fade in" [class.active]="evHemodiyalizRaporlarSelected" data-tid="A349274">
+                                <div class="row" data-tid="A349275">
+                                    <div class="col-sm-12" data-tid="A349276">
+                                        <dx-data-grid showColumnLines="true" showRowLines="true" showBorders="true" [dataSource]="medulaTedaviRaporlariViewModel.GridEvdiyalizRaporlariList" [columns]="gridEvdiyalizRaporlariColumns" [editing]="{mode: 'row' ,allowUpdating:false ,  allowDeleting:false}" [height]="80" data-tid="A349277">
+                                            <div *dxTemplate="let row of 'linkCellTemplateSil'" data-tid="A349278">
+                                                <button class="btn btn-xs btn-default" style="margin-top: -15px;margin-bottom: -10px;margin-left: 17px;height: 16px !important;" (click)="deleteEvHemodiyaliz(row)" data-tid="A349279"><i class="fa fa-trash" title="Sil" i18n-title="@@M27286" data-tid="A349280"></i></button>
+                                            </div>
+                                            <div *dxTemplate="let row of 'linkCellTemplateDetail'" data-tid="A349281">
+                                                <button class="btn btn-xs btn-default" style="margin-top: -15px;margin-bottom: -10px;margin-left: 17px;height: 16px !important;" (click)="detailEvHemodiyaliz(row)" data-tid="A349282"><i class="fa fa-info" data-tid="A349283"></i></button>
+                                            </div>
+                                        </dx-data-grid>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div id="HOTRaporlari" class="tab-pane fade in" [class.active]="hbtRaporlarSelected" data-tid="A349284">
+                                <div class="row" data-tid="A349285">
+                                    <div class="col-sm-12" data-tid="A349286">
+                                        <dx-data-grid showColumnLines="true" showRowLines="true" showBorders="true" [dataSource]="medulaTedaviRaporlariViewModel.GridHOTRaporlariList" [columns]="gridHOTRaporlariColumns" [editing]="{mode: 'row' ,allowUpdating:false ,allowDeleting:false}" [height]="80" data-tid="A349287">
+                                            <div *dxTemplate="let row of 'linkCellTemplateSil'" data-tid="A349288">
+                                                <button class="btn btn-xs btn-default" style="margin-top: -15px;margin-bottom: -10px;margin-left: 17px;height: 16px !important;" (click)="deleteHOT(row)" data-tid="A349289"><i class="fa fa-trash" title="Sil" i18n-title="@@M27286" data-tid="A349290"></i></button>
+                                            </div>
+                                            <div *dxTemplate="let row of 'linkCellTemplateDetail'" data-tid="A349291">
+                                                <button class="btn btn-xs btn-default" style="margin-top: -15px;margin-bottom: -10px;margin-left: 17px;height: 16px !important;" (click)="detailHOT(row)" data-tid="A349292"><i class="fa fa-info" data-tid="A349293"></i></button>
+                                            </div>
+                                        </dx-data-grid>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="TupBebekRaporlari" class="tab-pane fade in" [class.active]="tupBebekRaporlarSelected" data-tid="A349294">
+                                <div class="row" data-tid="A349295">
+                                    <div class="col-sm-12" data-tid="A349296">
+                                        <dx-data-grid showColumnLines="true" showRowLines="true" showBorders="true" [dataSource]="medulaTedaviRaporlariViewModel.GridTupBebekRaporlariList" [columns]="gridTupBebekRaporlariColumns" [editing]="{mode: 'row' ,allowUpdating:false ,  allowDeleting:false}" [height]="80" data-tid="A349297">
+                                            <div *dxTemplate="let row of 'linkCellTemplateSil'" data-tid="A349298">
+                                                <button class="btn btn-xs btn-default" style="margin-top: -15px;margin-bottom: -10px;margin-left: 17px;height: 16px !important;" (click)="deleteTupBebek(row)" data-tid="A349299"><i class="fa fa-trash" title="Sil" i18n-title="@@M27286" data-tid="A349300"></i></button>
+                                            </div>
+                                            <div *dxTemplate="let row of 'linkCellTemplateDetail'" data-tid="A349301">
+                                                <button class="btn btn-xs btn-default" style="margin-top: -15px;margin-bottom: -10px;margin-left: 17px;height: 16px !important;" (click)="detailTupBebek(row)" data-tid="A349302"><i class="fa fa-info" data-tid="A349303"></i></button>
+                                            </div>
+                                        </dx-data-grid>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6" style="padding-top:8px;text-align:left" data-tid="A349304">
+
+            <button *ngIf="IsBackState==false" type="button" class="btn btn-primary btn-round" (click)="btnGeriAl_Click()" data-tid="A349305"><span class="fa fa-mail-reply" data-tid="A349306"></span>&nbsp;Geri Al</button>
+            <button *ngIf="IsCancelState==false" type="button" class="btn btn-primary btn-danger btn-round" (click)="btnCancel_Click()" data-tid="A349307"><span class="fa fa-times" data-tid="A349308"></span>&nbsp;İptal Et</button>
+        </div>
+        <div class="col-xs-6" style="padding-top:8px;text-align:right" data-tid="A349309">
+            <button type="button" class="btn btn-primary btn-danger btn-round" (click)="btnDelete_Click()" data-tid="A349310"><span class="fa fa-times" data-tid="A349311"></span>&nbsp;Rapor Sil</button>
+            <button type="button" class="btn btn-primary btn-gradient btn-round" (click)="btnRaporArama_Click()" data-tid="A349312"><span class="fa fa-search" data-tid="A349313"></span>&nbsp;Rapor Ara</button>
+            <button *ngIf="IsSendMedula==true" type="button" class="btn btn-primary btn-success btn-round" (click)="saveWithoutSendingToMedula()" data-tid="A349314"><span class="fa fa-save" data-tid="A349315"></span>&nbsp;Kaydet</button>
+            <button *ngIf="IsSendMedula==true" type="button" class="btn btn-primary btn-success btn-round" (click)="btnRaporKaydet_Click()" data-tid="A349316"><span class="fa fa-save" data-tid="A349317"></span>&nbsp;Kaydet&Medulaya Gönder</button>
+        </div>
+
+        <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A349318">
+        </dx-load-panel>
+
+        <dx-popup width="500px" height="500px" [(visible)]="showReportDetail" [closeOnOutsideClick]="false" title="Tedavi Raporu Detayı" i18n-title="@@M23016" data-tid="A349319">
+            <div *dxTemplate="let data of 'content'" data-tid="A349320">
+                <div class="container-fluid" data-tid="A349321">
+                    <div class="row padding-tb-10" data-tid="A349322">
+                        <div class="col-sm-12" data-tid="A349323">
+                            <dx-text-area [height]="400" [(value)]="reportDetail" readOnly="true" data-tid="A349324">
+                            </dx-text-area>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </dx-popup>
+    </div>

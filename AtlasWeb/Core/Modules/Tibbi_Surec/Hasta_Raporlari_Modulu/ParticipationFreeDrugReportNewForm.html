@@ -1,0 +1,654 @@
+﻿<div class="container-fluid" data-tid="A349325">
+    <form id="ParticipationFreeDrugReportNewForm" class="form-horizontal" role="form" data-tid="A349326"></form>
+
+    <div class="row" style="height: 25px; text-align: center;margin-bottom:5px; background-color: #e2ecf8;" data-tid="A349327">
+        <span style="font-size: 18px;font-weight:bold;" data-tid="A349328">
+            Hasta Bilgileri
+        </span>
+    </div>
+    <patient-demographics-simply-form [actionId]="actionIdForDemografic()" data-tid="A349329"></patient-demographics-simply-form>
+
+    <div class="row" style="height: 25px; text-align: center;margin-bottom:5px; background-color: #e2ecf8;" data-tid="A349330">
+        <span style="font-size: 18px;font-weight:bold;" data-tid="A349331">
+            Rapor Bilgileri
+        </span>
+    </div>
+
+    <div class="row" style="padding-top: 5px;background-color: #f0f8ff; padding-bottom: 5px" data-tid="A349332">
+        <div class="col-md-7" data-tid="A349333">
+            <div class="row" data-tid="A349334">
+                <div class="col-md-3" data-tid="A349335">
+                    <b data-tid="A349336">
+                        Başlangıç Tarihi
+                    </b>
+                </div>
+                <div class="col-md-1" data-tid="A349337">
+                    <b data-tid="A349338">
+                        Süresi
+                    </b>
+                </div>
+                <div class="col-md-2" data-tid="A349339">
+                    <b data-tid="A349340">
+                        Süre Türü
+                    </b>
+                </div>
+                <div class="col-md-3" data-tid="A349341">
+                    <b data-tid="A349342">
+                        Bitiş Tarihi
+                    </b>
+                </div>
+                <div class="col-md-3" data-tid="A349343">
+                    <b data-tid="A349344">
+                        Süre Seçimi
+                    </b>
+                </div>
+            </div>
+            <div class="row" data-tid="A349345">
+                <div class="col-md-3" data-tid="A349346">
+                    <hvl-date-picker #Validation (ValueChange)="onReportStartDateChanged($event)" [BackColor]="ReportStartDate?.BackColor" [CustomFormat]="ReportStartDate?.CustomFormat" [Enabled]="ReportStartDate?.Enabled" [Font]="ReportStartDate?.Font" [ForeColor]="ReportStartDate?.ForeColor" [Format]="ReportStartDate?.Format" [Max]="ReportStartDate?.Max" [Min]="ReportStartDate?.Min" [ReadOnly]="participationFreeDrugReportNewFormViewModel?.ReadOnly" [Required]="participationFreeDrugReportNewFormViewModel?.Required" [TabIndex]="ReportStartDate?.TabIndex" [Value]="participationFreeDrugReportNewFormViewModel?._ParticipatnFreeDrugReport?.ReportStartDate" [Visible]="ReportStartDate?.Visible" data-tid="A349347"></hvl-date-picker>
+                </div>
+                <div class="col-md-1" data-tid="A349348">
+                    <dx-number-box #Validation (valueChange)="ontxtRaporSuresiChanged($event)" [disabled]="sended" [value]="participationFreeDrugReportNewFormViewModel?._ParticipatnFreeDrugReport?.ReportDuration" data-tid="A349349">
+                    </dx-number-box>
+                </div>
+                <div class="col-md-2" data-tid="A349350">
+                    <hvl-enum-combobox #Validation (ValueChange)="cmbRaporSureTuruChanged($event)" [(Value)]="participationFreeDrugReportNewFormViewModel._ParticipatnFreeDrugReport.ReportDurationType" [BackColor]="cmbRaporSureTuru?.BackColor" [DataTypeName]="cmbRaporSureTuru?.DataTypeName" [Enabled]="!sended" [Font]="cmbRaporSureTuru?.Font" [ForeColor]="cmbRaporSureTuru?.ForeColor" [IncludeOnly]="cmbRaporSureTuru?.IncludeOnly" [ReadOnly]="sended" [ShowClearButton]="cmbRaporSureTuru?.ShowClearButton" [SortBy]="cmbRaporSureTuru?.SortBy" [TabIndex]="cmbRaporSureTuru?.TabIndex" [Visible]="cmbRaporSureTuru?.Visible" data-tid="A349351">
+                    </hvl-enum-combobox>
+                </div>
+                <div class="col-md-3" data-tid="A349352">
+                    <hvl-date-picker #Validation (ValueChange)="onReportEndDateChanged($event)" [BackColor]="ReportEndDate?.BackColor" [CustomFormat]="ReportEndDate?.CustomFormat" [Enabled]="false" [Font]="ReportEndDate?.Font" [ForeColor]="ReportEndDate?.ForeColor" [Format]="ReportEndDate?.Format" [Max]="ReportEndDate?.Max" [Min]="ReportEndDate?.Min" [ReadOnly]="true" [Required]="ReportEndDate?.Required" [TabIndex]="ReportEndDate?.TabIndex" [Value]="participationFreeDrugReportNewFormViewModel?._ParticipatnFreeDrugReport?.ReportEndDate" [Visible]="ReportEndDate?.Visible" data-tid="A349353"></hvl-date-picker>
+                </div>
+                <div class="col-md-3" data-tid="A349354">
+                    <dx-select-box [dataSource]="ReportDurationComboItems" [disabled]="sended" (onItemClick)="selectReportDuration($event)" displayExpr="value" style="margin-left:0px;" data-tid="A349355">
+                    </dx-select-box>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5" *ngIf="!sended" data-tid="A349356">
+            <div class="row" data-tid="A349357">
+                <div class="col-md-12" data-tid="A349358">
+                    <div class="row" data-tid="A349359">
+                        <div class="col-md-12" data-tid="A349360">
+                            <b data-tid="A349361">
+                                Kullanıcı Şablonları
+                            </b>
+                        </div>
+                    </div>
+                    <div class="row" data-tid="A349362">
+                        <div class="col-md-8" data-tid="A349363">
+                            <dx-select-box #TemplateCombo [dataSource]="participationFreeDrugReportNewFormViewModel.userTemplateList" (onItemClick)="SelectUserTemplate($event)" noDataText="Kullanıcı Şablonu Bulunamadı!" displayExpr="Description" searchEnabled="true" searchMode="contains" valueExpr="ObjectID" data-tid="A349364">
+                            </dx-select-box>
+                        </div>
+                        <div class="col-md-2" style="text-align: center" data-tid="A349365">
+                            <dx-button type="default" *ngIf="participationFreeDrugReportNewFormViewModel.selectedUserTemplate != null" (onClick)="btnClearUserTemplate_Click()" text="Temizle" style="margin-left:0px;" data-tid="A349366">
+                            </dx-button>
+                        </div>
+                        <div class="col-md-2" data-tid="A349367">
+                            <dx-button type="danger" *ngIf="participationFreeDrugReportNewFormViewModel.selectedUserTemplate != nulll" (onClick)="btnDeleteSelectedUserTemplate_Click()" text="Sil" style="margin-left:0px;" data-tid="A349368">
+                            </dx-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="padding-top:5px" data-tid="A349369">
+                <div class="col-md-9" *ngIf="!participationFreeDrugReportNewFormViewModel._ParticipatnFreeDrugReport?.IsNew" data-tid="A349370">
+
+                    <dx-text-box [(value)]="userTemplateName" placeholder="Eklenecek Şablon Adı" id="A30432" data-tid="A349371">
+                    </dx-text-box>
+                </div>
+                <div class="col-md-3" *ngIf="!participationFreeDrugReportNewFormViewModel._ParticipatnFreeDrugReport?.IsNew" data-tid="A349372">
+
+                    <dx-button type="success" [disabled]="sended" (onClick)="btnAddUserTemplate_Click()" text="Şablon Oluştur" style="margin-left:0px;" data-tid="A349373"></dx-button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" data-tid="A349374">
+        <div class="col-sm-12" data-tid="A349375">
+            <div class="row" style="padding-top:5px" data-tid="A349376">
+                <label class="col-sm-12" data-tid="A349377">
+                    Etkin Madde
+                </label>
+            </div>
+            <div class="row" style="padding-top:5px" data-tid="A349378">
+                <div class="col-sm-12" data-tid="A349379">
+                    <hvl-list-box #Validation (SelectedObjectChange)="EtkinMaddeList.SelectedObject=$event;EtkinMAddeSelected($event)" [AutoCompleteDialogHeight]="EtkinMaddeList?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="EtkinMaddeList?.AutoCompleteDialogWidth" [AutoCompleteMode]="EtkinMaddeList?.AutoCompleteMode" [BackColor]="EtkinMaddeList?.BackColor" [DefinitionName]="EtkinMaddeList?.ListDefName" [Enabled]="EtkinMaddeList?.Enabled" [Font]="EtkinMaddeList?.Font" [ForeColor]="EtkinMaddeList?.ForeColor" [ListFilterExpression]="EtkinMaddeList?.ListFilterExpression" [MinSearchLength]="EtkinMaddeList?.MinSearchLength" [PopupDialogFieldConfig]="EtkinMaddeList?.PopupDialogFieldConfig" [PopupDialogGridColumns]="EtkinMaddeList?.PopupDialogGridColumns" [PopupDialogHeight]="EtkinMaddeList?.PopupDialogHeight" [PopupDialogTitle]="EtkinMaddeList?.PopupDialogTitle" [PopupDialogWidth]="EtkinMaddeList?.PopupDialogWidth" [ReadOnly]="EtkinMaddeList?.ReadOnly" [SearchMode]="EtkinMaddeList?.SearchMode" [SearchTimeout]="EtkinMaddeList?.SearchTimeout" [SelectedObject]="EtkinMaddeList?.SelectedObject" [TabIndex]="EtkinMaddeList?.TabIndex" [UpdateText]="false" [Visible]="EtkinMaddeList?.Visible" [width]="EtkinMaddeList?.Width" data-tid="A349380">
+                    </hvl-list-box>
+                </div>
+            </div>
+            <div class="row" data-tid="A349381">
+                <div class="col-sm-12" data-tid="A349382">
+                    <dx-data-grid #EtkinMaddeGrid showColumnLines="true" showRowLines="true" showBorders="true" wordWrapEnabled="true" style="line-height:12" [disabled]="sended" [dataSource]="participationFreeDrugReportNewFormViewModel?.EtkinMaddeList" (onRowRemoving)="onRowDeleted($event, null)" [columns]="EtkinMaddeColumns" [editing]="{allowUpdating: true, mode: 'cell',allowDeleting:true,texts:{confirmDeleteMessage:'Etken Maddeyi Silmek İstediğinize Emin misiniz?'}}" [height]="150" data-tid="A349383">
+                    </dx-data-grid>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="padding-top:5px; background-color: #f0f8ff;" data-tid="A349384">
+        <div class="col-sm-12" data-tid="A349385">
+
+            <div class="row" data-tid="A349386">
+                <div class="col-sm-6" data-tid="A349387">
+                    <div class="row" data-tid="A349388">
+                        <label class="col-sm-1" data-tid="A349389">
+                            E.Madde
+                        </label>
+                        <label class="col-sm-8" data-tid="A349390">
+                            Teşhis Listesi
+                        </label>
+                        <label class="col-sm-3" style="text-align:center !important" data-tid="A349391">
+                            Seçilen Tanı Sayısı
+                        </label>
+                    </div>
+                    <div class="row" data-tid="A349392">
+                        <div class="col-sm-12" data-tid="A349393">
+                            <dx-scroll-view direction="vertical" [height]="175" data-tid="A349394">
+                                <dx-list [dataSource]="participationFreeDrugReportNewFormViewModel?.TeshisList" (onItemClick)="onTeshisSelected($event)" noDataText="Teşhis Seçebilmek için Etken Madde Seçmelisiniz" searchEnabled="true" searchMode="contains" [searchExpr]="['teshisKodu','teshisAdi']" data-tid="A349395">
+                                    <div *dxTemplate="let data of 'item'" id="A29206" style="padding:0px !important" data-tid="A349396">
+                                        <div class="row" [class.myBoldFont]="data.SelectedDiagnosisList != null && data.SelectedDiagnosisList.length>0" data-tid="A349397">
+
+                                            <div class="col-sm-10" data-tid="A349398">
+                                                <div class="row" data-tid="A349399">
+                                                    <div class="col-sm-1" style="margin-right:-30px" data-tid="A349400">
+                                                        <i class="fa fa-info fa-1" data-toggle="tooltip" data-placement="bottom" [title]="data.relatedEtkenMaddeNames" i18n-title="@@M14924" id="A13865" data-tid="A349401"></i>
+                                                    </div>
+                                                    <div class="col-sm-11" data-tid="A349402">
+                                                        <div style="float:left; white-space: initial" id="A29207" data-tid="A349403">
+                                                            {{data.teshisKodu}} , {{data.teshisAdi}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-1" *ngIf="data.SelectedDiagnosisList != null && data.SelectedDiagnosisList.length>0" data-tid="A349404">
+                                                <label [title]="data.selectedDiagnoses" style="border-radius:50%; border:2px solid;width:17px;text-align:center !important;background-color: #d6d9da;font-size: 10px;" data-tid="A349405">
+                                                    {{data.SelectedDiagnosisList.length}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </dx-list>
+                            </dx-scroll-view>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-6" data-tid="A349406">
+                    <div class="row" data-tid="A349407">
+                        <label class="col-sm-12" data-tid="A349408">
+                            Tanı Listesi
+                        </label>
+                    </div>
+                    <div class="row" data-tid="A349409">
+                        <div class="col-sm-12" data-tid="A349410">
+                            <dx-scroll-view direction="vertical" [height]="175" data-tid="A349411">
+                                <dx-list [dataSource]="selectedTeshisTaniList" selectionMode="multiple" [(selectedItemKeys)]="selectedReportDiagnosisList" [showSelectionControls]="true" keyExpr="taniKodu" (onSelectionChanged)="CheckedItemControl($event)" noDataText="Lütfen Teşhis Seçiniz.!" searchEnabled="true" searchMode="contains" [searchExpr]="['taniKodu','taniAdi']" data-tid="A349412">
+
+                                    <div *dxTemplate="let data of 'item'" id="A29206" style="padding:0px !important" data-tid="A349413">
+                                        <div style="float:left; width:50%;" id="A29207" data-tid="A349414">{{data.taniKodu}} -
+                                            {{data.taniAdi}}</div>
+                                    </div>
+                                </dx-list>
+                            </dx-scroll-view>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row paddingTop5px" data-tid="A349415">
+        <div class="col-sm-6" data-tid="A349416">
+            <label class="control-label" data-tid="A349417">
+                Medula Açıklama
+            </label>
+            <hvl-richtextbox (change)="onttrichtextboxAciklamaChanged($event)" [Height]="&#x27;50px&#x27;" [ngModelOptions]="{ standalone: true}" [ngModel]="participationFreeDrugReportNewFormViewModel?._ParticipatnFreeDrugReport?.Description" [ReadOnly]="ttrichtextboxAciklama?.ReadOnly" [TemplateGroupName]="ttrichtextboxAciklama?.TemplateGroupName" [Visible]="ttrichtextboxAciklama?.Visible" data-tid="A349418"></hvl-richtextbox>
+        </div>
+        <div class="col-sm-6" data-tid="A349419">
+            <div class="row" data-tid="A349420">
+                <label class="col-sm-2" data-tid="A349421">
+                    1.Doktor
+                </label>
+                <div class="col-sm-5" data-tid="A349422">
+                    <hvl-list-box #Validation (SelectedObjectChange)="onProcedureDoctorChanged($event)" [AutoCompleteDialogHeight]="ProcedureDoctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ProcedureDoctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="ProcedureDoctor?.AutoCompleteMode" [BackColor]="ProcedureDoctor?.BackColor" [DefinitionName]="ProcedureDoctor?.ListDefName" [DisplayExpressionsCache]="participationFreeDrugReportNewFormViewModel?.ListDefDisplayExpressions" [Enabled]="ProcedureDoctor?.Enabled" [Font]="ProcedureDoctor?.Font" [ForeColor]="ProcedureDoctor?.ForeColor" [ListFilterExpression]="ProcedureDoctor?.ListFilterExpression" [MinSearchLength]="ProcedureDoctor?.MinSearchLength" [PopupDialogFieldConfig]="ProcedureDoctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ProcedureDoctor?.PopupDialogGridColumns" [PopupDialogHeight]="ProcedureDoctor?.PopupDialogHeight" [PopupDialogTitle]="ProcedureDoctor?.PopupDialogTitle" [PopupDialogWidth]="ProcedureDoctor?.PopupDialogWidth" [ReadOnly]="participationFreeDrugReportNewFormViewModel?.ReadOnly" [SearchMode]="ProcedureDoctor?.SearchMode" [SearchTimeout]="ProcedureDoctor?.SearchTimeout" [SelectedObject]="participationFreeDrugReportNewFormViewModel?._ParticipatnFreeDrugReport?.ProcedureDoctor" [TabIndex]="ProcedureDoctor?.TabIndex" [Visible]="ProcedureDoctor?.Visible" [width]="ProcedureDoctor?.Width" data-tid="A349423"></hvl-list-box>
+                </div>
+                <div class="col-sm-2" data-tid="A349424">
+                    <hvl-checkbox #Validation (ValueChange)="onCommitteeReportChanged($event)" [AllowThreeState]="CommitteeReport?.ThreeState" [BackColor]="CommitteeReport?.BackColor" [Enabled]="CommitteeReport?.Enabled" [Font]="CommitteeReport?.Font" [ForeColor]="CommitteeReport?.ForeColor" [IsTitleLeft]="false" [Margin]="CommitteeReport?.Margin" [ReadOnly]="participationFreeDrugReportNewFormViewModel?.ReadOnly" [TabIndex]="CommitteeReport?.TabIndex" [TitleTopPadding]="CommitteeReport?.TitleTopPadding" [Title]="CommitteeReport?.Title" [Value]="participationFreeDrugReportNewFormViewModel?._ParticipatnFreeDrugReport?.CommitteeReport" [Visible]="CommitteeReport?.Visible" data-tid="A349425"></hvl-checkbox>
+                </div>
+
+            </div>
+
+            <div class="row paddingTop5px" data-tid="A349426">
+                <label class="col-sm-2" data-tid="A349427">
+                    2. Doktor
+                </label>
+                <div class="col-sm-5" data-tid="A349428">
+                    <hvl-list-box #Validation (SelectedObjectChange)="onlistSecondDoctorChanged($event)" [AutoCompleteDialogHeight]="listSecondDoctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="listSecondDoctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="listSecondDoctor?.AutoCompleteMode" [BackColor]="listSecondDoctor?.BackColor" [DefinitionName]="listSecondDoctor?.ListDefName" [DisplayExpressionsCache]="participationFreeDrugReportNewFormViewModel?.ListDefDisplayExpressions" [Enabled]="listSecondDoctor?.Enabled" [Font]="listSecondDoctor?.Font" [ForeColor]="listSecondDoctor?.ForeColor" [ListFilterExpression]="listSecondDoctor?.ListFilterExpression" [MinSearchLength]="listSecondDoctor?.MinSearchLength" [PopupDialogFieldConfig]="listSecondDoctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="listSecondDoctor?.PopupDialogGridColumns" [PopupDialogHeight]="listSecondDoctor?.PopupDialogHeight" [PopupDialogTitle]="listSecondDoctor?.PopupDialogTitle" [PopupDialogWidth]="listSecondDoctor?.PopupDialogWidth" [ReadOnly]="participationFreeDrugReportNewFormViewModel?.ReadOnly" [SearchMode]="listSecondDoctor?.SearchMode" [SearchTimeout]="listSecondDoctor?.SearchTimeout" [SelectedObject]="participationFreeDrugReportNewFormViewModel?._ParticipatnFreeDrugReport?.SecondDoctor" [TabIndex]="listSecondDoctor?.TabIndex" [Visible]="listSecondDoctor?.Visible" [width]="listSecondDoctor?.Width" data-tid="A349429"></hvl-list-box>
+                </div>
+                <label class="col-sm-3" *ngIf="ikinciTabipOnay==true" style="font-size:15px" data-tid="A349430">
+                    Onay Durumu : <span *ngIf="participationFreeDrugReportNewFormViewModel?._ParticipatnFreeDrugReport?.IsSecondDoctorApproved" class="fa fa-check" style="color: green; font-size:20px" id="A13447" data-tid="A349431"></span>
+                    <span *ngIf="!participationFreeDrugReportNewFormViewModel?._ParticipatnFreeDrugReport?.IsSecondDoctorApproved" class="fa fa-times" style="color: rgb(216, 25, 25); font-size:20px" id="A13447" data-tid="A349432"></span>
+                </label>
+                <div class="col-sm-2" style="margin-left:-30px" data-tid="A349433">
+                    <button *ngIf="ikinciTabipOnay==true && !(participationFreeDrugReportNewFormViewModel?._ParticipatnFreeDrugReport?.IsSecondDoctorApproved)" type="button" class="btn btn-primary btn-round" (click)="btnIkinciTabipOnay_Click()" id="A17171" data-tid="A349434"><span class="fa fa-check" id="A17172" data-tid="A349435"></span>&nbsp;Onay</button>
+                </div>
+            </div>
+
+            <div class="row paddingTop5px" data-tid="A349436">
+                <label class="col-sm-2" data-tid="A349437">
+                    3.Doktor
+                </label>
+                <div class="col-sm-5" data-tid="A349438">
+                    <hvl-list-box #Validation (SelectedObjectChange)="onThirdDoctorChanged($event)" [AutoCompleteDialogHeight]="ThirdDoctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ThirdDoctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="ThirdDoctor?.AutoCompleteMode" [BackColor]="ThirdDoctor?.BackColor" [DefinitionName]="ThirdDoctor?.ListDefName" [DisplayExpressionsCache]="participationFreeDrugReportNewFormViewModel?.ListDefDisplayExpressions" [Enabled]="ThirdDoctor?.Enabled" [Font]="ThirdDoctor?.Font" [ForeColor]="ThirdDoctor?.ForeColor" [ListFilterExpression]="ThirdDoctor?.ListFilterExpression" [MinSearchLength]="ThirdDoctor?.MinSearchLength" [PopupDialogFieldConfig]="ThirdDoctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ThirdDoctor?.PopupDialogGridColumns" [PopupDialogHeight]="ThirdDoctor?.PopupDialogHeight" [PopupDialogTitle]="ThirdDoctor?.PopupDialogTitle" [PopupDialogWidth]="ThirdDoctor?.PopupDialogWidth" [ReadOnly]="participationFreeDrugReportNewFormViewModel?.ReadOnly" [SearchMode]="ThirdDoctor?.SearchMode" [SearchTimeout]="ThirdDoctor?.SearchTimeout" [SelectedObject]="participationFreeDrugReportNewFormViewModel?._ParticipatnFreeDrugReport?.ThirdDoctor" [TabIndex]="ThirdDoctor?.TabIndex" [Visible]="ThirdDoctor?.Visible" [width]="ThirdDoctor?.Width" data-tid="A349439"></hvl-list-box>
+                </div>
+                <label class="col-sm-3" *ngIf="ucuncuTabipOnay==true" style="font-size:15px" data-tid="A349440">
+                    Onay Durumu : <span *ngIf="participationFreeDrugReportNewFormViewModel?._ParticipatnFreeDrugReport?.IsThirdDoctorApproved" class="fa fa-check" style="color: green ; font-size:20px" id="A13447" data-tid="A349441"></span>
+                    <span *ngIf="!participationFreeDrugReportNewFormViewModel?._ParticipatnFreeDrugReport?.IsThirdDoctorApproved" class="fa fa-times" style="color: rgb(216, 25, 25) ; font-size:20px" id="A13447" data-tid="A349442"></span>
+                </label>
+                <div class="col-sm-2" style="margin-left:-30px" data-tid="A349443">
+                    <button *ngIf="ucuncuTabipOnay==true && !(participationFreeDrugReportNewFormViewModel?._ParticipatnFreeDrugReport?.IsThirdDoctorApproved)" type="button" class="btn btn-primary btn-round" (click)="btnUcuncuTabipOnay_Click()" id="A17173" data-tid="A349444"><span class="fa fa-check" id="A17174" data-tid="A349445"></span>&nbsp;Onay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="col-sm-12" [class.openedDrugReportAsPage]="openedReportAsPopUp !=true">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label class="control-label" >
+                            Etkin Madde
+                        </label>
+
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-12">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-12 ">
+                        <label class="control-label" >
+                            Teşhis ve Tanı Listesi
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <dx-data-grid showColumnLines="true" showRowLines="true" showBorders="true" [height]="248"
+                                      [dataSource]="participationFreeDrugReportNewFormViewModel?.TeshisList" [columns]="TeshisGridColumns"
+                                      [masterDetail]="{ enabled: true, template: 'detail' }" (onRowPrepared)="onRowSelectedTeshis($event)"
+                                      [filterRow]="{visible: true}" [headerFilter]="{visible: true}">
+                            <dxo-paging [pageSize]="20"></dxo-paging>
+
+                            <div *dxTemplate="let transaction of 'detail'">
+                                <div class="internal-grid-container">
+                                    <dx-data-grid [dataSource]="transaction.data.AddedDiagnosisList" [disabled]="sended"
+                                                  [selection]="{mode: 'multiple',showCheckBoxesMode:'always',selectAllMode:'page'}"
+                                                  [(selectedRowKeys)]="transaction.data.SelectedDiagnosisList" (onSelectionChanged)="onSelectionChangedDiagnosisiList($event)"
+                                                  [columnAutoWidth]="true" style="width:100%"
+                                                  [height]="220">
+                                        <dxi-column dataField="taniKodu" >Tanı Kodu</dxi-column>
+                                        <dxi-column dataField="taniAdi" >Tanı</dxi-column>
+                                        <dxo-filter-row [visible]="true" [applyFilter]="auto"></dxo-filter-row>
+                                    </dx-data-grid>
+
+                                </div>
+                            </div>
+                        </dx-data-grid>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>-->
+
+
+    <!--<div class="row margin-top-10">
+        <div class="col-sm-12">
+            <hvl-datagrid (CellContentClicked)="MedulaReportResults_CellContentClickEmitted($event)"
+                [AllowUserToAddRows]="MedulaReportResults?.AllowUserToAddRows"
+                [AllowUserToDeleteRows]="MedulaReportResults?.AllowUserToDeleteRows"
+                [Columns]="MedulaReportResultsColumns"
+                [dataSource]="participationFreeDrugReportNewFormViewModel?._ParticipatnFreeDrugReport?.MedulaReportResults"
+                [DeleteButtonWidth]="MedulaReportResults?.DeleteButtonWidth"
+                [DisplayExpressionsCache]="participationFreeDrugReportNewFormViewModel?.ListDefDisplayExpressions"
+                [EnableFilter]="MedulaReportResults?.ShowFilterRow"
+                [FilterColumnName]="MedulaReportResults?.FilterColumnName"
+                [FilterLabel]="MedulaReportResults?.FilterLabel" [Filter]="MedulaReportResults?.Filter" [height]="60"
+                [IsFilterLabelSingleLine]="MedulaReportResults?.IsFilterLabelSingleLine"
+                [ShowColumnHeaders]="MedulaReportResults?.ColumnHeadersVisible" [ReadOnly]="false"
+                [ShowFilterCombo]="MedulaReportResults?.ShowFilterCombo" [ShowTotalNumberOfRows]="false">
+            </hvl-datagrid>
+        </div>
+    </div>-->
+
+    <div class="row margin-top-10" data-tid="A349446">
+        <div class="col-sm-12" data-tid="A349447">
+            <dx-data-grid [columns]="medulaReportResultGridColumns" [dataSource]="participationFreeDrugReportNewFormViewModel?._ParticipatnFreeDrugReport?.MedulaReportResults" [selection]="{mode: 'single',allowSelectAll: false}" [editing]="{mode: 'cell' ,allowUpdating:true , allowAdding:false, allowDeleting:false}" style="height : 63px" id="A24131" data-tid="A349448">
+                <div *dxTemplate="let row of 'detailButtonTemplate'" id="A24132" data-tid="A349449">
+                    <dx-button style="height:20px;width: 100%;" (onClick)="MedulaReportResults_CellContentClickEmitted(row)" id="A35150" data-tid="A349450">Detay</dx-button>
+                </div>
+                <div *dxTemplate="let row of 'deleteButtonTemplate'" id="A24132" data-tid="A349451">
+                    <dx-button style="height:20px;width: 100%;" (onClick)="MedulaReportResults_CellContentClickEmitted(row)" id="A35151" data-tid="A349452">Sil</dx-button>
+                </div>
+                <div *dxTemplate="let row of 'addDescriptionButtonTemplate'" id="A24132" data-tid="A349453">
+                    <dx-button style="height:20px;width: 100%;" (onClick)="MedulaReportResults_CellContentClickEmitted(row)" id="A35152" data-tid="A349454">Açıklama Ekle</dx-button>
+                </div>
+                <div *dxTemplate="let row of 'addDiagnosisButtonTemplate'" id="A24132" data-tid="A349455">
+                    <dx-button style="height:20px;width: 100%;" (onClick)="MedulaReportResults_CellContentClickEmitted(row)" id="A35153" data-tid="A349456">Tanı Ekle</dx-button>
+                </div>
+                <div *dxTemplate="let row of 'addTeshisButtonTemplate'" id="A24132" data-tid="A349457">
+                    <dx-button style="height:20px;width: 100%;" (onClick)="MedulaReportResults_CellContentClickEmitted(row)" id="A35154" data-tid="A349458">Teşhis Ekle</dx-button>
+                </div>
+                <div *dxTemplate="let row of 'addEtkinMaddeButtonTemplate'" id="A24132" data-tid="A349459">
+                    <dx-button style="height:20px;width: 100%;" (onClick)="MedulaReportResults_CellContentClickEmitted(row)" id="A35155" data-tid="A349460">Etkin Madde Ekle</dx-button>
+                </div>                
+            </dx-data-grid>
+        </div>
+    </div>
+
+
+    <div class="col-xs-6" style="padding-top:8px;text-align:left" id="A17489" data-tid="A349461">
+        <button *ngIf="IsBackState==true && participationFreeDrugReportNewFormViewModel.hasAuthorityForUndo" type="button" class="btn btn-primary btn-round" (click)="btnBack_Click()" id="A17490" data-tid="A349462"><span class="fa fa-mail-reply" id="A17491" data-tid="A349463"></span>&nbsp;Geri Al</button>
+        <button *ngIf="IsCancelState==true" type="button" class="btn btn-danger btn-round" (click)="btnCancel_Click()" id="A17492" data-tid="A349464"><span class="fa fa-times" id="A17493" data-tid="A349465"></span>&nbsp;İptal Et</button>
+    </div>
+    <div class="col-xs-6" style="padding-top:8px;text-align:right" id="A17494" data-tid="A349466">
+        <button *ngIf="IsTakeProvision==true" type="button" class="btn btn-primary btn-round" (click)="btnTakipAl_Click()" id="A17497" data-tid="A349467"><span class="fa fa-check" id="A17498" data-tid="A349468"></span>&nbsp;Takip
+            Al</button>
+        <button *ngIf="IsNewState==true" type="button" class="btn btn-primary btn-success btn-round" (click)="btnKaydet_Click()" id="A17495" data-tid="A349469"><span class="fa fa-save" id="A17496" data-tid="A349470"></span>&nbsp;Kaydet</button>
+        <button *ngIf="SaveAndSendMedula==true" type="button" class="btn btn-primary btn-success btn-round" (click)="btnMedulayaGonderKaydet_Click()" id="A17495" data-tid="A349471"><span class="fa fa-save" id="A17496" data-tid="A349472"></span>&nbsp;Kaydet & Medulaya Gönder</button>
+        <button *ngIf="IsDelete==true" type="button" class="btn btn-primary btn-danger btn-round" (click)="btnDelete_Click()" data-tid="A349473"><span class="fa fa-times" data-tid="A349474"></span>&nbsp;Meduladan
+            Sil</button>
+        <button *ngIf="bashekimOnay==true" type="button" class="btn btn-primary btn-round" (click)="btnMedulaBashekimOnay_Click()" id="A17169" data-tid="A349475"><span class="fa fa-check" id="A17170" data-tid="A349476"></span>&nbsp;Başhekim Onay</button>
+        <!--<button *ngIf="ikinciTabipOnay==true" type="button" class="btn btn-primary btn-round" (click)="btnIkinciTabipOnay_Click()" id="A17171"><span class="fa fa-check"  id="A17172"></span>&nbsp;İkinci Doktor Onay</button>
+        <button *ngIf="ucuncuTabipOnay==true" type="button" class="btn btn-primary btn-round" (click)="btnUcuncuTabipOnay_Click()" id="A17173"><span class="fa fa-check"  id="A17174"></span>&nbsp;Üçüncü Doktor Onay</button>-->
+        <button *ngIf="ilkTabipOnay==true" type="button" class="btn btn-primary btn-round" (click)="btnIlkTabipOnay_Click()" id="A17171" data-tid="A349477"><span class="fa fa-check" id="A17172" data-tid="A349478"></span>&nbsp;Onayla</button>
+        <button type="button" class="btn btn-primary btn-gradient btn-round" (click)="btnPrint_Click()" id="A17499" data-tid="A349479"><span class="fa fa-print" id="A17500" data-tid="A349480"></span>&nbsp;Yazdır</button>
+
+    </div>
+    <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A349481">
+    </dx-load-panel>
+
+    <dx-popup width="700px" height="400px" [(visible)]="showReportDiagnosis" [closeOnOutsideClick]="true" title="TANILAR" data-tid="A349482">
+        <div *dxTemplate="let data of 'content'" data-tid="A349483">
+            <div class="col-sm-12" style="margin-left:0px;" data-tid="A349484">
+                <DiagnosisGridReadOnlyForm #Report [EpisodeAction]="participationFreeDrugReportNewFormViewModel._ParticipatnFreeDrugReport.MasterAction" [Height]="300" data-tid="A349485"></DiagnosisGridReadOnlyForm>
+            </div>
+        </div>
+    </dx-popup>
+
+    <dx-popup width="700px" height="400px" [(visible)]="aciklamaEkleSelected" [closeOnOutsideClick]="true" title="AÇIKLAMA EKLE" data-tid="A349486">
+        <div *dxTemplate="let data of 'content'" data-tid="A349487">
+            <div id="aciklamaEkle" class="tab-pane fade in" [class.active]="aciklamaEkleSelected" data-tid="A349488">
+                <div class="col-sm-6" data-tid="A349489">
+                    <div class="row" data-tid="A349490">
+                        <div class="col-sm-11" data-tid="A349491">
+                            <label class="control-label" data-tid="A349492">
+                                Açıklama
+                            </label>
+                            <hvl-text-box #Validation (TextChange)="txtAciklamaEkleAciklama.Text=$event;" [BackColor]="txtAciklamaEkleAciklama?.BackColor" [CharacterCasing]="txtAciklamaEkleAciklama?.CharacterCasing" [Enabled]="true" [Font]="txtAciklamaEkleAciklama?.Font" [ForeColor]="txtAciklamaEkleAciklama?.ForeColor" [height]="285" [InputFormat]="txtAciklamaEkleAciklama?.InputFormat" [InputTurkishCharacter]="txtAciklamaEkleAciklama?.InputTurkishCharacter" [IsNonNumeric]="txtAciklamaEkleAciklama?.IsNonNumeric" [MultiLine]="txtAciklamaEkleAciklama?.Multiline" [ReadOnly]="false" [Required]="txtAciklamaEkleAciklama?.Required" [TabIndex]="txtAciklamaEkleAciklama?.TabIndex" [TextAlign]="txtAciklamaEkleAciklama?.TextAlign" [Text]="txtAciklamaEkleAciklama?.Text" [Visible]="txtAciklamaEkleAciklama?.Visible" data-tid="A349493">
+                            </hvl-text-box>
+                        </div>
+                        <div class="col-sm-1" style="padding-left:0px" data-tid="A349494">
+                            <i style="color:#08c" class="fa fa-clone fa-1" data-toggle="tooltip" data-placement="bottom" (click)="fun(this.txtAciklamaEkleAciklama)" data-tid="A349495"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6" data-tid="A349496">
+                    <div class="row" data-tid="A349497">
+                        <div class="col-sm-12" data-tid="A349498">
+                            <label class="control-label" data-tid="A349499">
+                                Takip Formu Nu.
+                            </label>
+                            <hvl-text-box #Validation (TextChange)="txtAciklamaEkleTakipFormuNo.Text=$event;" [BackColor]="txtAciklamaEkleTakipFormuNo?.BackColor" [CharacterCasing]="txtAciklamaEkleTakipFormuNo?.CharacterCasing" [Enabled]="true" [Font]="txtAciklamaEkleTakipFormuNo?.Font" [ForeColor]="txtAciklamaEkleTakipFormuNo?.ForeColor" [height]="txtAciklamaEkleTakipFormuNo?.Height" [InputFormat]="txtAciklamaEkleTakipFormuNo?.InputFormat" [InputTurkishCharacter]="txtAciklamaEkleTakipFormuNo?.InputTurkishCharacter" [IsNonNumeric]="txtAciklamaEkleTakipFormuNo?.IsNonNumeric" [MultiLine]="txtAciklamaEkleTakipFormuNo?.Multiline" [ReadOnly]="false" [Required]="txtAciklamaEkleTakipFormuNo?.Required" [TabIndex]="txtAciklamaEkleTakipFormuNo?.TabIndex" [TextAlign]="txtAciklamaEkleTakipFormuNo?.TextAlign" [Text]="txtAciklamaEkleTakipFormuNo?.Text" [Visible]="txtAciklamaEkleTakipFormuNo?.Visible" data-tid="A349500"></hvl-text-box>
+                        </div>
+                    </div>
+                    <br data-tid="A349501" />
+                    <div class="row" data-tid="A349502">
+                        <div class="col-sm-12" data-tid="A349503">
+                            <hvl-button (BtnClicked)="btnAciklamaEkle_Click()" [BackColor]="btnAciklamaEkle?.BackColor" [Enabled]="true" [Font]="btnAciklamaEkle?.Font" [ForeColor]="btnAciklamaEkle?.ForeColor" [height]="btnAciklamaEkle?.Height" [ReadOnly]="false" [TabIndex]="btnAciklamaEkle?.TabIndex" [Text]="btnAciklamaEkle?.Text" [Visible]="btnAciklamaEkle?.Visible" data-tid="A349504"></hvl-button>
+                        </div>
+                    </div>
+                    <div class="row" data-tid="A349505">
+                        <div class="col-sm-12" data-tid="A349506">
+                            <label class="control-label" data-tid="A349507">
+                                Sonuç Mesajı
+                            </label>
+                            <hvl-text-box #Validation (TextChange)="txtAciklamaEkleSonucMesaji.Text=$event;" [BackColor]="txtAciklamaEkleSonucMesaji?.BackColor" [CharacterCasing]="txtAciklamaEkleSonucMesaji?.CharacterCasing" [Enabled]="txtAciklamaEkleSonucMesaji?.Enabled" [Font]="txtAciklamaEkleSonucMesaji?.Font" [ForeColor]="txtAciklamaEkleSonucMesaji?.ForeColor" [height]="200" [InputFormat]="txtAciklamaEkleSonucMesaji?.InputFormat" [InputTurkishCharacter]="txtAciklamaEkleSonucMesaji?.InputTurkishCharacter" [IsNonNumeric]="txtAciklamaEkleSonucMesaji?.IsNonNumeric" [MultiLine]="txtAciklamaEkleSonucMesaji?.Multiline" [ReadOnly]="txtAciklamaEkleSonucMesaji?.ReadOnly" [Required]="txtAciklamaEkleSonucMesaji?.Required" [TabIndex]="txtAciklamaEkleSonucMesaji?.TabIndex" [TextAlign]="txtAciklamaEkleSonucMesaji?.TextAlign" [Text]="txtAciklamaEkleSonucMesaji?.Text" [Visible]="txtAciklamaEkleSonucMesaji?.Visible" data-tid="A349508"></hvl-text-box>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </dx-popup>
+    <dx-popup width="700px" height="400px" [(visible)]="taniEkleSelected" [closeOnOutsideClick]="true" title="TANI EKLE" data-tid="A349509">
+        <div *dxTemplate="let data of 'content'" data-tid="A349510">
+            <div id="taniEkle" class="tab-pane fade in" [class.active]="taniEkleSelected" data-tid="A349511">
+                <div class="col-sm-6" data-tid="A349512">
+                    <div class="row" data-tid="A349513">
+                        <div class="col-sm-12" data-tid="A349514">
+                            <label class="control-label" data-tid="A349515">
+                                Tanı
+                            </label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="lstDiagnosisAddedToEpisode.SelectedObject=$event;" [AutoCompleteDialogHeight]="lstDiagnosisAddedToEpisode?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="lstDiagnosisAddedToEpisode?.AutoCompleteDialogWidth" [AutoCompleteMode]="lstDiagnosisAddedToEpisode?.AutoCompleteMode" [BackColor]="lstDiagnosisAddedToEpisode?.BackColor" [DefinitionName]="lstDiagnosisAddedToEpisode?.ListDefName" [Enabled]="true" [Font]="lstDiagnosisAddedToEpisode?.Font" [ForeColor]="lstDiagnosisAddedToEpisode?.ForeColor" [ListFilterExpression]="lstDiagnosisAddedToEpisode?.ListFilterExpression" [MinSearchLength]="lstDiagnosisAddedToEpisode?.MinSearchLength" [PopupDialogFieldConfig]="lstDiagnosisAddedToEpisode?.PopupDialogFieldConfig" [PopupDialogGridColumns]="lstDiagnosisAddedToEpisode?.PopupDialogGridColumns" [PopupDialogHeight]="lstDiagnosisAddedToEpisode?.PopupDialogHeight" [PopupDialogTitle]="lstDiagnosisAddedToEpisode?.PopupDialogTitle" [PopupDialogWidth]="lstDiagnosisAddedToEpisode?.PopupDialogWidth" [ReadOnly]="false" [SearchMode]="lstDiagnosisAddedToEpisode?.SearchMode" [SearchTimeout]="lstDiagnosisAddedToEpisode?.SearchTimeout" [SelectedObject]="lstDiagnosisAddedToEpisode?.SelectedObject" [TabIndex]="lstDiagnosisAddedToEpisode?.TabIndex" [Visible]="lstDiagnosisAddedToEpisode?.Visible" [width]="lstDiagnosisAddedToEpisode?.Width" data-tid="A349516"></hvl-list-box>
+                        </div>
+                    </div>
+                    <div class="row" data-tid="A349517">
+                        <div class="col-sm-12" data-tid="A349518">
+                            <label class="control-label" data-tid="A349519">
+                                Teşhis
+                            </label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="lstTeshisAddedToDiagnosis.SelectedObject=$event;" [AutoCompleteDialogHeight]="lstTeshisAddedToDiagnosis?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="lstTeshisAddedToDiagnosis?.AutoCompleteDialogWidth" [AutoCompleteMode]="lstTeshisAddedToDiagnosis?.AutoCompleteMode" [BackColor]="lstTeshisAddedToDiagnosis?.BackColor" [DefinitionName]="lstTeshisAddedToDiagnosis?.ListDefName" [Enabled]="true" [Font]="lstTeshisAddedToDiagnosis?.Font" [ForeColor]="lstTeshisAddedToDiagnosis?.ForeColor" [ListFilterExpression]="lstTeshisAddedToDiagnosis?.ListFilterExpression" [MinSearchLength]="lstTeshisAddedToDiagnosis?.MinSearchLength" [PopupDialogFieldConfig]="lstTeshisAddedToDiagnosis?.PopupDialogFieldConfig" [PopupDialogGridColumns]="lstTeshisAddedToDiagnosis?.PopupDialogGridColumns" [PopupDialogHeight]="lstTeshisAddedToDiagnosis?.PopupDialogHeight" [PopupDialogTitle]="lstTeshisAddedToDiagnosis?.PopupDialogTitle" [PopupDialogWidth]="lstTeshisAddedToDiagnosis?.PopupDialogWidth" [ReadOnly]="false" [SearchMode]="lstTeshisAddedToDiagnosis?.SearchMode" [SearchTimeout]="lstTeshisAddedToDiagnosis?.SearchTimeout" [SelectedObject]="lstTeshisAddedToDiagnosis?.SelectedObject" [TabIndex]="lstTeshisAddedToDiagnosis?.TabIndex" [Visible]="lstTeshisAddedToDiagnosis?.Visible" [width]="lstTeshisAddedToDiagnosis?.Width" data-tid="A349520"></hvl-list-box>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6" data-tid="A349521">
+                    <div class="row" data-tid="A349522">
+                        <div class="col-sm-6" data-tid="A349523">
+                            <hvl-button (BtnClicked)="btnTaniEkle_Click()" [BackColor]="btnTaniEkle?.BackColor" [Enabled]="true" [Font]="btnTaniEkle?.Font" [ForeColor]="btnTaniEkle?.ForeColor" [height]="btnTaniEkle?.Height" [ReadOnly]="false" [TabIndex]="btnTaniEkle?.TabIndex" [Text]="btnTaniEkle?.Text" [Visible]="btnTaniEkle?.Visible" data-tid="A349524"></hvl-button>
+                        </div>
+                        <div class="col-sm-6" data-tid="A349525">
+                            <label class="control-label" data-tid="A349526">
+                                Sonuç Kodu
+                            </label>
+                            <hvl-text-box #Validation (TextChange)="txtTaniEkleSonucKodu.Text=$event;" [BackColor]="txtTaniEkleSonucKodu?.BackColor" [CharacterCasing]="txtTaniEkleSonucKodu?.CharacterCasing" [Enabled]="txtTaniEkleSonucKodu?.Enabled" [Font]="txtTaniEkleSonucKodu?.Font" [ForeColor]="txtTaniEkleSonucKodu?.ForeColor" [height]="txtTaniEkleSonucKodu?.Height" [InputFormat]="txtTaniEkleSonucKodu?.InputFormat" [InputTurkishCharacter]="txtTaniEkleSonucKodu?.InputTurkishCharacter" [IsNonNumeric]="txtTaniEkleSonucKodu?.IsNonNumeric" [MultiLine]="txtTaniEkleSonucKodu?.Multiline" [ReadOnly]="txtTaniEkleSonucKodu?.ReadOnly" [Required]="txtTaniEkleSonucKodu?.Required" [TabIndex]="txtTaniEkleSonucKodu?.TabIndex" [TextAlign]="txtTaniEkleSonucKodu?.TextAlign" [Text]="txtTaniEkleSonucKodu?.Text" [Visible]="txtTaniEkleSonucKodu?.Visible" data-tid="A349527"></hvl-text-box>
+                        </div>
+                    </div>
+                    <div class="row" data-tid="A349528">
+                        <div class="col-sm-12" data-tid="A349529">
+                            <label class="control-label" data-tid="A349530">
+                                Sonuç Mesajı
+                            </label>
+                            <hvl-text-box #Validation (TextChange)="txtTaniEkleSonucMesaji.Text=$event;" [BackColor]="txtTaniEkleSonucMesaji?.BackColor" [CharacterCasing]="txtTaniEkleSonucMesaji?.CharacterCasing" [Enabled]="txtTaniEkleSonucMesaji?.Enabled" [Font]="txtTaniEkleSonucMesaji?.Font" [ForeColor]="txtTaniEkleSonucMesaji?.ForeColor" [height]="225" [InputFormat]="txtTaniEkleSonucMesaji?.InputFormat" [InputTurkishCharacter]="txtTaniEkleSonucMesaji?.InputTurkishCharacter" [IsNonNumeric]="txtTaniEkleSonucMesaji?.IsNonNumeric" [MultiLine]="txtTaniEkleSonucMesaji?.Multiline" [ReadOnly]="txtTaniEkleSonucMesaji?.ReadOnly" [Required]="txtTaniEkleSonucMesaji?.Required" [TabIndex]="txtTaniEkleSonucMesaji?.TabIndex" [TextAlign]="txtTaniEkleSonucMesaji?.TextAlign" [Text]="txtTaniEkleSonucMesaji?.Text" [Visible]="txtTaniEkleSonucMesaji?.Visible" data-tid="A349531">
+                            </hvl-text-box>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </dx-popup>
+    <dx-popup width="700px" height="400px" [(visible)]="teshisSelected" [closeOnOutsideClick]="true" title="TEŞHİS EKLE" data-tid="A349532">
+        <div *dxTemplate="let data of 'content'" data-tid="A349533">
+            <div id="teshisEkle" class="tab-pane fade in" [class.active]="teshisSelected" data-tid="A349534">
+                <div class="col-sm-6" data-tid="A349535">
+                    <div class="row" data-tid="A349536">
+                        <div class="col-sm-12" data-tid="A349537">
+                            <label class="control-label" data-tid="A349538">
+                                Teşhis
+                            </label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="lstDiagnoseAddedToTeshis.SelectedObject=$event;" [AutoCompleteDialogHeight]="lstDiagnoseAddedToTeshis?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="lstDiagnoseAddedToTeshis?.AutoCompleteDialogWidth" [AutoCompleteMode]="lstDiagnoseAddedToTeshis?.AutoCompleteMode" [BackColor]="lstDiagnoseAddedToTeshis?.BackColor" [DefinitionName]="lstDiagnoseAddedToTeshis?.ListDefName" [Enabled]="true" [Font]="lstDiagnoseAddedToTeshis?.Font" [ForeColor]="lstDiagnoseAddedToTeshis?.ForeColor" [ListFilterExpression]="lstDiagnoseAddedToTeshis?.ListFilterExpression" [MinSearchLength]="lstDiagnoseAddedToTeshis?.MinSearchLength" [PopupDialogFieldConfig]="lstDiagnoseAddedToTeshis?.PopupDialogFieldConfig" [PopupDialogGridColumns]="lstDiagnoseAddedToTeshis?.PopupDialogGridColumns" [PopupDialogHeight]="lstDiagnoseAddedToTeshis?.PopupDialogHeight" [PopupDialogTitle]="lstDiagnoseAddedToTeshis?.PopupDialogTitle" [PopupDialogWidth]="lstDiagnoseAddedToTeshis?.PopupDialogWidth" [ReadOnly]="false" [SearchMode]="lstDiagnoseAddedToTeshis?.SearchMode" [SearchTimeout]="lstDiagnoseAddedToTeshis?.SearchTimeout" [SelectedObject]="lstDiagnoseAddedToTeshis?.SelectedObject" [TabIndex]="lstDiagnoseAddedToTeshis?.TabIndex" [Visible]="lstDiagnoseAddedToTeshis?.Visible" [width]="lstDiagnoseAddedToTeshis?.Width" data-tid="A349539">
+                            </hvl-list-box>
+                        </div>
+                    </div>
+                    <div class="row" data-tid="A349540">
+                        <div class="col-sm-12 " data-tid="A349541">
+                            <label class="control-label" data-tid="A349542">
+                                Tanı Listesi
+                            </label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="EklenecekTaniListesi.SelectedObject=$event;eklenecekTaniSelected($event)" [AutoCompleteDialogHeight]="EklenecekTaniListesi?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="EklenecekTaniListesi?.AutoCompleteDialogWidth" [AutoCompleteMode]="EklenecekTaniListesi?.AutoCompleteMode" [BackColor]="EklenecekTaniListesi?.BackColor" [DefinitionName]="EklenecekTaniListesi?.ListDefName" [Enabled]="true" [Font]="EklenecekTaniListesi?.Font" [ForeColor]="EklenecekTaniListesi?.ForeColor" [ListFilterExpression]="EklenecekTaniListesi?.ListFilterExpression" [MinSearchLength]="EklenecekTaniListesi?.MinSearchLength" [PopupDialogFieldConfig]="EklenecekTaniListesi?.PopupDialogFieldConfig" [PopupDialogGridColumns]="EklenecekTaniListesi?.PopupDialogGridColumns" [PopupDialogHeight]="EklenecekTaniListesi?.PopupDialogHeight" [PopupDialogTitle]="EklenecekTaniListesi?.PopupDialogTitle" [PopupDialogWidth]="EklenecekTaniListesi?.PopupDialogWidth" [ReadOnly]="false" [SearchMode]="EklenecekTaniListesi?.SearchMode" [SearchTimeout]="EklenecekTaniListesi?.SearchTimeout" [SelectedObject]="EklenecekTaniListesi?.SelectedObject" [TabIndex]="EklenecekTaniListesi?.TabIndex" [Visible]="EklenecekTaniListesi?.Visible" [width]="EklenecekTaniListesi?.Width" data-tid="A349543">
+                            </hvl-list-box>
+                        </div>
+                    </div>
+                    <br data-tid="A349544" />
+                    <div class="row" data-tid="A349545">
+                        <div class="col-sm-12" data-tid="A349546">
+                            <label class="control-label" data-tid="A349547">
+                                Tanı
+                            </label>
+                            <hvl-datagrid [AllowUserToAddRows]="gridAddedDiagnosis?.AllowUserToAddRows" [AllowUserToDeleteRows]="gridAddedDiagnosis?.AllowUserToDeleteRows" [Columns]="gridAddedDiagnosisColumns" [dataSource]="participationFreeDrugReportNewFormViewModel?.AddedDiagnosisList" [DeleteButtonWidth]="gridAddedDiagnosis?.DeleteButtonWidth" [DisplayExpressionsCache]="participationFreeDrugReportNewFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="gridAddedDiagnosis?.ShowFilterRow" [FilterColumnName]="gridAddedDiagnosis?.FilterColumnName" [FilterLabel]="gridAddedDiagnosis?.FilterLabel" [Filter]="gridAddedDiagnosis?.Filter" [height]="gridAddedDiagnosis?.Height" [IsFilterLabelSingleLine]="gridAddedDiagnosis?.IsFilterLabelSingleLine" [ShowColumnHeaders]="gridAddedDiagnosis?.ColumnHeadersVisible" [ShowFilterCombo]="gridAddedDiagnosis?.ShowFilterCombo" [ShowTotalNumberOfRows]="gridAddedDiagnosis?.ShowTotalNumberOfRows" data-tid="A349548"></hvl-datagrid>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6" data-tid="A349549">
+                    <div class="row" data-tid="A349550">
+                        <div class="col-sm-6" data-tid="A349551">
+                            <hvl-button (BtnClicked)="btnTeshisEkle_Click()" [BackColor]="btnTeshisEkle?.BackColor" [Enabled]="true" [Font]="btnTeshisEkle?.Font" [ForeColor]="btnTeshisEkle?.ForeColor" [height]="btnTeshisEkle?.Height" [ReadOnly]="false" [TabIndex]="btnTeshisEkle?.TabIndex" [Text]="btnTeshisEkle?.Text" [Visible]="btnTeshisEkle?.Visible" data-tid="A349552"></hvl-button>
+                        </div>
+                        <div class="col-sm-6" data-tid="A349553">
+                            <label class="control-label" data-tid="A349554">
+                                Sonuç Kodu
+                            </label>
+                            <hvl-text-box #Validation (TextChange)="txtTeshisEkleSonucKodu.Text=$event;" [BackColor]="txtTeshisEkleSonucKodu?.BackColor" [CharacterCasing]="txtTeshisEkleSonucKodu?.CharacterCasing" [Enabled]="txtTeshisEkleSonucKodu?.Enabled" [Font]="txtTeshisEkleSonucKodu?.Font" [ForeColor]="txtTeshisEkleSonucKodu?.ForeColor" [height]="txtTeshisEkleSonucKodu?.Height" [InputFormat]="txtTeshisEkleSonucKodu?.InputFormat" [InputTurkishCharacter]="txtTeshisEkleSonucKodu?.InputTurkishCharacter" [IsNonNumeric]="txtTeshisEkleSonucKodu?.IsNonNumeric" [MultiLine]="txtTeshisEkleSonucKodu?.Multiline" [ReadOnly]="txtTeshisEkleSonucKodu?.ReadOnly" [Required]="txtTeshisEkleSonucKodu?.Required" [TabIndex]="txtTeshisEkleSonucKodu?.TabIndex" [TextAlign]="txtTeshisEkleSonucKodu?.TextAlign" [Text]="txtTeshisEkleSonucKodu?.Text" [Visible]="txtTeshisEkleSonucKodu?.Visible" data-tid="A349555">
+                            </hvl-text-box>
+                        </div>
+                    </div>
+                    <div class="row" data-tid="A349556">
+                        <div class="col-sm-12" data-tid="A349557">
+                            <label class="control-label" data-tid="A349558">
+                                Sonuç Mesajı
+                            </label>
+                            <hvl-text-box #Validation (TextChange)="txtTeshisEkleSonucMesaji.Text=$event;" [BackColor]="txtTeshisEkleSonucMesaji?.BackColor" [CharacterCasing]="txtTeshisEkleSonucMesaji?.CharacterCasing" [Enabled]="txtTeshisEkleSonucMesaji?.Enabled" [Font]="txtTeshisEkleSonucMesaji?.Font" [ForeColor]="txtTeshisEkleSonucMesaji?.ForeColor" [height]="180" [InputFormat]="txtTeshisEkleSonucMesaji?.InputFormat" [InputTurkishCharacter]="txtTeshisEkleSonucMesaji?.InputTurkishCharacter" [IsNonNumeric]="txtTeshisEkleSonucMesaji?.IsNonNumeric" [MultiLine]="txtTeshisEkleSonucMesaji?.Multiline" [ReadOnly]="txtTeshisEkleSonucMesaji?.ReadOnly" [Required]="txtTeshisEkleSonucMesaji?.Required" [TabIndex]="txtTeshisEkleSonucMesaji?.TabIndex" [TextAlign]="txtTeshisEkleSonucMesaji?.TextAlign" [Text]="txtTeshisEkleSonucMesaji?.Text" [Visible]="txtTeshisEkleSonucMesaji?.Visible" data-tid="A349559">
+                            </hvl-text-box>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </dx-popup>
+    <dx-popup width="700px" height="400px" [(visible)]="etkinMaddeEkleSelected" [closeOnOutsideClick]="true" title="ETKİN MADDE EKLE" data-tid="A349560">
+        <div *dxTemplate="let data of 'content'" data-tid="A349561">
+            <div id="etkinMaddeEkle" class="tab-pane fade in" [class.active]="etkinMaddeEkleSelected" data-tid="A349562">
+                <div class="col-sm-6" data-tid="A349563">
+                    <div class="row" data-tid="A349564">
+                        <div class="col-sm-12" data-tid="A349565">
+                            <label class="control-label" data-tid="A349566">
+                                Etkin Madde
+                            </label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="lstEklenecekEtkinMadde.SelectedObject=$event;" [AutoCompleteDialogHeight]="lstEklenecekEtkinMadde?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="lstEklenecekEtkinMadde?.AutoCompleteDialogWidth" [AutoCompleteMode]="lstEklenecekEtkinMadde?.AutoCompleteMode" [BackColor]="lstEklenecekEtkinMadde?.BackColor" [DefinitionName]="lstEklenecekEtkinMadde?.ListDefName" [Enabled]="true" [Font]="lstEklenecekEtkinMadde?.Font" [ForeColor]="lstEklenecekEtkinMadde?.ForeColor" [ListFilterExpression]="lstEklenecekEtkinMadde?.ListFilterExpression" [MinSearchLength]="lstEklenecekEtkinMadde?.MinSearchLength" [PopupDialogFieldConfig]="lstEklenecekEtkinMadde?.PopupDialogFieldConfig" [PopupDialogGridColumns]="lstEklenecekEtkinMadde?.PopupDialogGridColumns" [PopupDialogHeight]="lstEklenecekEtkinMadde?.PopupDialogHeight" [PopupDialogTitle]="lstEklenecekEtkinMadde?.PopupDialogTitle" [PopupDialogWidth]="lstEklenecekEtkinMadde?.PopupDialogWidth" [ReadOnly]="false" [SearchMode]="lstEklenecekEtkinMadde?.SearchMode" [SearchTimeout]="lstEklenecekEtkinMadde?.SearchTimeout" [SelectedObject]="lstEklenecekEtkinMadde?.SelectedObject" [TabIndex]="lstEklenecekEtkinMadde?.TabIndex" [Visible]="lstEklenecekEtkinMadde?.Visible" [width]="lstEklenecekEtkinMadde?.Width" data-tid="A349567">
+                            </hvl-list-box>
+                        </div>
+                    </div>
+                    <div class="row" data-tid="A349568">
+                        <div class="col-sm-4" data-tid="A349569">
+                            <label class="control-label" data-tid="A349570">
+                                Kullanım Doz 1
+                            </label>
+                            <hvl-text-box #Validation (TextChange)="txtEklenecekDoz.Text=$event;" [BackColor]="txtEklenecekDoz?.BackColor" [CharacterCasing]="txtEklenecekDoz?.CharacterCasing" [Enabled]="true" [Font]="txtEklenecekDoz?.Font" [ForeColor]="txtEklenecekDoz?.ForeColor" [height]="txtEklenecekDoz?.Height" [InputFormat]="txtEklenecekDoz?.InputFormat" [InputTurkishCharacter]="txtEklenecekDoz?.InputTurkishCharacter" [IsNonNumeric]="txtEklenecekDoz?.IsNonNumeric" [MultiLine]="txtEklenecekDoz?.Multiline" [ReadOnly]="false" [Required]="txtEklenecekDoz?.Required" [TabIndex]="txtEklenecekDoz?.TabIndex" [TextAlign]="txtEklenecekDoz?.TextAlign" [Text]="txtEklenecekDoz?.Text" [Visible]="txtEklenecekDoz?.Visible" data-tid="A349571"></hvl-text-box>
+                        </div>
+                        <div class="col-sm-4" data-tid="A349572">
+                            <label class="control-label" data-tid="A349573">
+                                Kullanım Doz 2
+                            </label>
+                            <hvl-text-box #Validation (TextChange)="txtEklenecekDoz2.Text=$event;" [BackColor]="txtEklenecekDoz2?.BackColor" [CharacterCasing]="txtEklenecekDoz2?.CharacterCasing" [Enabled]="true" [Font]="txtEklenecekDoz2?.Font" [ForeColor]="txtEklenecekDoz2?.ForeColor" [height]="txtEklenecekDoz2?.Height" [InputFormat]="txtEklenecekDoz2?.InputFormat" [InputTurkishCharacter]="txtEklenecekDoz2?.InputTurkishCharacter" [IsNonNumeric]="txtEklenecekDoz2?.IsNonNumeric" [MultiLine]="txtEklenecekDoz2?.Multiline" [ReadOnly]="false" [Required]="txtEklenecekDoz2?.Required" [TabIndex]="txtEklenecekDoz2?.TabIndex" [TextAlign]="txtEklenecekDoz2?.TextAlign" [Text]="txtEklenecekDoz2?.Text" [Visible]="txtEklenecekDoz2?.Visible" data-tid="A349574"></hvl-text-box>
+                        </div>
+
+                        <div class="col-sm-4" data-tid="A349575">
+                            <label class="control-label" data-tid="A349576">
+                                Kullanım Doz Birimi
+                            </label>
+                            <hvl-enum-combobox #Validation (ValueChange)="cmbEklenecekDozBirimi.SelectedValue=$event;" [BackColor]="cmbEklenecekDozBirimi?.BackColor" [DataTypeName]="cmbEklenecekDozBirimi?.DataTypeName" [Enabled]="true" [Font]="cmbEklenecekDozBirimi?.Font" [ForeColor]="cmbEklenecekDozBirimi?.ForeColor" [IncludeOnly]="cmbEklenecekDozBirimi?.IncludeOnly" [ReadOnly]="false" [ShowClearButton]="cmbEklenecekDozBirimi?.ShowClearButton" [SortBy]="cmbEklenecekDozBirimi?.SortBy" [TabIndex]="cmbEklenecekDozBirimi?.TabIndex" [Value]="cmbEklenecekDozBirimi?.SelectedValue" [Visible]="cmbEklenecekDozBirimi?.Visible" data-tid="A349577"></hvl-enum-combobox>
+                        </div>
+                    </div>
+                    <div class="row" data-tid="A349578">
+                        <div class="col-sm-6" data-tid="A349579">
+                            <label class="control-label" data-tid="A349580">
+                                Kullanım Periyodu
+                            </label>
+                            <hvl-text-box #Validation (TextChange)="txtEklenecekPeriyodu.Text=$event;" [BackColor]="txtEklenecekPeriyodu?.BackColor" [CharacterCasing]="txtEklenecekPeriyodu?.CharacterCasing" [Enabled]="true" [Font]="txtEklenecekPeriyodu?.Font" [ForeColor]="txtEklenecekPeriyodu?.ForeColor" [height]="txtEklenecekPeriyodu?.Height" [InputFormat]="txtEklenecekPeriyodu?.InputFormat" [InputTurkishCharacter]="txtEklenecekPeriyodu?.InputTurkishCharacter" [IsNonNumeric]="txtEklenecekPeriyodu?.IsNonNumeric" [MultiLine]="txtEklenecekPeriyodu?.Multiline" [ReadOnly]="false" [Required]="txtEklenecekPeriyodu?.Required" [TabIndex]="txtEklenecekPeriyodu?.TabIndex" [TextAlign]="txtEklenecekPeriyodu?.TextAlign" [Text]="txtEklenecekPeriyodu?.Text" [Visible]="txtEklenecekPeriyodu?.Visible" data-tid="A349581"></hvl-text-box>
+                        </div>
+                        <div class="col-sm-6" data-tid="A349582">
+                            <label class="control-label" data-tid="A349583">
+                                Kullanım Periyot Birimi
+                            </label>
+                            <hvl-enum-combobox #Validation (ValueChange)="cmdEkelenecekPeriyodBirimi.SelectedValue=$event;" [BackColor]="cmdEkelenecekPeriyodBirimi?.BackColor" [DataTypeName]="cmdEkelenecekPeriyodBirimi?.DataTypeName" [Enabled]="true" [Font]="cmdEkelenecekPeriyodBirimi?.Font" [ForeColor]="cmdEkelenecekPeriyodBirimi?.ForeColor" [IncludeOnly]="cmdEkelenecekPeriyodBirimi?.IncludeOnly" [ReadOnly]="false" [ShowClearButton]="cmdEkelenecekPeriyodBirimi?.ShowClearButton" [SortBy]="cmdEkelenecekPeriyodBirimi?.SortBy" [TabIndex]="cmdEkelenecekPeriyodBirimi?.TabIndex" [Value]="cmdEkelenecekPeriyodBirimi?.SelectedValue" [Visible]="cmdEkelenecekPeriyodBirimi?.Visible" data-tid="A349584"></hvl-enum-combobox>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6" data-tid="A349585">
+                    <div class="row" data-tid="A349586">
+                        <div class="col-sm-6" data-tid="A349587">
+                            <hvl-button (BtnClicked)="btnEtkinMaddeEkle_Click()" [BackColor]="btnEtkinMaddeEkle?.BackColor" [Enabled]="true" [Font]="btnEtkinMaddeEkle?.Font" [ForeColor]="btnEtkinMaddeEkle?.ForeColor" [height]="btnEtkinMaddeEkle?.Height" [ReadOnly]="false" [TabIndex]="btnEtkinMaddeEkle?.TabIndex" [Text]="btnEtkinMaddeEkle?.Text" [Visible]="btnEtkinMaddeEkle?.Visible" data-tid="A349588"></hvl-button>
+                        </div>
+                        <div class="col-sm-6" data-tid="A349589">
+                            <label class="control-label" data-tid="A349590">
+                                Sonuç Kodu
+                            </label>
+                            <hvl-text-box #Validation (TextChange)="txtEtkinMaddeEkleSonucKodu.Text=$event;" [BackColor]="txtEtkinMaddeEkleSonucKodu?.BackColor" [CharacterCasing]="txtEtkinMaddeEkleSonucKodu?.CharacterCasing" [Enabled]="txtEtkinMaddeEkleSonucKodu?.Enabled" [Font]="txtEtkinMaddeEkleSonucKodu?.Font" [ForeColor]="txtEtkinMaddeEkleSonucKodu?.ForeColor" [height]="txtEtkinMaddeEkleSonucKodu?.Height" [InputFormat]="txtEtkinMaddeEkleSonucKodu?.InputFormat" [InputTurkishCharacter]="txtEtkinMaddeEkleSonucKodu?.InputTurkishCharacter" [IsNonNumeric]="txtEtkinMaddeEkleSonucKodu?.IsNonNumeric" [MultiLine]="txtEtkinMaddeEkleSonucKodu?.Multiline" [ReadOnly]="txtEtkinMaddeEkleSonucKodu?.ReadOnly" [Required]="txtEtkinMaddeEkleSonucKodu?.Required" [TabIndex]="txtEtkinMaddeEkleSonucKodu?.TabIndex" [TextAlign]="txtEtkinMaddeEkleSonucKodu?.TextAlign" [Text]="txtEtkinMaddeEkleSonucKodu?.Text" [Visible]="txtEtkinMaddeEkleSonucKodu?.Visible" data-tid="A349591"></hvl-text-box>
+                        </div>
+                    </div>
+                    <div class="row" data-tid="A349592">
+                        <div class="col-sm-12" data-tid="A349593">
+                            <label class="control-label" data-tid="A349594">
+                                Sonuç Mesajı
+                            </label>
+                            <hvl-text-box #Validation (TextChange)="txtEtkinMaddeEkleSonucMesaji.Text=$event;" [BackColor]="txtEtkinMaddeEkleSonucMesaji?.BackColor" [CharacterCasing]="txtEtkinMaddeEkleSonucMesaji?.CharacterCasing" [Enabled]="txtEtkinMaddeEkleSonucMesaji?.Enabled" [Font]="txtEtkinMaddeEkleSonucMesaji?.Font" [ForeColor]="txtEtkinMaddeEkleSonucMesaji?.ForeColor" [height]="200" [InputFormat]="txtEtkinMaddeEkleSonucMesaji?.InputFormat" [InputTurkishCharacter]="txtEtkinMaddeEkleSonucMesaji?.InputTurkishCharacter" [IsNonNumeric]="txtEtkinMaddeEkleSonucMesaji?.IsNonNumeric" [MultiLine]="txtEtkinMaddeEkleSonucMesaji?.Multiline" [ReadOnly]="txtEtkinMaddeEkleSonucMesaji?.ReadOnly" [Required]="txtEtkinMaddeEkleSonucMesaji?.Required" [TabIndex]="txtEtkinMaddeEkleSonucMesaji?.TabIndex" [TextAlign]="txtEtkinMaddeEkleSonucMesaji?.TextAlign" [Text]="txtEtkinMaddeEkleSonucMesaji?.Text" [Visible]="txtEtkinMaddeEkleSonucMesaji?.Visible" data-tid="A349595"></hvl-text-box>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </dx-popup>
+    <dx-popup width="700px" height="400px" [(visible)]="tumRaporlarSelected" [closeOnOutsideClick]="true" title="TÜM RAPORLAR" data-tid="A349596">
+        <div *dxTemplate="let data of 'content'" data-tid="A349597">
+            <div id="tumRaporlari" class="tab-pane fade in" [class.active]="tumRaporlarSelected" data-tid="A349598">
+                <div class="row" data-tid="A349599">
+                    <div class="col-sm-12" data-tid="A349600">
+                        <hvl-richtextbox (change)="ttrtbTumRaporlar.Rtf=$event;" [Height] [ngModelOptions]="{ standalone: true}" [ngModel]="ttrtbTumRaporlar?.Rtf" [ReadOnly]="ttrtbTumRaporlar?.ReadOnly" [TemplateGroupName]="ttrtbTumRaporlar?.TemplateGroupName" [Visible]="ttrtbTumRaporlar?.Visible" data-tid="A349601"></hvl-richtextbox>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </dx-popup>
+    <dx-popup width="700px" height="400px" [(visible)]="medulaResult" [closeOnOutsideClick]="true" title="MEDULA SONUÇ DETAY" data-tid="A349602">
+        <div *dxTemplate="let data of 'content'" data-tid="A349603">
+            <div id="tumRaporlari" class="tab-pane fade in" [class.active]="medulaResult" data-tid="A349604">
+                <div class="row" data-tid="A349605">
+                    <div class="col-sm-12" data-tid="A349606">
+                        <label class="control-label" data-tid="A349607">
+                            Sonuç Açıklama
+                        </label>
+                        <div id="medulaErrorMessageToPrint" class="alert alert-danger" role="alert" data-tid="A349608">
+                            {{this.MedulaDetailedResult}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </dx-popup>
+
+    <dx-popup width="425px" height="630px" [(visible)]="showMedulaerrorsPopup" [closeOnOutsideClick]="false" title="Medula Hataları" i18n-title="@@M18758" id="A20291" data-tid="A349609">
+        <div *dxTemplate="let data of 'content'" id="A20292" data-tid="A349610">
+            <div class="row" id="A20293" data-tid="A349611">
+                <div class="margin-top-10" id="A20294" data-tid="A349612">
+                    <div class="col-md-12" id="A20295" data-tid="A349613">
+                        <div id="medulaErrorMessageToPrint" class="alert alert-danger" role="alert" data-tid="A349614">
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" id="A20296" data-tid="A349615"></span>
+                            <span class="sr-only" id="A20297" data-tid="A349616">HATA:</span>
+                            {{this.MedulaSonucMesaji}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </dx-popup>
+</div>

@@ -1,0 +1,35 @@
+﻿
+<div class="panel-group" style="margin-bottom:-7px" *ngIf="HasShowComponentRole" id="A18628" data-tid="A351895">
+    <div class="panel panel-info" style="border-color: #ffffff;" id="A18629" data-tid="A351896">
+        <div class="panel-heading" style="height: 30px;" id="A18630" data-tid="A351897">{{title}}</div>
+        <div class="container-fluid" style="padding-left:10px;padding-bottom:10px" id="A18631" data-tid="A351898">
+            <div class="row" style="margin-right:5px" id="A18632" data-tid="A351899">
+                <div class="col-sm-1" style="float:right;margin-top: -25px; width: 10px;" id="A18633" data-tid="A351900">
+                    <a href="javascript:void(0)" class="nav-link" (click)="getNextSummaryInfoSetAndAddToList()" id="A18634" data-tid="A351901">
+                        <i style="float:right;margin-right: 5px;width: 10px" class="glyphicon glyphicon-sort-by-attributes" data-toggle="tooltip" data-placement="bottom" title="Daha Fazla Göster" i18n-title="@@M12456" id="A18635" data-tid="A351902"></i>
+                    </a>
+                </div>
+                <div [hidden]="AddButtonHidden" class="col-sm-1" style="float:right;margin-right: 25px;margin-top: -25px; width: 10px;" id="A18636" data-tid="A351903">
+                    <a href="javascript:void(0)" class="nav-link" (click)="btnAdd_valueChange()" id="A18637" data-tid="A351904">
+                        <i style="float:right;margin-right: 15px;width: 10px;" class="glyphicon glyphicon-plus" data-toggle="tooltip" data-placement="bottom" title="Ekle" i18n-title="@@M13543" id="A18638" data-tid="A351905"></i>
+                    </a>
+                </div>
+            </div>
+            <div #applicationPanel style="margin-left:-15px; overflow-x:hidden; overflow-y:auto" id="A18639" data-tid="A351906">
+                <div style="width:100%; " id="A18640" data-tid="A351907">
+                    <comp-compose #nursingDynamicComponent [(Info)]="systemApiService.componentInfo" (ComponentCreated)="onComponentCreated($event)" id="A18641" data-tid="A351908"></comp-compose>
+                </div>
+            </div>
+            <div *ngIf="SummaryInfoList.length > 0" class="row" style="margin-right:5px" id="A18642" data-tid="A351909">
+                <div class="col-sm-12" style="background-color:#ffffff" id="A18643" data-tid="A351910">
+                    <dx-data-grid [columns]="SummaryInfoColumns" allowColumnReordering="true" allowColumnResizing="false" [dataSource]="SummaryInfoList" (onRowClick)="select($event)" [filterRow]="{visible: false}" [columnAutoWidth]="true" [selection]="{mode: 'single',allowSelectAll: false}" [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" (onRowPrepared)="rowPrepared($event)" (onContentReady)="contentReady($event)" [showColumnHeaders]="false" [scrolling]="{mode: 'standart',scrollByContent:true, useNative:false}" [paging]="{enabled:false}" style="min-height:25px;max-height:175px" id="A18644" data-tid="A351911">
+                    </dx-data-grid>
+                </div>
+            </div>
+            <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A18645" data-tid="A351912">
+            </dx-load-panel>
+            </div>
+        </div>
+</div>
+
+

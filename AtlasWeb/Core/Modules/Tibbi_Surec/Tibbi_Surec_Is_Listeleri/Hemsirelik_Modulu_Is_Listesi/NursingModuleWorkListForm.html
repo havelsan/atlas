@@ -1,0 +1,182 @@
+﻿<div class="row" style="margin-bottom: 10px;" id="A28438" data-tid="A366370">
+    <dx-accordion #searchAndListAccordion class="margin-bottom-10" collapsible="true" id="A28439" data-tid="A366371">
+        <dxi-item title="Sorgulama Paneli" i18n-title="@@M22127" id="A28440" data-tid="A366372">
+            <div class="row" id="A28441" data-tid="A366373">
+                <div class="col-sm-4" id="A28442" data-tid="A366374">
+                    <div class="row" id="I28458" data-tid="A366375">
+                        <div class="col-md-12" id="I28459" data-tid="A366376">
+                            <dx-radio-group [items]="radioGroupActionTypeItems" displayExpr="text" valueExpr="value" [(value)]="nursingModuleWorkListViewModel._SearchCriteria.ActionType" layout="horizontal" id="I28460" (onValueChanged)="onradioGroupActionType_ValueChanged($event)" data-tid="A366377">
+                            </dx-radio-group>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 5px;" id="A28443" data-tid="A366378">
+                        <div class="col-sm-6" id="A28444" data-tid="A366379">
+                            <label class="control-label" id="A28445" data-tid="A366380">Başlangıç Tarihi</label>
+                            <dx-date-box width="100%" [type]="_dateFormat" [value]="nursingModuleWorkListViewModel._SearchCriteria.WorkListStartDate" id="A28446" (onValueChanged)="onStartDateChanged($event)" data-tid="A366381">
+                            </dx-date-box>
+                        </div>
+                        <div class="col-sm-6" id="A28447" data-tid="A366382">
+                            <label class="control-label" id="A28448" data-tid="A366383">Bitiş Tarihi</label>
+                            <dx-date-box width="100%" [type]="_dateFormat" [value]="nursingModuleWorkListViewModel._SearchCriteria.WorkListEndDate" id="A28449" (onValueChanged)="onEndDateChanged($event)" data-tid="A366384">
+                            </dx-date-box>
+                        </div>
+                    </div>
+                    <div class="row" id="A28450" data-tid="A366385">
+                        <div class="col-md-12" id="A28451" data-tid="A366386">
+                            <label class="control-label" id="A28452" data-tid="A366387">Birim</label>
+                            <dx-tag-box [items]="nursingModuleWorkListViewModel.ResourceList" [(value)]="nursingModuleWorkListViewModel._SearchCriteria.Resources" placeholder="Birim" [searchEnabled]="true" [showSelectionControls]="true" displayExpr="Name" [multiline]="false" i18n-placeholder="@@M27304" id="A28453" (onValueChanged)="onResourceListChanged($event)" data-tid="A366388">
+                            </dx-tag-box>
+                        </div>
+                    </div>
+                    <div class="row" id="A28454" data-tid="A366389">
+                        <div class="col-md-4" id="AY28451" data-tid="A366390">
+                            <label class="control-label" id="A28452" data-tid="A366391">Kabul No</label>
+                            <dx-text-box [showClearButton]="true" [(value)]="nursingModuleWorkListViewModel._SearchCriteria.ProtocolNo" (onEnterKey)="onProtocolNoEnterKeyDown($event)" id="AY16483" data-tid="A366392"></dx-text-box>
+
+                        </div>
+                        <div class="col-md-8" id="A28455" data-tid="A366393">
+                            <label id="A28456" data-tid="A366394">Hasta Arama</label>
+                            <PatientSearchForm Width="100%" (SelectedPatientChanged)="patientChanged($event)" id="A28457" data-tid="A366395"></PatientSearchForm>
+                        </div>
+                    </div>
+                    <div class="row" id="A28458" data-tid="A366396">
+                        <div class="col-md-12" id="A28459" data-tid="A366397">
+                            <dx-radio-group [items]="radioGroupPatientTypeItems" displayExpr="text" valueExpr="value" [(value)]="nursingModuleWorkListViewModel._SearchCriteria.PatientType" layout="horizontal" id="A28460" data-tid="A366398">
+                            </dx-radio-group>
+                        </div>
+                    </div>
+                </div>
+                <div [hidden]="nursingModuleWorkListViewModel._SearchCriteria.ActionType != 2" class="col-sm-4" id="A28461" data-tid="A366399">
+                    <label id="A28462" data-tid="A366400">&nbsp;&nbsp;İlaç Direktifi</label>
+                    <dx-list #list [dataSource]="nursingModuleWorkListViewModel?.DrugOrderWorkListStateItem" [height]="145" selectionMode="all" selectAllMode="page" [showSelectionControls]="true" [(selectedItemKeys)]="nursingModuleWorkListViewModel._SearchCriteria.DrugOrderStatesItem" style="line-height:10px" id="A28463" data-tid="A366401">
+                        <div *dxTemplate="let data of 'item'" id="A28464" data-tid="A366402">
+                            <div style="float:left; width:90%;" id="A28465" data-tid="A366403">{{data.StateDefName}}</div>
+                        </div>
+                    </dx-list>
+                </div>
+                <div [hidden]="nursingModuleWorkListViewModel._SearchCriteria.ActionType != 2" class="col-sm-4" id="A28466" data-tid="A366404">
+                    <label id="A28467" data-tid="A366405">&nbsp;&nbsp;Hemşire Direktifi</label>
+                    <dx-list #list [dataSource]="nursingModuleWorkListViewModel?.NursingOrderWorkListStateItem" [height]="121" selectionMode="all" selectAllMode="page" [showSelectionControls]="true" [(selectedItemKeys)]="nursingModuleWorkListViewModel._SearchCriteria.NursingOrderStateItem" style="line-height:10px" id="A28468" data-tid="A366406">
+                        <div *dxTemplate="let data of 'item'" id="A28469" data-tid="A366407">
+                            <div style="float:left; width:90%;" id="A28470" data-tid="A366408">{{data.StateDefName}}</div>
+                        </div>
+                    </dx-list>
+                </div>
+                <div [hidden]="nursingModuleWorkListViewModel._SearchCriteria.ActionType != 1" class="col-sm-4" id="A28466" data-tid="A366409">
+                    <label id="A28467" data-tid="A366410">&nbsp;&nbsp;Hasta Durumu</label>
+                    <dx-list #list [dataSource]="InpatientTypeResources" [height]="121" selectionMode="all" selectAllMode="page" [showSelectionControls]="true" [(selectedItemKeys)]="nursingModuleWorkListViewModel._SearchCriteria.InpatientTypeResources" style="line-height:10px" id="A28468" data-tid="A366411">
+                        <div *dxTemplate="let data of 'item'" id="A28469" data-tid="A366412">
+                            <div style="float:left; width:90%;" id="A28470" data-tid="A366413">{{data.TypeName}}</div>
+                        </div>
+                    </dx-list>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 5px;" id="A28471" data-tid="A366414">
+                <label class="control-label col-sm-6 info-label" id="A28472" data-tid="A366415">Listelenen İşlem Sayısı : {{nursingModuleWorkListViewModel.WorkList?.length}}</label>
+                <div class="col-sm-6" style="float:right;" id="A28473" data-tid="A366416">
+                    <dx-button type="default" class="dx-icon pull-right m--margin-left-15" icon="fa fa-bars" text="Listele" (onClick)="btnSearchClicked()" i18n-text="@@M27337" id="A28474" data-tid="A366417"></dx-button>
+                    <dx-button type="default" class="dx-icon pull-right" icon="fa fa-bars" text="Barkod Oluştur" (onClick)="SendActionsForBarcodePrint()" i18n-text="@@M27337" id="A28474" data-tid="A366418"></dx-button>
+                    <!--<button type="button" class="btn btn-info pull-right" (click)="btnSearchClicked()" style="margin: -5px 0px 0px 5px;"  id="A28474"><span class="fa fa-bars" id="A28475"></span>&nbsp;Listele</button>-->
+                </div>
+            </div>
+            <div class="row" id="A28476" data-tid="A366419">
+                <dx-tab-panel [(selectedIndex)]="selectedTabIndex" [animationEnabled]="true" style="height:98%!important" id="A18771" data-tid="A366420">
+                    <dxi-item class="tabpanel-item" title="Hemşirelik Hizmetleri" style="height:100%!important;" i18n-title="@@M15686" id="A18772" data-tid="A366421">
+                        <div class="col-sm-12" id="A28477" data-tid="A366422">
+                            <dx-data-grid #WorkListGrid class="nursingModuleWorkListGridHeight" id="WorkListGrid" allowColumnReordering="true" allowColumnResizing="true" [dataSource]="nursingModuleWorkListViewModel.WorkList" (onRowClick)="select($event)" (onRowPrepared)="onRowPrepared($event)" (onToolbarPreparing)="onToolbarPreparing($event)" (onContextMenuPreparing)="onContextMenuPreparing($event)" (onSelectionChanged)="selectDrugOrderDetail($event)" [filterRow]="{visible: true}" [(selectedRowKeys)]="selectedRowKeysResultList" data-tid="A366423">
+                                <dxo-selection selectAllMode="allPages" showCheckBoxesMode="always" [mode]="_gridSelectionMode" id="A18809" data-tid="A366424"></dxo-selection>
+                                <dxo-scrolling mode="virtual" id="A28478" data-tid="A366425"></dxo-scrolling>
+                                <!--<dx-toolbar #toolbarItem [items]="toolbarItems" id="A18808"></dx-toolbar>-->
+                                <dxo-export [enabled]="true" fileName="Ayaktan Hasta İş Listesi" [allowExportSelectedData]="false" id="A28479" data-tid="A366426"></dxo-export>
+                                <dxo-column-chooser [enabled]="true" id="A28480" data-tid="A366427"></dxo-column-chooser>
+                                <dxi-column *ngFor="let property of WorkListColumns" [visible]="property?.visible" [dataField]="property?.dataField" [caption]="property?.caption" [dataType]="property?.dataType" [format]="property?.format" [width]="property?.width" [allowSorting]="property?.allowSorting" [cssClass]="property?.cssClass" [visibleIndex]="property?.visibleIndex" [cellTemplate]="property?.cellTemplate" data-tid="A366428">
+
+                                </dxi-column>
+                                <div *dxTemplate="let cellData of 'PriorityCellTemplate'" id="A28542" data-tid="A366429">
+                                    <div class="col-md-2" style="float:left;margin-left: -16px;" id="A28543" data-tid="A366430">{{cellData.text}}</div>&nbsp;
+                                    <i *ngIf="cellData.data.isPregnant" class="fa fa-gratipay" data-toggle="tooltip" data-placement="bottom" title="Hamile" style="float:right;color:#956be0;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M15097" id="A28544" data-tid="A366431">&nbsp;</i>
+                                    <i *ngIf="cellData.data.isEmergency" class="fa fa-ambulance" data-toggle="tooltip" data-placement="bottom" title="Acil!" style="float:right;color:#e40d0d;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M10456" id="A28545" data-tid="A366432">&nbsp;</i>
+                                    <i *ngIf="cellData.data.isYoung" class="fa fa-child" data-toggle="tooltip" data-placement="bottom" title="7 Yaş Altı" style="float:right;color:#26c281;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M10377" id="A28546" data-tid="A366433">&nbsp;</i>
+                                    <i *ngIf="cellData.data.isOld" class="fa fa-blind" data-toggle="tooltip" data-placement="bottom" title="65 Yaş Üstü" style="float:right;color:#2f353b;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M10366" id="A28547" data-tid="A366434">&nbsp;</i>
+                                    <i *ngIf="cellData.data.isVetera" class="fa fa-star-half-o" data-toggle="tooltip" data-placement="bottom" title="Harp ve vazife şehitlerinin dul ve yetimleri ile malül ve gaziler" style="float:right;color:#cec00e;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M27738" id="A28548" data-tid="A366435">&nbsp;</i>
+                                    <i *ngIf="cellData.data.isDisabled" class="fa fa-wheelchair" data-toggle="tooltip" data-placement="bottom" title="Engelli" style="float:right;color:#52a5ec;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M13739" id="A28549" data-tid="A366436">&nbsp;</i>
+                                    <i *ngIf="cellData.data.hasMedicalInformation" class="fa fa-exclamation-triangle" data-toggle="tooltip" data-placement="bottom" title="Önemli Tıbbi Bilgisi Var" style="float:right;color:#e06b6b;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M13739" id="A16537" data-tid="A366437">&nbsp;</i>
+                                    <i *ngIf="cellData.data.Pandemic" class="ai ai-covid" data-toggle="tooltip" data-placement="bottom" title="Pandemi Şüphesi" style="float:right;color:#52a5ec;margin-top: -5px;margin-bottom: -5px;" i18n-title="@@M13739" id="C28549" data-tid="A366438">&nbsp;</i>
+
+                                    <!--Yatana özel-->
+                                    <i *ngIf="cellData.data.HasFallingRisk == null ? false : cellData.data.HasFallingRisk" data-toggle="tooltip" data-placement="bottom" title="Düşme Riskli Hasta" style="float:right;padding-right: 13px;height:13px; background-image:url('../../Content/YatanHasta/DusmeRisk.png')" i18n-title="@@M13392" id="A28550" data-tid="A366439"></i>
+                                    <i *ngIf="cellData.data.HasAirborneContactIsolation == null ? false: cellData.data.HasAirborneContactIsolation" data-toggle="tooltip" data-placement="bottom" title="Solunum İzolasyonu" style="float:right;height:13px;padding-right: 13px;background-image:url('../../Content/YatanHasta/SolunumIzolasyon.png')" i18n-title="@@M22030" id="A28551" data-tid="A366440"></i>
+                                    <i *ngIf="cellData.data.HasDropletIsolation == null ? false: cellData.data.HasDropletIsolation" data-toggle="tooltip" data-placement="bottom" title="Damlacık İzolasyonu" style="float:right;height:13px;padding-right: 15px;background-image:url('../../Content/YatanHasta/DamlacikIzolasyon.png')" i18n-title="@@M12487" id="A28552" data-tid="A366441"></i>
+                                    <i *ngIf="cellData.data.HasContactIsolation == null ? false: cellData.data.HasContactIsolation" data-toggle="tooltip" data-placement="bottom" title="Temas İzolasyonu" style="float:right;height:13px;padding-right: 13px;background-image:url('../../Content/YatanHasta/TemasIzolasyon.png')" i18n-title="@@M23155" id="A28553" data-tid="A366442"></i>
+                                    <i *ngIf="cellData.data.HasTightContactIsolation == null ? false: cellData.data.HasTightContactIsolation" data-toggle="tooltip" data-placement="bottom" title="Sıkı Temas İzolasyonu" style="float:right;height:11px;padding-right: 19px;background-image:url('../../Content/YatanHasta/SikiTemasIzolasyon.png')" i18n-title="@@M21800" id="A28554" data-tid="A366443"></i>
+                                </div>
+                            </dx-data-grid>
+
+                        </div>
+                    </dxi-item>
+                    <dxi-item class="tabpanel-item" title="Lüzumu Dahilinde Verilen İlaçlar" style="height:100%!important;" i18n-title="@@M18396" id="A18827" data-tid="A366444">
+                        <div class="col-sm-12" id="A18828" data-tid="A366445">
+                            <div class="panel panel-default" id="A18829" data-tid="A366446">
+                                <div class="panel-heading" id="A18830" data-tid="A366447">
+                                    Lüzumu Dahilinde Verilen İlaçlar
+                                </div>
+                                <div class="panel-body" id="A18831" data-tid="A366448">
+                                    <dx-toolbar [items]="toolbarCaseOfNeedItems" id="A18832" data-tid="A366449"></dx-toolbar>
+                                    <div id="data-grid-demo" data-tid="A366450">
+                                        <dx-data-grid id="gridContainer" [dataSource]="caseOfNeedDrugOrders" [(selectedRowKeys)]="selectedTempCaseOfNeedItems" data-tid="A366451">
+                                            <dxo-selection selectAllMode="allPages" showCheckBoxesMode="onClick" mode="multiple" id="A18833" data-tid="A366452"></dxo-selection>
+                                            <dxo-column-fixing [enabled]="true" id="A18834" data-tid="A366453"></dxo-column-fixing>
+                                            <dxo-paging [pageSize]="15" id="A18835" data-tid="A366454"></dxo-paging>
+                                            <dxo-filter-row [visible]="true" id="A18836" data-tid="A366455"></dxo-filter-row>
+                                            <dxi-column dataField="MasterResourceName" caption="Birim" i18n-caption="@@M27304" id="A18837" data-tid="A366456"></dxi-column>
+                                            <dxi-column dataField="PatientName" caption="Hasta Adı Soyadı" i18n-caption="@@M15133" id="A18838" data-tid="A366457"> </dxi-column>
+                                            <dxi-column dataField="DrugBarcode" caption="Lüzümü Halinde Verilen Barkodu" i18n-caption="@@M27720" id="A18839" data-tid="A366458"> </dxi-column>
+                                            <dxi-column dataField="DrugName" caption="Lüzümü Halinde Verilen İlaç" i18n-caption="@@M18399" id="A18840" data-tid="A366459"> </dxi-column>
+                                            <dxi-column dataField="DoseAmount" caption="Doz Miktarı" i18n-caption="@@M13294" id="A18841" data-tid="A366460"></dxi-column>
+                                            <dxi-column dataField="PlannedDateTime" caption="Verildiği Tarih" type="datetime" i18n-caption="@@M24097" id="A18842" data-tid="A366461"></dxi-column>
+                                        </dx-data-grid>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </dxi-item>
+                    <dxi-item class="tabpanel-item" title="ÜTS Bildirimleri" style="height:100%!important;" (onClick)="searchUTS()" data-tid="A366462">
+                        <div class="col-sm-12" data-tid="A366463">
+                            <div style="background-color:white;" data-tid="A366464">
+                                <div class="row" data-tid="A366465">
+                                    <div class="toolbar-label col-sm-10" style="text-align:center; font-weight:bold; font-size:12px; height: 26px; padding-top: 10px;" data-tid="A366466">
+                                        ÜTS Bildirimleri
+                                    </div>
+                                    <div class="col-sm-2" style="float:right;" data-tid="A366467">
+                                        <dx-button type="default" class="dx-icon pull-right m--margin-top-5" icon="fa fa-bars" text="Toplu Kullanım Bildirimi Yap" (onClick)="MakeUsageNotificationAll()" data-tid="A366468"></dx-button>
+                                    </div>
+
+                                </div>
+                                <div class="panel-body" data-tid="A366469">
+                                    <div id="data-grid-demo" data-tid="A366470">
+                                        <dx-data-grid #dataGrid [columns]="utsColumns" [disabled]="IsReadOnly" [editing]="{allowUpdating: false,allowAdding: false,allowDeleting: false, texts:{confirmDeleteMessage:''}}" [dataSource]="TreatmentMaterialGridList" data-tid="A366471">
+                                            <dxo-paging [pageSize]="25" data-tid="A366472"></dxo-paging>
+                                        </dx-data-grid>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </dxi-item>
+                </dx-tab-panel>
+            </div>
+        </dxi-item>
+    </dx-accordion>
+    <div class="row" style="height:98%" id="A28481" data-tid="A366473">
+        <div class="col-md-12 col-sm-12 col-xs-12" id="A28482" data-tid="A366474">
+            <comp-compose #dynamicComponent [Info]="systemApiService?.componentInfo" [SaveAndCloseCommandVisible]="true" [CloseWithStateTransition]="true" (DynamicComponentClosed)="dynamicComponentClosed($event)" (ComponentCreated)="dynamicComponentCreated($event)" (DynamicComponentActionExecuted)="dynamicComponentActionExecuted($event)" (DynamicComponentViewModelLoaded)="dynamicComponentViewModelLoaded($event)" id="A28483" data-tid="A366475"></comp-compose>
+        </div>
+    </div>
+
+    <div id="A28484" data-tid="A366476">
+        <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A28485" data-tid="A366477">
+        </dx-load-panel>
+    </div>
+
+
+</div>
+

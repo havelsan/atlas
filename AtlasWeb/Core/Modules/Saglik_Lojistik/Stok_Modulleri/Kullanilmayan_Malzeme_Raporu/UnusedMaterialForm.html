@@ -1,0 +1,64 @@
+﻿<div class="col-md-12" style="height:100%;overflow-x:hidden;overflow-y:auto;" data-tid="A332059">
+    <div class="row" style="height:96%;" data-tid="A332060">
+        <p data-tid="A332061"></p>
+        <br data-tid="A332062" />
+        <div class="col-sm-12" data-tid="A332063">
+            <div class="col-sm-3" data-tid="A332064">
+                <label class="control-label" style="border:0; box-shadow:none;" data-tid="A332065">Son Gün </label>
+                <dx-date-box width="100%" type="date" [(value)]="UnusedMaterialFormViewModel.EndDate" [readOnly]="false" data-tid="A332066">
+                </dx-date-box>
+            </div>
+            <div class="col-sm-3" data-tid="A332067">
+                <label class="control-label" style="border:0; box-shadow:none;" data-tid="A332068">Gün </label>
+                <dx-number-box #numberBox [min]="0" [showSpinButtons]="true" style="margin-right:-7px;" [(value)]="UnusedMaterialFormViewModel.DayQueryNumber" data-tid="A332069">
+                </dx-number-box>
+            </div>
+            <div class="col-sm-3" data-tid="A332070">
+                <label class="control-label" style="border:0; box-shadow:none;" data-tid="A332071">Miktar </label>
+                <dx-number-box #numberBox [min]="0" style="margin-right:-23px;" [showSpinButtons]="true" [(value)]="UnusedMaterialFormViewModel.filterAmount" data-tid="A332072">
+                </dx-number-box>
+            </div>
+            <div class="col-sm-2" style="margin-top:12px;margin-left:100px;" data-tid="A332073">
+                <dx-button type="btn btn-info" icon="fa fa-bars" class="center-block" (onClick)="GetOutVoucherList()" text="Sorgula" data-tid="A332074"></dx-button>
+            </div>
+
+        </div>
+        <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A28706" data-tid="A332075">
+        </dx-load-panel>
+        <!-- keyExpr="StockTransactionID" -->
+        <div class="col-md-12" style="margin-top:15px;" id data-tid="A332076">
+            <label class="control-label" data-tid="A332077">Malzeme Detayları</label>
+            <div id="gridVoucherLevelOne" data-tid="A332078">
+                <dx-data-grid #grid id="grid-container" [dataSource]="this.StockTrancationInList" [selectedRowKeys]="[]" data-tid="A332079">
+
+                    <dxo-paging [pageSize]="30" data-tid="A332080"></dxo-paging>
+                    <dxo-filter-row [visible]="true" id="A5673" data-tid="A332081"> </dxo-filter-row>
+                    <dxo-export [enabled]="true" fileName="Kullanilmayan_Malzeme" [allowExportSelectedData]="false" data-tid="A332082"></dxo-export>
+                    <dxo-selection mode="single" data-tid="A332083"></dxo-selection>
+                    <dxi-column dataField="NatoStockNO" caption="Taşınır Kodu" [width]="170" data-tid="A332084"></dxi-column>
+                    <dxi-column dataField="Barcode" caption="Barkod Numarası" data-tid="A332085"></dxi-column>
+                    <dxi-column dataField="FirstMaterialName" caption="Malzeme Adı" data-tid="A332086"></dxi-column>
+                    <dxi-column dataField="InAmount" caption="Giren Miktar" data-tid="A332087"></dxi-column>
+                    <dxi-column dataField="OutAmount" caption="Çıkan Miktar" data-tid="A332088"></dxi-column>
+                    <dxi-column dataField="RestAmount" caption="Kalan Miktar" data-tid="A332089"></dxi-column>
+                    <dxo-summary data-tid="A332090">
+
+                        <dxi-total-item column="OutAmount" summaryType="sum" data-tid="A332091">
+                        </dxi-total-item>
+                        <dxi-total-item column="ReturnAmount" summaryType="sum" data-tid="A332092">
+                        </dxi-total-item>
+                        <dxi-total-item column="Amount" summaryType="sum" data-tid="A332093"></dxi-total-item>
+                    </dxo-summary>
+                    <dxo-summary data-tid="A332094">
+                        <dxi-total-item column="UnitPrice" summaryType="sum" [valueFormat]="{ type: 'fixedPoint', precision: 2 }" data-tid="A332095">
+                        </dxi-total-item>
+                        <dxi-total-item column="Amount" summaryType="sum" data-tid="A332096">
+                        </dxi-total-item>
+                        <dxi-total-item column="VoucherTotalAmount" summaryType="sum" [valueFormat]="{ type: 'fixedPoint', precision: 2 }" data-tid="A332097">
+                        </dxi-total-item>
+                    </dxo-summary>
+                </dx-data-grid>
+            </div>
+        </div>
+    </div>
+</div>

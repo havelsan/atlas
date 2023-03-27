@@ -1,0 +1,35 @@
+﻿<NeStatePanelComponent [ObjectDefID]="drugDeliveryActionNewFormViewModel._DrugDeliveryAction.ObjectDefID" [CurrentStateDefID]="drugDeliveryActionNewFormViewModel._DrugDeliveryAction.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" [SaveCommandVisible]="false" [CancelCommandVisible]="false" id="A4241" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A329938">
+</NeStatePanelComponent>
+<div class="container-fluid" id="A4242" data-tid="A329939">
+	<form id="DrugDeliveryActionNewForm" class="form-horizontal" role="form" data-tid="A329940">
+
+	</form>
+	<div class="row" id="A4243" data-tid="A329941">
+		<label class="control-label col-sm-2" id="A4244" data-tid="A329942">
+			İşlem No </label>
+		<label class="control-label col-sm-4" id="A4245" data-tid="A329943">
+			İşlem Tarihi </label>
+	</div>
+	<div class="row" id="A4246" data-tid="A329944">
+		<div class="col-sm-2" id="A4247" data-tid="A329945">
+			<hvl-text-box #Validation (TextChange)="onIDChanged($event)" [BackColor]="ID?.BackColor" [CharacterCasing]="ID?.CharacterCasing" [Enabled]="ID?.Enabled" [Font]="ID?.Font" [ForeColor]="ID?.ForeColor" [height]="ID?.Height" [InputFormat]="ID?.InputFormat" [InputTurkishCharacter]="ID?.InputTurkishCharacter" [IsNonNumeric]="ID?.IsNonNumeric" [MultiLine]="ID?.Multiline" [ReadOnly]="ID?.ReadOnly" [Required]="ID?.Required" [TabIndex]="ID?.TabIndex" [TextAlign]="ID?.TextAlign" [Text]="drugDeliveryActionNewFormViewModel?._DrugDeliveryAction?.ID" [Visible]="ID?.Visible" id="A4248" data-tid="A329946"></hvl-text-box>
+		</div>
+		<div class="col-sm-4" id="A4249" data-tid="A329947">
+			<hvl-date-picker #Validation (ValueChange)="onActionDateChanged($event)" [BackColor]="ActionDate?.BackColor" [CustomFormat]="ActionDate?.CustomFormat" [Enabled]="ActionDate?.Enabled" [Font]="ActionDate?.Font" [ForeColor]="ActionDate?.ForeColor" [Format]="ActionDate?.Format" [Max]="ActionDate?.Max" [Min]="ActionDate?.Min" [ReadOnly]="ActionDate?.ReadOnly" [Required]="ActionDate?.Required" [TabIndex]="ActionDate?.TabIndex" [Value]="drugDeliveryActionNewFormViewModel?._DrugDeliveryAction?.ActionDate" [Visible]="ActionDate?.Visible" id="A4250" data-tid="A329948"></hvl-date-picker>
+		</div>
+	</div>
+	<div class="row" id="A4251" data-tid="A329949">
+		<label class="control-label col-sm-11" id="A4252" data-tid="A329950">
+			Hastanın Üzerindeki İlaçlar </label>
+	</div>
+	<div class="row" id="A4253" data-tid="A329951">
+		<div class="col-sm-12" id="A4254" data-tid="A329952">
+			<dx-data-grid id="gridContainer" [dataSource]="drugDeliveryActionNewFormViewModel?._DrugDeliveryAction?.DrugDeliveryActionDetails" [(selectedRowKeys)]="selectedDetails" data-tid="A329953">
+				<dxo-selection mode="multiple" id="A3487" data-tid="A329954"></dxo-selection>
+				<dxi-column dataField="DrugOrderTransaction.TransactionDate" caption="Temin Tarihi" dataType="date" [formItem]="{editorOptions: { readOnly: true }}" i18n-caption="@@M23175" id="A3495" data-tid="A329955"></dxi-column>
+				<dxi-column dataField="DrugName" caption="İlaç" [width]="300" [formItem]="{editorOptions: { readOnly: true }}" i18n-caption="@@M16287" id="A3496" data-tid="A329956"></dxi-column>
+				<dxi-column dataField="ResDose" caption="Miktar" [formItem]="{editorOptions: { readOnly: true }}" i18n-caption="@@M19030" id="A3497" data-tid="A329957"></dxi-column>
+			</dx-data-grid>
+		</div>
+	</div>
+</div>

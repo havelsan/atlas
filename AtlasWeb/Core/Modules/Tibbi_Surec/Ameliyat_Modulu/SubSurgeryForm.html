@@ -1,0 +1,189 @@
+﻿
+
+<NeStatePanelComponent [OutgoingTransitions]="subSurgeryFormViewModel?.OutgoingTransitions" [StateReports]="subSurgeryFormViewModel?.CurrentStateReports" [ObjectID]="subSurgeryFormViewModel?._SubSurgery?.ObjectID" [ObjectDefID]="subSurgeryFormViewModel?._SubSurgery?.ObjectDefID" [CurrentStateDefID]="subSurgeryFormViewModel._SubSurgery.CurrentStateDefID" (onSetState)="setStateToTransition($event)" [DropStateList]="DropStateList" (onSaveChanges)="saveForm($event)" id="A9629" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A338895">
+</NeStatePanelComponent>
+<div id="A9630" data-tid="A338896">
+    <form id="SubSurgeryForm" class="form-horizontal" role="form" data-tid="A338897">
+        
+    </form>
+
+    <div class="row" id="A9631" data-tid="A338898">
+        <div class="col-md-4 col-sm-12" id="A9632" data-tid="A338899">
+            <patient-demographics-form [actionId]="subSurgeryFormViewModel?._SubSurgery.ObjectID" id="A9633" data-tid="A338900"></patient-demographics-form>
+        </div>
+        <div class="col-md-2 col-sm-12" id="A9634" data-tid="A338901">
+            <div class="row" id="A9635" data-tid="A338902">
+                <div class="col-md-12" id="A9636" data-tid="A338903">
+                    <label class="control-label" id="A9637" data-tid="A338904"> Sorumlu Cerrah(1.Cerrah)</label>
+                    <hvl-list-box #Validation (SelectedObjectChange)="onProcedureDoctorChanged($event)" [AutoCompleteDialogHeight]="ProcedureDoctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ProcedureDoctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="ProcedureDoctor?.AutoCompleteMode" [BackColor]="ProcedureDoctor?.BackColor" [DefinitionName]="ProcedureDoctor?.ListDefName" [DisplayExpressionsCache]="subSurgeryFormViewModel?.ListDefDisplayExpressions" [Enabled]="ProcedureDoctor?.Enabled" [Font]="ProcedureDoctor?.Font" [ForeColor]="ProcedureDoctor?.ForeColor" [ListFilterExpression]="ProcedureDoctor?.ListFilterExpression" [MinSearchLength]="ProcedureDoctor?.MinSearchLength" [PopupDialogFieldConfig]="ProcedureDoctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ProcedureDoctor?.PopupDialogGridColumns" [PopupDialogHeight]="ProcedureDoctor?.PopupDialogHeight" [PopupDialogTitle]="ProcedureDoctor?.PopupDialogTitle" [PopupDialogWidth]="ProcedureDoctor?.PopupDialogWidth" [ReadOnly]="ProcedureDoctor?.ReadOnly" [SearchMode]="ProcedureDoctor?.SearchMode" [SearchTimeout]="ProcedureDoctor?.SearchTimeout" [SelectedObject]="subSurgeryFormViewModel?._SubSurgery?.ProcedureDoctor" [TabIndex]="ProcedureDoctor?.TabIndex" [Visible]="ProcedureDoctor?.Visible" [width]="ProcedureDoctor?.Width" id="A9638" data-tid="A338905"></hvl-list-box>
+                </div>
+            </div>           
+            <div class="row" id="A9639" data-tid="A338906">
+                <div class="col-md-12" id="A9640" data-tid="A338907">
+                    <label class="control-label" id="A9641" data-tid="A338908"> Protokol No </label>
+                    <hvl-text-box #Validation (TextChange)="onProtocolNoChanged($event)" [BackColor]="ProtocolNo?.BackColor" [CharacterCasing]="ProtocolNo?.CharacterCasing" [Enabled]="ProtocolNo?.Enabled" [Font]="ProtocolNo?.Font" [ForeColor]="ProtocolNo?.ForeColor" [height]="ProtocolNo?.Height" [InputFormat]="ProtocolNo?.InputFormat" [InputTurkishCharacter]="ProtocolNo?.InputTurkishCharacter" [IsNonNumeric]="ProtocolNo?.IsNonNumeric" [MultiLine]="ProtocolNo?.Multiline" [ReadOnly]="ProtocolNo?.ReadOnly" [Required]="ProtocolNo?.Required" [TabIndex]="ProtocolNo?.TabIndex" [TextAlign]="ProtocolNo?.TextAlign" [Text]="subSurgeryFormViewModel?._SubSurgery?.Surgery?.ProtocolNo" [Visible]="ProtocolNo?.Visible" id="A9642" data-tid="A338909"></hvl-text-box>
+                </div>
+            </div>
+            <div class="row" id="A9643" data-tid="A338910">
+                <div class="col-md-12" id="A9644" data-tid="A338911">
+                    <label class="control-label" id="A9645" data-tid="A338912">Ameliyathane</label>
+                    <hvl-list-box #Validation (SelectedObjectChange)="onMasterResourceChanged($event)" [AutoCompleteDialogHeight]="MasterResource?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="MasterResource?.AutoCompleteDialogWidth" [AutoCompleteMode]="MasterResource?.AutoCompleteMode" [BackColor]="MasterResource?.BackColor" [DefinitionName]="MasterResource?.ListDefName" [DisplayExpressionsCache]="subSurgeryFormViewModel?.ListDefDisplayExpressions" [Enabled]="MasterResource?.Enabled" [Font]="MasterResource?.Font" [ForeColor]="MasterResource?.ForeColor" [ListFilterExpression]="MasterResource?.ListFilterExpression" [MinSearchLength]="MasterResource?.MinSearchLength" [PopupDialogFieldConfig]="MasterResource?.PopupDialogFieldConfig" [PopupDialogGridColumns]="MasterResource?.PopupDialogGridColumns" [PopupDialogHeight]="MasterResource?.PopupDialogHeight" [PopupDialogTitle]="MasterResource?.PopupDialogTitle" [PopupDialogWidth]="MasterResource?.PopupDialogWidth" [ReadOnly]="MasterResource?.ReadOnly" [SearchMode]="MasterResource?.SearchMode" [SearchTimeout]="MasterResource?.SearchTimeout" [SelectedObject]="subSurgeryFormViewModel?._SubSurgery?.Surgery?.MasterResource" [TabIndex]="MasterResource?.TabIndex" [Visible]="MasterResource?.Visible" [width]="MasterResource?.Width" id="A9646" data-tid="A338913"></hvl-list-box>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12" id="A9647" data-tid="A338914">
+            <DiagnosisGridForm [GridDiagnosisGridList]="subSurgeryFormViewModel?.GridEpisodeDiagnosisGridList" [EpisodeAction]="subSurgeryFormViewModel?._SubSurgery" [RemoveDeletedRow]="isContextSaved" [IsReadOnly]="ReadOnly" id="A9648" data-tid="A338915"></DiagnosisGridForm>
+        </div>
+    </div>
+
+    <div class="row" id="A9649" data-tid="A338916">
+        <div class="col-sm-2" id="A9650" data-tid="A338917">
+            <label class="control-label" id="A9651" data-tid="A338918"> Ameliyatı Başlatma Tarih/Saat</label>
+            <hvl-date-picker #Validation (ValueChange)="onSurgeryStartTimeChanged($event)" [BackColor]="SurgeryStartTime?.BackColor" [CustomFormat]="SurgeryStartTime?.CustomFormat" [Enabled]="SurgeryStartTime?.Enabled" [Font]="SurgeryStartTime?.Font" [ForeColor]="SurgeryStartTime?.ForeColor" [Format]="SurgeryStartTime?.Format" [Max]="SurgeryStartTime?.Max" [Min]="SurgeryStartTime?.Min" [ReadOnly]="SurgeryStartTime?.ReadOnly" [Required]="SurgeryStartTime?.Required" [TabIndex]="SurgeryStartTime?.TabIndex" [Value]="subSurgeryFormViewModel?._SubSurgery?.Surgery?.SurgeryStartTime" [Visible]="SurgeryStartTime?.Visible" id="A9652" data-tid="A338919"></hvl-date-picker>
+            <label class="control-label" id="A9653" data-tid="A338920"> Ameliyatı Bitirme Tarih/Saat </label>
+            <hvl-date-picker #Validation (ValueChange)="onSurgeryEndTimeChanged($event)" [BackColor]="SurgeryEndTime?.BackColor" [CustomFormat]="SurgeryEndTime?.CustomFormat" [Enabled]="SurgeryEndTime?.Enabled" [Font]="SurgeryEndTime?.Font" [ForeColor]="SurgeryEndTime?.ForeColor" [Format]="SurgeryEndTime?.Format" [Max]="SurgeryEndTime?.Max" [Min]="SurgeryEndTime?.Min" [ReadOnly]="SurgeryEndTime?.ReadOnly" [Required]="SurgeryEndTime?.Required" [TabIndex]="SurgeryEndTime?.TabIndex" [Value]="subSurgeryFormViewModel?._SubSurgery?.Surgery?.SurgeryEndTime" [Visible]="SurgeryEndTime?.Visible" id="A9654" data-tid="A338921"></hvl-date-picker>
+        </div>
+        <div class="col-sm-2" id="A9655" data-tid="A338922">
+            <label class="control-label" id="A9656" data-tid="A338923">Salon</label>
+            <hvl-list-box #Validation (SelectedObjectChange)="onSurgeryRoomChanged($event)" [AutoCompleteDialogHeight]="SurgeryRoom?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="SurgeryRoom?.AutoCompleteDialogWidth" [AutoCompleteMode]="SurgeryRoom?.AutoCompleteMode" [BackColor]="SurgeryRoom?.BackColor" [DefinitionName]="SurgeryRoom?.ListDefName" [DisplayExpressionsCache]="subSurgeryFormViewModel?.ListDefDisplayExpressions" [Enabled]="SurgeryRoom?.Enabled" [Font]="SurgeryRoom?.Font" [ForeColor]="SurgeryRoom?.ForeColor" [ListFilterExpression]="SurgeryRoom?.ListFilterExpression" [MinSearchLength]="SurgeryRoom?.MinSearchLength" [PopupDialogFieldConfig]="SurgeryRoom?.PopupDialogFieldConfig" [PopupDialogGridColumns]="SurgeryRoom?.PopupDialogGridColumns" [PopupDialogHeight]="SurgeryRoom?.PopupDialogHeight" [PopupDialogTitle]="SurgeryRoom?.PopupDialogTitle" [PopupDialogWidth]="SurgeryRoom?.PopupDialogWidth" [ReadOnly]="SurgeryRoom?.ReadOnly" [SearchMode]="SurgeryRoom?.SearchMode" [SearchTimeout]="SurgeryRoom?.SearchTimeout" [SelectedObject]="subSurgeryFormViewModel?._SubSurgery?.Surgery?.SurgeryRoom" [TabIndex]="SurgeryRoom?.TabIndex" [Visible]="SurgeryRoom?.Visible" [width]="SurgeryRoom?.Width" id="A9657" data-tid="A338924"></hvl-list-box>
+            <label class="control-label" id="A9658" data-tid="A338925">Masa</label>
+            <hvl-list-box #Validation (SelectedObjectChange)="onSurgeryDeskChanged($event)" [AutoCompleteDialogHeight]="SurgeryDesk?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="SurgeryDesk?.AutoCompleteDialogWidth" [AutoCompleteMode]="SurgeryDesk?.AutoCompleteMode" [BackColor]="SurgeryDesk?.BackColor" [DefinitionName]="SurgeryDesk?.ListDefName" [DisplayExpressionsCache]="subSurgeryFormViewModel?.ListDefDisplayExpressions" [Enabled]="SurgeryDesk?.Enabled" [Font]="SurgeryDesk?.Font" [ForeColor]="SurgeryDesk?.ForeColor" [ListFilterExpression]="SurgeryDesk?.ListFilterExpression" [MinSearchLength]="SurgeryDesk?.MinSearchLength" [PopupDialogFieldConfig]="SurgeryDesk?.PopupDialogFieldConfig" [PopupDialogGridColumns]="SurgeryDesk?.PopupDialogGridColumns" [PopupDialogHeight]="SurgeryDesk?.PopupDialogHeight" [PopupDialogTitle]="SurgeryDesk?.PopupDialogTitle" [PopupDialogWidth]="SurgeryDesk?.PopupDialogWidth" [ReadOnly]="SurgeryDesk?.ReadOnly" [SearchMode]="SurgeryDesk?.SearchMode" [SearchTimeout]="SurgeryDesk?.SearchTimeout" [SelectedObject]="subSurgeryFormViewModel?._SubSurgery?.Surgery?.SurgeryDesk" [TabIndex]="SurgeryDesk?.TabIndex" [Visible]="SurgeryDesk?.Visible" [width]="SurgeryDesk?.Width" id="A9659" data-tid="A338926"></hvl-list-box>
+        </div>
+        <div class="col-sm-2" id="A9655" data-tid="A338927">
+            <div class="row" id="A9812" data-tid="A338928">
+                <div class="col-md-6" data-tid="A338929">
+                    <label class="control-label" id="A9819" data-tid="A338930">Mesai Durumu</label>
+                    <hvl-enum-combobox #Validation (ValueChange)="onSurgeryShiftChanged($event)" [BackColor]="SurgeryShift?.BackColor" [DataTypeName]="SurgeryShift?.DataTypeName" [Enabled]="SurgeryShift?.Enabled" [Font]="SurgeryShift?.Font" [ForeColor]="SurgeryShift?.ForeColor" [IncludeOnly]="SurgeryShift?.IncludeOnly" [ReadOnly]="SurgeryShift?.ReadOnly" [ShowClearButton]="SurgeryShift?.ShowClearButton" [SortBy]="SurgeryShift?.SortBy" [TabIndex]="SurgeryShift?.TabIndex" [Value]="_SubSurgery.SurgeryShift" [Visible]="SurgeryShift?.Visible" data-tid="A338931"></hvl-enum-combobox>
+                </div>
+                <div class="col-md-6" data-tid="A338932">
+                    <label class="control-label" id="A9821" data-tid="A338933">Ameliyat Durumu</label>
+                    <hvl-enum-combobox #Validation (ValueChange)="onSurgeryStatusChanged($event)" [BackColor]="SurgeryStatus?.BackColor" [DataTypeName]="SurgeryStatus?.DataTypeName" [Enabled]="SurgeryStatus?.Enabled" [Font]="SurgeryStatus?.Font" [ForeColor]="SurgeryStatus?.ForeColor" [IncludeOnly]="SurgeryStatus?.IncludeOnly" [ReadOnly]="SurgeryStatus?.ReadOnly" [ShowClearButton]="SurgeryStatus?.ShowClearButton" [SortBy]="SurgeryStatus?.SortBy" [TabIndex]="SurgeryStatus?.TabIndex" [Value]="_SubSurgery.SurgeryStatus" [Visible]="SurgeryStatus?.Visible" data-tid="A338934"></hvl-enum-combobox>
+                </div>
+                <div class="col-md-12" data-tid="A338935">
+                    <label class="control-label" id="A9821" data-tid="A338936">Ameliyat Tipi</label>
+                    <hvl-enum-combobox #Validation (ValueChange)="onSurgeryPointGroupChanged($event)" [BackColor]="SurgeryPointGroup?.BackColor" [DataTypeName]="SurgeryPointGroup?.DataTypeName" [Enabled]="SurgeryPointGroup?.Enabled" [Font]="SurgeryPointGroup?.Font" [ForeColor]="SurgeryPointGroup?.ForeColor" [IncludeOnly]="SurgeryPointGroup?.IncludeOnly" [ReadOnly]="SurgeryPointGroup?.ReadOnly" [ShowClearButton]="SurgeryPointGroup?.ShowClearButton" [SortBy]="SurgeryPointGroup?.SortBy" [TabIndex]="SurgeryPointGroup?.TabIndex" [Value]="_SubSurgery.SurgeryPointGroup" [Visible]="SurgeryPointGroup?.Visible" data-tid="A338937"></hvl-enum-combobox>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6" id="A9660" data-tid="A338938">
+            <label class="control-label" id="A9661" data-tid="A338939">Planlanan Ameliyat Açıklaması</label>
+            <hvl-text-box #Validation (TextChange)="onPlannedSurgeryDescriptionChanged($event)" [BackColor]="PlannedSurgeryDescription?.BackColor" [CharacterCasing]="PlannedSurgeryDescription?.CharacterCasing" [Enabled]="PlannedSurgeryDescription?.Enabled" [Font]="PlannedSurgeryDescription?.Font" [ForeColor]="PlannedSurgeryDescription?.ForeColor" [height]="PlannedSurgeryDescription?.Height" [InputFormat]="PlannedSurgeryDescription?.InputFormat" [InputTurkishCharacter]="PlannedSurgeryDescription?.InputTurkishCharacter" [IsNonNumeric]="PlannedSurgeryDescription?.IsNonNumeric" [MultiLine]="PlannedSurgeryDescription?.Multiline" [ReadOnly]="PlannedSurgeryDescription?.ReadOnly" [Required]="PlannedSurgeryDescription?.Required" [TabIndex]="PlannedSurgeryDescription?.TabIndex" [TextAlign]="PlannedSurgeryDescription?.TextAlign" [Text]="subSurgeryFormViewModel?._SubSurgery?.Surgery?.PlannedSurgeryDescription" [Visible]="PlannedSurgeryDescription?.Visible" id="A9662" data-tid="A338940"></hvl-text-box>
+        </div>
+    </div>
+
+
+
+
+    <ul class="nav nav-tabs" id="A9663" data-tid="A338941">
+        <li class="active" id="A9664" data-tid="A338942">
+            <a data-toggle="tab" href="#surgeryInfo" id="A9665" data-tid="A338943">
+                <span id="A9666" data-tid="A338944">Ameliyat Bilgileri</span>
+            </a>
+        </li>
+        <li id="A9667" data-tid="A338945">
+            <a data-toggle="tab" href="#preOpInfo" id="A9668" data-tid="A338946">
+                <span id="A9669" data-tid="A338947">Ön Hazırlık Bilgileri</span>
+            </a>
+        </li>
+        <li id="A9670" data-tid="A338948">
+            <a data-toggle="tab" href="#subSurgeryInfo" id="A9671" data-tid="A338949">
+                <span id="A9672" data-tid="A338950">Katılan Birimlere Ait Ameliyatlar</span>
+            </a>
+        </li>
+
+    </ul>
+    <div class="tab-content" style="background-color:#fff;" id="A9673" data-tid="A338951">
+        <div id="surgeryInfo" class="tab-pane fade in active" data-tid="A338952">
+            <div class="row" id="A9674" data-tid="A338953">
+               
+                <div class="col-sm-6" id="A9675" data-tid="A338954">
+                    <label class="control-label" id="A9676" data-tid="A338955">Ameliyata Raporu</label>
+                    <hvl-richtextbox (change)="onSubSurgeryReportChanged($event)" [Height]="&#x27;152px&#x27;" [ngModelOptions]="{ standalone: true}" [ngModel]="subSurgeryFormViewModel?._SubSurgery?.SurgeryReport" [ReadOnly]="SubSurgeryReport?.ReadOnly" [TemplateGroupName]="SubSurgeryReport?.TemplateGroupName" [Visible]="SubSurgeryReport?.Visible" id="A9677" data-tid="A338956"></hvl-richtextbox>
+                </div>
+                <div class="col-sm-6" id="A9678" data-tid="A338957">
+                    <hvl-datagrid #gridSurgeryPersonnels [AllowUserToAddRows]="GridSurgeryPersonnels?.AllowUserToAddRows" [AllowUserToDeleteRows]="GridSurgeryPersonnels?.AllowUserToDeleteRows" [Columns]="GridSurgeryPersonnelsColumns" [dataSource]="subSurgeryFormViewModel?._SubSurgery?.Surgery?.AllSurgeryPersonnels" [DeleteButtonWidth]="GridSurgeryPersonnels?.DeleteButtonWidth" [DisplayExpressionsCache]="subSurgeryFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="GridSurgeryPersonnels?.ShowFilterRow" [FilterColumnName]="GridSurgeryPersonnels?.FilterColumnName" [FilterLabel]="GridSurgeryPersonnels?.FilterLabel" [Filter]="GridSurgeryPersonnels?.Filter" [height]="GridSurgeryPersonnels?.Height" [IsFilterLabelSingleLine]="GridSurgeryPersonnels?.IsFilterLabelSingleLine" [ShowColumnHeaders]="GridSurgeryPersonnels?.ColumnHeadersVisible" [ShowFilterCombo]="GridSurgeryPersonnels?.ShowFilterCombo" [ShowTotalNumberOfRows]="GridSurgeryPersonnels?.ShowTotalNumberOfRows" [ComfirmAddRowByFilterSelection]="ComfirmAddRowByPersonelFilterSelectionFunc" id="A9679" data-tid="A338958"></hvl-datagrid>
+                </div>
+            </div>
+            <div class="row" id="A9680" data-tid="A338959">
+                <br id="A9681" data-tid="A338960" />
+                <div class="col-sm-1" id="A9682" data-tid="A338961">
+                    <label class="control-label" id="A9683" data-tid="A338962">
+                        Ameliyat Hizmeti Ekle
+                    </label>
+                </div>
+                <div class="col-sm-6" id="A9684" data-tid="A338963">
+                    <hvl-list-box #Validation (SelectedObjectChange)="onSelectedSurgeryProcedureChanged($event)" [AutoCompleteDialogHeight]="SelectedSurgeryProcedure?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="SelectedSurgeryProcedure?.AutoCompleteDialogWidth" [AutoCompleteMode]="SelectedSurgeryProcedure?.AutoCompleteMode" [BackColor]="SelectedSurgeryProcedure?.BackColor" [DefinitionName]="SelectedSurgeryProcedure?.ListDefName" [DisplayExpressionsCache]="subSurgeryFormViewModel?.ListDefDisplayExpressions" [Enabled]="SelectedSurgeryProcedure?.Enabled" [Font]="SelectedSurgeryProcedure?.Font" [ForeColor]="SelectedSurgeryProcedure?.ForeColor" [ListFilterExpression]="SelectedSurgeryProcedure?.ListFilterExpression" [MinSearchLength]="SelectedSurgeryProcedure?.MinSearchLength" [PopupDialogFieldConfig]="SelectedSurgeryProcedure?.PopupDialogFieldConfig" [PopupDialogGridColumns]="SelectedSurgeryProcedure?.PopupDialogGridColumns" [PopupDialogHeight]="SelectedSurgeryProcedure?.PopupDialogHeight" [PopupDialogTitle]="SelectedSurgeryProcedure?.PopupDialogTitle" [PopupDialogWidth]="SelectedSurgeryProcedure?.PopupDialogWidth" [ReadOnly]="SelectedSurgeryProcedure?.ReadOnly" [SearchMode]="SelectedSurgeryProcedure?.SearchMode" [SearchTimeout]="SelectedSurgeryProcedure?.SearchTimeout" [SelectedObject]="subSurgeryFormViewModel?._selectedSurgeryProcedure" [TabIndex]="SelectedSurgeryProcedure?.TabIndex" [Visible]="SelectedSurgeryProcedure?.Visible" [width]="SelectedSurgeryProcedure?.Width" id="A9685" data-tid="A338964"></hvl-list-box>
+                </div>
+                <br id="A9686" data-tid="A338965" />
+            </div>
+            <div class="row" id="A9687" data-tid="A338966">
+                <div class="col-sm-12" id="A9688" data-tid="A338967">
+                    <div *ngFor="let surgeryProcedureFormVM of subSurgeryFormViewModel.SurgeryProcedureFormViewModelList" id="A9689" data-tid="A338968">
+                        <SurgeryProcedureForm [surgeryProcedureFormViewModel]="surgeryProcedureFormVM" [IsReadOnly]="ReadOnly" id="A9690" data-tid="A338969"></SurgeryProcedureForm>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="preOpInfo" class="tab-pane fade" data-tid="A338970">
+            <div class="row" id="A9691" data-tid="A338971">
+                <div class="col-sm-6" id="A9692" data-tid="A338972">
+                    <label class="control-label" id="A9693" data-tid="A338973">Ön Hazırlık İçin Direktifler</label>
+                    <hvl-richtextbox (change)="onDescriptionToPreOpChanged($event)" [ngModelOptions]="{ standalone: true}" [ngModel]="subSurgeryFormViewModel?._SubSurgery?.Surgery?.DescriptionToPreOp" [ReadOnly]="DescriptionToPreOp?.ReadOnly" [TemplateGroupName]="DescriptionToPreOp?.TemplateGroupName" [Visible]="DescriptionToPreOp?.Visible" id="A9694" data-tid="A338974"></hvl-richtextbox>
+                </div>
+                <div class="col-sm-6" id="A9695" data-tid="A338975">
+                    <label class="control-label" id="A9696" data-tid="A338976">Ön Hazırlık Açıklamaları</label>
+                    <hvl-richtextbox (change)="onPreOpDescriptionsChanged($event)" [ngModelOptions]="{ standalone: true}" [ngModel]="subSurgeryFormViewModel?._SubSurgery?.Surgery?.PreOpDescriptions" [ReadOnly]="PreOpDescriptions?.ReadOnly" [TemplateGroupName]="PreOpDescriptions?.TemplateGroupName" [Visible]="PreOpDescriptions?.Visible" id="A9697" data-tid="A338977"></hvl-richtextbox>
+                </div>
+            </div>
+            <div class="row" id="A9698" data-tid="A338978">
+                <div class="col-sm-12" id="A9699" data-tid="A338979">
+                    <label class="control-label" id="A9700" data-tid="A338980">Ameliyat Öncesi Vital Bulgular</label>
+                    <VitalSingsForm [vitalSingsFormViewModel]="subSurgeryFormViewModel?.vitalSingsViewModel" [IsReadOnly]="ReadOnly" id="A9701" data-tid="A338981"></VitalSingsForm>
+                </div>
+            </div>
+        </div>
+        <div id="subSurgeryInfo" class="tab-pane fade" data-tid="A338982">
+            <div class="row" id="A9702" data-tid="A338983">
+                <div class="col-sm-12" id="A9703" data-tid="A338984">
+                    <div *ngFor="let otherSurgerySummaryFormVM of subSurgeryFormViewModel.OtherSurgerySummaryFormViewModellList" id="A9704" data-tid="A338985">
+                        <SurgerySummaryForm [surgerySummaryFormViewModel]="otherSurgerySummaryFormVM" id="A9705" data-tid="A338986"></SurgerySummaryForm>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ul class="nav nav-tabs" id="A9706" data-tid="A338987">
+        <li class="active" id="A9707" data-tid="A338988">
+            <a data-toggle="tab" href="#treatmentMaterial" id="A9708" data-tid="A338989">
+                <span id="A9709" data-tid="A338990">Cerrahi Sarf</span>
+            </a>
+        </li>
+        <li id="A9710" data-tid="A338991">
+            <a data-toggle="tab" href="#directPurchaseGrid" id="A9711" data-tid="A338992">
+                <span id="A9712" data-tid="A338993">Doğrudan Teminle Alınan Malzemeler</span>
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content" style="background-color:#fff;" id="A9713" data-tid="A338994">
+        <div id="treatmentMaterial" class="tab-pane fade in active" data-tid="A338995">
+            <div class="col-sm-12" id="A9714" data-tid="A338996">
+                <TreatmentMaterialForm [SelectStoreFromUserStore]="true" [EpisodeAction]="subSurgeryFormViewModel?._SubSurgery" [TreatmentMaterialGridList]="subSurgeryFormViewModel?._SubSurgery.SubSurgeryExpends" [IsReadOnly]="ReadOnly" id="A9715" data-tid="A338997"></TreatmentMaterialForm>
+            </div>
+
+        </div>
+        <div id="directPurchaseGrid" class="tab-pane fade" data-tid="A338998">
+            <div class="col-sm-12" id="A9716" data-tid="A338999">
+                <hvl-datagrid [AllowUserToAddRows]="DirectPurchaseGrids?.AllowUserToAddRows" [AllowUserToDeleteRows]="DirectPurchaseGrids?.AllowUserToDeleteRows" [Columns]="DirectPurchaseGridsColumns" [dataSource]="subSurgeryFormViewModel?._SubSurgery?.DirectPurchaseGrids" [DeleteButtonWidth]="DirectPurchaseGrids?.DeleteButtonWidth" [DisplayExpressionsCache]="subSurgeryFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="DirectPurchaseGrids?.ShowFilterRow" [FilterColumnName]="DirectPurchaseGrids?.FilterColumnName" [FilterLabel]="DirectPurchaseGrids?.FilterLabel" [Filter]="DirectPurchaseGrids?.Filter" [height]="DirectPurchaseGrids?.Height" [IsFilterLabelSingleLine]="DirectPurchaseGrids?.IsFilterLabelSingleLine" [ShowColumnHeaders]="DirectPurchaseGrids?.ColumnHeadersVisible" [ShowFilterCombo]="DirectPurchaseGrids?.ShowFilterCombo" [ShowTotalNumberOfRows]="DirectPurchaseGrids?.ShowTotalNumberOfRows" [ReadOnly]="DirectPurchaseGrids?.ReadOnly" id="A9717" data-tid="A339000"></hvl-datagrid>
+            </div>
+        </div>
+        <div id="procedures" class="tab-pane fade" data-tid="A339001">
+            <div class="col-sm-12" id="A9718" data-tid="A339002">
+                <requested-procedures-form style="height:100%!important;display:block;" [EpisodeAction]="subSurgeryFormViewModel?._SubSurgery" [GridDiagnosisGridList]="subSurgeryFormViewModel?.GridEpisodeDiagnosisGridList" [IsReadOnly]="ReadOnly" id="A9719" data-tid="A339003"></requested-procedures-form>
+            </div>
+        </div>
+    </div>
+
+   
+</div> 
+

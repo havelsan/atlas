@@ -1,0 +1,108 @@
+﻿<div class="row" style="margin-bottom: 10px;" id="A23626" data-tid="A358949">
+    <div class="col-md-12" id="A23627" data-tid="A358950">
+        <dx-accordion #searchAccordion class="margin-bottom-10" collapsible="true" id="A23628" data-tid="A358951">
+            <dxi-item title="Sorgulama Paneli" i18n-title="@@M22127" id="A23629" data-tid="A358952">
+                <div class="row" id="A23630" data-tid="A358953">
+                    <div class="container-fluid col-sm-12" style="float: left;" id="A23631" data-tid="A358954">
+                        <div class="row" style="margin-bottom: 5px;" id="A23632" data-tid="A358955">
+                            <label class="control-label col-sm-2" id="A23633" data-tid="A358956">Başlangıç Tarihi</label>
+
+                            <label class="control-label col-sm-2" id="A23634" data-tid="A358957">Bitiş Tarihi</label>
+
+                            <label class="control-label col-sm-2" id="A23635" data-tid="A358958">Hasta Durumu</label>
+
+                            <label class="control-label col-sm-6" id="A23636" data-tid="A358959">İşlem Adımı</label>
+
+                        </div>
+
+                        <div class="row" style="margin-bottom: 5px;" id="A23637" data-tid="A358960">
+
+                            <div class="col-sm-2" id="A23638" data-tid="A358961">
+                                <dx-date-box width="100%" type="date" displayFormat="dd/MM/yyyy" [(value)]="ortezProtezWorkListViewModel._ortezProtezWorkListSearchCriteria.workListStartDate" id="A23639" data-tid="A358962">
+                                </dx-date-box>
+                            </div>
+
+                            <div class="col-sm-2" id="A23640" data-tid="A358963">
+                                <dx-date-box width="100%" type="date" displayFormat="dd/MM/yyyy" [(value)]="ortezProtezWorkListViewModel._ortezProtezWorkListSearchCriteria.workListEndDate" id="A23641" data-tid="A358964">
+                                </dx-date-box>
+                            </div>
+
+                            <div class="col-sm-2" id="A23642" data-tid="A358965">
+                                <dx-select-box [items]="PatientTypeList" displayExpr="TypeName" valueExpr="TypeID" [searchEnabled]="true" [value]="ortezProtezWorkListViewModel._ortezProtezWorkListSearchCriteria.patienttype" (onValueChanged)="onPatientTypeChanged($event)" id="A23643" data-tid="A358966"></dx-select-box>
+                            </div>
+
+                            <div class="col-sm-4" id="A23644" data-tid="A358967">
+                                <dx-tag-box displayExpr="StateDefName" [multiline]="false" [showSelectionControls]="true" applyValueMode="useButtons" [(items)]="OrtezProtezWorkListStateItems" [(value)]="ortezProtezWorkListViewModel._ortezProtezWorkListSearchCriteria.ortezProtezWorkListStateItem" id="A23645" data-tid="A358968">
+                                </dx-tag-box>
+                            </div>
+
+                        </div>
+
+                        <div class="row" style="margin-bottom: 5px;" id="A23646" data-tid="A358969">
+                            <label class="control-label col-sm-2" id="A23647" data-tid="A358970">Adı Soyadı</label>
+
+                            <label class="control-label col-sm-2" id="A23648" data-tid="A358971">T.C. Kimlik Nu</label>
+
+                            <label class="control-label col-sm-2" id="A23649" data-tid="A358972">Kabul No</label>
+
+                            <label class="control-label col-sm-4" id="A23650" data-tid="A358973">İsteyen Doktor</label>
+
+                        </div>
+
+                        <div class="row" style="margin-bottom: 5px;" id="A23651" data-tid="A358974">
+                            <div class="col-sm-2" id="A23652" data-tid="A358975">
+                                <!--<dx-text-box [showClearButton]="true" placeholder="İsim Girin" (onKeyPress)="textBoxKeyPress($event)" [(value)]="ortezProtezWorkListViewModel._ortezProtezWorkListSearchCriteria.patientNameSurname"></dx-text-box>-->
+                                <PatientSearchForm Width="100%" (SelectedPatientChanged)="patientChanged($event)" id="A23653" data-tid="A358976"></PatientSearchForm>
+                            </div>
+
+                            <div class="col-sm-2" id="A23654" data-tid="A358977">
+                                <dx-number-box [(value)]="ortezProtezWorkListViewModel._ortezProtezWorkListSearchCriteria.uniqueRefno" [showClearButton]="true" (keypress)="keyDownForNumericControl($event)" [min]="10000000000" [max]="10000000000" id="A23655" data-tid="A358978"></dx-number-box>
+                            </div>
+
+                            <div class="col-sm-2" id="A23656" data-tid="A358979">
+                                <dx-text-box [(value)]="ortezProtezWorkListViewModel._ortezProtezWorkListSearchCriteria.kabulNo" [showClearButton]="true" id="A23657" data-tid="A358980"></dx-text-box>
+                            </div>
+
+                            <div class="col-sm-4" id="A23658" data-tid="A358981">
+                                <!--<hvl-list-box #Validation (SelectedObjectChange)="onRequesterDoctorChanged($event)" [DefinitionName]="SpecialistDoctorListDefinitionForPA" [MinSearchLength]="3"
+                                              [SelectedObject]="ortezProtezWorkListViewModel?._ortezProtezWorkListSearchCriteria?.requesterDoctor" [Enabled]="true" [ReadOnly]="false">
+
+                                </hvl-list-box>-->
+                                <hvl-list-box #Validation (SelectedObjectChange)="onRequesterDoctorChanged($event)" [AutoCompleteDialogHeight]="ProcedureDoctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ProcedureDoctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="ProcedureDoctor?.AutoCompleteMode" [BackColor]="ProcedureDoctor?.BackColor" [DefinitionName]="ProcedureDoctor?.ListDefName" [DisplayExpressionsCache]="patientAdmissionFormViewModel?.ListDefDisplayExpressions" [Enabled]="ProcedureDoctor?.Enabled" [Font]="ProcedureDoctor?.Font" [ForeColor]="ProcedureDoctor?.ForeColor" [ListFilterExpression]="ProcedureDoctor?.ListFilterExpression" [MinSearchLength]="ProcedureDoctor?.MinSearchLength" [PopupDialogFieldConfig]="ProcedureDoctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ProcedureDoctor?.PopupDialogGridColumns" [PopupDialogHeight]="ProcedureDoctor?.PopupDialogHeight" [PopupDialogTitle]="ProcedureDoctor?.PopupDialogTitle" [PopupDialogWidth]="ProcedureDoctor?.PopupDialogWidth" [ReadOnly]="ProcedureDoctor?.ReadOnly" [SearchMode]="ProcedureDoctor?.SearchMode" [SearchTimeout]="ProcedureDoctor?.SearchTimeout" [SelectedObject]="ortezProtezWorkListViewModel?._ortezProtezWorkListSearchCriteria?.requesterDoctor" [TabIndex]="ProcedureDoctor?.TabIndex" [Visible]="ProcedureDoctor?.Visible" [width]="ProcedureDoctor?.Width" id="A23659" data-tid="A358982"></hvl-list-box>
+                            </div>
+
+                            <div class="col-sm-2" id="A23660" data-tid="A358983">
+                                <!--<button type="button" class="btn btn-sm btn-primary btn-gradient btn-round pull-right" (click)="btnSearchClicked()" style="margin: -5px 0px 0px 0px;"  id="A23661"><span class="fa fa-bars" id="A23662"></span>&nbsp;Listele</button>-->
+                                <dx-button type="default" class="dx-icon pull-right" icon="fa fa-bars" text="Listele" (onClick)="btnSearchClicked()" i18n-text="@@M27337" id="A23662" data-tid="A358984"></dx-button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </dxi-item>
+        </dx-accordion>
+    </div>
+
+</div>
+<div class="row" id="A23663" data-tid="A358985">
+    <div class="col-md-12" id="A23664" data-tid="A358986">
+        <comp-compose [Info]="systemApiService?.componentInfo" (DynamicComponentClosed)="dynamicComponentClosed($event)" (ComponentCreated)="componentCreated($event)" id="A23665" data-tid="A358987"></comp-compose>
+    </div>
+</div>
+
+<div class="col-sm-12 remove-padding" id="A23666" data-tid="A358988">
+    <dx-data-grid id="ortezProtezWorkListGrid" [class.ortezProtezWorkListGridComponentOpen]="isComponentOpened==true" [class.ortezProtezWorkListGridComponentClosed]="isComponentOpened==false" #ortezProtezWorkListGrid [columns]="WorkListColumns" allowColumnReordering="true" allowColumnResizing="true" [dataSource]="ortezProtezWorkListViewModel.OrtezProtezActionList" (onRowClick)="select($event)" (onRowPrepared)="onRowPrepared($event)" [filterRow]="{visible: true}" style="padding-top: 10px;" [(selectedRowKeys)]="selectedRowKeysResultList" [selection]="{mode: 'single',allowSelectAll: false, showCheckBoxesMode: 'none'}" [editing]="{mode: 'row' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" data-tid="A358989">
+
+        <dxo-scrolling mode="virtual" id="A23667" data-tid="A358990"></dxo-scrolling>
+        <dxo-export [enabled]="true" fileName="Ortez Protez İş Listesi" [allowExportSelectedData]="false" id="A23668" data-tid="A358991"></dxo-export>
+    </dx-data-grid>
+
+    <div class="col-sm-12" style="margin-top: 20px;font-weight: bold;" id="A23669" data-tid="A358992">
+        <span id="A23670" data-tid="A358993">Toplam İşlem Sayısı:{{ortezProtezWorkListViewModel.OrtezProtezActionList.length}}</span>
+    </div>
+
+    <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A23671" data-tid="A358994">
+    </dx-load-panel>
+</div>

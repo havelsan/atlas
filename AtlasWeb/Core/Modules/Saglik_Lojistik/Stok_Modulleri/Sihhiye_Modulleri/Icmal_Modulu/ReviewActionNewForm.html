@@ -1,0 +1,149 @@
+﻿<div class="container-fluid" id="A7305" data-tid="A334506">
+    <h4 class="logisticLabel" style="margin-left:40%;color:#08c;" id="A7306" data-tid="A334507">{{FormCaption}}</h4>
+    <NeStatePanelComponent [OutgoingTransitions]="reviewActionNewFormViewModel?.OutgoingTransitions" [StateReports]="reviewActionNewFormViewModel?.CurrentStateReports" [ObjectID]="reviewActionNewFormViewModel?._ReviewAction?.ObjectID" [ObjectDefID]="reviewActionNewFormViewModel?._ReviewAction?.ObjectDefID" [CurrentStateDefID]="reviewActionNewFormViewModel._ReviewAction.CurrentStateDefID" [DropStateList]="DropStateList" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()" id="A7307" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A334508">
+    </NeStatePanelComponent>
+
+    <form id="ReviewActionNewForm" class="form-horizontal" role="form" data-tid="A334509"></form>
+    <br id="A7308" data-tid="A334510" />
+    <div class="row" id="A7309" data-tid="A334511">
+        <div class="col-sm-2" id="A7310" data-tid="A334512">
+            <label class="control-label" id="A7311" data-tid="A334513">
+                İşlem No
+            </label>
+            <hvl-text-box #Validation (TextChange)="onStockActionIDChanged($event)" [BackColor]="StockActionID?.BackColor" [CharacterCasing]="StockActionID?.CharacterCasing" [Enabled]="StockActionID?.Enabled" [Font]="StockActionID?.Font" [ForeColor]="StockActionID?.ForeColor" [height]="StockActionID?.Height" [InputFormat]="StockActionID?.InputFormat" [InputTurkishCharacter]="StockActionID?.InputTurkishCharacter" [IsNonNumeric]="StockActionID?.IsNonNumeric" [MultiLine]="StockActionID?.Multiline" [ReadOnly]="StockActionID?.ReadOnly" [Required]="StockActionID?.Required" [TabIndex]="StockActionID?.TabIndex" [TextAlign]="StockActionID?.TextAlign" [Text]="reviewActionNewFormViewModel?._ReviewAction?.StockActionID" [Visible]="StockActionID?.Visible" id="A7312" data-tid="A334514"></hvl-text-box>
+        </div>
+        <div class="col-sm-2" id="A7313" data-tid="A334515">
+            <label class="control-label" id="A7314" data-tid="A334516">
+                İşlem Tarihi
+            </label>
+            <hvl-date-picker #Validation (ValueChange)="onActionDateChanged($event)" [BackColor]="ActionDate?.BackColor" [CustomFormat]="ActionDate?.CustomFormat" [Enabled]="ActionDate?.Enabled" [Font]="ActionDate?.Font" [ForeColor]="ActionDate?.ForeColor" [Format]="ActionDate?.Format" [Max]="ActionDate?.Max" [Min]="ActionDate?.Min" [ReadOnly]="ActionDate?.ReadOnly" [Required]="ActionDate?.Required" [TabIndex]="ActionDate?.TabIndex" [Value]="reviewActionNewFormViewModel?._ReviewAction?.ActionDate" [Visible]="ActionDate?.Visible" id="A7315" data-tid="A334517"></hvl-date-picker>
+        </div>
+        <div class="col-sm-2" id="A7316" data-tid="A334518">
+            <label class="control-label" id="A7317" data-tid="A334519">
+                Çıkış Türü
+            </label>
+            <hvl-enum-combobox #Validation (ValueChange)="onMKYS_CikisIslemTuruChanged($event)" [BackColor]="MKYS_CikisIslemTuru?.BackColor" [DataTypeName]="MKYS_CikisIslemTuru?.DataTypeName" [Enabled]="MKYS_CikisIslemTuru?.Enabled" [Font]="MKYS_CikisIslemTuru?.Font" [ForeColor]="MKYS_CikisIslemTuru?.ForeColor" [IncludeOnly]="MKYS_CikisIslemTuru?.IncludeOnly" [ReadOnly]="MKYS_CikisIslemTuru?.ReadOnly" [ShowClearButton]="MKYS_CikisIslemTuru?.ShowClearButton" [SortBy]="MKYS_CikisIslemTuru?.SortBy" [TabIndex]="MKYS_CikisIslemTuru?.TabIndex" [Value]="reviewActionNewFormViewModel?._ReviewAction?.MKYS_CikisIslemTuru" [Visible]="MKYS_CikisIslemTuru?.Visible" id="A7318" data-tid="A334520"></hvl-enum-combobox>
+        </div>
+        <div class="col-sm-3" id="A7319" data-tid="A334521">
+            <label class="control-label" id="A7320" data-tid="A334522">
+                Çıkış Hareket Türü
+            </label>
+            <hvl-enum-combobox #Validation (ValueChange)="onMKYS_CikisStokHareketTuruChanged($event)" [BackColor]="MKYS_CikisStokHareketTuru?.BackColor" [DataTypeName]="MKYS_CikisStokHareketTuru?.DataTypeName" [Enabled]="MKYS_CikisStokHareketTuru?.Enabled" [Font]="MKYS_CikisStokHareketTuru?.Font" [ForeColor]="MKYS_CikisStokHareketTuru?.ForeColor" [IncludeOnly]="MKYS_CikisStokHareketTuru?.IncludeOnly" [ReadOnly]="MKYS_CikisStokHareketTuru?.ReadOnly" [ShowClearButton]="MKYS_CikisStokHareketTuru?.ShowClearButton" [SortBy]="MKYS_CikisStokHareketTuru?.SortBy" [TabIndex]="MKYS_CikisStokHareketTuru?.TabIndex" [Value]="reviewActionNewFormViewModel?._ReviewAction?.MKYS_CikisStokHareketTuru" [Visible]="MKYS_CikisStokHareketTuru?.Visible" id="A7321" data-tid="A334523"></hvl-enum-combobox>
+        </div>
+        <div class="col-sm-3" id="A7324" data-tid="A334524">
+            <label class="control-label" id="A7325" data-tid="A334525">
+                Ana Depo
+            </label>
+            <hvl-list-box #Validation (SelectedObjectChange)="onStoreChanged($event)" [AutoCompleteDialogHeight]="Store?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="Store?.AutoCompleteDialogWidth" [AutoCompleteMode]="Store?.AutoCompleteMode" [BackColor]="Store?.BackColor" [DefinitionName]="Store?.ListDefName" [DisplayExpressionsCache]="reviewActionNewFormViewModel?.ListDefDisplayExpressions" [Enabled]="Store?.Enabled" [Font]="Store?.Font" [ForeColor]="Store?.ForeColor" [ListFilterExpression]="Store?.ListFilterExpression" [MinSearchLength]="Store?.MinSearchLength" [PopupDialogFieldConfig]="Store?.PopupDialogFieldConfig" [PopupDialogGridColumns]="Store?.PopupDialogGridColumns" [PopupDialogHeight]="Store?.PopupDialogHeight" [PopupDialogTitle]="Store?.PopupDialogTitle" [PopupDialogWidth]="Store?.PopupDialogWidth" [ReadOnly]="Store?.ReadOnly" [SearchMode]="Store?.SearchMode" [SearchTimeout]="Store?.SearchTimeout" [SelectedObject]="reviewActionNewFormViewModel?._ReviewAction?.Store" [TabIndex]="Store?.TabIndex" [Visible]="Store?.Visible" [width]="Store?.Width" id="A7326" data-tid="A334526"></hvl-list-box>
+        </div>
+    </div>
+    <br id="A7322" data-tid="A334527" />
+    <div class="row" id="A7323" data-tid="A334528">
+        <div class="col-sm-2" id="A7327" data-tid="A334529">
+            <label class="control-label" id="A7328" data-tid="A334530">
+                Başlangıç Tarihi
+            </label>
+            <hvl-date-picker #Validation (ValueChange)="onStartDateChanged($event)" [BackColor]="StartDate?.BackColor" [CustomFormat]="StartDate?.CustomFormat" [Enabled]="StartDate?.Enabled" [Font]="StartDate?.Font" [ForeColor]="StartDate?.ForeColor" [Format]="StartDate?.Format" [Max]="StartDate?.Max" [Min]="StartDate?.Min" [ReadOnly]="StartDate?.ReadOnly" [Required]="StartDate?.Required" [TabIndex]="StartDate?.TabIndex" [Value]="reviewActionNewFormViewModel?._ReviewAction?.StartDate" [Visible]="StartDate?.Visible" id="A7329" data-tid="A334531"></hvl-date-picker>
+        </div>
+        <div class="col-sm-2" id="A7330" data-tid="A334532">
+            <label class="control-label" id="A7331" data-tid="A334533">
+                Bitiş Tarihi
+            </label>
+            <hvl-date-picker #Validation (ValueChange)="onEndDateChanged($event)" [BackColor]="EndDate?.BackColor" [CustomFormat]="EndDate?.CustomFormat" [Enabled]="EndDate?.Enabled" [Font]="EndDate?.Font" [ForeColor]="EndDate?.ForeColor" [Format]="EndDate?.Format" [Max]="EndDate?.Max" [Min]="EndDate?.Min" [ReadOnly]="EndDate?.ReadOnly" [Required]="EndDate?.Required" [TabIndex]="EndDate?.TabIndex" [Value]="reviewActionNewFormViewModel?._ReviewAction?.EndDate" [Visible]="EndDate?.Visible" id="A7332" data-tid="A334534">
+            </hvl-date-picker>
+        </div>
+        <div class="col-sm-2" id="A7319" data-tid="A334535">
+            <label class="control-label" id="A7320" data-tid="A334536">
+                İcmal Tipi
+            </label>
+            <hvl-enum-combobox #Validation (ValueChange)="onReviewActionTypeChanged($event)" [BackColor]="ReviewActionType?.BackColor" [DataTypeName]="ReviewActionType?.DataTypeName" [Enabled]="ReviewActionType?.Enabled" [Font]="ReviewActionType?.Font" [ForeColor]="ReviewActionType?.ForeColor" [IncludeOnly]="ReviewActionType?.IncludeOnly" [ReadOnly]="ReviewActionType?.ReadOnly" [ShowClearButton]="ReviewActionType?.ShowClearButton" [SortBy]="ReviewActionType?.SortBy" [TabIndex]="ReviewActionType?.TabIndex" [Value]="reviewActionNewFormViewModel?._ReviewAction?.ReviewActionType" [Visible]="ReviewActionType?.Visible" id="A7321" data-tid="A334537"></hvl-enum-combobox>
+        </div>
+        <div class="col-sm-2" id="A7330" data-tid="A334538">
+            <label class="control-label" id="A7328" data-tid="A334539">
+                Filtre Depo
+            </label>
+            <dx-tag-box [items]="store" [(value)]="filterStore" displayExpr="Name" valueExpr="ObjectID" [showSelectionControls]="true" applyValueMode="useButtons" [disabled]="tagBoxDisabled" data-tid="A334540">
+            </dx-tag-box>
+        </div>
+        <div class="col-sm-2" id="A7330" data-tid="A334541">
+            <label class="control-label" id="A7328" data-tid="A334542">
+                Filtre Bütçe Tipi
+            </label>
+            <dx-tag-box [items]="budget" [(value)]="filterBudget" displayExpr="Name" valueExpr="ObjectID" [showSelectionControls]="true" applyValueMode="useButtons" [disabled]="tagBoxDisabled" data-tid="A334543">
+            </dx-tag-box>
+        </div>
+        <div class="col-sm-1" id="A7333" data-tid="A334544">
+            <br id="A7334" data-tid="A334545" />
+
+            <dx-button type="default" text="Listele" style="float:right" (onClick)="TTGetDrugButton_Click()" [(disabled)]="buttonDisabled" id="A1116" data-tid="A334546"></dx-button>
+
+        <!--     <hvl-button (BtnClicked)="TTGetDrugButton_Click()" [BackColor]="TTGetDrugButton?.BackColor"
+                [Enabled]="TTGetDrugButton?.Enabled" [Font]="TTGetDrugButton?.Font"
+                [ForeColor]="TTGetDrugButton?.ForeColor" [height]="TTGetDrugButton?.Height"
+                [ReadOnly]="TTGetDrugButton?.ReadOnly" [TabIndex]="TTGetDrugButton?.TabIndex"
+                [Text]="TTGetDrugButton?.Text" [Visible]="TTGetDrugButton?.Visible" id="A7335"></hvl-button> -->
+        </div>
+        <div class="col-sm-1" id="A7333" data-tid="A334547">
+            <br id="A7334" data-tid="A334548" />
+            <hvl-button (BtnClicked)="Clear()" [BackColor]="ClearButton?.BackColor" [Enabled]="ClearButton?.Enabled" [Font]="ClearButton?.Font" [ForeColor]="ClearButton?.ForeColor" [height]="ClearButton?.Height" [ReadOnly]="ClearButton?.ReadOnly" [TabIndex]="ClearButton?.TabIndex" [Text]="ClearButton?.Text" [Visible]="ClearButton?.Visible" id="A7335" data-tid="A334549"></hvl-button>
+        </div>
+    </div>
+    <br id="A7336" data-tid="A334550" />
+    <div class="row" id="A7337" data-tid="A334551">
+        <div class="col-sm-12" id="A7338" data-tid="A334552">
+            <label class="control-label" id="A7339" data-tid="A334553">
+                Açıklama
+            </label>
+            <hvl-text-box #Validation (TextChange)="onDescriptionChanged($event)" [BackColor]="Description?.BackColor" [CharacterCasing]="Description?.CharacterCasing" [Enabled]="Description?.Enabled" [Font]="Description?.Font" [ForeColor]="Description?.ForeColor" [height]="Description?.Height" [InputFormat]="Description?.InputFormat" [InputTurkishCharacter]="Description?.InputTurkishCharacter" [IsNonNumeric]="Description?.IsNonNumeric" [MultiLine]="Description?.Multiline" [ReadOnly]="Description?.ReadOnly" [Required]="Description?.Required" [TabIndex]="Description?.TabIndex" [TextAlign]="Description?.TextAlign" [Text]="reviewActionNewFormViewModel?._ReviewAction?.Description" [Visible]="Description?.Visible" id="A7340" data-tid="A334554"></hvl-text-box>
+        </div>
+    </div>
+    <br id="A7341" data-tid="A334555" />
+    <div class="row" id="A7342" data-tid="A334556">
+        <dx-tab-panel [selectedIndex]="0" id="A7343" data-tid="A334557">
+            <dxi-item class="tabpanel-item" title="Hasta Bazında" i18n-title="@@M15152" id="A7344" data-tid="A334558">
+                <div class="row" id="A7345" data-tid="A334559">
+                    <div class="col-sm-12" id="A7346" data-tid="A334560">
+                        <dx-data-grid id="gridContainer" [dataSource]="reviewActionNewFormViewModel?._ReviewAction?.ReviewActionPatientDets" data-tid="A334561">
+                            <dxi-column dataField="Clinic" caption="Bölüm" i18n-caption="@@M12031" id="A7347" data-tid="A334562">
+                            </dxi-column>
+                            <dxi-column dataField="Patient" caption="Hasta" i18n-caption="@@M15125" id="A7348" data-tid="A334563">
+                            </dxi-column>
+                            <dxi-column dataField="UniqueRefNo" caption="TCKNo" i18n-caption="@@M27307" id="A7349" data-tid="A334564">
+                            </dxi-column>
+                            <dxi-column dataField="MaterialName" caption="İlaç" i18n-caption="@@M16287" id="A7350" data-tid="A334565">
+                            </dxi-column>
+                            <dxi-column dataField="Amount" caption="Miktar" i18n-caption="@@M19030" id="A7351" data-tid="A334566">
+                            </dxi-column>
+                        </dx-data-grid>
+                    </div>
+                </div>
+            </dxi-item>
+            <dxi-item class="tabpanel-item" title="Depo Bazında" i18n-title="@@M12617" id="A7352" data-tid="A334567">
+                <div class="row" id="A7353" data-tid="A334568">
+                    <div class="col-sm-12" id="A7354" data-tid="A334569">
+
+                        <dx-data-grid id="gridContainer" [dataSource]="reviewActionNewFormViewModel?._ReviewAction?.ReviewActionDetails" data-tid="A334570">
+                            <dxi-column dataField="Material.Name" caption="İlaç" i18n-caption="@@M16287" id="A7355" data-tid="A334571">
+                            </dxi-column>
+                            <dxi-column dataField="Material.Barcode" caption="Barkod" i18n-caption="@@M27321" id="A7356" data-tid="A334572"></dxi-column>
+                            <dxi-column dataField="Amount" caption="Miktar" i18n-caption="@@M19030" id="A7357" data-tid="A334573">
+                            </dxi-column>
+                            <dxi-column dataField="StoreName" caption="Depo" i18n-caption="@@M12615" id="A7358" data-tid="A334574">
+                            </dxi-column>
+                            <dxi-column dataField="UnitPrice" caption="Birim Fiyat" i18n-caption="@@M11855" id="A7359" data-tid="A334575">
+                            </dxi-column>
+
+                        </dx-data-grid>
+
+                    </div>
+                </div>
+            </dxi-item>
+        </dx-tab-panel>
+    </div>
+</div>
+<dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#gridContainer' }" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" id="A7360" data-tid="A334576">
+</dx-load-panel>
+
+
+<dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" showIndicator="true" showPane="true" shading="true" [closeOnOutsideClick]="false" [message]="LoadPanelMessage" data-tid="A334577">
+</dx-load-panel>

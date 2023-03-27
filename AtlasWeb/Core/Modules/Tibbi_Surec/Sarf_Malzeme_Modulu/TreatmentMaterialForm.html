@@ -1,0 +1,241 @@
+﻿<form id="TreatmentMaterialForm" class="form-horizontal" role="form" data-tid="A363538">
+
+</form>
+<div id="A26693" data-tid="A363539">
+    <div class="container-fluid" style="height:200px;padding:0" id="A26694" data-tid="A363540">
+        <div class="row" id="A26695" data-tid="A363541">
+            <br id="A26696" data-tid="A363542" />
+            <div class="col-sm-2" id="A26697" data-tid="A363543">
+                <label class="control-label" id="A26698" data-tid="A363544">İstem Tarihi</label>
+                <hvl-date-picker #Validation (ValueChange)="onActionDateChanged($event)"
+                    [BackColor]="ActionDate?.BackColor" [CustomFormat]="ActionDate?.CustomFormat"
+                    [Enabled]="ActionDate?.Enabled" [Font]="ActionDate?.Font" [ForeColor]="ActionDate?.ForeColor"
+                    [Format]="ActionDate?.Format" [Max]="ActionDate?.Max" [Min]="ActionDate?.Min"
+                    [ReadOnly]="IsReadOnly" [Required]="ActionDate?.Required" [TabIndex]="ActionDate?.TabIndex"
+                    [Value]="treatmentMaterialFormViewModel?.ActionDate" [Visible]="ActionDate?.Visible" id="A26699"
+                    data-tid="A363545">
+                </hvl-date-picker>
+            </div>
+            <div class="col-sm-2" id="A26700" data-tid="A363546">
+                <label class="control-label" id="A26701" data-tid="A363547">Deposu</label>
+                <!-- <hvl-list-box #Validation (SelectedObjectChange)="selectedStoreSelected($event)" [AutoCompleteDialogHeight]="SelectedStore?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="SelectedStore?.AutoCompleteDialogWidth" [AutoCompleteMode]="SelectedStore?.AutoCompleteMode" [BackColor]="SelectedStore?.BackColor" [DefinitionName]="SelectedStore?.ListDefName" [DisplayExpressionsCache]="treatmentMaterialFormViewModel?.ListDefDisplayExpressions" [Enabled]="SelectedStore?.Enabled" [Font]="SelectedStore?.Font" [ForeColor]="SelectedStore?.ForeColor" [ListFilterExpression]="SelectedStore?.ListFilterExpression" [MinSearchLength]="SelectedStore?.MinSearchLength" [PopupDialogFieldConfig]="SelectedStore?.PopupDialogFieldConfig" [PopupDialogGridColumns]="SelectedStore?.PopupDialogGridColumns" [PopupDialogHeight]="SelectedStore?.PopupDialogHeight" [PopupDialogTitle]="SelectedStore?.PopupDialogTitle" [PopupDialogWidth]="SelectedStore?.PopupDialogWidth" [ReadOnly]="SelectedStore?.ReadOnly || IsReadOnly" [SearchMode]="SelectedStore?.SearchMode" [SearchTimeout]="SelectedStore?.SearchTimeout" [SelectedObject]="treatmentMaterialFormViewModel?._selectedStoreValue" [TabIndex]="SelectedStore?.TabIndex" [Visible]="SelectedStore?.Visible" [width]="SelectedStore?.Width" id="A26702"></hvl-list-box> -->
+                <dx-select-box [items]="stores" displayExpr="Name" valueExpr="ObjectID" [searchEnabled]="true"
+                    [acceptCustomValue]="true" [disabled]="selectStoreReadOnly" [(value)]="selectedStoreNew"
+                    (onValueChanged)="selectStoreNewChange()" data-tid="A363548"></dx-select-box>
+            </div>
+            <div *ngIf="ShowNewMaterialList" class="col-sm-5" id="A26703" data-tid="A363549">
+                <label class="control-label" id="A26704" data-tid="A363550">Sarf Malzeme</label>
+                <dx-text-box [(value)]="searchText" [showClearButton]="true" placeholder="Malzeme Ara .."
+                    valueChangeEvent="keyup" (onEnterKey)="onEnterKey($event)"></dx-text-box>
+            </div>
+            <div *ngIf="!ShowNewMaterialList" class="col-sm-5" id="A26703" data-tid="A363549">
+                <label class="control-label" id="A26704" data-tid="A363550">Sarf Malzeme</label>
+
+                <dx-drop-down-box #materialDrop [(value)]="selectedMaterialItem.Name" displayExpr="Name"
+                    valueExpr="ObjectID" [showClearButton]="true" [dataSource]="" (onOpened)="openMaterialDropDown($event)"
+                    (onValueChanged)="onClearMaterial($event)" data-tid="A363551">
+                    <div *dxTemplate="let data of 'content'" data-tid="A363552">
+                        <dx-data-grid [showColumnLines]="true" [showRowLines]="true" [showBorders]="true"
+                        [remoteOperations]="true" [customizeColumns]="null" height="280"
+                            [rowAlternationEnabled]="true" [dataSource]="materialDataSource"
+                            (onRowClick)="selectMaterial($event)" data-tid="A363553">
+                            <dxo-search-panel [visible]="true" data-tid="A363554"></dxo-search-panel>
+                            <dxo-filter-row [visible]="true" data-tid="A363555"></dxo-filter-row>
+                            <dxo-paging [pageSize]="10" data-tid="A363556"></dxo-paging>
+                            <dxo-selection mode="single" data-tid="A363557"></dxo-selection>
+                            <dxi-column caption="Barkod" dataField="Barcode" width="100" data-tid="A363558">
+                            </dxi-column>
+                            <dxi-column caption="Taşınır Kodu" dataField="NATOStockNO" width="100" data-tid="A363559">
+                            </dxi-column>
+                            <dxi-column caption="Malzeme" dataField="Name" cssClass="pointer-column" data-tid="A363560">
+                            </dxi-column>
+                            <dxi-column caption="Birimi" dataField="Distributiontypename" width="70" data-tid="A363561">
+                            </dxi-column>
+                            <dxi-column caption="Miktar" dataField="Inheld" width="70" data-tid="A363562"></dxi-column>
+
+                        </dx-data-grid>
+                    </div>
+                </dx-drop-down-box>
+                <!--     <hvl-list-box #Validation (SelectedObjectChange)="treatmentMaterialSelected($event)"
+                    [AutoCompleteDialogHeight]="TreatmentMaterial?.AutoCompleteDialogHeight"
+                    [AutoCompleteDialogWidth]="TreatmentMaterial?.AutoCompleteDialogWidth"
+                    [AutoCompleteMode]="TreatmentMaterial?.AutoCompleteMode" [BackColor]="TreatmentMaterial?.BackColor"
+                    [DefinitionName]="TreatmentMaterial?.ListDefName"
+                    [DisplayExpressionsCache]="treatmentMaterialFormViewModel?.ListDefDisplayExpressions"
+                    [Enabled]="TreatmentMaterial?.Enabled" [Font]="TreatmentMaterial?.Font"
+                    [ForeColor]="TreatmentMaterial?.ForeColor"
+                    [ListFilterExpression]="TreatmentMaterial?.ListFilterExpression"
+                    [MinSearchLength]="TreatmentMaterial?.MinSearchLength"
+                    [PopupDialogFieldConfig]="TreatmentMaterial?.PopupDialogFieldConfig"
+                    [PopupDialogGridColumns]="TreatmentMaterial?.PopupDialogGridColumns"
+                    [PopupDialogHeight]="TreatmentMaterial?.PopupDialogHeight"
+                    [PopupDialogTitle]="TreatmentMaterial?.PopupDialogTitle"
+                    [PopupDialogWidth]="TreatmentMaterial?.PopupDialogWidth"
+                    [ReadOnly]="TreatmentMaterial?.ReadOnly || IsReadOnly" [SearchMode]="TreatmentMaterial?.SearchMode"
+                    [SearchTimeout]="TreatmentMaterial?.SearchTimeout"
+                    [SelectedObject]="treatmentMaterialFormViewModel?._selectedMaterialValue"
+                    [TabIndex]="TreatmentMaterial?.TabIndex" [Visible]="TreatmentMaterial?.Visible"
+                    [width]="TreatmentMaterial?.Width" id="A26705"></hvl-list-box> -->
+            </div>
+            <div class="col-md-2" data-tid="A363563">
+                <br data-tid="A363564" />
+                <dx-button id="btnAction" icon="fa fa-undo" type="default" icon="spindown"
+                    style="margin: 0px 5px 0px 0px;" text="Malzeme Seçim İşlemleri" width="100%"
+                    (onClick)="showActionMenu()" data-tid="A363565">
+                </dx-button>
+                <dx-context-menu [(visible)]="actionMenuVisible" [displayExpr]="'Caption'" [dataSource]="stateAction"
+                    target="#btnAction" [position]="{at: 'left bottom'}" (onItemClick)="onActionMenuClick($event)"
+                    data-tid="A363566">
+                </dx-context-menu>
+            </div>
+            <div class="col-sm-1" data-tid="A363567">
+                <label class="control-label" data-tid="A363568">&nbsp;</label>
+                <button type="button" class="btn btn-xs btn-default" [(disabled)]="showUpdateUTSbutton"
+                    (click)="MakeUsageNotificationAll()" data-tid="A363569">
+                    Kullanım Bildirimi Yap
+                </button>
+            </div>
+        </div>
+        <div class="row" id="A26709" data-tid="A363570">
+            <br id="A26710" data-tid="A363571" />
+            <div class="col-sm-12" id="A26711" data-tid="A363572">
+                <div id="A26712" data-tid="A363573">
+                    <dx-data-grid #treatmentMaterialGrid id="treatmentMaterialGrid"
+                        [columns]="TreatmentMaterialListColumns"
+                        [editing]="{allowUpdating: false,allowAdding: false,allowDeleting: false, texts:{confirmDeleteMessage:''}}"
+                        [dataSource]="TreatmentMaterialGridList" id="A26713" (onRowPrepared)="onRowPrepared($event)"
+                        data-tid="A363574">
+                        <dxo-filter-row [visible]="true" data-tid="A363575"> </dxo-filter-row>
+                        <dxo-paging [pageSize]="13" data-tid="A363576"></dxo-paging>
+                        <div *dxTemplate="let row of 'AmountCellTemplate'" id="A26718" data-tid="A363577">
+                            <dx-text-box style="margin-top: -8px;margin-bottom: -6px;" rtlEnabled="true"
+                                [(value)]="row.text" (onValueChanged)="onAmountChanged($event,row)"
+                                [readOnly]="row?.key?.IsNew != true" id="A26719" data-tid="A363578"></dx-text-box>
+                        </div>
+                        <div *dxTemplate="let row of 'TotalPriceCellTemplate'" style="text-align: right;" id="A26720"
+                            data-tid="A363579">
+                            <a id="A26721"
+                                data-tid="A363580">{{(row.data.CalculateUnitePrice == null ? 0: row.data.CalculateUnitePrice) * (row.data.Amount== null ? 0: row.data.Amount)|number}}</a>
+                        </div>
+                        <div *dxTemplate="let row of 'detailCellTemplate'" id="A26722" data-tid="A363581">
+                            <i class="fa fa fa-camera-retro fa-lg" style="cursor:pointer"
+                                (click)="gridTreatmentMaterialGrid_CellContentClicked(row)" id="A26723"
+                                data-tid="A363582"></i>
+                        </div>
+                        <div *dxTemplate="let cellData of 'deleteUTSCellTemplate'" data-tid="A363583">
+                            <i class="fa fa-eraser" style="cursor:pointer"
+                                (click)="gridTreatmentMaterialGrid_CellContentClicked(cellData)" id="A26723"
+                                data-tid="A363584"></i>
+                        </div>
+                        <div *dxTemplate="let cellData of 'deleteCellTemplate'" id="A26722" data-tid="A363585">
+                            <i *ngIf="GridTreatmentMaterials?.AllowUserToDeleteRows != false" class="fa fa fa-trash"
+                                style="cursor:pointer" (click)="gridTreatmentMaterialGrid_CellContentClicked(cellData)"
+                                id="A26723" data-tid="A363586"></i>
+                        </div>
+                        <dxo-summary [calculateCustomSummary]="CalculateTotalPrice" id="A26724" data-tid="A363587">
+                            <dxi-total-item name="TotalPrice" summaryType="custom" displayFormat="Top: {0}"
+                                showInColumn="TotalPrice" id="A26725" data-tid="A363588">
+                            </dxi-total-item>
+                        </dxo-summary>
+                        <div *dxTemplate="let cellData of 'ActionTypeCellTemplate'" id="A26715" data-tid="A363589">
+                            <span *ngIf="cellData.data.EpisodeAction.ActionType == 0" data-tid="A363590">Hasta
+                                Muayenesi</span>
+                            <span *ngIf="cellData.data.EpisodeAction.ActionType == 1" data-tid="A363591">Kontrol
+                                Muayenesi</span>
+                            <span
+                                *ngIf="(cellData.data.EpisodeAction.ActionType == 56 || cellData.data.EpisodeAction.ActionType == 54 || cellData.data.EpisodeAction.ActionType == 2)  && cellData.data.EpisodeAction.EmergencyIntervention == null"
+                                data-tid="A363592">Günübirlik
+                                Yatış</span>
+                            <span
+                                *ngIf="(cellData.data.EpisodeAction.ActionType == 56 || cellData.data.EpisodeAction.ActionType == 54 || cellData.data.EpisodeAction.ActionType == 2)  && cellData.data.EpisodeAction.EmergencyIntervention != null"
+                                data-tid="A363593">Müşahede</span>
+                            <span *ngIf="cellData.data.EpisodeAction.ActionType == 109"
+                                data-tid="A363594">Konsültasyon</span>
+                            <span *ngIf="cellData.data.EpisodeAction.ActionType == 51" data-tid="A363595">Diş
+                                Muayenesi</span>
+                            <span *ngIf="cellData.data.EpisodeAction.ActionType == 35" data-tid="A363596">Acil
+                                Muayene</span>
+                        </div>
+                    </dx-data-grid>
+                    <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)"
+                        [position]="{ of: '#treatmentMaterialGrid' }" [(visible)]="loadingVisibleTreatmenDataGrid"
+                        [showIndicator]="true" [showPane]="true" [(message)]="LoadPanelMessage" [shading]="true"
+                        [closeOnOutsideClick]="false" id="A31966" data-tid="A363597">
+                    </dx-load-panel>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <dx-popup width="700px" height="300px" [(visible)]="dailyApplicationControl" [closeOnOutsideClick]="false"
+        title="Günübirlik Yatış İşlemleri" [showCloseButton]="false" data-tid="A363598">
+        <div class="margin-bottom-10" data-tid="A363599">
+            <div *dxTemplate="let data of 'content'" data-tid="A363600">
+                <div class="row" data-tid="A363601">
+                    <label class="control-label col-sm-2" id="A1801" data-tid="A363602">
+                        Özet Epikriz
+                    </label>
+                </div>
+                <div class="row" data-tid="A363603">
+                    <div class="col-sm-12" id="A28111" data-tid="A363604">
+                        <dx-text-area [(value)]="summaryEpicrisis" width="500px" height="100px" data-tid="A363605">
+                        </dx-text-area>
+                    </div>
+                </div>
+                <div class="row" data-tid="A363606">
+                    <label class="control-label col-sm-2" id="A1801" data-tid="A363607">
+                        Birim Seçimi
+                    </label>
+                </div>
+                <div class="row" data-tid="A363608">
+                    <div class="col-sm-5" id="A28111" data-tid="A363609">
+                        <dx-select-box [items]="ClinicList" placeholder="Seçiniz" displayExpr="Name"
+                            showClearButton="true" searchEnabled="true" (showSelectionControls)="false"
+                            [(value)]="birim" valueExpr="ObjectID" id="A26313" data-tid="A363610"></dx-select-box>
+                    </div>
+                </div>
+                <div class="row" style="padding-top: 10px" data-tid="A363611">
+
+                    <div class="col-sm-5" style="float: left" data-tid="A363612">
+                        <dx-button text="Kaydet ve Taburcu Et" rtlEnabled="true" icon="save" type="success"
+                            (onClick)="DailyOperations()" data-tid="A363613"></dx-button>
+                    </div>
+
+                    <div class="col-sm-2" data-tid="A363614">
+                        <dx-button text="İptal" icon="clear" type="danger" rtlEnabled="true"
+                            (onClick)="onTreatmentMaterialCancel($event)" data-tid="A363615"></dx-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </dx-popup>
+    <dx-popup width="40%" height="50%" [showTitle]="true" title="Detaylı Arama" [dragEnabled]="false"
+    [closeOnOutsideClick]="false" [showCloseButton]="true" [(visible)]="search">
+    <dx-data-grid #materialGrid width="100%" height="400px"  [columns]="materialGridColumns" [showColumnLines]="true" [showRowLines]="true"
+        [showBorders]="true" [rowAlternationEnabled]="true" [dataSource]="materialDataSource"
+        (onRowClick)="selectNewListMaterial($event)" [(selectedRowKeys)]="selectedMaterials"
+        (onSelectionChanged)="selectedChanged($event)" [remoteOperations]="true" [customizeColumns]="null"
+        data-tid="A374091">
+        <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true" [width]="240" placeholder="Malzeme Ara..."></dxo-search-panel>
+        <dxo-filter-row [visible]="true" data-tid="A374092"></dxo-filter-row>
+        <dxo-paging [pageSize]="10" data-tid="A374093"></dxo-paging>
+    </dx-data-grid>
+</dx-popup>
+</div>
+
+
+
+<dx-load-panel shadingColor="rgba(0,0,0,0.4)" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true"
+    [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A363616">
+</dx-load-panel>
+
+
+<dx-popup [width]="300" [height]="250" [showTitle]="true" title="UTS Sonuç Mesajı" [dragEnabled]="false"
+    [closeOnOutsideClick]="true" [(visible)]="popupUTSVisible" i18n-title="@@M27536" id="A8732" data-tid="A363617">
+    <div *dxTemplate="let data of 'content'" id="A8733" data-tid="A363618">
+        <p id="A8734" data-tid="A363619">
+            <span id="A8735" data-tid="A363620">{{utsMessage}}</span>
+        </p>
+    </div>
+</dx-popup>

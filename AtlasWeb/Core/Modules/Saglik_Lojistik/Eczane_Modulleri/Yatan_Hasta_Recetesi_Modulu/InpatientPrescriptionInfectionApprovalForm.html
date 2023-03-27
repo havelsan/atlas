@@ -1,0 +1,94 @@
+﻿
+
+    <NeStatePanelComponent [OutgoingTransitions]="inpatientPrescriptionInfectionApprovalFormViewModel?.OutgoingTransitions" [StateReports]="inpatientPrescriptionInfectionApprovalFormViewModel?.CurrentStateReports" [ObjectID]="inpatientPrescriptionInfectionApprovalFormViewModel?._InpatientPrescription?.ObjectID" [ObjectDefID]="inpatientPrescriptionInfectionApprovalFormViewModel?._InpatientPrescription?.ObjectDefID" [CurrentStateDefID]="inpatientPrescriptionInfectionApprovalFormViewModel._InpatientPrescription.CurrentStateDefID" [DropStateList]="DropStateList" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" id="A4554" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A330320">
+    </NeStatePanelComponent>
+
+    <form id="InpatientPrescriptionInfectionApprovalForm" class="form-horizontal" role="form" data-tid="A330321">
+        
+        <div class="container-fluid" id="A4555" data-tid="A330322">
+            <div class="row" id="A4556" data-tid="A330323">
+                <div class="col-md-4 col-sm-12" id="A4557" data-tid="A330324">
+                    <patient-demographics-form [actionId]="inpatientPrescriptionInfectionApprovalFormViewModel._InpatientPrescription.ObjectID" id="A4558" data-tid="A330325"></patient-demographics-form>
+                </div>
+                <div class="col-md-2 col-sm-12" *ngIf="hasPhysicianApplication" id="A4559" data-tid="A330326">
+                    <div class="row" id="A4560" data-tid="A330327">
+                        <div class="col-md-12" id="A4561" data-tid="A330328">
+                            <label class="control-label" id="A4562" data-tid="A330329">Klinik Protokol No</label>
+                            <dx-text-box [readOnly]="true" [hoverStateEnabled]="false" [(value)]="clinicProtocolNo" id="A4563" data-tid="A330330"></dx-text-box>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+            <div class="col-md-12">
+                <label class="control-label">Hastanın Tedavi Gördüğü Klinik</label>
+                <dx-text-box [readOnly]="true"
+                             [hoverStateEnabled]="false"
+                             [(value)]="clinicName"></dx-text-box>
+            </div>
+        </div> -->
+                    <div class="row" id="A4564" data-tid="A330331">
+                        <div class="col-md-6" id="A4565" data-tid="A330332">
+                            <label class="control-label" id="A4566" data-tid="A330333">Oda</label>
+                            <dx-text-box [readOnly]="true" [hoverStateEnabled]="false" [(value)]="clinicRoom" id="A4567" data-tid="A330334"></dx-text-box>
+                        </div>
+                        <div class="col-md-6" id="A4568" data-tid="A330335">
+                            <label class="control-label" id="A4569" data-tid="A330336">Yatak</label>
+                            <dx-text-box [readOnly]="true" [hoverStateEnabled]="false" [(value)]="clinicBed" id="A4570" data-tid="A330337"></dx-text-box>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+            <div class="col-md-12">
+                <label class="control-label">Klinik Taburcu Tarihi</label>
+                <dx-date-box  [(value)] ="clinicDischargeDate"
+                             type="datetime"
+                             [disabled]="true">
+                </dx-date-box>
+            </div>
+        </div> -->
+                </div>
+                <div class="col-md-6 col-sm-12" id="A4571" data-tid="A330338">
+                    <DiagnosisGridReadOnlyForm [EpisodeAction]="inpatientPrescriptionInfectionApprovalFormViewModel._InpatientPrescription" id="A4572" data-tid="A330339"></DiagnosisGridReadOnlyForm>
+                </div>
+            </div>
+            <br id="A4573" data-tid="A330340" />
+            <div class="row" id="A4574" data-tid="A330341">
+                <div class="col-sm-2" id="A4575" data-tid="A330342">
+                    <label class="control-label" id="A4576" data-tid="A330343">İşlem No </label>
+                    <hvl-text-box #Validation [(Text)]="inpatientPrescriptionInfectionApprovalFormViewModel._InpatientPrescription.ID" [BackColor]="ID?.BackColor" [CharacterCasing]="ID?.CharacterCasing" [Enabled]="ID?.Enabled" [Font]="ID?.Font" [ForeColor]="ID?.ForeColor" [height]="ID?.Height" [InputFormat]="ID?.InputFormat" [InputTurkishCharacter]="ID?.InputTurkishCharacter" [IsNonNumeric]="ID?.IsNonNumeric" [MultiLine]="ID?.Multiline" [ReadOnly]="ID?.ReadOnly" [Required]="ID?.Required" [TabIndex]="ID?.TabIndex" [TextAlign]="ID?.TextAlign" [Visible]="ID?.Visible" id="A4577" data-tid="A330344"></hvl-text-box>
+                </div>
+                <div class="col-sm-2" id="A4578" data-tid="A330345">
+                    <label class="control-label" id="A4579" data-tid="A330346">İşlem Tarihi </label>
+                    <hvl-date-picker #Validation (ValueChange)="onActionDateChanged($event)" [BackColor]="ActionDate?.BackColor" [CustomFormat]="ActionDate?.CustomFormat" [Enabled]="ActionDate?.Enabled" [Font]="ActionDate?.Font" [ForeColor]="ActionDate?.ForeColor" [Format]="ActionDate?.Format" [Max]="ActionDate?.Max" [Min]="ActionDate?.Min" [ReadOnly]="ActionDate?.ReadOnly" [Required]="ActionDate?.Required" [TabIndex]="ActionDate?.TabIndex" [Value]="inpatientPrescriptionInfectionApprovalFormViewModel?._InpatientPrescription?.ActionDate" [Visible]="ActionDate?.Visible" id="A4580" data-tid="A330347"></hvl-date-picker>
+                </div>
+                   <div class="col-sm-2" id="A4581" data-tid="A330348">
+                    <label class="control-label" id="A4582" data-tid="A330349">EReçete No </label>
+                    <hvl-text-box #Validation [(Text)]="inpatientPrescriptionInfectionApprovalFormViewModel._InpatientPrescription.EReceteNo" [BackColor]="EReceteNo?.BackColor" [CharacterCasing]="EReceteNo?.CharacterCasing" [Enabled]="EReceteNo?.Enabled" [Font]="EReceteNo?.Font" [ForeColor]="EReceteNo?.ForeColor" [height]="EReceteNo?.Height" [InputFormat]="EReceteNo?.InputFormat" [InputTurkishCharacter]="EReceteNo?.InputTurkishCharacter" [IsNonNumeric]="EReceteNo?.IsNonNumeric" [MultiLine]="EReceteNo?.Multiline" [ReadOnly]="EReceteNo?.ReadOnly" [Required]="EReceteNo?.Required" [TabIndex]="EReceteNo?.TabIndex" [TextAlign]="EReceteNo?.TextAlign" [Visible]="EReceteNo?.Visible" id="A4583" data-tid="A330350"></hvl-text-box>
+                </div>
+                <div class="col-sm-2" id="A4584" data-tid="A330351">
+                    <label class="control-label" id="A4585" data-tid="A330352">Doktor </label>
+                    <dx-text-box [readOnly]="true" [hoverStateEnabled]="false" [(value)]="doctorName" id="A4586" data-tid="A330353"></dx-text-box>
+                </div>
+                <div class="col-sm-2" id="A4587" data-tid="A330354">
+                    <label class="control-label" id="A4588" data-tid="A330355">
+                        Gönderen Bölüm
+                    </label>
+                    <hvl-list-box #Validation (SelectedObjectChange)="onFromResourceChanged($event)" [AutoCompleteDialogHeight]="FromResource?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="FromResource?.AutoCompleteDialogWidth" [AutoCompleteMode]="FromResource?.AutoCompleteMode" [BackColor]="FromResource?.BackColor" [DefinitionName]="FromResource?.ListDefName" [DisplayExpressionsCache]="inpatientPrescriptionInfectionApprovalFormViewModel?.ListDefDisplayExpressions" [Enabled]="FromResource?.Enabled" [Font]="FromResource?.Font" [ForeColor]="FromResource?.ForeColor" [ListFilterExpression]="FromResource?.ListFilterExpression" [MinSearchLength]="FromResource?.MinSearchLength" [PopupDialogFieldConfig]="FromResource?.PopupDialogFieldConfig" [PopupDialogGridColumns]="FromResource?.PopupDialogGridColumns" [PopupDialogHeight]="FromResource?.PopupDialogHeight" [PopupDialogTitle]="FromResource?.PopupDialogTitle" [PopupDialogWidth]="FromResource?.PopupDialogWidth" [ReadOnly]="FromResource?.ReadOnly" [SearchMode]="FromResource?.SearchMode" [SearchTimeout]="FromResource?.SearchTimeout" [SelectedObject]="inpatientPrescriptionInfectionApprovalFormViewModel?._InpatientPrescription?.FromResource" [TabIndex]="FromResource?.TabIndex" [Visible]="FromResource?.Visible" [width]="FromResource?.Width" id="A4589" data-tid="A330356"></hvl-list-box>
+                </div>
+                <div class="col-sm-2" id="A4590" data-tid="A330357">
+                    <label class="control-label" id="A4591" data-tid="A330358">Reçete Türü </label>
+                    <hvl-enum-combobox #Validation (ValueChange)="onPrescriptionTypeChanged($event)" [BackColor]="PrescriptionType?.BackColor" [DataTypeName]="PrescriptionType?.DataTypeName" [Enabled]="PrescriptionType?.Enabled" [Font]="PrescriptionType?.Font" [ForeColor]="PrescriptionType?.ForeColor" [IncludeOnly]="PrescriptionType?.IncludeOnly" [ReadOnly]="PrescriptionType?.ReadOnly" [ShowClearButton]="PrescriptionType?.ShowClearButton" [SortBy]="PrescriptionType?.SortBy" [TabIndex]="PrescriptionType?.TabIndex" [Value]="inpatientPrescriptionInfectionApprovalFormViewModel?._InpatientPrescription?.PrescriptionType" [Visible]="PrescriptionType?.Visible" id="A4592" data-tid="A330359"></hvl-enum-combobox>
+                </div>
+            </div>
+            <br id="A4593" data-tid="A330360" />
+            <div class="row" id="A4594" data-tid="A330361">
+                <dx-tab-panel [selectedIndex]="0" id="A4595" data-tid="A330362">
+                    <dxi-item class="tabpanel-item" title="İlaçlar" i18n-title="@@M16389" id="A4596" data-tid="A330363">
+                        <div class="row" id="A4597" data-tid="A330364">
+                            <div class="col-sm-12" id="A4598" data-tid="A330365">
+                                <hvl-datagrid [AllowUserToAddRows]="InpatientDrugOrders?.AllowUserToAddRows" [AllowUserToDeleteRows]="InpatientDrugOrders?.AllowUserToDeleteRows" [Columns]="InpatientDrugOrdersColumns" [dataSource]="inpatientPrescriptionInfectionApprovalFormViewModel?._InpatientPrescription?.InpatientDrugOrders" [DeleteButtonWidth]="InpatientDrugOrders?.DeleteButtonWidth" [DisplayExpressionsCache]="inpatientPrescriptionInfectionApprovalFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="InpatientDrugOrders?.ShowFilterRow" [FilterColumnName]="InpatientDrugOrders?.FilterColumnName" [FilterLabel]="InpatientDrugOrders?.FilterLabel" [Filter]="InpatientDrugOrders?.Filter" [height]="InpatientDrugOrders?.Height" [IsFilterLabelSingleLine]="InpatientDrugOrders?.IsFilterLabelSingleLine" [ShowColumnHeaders]="InpatientDrugOrders?.ColumnHeadersVisible" [ShowFilterCombo]="InpatientDrugOrders?.ShowFilterCombo" [ShowTotalNumberOfRows]="InpatientDrugOrders?.ShowTotalNumberOfRows" id="A4599" data-tid="A330366"></hvl-datagrid>
+                            </div>
+                        </div>
+                    </dxi-item>
+                </dx-tab-panel>
+            </div>
+        </div>
+   </form>

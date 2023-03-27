@@ -1,0 +1,69 @@
+﻿
+
+<form id="AnamnesisForm" class="form-horizontal" role="form" data-tid="A365814"></form>
+<div class="row" data-tid="A365815">
+    <div class="col-md-12" data-tid="A365816">
+        <label class="control-label" id="A28352" data-tid="A365817">Şikayet</label>
+        <hvl-richtextbox #complaint (change)="onComplaintChanged($event)" [ngModelOptions]="{ standalone: true}" [ngModel]="anamnesisFormViewModel?._PhysicianApplication?.Complaint" [ReadOnly]="Complaint?.ReadOnly" [TemplateGroupName]="Complaint?.TemplateGroupName" [Visible]="Complaint?.Visible" id="A28353" data-tid="A365818"></hvl-richtextbox>
+
+        <table class="table table-bordered" style="margin-top: -20px !important;" data-tid="A365819">
+            <tr data-tid="A365820">
+                <td class="col-md-6 text-center" data-tid="A365821">
+                    <a href="javascript:void(0)" class="nav-link" (click)="openAnamnesisHistory()" id="A28346" data-tid="A365822">
+                        Geçmiş Anamnez&nbsp;&nbsp;
+                        <i class="glyphicon glyphicon-list" data-tid="A365823"></i>
+                    </a>
+                </td>
+                <td class="col-md-6 text-center" data-tid="A365824">
+                    <a href="javascript:void(0)" class="nav-link" (click)="openAnamnesisDetail()" data-tid="A365825">
+                        Detaylı Anamnez&nbsp;&nbsp;
+                        <i class="glyphicon glyphicon-pencil" data-tid="A365826"></i>
+                    </a>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+
+
+<dx-popup title="Detaylı Anamnez" [width]="1200" [height]="500" [(visible)]="showAnamnesisDetailPopup" id="A19504" data-tid="A365827">
+    <div *dxTemplate="let data of 'content'" id="A19505" data-tid="A365828">
+        <div class="row" data-tid="A365829">
+            <div class="col-md-12" data-tid="A365830">
+                <div class="row" data-tid="A365831">
+                    <div class="col-md-6" data-tid="A365832">
+                        <label class="control-label" id="A28359" data-tid="A365833">Fizik Muayene</label>
+                        <hvl-richtextbox style="margin-bottom:0" #physicalExamination [Height]="100" (change)="onPhysicalExaminationChanged($event)" [ngModelOptions]="{ standalone: true}" [ngModel]="anamnesisFormViewModel?._PhysicianApplication?.PhysicalExamination" [ReadOnly]="PhysicalExamination?.ReadOnly" [TemplateGroupName]="PhysicalExamination?.TemplateGroupName" [Visible]="PhysicalExamination?.Visible" id="A28360" data-tid="A365834"></hvl-richtextbox>
+                    </div>
+                    <div class="col-md-6" data-tid="A365835">
+                    </div>
+                    <div class="col-md-6" data-tid="A365836">
+                        <label class="control-label" id="A28355" data-tid="A365837">Özgeçmiş / Soygeçmiş</label>
+                        <hvl-richtextbox #patientHistory (change)="onPatientHistoryChanged($event)" [ngModelOptions]="{ standalone: true}" [ngModel]="anamnesisFormViewModel?._PhysicianApplication?.PatientHistory" [ReadOnly]="PatientHistory?.ReadOnly" [TemplateGroupName]="PatientHistory?.TemplateGroupName" [Visible]="PatientHistory?.Visible" id="A28356" data-tid="A365838"></hvl-richtextbox>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" data-tid="A365839">
+                <div class="row" data-tid="A365840">
+                    <div class="col-md-6" data-tid="A365841">
+                        <label class="control-label" id="A28362" data-tid="A365842">Tedavi Karar</label>
+                        <hvl-richtextbox #mtsConclusion (change)="onMTSConclusionChanged($event)" [ngModelOptions]="{ standalone: true}" [ngModel]="anamnesisFormViewModel?._PhysicianApplication?.MTSConclusion" [ReadOnly]="MTSConclusion?.ReadOnly" [TemplateGroupName]="MTSConclusion?.TemplateGroupName" [Visible]="MTSConclusion?.Visible" id="A28363" data-tid="A365843"></hvl-richtextbox>
+                    </div>
+                    <div class="col-md-6" data-tid="A365844">
+                        <VitalSingsForm [vitalSingsFormViewModel]="anamnesisFormViewModel?.vitalSingsViewModel" [heightVisible]="true" [weightVisible]="true" [bmiVisible]="true" id="A28366" data-tid="A365845"></VitalSingsForm>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</dx-popup>
+
+<dx-popup title="Anamnez Geçmişi" [width]="1200" [height]="500" [(visible)]="showAnamnesisHistoryPopup" id="A19504" data-tid="A365846">
+    <div *dxTemplate="let data of 'content'" id="A19505" data-tid="A365847">
+        <AnamnesisHistoryForm [anamnesisFormViewModel]="_anamnesisFormViewModel" (complaintHistoryChange)="copyComplaintHistory($event)" (patientHistoryChange)="copyPatientHistory($event)" (physicalExaminationChange)="copyPhysicalExamination($event)" (mTSConclusionChange)="copyMTSConclusion($event)" data-tid="A365848"></AnamnesisHistoryForm>
+    </div>
+</dx-popup>
+
+

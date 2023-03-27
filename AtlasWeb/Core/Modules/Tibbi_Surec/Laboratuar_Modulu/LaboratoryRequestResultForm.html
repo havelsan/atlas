@@ -1,0 +1,166 @@
+﻿
+
+
+    <NeStatePanelComponent [OutgoingTransitions]="laboratoryRequestResultFormViewModel?.OutgoingTransitions" [StateReports]="laboratoryRequestResultFormViewModel?.CurrentStateReports" [ObjectID]="laboratoryRequestResultFormViewModel?._LaboratoryRequest?.ObjectID" [ObjectDefID]="laboratoryRequestResultFormViewModel?._LaboratoryRequest?.ObjectDefID" [CurrentStateDefID]="laboratoryRequestResultFormViewModel._LaboratoryRequest.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" id="A21484" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A356577">
+    </NeStatePanelComponent>
+    <form id="LaboratoryRequestResultForm" class="form-horizontal" role="form" data-tid="A356578">
+    </form>
+    <label class="control-label col-sm-0" id="A21485" data-tid="A356579">
+    </label>
+    <div class="row" id="A21486" data-tid="A356580">
+        <div class="col-sm-2" id="A21487" data-tid="A356581">
+            <dx-button type="default" text="Laboratuvar Sonuç Raporu" (onClick)="ttPrintResultReport_Click()" i18n-text="@@M18228" id="A21488" data-tid="A356582"></dx-button>
+        </div>
+    </div>
+    <div class="row" id="A21489" data-tid="A356583">
+        <div class="col-sm-12" id="A21490" data-tid="A356584">
+            <dx-tab-panel [selectedIndex]="0" [animationEnabled]="true" id="A21491" data-tid="A356585">
+                <dxi-item class="tabpanel-item" title="Genel Bilgiler" i18n-title="@@M14681" id="A21492" data-tid="A356586">
+                    <div class="row" id="A21493" data-tid="A356587">
+                        <label class="control-label col-sm-3" id="A21494" data-tid="A356588">
+                            Hasta Grubu
+                        </label>
+                        <label class="control-label col-sm-3" id="A21495" data-tid="A356589">
+                            Kabul Sebebi
+                        </label>
+                        <label class="control-label col-sm-3" id="A21496" data-tid="A356590">
+                            Yaş (Yıl-Ay-Gün)
+                        </label>
+                        <label class="control-label col-sm-2" id="A21497" data-tid="A356591">
+                            Cinsiyet
+                        </label>
+                    </div>
+                    <div class="row" id="A21498" data-tid="A356592">
+                        <div class="col-sm-3" id="A21499" data-tid="A356593">
+                            <hvl-enum-combobox #Validation (ValueChange)="PatientGroup.SelectedValue=$event;" [BackColor]="PatientGroup?.BackColor" [DataTypeName]="PatientGroup?.DataTypeName" [Enabled]="PatientGroup?.Enabled" [Font]="PatientGroup?.Font" [ForeColor]="PatientGroup?.ForeColor" [IncludeOnly]="PatientGroup?.IncludeOnly" [ReadOnly]="PatientGroup?.ReadOnly" [ShowClearButton]="PatientGroup?.ShowClearButton" [SortBy]="PatientGroup?.SortBy" [TabIndex]="PatientGroup?.TabIndex" [Value]="PatientGroup?.SelectedValue" [Visible]="PatientGroup?.Visible" id="A21500" data-tid="A356594"></hvl-enum-combobox>
+                        </div>
+                        <div class="col-sm-3" id="A21501" data-tid="A356595">
+                            <hvl-text-box #Validation (TextChange)="ReasonForAdmisson.Text=$event;" [BackColor]="ReasonForAdmisson?.BackColor" [CharacterCasing]="ReasonForAdmisson?.CharacterCasing" [Enabled]="ReasonForAdmisson?.Enabled" [Font]="ReasonForAdmisson?.Font" [ForeColor]="ReasonForAdmisson?.ForeColor" [height]="ReasonForAdmisson?.Height" [InputFormat]="ReasonForAdmisson?.InputFormat" [InputTurkishCharacter]="ReasonForAdmisson?.InputTurkishCharacter" [IsNonNumeric]="ReasonForAdmisson?.IsNonNumeric" [MultiLine]="ReasonForAdmisson?.Multiline" [ReadOnly]="ReasonForAdmisson?.ReadOnly" [Required]="ReasonForAdmisson?.Required" [TabIndex]="ReasonForAdmisson?.TabIndex" [TextAlign]="ReasonForAdmisson?.TextAlign" [Text]="ReasonForAdmisson?.Text" [Visible]="ReasonForAdmisson?.Visible" id="A21502" data-tid="A356596"></hvl-text-box>
+                        </div>
+                        <div class="col-sm-3" id="A21503" data-tid="A356597">
+                            <hvl-text-box #Validation (TextChange)="onPatientAgeChanged($event)" [BackColor]="PatientAge?.BackColor" [CharacterCasing]="PatientAge?.CharacterCasing" [Enabled]="PatientAge?.Enabled" [Font]="PatientAge?.Font" [ForeColor]="PatientAge?.ForeColor" [height]="PatientAge?.Height" [InputFormat]="PatientAge?.InputFormat" [InputTurkishCharacter]="PatientAge?.InputTurkishCharacter" [IsNonNumeric]="PatientAge?.IsNonNumeric" [MultiLine]="PatientAge?.Multiline" [ReadOnly]="PatientAge?.ReadOnly" [Required]="PatientAge?.Required" [TabIndex]="PatientAge?.TabIndex" [TextAlign]="PatientAge?.TextAlign" [Text]="laboratoryRequestResultFormViewModel?._LaboratoryRequest?.PatientAge" [Visible]="PatientAge?.Visible" id="A21504" data-tid="A356598"></hvl-text-box>
+                        </div>
+                        <div class="col-sm-2" id="A21505" data-tid="A356599">
+                            <hvl-enum-combobox #Validation (ValueChange)="onPatientSexChanged($event)" [BackColor]="PatientSex?.BackColor" [DataTypeName]="PatientSex?.DataTypeName" [Enabled]="PatientSex?.Enabled" [Font]="PatientSex?.Font" [ForeColor]="PatientSex?.ForeColor" [IncludeOnly]="PatientSex?.IncludeOnly" [ReadOnly]="PatientSex?.ReadOnly" [ShowClearButton]="PatientSex?.ShowClearButton" [SortBy]="PatientSex?.SortBy" [TabIndex]="PatientSex?.TabIndex" [Value]="laboratoryRequestResultFormViewModel?._LaboratoryRequest?.PatientSex" [Visible]="PatientSex?.Visible" id="A21506" data-tid="A356600"></hvl-enum-combobox>
+                        </div>
+                        <div class="col-sm-1" id="A21507" data-tid="A356601">
+                            <hvl-checkbox #Validation (ValueChange)="onUrgentChanged($event)" [AllowThreeState]="Urgent?.ThreeState" [BackColor]="Urgent?.BackColor" [Enabled]="Urgent?.Enabled" [Font]="Urgent?.Font" [ForeColor]="Urgent?.ForeColor" [IsTitleLeft]="Urgent?.IsTitleLeft" [Margin]="Urgent?.Margin" [ReadOnly]="Urgent?.ReadOnly" [TabIndex]="Urgent?.TabIndex" [TitleTopPadding]="Urgent?.TitleTopPadding" [Title]="Urgent?.Title" [Value]="laboratoryRequestResultFormViewModel?._LaboratoryRequest?.Urgent" [Visible]="Urgent?.Visible" id="A21508" data-tid="A356602"></hvl-checkbox>
+                        </div>
+                    </div>
+                    <div class="row" id="A21509" data-tid="A356603">
+                        <label class="control-label col-sm-3" id="A21510" data-tid="A356604">
+                            Kısa Anamnez ve Klinik Bulgular
+                        </label>
+                        <label class="control-label col-sm-3" id="A21511" data-tid="A356605">
+                            Not
+                        </label>
+                    </div>
+                    <div class="row" id="A21512" data-tid="A356606">
+                        <div class="col-sm-6" id="A21513" data-tid="A356607">
+                            <hvl-text-box #Validation (TextChange)="ontttextbox1Changed($event)" [BackColor]="tttextbox1?.BackColor" [CharacterCasing]="tttextbox1?.CharacterCasing" [Enabled]="tttextbox1?.Enabled" [Font]="tttextbox1?.Font" [ForeColor]="tttextbox1?.ForeColor" [height]="tttextbox1?.Height" [InputFormat]="tttextbox1?.InputFormat" [InputTurkishCharacter]="tttextbox1?.InputTurkishCharacter" [IsNonNumeric]="tttextbox1?.IsNonNumeric" [MultiLine]="tttextbox1?.Multiline" [ReadOnly]="tttextbox1?.ReadOnly" [Required]="tttextbox1?.Required" [TabIndex]="tttextbox1?.TabIndex" [TextAlign]="tttextbox1?.TextAlign" [Text]="laboratoryRequestResultFormViewModel?._LaboratoryRequest?.Prediagnosis" [Visible]="tttextbox1?.Visible" id="A21514" data-tid="A356608"></hvl-text-box>
+                        </div>
+                        <div class="col-sm-6" id="A21515" data-tid="A356609">
+                            <hvl-text-box #Validation (TextChange)="ontttextbox2Changed($event)" [BackColor]="tttextbox2?.BackColor" [CharacterCasing]="tttextbox2?.CharacterCasing" [Enabled]="tttextbox2?.Enabled" [Font]="tttextbox2?.Font" [ForeColor]="tttextbox2?.ForeColor" [height]="tttextbox2?.Height" [InputFormat]="tttextbox2?.InputFormat" [InputTurkishCharacter]="tttextbox2?.InputTurkishCharacter" [IsNonNumeric]="tttextbox2?.IsNonNumeric" [MultiLine]="tttextbox2?.Multiline" [ReadOnly]="tttextbox2?.ReadOnly" [Required]="tttextbox2?.Required" [TabIndex]="tttextbox2?.TabIndex" [TextAlign]="tttextbox2?.TextAlign" [Text]="laboratoryRequestResultFormViewModel?._LaboratoryRequest?.Notes" [Visible]="tttextbox2?.Visible" id="A21516" data-tid="A356610"></hvl-text-box>
+                        </div>
+                    </div>
+                </dxi-item>
+                <dxi-item class="tabpanel-item" title="Ek Bilgiler" i18n-title="@@M13517" id="A21517" data-tid="A356611">
+                    <div class="row" id="A21518" data-tid="A356612">
+                        <label class="control-label col-sm-3" id="A21519" data-tid="A356613">
+                            İstek Yapan Tabip
+                        </label>
+                    </div>
+                    <div class="row" id="A21520" data-tid="A356614">
+                        <div class="col-sm-3" id="A21521" data-tid="A356615">
+                            <hvl-list-box #Validation (SelectedObjectChange)="onrequestDoctorChanged($event)" [AutoCompleteDialogHeight]="requestDoctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="requestDoctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="requestDoctor?.AutoCompleteMode" [BackColor]="requestDoctor?.BackColor" [DefinitionName]="requestDoctor?.ListDefName" [DisplayExpressionsCache]="laboratoryRequestResultFormViewModel?.ListDefDisplayExpressions" [Enabled]="requestDoctor?.Enabled" [Font]="requestDoctor?.Font" [ForeColor]="requestDoctor?.ForeColor" [ListFilterExpression]="requestDoctor?.ListFilterExpression" [MinSearchLength]="requestDoctor?.MinSearchLength" [PopupDialogFieldConfig]="requestDoctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="requestDoctor?.PopupDialogGridColumns" [PopupDialogHeight]="requestDoctor?.PopupDialogHeight" [PopupDialogTitle]="requestDoctor?.PopupDialogTitle" [PopupDialogWidth]="requestDoctor?.PopupDialogWidth" [ReadOnly]="requestDoctor?.ReadOnly" [SearchMode]="requestDoctor?.SearchMode" [SearchTimeout]="requestDoctor?.SearchTimeout" [SelectedObject]="laboratoryRequestResultFormViewModel?._LaboratoryRequest?.RequestDoctor" [TabIndex]="requestDoctor?.TabIndex" [Visible]="requestDoctor?.Visible" [width]="requestDoctor?.Width" id="A21522" data-tid="A356616"></hvl-list-box>
+                        </div>
+                    </div>
+                    <div class="row" id="A21523" data-tid="A356617">
+                        <label class="control-label col-sm-3" id="A21524" data-tid="A356618">
+                            Onaylayan Uzman
+                        </label>
+                    </div>
+                    <div class="row" id="A21525" data-tid="A356619">
+                        <div class="col-sm-3" id="A21526" data-tid="A356620">
+                            <hvl-list-box #Validation (SelectedObjectChange)="onlstApprovedByChanged($event)" [AutoCompleteDialogHeight]="lstApprovedBy?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="lstApprovedBy?.AutoCompleteDialogWidth" [AutoCompleteMode]="lstApprovedBy?.AutoCompleteMode" [BackColor]="lstApprovedBy?.BackColor" [DefinitionName]="lstApprovedBy?.ListDefName" [DisplayExpressionsCache]="laboratoryRequestResultFormViewModel?.ListDefDisplayExpressions" [Enabled]="lstApprovedBy?.Enabled" [Font]="lstApprovedBy?.Font" [ForeColor]="lstApprovedBy?.ForeColor" [ListFilterExpression]="lstApprovedBy?.ListFilterExpression" [MinSearchLength]="lstApprovedBy?.MinSearchLength" [PopupDialogFieldConfig]="lstApprovedBy?.PopupDialogFieldConfig" [PopupDialogGridColumns]="lstApprovedBy?.PopupDialogGridColumns" [PopupDialogHeight]="lstApprovedBy?.PopupDialogHeight" [PopupDialogTitle]="lstApprovedBy?.PopupDialogTitle" [PopupDialogWidth]="lstApprovedBy?.PopupDialogWidth" [ReadOnly]="lstApprovedBy?.ReadOnly" [SearchMode]="lstApprovedBy?.SearchMode" [SearchTimeout]="lstApprovedBy?.SearchTimeout" [SelectedObject]="laboratoryRequestResultFormViewModel?._LaboratoryRequest?.ApprovedBy" [TabIndex]="lstApprovedBy?.TabIndex" [Visible]="lstApprovedBy?.Visible" [width]="lstApprovedBy?.Width" id="A21527" data-tid="A356621"></hvl-list-box>
+                        </div>
+                    </div>
+                </dxi-item>
+                <dxi-item class="tabpanel-item" title="Gebelik - S.A.T" i18n-title="@@M27572" id="A21528" data-tid="A356622">
+                    <div class="row" id="A21529" data-tid="A356623">
+                        <label class="control-label col-sm-2" id="A21530" data-tid="A356624">
+                            Gebelik
+                        </label>
+                        <label class="control-label col-sm-2" id="A21531" data-tid="A356625">
+                            Son Adet Tarihi
+                        </label>
+                    </div>
+                    <div class="row" id="A21532" data-tid="A356626">
+                        <div class="col-sm-2" id="A21533" data-tid="A356627">
+                            <hvl-enum-combobox #Validation (ValueChange)="onGebelikChanged($event)" [BackColor]="Gebelik?.BackColor" [DataTypeName]="Gebelik?.DataTypeName" [Enabled]="Gebelik?.Enabled" [Font]="Gebelik?.Font" [ForeColor]="Gebelik?.ForeColor" [IncludeOnly]="Gebelik?.IncludeOnly" [ReadOnly]="Gebelik?.ReadOnly" [ShowClearButton]="Gebelik?.ShowClearButton" [SortBy]="Gebelik?.SortBy" [TabIndex]="Gebelik?.TabIndex" [Value]="laboratoryRequestResultFormViewModel?._LaboratoryRequest?.Pregnancy" [Visible]="Gebelik?.Visible" id="A21534" data-tid="A356628"></hvl-enum-combobox>
+                        </div>
+                        <div class="col-sm-2" id="A21535" data-tid="A356629">
+                            <hvl-date-picker #Validation (ValueChange)="onSonAdetTarihiChanged($event)" [BackColor]="SonAdetTarihi?.BackColor" [CustomFormat]="SonAdetTarihi?.CustomFormat" [Enabled]="SonAdetTarihi?.Enabled" [Font]="SonAdetTarihi?.Font" [ForeColor]="SonAdetTarihi?.ForeColor" [Format]="SonAdetTarihi?.Format" [Max]="SonAdetTarihi?.Max" [Min]="SonAdetTarihi?.Min" [ReadOnly]="SonAdetTarihi?.ReadOnly" [Required]="SonAdetTarihi?.Required" [TabIndex]="SonAdetTarihi?.TabIndex" [Value]="laboratoryRequestResultFormViewModel?._LaboratoryRequest?.LastMensturationDate" [Visible]="SonAdetTarihi?.Visible" id="A21536" data-tid="A356630"></hvl-date-picker>
+                        </div>
+                    </div>
+                </dxi-item>
+                <dxi-item class="tabpanel-item" title="İleri Tarihli İstek" i18n-title="@@M16404" id="A21537" data-tid="A356631">
+                    <div class="row" id="A21538" data-tid="A356632">
+                        <label class="control-label col-sm-3" id="A21539" data-tid="A356633">
+                            İş Listesine Gelme Tarihi
+                        </label>
+                    </div>
+                    <div class="row" id="A21540" data-tid="A356634">
+                        <div class="col-sm-3" id="A21541" data-tid="A356635">
+                            <hvl-date-picker #Validation (ValueChange)="onWorkListDateChanged($event)" [BackColor]="WorkListDate?.BackColor" [CustomFormat]="WorkListDate?.CustomFormat" [Enabled]="WorkListDate?.Enabled" [Font]="WorkListDate?.Font" [ForeColor]="WorkListDate?.ForeColor" [Format]="WorkListDate?.Format" [Max]="WorkListDate?.Max" [Min]="WorkListDate?.Min" [ReadOnly]="WorkListDate?.ReadOnly" [Required]="WorkListDate?.Required" [TabIndex]="WorkListDate?.TabIndex" [Value]="laboratoryRequestResultFormViewModel?._LaboratoryRequest?.WorkListDate" [Visible]="WorkListDate?.Visible" id="A21542" data-tid="A356636"></hvl-date-picker>
+                        </div>
+                    </div>
+                </dxi-item>
+            </dx-tab-panel>
+        </div>
+    </div>
+    <div class="row" id="A21543" data-tid="A356637">
+        <label class="control-label col-sm-2" id="A21544" data-tid="A356638">
+            İstek Yapan Tabip
+        </label>
+        <label class="control-label col-sm-2" id="A21545" data-tid="A356639">
+            İstek Yapan Tabip
+        </label>
+    </div>
+    <div class="row" id="A21546" data-tid="A356640">
+        <div class="col-sm-2" id="A21547" data-tid="A356641">
+            <hvl-list-box #Validation (SelectedObjectChange)="onttobjectlistbox1Changed($event)" [AutoCompleteDialogHeight]="ttobjectlistbox1?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ttobjectlistbox1?.AutoCompleteDialogWidth" [AutoCompleteMode]="ttobjectlistbox1?.AutoCompleteMode" [BackColor]="ttobjectlistbox1?.BackColor" [DefinitionName]="ttobjectlistbox1?.ListDefName" [DisplayExpressionsCache]="laboratoryRequestResultFormViewModel?.ListDefDisplayExpressions" [Enabled]="ttobjectlistbox1?.Enabled" [Font]="ttobjectlistbox1?.Font" [ForeColor]="ttobjectlistbox1?.ForeColor" [ListFilterExpression]="ttobjectlistbox1?.ListFilterExpression" [MinSearchLength]="ttobjectlistbox1?.MinSearchLength" [PopupDialogFieldConfig]="ttobjectlistbox1?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ttobjectlistbox1?.PopupDialogGridColumns" [PopupDialogHeight]="ttobjectlistbox1?.PopupDialogHeight" [PopupDialogTitle]="ttobjectlistbox1?.PopupDialogTitle" [PopupDialogWidth]="ttobjectlistbox1?.PopupDialogWidth" [ReadOnly]="ttobjectlistbox1?.ReadOnly" [SearchMode]="ttobjectlistbox1?.SearchMode" [SearchTimeout]="ttobjectlistbox1?.SearchTimeout" [SelectedObject]="laboratoryRequestResultFormViewModel?._LaboratoryRequest?.RequestDoctor" [TabIndex]="ttobjectlistbox1?.TabIndex" [Visible]="ttobjectlistbox1?.Visible" [width]="ttobjectlistbox1?.Width" id="A21548" data-tid="A356642"></hvl-list-box>
+        </div>
+        <div class="col-sm-2" id="A21549" data-tid="A356643">
+            <hvl-list-box #Validation (SelectedObjectChange)="onttobjectlistbox3Changed($event)" [AutoCompleteDialogHeight]="ttobjectlistbox3?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ttobjectlistbox3?.AutoCompleteDialogWidth" [AutoCompleteMode]="ttobjectlistbox3?.AutoCompleteMode" [BackColor]="ttobjectlistbox3?.BackColor" [DefinitionName]="ttobjectlistbox3?.ListDefName" [DisplayExpressionsCache]="laboratoryRequestResultFormViewModel?.ListDefDisplayExpressions" [Enabled]="ttobjectlistbox3?.Enabled" [Font]="ttobjectlistbox3?.Font" [ForeColor]="ttobjectlistbox3?.ForeColor" [ListFilterExpression]="ttobjectlistbox3?.ListFilterExpression" [MinSearchLength]="ttobjectlistbox3?.MinSearchLength" [PopupDialogFieldConfig]="ttobjectlistbox3?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ttobjectlistbox3?.PopupDialogGridColumns" [PopupDialogHeight]="ttobjectlistbox3?.PopupDialogHeight" [PopupDialogTitle]="ttobjectlistbox3?.PopupDialogTitle" [PopupDialogWidth]="ttobjectlistbox3?.PopupDialogWidth" [ReadOnly]="ttobjectlistbox3?.ReadOnly" [SearchMode]="ttobjectlistbox3?.SearchMode" [SearchTimeout]="ttobjectlistbox3?.SearchTimeout" [SelectedObject]="laboratoryRequestResultFormViewModel?._LaboratoryRequest?.RequestDoctor" [TabIndex]="ttobjectlistbox3?.TabIndex" [Visible]="ttobjectlistbox3?.Visible" [width]="ttobjectlistbox3?.Width" id="A21550" data-tid="A356644"></hvl-list-box>
+        </div>
+        <div class="col-sm-2" id="A21551" data-tid="A356645">
+            <hvl-list-box #Validation (SelectedObjectChange)="onttobjectlistbox2Changed($event)" [AutoCompleteDialogHeight]="ttobjectlistbox2?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ttobjectlistbox2?.AutoCompleteDialogWidth" [AutoCompleteMode]="ttobjectlistbox2?.AutoCompleteMode" [BackColor]="ttobjectlistbox2?.BackColor" [DefinitionName]="ttobjectlistbox2?.ListDefName" [DisplayExpressionsCache]="laboratoryRequestResultFormViewModel?.ListDefDisplayExpressions" [Enabled]="ttobjectlistbox2?.Enabled" [Font]="ttobjectlistbox2?.Font" [ForeColor]="ttobjectlistbox2?.ForeColor" [ListFilterExpression]="ttobjectlistbox2?.ListFilterExpression" [MinSearchLength]="ttobjectlistbox2?.MinSearchLength" [PopupDialogFieldConfig]="ttobjectlistbox2?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ttobjectlistbox2?.PopupDialogGridColumns" [PopupDialogHeight]="ttobjectlistbox2?.PopupDialogHeight" [PopupDialogTitle]="ttobjectlistbox2?.PopupDialogTitle" [PopupDialogWidth]="ttobjectlistbox2?.PopupDialogWidth" [ReadOnly]="ttobjectlistbox2?.ReadOnly" [SearchMode]="ttobjectlistbox2?.SearchMode" [SearchTimeout]="ttobjectlistbox2?.SearchTimeout" [SelectedObject]="laboratoryRequestResultFormViewModel?._LaboratoryRequest?.RequestDoctor" [TabIndex]="ttobjectlistbox2?.TabIndex" [Visible]="ttobjectlistbox2?.Visible" [width]="ttobjectlistbox2?.Width" id="A21552" data-tid="A356646"></hvl-list-box>
+        </div>
+    </div>
+    <div class="row" id="A21553" data-tid="A356647">
+        <label class="control-label col-sm-11" id="A21554" data-tid="A356648">
+            BarkodNo:
+        </label>
+        <div class="col-sm-1" id="A21555" data-tid="A356649">
+            <hvl-text-box #Validation (TextChange)="textBarcode.Text=$event;" [BackColor]="textBarcode?.BackColor" [CharacterCasing]="textBarcode?.CharacterCasing" [Enabled]="textBarcode?.Enabled" [Font]="textBarcode?.Font" [ForeColor]="textBarcode?.ForeColor" [height]="textBarcode?.Height" [InputFormat]="textBarcode?.InputFormat" [InputTurkishCharacter]="textBarcode?.InputTurkishCharacter" [IsNonNumeric]="textBarcode?.IsNonNumeric" [MultiLine]="textBarcode?.Multiline" [ReadOnly]="textBarcode?.ReadOnly" [Required]="textBarcode?.Required" [TabIndex]="textBarcode?.TabIndex" [TextAlign]="textBarcode?.TextAlign" [Text]="textBarcode?.Text" [Visible]="textBarcode?.Visible" id="A21556" data-tid="A356650"></hvl-text-box>
+        </div>
+    </div>
+    <div class="row" id="A21557" data-tid="A356651">
+        <dx-tab-panel [selectedIndex]="0" id="A21558" data-tid="A356652">
+        </dx-tab-panel>
+    </div>
+    <div class="row" id="A21559" data-tid="A356653">
+        <div class="col-sm-12" id="A21560" data-tid="A356654">
+            <dx-tab-panel [selectedIndex]="0" id="A21561" data-tid="A356655">
+                <dxi-item class="tabpanel-item" title="Tetkikler" i18n-title="@@M23341" id="A21562" data-tid="A356656">
+                    <div class="row" id="A21563" data-tid="A356657">
+                        <div class="col-sm-12" id="A21564" data-tid="A356658">
+                            <hvl-datagrid [AllowUserToAddRows]="GridLabProcedures?.AllowUserToAddRows" [AllowUserToDeleteRows]="GridLabProcedures?.AllowUserToDeleteRows" [Columns]="GridLabProceduresColumns" [dataSource]="laboratoryRequestResultFormViewModel?._LaboratoryRequest?.LaboratoryProcedures" [DeleteButtonWidth]="GridLabProcedures?.DeleteButtonWidth" [DisplayExpressionsCache]="laboratoryRequestResultFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="GridLabProcedures?.ShowFilterRow" [FilterColumnName]="GridLabProcedures?.FilterColumnName" [FilterLabel]="GridLabProcedures?.FilterLabel" [Filter]="GridLabProcedures?.Filter" [height]="GridLabProcedures?.Height" [IsFilterLabelSingleLine]="GridLabProcedures?.IsFilterLabelSingleLine" [ShowColumnHeaders]="GridLabProcedures?.ColumnHeadersVisible" [ShowFilterCombo]="GridLabProcedures?.ShowFilterCombo" [ShowTotalNumberOfRows]="GridLabProcedures?.ShowTotalNumberOfRows" id="A21565" data-tid="A356659"></hvl-datagrid>
+                        </div>
+                    </div>
+                </dxi-item>
+            </dx-tab-panel>
+        </div>
+    </div>
+

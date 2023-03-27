@@ -1,0 +1,115 @@
+﻿
+<dx-tab-panel [selectedIndex]="0" [animationEnabled]="true" style="height:98%!important" id="A18771" data-tid="A352040">
+    <dxi-item class="tabpanel-item" title="Hemşirelik Hizmetleri" style="height:100%!important;" i18n-title="@@M15686" id="A18772" data-tid="A352041">
+        <div class="col-sm-3" style="background-color:#f8f8f8; padding:0;height:98%" id="A18773" data-tid="A352042">
+            <div class="col-sm-12" id="A18774" data-tid="A352043">
+                <label id="A18775" data-tid="A352044">&nbsp;&nbsp;Başlangıç Tarihi</label>
+                <dx-date-box [(value)]="startDate" type="datetime" width="100%" id="A18776" data-tid="A352045"></dx-date-box>
+            </div>
+            <br id="A18777" data-tid="A352046" />
+            <div class="col-sm-12" id="A18778" data-tid="A352047">
+                <label id="A18779" data-tid="A352048">&nbsp;&nbsp;Bitiş Tarihi</label>
+                <dx-date-box [(value)]="endDate" type="datetime" width="100%" id="A18780" data-tid="A352049"></dx-date-box>
+            </div>
+            <br id="A18781" data-tid="A352050" />
+            <div class="col-sm-12" id="A18782" data-tid="A352051">
+                <label id="A18783" data-tid="A352052">&nbsp;&nbsp;Birimler</label>
+                <dx-list #list [dataSource]="tagBoxResources" [height]="300" selectionMode="all" selectAllMode="page" [showSelectionControls]="true" [(selectedItemKeys)]="selectedWorkListItems" id="A18784" data-tid="A352053">
+                    <div *dxTemplate="let data of 'item'" id="A18785" data-tid="A352054">
+                        <div style="float:left; width:90%;" id="A18786" data-tid="A352055">{{data.Name}}</div>
+                    </div>
+                </dx-list>
+                <br id="A18787" data-tid="A352056" />
+            </div>
+            <div class="col-sm-1" style="margin-bottom: 10px;margin-left:5px" id="A18788" data-tid="A352057">
+                <hvl-checkbox #Validation [AllowThreeState]="false" [Enabled]="true" [IsTitleLeft]="false" [ReadOnly]="false" [Title]="Kendi" [Text]="Kendi2" [(Value)]="justMyPatient" id="A18789" data-tid="A352058"></hvl-checkbox>
+            </div>
+            <div class="col-sm-10" style="margin-bottom: 5px;" id="A18790" data-tid="A352059">
+                <span style="font-size: 14px;font-weight: 500;" id="A18791" data-tid="A352060">Kendi Hastalarım</span>
+            </div>
+            
+            <div class="col-sm-12" id="A18792" data-tid="A352061">
+                <label id="A18793" data-tid="A352062">&nbsp;&nbsp;Hasta</label>
+                <dx-select-box [items]="patientList" displayExpr="PatientFullName" valueExpr="ObjectID" [searchEnabled]="true" (onItemClick)="filterExp($event)" id="A18794" data-tid="A352063"></dx-select-box>
+            </div>
+            <br id="A18795" data-tid="A352064" />
+            <div class="col-sm-12" id="A18796" data-tid="A352065">
+                <label id="A18797" data-tid="A352066">&nbsp;&nbsp;Türü</label>
+                <dx-select-box [items]="OrderTypeList" displayExpr="TypeName" valueExpr="TypeID" [searchEnabled]="true" (onItemClick)="filterTypeExp($event)" id="A18798" data-tid="A352067"></dx-select-box>
+            </div>
+            <br id="A18799" data-tid="A352068" />
+            <div class="col-sm-12" id="A18800" data-tid="A352069">
+                <label id="A18801" data-tid="A352070">&nbsp;&nbsp;Durumu</label>
+                <dx-select-box [items]="statusListForClient" displayExpr="StatusItemName" valueExpr="StateID" [searchEnabled]="true" (onItemClick)="filterStatusExp($event)" id="A18802" data-tid="A352071"></dx-select-box>
+            </div>
+            <br id="A18803" data-tid="A352072" />
+            <div class="col-sm-12" style="float: right;margin-right: 0%;" id="A18804" data-tid="A352073">
+                <div id="A18805" data-tid="A352074">
+                    <dx-button style="float:right; background-color:#08c; border-left-width: 10px; " type="success" icon="fa fa-bars" text="Listele" (onClick)="sendClick()" i18n-text="@@M27337" id="A18806" data-tid="A352075"></dx-button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9" style="height:100%" id="A18807" data-tid="A352076">
+            <dx-toolbar #toolbarItem [items]="toolbarItems" id="A18808" data-tid="A352077"></dx-toolbar>
+            <div id="data-grid-demo" style="height:98%" data-tid="A352078">
+                <dx-data-grid id="gridContainer" [dataSource]="drugOrderDetails" (onRowClick)="select($event)" (onSelectionChanged)="selectDrugOrderDetail($event)" [(selectedRowKeys)]="selectedTempItems" [allowColumnResizing]="true" style="height:95%" data-tid="A352079">
+                    <dxo-selection selectAllMode="allPages" showCheckBoxesMode="onClick" mode="multiple" id="A18809" data-tid="A352080"></dxo-selection>
+                    <dxo-column-fixing [enabled]="true" id="A18810" data-tid="A352081"></dxo-column-fixing>
+                    <dxo-paging [pageSize]="50" id="A18811" data-tid="A352082"></dxo-paging>
+                    <dxo-filter-row [visible]="true" id="A18812" data-tid="A352083"></dxo-filter-row>
+                    <dxi-column dataField="id" [visible]="false" id="A18813" data-tid="A352084"></dxi-column>
+                    <dxi-column dataField="stateDefID" [visible]="false" id="A18814" data-tid="A352085"></dxi-column>
+                    <dxi-column dataField="PatientFullName" caption="Hasta Adı Soyadı" i18n-caption="@@M15133" id="A18815" data-tid="A352086"></dxi-column>
+                    <dxi-column dataField="MasterResourceName" caption="Birim" i18n-caption="@@M27304" id="A18816" data-tid="A352087"></dxi-column>
+                    <dxi-column dataField="text" caption="Hizmet/Malzeme Adı" i18n-caption="@@M15935" id="A18817" data-tid="A352088"></dxi-column>
+                    <dxi-column dataField="typeName" caption="Türü" i18n-caption="@@M23679" id="A18818" data-tid="A352089"></dxi-column>
+                    <dxi-column dataField="startDate" caption="Başlangıç Zamanı" dataType="date" format="dd.MM.yyyy HH:mm:ss" i18n-caption="@@M11642" id="A18819" data-tid="A352090"></dxi-column>
+                    <dxi-column dataField="statusName" caption="Durumu" i18n-caption="@@M13372" id="A18820" data-tid="A352091"></dxi-column>
+                    <dxi-column dataField="Result" caption="Sonuç" i18n-caption="@@M22078" id="A18821" data-tid="A352092"> </dxi-column>
+                    <dxi-column dataField="doctorDescription" caption="Notlar" [width]="170" i18n-caption="@@M19485" id="A18822" data-tid="A352093"> </dxi-column>
+                </dx-data-grid>
+            </div>
+            <br id="A18823" data-tid="A352094" />
+            <div class="row" id="A18824" data-tid="A352095">
+                <div style="width:100%; " id="A18825" data-tid="A352096">
+                    <comp-compose [Info]="systemApiService?.componentInfo" id="A18826" data-tid="A352097"></comp-compose>
+                </div>
+            </div>
+        </div>
+    </dxi-item>
+    <dxi-item class="tabpanel-item" title="Lüzumu Dahilinde Verilen İlaçlar" style="height:100%!important;" i18n-title="@@M18396" id="A18827" data-tid="A352098">
+        <div class="col-sm-12" id="A18828" data-tid="A352099">
+            <div class="panel panel-default" id="A18829" data-tid="A352100">
+                <div class="panel-heading" id="A18830" data-tid="A352101">
+                    Lüzumu Dahilinde Verilen İlaçlar
+                </div>
+                <div class="panel-body" id="A18831" data-tid="A352102">
+                    <dx-toolbar [items]="toolbarCaseOfNeedItems" id="A18832" data-tid="A352103"></dx-toolbar>
+                    <div id="data-grid-demo" data-tid="A352104">
+                        <dx-data-grid id="gridContainer" [dataSource]="caseOfNeedDrugOrders" [(selectedRowKeys)]="selectedTempCaseOfNeedItems" data-tid="A352105">
+                            <dxo-selection selectAllMode="allPages" showCheckBoxesMode="onClick" mode="multiple" id="A18833" data-tid="A352106"></dxo-selection>
+                            <dxo-column-fixing [enabled]="true" id="A18834" data-tid="A352107"></dxo-column-fixing>
+                            <dxo-paging [pageSize]="15" id="A18835" data-tid="A352108"></dxo-paging>
+                            <dxo-filter-row [visible]="true" id="A18836" data-tid="A352109"></dxo-filter-row>
+                            <dxi-column dataField="MasterResourceName" caption="Birim" i18n-caption="@@M27304" id="A18837" data-tid="A352110"></dxi-column>
+                            <dxi-column dataField="PatientName" caption="Hasta Adı Soyadı" i18n-caption="@@M15133" id="A18838" data-tid="A352111"> </dxi-column>
+                            <dxi-column dataField="DrugBarcode" caption="Lüzümü Halinde Verilen Barkodu" i18n-caption="@@M27720" id="A18839" data-tid="A352112"> </dxi-column>
+                            <dxi-column dataField="DrugName" caption="Lüzümü Halinde Verilen İlaç" i18n-caption="@@M18399" id="A18840" data-tid="A352113"> </dxi-column>
+                            <dxi-column dataField="DoseAmount" caption="Doz Miktarı" i18n-caption="@@M13294" id="A18841" data-tid="A352114"></dxi-column>
+                            <dxi-column dataField="PlannedDateTime" caption="Verildiği Tarih" type="datetime" i18n-caption="@@M24097" id="A18842" data-tid="A352115"></dxi-column>
+                        </dx-data-grid>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </dxi-item>
+
+    <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A18843" data-tid="A352116"></dx-load-panel>
+
+</dx-tab-panel>
+
+
+
+
+
+

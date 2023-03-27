@@ -1,0 +1,29 @@
+﻿<form id="NuclearMedicineResultsQueryForm" class="form-horizontal" role="form" data-tid="A358432">
+    <div class="row" data-tid="A358433">
+        <div class="col-md-2" data-tid="A358434">
+            <label class="control-label" data-tid="A358435">Tarih Aralığı(Son)</label>
+            <hvl-enum-combobox #Validation [(Value)]="MonthlyTimeInterval" [BackColor]="cmbDateInterval?.BackColor" [DataTypeName]="cmbDateInterval?.DataTypeName" [Enabled]="true" [Font]="cmbDateInterval?.Font" [ForeColor]="cmbDateInterval?.ForeColor" [IncludeOnly]="cmbDateInterval?.IncludeOnly" [ReadOnly]="cmbDateInterval?.ReadOnly" [ShowClearButton]="cmbDateInterval?.ShowClearButton" [SortBy]="cmbDateInterval?.SortBy" [TabIndex]="cmbDateInterval?.TabIndex" [Visible]="cmbDateInterval?.Visible" data-tid="A358436"></hvl-enum-combobox>
+        </div>
+        <div class="col-md-1" style="padding-top: 15px;" data-tid="A358437">
+            <dx-button type="default" icon="fa fa-refresh" text="Sorgula" (onClick)="cmdNuclearMedicineResults_Click()" data-tid="A358438"></dx-button>
+        </div>
+    </div>
+    <br data-tid="A358439" />
+    <br data-tid="A358440" />
+    <div class="row" data-tid="A358441">
+        <div class="col-md-12" data-tid="A358442">
+            <dx-data-grid #radiologyTestsGrid showColumnLines="true" height="86%" showRowLines="true" showBorders="true" [filterRow]="{visible: true}" [columns]="NuclearMedicineResultsColumns" [dataSource]="PatientAllNuclearMedicineTests" allowColumnReordering="true" allowColumnResizing="true" [selection]="{mode: 'single',allowSelectAll: false}" [editing]="{mode: 'row', texts:{confirmDeleteMessage:''}}" data-tid="A358443">
+
+                <div *dxTemplate="let row of 'linkCellTemplateReport'" data-tid="A358444">
+                    <button *ngIf="row.data.isReportShown" class="btn btn-xs btn-default" style="margin-top: -15px;margin-bottom: -10px;margin-left: 17px;height: 16px !important; color:rebeccapurple;" (click)="selectReport(row)" data-tid="A358445"><i class="fa fa-print" title="Sonuç Raporu" data-tid="A358446"></i></button>
+                </div>
+                <div *dxTemplate="let row of 'linkCellTemplateResult'" data-tid="A358447">
+                    <button *ngIf="row.data.isResultShown" class="btn btn-xs btn-default" style="margin-top: -22px;margin-bottom: -10px;margin-left: 17px;height: 16px !important; color:rebeccapurple;" (click)="selectResultView(row)" data-tid="A358448"><i class="fa fa-desktop" title="Sonuç Görüntüleme" data-tid="A358449"></i></button>
+                </div>
+
+
+            </dx-data-grid>
+        </div>
+    </div>
+
+</form>

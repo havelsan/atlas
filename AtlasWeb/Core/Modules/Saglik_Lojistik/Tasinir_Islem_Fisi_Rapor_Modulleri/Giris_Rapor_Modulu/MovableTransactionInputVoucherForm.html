@@ -1,0 +1,375 @@
+﻿<style type="text/css" id="A16460" data-tid="A337887">
+    .dropup,
+    .dropdown {
+        position: absolute !important;
+    }
+</style>
+
+<div class="col-md-12" style="height:100%;overflow-x:hidden;overflow-y:auto;" data-tid="A337888">
+    <div class="row" style="height:96%;" data-tid="A337889">
+
+        <br data-tid="A337891" />
+
+
+
+        <div class="col-sm-12" data-tid="A337892">
+            <div class="col-sm-2" data-tid="A337893">
+                <label class="control-label" data-tid="A337894">Başlangıç Tarihi</label>
+                <dx-date-box width="100%" type="date" (onValueChanged)="onStartDatePickerChanged($event)" [value]="_ViewModel.StartDate" data-tid="A337895">
+                </dx-date-box>
+            </div>
+
+            <div class="col-sm-2" data-tid="A337896">
+                <label class="control-label" data-tid="A337897">MKYS Stok Hareket ID</label>
+                <dx-number-box #numberBox [showSpinButtons]="false" [(value)]="_ViewModel.MKYSStockTransactionID" data-tid="A337898">
+                </dx-number-box>
+            </div>
+
+            <div class="col-sm-2" data-tid="A337899">
+                <label class="control-label" data-tid="A337900">Tif Numarası</label>
+                <dx-text-box [(value)]="_ViewModel.DocumentRecordLogID" data-tid="A337901">
+                </dx-text-box>
+            </div>
+
+            <div class="col-sm-2" id="A8654" data-tid="A337902">
+                <label class="control-label" id="A8655" data-tid="A337903">
+                    Firma
+                </label>
+                <hvl-list-box #Validation (SelectedObjectChange)="onSupplierChanged($event)" [AutoCompleteDialogHeight]="Supplier?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="Supplier?.AutoCompleteDialogWidth" [AutoCompleteMode]="Supplier?.AutoCompleteMode" [BackColor]="Supplier?.BackColor" [DefinitionName]="Supplier?.ListDefName" [Enabled]="Supplier?.Enabled" [Font]="Supplier?.Font" [ForeColor]="Supplier?.ForeColor" [ListFilterExpression]="Supplier?.ListFilterExpression" [MinSearchLength]="Supplier?.MinSearchLength" [PopupDialogFieldConfig]="Supplier?.PopupDialogFieldConfig" [PopupDialogGridColumns]="Supplier?.PopupDialogGridColumns" [PopupDialogHeight]="Supplier?.PopupDialogHeight" [PopupDialogTitle]="Supplier?.PopupDialogTitle" [PopupDialogWidth]="Supplier?.PopupDialogWidth" [ReadOnly]="Supplier?.ReadOnly" [SearchMode]="Supplier?.SearchMode" [SearchTimeout]="Supplier?.SearchTimeout" [TabIndex]="Supplier?.TabIndex" [Visible]="Supplier?.Visible" [width]="Supplier?.Width" id="A8656" data-tid="A337904"></hvl-list-box>
+            </div>
+
+            <div class="col-sm-2" id="A1581" data-tid="A337905">
+                <label id="A1582" style="padding-left:initial" data-tid="A337906">Özellikli İlaç</label>
+                <div id="A1583" data-tid="A337907">
+                    <dx-tag-box [dataSource]="DrugSpecificationEnumDef" valueExpr="ordinal" displayExpr="description" [(value)]="selectedPeriodUnitType" (onSelectionChanged)="OzellikChanged($event)" data-tid="A337908">
+                    </dx-tag-box>
+                </div>
+            </div>
+
+            <div class="col-sm-2" id="A4023" style="margin-top: 15px;" data-tid="A337909">
+                <dx-check-box [(value)]="isDetailedSearch" [width]="400" text="Detaylı Arama" (onValueChanged)="onSearchSelectionChanged($event)" i18n-text="@@M21798" id="A4024" style="margin-bottom: 10px;" data-tid="A337910"></dx-check-box>
+            </div>
+
+            <div class="row" data-tid="A337911">
+
+                <!-- <div class="col-sm-4" style="padding-top: 13px">
+                        <hvl-text-box #Validation [MultiLine]="true" [ReadOnly]="true" [Text]="selectedMaterialsText" [Visible]="this.visibility"></hvl-text-box>
+                    </div>
+
+                    <div class="col-sm-1" style="text-align:right; padding-top: 13px;" [hidden]="!this.visibility">
+                        <dx-button text="Seçilen Malzemeleri Temizle" rtlEnabled="true" type="danger" icon="refresh" (onClick)="clearSelectedMaterials()"></dx-button>
+                    </div>
+
+                </div> -->
+
+
+
+            </div>
+
+            <div class="col-sm-12" data-tid="A337912">
+                <div class="col-sm-2" data-tid="A337913">
+                    <label class="control-label" data-tid="A337914">Bitiş Tarihi</label>
+                    <dx-date-box width="100%" type="date" (onValueChanged)="onFinishDatePickerChanged($event)" [value]="_ViewModel.EndDate" data-tid="A337915">
+                    </dx-date-box>
+                </div>
+                <div class="col-sm-2" data-tid="A337916">
+                    <label class="control-label " id="A8340" data-tid="A337917">
+                        Bütçe Türü
+                    </label>
+                    <hvl-list-box #Validation (SelectedObjectChange)="onBudgetTypeDefinitionChanged($event)" [AutoCompleteDialogHeight]="BudgetTypeDefinition?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="BudgetTypeDefinition?.AutoCompleteDialogWidth" [AutoCompleteMode]="BudgetTypeDefinition?.AutoCompleteMode" [BackColor]="BudgetTypeDefinition?.BackColor" [DefinitionName]="BudgetTypeDefinition?.ListDefName" [Enabled]="BudgetTypeDefinition?.Enabled" [Font]="BudgetTypeDefinition?.Font" [ForeColor]="BudgetTypeDefinition?.ForeColor" [ListFilterExpression]="BudgetTypeDefinition?.ListFilterExpression" [MinSearchLength]="BudgetTypeDefinition?.MinSearchLength" [PopupDialogFieldConfig]="BudgetTypeDefinition?.PopupDialogFieldConfig" [PopupDialogGridColumns]="BudgetTypeDefinition?.PopupDialogGridColumns" [PopupDialogHeight]="BudgetTypeDefinition?.PopupDialogHeight" [PopupDialogTitle]="BudgetTypeDefinition?.PopupDialogTitle" [PopupDialogWidth]="BudgetTypeDefinition?.PopupDialogWidth" [ReadOnly]="BudgetTypeDefinition?.ReadOnly" [SearchMode]="BudgetTypeDefinition?.SearchMode" [SearchTimeout]="BudgetTypeDefinition?.SearchTimeout" [TabIndex]="BudgetTypeDefinition?.TabIndex" [Visible]="BudgetTypeDefinition?.Visible" [width]="BudgetTypeDefinition?.Width" id="A8341" data-tid="A337918"></hvl-list-box>
+                </div>
+
+                <div class="col-sm-2" data-tid="A337919">
+                    <label class="control-label" data-tid="A337920">İşlem Numarası</label>
+                    <dx-number-box #numberBox [showSpinButtons]="false" [(value)]="_ViewModel.StockActionID" data-tid="A337921">
+                    </dx-number-box>
+                </div>
+                <div class="col-sm-2" id="A83200" data-tid="A337922">
+                    <label class="control-label" id="A8321" data-tid="A337923">
+                        Geldiği Birim/Kurum
+                    </label>
+                    <hvl-list-box #Validation (SelectedObjectChange)="onAccountancyChanged($event)" [AutoCompleteDialogHeight]="Accountancy?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="Accountancy?.AutoCompleteDialogWidth" [AutoCompleteMode]="Accountancy?.AutoCompleteMode" [BackColor]="Accountancy?.BackColor" [DefinitionName]="Accountancy?.ListDefName" [Enabled]="Accountancy?.Enabled" [Font]="Accountancy?.Font" [ForeColor]="Accountancy?.ForeColor" [ListFilterExpression]="Accountancy?.ListFilterExpression" [MinSearchLength]="Accountancy?.MinSearchLength" [PopupDialogFieldConfig]="Accountancy?.PopupDialogFieldConfig" [PopupDialogGridColumns]="Accountancy?.PopupDialogGridColumns" [PopupDialogHeight]="Accountancy?.PopupDialogHeight" [PopupDialogTitle]="Accountancy?.PopupDialogTitle" [PopupDialogWidth]="Accountancy?.PopupDialogWidth" [ReadOnly]="Accountancy?.ReadOnly" [SearchMode]="Accountancy?.SearchMode" [SearchTimeout]="Accountancy?.SearchTimeout" [TabIndex]="Accountancy?.TabIndex" [Visible]="Accountancy?.Visible" [width]="Accountancy?.Width" id="A8322" data-tid="A337924"></hvl-list-box>
+                </div>
+                <div class="col-sm-2" id="A6173" data-tid="A337925">
+                    <br id="A6174" data-tid="A337926" />
+                    <dx-button type="btn btn-default" text="İlaç / Malzemenin Adı" (onClick)="OpenMaterialMultiSelectComponent()" data-tid="A337927"></dx-button>
+                </div>
+
+                <div class="col-sm-2" id="A5668" style="margin-top: 12px;" data-tid="A337928">
+                    <dx-button type="btn btn-info" icon="fa fa-bars" class="center-block" (onClick)="GetWithFilter()" text="Sorgula" id="A5669" data-tid="A337929"></dx-button>
+                </div>
+            </div>
+
+
+
+            <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A28706" data-tid="A337930">
+            </dx-load-panel>
+
+            <div class="col-md-12" style="margin-top:15px;" id="A5672" [hidden]="isDetailedSearch" data-tid="A337931">
+                <label class="control-label" data-tid="A337932">Giriş Fiş Listesi</label>
+                <div id="gridVoucherLevelOne" data-tid="A337933">
+                    <dx-data-grid #grid id="grid-container" [dataSource]="this.FirstLevelResult" keyExpr="StockActionID" [selectedRowKeys]="[]" (onSelectionChanged)="selectionChangedHandlerOnVoucher($event)" data-tid="A337934">
+
+                        <dxo-selection mode="single" data-tid="A337935"></dxo-selection>
+                        <dxo-paging [pageSize]="10" data-tid="A337936"></dxo-paging>
+                        <dxo-filter-row [visible]="true" id="A5673" data-tid="A337937"> </dxo-filter-row>
+                        <dxi-column dataField="StockActionID" caption="İşlem Numarası" data-tid="A337938"></dxi-column>
+                        <dxi-column dataField="TIFNo" caption="TIF Numarası" data-tid="A337939"></dxi-column>
+                        <dxi-column dataField="VoucherDate" caption="Fiş Tarihi" dataType="date" format="dd/MM/yyyy" [width]="100" data-tid="A337940"></dxi-column>
+                        <dxi-column dataField="TakeinType" caption="Alım Yöntemi" [width]="170" data-tid="A337941"></dxi-column>
+                        <dxi-column dataField="BudgetType" caption="Bütçe Türü" data-tid="A337942"></dxi-column>
+                        <dxi-column dataField="CompanyName" caption="Firma/Kurum Adı" data-tid="A337943"></dxi-column>
+                        <dxi-column dataField="ExaminationDate" caption="Muayene Tarihi" dataType="date" format="dd/MM/yyyy" [width]="100" data-tid="A337944"></dxi-column>
+                        <dxi-column dataField="ExamintaionNo" caption="Muayene Numarası" data-tid="A337945"></dxi-column>
+                        <dxi-column dataField="VounherNo" caption="Fatura Numarası" data-tid="A337946"></dxi-column>
+                        <dxi-column dataField="VoucherAmount" caption="Fişin Toplam Tutarı" data-tid="A337947"></dxi-column>
+                        <dxo-summary data-tid="A337948">
+                            <dxi-total-item column="StockActionID" summaryType="count" data-tid="A337949">
+                            </dxi-total-item>
+                        </dxo-summary>
+                        <dxo-export [enabled]="true" fileName="Giriş Fiş Listesi" [allowExportSelectedData]="false" data-tid="A337950"></dxo-export>
+                    </dx-data-grid>
+                </div>
+            </div>
+
+
+            <div class="col-md-12" style="margin-top:15px;" id="A5672" [hidden]="isDetailedSearch" data-tid="A337951">
+                <label class="control-label" data-tid="A337952">Fiş Detayları</label>
+                <div id="gridVoucherLevelOTwo" data-tid="A337953">
+                    <dx-data-grid #grid id="grid-container" [dataSource]="this.VoucherDetailList" keyExpr="TransactionCode" [selectedRowKeys]="[]" (onRowClick)="selectionChangedHandlerOnMaterial($event)" data-tid="A337954">
+
+                        <dxo-paging [pageSize]="10" data-tid="A337955"></dxo-paging>
+                        <dxo-filter-row [visible]="true" id="A5673" data-tid="A337956"> </dxo-filter-row>
+                        <dxo-selection mode="single" data-tid="A337957"></dxo-selection>
+
+                        <dxi-column dataField="MaterialName" caption="Malzeme Adı" [width]="170" data-tid="A337958"></dxi-column>
+                        <dxi-column dataField="NatoStockNO" caption="Taşınır Kodu" data-tid="A337959"></dxi-column>
+                        <dxi-column dataField="Barcode" caption="Barkod Kodu" data-tid="A337960"></dxi-column>
+                        <dxi-column dataField="Amount" caption="Miktarı" data-tid="A337961"></dxi-column>
+                        <dxi-column dataField="StoreStock" caption="Depodaki Miktarı" data-tid="A337962"></dxi-column>
+                        <dxi-column dataField="ExpirationDate" caption="Son Kullanma Tarihi" dataType="date" format="dd/MM/yyyy" [width]="100" data-tid="A337963"></dxi-column>
+                        <dxo-summary data-tid="A337964">
+                            <dxi-total-item column="MaterialName" summaryType="count" data-tid="A337965">
+                            </dxi-total-item>
+                            <dxi-total-item column="Amount" summaryType="sum" data-tid="A337966">
+                            </dxi-total-item>
+                        </dxo-summary>
+                        <dxo-export [enabled]="true" fileName="Fiş Detayları" [allowExportSelectedData]="false" data-tid="A337967"></dxo-export>
+
+                    </dx-data-grid>
+                </div>
+            </div>
+
+            <div class="col-md-12" style="margin-top:15px;" id="A5672" [hidden]="!isDetailedSearch" data-tid="A337968">
+                <label class="control-label" data-tid="A337969">Malzeme Listesi</label>
+                <div id="gridVoucherLevelOTwo" data-tid="A337970">
+                    <dx-data-grid #grid id="grid-container" [dataSource]="this.FirstLevelResult" keyExpr="StockTransactionID" [selectedRowKeys]="[]" data-tid="A337971">
+
+                        <dxo-paging [pageSize]="10" data-tid="A337972"></dxo-paging>
+                        <dxo-filter-row [visible]="true" id="A5673" data-tid="A337973"> </dxo-filter-row>
+                        <dxo-selection mode="single" data-tid="A337974"></dxo-selection>
+                        <dxi-column name="button" [allowEditing]="false" caption dataField="MaterialObjectID" cellTemplate="buttonCellTemplate" data-tid="A337975"></dxi-column>
+                        <dxi-column dataField="NatoStockNO" caption="Taşınır Kodu" [width]="170" data-tid="A337976"></dxi-column>
+                        <dxi-column dataField="Barcode" caption="Barkod Numarası" data-tid="A337977"></dxi-column>
+                        <dxi-column dataField="MaterialName" caption="Malzeme Adı" data-tid="A337978"></dxi-column>
+                        <dxi-column dataField="InAmount" caption="Giren Miktar" data-tid="A337979"></dxi-column>
+                        <dxi-column dataField="OutAmount" caption="Çıkan Miktar" data-tid="A337980"></dxi-column>
+                        <dxi-column dataField="RestAmount" caption="Kalan Miktar" data-tid="A337981"></dxi-column>
+                        <dxi-column dataField="DocumentRecordLogID" caption="Tif No" data-tid="A337982"></dxi-column>
+                        <dxi-column dataField="BidDate" caption="İhale Tarihi" dataType="date" format="dd/MM/yyyy" [width]="100" data-tid="A337983"></dxi-column>
+                        <dxi-column dataField="BidNumber" caption="İhale Numarası" data-tid="A337984"></dxi-column>
+                        <dxi-column dataField="inventory" caption="XXXXXX Envanteri" data-tid="A337985"></dxi-column>
+                        <dxi-column dataField="TakeinType" caption="Alım Yöntemi" data-tid="A337986"></dxi-column>
+                        <dxi-column dataField="CompanyName" caption="Firma/Kurum Adı" data-tid="A337987"></dxi-column>
+                        <dxi-column dataField="UnitPriceWithoutVat" caption="KDV'siz Birim Fiyatı" data-tid="A337988"></dxi-column>
+                        <dxi-column dataField="VatRate" caption="KDV Oranı" data-tid="A337989"></dxi-column>
+                        <dxi-column dataField="UnitPriceWithinVat" caption="KDV'li Birim Fiyatı" data-tid="A337990"></dxi-column>
+                        <div *dxTemplate="let row of 'buttonCellTemplate'" id="A32200" data-tid="A337991">
+                            <!--<div class="dropdown">
+                                <button style="margin-top: -6px;height: 18px;" class="btn btn-default dropdown-toggle glyphicon glyphicon-list" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" style="cursor: pointer;" (click)="selectAction(row)" >Giriş Fişini Aç</a>
+                                    <a class="dropdown-item" style="cursor: pointer;" (click)="selectionChangedHandlerOnInMaterial(row)">Çıkış Hareketlerini Göster</a>
+                                    <a class="dropdown-item" style="cursor: pointer;" (click)="ChangeVisibility(row)">XXXXXX Envanteri</a>
+                            </div>
+                            </div>-->
+                            <dx-menu showFirstSubmenuMode="onClick" orientation="horizontal" submenuDirection="auto" [dataSource]="Menu" displayExpr="name" [hideSubmenuOnMouseLeave]="false" (onItemClick)="itemClick($event,row)" data-tid="A337992">
+                            </dx-menu>
+                        </div>
+                        <dxo-summary data-tid="A337993">
+                            <dxi-total-item column="MaterialObjectID" summaryType="count" data-tid="A337994">
+                            </dxi-total-item>
+                            <dxi-total-item column="InAmount" summaryType="sum" data-tid="A337995">
+                            </dxi-total-item>
+                            <dxi-total-item column="OutAmount" summaryType="sum" data-tid="A337996">
+                            </dxi-total-item>
+                            <dxi-total-item column="RestAmount" summaryType="sum" data-tid="A337997">
+                            </dxi-total-item>
+                        </dxo-summary>
+                        <dxo-export [enabled]="true" fileName="Malzeme Listesi" [allowExportSelectedData]="false" data-tid="A337998"></dxo-export>
+                    </dx-data-grid>
+                </div>
+            </div>
+        </div>
+        <dx-popup width="1400px" height="800px" style="position: inherit;" [(visible)]="showMaterialMultiSelectForm" [closeOnOutsideClick]="false" title="Malzeme Listesi" i18n-title="@@M20728" data-tid="A337999">
+            <div class="margin-bottom-10" data-tid="A338000">
+                <div *dxTemplate="let data of 'content'" data-tid="A338001">
+                    <MaterialMultiSelectForm (SelectedMaterialsChanged)="MaterialsSelected($event)" (SelectedMaterialsClear)="MaterialsCleared()" [FilterByStockCard]="true" [ShowMuadilMedicineFilter]="true" FilterByStockInheld="false" [StoreObjectId]="this._ViewModel?.StoreID" [CanZeroMaterialSelect]="true" data-tid="A338002"></MaterialMultiSelectForm>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="1000px" height="400px" [(visible)]="ShowVoucherList" [closeOnOutsideClick]="false" title="Giriş Fişleri" i18n-title="@@M20728" data-tid="A338003">
+            <div class="margin-bottom-10" data-tid="A338004">
+                <div *dxTemplate="let data of 'content'" data-tid="A338005">
+                    <dx-data-grid #grid id="grid-container" [dataSource]="this.VoucherList" keyExpr="StockActionObjectID" [selectedRowKeys]="[]" (onSelectionChanged)="selectionChangedHandlerOnVoucher($event)" data-tid="A338006">
+
+                        <dxo-paging [pageSize]="10" data-tid="A338007"></dxo-paging>
+                        <dxo-filter-row [visible]="true" id="A5673" data-tid="A338008"> </dxo-filter-row>
+                        <dxo-selection mode="single" data-tid="A338009"></dxo-selection>
+                        <dxi-column dataField="StockActionID" caption="İşlem Numarası" data-tid="A338010"></dxi-column>
+                        <dxi-column dataField="VoucherDate" caption="Fiş Tarihi" dataType="date" format="dd/MM/yyyy" [width]="100" data-tid="A338011"></dxi-column>
+                        <dxi-column dataField="TakeinType" caption="Alım Yöntemi" [width]="170" data-tid="A338012"></dxi-column>
+                        <dxi-column dataField="BudgetType" caption="Bütçe Türü" data-tid="A338013"></dxi-column>
+                        <dxi-column dataField="CompanyName" caption="Firma/Kurum Adı" data-tid="A338014"></dxi-column>
+                        <dxi-column dataField="ExaminationDate" caption="Muayene Tarihi" dataType="date" format="dd/MM/yyyy" [width]="100" data-tid="A338015"></dxi-column>
+                        <dxi-column dataField="ExamintaionNo" caption="Muayene Numarası" data-tid="A338016"></dxi-column>
+                        <dxi-column dataField="VoucherAmount" caption="Fişin Toplam Tutarı" data-tid="A338017"></dxi-column>
+                        <dxo-summary data-tid="A338018">
+                            <dxi-total-item column="StockActionID" summaryType="count" data-tid="A338019">
+                            </dxi-total-item>
+                        </dxo-summary>
+                        <dxo-export [enabled]="true" fileName="Giriş Fişleri" [allowExportSelectedData]="false" data-tid="A338020"></dxo-export>
+                    </dx-data-grid>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="1000px" height="400px" [(visible)]="ShowOutVoucherList" [closeOnOutsideClick]="false" title="Çıkış Fişleri" i18n-title="@@M20728" data-tid="A338021">
+            <div class="margin-bottom-10" data-tid="A338022">
+                <div *dxTemplate="let data of 'content'" data-tid="A338023">
+                    <dx-data-grid #grid id="grid-container" [dataSource]="this.OutVouchers" keyExpr="StockActionObjectID" [selectedRowKeys]="[]" (onSelectionChanged)="selectionChangedHandlerOnVoucher($event)" data-tid="A338024">
+
+                        <dxo-paging [pageSize]="10" data-tid="A338025"></dxo-paging>
+                        <dxo-filter-row [visible]="true" id="A5673" data-tid="A338026"> </dxo-filter-row>
+                        <dxo-selection mode="single" data-tid="A338027"></dxo-selection>
+                        <dxi-column dataField="StockActionID" caption="İşlem Numarası" data-tid="A338028"></dxi-column>
+                        <dxi-column dataField="VoucherDate" caption="Fiş Tarihi" dataType="date" format="dd/MM/yyyy" data-tid="A338029"></dxi-column>
+                        <dxi-column dataField="VoucherAmount" caption="Fişin Toplam Tutarı" data-tid="A338030"></dxi-column>
+                        <dxo-summary data-tid="A338031">
+                            <dxi-total-item column="StockActionID" summaryType="count" data-tid="A338032">
+                            </dxi-total-item>
+                        </dxo-summary>
+                        <dxo-export [enabled]="true" fileName="Çıkış Fişleri" [allowExportSelectedData]="false" data-tid="A338033"></dxo-export>
+                    </dx-data-grid>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="1000px" height="400px" [(visible)]="ShowVoucherDetailList" [closeOnOutsideClick]="false" title="Fiş Detayı" data-tid="A338034">
+            <div class="margin-bottom-10" data-tid="A338035">
+                <div *dxTemplate="let data of 'content'" data-tid="A338036">
+                    <dx-data-grid #grid id="grid-container" [dataSource]="this.VoucherDetailList" keyExpr="TransactionCode" [selectedRowKeys]="[]" data-tid="A338037">
+
+                        <dxo-paging [pageSize]="10" data-tid="A338038"></dxo-paging>
+                        <dxo-filter-row [visible]="true" id="A5673" data-tid="A338039"> </dxo-filter-row>
+                        <dxo-selection mode="single" data-tid="A338040"></dxo-selection>
+                        <dxi-column dataField="MaterialName" caption="Malzeme Adı" [width]="170" data-tid="A338041"></dxi-column>
+                        <dxi-column dataField="NatoStockNO" caption="Taşınır Kodu" data-tid="A338042"></dxi-column>
+                        <dxi-column dataField="Barcode" caption="Barkod Kodu" data-tid="A338043"></dxi-column>
+                        <dxi-column dataField="Amount" caption="Miktarı" data-tid="A338044"></dxi-column>
+                        <dxi-column dataField="StoreStock" caption="Depodaki Miktarı" data-tid="A338045"></dxi-column>
+                        <dxi-column dataField="ExpirationDate" caption="Son Kullanma Tarihi" dataType="date" format="dd/MM/yyyy" [width]="100" data-tid="A338046"></dxi-column>
+                        <dxo-summary data-tid="A338047">
+                            <dxi-total-item column="MaterialName" summaryType="count" data-tid="A338048">
+                            </dxi-total-item>
+                            <dxi-total-item column="Amount" summaryType="sum" data-tid="A338049">
+                            </dxi-total-item>
+                        </dxo-summary>
+                        <dxo-export [enabled]="true" fileName="Fiş Detayı" [allowExportSelectedData]="false" data-tid="A338050"></dxo-export>
+                    </dx-data-grid>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="1000px" height="400px" [(visible)]="showInventoryDetail" [closeOnOutsideClick]="false" title="Envanter" data-tid="A338051">
+            <div class="margin-bottom-10" data-tid="A338052">
+                <div *dxTemplate="let data of 'content'" data-tid="A338053">
+                    <dx-data-grid #grid id="grid-container" [dataSource]="this.inventoryList" [selectedRowKeys]="[]" data-tid="A338054">
+
+                        <dxo-paging [pageSize]="10" data-tid="A338055"></dxo-paging>
+                        <dxo-filter-row [visible]="true" data-tid="A338056"> </dxo-filter-row>
+                        <dxo-selection mode="single" data-tid="A338057"></dxo-selection>
+                        <dxi-column dataField="StoreName" caption="Depo Adı" data-tid="A338058"></dxi-column>
+                        <dxi-column dataField="Inventory" caption="Adet" data-tid="A338059"></dxi-column>
+                        <dxo-summary data-tid="A338060">
+                            <dxi-total-item column="StoreName" summaryType="count" data-tid="A338061">
+                            </dxi-total-item>
+                        </dxo-summary>
+                        <dxo-export [enabled]="true" fileName="Envanter" [allowExportSelectedData]="false" data-tid="A338062"></dxo-export>
+                    </dx-data-grid>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="1000px" height="400px" [(visible)]="showMaterialDetailPopUp" [closeOnOutsideClick]="false" title="Malzeme Detayları" data-tid="A338063">
+            <div class="margin-bottom-10" data-tid="A338064">
+                <div *dxTemplate="let data of 'content'" data-tid="A338065">
+                    <div id="gridVoucherLevelOThree" data-tid="A338066">
+                        <dx-data-grid #grid id="grid-container" [dataSource]="this.MaterialDetailList" keyExpr [selectedRowKeys]="[]" data-tid="A338067">
+
+                            <dxo-paging [pageSize]="10" data-tid="A338068"></dxo-paging>
+                            <dxo-filter-row [visible]="true" id="A5673" data-tid="A338069"> </dxo-filter-row>
+                            <dxo-selection mode="single" data-tid="A338070"></dxo-selection>
+                            <dxi-column dataField="MKYS_StokHareketID" caption="Stok Hareket ID" [width]="170" data-tid="A338071"></dxi-column>
+                            <dxi-column dataField="OutLocation" caption="Çıkış Yapılan Yer" [width]="170" data-tid="A338072"></dxi-column>
+                            <dxi-column dataField="OutDate" caption="Çıkış Tarihi" dataType="date" format="dd/MM/yyyy HH:mm" [width]="100" data-tid="A338073"></dxi-column>
+                            <dxi-column dataField="Amount" caption="Miktarı" data-tid="A338074"></dxi-column>
+                            <dxi-column dataField="UnitPrice" caption="Birim Fiyatı" data-tid="A338075"></dxi-column>
+                            <dxi-column dataField="TotalPrice" caption="Toplam Tutar" data-tid="A338076"></dxi-column>
+                            <dxo-summary data-tid="A338077">
+                                <dxi-total-item column="MKYS_StokHareketID" summaryType="count" data-tid="A338078">
+                                </dxi-total-item>
+                                <dxi-total-item column="Amount" summaryType="sum" data-tid="A338079">
+                                </dxi-total-item>
+                            </dxo-summary>
+                            <dxo-export [enabled]="true" fileName="Malzeme Detayları" [allowExportSelectedData]="false" data-tid="A338080"></dxo-export>
+                        </dx-data-grid>
+                    </div>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup [(visible)]="showOutTransactionPopUp" [closeOnOutsideClick]="false" title="Çıkış Detayları" data-tid="A338081">
+            <div class="margin-bottom-10" data-tid="A338082">
+                <div *dxTemplate="let data of 'content'" data-tid="A338083">
+                    <dx-data-grid #grid id="grid-container" [dataSource]="this.OutTransactionList" keyExpr="OutTransactionID" [selectedRowKeys]="[]" data-tid="A338084">
+
+                        <dxo-paging [pageSize]="5" data-tid="A338085"></dxo-paging>
+                        <dxo-filter-row [visible]="true" id="A5673" data-tid="A338086"> </dxo-filter-row>
+                        <dxo-selection mode="single" data-tid="A338087"></dxo-selection>
+                        <dxi-column name="button" [allowEditing]="false" caption dataField="OutTransactionID" cellTemplate="buttonCellTemplate" [width]="50" data-tid="A338088"></dxi-column>
+                        <dxi-column dataField="StockHareketID" caption="Stok Hareket ID" [width]="170" data-tid="A338089"></dxi-column>
+                        <dxi-column dataField="OutDate" caption="Çıkış Tarihi" dataType="date" format="dd/MM/yyyy HH:mm" data-tid="A338090"></dxi-column>
+                        <dxi-column dataField="Amount" caption="Miktarı" data-tid="A338091"></dxi-column>
+                        <dxi-column dataField="UnitPrice" caption="Birim Fiyatı" data-tid="A338092"></dxi-column>
+                        <dxi-column dataField="TotalPrice" caption="Toplam Tutar" data-tid="A338093"></dxi-column>
+                        <dxi-column dataField="OutPlace" caption="Çıkış Yapılan Yer" data-tid="A338094"></dxi-column>
+                        <div *dxTemplate="let row of 'buttonCellTemplate'" style="padding-bottom: 1px;" id="A32200" data-tid="A338095">
+                            <button type="button" class="btn btn-default glyphicon glyphicon-list" (click)="selectionChangedHandlerOnMaterialForOutVouchers(row)" data-toggle="tooltip" data-placement="top" title="Çıkış Fişi Listesi" data-tid="A338096"></button>
+                        </div>
+                        <dxo-summary data-tid="A338097">
+                            <dxi-total-item column="StockHareketID" summaryType="count" data-tid="A338098">
+                            </dxi-total-item>
+                            <dxi-total-item column="Amount" summaryType="sum" data-tid="A338099">
+                            </dxi-total-item>
+                        </dxo-summary>
+                        <dxo-export [enabled]="true" fileName="Çıkış Detayları" [allowExportSelectedData]="false" data-tid="A338100"></dxo-export>
+                    </dx-data-grid>
+                </div>
+            </div>
+        </dx-popup>
+
+    </div>
+</div>

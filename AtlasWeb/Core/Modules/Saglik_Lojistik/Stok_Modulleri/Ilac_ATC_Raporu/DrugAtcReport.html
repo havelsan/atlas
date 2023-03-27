@@ -1,0 +1,42 @@
+﻿<div class="col-md-12" style="height:100%;overflow-x:hidden;overflow-y:auto;padding-top: 1%;" data-tid="A331844">
+   <div class="row" style="padding-left: 1%;" data-tid="A331845">
+      <div class="col-md-4" data-tid="A331846">
+         <label class="control-label" data-tid="A331847">ATC Seçiniz</label>
+         <dx-drop-down-box #atcList [(value)]="selectedAtcTermDefItem.Name" displayExpr="Name" valueExpr="ObjectID" [showClearButton]="true" [dataSource] (onOpened)="openAtcDefDropDown()" (onValueChanged)="onClearAtc($event)" data-tid="A331848">
+            <div *dxTemplate="let data of 'content'" data-tid="A331849">
+               <dx-data-grid [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" [dataSource]="atcDefDataSource" (onRowClick)="selectAtcTermDef($event)" [remoteOperations]="true" [customizeColumns]="null" data-tid="A331850">
+                  <dxo-filter-row [visible]="true" data-tid="A331851"></dxo-filter-row>
+                  <dxo-paging [pageSize]="10" data-tid="A331852"></dxo-paging>
+                  <dxo-selection mode="single" data-tid="A331853"></dxo-selection>
+                  <dxi-column caption="ATC Kodu" dataField="Code" width="100" data-tid="A331854"></dxi-column>
+                  <dxi-column caption="ATC Adı" dataField="Name" data-tid="A331855"></dxi-column>
+                  <dxi-column caption="SPTS ID" dataField="SPTSATCID" width="100" data-tid="A331856"></dxi-column>
+               </dx-data-grid>
+            </div>
+         </dx-drop-down-box>
+      </div>
+      <div class="col-sm-2" id="A5668" style="margin-top: 12px;" data-tid="A331857">
+         <dx-button type="btn btn-info" icon="fa fa-bars" class="center-block" (onClick)="GetDrugList()" text="Sorgula" id="A5669" data-tid="A331858"></dx-button>
+      </div>
+   </div>
+   <div class="row" data-tid="A331859">
+      <div class="col-sm-12" style="margin-top:5px;" data-tid="A331860">
+         <div id="grid" data-tid="A331861">
+            <dx-data-grid #grid id="grid-container" [columns]="DrugListColumn" [dataSource]="drugLists" style="height:600px" data-tid="A331862">
+               <dxo-paging [pageSize]="20" data-tid="A331863"></dxo-paging>
+               <dxo-filter-row [visible]="true" data-tid="A331864"> </dxo-filter-row>
+               <dxo-export [enabled]="true" fileName="İlaç ATC Raporu" [allowExportSelectedData]="false" data-tid="A331865">
+               </dxo-export>
+               <dxo-group-panel [visible]="true" data-tid="A331866"></dxo-group-panel>
+               <dxo-grouping #expand [autoExpandAll]="true" data-tid="A331867"></dxo-grouping>
+            </dx-data-grid>
+         </div>
+      </div>
+      <div class="col-sm-12 pull pull-right" style="width:100%;color: black;padding: 15px;font-size: larger;" data-tid="A331868">
+         Toplam Kayıt Sayısı: {{ TotalNumberOfRows }}
+      </div>
+   </div>
+
+   <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" showIndicator="true" showPane="true" shading="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A331869">
+   </dx-load-panel>
+</div>

@@ -1,0 +1,37 @@
+﻿<div style="height:100%" data-tid="A375316">
+    <div class="col-sm-12" data-tid="A375317">
+        <label class="control-label" style="color:red;" data-tid="A375318">
+            {{_AtlasClientInfo}}
+        </label>
+    </div>
+    <div class="col-sm-12" data-tid="A375319">
+        <label class="control-label" data-tid="A375320">Barkod Cihazı</label>
+        <dx-lookup [dataSource]="_printerDataSource" [showPopupTitle]="false" [disabled]="_disabled" searchEnabled="false" closeOnOutsideClick="true" (onValueChanged)="printerChanged($event)" placeholder="Barkod Cihazı Seçiniz" data-tid="A375321">
+        </dx-lookup>
+    </div>
+    <div class="col-sm-6" data-tid="A375322">
+        <label class="control-label" data-tid="A375323">Barkod Tipi</label>
+        <dx-lookup [dataSource]="_barcodeType" [showPopupTitle]="false" searchEnabled="false" [disabled]="_disabled" closeOnOutsideClick="true" (onValueChanged)="barcodeTypeChanged($event)" placeholder="Barkod Tipi Seçiniz" data-tid="A375324">
+        </dx-lookup>
+    </div>
+
+    <div class="col-sm-6" data-tid="A375325">
+        <label class="control-label" data-tid="A375326">Barkod Sayısı</label>
+        <dx-number-box [min]="1" [max]="15" [disabled]="_disabled" [showSpinButtons]="true" [(value)]="_barcodeCount" data-tid="A375327">
+
+        </dx-number-box>
+    </div>
+
+    <div class="col-sm-12" data-tid="A375328">
+        <dx-button type="default" class="pull-right" text="Ekle" [disabled]="_disabled" (onClick)="addBarcodeSettings()" data-tid="A375329"></dx-button>
+    </div>
+
+    <div class="col-sm-12" data-tid="A375330">
+        <dx-data-grid showColumnLines="true" showBorders="true" showRowLines="true" [height]="300" [dataSource]="_barcodeSettingsArray" [columns]="_barcodeSettingColumns" [selection]="{mode: 'none'}" [editing]="{allowDeleting:true,allowUpdating:false,allowAdding:false, mode: 'cell'}" data-tid="A375331">
+        </dx-data-grid>
+    </div>
+
+    <div class="col-sm-12" data-tid="A375332">
+        <dx-button type="success" class="pull-right" text="Kaydet" (onClick)="saveBarcodeSettings()" data-tid="A375333"></dx-button>
+    </div>
+</div>

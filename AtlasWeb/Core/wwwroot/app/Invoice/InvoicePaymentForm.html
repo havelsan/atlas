@@ -1,0 +1,113 @@
+﻿
+
+ <link href="/Content/CashOffice/CashOfficeGeneral.css" rel="stylesheet" />
+<div class="col-sm-12" id="A30787" data-tid="A371245">
+    <div class="row remove-padding" id="A30788" data-tid="A371246">
+        <div class="remove-padding" id="A30789" data-tid="A371247">
+            <dx-button type="default" icon="fa fa-check" text="Tahsil Et" (onClick)="newInvoicePaymentClick()" [visible]="!_isReadonly.value" i18n-text="@@M27380" id="A30790" data-tid="A371248"></dx-button>
+
+            <dx-button type="danger" icon="fa fa-times" text="İptal" (onClick)="cancelInvoicePaymentClick()" [visible]="getCancelButtonVisible()" i18n-text="@@M16526" id="A30791" data-tid="A371249"></dx-button>
+        </div>
+    </div>
+    <br id="A30792" data-tid="A371250" />
+    <div class="row" id="A30793" data-tid="A371251">
+        <label class="control-label col-sm-1 remove-padding text-align-left" id="A30794" data-tid="A371252">
+            Kurum
+        </label>
+        <div class="col-sm-4" id="A30795" data-tid="A371253">
+            <dx-text-box [showClearButton]="true" [(value)]="invoicePaymentFormModel.InvoicePayment.Payer.Name" [disabled]="true" id="A30796" data-tid="A371254"></dx-text-box>
+        </div>
+        <label class="control-label col-sm-1 remove-padding text-align-left" id="A30797" data-tid="A371255">
+            İşlem Tarihi
+        </label>
+        <div class="col-sm-3" id="A30798" data-tid="A371256">
+            <dx-date-box [acceptCustomValue]="false" [(value)]="invoicePaymentFormModel.InvoicePayment.CreateDate" [showClearButton]="true" [disabled]="true" pickerType="calendar" type="date" displayFormat="dd/MM/yyyy" style="width:100%" id="A30799" data-tid="A371257"></dx-date-box>
+        </div>
+        <label class="control-label col-sm-1 remove-padding text-align-left" id="A30800" data-tid="A371258">
+            Ödeme Tutarı
+        </label>
+        <div class="col-sm-2" id="A30801" data-tid="A371259">
+            <dx-number-box [showClearButton]="true" [(value)]="invoicePaymentFormModel.InvoicePayment.PaymentPrice" [disabled]="_isReadonly.value" valueChangeEvent="keyup" (onValueChanged)="onValueChangedPaymentPrice($event)" id="A30802" data-tid="A371260"></dx-number-box>
+        </div>
+    </div>
+    <div class="row" id="A30803" data-tid="A371261">
+        <label class="control-label col-sm-1 remove-padding text-align-left" id="A30804" data-tid="A371262">
+            Hesap
+        </label>
+        <div class="col-sm-4" id="A30805" data-tid="A371263">
+            <hvl-valuelist-box #Validation [(SelectedValue)]="invoicePaymentFormModel.InvoicePayment.BankAccount" [AutoCompleteDialogHeight]="cmbBankAccount?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="cmbBankAccount?.AutoCompleteDialogWidth" [AutoCompleteMode]="cmbBankAccount?.AutoCompleteMode" [BackColor]="cmbBankAccount?.BackColor" [DefinitionName]="cmbBankAccount?.ListDefName" [Enabled]="cmbBankAccount?.Enabled" [Font]="cmbBankAccount?.Font" [ForeColor]="cmbBankAccount?.ForeColor" [ListFilterExpression]="cmbBankAccount?.ListFilterExpression" [MinSearchLength]="cmbBankAccount?.MinSearchLength" [PopupDialogFieldConfig]="cmbBankAccount?.PopupDialogFieldConfig" [PopupDialogGridColumns]="cmbBankAccount?.PopupDialogGridColumns" [PopupDialogHeight]="cmbBankAccount?.PopupDialogHeight" [PopupDialogTitle]="cmbBankAccount?.PopupDialogTitle" [PopupDialogWidth]="cmbBankAccount?.PopupDialogWidth" [ReadOnly]="cmbBankAccount?.ReadOnly" [SearchTimeout]="cmbBankAccount?.SearchTimeout" [TabIndex]="cmbBankAccount?.TabIndex" [Visible]="cmbBankAccount?.Visible" [width]="cmbBankAccount?.Width" id="A30806" data-tid="A371264"></hvl-valuelist-box>
+        </div>
+        <label class="control-label col-sm-1 remove-padding text-align-left" id="A30807" data-tid="A371265">
+            Dekont Tarihi
+        </label>
+        <div class="col-sm-3" id="A30808" data-tid="A371266">
+            <dx-date-box [acceptCustomValue]="false" [(value)]="invoicePaymentFormModel.InvoicePayment.DecountDate" [disabled]="_isReadonly.value" [showClearButton]="true" pickerType="calendar" type="date" displayFormat="dd/MM/yyyy" style="width:100%" id="A30809" data-tid="A371267"></dx-date-box>
+        </div>
+        <label class="control-label col-sm-1 remove-padding text-align-left" id="A30810" data-tid="A371268">
+            Kesinti Tutarı
+        </label>
+        <div class="col-sm-2" id="A30811" data-tid="A371269">
+            <dx-number-box [showClearButton]="true" [(value)]="invoicePaymentFormModel.InvoicePayment.Deduction" [disabled]="_isReadonly.value" valueChangeEvent="keyup" (onValueChanged)="onValueChangedPaymentPrice($event)" id="A30812" data-tid="A371270"></dx-number-box>
+        </div>
+    </div>
+    <div class="row" id="A30813" data-tid="A371271">
+        <label class="control-label col-sm-1 remove-padding text-align-left" id="A30814" data-tid="A371272">
+            Kullanıcı
+        </label>
+        <div class="col-sm-4" id="A30815" data-tid="A371273">
+            <dx-text-box [showClearButton]="true" [(value)]="invoicePaymentFormModel.InvoicePayment.Username" [disabled]="true" id="A30816" data-tid="A371274"></dx-text-box>
+        </div>
+        <label class="control-label col-sm-1 remove-padding text-align-left" id="A30817" data-tid="A371275">
+            Dekont No
+        </label>
+        <div class="col-sm-3" id="A30818" data-tid="A371276">
+            <dx-text-box [showClearButton]="true" [(value)]="invoicePaymentFormModel.InvoicePayment.DecountNo" [disabled]="_isReadonly.value" id="A30819" data-tid="A371277"></dx-text-box>
+        </div>
+        <label class="control-label col-sm-1 remove-padding text-align-left" id="A30820" data-tid="A371278">
+            Toplam Tutar
+        </label>
+        <div class="col-sm-2" id="A30821" data-tid="A371279">
+            <dx-text-box [showClearButton]="true" [(value)]="invoicePaymentFormModel.InvoicePayment.TotalPrice" [disabled]="true" id="A30822" data-tid="A371280"></dx-text-box>
+        </div>
+    </div>
+    <div class="row" id="A30823" data-tid="A371281">
+        <label class="control-label col-sm-1 remove-padding text-align-left" id="A30824" data-tid="A371282">
+            Açıklama
+        </label>
+        <div class="col-sm-8" id="A30825" data-tid="A371283">
+            <dx-text-box [showClearButton]="true" [(value)]="invoicePaymentFormModel.InvoicePayment.Description" [disabled]="_isReadonly.value" id="A30826" data-tid="A371284"></dx-text-box>
+        </div>
+        <label class="control-label col-sm-1 remove-padding text-align-left" id="A30827" data-tid="A371285">
+            Fatura Tutarı
+        </label>
+        <div class="col-sm-2" id="A30828" data-tid="A371286">
+            <dx-text-box [showClearButton]="true" [(value)]="invoicePaymentFormModel.InvoicePayment.InvoicePrice" [disabled]="true" id="A30829" data-tid="A371287"></dx-text-box>
+        </div>
+    </div>
+    <div class="row" id="A30830" data-tid="A371288">
+        <label class="control-label col-sm-1 remove-padding text-align-left" id="A30831" data-tid="A371289">
+            {{cancelLabelText}}
+        </label>
+        <div class="col-sm-8" id="A30832" data-tid="A371290">
+            <dx-text-box [showClearButton]="true" [(value)]="invoicePaymentFormModel.InvoicePayment.CancelDescription" [disabled]="true" [visible]="getCancelDescriptionVisible()" id="A30833" data-tid="A371291"></dx-text-box>
+        </div>
+
+    </div>
+    <br id="A30834" data-tid="A371292" />
+    <div class="row" style="height:75%" id="A30835" data-tid="A371293">
+        <dx-data-grid showColumnLines="true" showRowLines="true" showBorders="true" [disabled]="_isReadonly.value" [selection]="{mode: 'none'}" [dataSource]="invoicePaymentFormModel.InvoicePaymentDetailList" height="100%" [columns]="InvoicePaymentDetailListColumns" [filterRow]="{visible: true}" [headerFilter]="{visible: true}" [editing]="EditingConfig" id="A30836" data-tid="A371294">
+            <dxo-paging [pageSize]="50" id="A30837" data-tid="A371295"></dxo-paging>
+            <div *dxTemplate="let row of 'PaymentTemplate'" id="A30838" data-tid="A371296">
+                <dx-text-box height="18px" style="margin-top: -4px;margin-bottom: -5px;padding-top:0px" [showClearButton]="true" [value]="row.text" (onValueChanged)="onValueChangedGridPayment($event,row)" (keypress)="keypressPaymentPrice($event)" id="A30839" data-tid="A371297"></dx-text-box>
+            </div>
+            <div *dxTemplate="let row of 'DeductionTemplate'" id="A30840" data-tid="A371298">
+                <dx-text-box height="18px" style="margin-top: -4px;margin-bottom: -5px;padding-top:0px" [showClearButton]="true" [value]="row.text" (onValueChanged)="onValueChangedGridDeduction($event,row)" (keypress)="keypressPaymentPrice($event)" id="A30841" data-tid="A371299"></dx-text-box>
+            </div>
+
+        </dx-data-grid>
+    </div>
+</div>
+
+
+
+

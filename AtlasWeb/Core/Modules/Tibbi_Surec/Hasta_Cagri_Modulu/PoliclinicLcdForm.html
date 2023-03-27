@@ -1,0 +1,115 @@
+﻿<div style="height:100%" [hidden]="hasCalledByDoctor" data-tid="A345814">
+    <div style="height:100%" class="row" data-tid="A345815">
+        <div class="col-md-12" data-tid="A345816">
+            <div class="col-md-12 text-center" data-tid="A345817">
+                <img class="pull-left" style="width:100px;height:auto;" src="https://dosyaXXXXXX.saglik.gov.tr/webfiles/sehirXXXXXXleri/images/logo.svg" data-tid="A345818" />
+                <h1 class="headerCenterText" style="text-align:left" data-tid="A345819">
+                    <!-- <b style="font-size: 45px;" class="headerColoredText">{{ currentItem?.doctorName}}</b>-->
+                </h1>
+                <h1 class="pull-right headerColoredText" data-tid="A345820">
+                    <b style="font-size: 40px;" data-tid="A345821">
+                        {{ (currentItem?.CurrentDate | date:'dd.MM.yyyy HH:mm')}}
+                    </b>
+                </h1>
+            </div>
+        </div>
+        <div class="policlinic col-md-3" style="border-right: 1px solid;height:100%" data-tid="A345822">
+            <div class="col-md-12" data-tid="A345823">
+                <h1 style="color:#7a7d7d;font-size:40px" data-tid="A345824">Doktor:</h1>
+                <h1 style="color:#ff0000;font-size:40px" data-tid="A345825">{{currentItem?.doctorName}}</h1>
+                <br data-tid="A345826" />
+                <h1 style="color:#7a7d7d;font-size:40px" data-tid="A345827">Birim:</h1>
+                <h1 style="color:#ff0000;font-size:40px" data-tid="A345828">{{currentItem?.polName}}</h1>
+                <br data-tid="A345829" />
+                <h1 style="color:#7a7d7d;font-size:40px" data-tid="A345830">Bekleyen Hastalar:</h1>
+                <h1 style="color:#ff0000;font-size:40px" data-tid="A345831">Muayene:{{currentItem?.Count}}</h1>
+            </div>
+        </div>
+        <div class="col-md-9 no-padding" style="height:100%;height: 100%;background-color: aliceblue;" data-tid="A345832">
+            <h1 *ngIf="currentItem?.LcdNotification != null  && currentItem?.LcdNotification.length > 0" class="text-center" style="color:#ff0000;font-size:100px; color: #ff0000;top: 120px;position: fixed;padding-left: 45vh;" data-tid="A345833">{{currentItem?.LcdNotification}}</h1>
+            <table *ngIf="currentItem?.LcdNotification == null  || currentItem?.LcdNotification.length == 0" class="table table-striped table-bordered" data-tid="A345834">
+                <thead data-tid="A345835">
+                    <tr class="tableBlueHeader" data-tid="A345836">
+                        <th class="text-center col-md-1" data-tid="A345837"><h1 class="margin-all-0" data-tid="A345838"><b data-tid="A345839"><i data-tid="A345840">Sıra/Saat</i></b></h1></th>
+                        <th class="text-center col-md-5" data-tid="A345841"><h1 class="margin-all-0" data-tid="A345842"><b data-tid="A345843"><i data-tid="A345844">Hasta Adı</i></b></h1></th>
+                        <th class="text-center col-md-3" data-tid="A345845"><h1 class="margin-all-0" data-tid="A345846"><b data-tid="A345847"><i data-tid="A345848">Öncelik Durumu</i></b></h1></th>
+                    </tr>
+                </thead>
+                <tbody #area data-tid="A345849">
+                    <tr *ngIf="lastCalledPatient!=null" data-tid="A345850">
+                        <td *ngIf="lastCalledPatient.OrderNO!='0'" class="text-center col-md-2" data-tid="A345851"><h1 style="font-size: 50px;" data-tid="A345852">{{lastCalledPatient?.OrderNO}}</h1></td>
+                        <td *ngIf="lastCalledPatient.OrderNO=='0'" class="text-center col-md-2" data-tid="A345853"><h1 style="font-size: 50px;" data-tid="A345854">{{(lastCalledPatient?.CallTime| date:'HH:mm')}}</h1></td>
+                        <td class="text-center col-md-5" data-tid="A345855"><h1 style="font-size: 50px;" data-tid="A345856">{{lastCalledPatient?.patientName}}</h1></td>
+                        <td class="text-center col-md-3" data-tid="A345857"><h1 style="font-size: 50px;" data-tid="A345858">İçerideki Hasta</h1></td>
+                    </tr>
+                    <tr *ngFor="let item of currentItem.patient | slice:0:5" data-tid="A345859">
+                        <td *ngIf="item.OrderNO!='0'&&item.Priority!='-1'" class="text-center col-md-2" data-tid="A345860"><h1 style="font-size: 50px;" data-tid="A345861">{{item?.OrderNO}}</h1></td>
+                        <td *ngIf="item.OrderNO=='0'&&item.Priority!='-1'" class="text-center col-md-2" data-tid="A345862"><h1 style="font-size: 50px;" data-tid="A345863">{{(item?.CallTime| date:'HH:mm')}}</h1></td>
+                        <td *ngIf="item.Priority!='-1'" class="text-center col-md-5" data-tid="A345864"><h1 style="font-size: 50px;" data-tid="A345865">{{item?.patientName}}</h1></td>
+                        <td *ngIf="item.Priority!='-1'" class="text-center col-md-3" data-tid="A345866"><h1 data-tid="A345867">{{item?.PriorityReason}}</h1></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="myfooter" data-tid="A345868">
+        <h3 class="text-center" data-tid="A345869">
+            <marquee data-tid="A345870">
+                {{ currentItem?.GeneralLcdNotification}}
+                <b data-tid="A345871">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@&nbsp;{{ currentItem?.hospitalName}}
+                </b>
+            </marquee>
+        </h3>
+    </div>
+</div>
+<div style="height:100%" [hidden]="!hasCalledByDoctor" data-tid="A345872">
+    <CallPatientForm style="height:100%" [Model]="SendModel" data-tid="A345873"></CallPatientForm>
+</div>
+<style data-tid="A345874">
+    .tbody tr {
+        height: 73px;
+    }
+
+    td {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: 0;
+    }
+
+        td h3 {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+
+    .policlinic {
+        height: 90%;
+        padding-left: 30px;
+    }
+
+        .policlinic div {
+            padding: 5px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .policlinic h1 {
+            text-align: left;
+        }
+
+        .policlinic h3 {
+            text-align: right;
+        }
+
+        .policlinic .active {
+            background-color: #0770a5;
+            color: #fff;
+        }
+
+    .col-md-3 {
+        padding-right: 0;
+    }
+</style>

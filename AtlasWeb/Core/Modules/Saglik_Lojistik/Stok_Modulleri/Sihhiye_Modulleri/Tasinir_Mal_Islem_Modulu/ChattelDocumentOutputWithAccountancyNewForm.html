@@ -1,0 +1,318 @@
+﻿<div class="container-fluid" id="A8484" data-tid="A336333">
+    <h4 class="logisticLabel" style="margin-left:40%;color:#08c;" id="A8485" data-tid="A336334">{{FormCaption}}</h4>
+    <NeStatePanelComponent
+        [ObjectDefID]="chattelDocumentOutputWithAccountancyNewFormViewModel._ChattelDocumentOutputWithAccountancy.ObjectDefID"
+        [CurrentStateDefID]="chattelDocumentOutputWithAccountancyNewFormViewModel._ChattelDocumentOutputWithAccountancy.CurrentStateDefID"
+        [OutgoingTransitions]="chattelDocumentOutputWithAccountancyNewFormViewModel?.OutgoingTransitions"
+        [DropStateList]="DropStateList" (onSetState)="stateChange($event)" (onSaveChanges)="onSaveButtonClick($event)"
+        (onCancel)="cancel()" id="A8486" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible"
+        [CloseWithStateTransition]="closeWithStateTransition" data-tid="A336335">
+    </NeStatePanelComponent>
+    <form id="ChattelDocumentOutputWithAccountancyNewForm" class="form-horizontal" role="form" data-tid="A336336">
+    </form>
+    <br id="A8487" data-tid="A336337" />
+    <div class="row" id="A8488" data-tid="A336338">
+        <div class="col-sm-3" id="A8489" data-tid="A336339">
+            <label class="control-label" id="A8490" data-tid="A336340">
+                İşlem No
+            </label>
+            <hvl-text-box #Validation (TextChange)="onStockActionIDChanged($event)"
+                [BackColor]="StockActionID?.BackColor" [CharacterCasing]="StockActionID?.CharacterCasing"
+                [Enabled]="StockActionID?.Enabled" [Font]="StockActionID?.Font" [ForeColor]="StockActionID?.ForeColor"
+                [height]="StockActionID?.Height" [InputFormat]="StockActionID?.InputFormat"
+                [InputTurkishCharacter]="StockActionID?.InputTurkishCharacter"
+                [IsNonNumeric]="StockActionID?.IsNonNumeric" [MultiLine]="StockActionID?.Multiline"
+                [ReadOnly]="StockActionID?.ReadOnly" [Required]="StockActionID?.Required"
+                [TabIndex]="StockActionID?.TabIndex" [TextAlign]="StockActionID?.TextAlign"
+                [Text]="chattelDocumentOutputWithAccountancyNewFormViewModel?._ChattelDocumentOutputWithAccountancy?.StockActionID"
+                [Visible]="StockActionID?.Visible" id="A8491" data-tid="A336341"></hvl-text-box>
+        </div>
+        <div class="col-sm-3" id="A8492" data-tid="A336342">
+            <label class="control-label " id="A8493" data-tid="A336343">
+                İşlem Tarihi
+            </label>
+            <hvl-date-picker #Validation (ValueChange)="onTransactionDateChanged($event)"
+                [BackColor]="TransactionDate?.BackColor" [CustomFormat]="TransactionDate?.CustomFormat"
+                [Enabled]="TransactionDate?.Enabled" [Font]="TransactionDate?.Font"
+                [ForeColor]="TransactionDate?.ForeColor" [Format]="TransactionDate?.Format" [Max]="TransactionDate?.Max"
+                [Min]="TransactionDate?.Min" [ReadOnly]="TransactionDate?.ReadOnly"
+                [Required]="TransactionDate?.Required" [TabIndex]="TransactionDate?.TabIndex"
+                [Value]="chattelDocumentOutputWithAccountancyNewFormViewModel?._ChattelDocumentOutputWithAccountancy?.TransactionDate"
+                [Visible]="TransactionDate?.Visible" id="A8494" data-tid="A336344"></hvl-date-picker>
+        </div>
+        <div class="col-sm-3" id="A8495" data-tid="A336345">
+            <label class="control-label" id="A8496" data-tid="A336346">
+                Ana Depo
+            </label>
+            <hvl-list-box #Validation (SelectedObjectChange)="onStoreChanged($event)"
+                [AutoCompleteDialogHeight]="Store?.AutoCompleteDialogHeight"
+                [AutoCompleteDialogWidth]="Store?.AutoCompleteDialogWidth" [AutoCompleteMode]="Store?.AutoCompleteMode"
+                [BackColor]="Store?.BackColor" [DefinitionName]="Store?.ListDefName"
+                [DisplayExpressionsCache]="chattelDocumentOutputWithAccountancyNewFormViewModel?.ListDefDisplayExpressions"
+                [Enabled]="Store?.Enabled" [Font]="Store?.Font" [ForeColor]="Store?.ForeColor"
+                [ListFilterExpression]="Store?.ListFilterExpression" [MinSearchLength]="Store?.MinSearchLength"
+                [PopupDialogFieldConfig]="Store?.PopupDialogFieldConfig"
+                [PopupDialogGridColumns]="Store?.PopupDialogGridColumns" [PopupDialogHeight]="Store?.PopupDialogHeight"
+                [PopupDialogTitle]="Store?.PopupDialogTitle" [PopupDialogWidth]="Store?.PopupDialogWidth"
+                [ReadOnly]="Store?.ReadOnly" [SearchMode]="Store?.SearchMode" [SearchTimeout]="Store?.SearchTimeout"
+                [SelectedObject]="chattelDocumentOutputWithAccountancyNewFormViewModel?._ChattelDocumentOutputWithAccountancy?.Store"
+                [TabIndex]="Store?.TabIndex" [Visible]="Store?.Visible" [width]="Store?.Width" id="A8497"
+                data-tid="A336347"></hvl-list-box>
+        </div>
+        <div class="col-sm-3" id="A8498" data-tid="A336348">
+            <label class="control-label" id="A8499" data-tid="A336349">
+                Gönderildiği Birim / Kurum
+            </label>
+            <hvl-list-box #Validation (SelectedObjectChange)="onAccountancyChanged($event)"
+                [AutoCompleteDialogHeight]="Accountancy?.AutoCompleteDialogHeight"
+                [AutoCompleteDialogWidth]="Accountancy?.AutoCompleteDialogWidth"
+                [AutoCompleteMode]="Accountancy?.AutoCompleteMode" [BackColor]="Accountancy?.BackColor"
+                [DefinitionName]="Accountancy?.ListDefName"
+                [DisplayExpressionsCache]="chattelDocumentOutputWithAccountancyNewFormViewModel?.ListDefDisplayExpressions"
+                [Enabled]="Accountancy?.Enabled" [Font]="Accountancy?.Font" [ForeColor]="Accountancy?.ForeColor"
+                [ListFilterExpression]="Accountancy?.ListFilterExpression"
+                [MinSearchLength]="Accountancy?.MinSearchLength"
+                [PopupDialogFieldConfig]="Accountancy?.PopupDialogFieldConfig"
+                [PopupDialogGridColumns]="Accountancy?.PopupDialogGridColumns"
+                [PopupDialogHeight]="Accountancy?.PopupDialogHeight" [PopupDialogTitle]="Accountancy?.PopupDialogTitle"
+                [PopupDialogWidth]="Accountancy?.PopupDialogWidth" [ReadOnly]="Accountancy?.ReadOnly"
+                [SearchMode]="Accountancy?.SearchMode" [SearchTimeout]="Accountancy?.SearchTimeout"
+                [SelectedObject]="chattelDocumentOutputWithAccountancyNewFormViewModel?._ChattelDocumentOutputWithAccountancy?.Accountancy"
+                [TabIndex]="Accountancy?.TabIndex" [Visible]="Accountancy?.Visible" [width]="Accountancy?.Width"
+                id="A8500" data-tid="A336350"></hvl-list-box>
+        </div>
+    </div>
+    <br id="A8501" data-tid="A336351" />
+    <div class="row" id="A8502" data-tid="A336352">
+        <div class="col-sm-3" id="A8503" data-tid="A336353">
+            <label class="control-label " id="A8504" data-tid="A336354">
+                Çıkış Türü
+            </label>
+            <hvl-enum-combobox #Validation (ValueChange)="onMKYS_CikisIslemTuruChanged($event)"
+                [BackColor]="MKYS_CikisIslemTuru?.BackColor" [DataTypeName]="MKYS_CikisIslemTuru?.DataTypeName"
+                [Enabled]="MKYS_CikisIslemTuru?.Enabled" [Font]="MKYS_CikisIslemTuru?.Font"
+                [ForeColor]="MKYS_CikisIslemTuru?.ForeColor" [IncludeOnly]="MKYS_CikisIslemTuru?.IncludeOnly"
+                [ReadOnly]="MKYS_CikisIslemTuru?.ReadOnly" [ShowClearButton]="MKYS_CikisIslemTuru?.ShowClearButton"
+                [SortBy]="MKYS_CikisIslemTuru?.SortBy" [TabIndex]="MKYS_CikisIslemTuru?.TabIndex"
+                [Value]="chattelDocumentOutputWithAccountancyNewFormViewModel?._ChattelDocumentOutputWithAccountancy?.MKYS_CikisIslemTuru"
+                [Visible]="MKYS_CikisIslemTuru?.Visible" id="A8505" data-tid="A336355"></hvl-enum-combobox>
+        </div>
+        <div class="col-sm-3" id="A8506" data-tid="A336356">
+            <label class="control-label" id="A8507" data-tid="A336357">
+                Çıkış Hareket Türü
+            </label>
+            <hvl-enum-combobox #Validation (ValueChange)="onoutputStockMovementTypeChanged($event)"
+                [BackColor]="outputStockMovementType?.BackColor" [DataTypeName]="outputStockMovementType?.DataTypeName"
+                [Enabled]="outputStockMovementType?.Enabled" [Font]="outputStockMovementType?.Font"
+                [ForeColor]="outputStockMovementType?.ForeColor" [IncludeOnly]="outputStockMovementType?.IncludeOnly"
+                [ReadOnly]="outputStockMovementType?.ReadOnly"
+                [ShowClearButton]="outputStockMovementType?.ShowClearButton" [SortBy]="outputStockMovementType?.SortBy"
+                [TabIndex]="outputStockMovementType?.TabIndex"
+                [Value]="chattelDocumentOutputWithAccountancyNewFormViewModel?._ChattelDocumentOutputWithAccountancy?.outputStockMovementType"
+                [Visible]="outputStockMovementType?.Visible" id="A8508" data-tid="A336358"></hvl-enum-combobox>
+        </div>
+        <div class="col-sm-3" id="A8509" data-tid="A336359">
+            <label class="control-label" id="A8510" data-tid="A336360">
+                Teslim Eden
+            </label>
+            <hvl-button-textbox (Clicked)="TTTeslimEdenButon_Click()" (TextChange)="onMKYS_TeslimEdenChanged($event)"
+                [(Text)]="MKYS_TeslimEden.Text" [BackColor]="MKYS_TeslimEden?.BackColor"
+                [ButtonEnabled]="MKYS_TeslimEden?.ButtonEnabled" [ButtonOnRight]="MKYS_TeslimEden?.ButtonOnRight"
+                [ButtonText]="MKYS_TeslimEden.ButtonText" [ButtonWidth]="MKYS_TeslimEden?.ButtonWidth"
+                [Enabled]="MKYS_TeslimEden?.Enabled" [Font]="MKYS_TeslimEden?.Font"
+                [ForeColor]="MKYS_TeslimEden?.ForeColor" [Icon]="MKYS_TeslimEden?.Icon"
+                [placeHolder]="MKYS_TeslimEden?.placeHolder" [ReadOnly]="MKYS_TeslimEden?.ReadOnly"
+                [ShowClearButton]="MKYS_TeslimEden?.ShowClearButton" [TabIndex]="MKYS_TeslimEden?.TabIndex"
+                [Type]="MKYS_TeslimEden?.Type" [Visible]="MKYS_TeslimEden?.Visible" id="A8511" data-tid="A336361">
+            </hvl-button-textbox>
+        </div>
+        <div class="col-sm-3" id="A8512" data-tid="A336362">
+            <label class="control-label" id="A8513" data-tid="A336363">
+                Teslim Alan
+            </label>
+            <hvl-button-textbox (Clicked)="TTTeslimAlanButon_Click()" (TextChange)="onMKYS_TeslimAlanChanged($event)"
+                [(Text)]="MKYS_TeslimAlan.Text" [BackColor]="MKYS_TeslimAlan?.BackColor"
+                [ButtonEnabled]="MKYS_TeslimAlan?.ButtonEnabled" [ButtonOnRight]="MKYS_TeslimAlan?.ButtonOnRight"
+                [ButtonText]="MKYS_TeslimAlan.ButtonText" [ButtonWidth]="MKYS_TeslimAlan?.ButtonWidth"
+                [Enabled]="MKYS_TeslimAlan?.Enabled" [Font]="MKYS_TeslimAlan?.Font"
+                [ForeColor]="MKYS_TeslimAlan?.ForeColor" [Icon]="MKYS_TeslimAlan?.Icon"
+                [placeHolder]="MKYS_TeslimAlan?.placeHolder" [ReadOnly]="MKYS_TeslimAlan?.ReadOnly"
+                [ShowClearButton]="MKYS_TeslimAlan?.ShowClearButton" [TabIndex]="MKYS_TeslimAlan?.TabIndex"
+                [Type]="MKYS_TeslimAlan?.Type" [Visible]="MKYS_TeslimAlan?.Visible" id="A8514" data-tid="A336364">
+            </hvl-button-textbox>
+        </div>
+    </div>
+    <br id="A8515" data-tid="A336365" />
+    <!--<div class="row">
+       <div class="col-sm-3">
+            <label class="control-label">
+                İrsaliye Numarası
+            </label>
+            <hvl-text-box #Validation (TextChange)="onWaybillChanged($event)" [BackColor]="Waybill?.BackColor" [CharacterCasing]="Waybill?.CharacterCasing" [Enabled]="Waybill?.Enabled" [Font]="Waybill?.Font" [ForeColor]="Waybill?.ForeColor" [height]="Waybill?.Height" [InputFormat]="Waybill?.InputFormat" [InputTurkishCharacter]="Waybill?.InputTurkishCharacter" [IsNonNumeric]="Waybill?.IsNonNumeric" [MultiLine]="Waybill?.Multiline" [ReadOnly]="Waybill?.ReadOnly" [Required]="Waybill?.Required" [TabIndex]="Waybill?.TabIndex" [TextAlign]="Waybill?.TextAlign" [Text]="chattelDocumentOutputWithAccountancyNewFormViewModel?._ChattelDocumentOutputWithAccountancy?.Waybill" [Visible]="Waybill?.Visible"></hvl-text-box>
+        </div>
+        <div class="col-sm-3">
+            <label class="control-label">
+                İrsaliye Tarihi
+            </label>
+            <hvl-date-picker #Validation (ValueChange)="onWaybillDateChanged($event)" [BackColor]="WaybillDate?.BackColor" [CustomFormat]="WaybillDate?.CustomFormat" [Enabled]="WaybillDate?.Enabled" [Font]="WaybillDate?.Font" [ForeColor]="WaybillDate?.ForeColor" [Format]="WaybillDate?.Format" [Max]="WaybillDate?.Max" [Min]="WaybillDate?.Min" [ReadOnly]="WaybillDate?.ReadOnly" [Required]="WaybillDate?.Required" [TabIndex]="WaybillDate?.TabIndex" [Value]="chattelDocumentOutputWithAccountancyNewFormViewModel?._ChattelDocumentOutputWithAccountancy?.WaybillDate" [Visible]="WaybillDate?.Visible"></hvl-date-picker>
+        </div
+    </div>>-->
+    <br id="A8404" data-tid="A336366" />
+    <div class="row" id="A8405" data-tid="A336367">
+        <div *ngIf="rowVisible" class="col-sm-3" id="A8406" data-tid="A336368">
+            <br id="A8407" data-tid="A336369" />
+            <hvl-checkbox #Validation (ValueChange)="onIsContainsContributionsChanged($event)"
+                [AllowThreeState]="IsContainsContributions?.ThreeState" [BackColor]="IsContainsContributions?.BackColor"
+                [Enabled]="IsContainsContributions?.Enabled" [Font]="IsContainsContributions?.Font"
+                [ForeColor]="IsContainsContributions?.ForeColor" [IsTitleLeft]="IsContainsContributions?.IsTitleLeft"
+                [Margin]="IsContainsContributions?.Margin" [ReadOnly]="IsContainsContributions?.ReadOnly"
+                [TabIndex]="IsContainsContributions?.TabIndex"
+                [TitleTopPadding]="IsContainsContributions?.TitleTopPadding" [Title]="IsContainsContributions?.Title"
+                [Value]="chattelDocumentOutputWithAccountancyApproveFormViewModel?._ChattelDocumentOutputWithAccountancy?.IsContainsContributions"
+                [Visible]="IsContainsContributions?.Visible" id="A8408" data-tid="A336370"></hvl-checkbox>
+        </div>
+        <div class="col-sm-2" data-tid="A336371">
+            <dx-check-box [(value)]="checkBoxValuePTS" [width]="80" text="ITS Çıkışı"
+                (onValueChanged)="checkBoxValuePTS_valueChanged($event)" data-tid="A336372"></dx-check-box>
+        </div>
+        <div *ngIf="checkBoxValuePTS" class="col-sm-2" >
+            <dx-button icon="export" type="success" text="Karekod Ekle" (onClick)="addQRCodeClick()">
+            </dx-button>
+        </div>
+    </div>
+    <br id="A8516" data-tid="A336373" />
+    <div class="row" id="A8517" data-tid="A336374">
+        <div class="col-sm-12" id="A8518" data-tid="A336375">
+            <label class="control-label " id="A8519" data-tid="A336376">
+                Açıklama
+            </label>
+            <hvl-text-box #Validation (TextChange)="onDescriptionChanged($event)" [BackColor]="Description?.BackColor"
+                [CharacterCasing]="Description?.CharacterCasing" [Enabled]="Description?.Enabled"
+                [Font]="Description?.Font" [ForeColor]="Description?.ForeColor" [height]="Description?.Height"
+                [InputFormat]="Description?.InputFormat" [InputTurkishCharacter]="Description?.InputTurkishCharacter"
+                [IsNonNumeric]="Description?.IsNonNumeric" [MultiLine]="Description?.Multiline"
+                [ReadOnly]="Description?.ReadOnly" [Required]="Description?.Required" [TabIndex]="Description?.TabIndex"
+                [TextAlign]="Description?.TextAlign"
+                [Text]="chattelDocumentOutputWithAccountancyNewFormViewModel?._ChattelDocumentOutputWithAccountancy?.Description"
+                [Visible]="Description?.Visible" id="A8520" data-tid="A336377"></hvl-text-box>
+        </div>
+    </div>
+    <br id="A8521" data-tid="A336378" />
+    <div class="row" id="A8522" data-tid="A336379">
+        <dx-tab-panel [selectedIndex]="0" id="A8523" data-tid="A336380">
+            <dxi-item class="tabpanel-item" title="Taşınır Malın" i18n-title="@@M27509" id="A8524" data-tid="A336381">
+                <div class="row" id="A8525" data-tid="A336382">
+                    <div class="col-sm-12" id="A8526" data-tid="A336383">
+                        <div *ngIf="ShowNewMaterialList" class="col-sm-12">
+                            <material-selector [input]="MaterialInput"></material-selector>
+                        </div>
+                        <div *ngIf="!ShowNewMaterialList" class="col-sm-6" data-tid="A336384">
+                            <div class="col-sm-12" data-tid="A336385">
+                                <label class="control-label" data-tid="A336386">Malzeme Seçiniz</label>
+                            </div>
+                            <div class="col-sm-10" data-tid="A336387">
+                                <hvl-list-box [(SelectedObject)]="selectedMaterial" [AutoCompleteDialogHeight]="400"
+                                    [AutoCompleteDialogWidth]="400"
+                                    [AutoCompleteMode]="MaterialChattelDocumentDetailWithAccountancy?.AutoCompleteMode"
+                                    [Enabled]="true"
+                                    [BackColor]="MaterialChattelDocumentDetailWithAccountancy?.BackColor"
+                                    [DefinitionName]="MaterialChattelDocumentDetailWithAccountancy?.ListDefName"
+                                    [Font]="MaterialChattelDocumentDetailWithAccountancy?.Font"
+                                    [ForeColor]="MaterialChattelDocumentDetailWithAccountancy?.ForeColor"
+                                    [ListFilterExpression]="this.MaterialChattelDocumentDetailWithAccountancy.ListFilterExpression"
+                                    [MinSearchLength]="MaterialChattelDocumentDetailWithAccountancy?.MinSearchLength"
+                                    [PopupDialogFieldConfig]="MaterialChattelDocumentDetailWithAccountancy?.PopupDialogFieldConfig"
+                                    [PopupDialogGridColumns]="MaterialChattelDocumentDetailWithAccountancy?.PopupDialogGridColumns"
+                                    [PopupDialogHeight]="400"
+                                    [PopupDialogTitle]="MaterialChattelDocumentDetailWithAccountancy?.PopupDialogTitle"
+                                    [PopupDialogWidth]="400"
+                                    [ReadOnly]="MaterialChattelDocumentDetailWithAccountancy?.ReadOnly"
+                                    [SearchMode]="MaterialChattelDocumentDetailWithAccountancy?.SearchMode"
+                                    [SearchTimeout]="MaterialChattelDocumentDetailWithAccountancy?.SearchTimeout"
+                                    [TabIndex]="MaterialChattelDocumentDetailWithAccountancy?.TabIndex"
+                                    [Visible]="MaterialChattelDocumentDetailWithAccountancy?.Visible" width="100%"
+                                    (SelectedObjectChange)="onMaterialSelectionChange($event)" data-tid="A336388">
+                                </hvl-list-box>
+                            </div>
+                        </div>
+                        <div *ngIf="!ShowNewMaterialList" class="col-sm-6" data-tid="A336389">
+                            <div class="col-sm-12" data-tid="A336390">
+                                <label class="control-label" data-tid="A336391">Malın Durumu</label>
+                            </div>
+                            <div class="col-sm-10" data-tid="A336392">
+                                <hvl-list-box [(SelectedObject)]="selectedStockLevelType"
+                                    [AutoCompleteMode]="StockLevelTypeChattelDocumentDetailWithAccountancy?.AutoCompleteMode"
+                                    [Enabled]="true"
+                                    [BackColor]="StockLevelTypeChattelDocumentDetailWithAccountancy?.BackColor"
+                                    [DefinitionName]="StockLevelTypeChattelDocumentDetailWithAccountancy?.ListDefName"
+                                    [Font]="StockLevelTypeChattelDocumentDetailWithAccountancy?.Font"
+                                    [ForeColor]="StockLevelTypeChattelDocumentDetailWithAccountancy?.ForeColor"
+                                    [ListFilterExpression]="this.StockLevelTypeChattelDocumentDetailWithAccountancy.ListFilterExpression"
+                                    [MinSearchLength]="StockLevelTypeChattelDocumentDetailWithAccountancy?.MinSearchLength"
+                                    [PopupDialogFieldConfig]="StockLevelTypeChattelDocumentDetailWithAccountancy?.PopupDialogFieldConfig"
+                                    [PopupDialogGridColumns]="StockLevelTypeChattelDocumentDetailWithAccountancy?.PopupDialogGridColumns"
+                                    [PopupDialogHeight]="400"
+                                    [PopupDialogTitle]="StockLevelTypeChattelDocumentDetailWithAccountancy?.PopupDialogTitle"
+                                    [PopupDialogWidth]="400"
+                                    [ReadOnly]="StockLevelTypeChattelDocumentDetailWithAccountancy?.ReadOnly"
+                                    [SearchMode]="StockLevelTypeChattelDocumentDetailWithAccountancy?.SearchMode"
+                                    [SearchTimeout]="StockLevelTypeChattelDocumentDetailWithAccountancy?.SearchTimeout"
+                                    [TabIndex]="StockLevelTypeChattelDocumentDetailWithAccountancy?.TabIndex"
+                                    [Visible]="StockLevelTypeChattelDocumentDetailWithAccountancy?.Visible" width="100%"
+                                    data-tid="A336393"></hvl-list-box>
+                            </div>
+                            <!--
+                            <div class="col-sm-2">
+                                <dx-button type="success" icon="fa fa-bars" text="Ekle" (onClick)="btnAddClick()" i18n-text="@@M27337" id="A30310"></dx-button>
+                            </div>
+                            -->
+                        </div>
+                        <div class="col-sm-12" data-tid="A336394">
+                            <!--(onRowUpdating)="materialGridRowUpdating($event)" (onEditingStart)="onEditingStartMaterialGrid($event)"-->
+                            <dx-data-grid #gridChattelDocumentOutput showColumnLines="true" showRowLines="true"
+                                rowAlternationEnabled="true" showBorders="true" height="500px"
+                                [dataSource]="chattelDocumentOutputWithAccountancyNewFormViewModel?._ChattelDocumentOutputWithAccountancy?.ChattelDocumentOutputDetailsWithAccountancy"
+                                [columns]="ChattelDocumentDetailsWithAccountancyColumns" [scrolling]="{mode:'infinite'}"
+                                [selection]="{mode: 'single'}" (onRowUpdated)="onMaterialGridRowUpdating($event)"
+                                (onRowRemoved)="onMaterialGridRowRemoved($event)" data-tid="A336395">
+                                <dxo-editing mode="cell" [allowUpdating]="true" [allowDeleting]="false"
+                                    [allowAdding]="false" data-tid="A336396">
+                                </dxo-editing>
+                                <div *dxTemplate="let cellData of 'deleteCellTemplate'" id="A27832" data-tid="A336397">
+                                    <i class="fa fa fa-trash" style="cursor:pointer"
+                                        (click)="gridChattelDocumentOutput_CellContentClicked(cellData)"
+                                        data-tid="A336398"></i>
+                                </div>
+                                <div *dxTemplate="let cellData of 'detailCellTemplate'" id="A27832" data-tid="A336399">
+                                    <i class="fa fa-barcode" style="cursor:pointer"
+                                        (click)="getDetail_CellContentClicked(cellData)" data-tid="A336400"></i>
+                                </div>
+                            </dx-data-grid>
+                        </div>
+
+                    </div>
+                </div>
+            </dxi-item>
+        </dx-tab-panel>
+    </div>
+</div>
+<dx-popup width="50%" height="60%" [showTitle]="true" title="Kare Kod Girişi" [dragEnabled]="false"
+    [closeOnOutsideClick]="false" [(visible)]="isQRCodeEnter">
+    <div class="row" style="padding-top: 1%;padding-left: 2%; height: 300px;">
+        <dx-data-grid [columns]="QRCodeStockActionDetailColumns" style="width:98%;height:100%"
+            [dataSource]="chattelDocumentOutputWithAccountancyNewFormViewModel?._ChattelDocumentOutputWithAccountancy?.ChattelDocumentOutputDetailsWithAccountancy"
+            [showBorders]="true">
+        </dx-data-grid>
+    </div>
+    <div class="row" style="padding-top: 1%;padding-left: 2%;">
+        <div class="col-sm-6">
+            <dx-text-box placeholder="Karekod..." [(value)]="qrCodeValue" valueChangeEvent="keyup"
+                (keypress)="QRCodeAddIn_KeyPress($event)"></dx-text-box>
+        </div>
+    </div>
+    <div class="row" style="padding-top: 1%;padding-left: 2%; height: 300px;">
+        <dx-data-grid [columns]="QRCodeReadColumns" style="width:98%;height:100%"
+            [dataSource]="chattelDocumentOutputWithAccountancyNewFormViewModel?.QRCodeReadList" [showBorders]="true">
+        </dx-data-grid>
+    </div>
+</dx-popup>

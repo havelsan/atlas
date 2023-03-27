@@ -1,0 +1,570 @@
+﻿
+<div style=" height:100%;">
+    <dx-scroll-view #scrollView id="scrollview" [scrollByContent]="true" [scrollByThumb]="true" [showScrollbar]="always">
+        <div class="row">
+            <div class="col-sm-12" id="A23711" data-tid="A359087">
+
+                <div title="Nabız Durumu" style="font-size:15px; font-weight:bold;color:indianred;float:left;" i18n-title="@@M20796" id="A23713" data-tid="A359089">{{hastaNakilFormuViewModel?._NabizDurumu}}</div>
+
+
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="col-md-6">
+                    <div class="row m--margin-bottom-5">
+                        <div class="col-md-5">
+                            <label class="control-label">Naklin Talep Edildiği Zaman</label>
+                        </div>
+                        <div class="col-md-7">
+                            <dx-date-box style="border: 1px solid #FFA09C" [(value)]="hastaNakilFormuViewModel.TalepEdildigiZaman" type="datetime" showClearButton="false" width="100%">
+                            </dx-date-box>
+                        </div>
+                    </div>
+                    <div class="row m--margin-bottom-5">
+                        <div class="col-md-5">
+                            <label class="control-label">Nakli Talep Eden Klinik</label>
+                        </div>
+                        <div class="col-md-7">
+                            <dx-select-box valueExpr="ObjectID" style="border: 1px solid #FFA09C" [items]="hastaNakilSKRSModel.SKRSKlinikList" [(value)]="hastaNakilFormuViewModel.NakilTalepEdenKlinik" placeholder="Seçiniz" [searchEnabled]="true" showClearButton="true" displayExpr="ADI">
+                            </dx-select-box>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label class="control-label">Nakil Edilmek İstenen Klinik</label>
+                        </div>
+                        <div class="col-md-7">
+                            <dx-select-box valueExpr="ObjectID" style="border: 1px solid #FFA09C" [items]="hastaNakilSKRSModel.SKRSKlinikList" [(value)]="hastaNakilFormuViewModel.NakilEdilmekIstenilenKlinik" placeholder="Seçiniz" [searchEnabled]="true" showClearButton="true" displayExpr="ADI">
+                            </dx-select-box>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row m--margin-bottom-5">
+                        <div class="col-md-5">
+                            <label class="control-label">Hastanın Bulunduğu Klinik</label>
+                        </div>
+                        <div class="col-md-7">
+                            <dx-select-box valueExpr="ObjectID" style="border: 1px solid #FFA09C" [items]="hastaNakilSKRSModel.SKRSKlinikList" [(value)]="hastaNakilFormuViewModel.HastaninBulunduguKlinik" placeholder="Seçiniz" [searchEnabled]="true" showClearButton="true" displayExpr="ADI">
+                            </dx-select-box>
+                        </div>
+                    </div>
+                    <div class="row m--margin-bottom-5">
+                        <div class="col-md-5">
+                            <label class="control-label">Nakli Gerçekleştirmesi İstenen Komuta Kontrol Merkezi</label>
+                        </div>
+                        <div class="col-md-7">
+                            <dx-select-box valueExpr="ObjectID" style="border: 1px solid #FFA09C" noDataText="En az bir karakter ile arama yapmalısınız!" [dataSource]="komutaKontrolMerkeziDataSource" [(value)]="hastaNakilFormuViewModel.KomutaKontrolMerkezi" placeholder="Seçiniz" [searchEnabled]="true" showClearButton="true" displayExpr="ADI">
+                            </dx-select-box>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label class="control-label">Nakil Gerçekleştirme Yolu</label>
+                        </div>
+                        <div class="col-md-7">
+                            <dx-select-box valueExpr="ObjectID" style="border: 1px solid #FFA09C" [items]="hastaNakilSKRSModel.SKRSNakilYoluList" [(value)]="hastaNakilFormuViewModel.NakilGerceklestirmeYolu" placeholder="Seçiniz" [searchEnabled]="true" showClearButton="true" displayExpr="ADI">
+                            </dx-select-box>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="col-md-12">
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Sevk Nedeni</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-select-box valueExpr="ObjectID" style="border: 1px solid #FFA09C" [items]="hastaNakilSKRSModel.SKRSSevkNedeniList" [(value)]="hastaNakilFormuViewModel.SevkNedeni" placeholder="Seçiniz" [searchEnabled]="true" showClearButton="true" displayExpr="ADI">
+                                    </dx-select-box>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label class="control-label">Sevk Nedeni Açıklama</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <hvl-richtextbox (change)="onSevkNedeniAciklamaChanged($event)" Theme="snow" [ngModelOptions]="{ standalone: true}" [ngModel]="hastaNakilFormuViewModel.SevkNedeniAciklama" data-tid="A360870"></hvl-richtextbox>
+                                </div>
+                            </div>
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Kabul Eden Kurum İli</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-select-box valueExpr="ObjectID" [items]="hastaNakilSKRSModel.SKRSILKodlariList" [(value)]="hastaNakilFormuViewModel.KabulEdenKurumIli" placeholder="Seçiniz" [searchEnabled]="true" showClearButton="true" displayExpr="ADI">
+                                    </dx-select-box>
+                                </div>
+                            </div>
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Kabul Eden Kurum</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-select-box valueExpr="ObjectID" noDataText="En az bir karakter ile arama yapmalısınız!" [dataSource]="kabulEdenKurumDataSource" [(value)]="hastaNakilFormuViewModel.KabulEdenKurum" placeholder="Seçiniz" [searchEnabled]="true" showClearButton="true" displayExpr="ADI">
+                                    </dx-select-box>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label class="control-label">Nakli Kabul Eden Klinik</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-select-box valueExpr="ObjectID" [items]="hastaNakilSKRSModel.SKRSKlinikList" [(value)]="hastaNakilFormuViewModel.NakilKabulEdenKlinik" placeholder="Seçiniz" [searchEnabled]="true" showClearButton="true" displayExpr="ADI">
+                                    </dx-select-box>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="col-md-12">
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Hasta Hükümlü Mü?</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-select-box valueExpr="ObjectID" [items]="hastaNakilSKRSModel.SKRSDurumList" [(value)]="hastaNakilFormuViewModel.HastaHukumluMu" placeholder="Seçiniz" [searchEnabled]="true" showClearButton="true" displayExpr="ADI">
+                                    </dx-select-box>
+                                </div>
+                            </div>
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Adli Vaka Mı?</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-select-box valueExpr="ObjectID" [items]="hastaNakilSKRSModel.SKRSDurumList" [(value)]="hastaNakilFormuViewModel.AdliVakaMi" placeholder="Seçiniz" [searchEnabled]="true" showClearButton="true" displayExpr="ADI">
+                                    </dx-select-box>
+                                </div>
+                            </div>
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Kan Grubu</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-select-box valueExpr="ObjectID" [items]="hastaNakilSKRSModel.SKRSKanGrubuList" [(value)]="hastaNakilFormuViewModel.KanGrubu" placeholder="Seçiniz" [searchEnabled]="true" showClearButton="true" displayExpr="ADI">
+                                    </dx-select-box>
+                                </div>
+                            </div>
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Hasta Nakil Tipi</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-select-box valueExpr="ObjectID" style="border: 1px solid #FFA09C" [items]="hastaNakilSKRSModel.SKRSHastaNakilTipiList" [(value)]="hastaNakilFormuViewModel.NakilTipi" placeholder="Seçiniz" [searchEnabled]="true" showClearButton="true" displayExpr="ADI">
+                                    </dx-select-box>
+                                </div>
+                            </div>
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Doktor İhtiyacı</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-select-box valueExpr="ObjectID" style="border: 1px solid #FFA09C" [items]="hastaNakilSKRSModel.SKRSDurumList" [(value)]="hastaNakilFormuViewModel.DoktorIhtiyaci" placeholder="Seçiniz" [searchEnabled]="true" showClearButton="true" displayExpr="ADI">
+                                    </dx-select-box>
+                                </div>
+                            </div>
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Branş İhtiyacı</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-select-box valueExpr="ObjectID" [items]="hastaNakilSKRSModel.SKRSPersonelBransList" [(value)]="hastaNakilFormuViewModel.BransIhtiyaci" placeholder="Seçiniz" [searchEnabled]="true" showClearButton="true" displayExpr="ADI">
+                                    </dx-select-box>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label class="control-label">Teyitli Vaka Mı?</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-select-box valueExpr="ObjectID" style="border: 1px solid #FFA09C" [items]="hastaNakilSKRSModel.SKRSDurumList" [(value)]="hastaNakilFormuViewModel.TeyitliVakaMi" placeholder="Seçiniz" [searchEnabled]="true" showClearButton="true" displayExpr="ADI">
+                                    </dx-select-box>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <label class="control-label">Sevke Esas Tanı</label>
+                        <dx-select-box valueExpr="ObjectID" class="m--margin-bottom-5" noDataText="En az bir karakter ile arama yapmalısınız!" placeholder="Tanı Seçiniz" [dataSource]="DiagnosisArray" displayExpr="Name" valueExpr="Code" [searchEnabled]="true" (onSelectionChanged)="diagnosisSelection_ValueChanged($event.selectedItem)" (onValueChanged)="LoadAllDiagnosisDefinitions()" data-tid="A366700">
+                            <div *dxTemplate="let data of 'item'" data-tid="A366701">
+                                <div data-tid="A366702">
+                                    <div class="col-sm-3" data-tid="A366703"> {{data.Code}} </div>
+                                    <div class="col-sm-9" data-tid="A366704"> {{data.Name}} </div>
+                                </div>
+                            </div>
+                        </dx-select-box>
+
+                        <dx-data-grid #diagnosisGrid showColumnLines="true" [paging]="{enable: false, pageSize:1000000}" showRowLines="true" height="177px" [columns]="DiagnosisColumns" [dataSource]="_DiagnosisList" allowColumnReordering="false" allowColumnResizing="true" data-tid="A366707">
+                            <div *dxTemplate="let cellData of 'deleteCellTemplate'" id="A27832" data-tid="A364748">
+                                <i class="fa fa fa-trash" style="cursor:pointer" (click)="diagnosisGridDeleteClicked(cellData)" id="A27833" data-tid="A364749"></i>
+                            </div>
+                        </dx-data-grid>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="col-md-6">
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Sistolik Kan Basıncı</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-number-box style="border: 1px solid #FFA09C" [(value)]="hastaNakilFormuViewModel.SistolikKanBasinci"></dx-number-box>
+                                </div>
+                            </div>
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Diastolik Kan Basıncı</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-number-box style="border: 1px solid #FFA09C" [(value)]="hastaNakilFormuViewModel.DiastolikKanBasinci"></dx-number-box>
+                                </div>
+                            </div>
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Solunum</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-select-box valueExpr="ObjectID" style="border: 1px solid #FFA09C" [items]="hastaNakilSKRSModel.SKRSSolunumList" [(value)]="hastaNakilFormuViewModel.Solunum" placeholder="Seçiniz" [searchEnabled]="true" showClearButton="true" displayExpr="ADI">
+                                    </dx-select-box>
+                                </div>
+                            </div>
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Solunum Sayısı</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-number-box style="border: 1px solid #FFA09C" [(value)]="hastaNakilFormuViewModel.SolunumSayisi"></dx-number-box>
+                                </div>
+                            </div>
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Solunum İşlemi</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-select-box valueExpr="ObjectID" style="border: 1px solid #FFA09C" [items]="SolunumIslemiItems" [(value)]="hastaNakilFormuViewModel.SolunumIslemi" placeholder="Seçiniz" [searchEnabled]="true" showClearButton="true" displayExpr="ADI" valueExpr="KODU">
+                                    </dx-select-box>
+                                </div>
+                            </div>
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Glaskow Koma Skalası</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-number-box style="border: 1px solid #FFA09C" [(value)]="hastaNakilFormuViewModel.GlaskowKomaSkalasi"></dx-number-box>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label class="control-label">Gözler</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-number-box style="border: 1px solid #FFA09C" [(value)]="hastaNakilFormuViewModel.Gozler"></dx-number-box>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Triaj</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-select-box valueExpr="ObjectID" style="border: 1px solid #FFA09C" [items]="hastaNakilSKRSModel.SKRSTriajKoduList" [(value)]="hastaNakilFormuViewModel.Triaj" placeholder="Seçiniz" [searchEnabled]="true" showClearButton="true" displayExpr="ADI">
+                                    </dx-select-box>
+                                </div>
+                            </div>
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Ateş</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-number-box style="border: 1px solid #FFA09C" [(value)]="hastaNakilFormuViewModel.Ates"></dx-number-box>
+                                </div>
+                            </div>
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Nabız Sayısı</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-number-box style="border: 1px solid #FFA09C" [(value)]="hastaNakilFormuViewModel.NabizSayisi"></dx-number-box>
+                                </div>
+                            </div>
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Bilinç</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-select-box valueExpr="ObjectID" style="border: 1px solid #FFA09C" [items]="hastaNakilSKRSModel.SKRSBilincList" [(value)]="hastaNakilFormuViewModel.Bilinc" placeholder="Seçiniz" [searchEnabled]="true" showClearButton="true" displayExpr="ADI">
+                                    </dx-select-box>
+                                </div>
+                            </div>
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Kan Şekeri</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-text-box [(value)]="hastaNakilFormuViewModel.KanSekeri"></dx-text-box>
+                                </div>
+                            </div>
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Sözel</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-number-box style="border: 1px solid #FFA09C" [(value)]="hastaNakilFormuViewModel.Sozel"></dx-number-box>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label class="control-label">Motor</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-number-box style="border: 1px solid #FFA09C" [(value)]="hastaNakilFormuViewModel.Motor"></dx-number-box>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="control-label">Vital Bulgular</label>
+                            <hvl-richtextbox (change)="onVitalBulgularChanged($event)" Theme="snow" [ngModelOptions]="{ standalone: true}" [ngModel]="hastaNakilFormuViewModel.VitalBulgular" data-tid="A360870"></hvl-richtextbox>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="control-label">Patolojik Muayene</label>
+                            <hvl-richtextbox (change)="onPatolojikMuayeneBilgileriChanged($event)" Theme="snow" [ngModelOptions]="{ standalone: true}" [ngModel]="hastaNakilFormuViewModel.PatolojikMuayeneBilgileri" data-tid="A360870"></hvl-richtextbox>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label class="control-label">Nakli Sırasında İstenen Medikal İşlemler</label>
+                            <hvl-richtextbox (change)="onNakilSirasindaIstenilenMedikalIslemlerChanged($event)" Theme="snow" [ngModelOptions]="{ standalone: true}" [ngModel]="hastaNakilFormuViewModel.NakilSirasindaIstenilenMedikalIslemler" data-tid="A360870"></hvl-richtextbox>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="control-label">Tetkik Bilgileri</label>
+                            <hvl-richtextbox (change)="onTetkikBilgileriChanged($event)" Theme="snow" [ngModelOptions]="{ standalone: true}" [ngModel]="hastaNakilFormuViewModel.TetkikBilgileri" data-tid="A360870"></hvl-richtextbox>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="control-label">Yapılan Medikal İşlemler</label>
+                            <hvl-richtextbox (change)="onYapilanMedikalIslemlerChanged($event)" Theme="snow" [ngModelOptions]="{ standalone: true}" [ngModel]="hastaNakilFormuViewModel.YapilanMedikalIslemler" data-tid="A360870"></hvl-richtextbox>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="control-label">Sevk Edilen Kurumdan Yapılması İstenen Medikal İşlemler</label>
+                            <hvl-richtextbox (change)="onYapilmasiIstenilenMedikalIslemlerChanged($event)" Theme="snow" [ngModelOptions]="{ standalone: true}" [ngModel]="hastaNakilFormuViewModel.YapilmasiIstenilenMedikalIslemler" data-tid="A360870"></hvl-richtextbox>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="control-label">Nakil Sırasında Gereksinimler</label>
+                            <hvl-richtextbox (change)="onNakilSirasindakiGereksinimlerChanged($event)" Theme="snow" [ngModelOptions]="{ standalone: true}" [ngModel]="hastaNakilFormuViewModel.NakilSirasindakiGereksinimler" data-tid="A360870"></hvl-richtextbox>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label class="control-label">Malzeme</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-select-box valueExpr="ObjectID" [items]="hastaNakilSKRSModel.SKRSTransportMalzemesiList" [(value)]="hastaNakilFormuViewModel.TransportMalzemesi" placeholder="Seçiniz" [searchEnabled]="true" showClearButton="true" displayExpr="ADI">
+                                    </dx-select-box>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label class="control-label">Malzeme Sayısı</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-number-box [(value)]="hastaNakilFormuViewModel.MalzemeSayisi"></dx-number-box>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="col-md-12">
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Hasta Yakını Adı</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-text-box [(value)]="hastaNakilFormuViewModel.HastaYakiniAdi"></dx-text-box>
+                                </div>
+                            </div>
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Hasta Yakını Soyadı</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-text-box [(value)]="hastaNakilFormuViewModel.HastaYakiniSoyadi"></dx-text-box>
+                                </div>
+                            </div>
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Hasta Yakını Telefon Numarası</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-text-box mask="000 0000000" [(value)]="hastaNakilFormuViewModel.HastaYakiniTel"></dx-text-box>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label class="control-label">Hasta Yakını Açık Adresi</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <hvl-richtextbox (change)="onHastaYakiniAdresChanged($event)" Theme="snow" [ngModelOptions]="{ standalone: true}" [ngModel]="hastaNakilFormuViewModel.HastaYakiniAdres" data-tid="A360870"></hvl-richtextbox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label class="control-label">Epikrize Ek Açıklama</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <hvl-richtextbox (change)="onEpikrizeEkAciklamaChanged($event)" Theme="snow" [ngModelOptions]="{ standalone: true}" [ngModel]="hastaNakilFormuViewModel.EpikrizeEkAciklama" data-tid="A360870"></hvl-richtextbox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="col-md-12">
+                            <div class="row m--margin-bottom-5">
+
+                                <div class="col-md-5">
+                                    <label class="control-label">Doktor Seçiniz</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-select-box valueExpr="ObjectID" style="border: 1px solid #FFA09C" (onSelectionChanged)="onDoctorSelectionChanged($event)" [items]="hastaNakilSKRSModel.DoctorList" [(value)]="doktorValue" placeholder="Seçiniz" [searchEnabled]="true" showClearButton="true" displayExpr="NameSurname">
+                                    </dx-select-box>
+                                </div>
+                            </div>
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Sevk Eden Hekim Adı</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-text-box style="border: 1px solid #FFA09C" [(value)]="hastaNakilFormuViewModel.HekimAdi" readOnly="true"></dx-text-box>
+                                </div>
+                            </div>
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Sevk Eden Hekim Soyadı</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-text-box style="border: 1px solid #FFA09C" [(value)]="hastaNakilFormuViewModel.HekimSoyadi" readOnly="true"></dx-text-box>
+                                </div>
+                            </div>
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Sevk Eden Hekim Cep Telefon Numarası</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-text-box style="border: 1px solid #FFA09C" mask="000 0000000" [(value)]="hastaNakilFormuViewModel.HekimTel" readOnly="true"></dx-text-box>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label class="control-label">Sevk Eden Hekim Kimlik Numarası</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-text-box style="border: 1px solid #FFA09C" mask="00000000000" [(value)]="hastaNakilFormuViewModel.HekimTC" readOnly="true"></dx-text-box>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="col-md-12">
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Kabul Eden Personel Adı</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-text-box [(value)]="hastaNakilFormuViewModel.PersonelAdi"></dx-text-box>
+                                </div>
+                            </div>
+                            <div class="row m--margin-bottom-5">
+                                <div class="col-md-5">
+                                    <label class="control-label">Kabul Eden Personel Soyadı</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-text-box [(value)]="hastaNakilFormuViewModel.PersonelSoyadi"></dx-text-box>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label class="control-label">Kabul Eden Personel Telefon Numarası</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <dx-text-box mask="000 0000000" [(value)]="hastaNakilFormuViewModel.PersonelTel"></dx-text-box>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12" style="float:right;margin-top:10px;" data-tid="AY360893">
+            <!--<dx-button width="100px"  icon="fas fa-undo" class="pull-right" type="danger" hint="Çıkış" text="Çıkış" (onClick)="CloseForm()" data-tid="AY360894"></dx-button>-->
+            <dx-button width="150px" icon="fa fa-paper-plane-o" [disabled]="_disableNabizButton" class="pull-right" type="success" hint="Nabız'a Gönder" text="Nabız'a Gönder" (onClick)="SendToEnabiz()" data-tid="AY360895"></dx-button>
+
+            <dx-button width="150px" icon="far fa-file" class="pull-right" type="normal" hint="Rapor" text="Rapor" (onClick)="PrepareReport()" data-tid="AY360896"></dx-button>
+            <dx-button width="150px" icon="fa fa-floppy-o" class="pull-right" type="default" hint="Kaydet" text="Kaydet" (onClick)="SaveForm()" data-tid="AY360895"></dx-button>
+        </div>
+
+    </dx-scroll-view>
+</div>

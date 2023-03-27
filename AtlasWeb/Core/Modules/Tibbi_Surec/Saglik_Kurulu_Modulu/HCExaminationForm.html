@@ -1,0 +1,620 @@
+﻿
+<div class="row" id="A18260" data-tid="A362402">
+    <div class="col-sm-12" id="A18261" data-tid="A362403">
+        <NeStatePanelComponent [OutgoingTransitions]="hCExaminationFormViewModel?.OutgoingTransitions" [StateReports]="hCExaminationFormViewModel?.CurrentStateReports" [ObjectID]="hCExaminationFormViewModel?._HealthCommittee?.ObjectID" [ObjectDefID]="hCExaminationFormViewModel?._HealthCommittee?.ObjectDefID" [CurrentStateDefID]="hCExaminationFormViewModel._HealthCommittee.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()" id="A26417" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" [SaveCommandVisible]="_saveCommandVisible" data-tid="A362404">
+        </NeStatePanelComponent>
+    </div>
+</div>
+
+<div class="col-sm-12" *ngIf="hCExaminationFormViewModel?.hasUndoTransRight" style="margin-right: -30px;" id="A18263" data-tid="A362405">
+    <button type="button" class="btn btn-warning" (click)="undoHCExamination()" style="float: right" id="A18264" data-tid="A362406">İşlem Geri Al</button>
+</div>
+
+
+<div class="container-fluid" id="A26418" data-tid="A362407">
+    <form id="HCExaminationForm" class="form-horizontal" role="form" data-tid="A362408"></form>
+    <div class="row margin-top-10" id="A26419" data-tid="A362409">
+
+        <div class="col-md-4 col-sm-12" id="A26420" data-tid="A362410">
+            <patient-demographics-form [actionId]="hCExaminationFormViewModel._HealthCommittee?.ObjectID" id="A26421" data-tid="A362411"></patient-demographics-form>
+        </div>
+
+        <div class="col-md-2 col-sm-12" id="A26422" data-tid="A362412">
+            <div class="row" id="A26423" data-tid="A362413">
+                <div class="col-md-12" id="A26424" data-tid="A362414">
+                    <label class="control-label" id="A26425" data-tid="A362415"> Protokol No</label>
+                    <hvl-text-box #Validation (TextChange)="onProtocolNoChanged($event)" [BackColor]="ProtocolNo?.BackColor" [CharacterCasing]="ProtocolNo?.CharacterCasing" [Enabled]="ProtocolNo?.Enabled" [Font]="ProtocolNo?.Font" [ForeColor]="ProtocolNo?.ForeColor" [height]="ProtocolNo?.Height" [InputFormat]="ProtocolNo?.InputFormat" [InputTurkishCharacter]="ProtocolNo?.InputTurkishCharacter" [IsNonNumeric]="ProtocolNo?.IsNonNumeric" [MultiLine]="ProtocolNo?.Multiline" [ReadOnly]="ProtocolNo?.ReadOnly" [Required]="ProtocolNo?.Required" [TabIndex]="ProtocolNo?.TabIndex" [TextAlign]="ProtocolNo?.TextAlign" [Text]="hCExaminationFormViewModel?._HealthCommittee?.ProtocolNo" [Visible]="ProtocolNo?.Visible" id="A26426" data-tid="A362416"></hvl-text-box>
+                </div>
+            </div>
+            <div class="row" id="A26427" data-tid="A362417">
+                <div class="col-md-12" id="A26428" data-tid="A362418">
+                    <label class="control-label" id="A26429" data-tid="A362419">XXXXXXye Müracaat Tarihi</label>
+                    <hvl-date-picker #Validation (ValueChange)="onHCStartDateChanged($event)" [BackColor]="HCStartDate?.BackColor" [CustomFormat]="HCStartDate?.CustomFormat" [Enabled]="HCStartDate?.Enabled" [Font]="HCStartDate?.Font" [ForeColor]="HCStartDate?.ForeColor" [Format]="HCStartDate?.Format" [Max]="HCStartDate?.Max" [Min]="HCStartDate?.Min" [ReadOnly]="HCStartDate?.ReadOnly" [Required]="HCStartDate?.Required" [TabIndex]="HCStartDate?.TabIndex" [Value]="hCExaminationFormViewModel?._HealthCommittee?.Episode?.OpeningDate" [Visible]="HCStartDate?.Visible" id="A26430" data-tid="A362420"></hvl-date-picker>
+                </div>
+            </div>
+            <div class="row" id="A26431" data-tid="A362421">
+                <div class="col-md-12" id="A26432" data-tid="A362422">
+                    <label class="control-label" id="A26433" data-tid="A362423">Rapor Tarihi</label>
+                    <hvl-date-picker #Validation (ValueChange)="onReportDateChanged($event)" [BackColor]="ReportDate?.BackColor" [CustomFormat]="ReportDate?.CustomFormat" [Enabled]="ReportDate?.Enabled" [Font]="ReportDate?.Font" [ForeColor]="ReportDate?.ForeColor" [Format]="ReportDate?.Format" [Max]="ReportDate?.Max" [Min]="ReportDate?.Min" [ReadOnly]="ReportDate?.ReadOnly" [Required]="ReportDate?.Required" [TabIndex]="ReportDate?.TabIndex" [Value]="hCExaminationFormViewModel?._HealthCommittee?.ReportDate" [Visible]="ReportDate?.Visible" id="A26434" data-tid="A362424"></hvl-date-picker>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12" id="A26435" data-tid="A362425">
+            <DiagnosisGridReadOnlyForm [EpisodeAction]="hCExaminationFormViewModel._HealthCommittee" id="A26436" data-tid="A362426"></DiagnosisGridReadOnlyForm>
+        </div>
+    </div>
+    <div class="row" id="A26437" data-tid="A362427">
+
+        <dx-accordion #mainHCAccordion class="margin-bottom-10" collapsible="true" id="A11610" data-tid="A362428">
+            <dxi-item title="Sağlık Kurulu Bilgileri" data-tid="A362429">
+
+                <div class="row" id="A26442" data-tid="A362430">
+                    <div class="col-sm-4" id="A26443" data-tid="A362431">
+                        <div class="row" id="A26444" data-tid="A362432">
+                            <div class="col-sm-12" id="A26445" data-tid="A362433">
+                                <label class="control-label" id="A26446" data-tid="A362434">
+                                    İstek Sebebi
+                                </label>
+                                <hvl-list-box #Validation (SelectedObjectChange)="onHCRequestReasonChanged($event)" [AutoCompleteDialogHeight]="HCRequestReason?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="HCRequestReason?.AutoCompleteDialogWidth" [AutoCompleteMode]="HCRequestReason?.AutoCompleteMode" [BackColor]="HCRequestReason?.BackColor" [DefinitionName]="HCRequestReason?.ListDefName" [DisplayExpressionsCache]="hCExaminationFormViewModel?.ListDefDisplayExpressions" [Enabled]="HCRequestReason?.Enabled" [Font]="HCRequestReason?.Font" [ForeColor]="HCRequestReason?.ForeColor" [ListFilterExpression]="HCRequestReason?.ListFilterExpression" [MinSearchLength]="HCRequestReason?.MinSearchLength" [PopupDialogFieldConfig]="HCRequestReason?.PopupDialogFieldConfig" [PopupDialogGridColumns]="HCRequestReason?.PopupDialogGridColumns" [PopupDialogHeight]="HCRequestReason?.PopupDialogHeight" [PopupDialogTitle]="HCRequestReason?.PopupDialogTitle" [PopupDialogWidth]="HCRequestReason?.PopupDialogWidth" [ReadOnly]="HCRequestReason?.ReadOnly" [SearchMode]="HCRequestReason?.SearchMode" [SearchTimeout]="HCRequestReason?.SearchTimeout" [SelectedObject]="hCExaminationFormViewModel?._HealthCommittee?.HCRequestReason" [TabIndex]="HCRequestReason?.TabIndex" [Visible]="HCRequestReason?.Visible" [width]="HCRequestReason?.Width" id="A26447" data-tid="A362435"></hvl-list-box>
+                            </div>
+                        </div>
+                        <div class="row" id="A26448" data-tid="A362436">
+                            <div class="col-sm-12" id="A26449" data-tid="A362437">
+                                <label class="control-label" id="A26450" data-tid="A362438">
+                                    Rapor Türü
+                                </label>
+                                <hvl-list-box #Validation (SelectedObjectChange)="onReasonForExaminationHCRequestReasonChanged($event)" [AutoCompleteDialogHeight]="ReasonForExaminationHCRequestReason?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ReasonForExaminationHCRequestReason?.AutoCompleteDialogWidth" [AutoCompleteMode]="ReasonForExaminationHCRequestReason?.AutoCompleteMode" [BackColor]="ReasonForExaminationHCRequestReason?.BackColor" [DefinitionName]="ReasonForExaminationHCRequestReason?.ListDefName" [DisplayExpressionsCache]="hCExaminationFormViewModel?.ListDefDisplayExpressions" [Enabled]="ReasonForExaminationHCRequestReason?.Enabled" [Font]="ReasonForExaminationHCRequestReason?.Font" [ForeColor]="ReasonForExaminationHCRequestReason?.ForeColor" [ListFilterExpression]="ReasonForExaminationHCRequestReason?.ListFilterExpression" [MinSearchLength]="ReasonForExaminationHCRequestReason?.MinSearchLength" [PopupDialogFieldConfig]="ReasonForExaminationHCRequestReason?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ReasonForExaminationHCRequestReason?.PopupDialogGridColumns" [PopupDialogHeight]="ReasonForExaminationHCRequestReason?.PopupDialogHeight" [PopupDialogTitle]="ReasonForExaminationHCRequestReason?.PopupDialogTitle" [PopupDialogWidth]="ReasonForExaminationHCRequestReason?.PopupDialogWidth" [ReadOnly]="ReasonForExaminationHCRequestReason?.ReadOnly" [SearchMode]="ReasonForExaminationHCRequestReason?.SearchMode" [SearchTimeout]="ReasonForExaminationHCRequestReason?.SearchTimeout" [SelectedObject]="hCExaminationFormViewModel?._HealthCommittee?.HCRequestReason?.ReasonForExamination" [TabIndex]="ReasonForExaminationHCRequestReason?.TabIndex" [Visible]="ReasonForExaminationHCRequestReason?.Visible" [width]="ReasonForExaminationHCRequestReason?.Width" id="A26451" data-tid="A362439"></hvl-list-box>
+                            </div>
+                        </div>
+                        <div class="row" id="A26452" data-tid="A362440">
+                            <div class="col-sm-12" id="A26453" data-tid="A362441">
+                                <label class="control-label" id="A26454" data-tid="A362442">
+                                    Oy Durumu
+                                </label>
+                                <hvl-enum-combobox #Validation (ValueChange)="onUnanimityChanged($event)" [BackColor]="Unanimity?.BackColor" [DataTypeName]="Unanimity?.DataTypeName" [Enabled]="Unanimity?.Enabled" [Font]="Unanimity?.Font" [ForeColor]="Unanimity?.ForeColor" [IncludeOnly]="Unanimity?.IncludeOnly" [ReadOnly]="Unanimity?.ReadOnly" [ShowClearButton]="Unanimity?.ShowClearButton" [SortBy]="Unanimity?.SortBy" [TabIndex]="Unanimity?.TabIndex" [Value]="hCExaminationFormViewModel?._HealthCommittee?.Unanimity" [Visible]="Unanimity?.Visible" id="A26455" data-tid="A362443"></hvl-enum-combobox>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-4" id="A26486" data-tid="A362444">
+                        <div class="row" id="A26487" data-tid="A362445">
+                            <div class="col-sm-6" id="A26488" data-tid="A362446">
+                                <label class="control-label" id="A26489" data-tid="A362447">
+                                    Defter No
+                                </label>
+                                <hvl-number-box #Validation (ValueChange)="onBookNumberChanged($event)" [BackColor]="BookNumber?.BackColor" [Enabled]="BookNumber?.Enabled" [Font]="BookNumber?.Font" [ForeColor]="BookNumber?.ForeColor" [ReadOnly]="BookNumber?.ReadOnly" [TabIndex]="BookNumber?.TabIndex" [Value]="hCExaminationFormViewModel?._HealthCommittee?.BookNumber" [Visible]="BookNumber?.Visible" id="A26490" data-tid="A362448"></hvl-number-box>
+                            </div>
+                            <div class="col-sm-6" id="A26491" data-tid="A362449">
+                                <label class="control-label" id="A26492" data-tid="A362450">
+                                    Rapor No
+                                </label>
+                                <hvl-text-box #Validation (TextChange)="onReportNoChanged($event)" [BackColor]="ReportNo?.BackColor" [CharacterCasing]="ReportNo?.CharacterCasing" [Enabled]="ReportNo?.Enabled" [Font]="ReportNo?.Font" [ForeColor]="ReportNo?.ForeColor" [height]="ReportNo?.Height" [InputFormat]="ReportNo?.InputFormat" [InputTurkishCharacter]="ReportNo?.InputTurkishCharacter" [IsNonNumeric]="ReportNo?.IsNonNumeric" [MultiLine]="ReportNo?.Multiline" [ReadOnly]="ReportNo?.ReadOnly" [Required]="ReportNo?.Required" [TabIndex]="ReportNo?.TabIndex" [TextAlign]="ReportNo?.TextAlign" [Text]="hCExaminationFormViewModel?._HealthCommittee?.ReportNo" [Visible]="ReportNo?.Visible" id="A26493" data-tid="A362451"></hvl-text-box>
+                            </div>
+                        </div>
+                        <div class="row" id="A26494" data-tid="A362452">
+                            <div class="col-sm-6" id="A26495" data-tid="A362453">
+                                <label class="control-label" id="A26496" data-tid="A362454">
+                                    Evrak/Sevk Tarihi
+                                </label>
+                                <hvl-date-picker #Validation (ValueChange)="DocumentDate.NullableValue=$event;" [BackColor]="DocumentDate?.BackColor" [CustomFormat]="DocumentDate?.CustomFormat" [Enabled]="DocumentDate?.Enabled" [Font]="DocumentDate?.Font" [ForeColor]="DocumentDate?.ForeColor" [Format]="DocumentDate?.Format" [Max]="DocumentDate?.Max" [Min]="DocumentDate?.Min" [ReadOnly]="DocumentDate?.ReadOnly" [Required]="DocumentDate?.Required" [TabIndex]="DocumentDate?.TabIndex" [Value]="DocumentDate?.NullableValue" [Visible]="DocumentDate?.Visible" id="A26497" data-tid="A362455"></hvl-date-picker>
+                            </div>
+                            <div class="col-sm-6" id="A26498" data-tid="A362456">
+                                <label class="control-label" id="A26499" data-tid="A362457">
+                                    Sevk No
+                                </label>
+                                <hvl-text-box #Validation (TextChange)="DocumentNumber.Text=$event;" [BackColor]="DocumentNumber?.BackColor" [CharacterCasing]="DocumentNumber?.CharacterCasing" [Enabled]="DocumentNumber?.Enabled" [Font]="DocumentNumber?.Font" [ForeColor]="DocumentNumber?.ForeColor" [height]="DocumentNumber?.Height" [InputFormat]="DocumentNumber?.InputFormat" [InputTurkishCharacter]="DocumentNumber?.InputTurkishCharacter" [IsNonNumeric]="DocumentNumber?.IsNonNumeric" [MultiLine]="DocumentNumber?.Multiline" [ReadOnly]="DocumentNumber?.ReadOnly" [Required]="DocumentNumber?.Required" [TabIndex]="DocumentNumber?.TabIndex" [TextAlign]="DocumentNumber?.TextAlign" [Text]="DocumentNumber?.Text" [Visible]="DocumentNumber?.Visible" id="A26500" data-tid="A362458"></hvl-text-box>
+                            </div>
+                        </div>
+
+                        <div class="row" id="A26456" data-tid="A362459">
+                            <div class="col-sm-12" id="A26457" data-tid="A362460">
+                                <label class="control-label" id="A26458" data-tid="A362461">
+                                    Rapor Akıbeti
+                                </label>
+                                <hvl-enum-combobox #Validation (ValueChange)="onRationChanged($event)" [BackColor]="Ration?.BackColor" [DataTypeName]="Ration?.DataTypeName" [Enabled]="Ration?.Enabled" [Font]="Ration?.Font" [ForeColor]="Ration?.ForeColor" [IncludeOnly]="Ration?.IncludeOnly" [ReadOnly]="Ration?.ReadOnly" [ShowClearButton]="Ration?.ShowClearButton" [SortBy]="Ration?.SortBy" [TabIndex]="Ration?.TabIndex" [Value]="hCExaminationFormViewModel?._HealthCommittee?.Ration" [Visible]="Ration?.Visible" id="A26459" data-tid="A362462"></hvl-enum-combobox>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-4" id="A26460" data-tid="A362463">
+                        <div class="row" id="A26461" style="margin-right: 5px" data-tid="A362464">
+                            <div class="col-sm-6" id="A26472" data-tid="A362465">
+                                <label class="control-label" id="A26473" data-tid="A362466">
+                                    Şablon Seçimi
+                                </label>
+                                <dx-select-box #TemplateCombo [dataSource]="hCExaminationFormViewModel?.userTemplateList" (onItemClick)="SelectUserTemplate($event)" noDataText="Kullanıcı Şablonu Bulunamadı!" displayExpr="Description" searchEnabled="true" searchMode="contains" valueExpr="ObjectID" data-tid="A362467">
+                                </dx-select-box>
+                            </div>
+                            <div class="col-md-4" data-tid="A362468">
+                                <label class="control-label" id="A26473" data-tid="A362469">
+                                    Yeni Şablon İsmi
+                                </label>
+                                <dx-text-box [(value)]="userTemplateName" placeholder="Eklenecek Şablon Adı" id="A30432" data-tid="A362470">
+                                </dx-text-box>
+                            </div>
+                            <div class="col-md-1" style="text-align: center" data-tid="A362471">
+                                <label class="control-label" id="A26473" data-tid="A362472">
+                                    -
+                                </label>
+                                <button type="button" class="btn btn-success fa fa-save" (click)="btnAddUserTemplate_Click()" data-toggle="tooltip" data-placement="top" title="Şablon Kaydet" data-tid="A362473"></button>
+                            </div>
+                            <div class="col-md-1" data-tid="A362474">
+                                <label class="control-label" id="A26473" data-tid="A362475">
+                                    -
+                                </label>
+                                <button type="button" class="btn btn-danger fa fa-minus-circle" (click)="btnDeleteSelectedUserTemplate_Click()" data-toggle="tooltip" data-placement="top" title="Şablon Sil" data-tid="A362476"></button>
+                            </div>
+                        </div>
+                        <div class="row" id="A26469" data-tid="A362477">
+                            <div class="col-sm-12" id="A26470" data-tid="A362478">
+                                <div class="row" id="A26471" data-tid="A362479">
+                                    <div class="col-sm-3" id="A26472" data-tid="A362480">
+                                        <label class="control-label" id="A26473" data-tid="A362481">
+                                            Ağırlık(Kg)
+                                        </label>
+                                        <hvl-number-box #Validation (ValueChange)="onRationWeightChanged($event)" [BackColor]="RationWeight?.BackColor" [Enabled]="RationWeight?.Enabled" [Font]="RationWeight?.Font" [ForeColor]="RationWeight?.ForeColor" [ReadOnly]="RationWeight?.ReadOnly" [TabIndex]="RationWeight?.TabIndex" [Value]="hCExaminationFormViewModel?._HealthCommittee?.HCWeight" [Visible]="RationWeight?.Visible" id="A26474" data-tid="A362482"></hvl-number-box>
+                                    </div>
+                                    <div class="col-sm-3" id="A26475" data-tid="A362483">
+                                        <label class="control-label" id="A26476" data-tid="A362484">
+                                            Boy(cm)
+                                        </label>
+                                        <hvl-number-box #Validation (ValueChange)="onRationHeightChanged($event)" [BackColor]="RationHeight?.BackColor" [Enabled]="RationHeight?.Enabled" [Font]="RationHeight?.Font" [ForeColor]="RationHeight?.ForeColor" [ReadOnly]="RationHeight?.ReadOnly" [TabIndex]="RationHeight?.TabIndex" [Value]="hCExaminationFormViewModel?._HealthCommittee?.HCHeight" [Visible]="RationHeight?.Visible" id="A26477" data-tid="A362485"></hvl-number-box>
+                                    </div>
+                                    <div class="col-sm-6" id="A26462" data-tid="A362486">
+                                        <label class="control-label" id="A26463" data-tid="A362487">
+                                            Geçerlilik Süresi
+                                        </label>
+                                        <div class="row" id="A26464" data-tid="A362488">
+                                            <div class="col-sm-6" id="A26465" data-tid="A362489">
+                                                <hvl-number-box #Validation (ValueChange)="onHCDecisionTimeChanged($event)" [BackColor]="HCDecisionTime?.BackColor" [Enabled]="HCDecisionTime?.Enabled" [Font]="HCDecisionTime?.Font" [ForeColor]="HCDecisionTime?.ForeColor" [ReadOnly]="HCDecisionTime?.ReadOnly" [TabIndex]="HCDecisionTime?.TabIndex" [Value]="hCExaminationFormViewModel?._HealthCommittee?.HCDecisionTime" [Visible]="HCDecisionTime?.Visible" id="A26466" data-tid="A362490"></hvl-number-box>
+                                            </div>
+                                            <div class="col-sm-6" id="A26467" data-tid="A362491">
+                                                <hvl-enum-combobox #Validation (ValueChange)="onHCDecisionUnitOfTimeChanged($event)" [BackColor]="HCDecisionUnitOfTime?.BackColor" [DataTypeName]="HCDecisionUnitOfTime?.DataTypeName" [Enabled]="HCDecisionUnitOfTime?.Enabled" [Font]="HCDecisionUnitOfTime?.Font" [ForeColor]="HCDecisionUnitOfTime?.ForeColor" [IncludeOnly]="HCDecisionUnitOfTime?.IncludeOnly" [ReadOnly]="HCDecisionUnitOfTime?.ReadOnly" [ShowClearButton]="HCDecisionUnitOfTime?.ShowClearButton" [SortBy]="HCDecisionUnitOfTime?.SortBy" [TabIndex]="HCDecisionUnitOfTime?.TabIndex" [Value]="hCExaminationFormViewModel?._HealthCommittee?.HCDecisionUnitOfTime" [Visible]="HCDecisionUnitOfTime?.Visible" id="A26468" data-tid="A362492"></hvl-enum-combobox>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" id="A26478" data-tid="A362493">
+                            <div class="col-sm-12" id="A26479" data-tid="A362494">
+                                <div class="row" id="B26471" data-tid="A362495">
+                                    <div class="col-sm-6" id="B26472" data-tid="A362496">
+                                        <label class="control-label" id="A26480" data-tid="A362497">
+                                            Vücut Kitle İndeksi
+                                        </label>
+                                        <hvl-text-box #Validation (TextChange)="onBodyMassIndexChanged($event)" [BackColor]="BodyMassIndex?.BackColor" [CharacterCasing]="BodyMassIndex?.CharacterCasing" [Enabled]="BodyMassIndex?.Enabled" [Font]="BodyMassIndex?.Font" [ForeColor]="BodyMassIndex?.ForeColor" [height]="BodyMassIndex?.Height" [InputFormat]="BodyMassIndex?.InputFormat" [InputTurkishCharacter]="BodyMassIndex?.InputTurkishCharacter" [IsNonNumeric]="BodyMassIndex?.IsNonNumeric" [MultiLine]="BodyMassIndex?.Multiline" [ReadOnly]="BodyMassIndex?.ReadOnly" [Required]="BodyMassIndex?.Required" [TabIndex]="BodyMassIndex?.TabIndex" [TextAlign]="BodyMassIndex?.TextAlign" [Text]="hCExaminationFormViewModel?._HealthCommittee?.BodyMassIndex" [Visible]="BodyMassIndex?.Visible" id="A26481" data-tid="A362498"></hvl-text-box>
+                                    </div>
+                                    <div class="col-sm-6" id="A26483" data-tid="A362499">
+                                        <label class="control-label" id="A26484" data-tid="A362500">
+                                            Vücut Foksiyon Kayıp Oranı
+                                        </label>
+                                        <hvl-number-box #Validation (ValueChange)="onFunctionRatioChanged($event)" [BackColor]="FunctionRatio?.BackColor" [Enabled]="FunctionRatio?.Enabled" [Font]="FunctionRatio?.Font" [ForeColor]="FunctionRatio?.ForeColor" [ReadOnly]="FunctionRatio?.ReadOnly" [TabIndex]="FunctionRatio?.TabIndex" [Value]="hCExaminationFormViewModel?._HealthCommittee?.FunctionRatio" [Visible]="FunctionRatio?.Visible" id="A26485" data-tid="A362501"></hvl-number-box>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-12" id="A26505" data-tid="A362502">
+                        <label class="control-label" id="A26506" data-tid="A362503">
+                            Klinik Bulgular
+                        </label>
+                        <!-- <hvl-text-box #Validation (TextChange)="onClinicalFindingsChanged($event)" [BackColor]="ClinicalFindings?.BackColor"
+                        [CharacterCasing]="ClinicalFindings?.CharacterCasing" [Enabled]="ClinicalFindings?.Enabled" [Font]="ClinicalFindings?.Font"
+                        [ForeColor]="ClinicalFindings?.ForeColor" [height]="150" [InputFormat]="ClinicalFindings?.InputFormat"
+                        [InputTurkishCharacter]="ClinicalFindings?.InputTurkishCharacter" [IsNonNumeric]="ClinicalFindings?.IsNonNumeric"
+                        [MultiLine]="true" [ReadOnly]="ClinicalFindings?.ReadOnly" [Required]="ClinicalFindings?.Required" [TabIndex]="ClinicalFindings?.TabIndex"
+                        [TextAlign]="ClinicalFindings?.TextAlign" [Text]="hCExaminationFormViewModel?._HealthCommittee?.ClinicalFindings"
+                        [Visible]="ClinicalFindings?.Visible" id="A26507"></hvl-text-box> -->
+
+                        <hvl-richtextbox (change)="onClinicalFindingsChanged($event)" [ngModelOptions]="{ standalone: true}" [ngModel]="hCExaminationFormViewModel?._HealthCommittee?.ClinicalFindings" [ReadOnly]="ClinicalFindings?.ReadOnly" [TemplateGroupName]="ClinicalFindings?.TemplateGroupName" [Visible]="ClinicalFindings?.Visible" id="A26507" data-tid="A362504"></hvl-richtextbox>
+                    </div>
+
+                    <div class="col-sm-12" id="A26502" data-tid="A362505">
+                        <label class="control-label" id="A26503" data-tid="A362506">
+                            Tıbbi Gerekçeler
+                        </label>
+                        <!--<hvl-text-box #Validation (TextChange)="onDefinitionChanged($event)" [BackColor]="Definition?.BackColor" [CharacterCasing]="Definition?.CharacterCasing" [Enabled]="Definition?.Enabled" [Font]="Definition?.Font"
+                                            [ForeColor]="Definition?.ForeColor" [height]="Definition?.Height" [InputFormat]="Definition?.InputFormat" [InputTurkishCharacter]="Definition?.InputTurkishCharacter"
+                                            [IsNonNumeric]="Definition?.IsNonNumeric" [MultiLine]="Definition?.Multiline" [ReadOnly]="Definition?.ReadOnly" [Required]="Definition?.Required" [TabIndex]="Definition?.TabIndex"
+                                            [TextAlign]="Definition?.TextAlign" [Text]="hCExaminationFormViewModel?._HealthCommittee?.Definition" [Visible]="Definition?.Visible" id="A26504"></hvl-text-box>-->
+
+                        <hvl-richtextbox (change)="onDefinitionChanged($event)" [Height]="&#x27;60px&#x27;" [ngModelOptions]="{ standalone: true}" [ngModel]="hCExaminationFormViewModel?._HealthCommittee?.Definition" [ReadOnly]="Definition?.ReadOnly" [TemplateGroupName]="Definition?.TemplateGroupName" [Visible]="Definition?.Visible" id="A9677" data-tid="A362507"></hvl-richtextbox>
+                    </div>
+
+                    <div class="col-sm-12" id="A26623" data-tid="A362508">
+                        <label class="control-label" id="A26624" data-tid="A362509">
+                            Karar
+                        </label>
+                        <hvl-richtextbox (change)="onHealthCommitteeDecisionChanged($event)" [ngModelOptions]="{ standalone: true}" [ngModel]="hCExaminationFormViewModel?._HealthCommittee?.HealthCommitteeDecision" [ReadOnly]="HealthCommitteeDecision?.ReadOnly" [TemplateGroupName]="HealthCommitteeDecision?.TemplateGroupName" [Visible]="HealthCommitteeDecision?.Visible" id="A26625" data-tid="A362510"></hvl-richtextbox>
+                    </div>
+
+                </div>
+
+            </dxi-item>
+
+            <dxi-item title="Sağlık Kurulu Ek Alanlar" data-tid="A362511">
+                <div *dxTemplate data-tid="A362512">
+                    <div class="row" *ngIf="hCExaminationFormViewModel.IsDisabled==true" id="A26512" data-tid="A362513">
+                        <div class="col-sm-12" id="A26513" data-tid="A362514">
+                            <div class="row" id="A26514" data-tid="A362515">
+                                <hvl-group-box class="col-sm-6" [Text]="ttgroupEngel.Text" id="A26515" data-tid="A362516">
+                                    <div class="row" id="A26516" data-tid="A362517">
+                                        <div class="col-sm-12" id="A26517" data-tid="A362518">
+                                            <div id="A26591" data-tid="A362519">
+                                                <hvl-checkbox #Validation (ValueChange)="onIsHeavyDisabledChanged($event)" [AllowThreeState]="IsHeavyDisabled?.ThreeState" [BackColor]="IsHeavyDisabled?.BackColor" [Enabled]="IsHeavyDisabled?.Enabled" [Font]="IsHeavyDisabled?.Font" [ForeColor]="IsHeavyDisabled?.ForeColor" [IsTitleLeft]="IsHeavyDisabled?.IsTitleLeft" [Margin]="IsHeavyDisabled?.Margin" [ReadOnly]="IsHeavyDisabled?.ReadOnly" [TabIndex]="IsHeavyDisabled?.TabIndex" [TitleTopPadding]="IsHeavyDisabled?.TitleTopPadding" [Title]="IsHeavyDisabled?.Title" [Value]="hCExaminationFormViewModel?._HealthCommittee?.IsHeavyDisabled" [Visible]="IsHeavyDisabled?.Visible" id="A26592" data-tid="A362520"></hvl-checkbox>
+                                            </div>
+                                            <br id="A26518" data-tid="A362521" />
+                                            <div class="row" id="A26519" data-tid="A362522">
+                                                <div class="col-sm-6" id="A26520" data-tid="A362523">
+                                                    <hvl-checkbox #Validation (ValueChange)="onOrthopedicMedicalInfoDisabledGroupChanged($event)" [AllowThreeState]="OrthopedicMedicalInfoDisabledGroup?.ThreeState" [BackColor]="OrthopedicMedicalInfoDisabledGroup?.BackColor" [Enabled]="OrthopedicMedicalInfoDisabledGroup?.Enabled" [Font]="OrthopedicMedicalInfoDisabledGroup?.Font" [ForeColor]="OrthopedicMedicalInfoDisabledGroup?.ForeColor" [IsTitleLeft]="OrthopedicMedicalInfoDisabledGroup?.IsTitleLeft" [Margin]="OrthopedicMedicalInfoDisabledGroup?.Margin" [ReadOnly]="OrthopedicMedicalInfoDisabledGroup?.ReadOnly" [TabIndex]="OrthopedicMedicalInfoDisabledGroup?.TabIndex" [TitleTopPadding]="OrthopedicMedicalInfoDisabledGroup?.TitleTopPadding" [Title]="OrthopedicMedicalInfoDisabledGroup?.Title" [Value]="hCExaminationFormViewModel?._HealthCommittee?.Episode?.Patient?.MedicalInformation?.MedicalInfoDisabledGroup?.Orthopedic" [Visible]="OrthopedicMedicalInfoDisabledGroup?.Visible" id="A26521" data-tid="A362524"></hvl-checkbox>
+                                                </div>
+
+                                                <div class="col-sm-6" id="A26524" data-tid="A362525">
+                                                    <hvl-checkbox #Validation (ValueChange)="onVisionMedicalInfoDisabledGroupChanged($event)" [AllowThreeState]="VisionMedicalInfoDisabledGroup?.ThreeState" [BackColor]="VisionMedicalInfoDisabledGroup?.BackColor" [Enabled]="VisionMedicalInfoDisabledGroup?.Enabled" [Font]="VisionMedicalInfoDisabledGroup?.Font" [ForeColor]="VisionMedicalInfoDisabledGroup?.ForeColor" [IsTitleLeft]="VisionMedicalInfoDisabledGroup?.IsTitleLeft" [Margin]="VisionMedicalInfoDisabledGroup?.Margin" [ReadOnly]="VisionMedicalInfoDisabledGroup?.ReadOnly" [TabIndex]="VisionMedicalInfoDisabledGroup?.TabIndex" [TitleTopPadding]="VisionMedicalInfoDisabledGroup?.TitleTopPadding" [Title]="VisionMedicalInfoDisabledGroup?.Title" [Value]="hCExaminationFormViewModel?._HealthCommittee?.Episode?.Patient?.MedicalInformation?.MedicalInfoDisabledGroup?.Vision" [Visible]="VisionMedicalInfoDisabledGroup?.Visible" id="A26525" data-tid="A362526"></hvl-checkbox>
+                                                </div>
+                                            </div>
+                                            <br id="A26522" data-tid="A362527" />
+
+                                            <div class="row" id="A26527" data-tid="A362528">
+                                                <div class="col-sm-6" id="A26528" data-tid="A362529">
+                                                    <hvl-checkbox #Validation (ValueChange)="onHearingMedicalInfoDisabledGroupChanged($event)" [AllowThreeState]="HearingMedicalInfoDisabledGroup?.ThreeState" [BackColor]="HearingMedicalInfoDisabledGroup?.BackColor" [Enabled]="HearingMedicalInfoDisabledGroup?.Enabled" [Font]="HearingMedicalInfoDisabledGroup?.Font" [ForeColor]="HearingMedicalInfoDisabledGroup?.ForeColor" [IsTitleLeft]="HearingMedicalInfoDisabledGroup?.IsTitleLeft" [Margin]="HearingMedicalInfoDisabledGroup?.Margin" [ReadOnly]="HearingMedicalInfoDisabledGroup?.ReadOnly" [TabIndex]="HearingMedicalInfoDisabledGroup?.TabIndex" [TitleTopPadding]="HearingMedicalInfoDisabledGroup?.TitleTopPadding" [Title]="HearingMedicalInfoDisabledGroup?.Title" [Value]="hCExaminationFormViewModel?._HealthCommittee?.Episode?.Patient?.MedicalInformation?.MedicalInfoDisabledGroup?.Hearing" [Visible]="HearingMedicalInfoDisabledGroup?.Visible" id="A26529" data-tid="A362530"></hvl-checkbox>
+                                                </div>
+
+                                                <div class="col-sm-6" id="A26532" data-tid="A362531">
+                                                    <hvl-checkbox #Validation (ValueChange)="onSpeechAndLanguageMedicalInfoDisabledGroupChanged($event)" [AllowThreeState]="SpeechAndLanguageMedicalInfoDisabledGroup?.ThreeState" [BackColor]="SpeechAndLanguageMedicalInfoDisabledGroup?.BackColor" [Enabled]="SpeechAndLanguageMedicalInfoDisabledGroup?.Enabled" [Font]="SpeechAndLanguageMedicalInfoDisabledGroup?.Font" [ForeColor]="SpeechAndLanguageMedicalInfoDisabledGroup?.ForeColor" [IsTitleLeft]="SpeechAndLanguageMedicalInfoDisabledGroup?.IsTitleLeft" [Margin]="SpeechAndLanguageMedicalInfoDisabledGroup?.Margin" [ReadOnly]="SpeechAndLanguageMedicalInfoDisabledGroup?.ReadOnly" [TabIndex]="SpeechAndLanguageMedicalInfoDisabledGroup?.TabIndex" [TitleTopPadding]="SpeechAndLanguageMedicalInfoDisabledGroup?.TitleTopPadding" [Title]="SpeechAndLanguageMedicalInfoDisabledGroup?.Title" [Value]="hCExaminationFormViewModel?._HealthCommittee?.Episode?.Patient?.MedicalInformation?.MedicalInfoDisabledGroup?.SpeechAndLanguage" [Visible]="SpeechAndLanguageMedicalInfoDisabledGroup?.Visible" id="A26533" data-tid="A362532"></hvl-checkbox>
+                                                </div>
+                                            </div>
+                                            <br id="A26530" data-tid="A362533" />
+
+                                            <div class="row" id="A26535" data-tid="A362534">
+                                                <div class="col-sm-6" id="A26536" data-tid="A362535">
+                                                    <hvl-checkbox #Validation (ValueChange)="onMentalMedicalInfoDisabledGroupChanged($event)" [AllowThreeState]="MentalMedicalInfoDisabledGroup?.ThreeState" [BackColor]="MentalMedicalInfoDisabledGroup?.BackColor" [Enabled]="MentalMedicalInfoDisabledGroup?.Enabled" [Font]="MentalMedicalInfoDisabledGroup?.Font" [ForeColor]="MentalMedicalInfoDisabledGroup?.ForeColor" [IsTitleLeft]="MentalMedicalInfoDisabledGroup?.IsTitleLeft" [Margin]="MentalMedicalInfoDisabledGroup?.Margin" [ReadOnly]="MentalMedicalInfoDisabledGroup?.ReadOnly" [TabIndex]="MentalMedicalInfoDisabledGroup?.TabIndex" [TitleTopPadding]="MentalMedicalInfoDisabledGroup?.TitleTopPadding" [Title]="MentalMedicalInfoDisabledGroup?.Title" [Value]="hCExaminationFormViewModel?._HealthCommittee?.Episode?.Patient?.MedicalInformation?.MedicalInfoDisabledGroup?.Mental" [Visible]="MentalMedicalInfoDisabledGroup?.Visible" id="A26537" data-tid="A362536"></hvl-checkbox>
+                                                </div>
+
+                                                <div class="col-sm-6" id="A26540" data-tid="A362537">
+                                                    <hvl-checkbox #Validation (ValueChange)="onChronicMedicalInfoDisabledGroupChanged($event)" [AllowThreeState]="ChronicMedicalInfoDisabledGroup?.ThreeState" [BackColor]="ChronicMedicalInfoDisabledGroup?.BackColor" [Enabled]="ChronicMedicalInfoDisabledGroup?.Enabled" [Font]="ChronicMedicalInfoDisabledGroup?.Font" [ForeColor]="ChronicMedicalInfoDisabledGroup?.ForeColor" [IsTitleLeft]="ChronicMedicalInfoDisabledGroup?.IsTitleLeft" [Margin]="ChronicMedicalInfoDisabledGroup?.Margin" [ReadOnly]="ChronicMedicalInfoDisabledGroup?.ReadOnly" [TabIndex]="ChronicMedicalInfoDisabledGroup?.TabIndex" [TitleTopPadding]="ChronicMedicalInfoDisabledGroup?.TitleTopPadding" [Title]="ChronicMedicalInfoDisabledGroup?.Title" [Value]="hCExaminationFormViewModel?._HealthCommittee?.Episode?.Patient?.MedicalInformation?.MedicalInfoDisabledGroup?.Chronic" [Visible]="ChronicMedicalInfoDisabledGroup?.Visible" id="A26541" data-tid="A362538"></hvl-checkbox>
+                                                </div>
+                                            </div>
+                                            <br id="A26538" data-tid="A362539" />
+
+                                            <div class="row" id="A26543" data-tid="A362540">
+                                                <div class="col-sm-6" id="A26544" data-tid="A362541">
+                                                    <hvl-checkbox #Validation (ValueChange)="onUnclassifiedMedicalInfoDisabledGroupChanged($event)" [AllowThreeState]="UnclassifiedMedicalInfoDisabledGroup?.ThreeState" [BackColor]="UnclassifiedMedicalInfoDisabledGroup?.BackColor" [Enabled]="UnclassifiedMedicalInfoDisabledGroup?.Enabled" [Font]="UnclassifiedMedicalInfoDisabledGroup?.Font" [ForeColor]="UnclassifiedMedicalInfoDisabledGroup?.ForeColor" [IsTitleLeft]="UnclassifiedMedicalInfoDisabledGroup?.IsTitleLeft" [Margin]="UnclassifiedMedicalInfoDisabledGroup?.Margin" [ReadOnly]="UnclassifiedMedicalInfoDisabledGroup?.ReadOnly" [TabIndex]="UnclassifiedMedicalInfoDisabledGroup?.TabIndex" [TitleTopPadding]="UnclassifiedMedicalInfoDisabledGroup?.TitleTopPadding" [Title]="UnclassifiedMedicalInfoDisabledGroup?.Title" [Value]="hCExaminationFormViewModel?._HealthCommittee?.Episode?.Patient?.MedicalInformation?.MedicalInfoDisabledGroup?.Unclassified" [Visible]="UnclassifiedMedicalInfoDisabledGroup?.Visible" id="A26545" data-tid="A362542"></hvl-checkbox>
+                                                </div>
+
+                                                <div class="col-sm-6" id="A26548" data-tid="A362543">
+                                                    <hvl-checkbox #Validation (ValueChange)="onPsychicAndEmotionalMedicalInfoDisabledGroupChanged($event)" [AllowThreeState]="PsychicAndEmotionalMedicalInfoDisabledGroup?.ThreeState" [BackColor]="PsychicAndEmotionalMedicalInfoDisabledGroup?.BackColor" [Enabled]="PsychicAndEmotionalMedicalInfoDisabledGroup?.Enabled" [Font]="PsychicAndEmotionalMedicalInfoDisabledGroup?.Font" [ForeColor]="PsychicAndEmotionalMedicalInfoDisabledGroup?.ForeColor" [IsTitleLeft]="PsychicAndEmotionalMedicalInfoDisabledGroup?.IsTitleLeft" [Margin]="PsychicAndEmotionalMedicalInfoDisabledGroup?.Margin" [ReadOnly]="PsychicAndEmotionalMedicalInfoDisabledGroup?.ReadOnly" [TabIndex]="PsychicAndEmotionalMedicalInfoDisabledGroup?.TabIndex" [TitleTopPadding]="PsychicAndEmotionalMedicalInfoDisabledGroup?.TitleTopPadding" [Title]="PsychicAndEmotionalMedicalInfoDisabledGroup?.Title" [Value]="hCExaminationFormViewModel?._HealthCommittee?.Episode?.Patient?.MedicalInformation?.MedicalInfoDisabledGroup?.PsychicAndEmotional" [Visible]="PsychicAndEmotionalMedicalInfoDisabledGroup?.Visible" id="A26549" data-tid="A362544"></hvl-checkbox>
+                                                </div>
+                                            </div>
+                                            <br id="A26546" data-tid="A362545" />
+
+                                        </div>
+                                        <div class="col-sm-12" id="A26585" data-tid="A362546">
+                                            <label class="control-label" id="A26586" data-tid="A362547">
+                                                {{labelUnworkField?.Text}}
+                                            </label>
+                                            <hvl-text-box #Validation (TextChange)="onUnworkFieldChanged($event)" [BackColor]="UnworkField?.BackColor" [CharacterCasing]="UnworkField?.CharacterCasing" [Enabled]="UnworkField?.Enabled" [Font]="UnworkField?.Font" [ForeColor]="UnworkField?.ForeColor" [height]="UnworkField?.Height" [InputFormat]="UnworkField?.InputFormat" [InputTurkishCharacter]="UnworkField?.InputTurkishCharacter" [IsNonNumeric]="UnworkField?.IsNonNumeric" [MultiLine]="UnworkField?.Multiline" [ReadOnly]="UnworkField?.ReadOnly" [Required]="UnworkField?.Required" [TabIndex]="UnworkField?.TabIndex" [TextAlign]="UnworkField?.TextAlign" [Text]="hCExaminationFormViewModel?._HealthCommittee?.UnworkField" [Visible]="UnworkField?.Visible" id="A26587" data-tid="A362548"></hvl-text-box>
+                                        </div>
+                                        <div class="col-sm-12" id="A26588" data-tid="A362549">
+                                            <label class="control-label" id="A26589" data-tid="A362550">
+                                                Çalıştırılamayacağı İşlerin Niteliği
+                                            </label>
+                                            <hvl-text-box #Validation (TextChange)="onQulityOfUnemployableWorksChanged($event)" [BackColor]="QulityOfUnemployableWorks?.BackColor" [CharacterCasing]="QulityOfUnemployableWorks?.CharacterCasing" [Enabled]="QulityOfUnemployableWorks?.Enabled" [Font]="QulityOfUnemployableWorks?.Font" [ForeColor]="QulityOfUnemployableWorks?.ForeColor" [height]="QulityOfUnemployableWorks?.Height" [InputFormat]="QulityOfUnemployableWorks?.InputFormat" [InputTurkishCharacter]="QulityOfUnemployableWorks?.InputTurkishCharacter" [IsNonNumeric]="QulityOfUnemployableWorks?.IsNonNumeric" [MultiLine]="QulityOfUnemployableWorks?.Multiline" [ReadOnly]="QulityOfUnemployableWorks?.ReadOnly" [Required]="QulityOfUnemployableWorks?.Required" [TabIndex]="QulityOfUnemployableWorks?.TabIndex" [TextAlign]="QulityOfUnemployableWorks?.TextAlign" [Text]="hCExaminationFormViewModel?._HealthCommittee?.QulityOfUnemployableWorks" [Visible]="QulityOfUnemployableWorks?.Visible" id="A26590" data-tid="A362551"></hvl-text-box>
+                                        </div>
+                                    </div>
+                                </hvl-group-box>
+                                <hvl-group-box class="col-sm-6" [Text]="ttgroupKullanimAmaci.Text" id="A26551" data-tid="A362552">
+                                    <div class="row" id="A26552" style="margin-bottom: 5px" data-tid="A362553">
+                                        <label class="control-label col-sm-4" id="A26553" data-tid="A362554">
+                                            Eğitim
+                                        </label>
+                                        <div class="col-sm-8" id="A26554" data-tid="A362555">
+                                            <hvl-enum-combobox #Validation (ValueChange)="onEducationEvaluationIntendedUseOfDisabledReportChanged($event)" [BackColor]="EducationEvaluationIntendedUseOfDisabledReport?.BackColor" [DataTypeName]="EducationEvaluationIntendedUseOfDisabledReport?.DataTypeName" [Enabled]="EducationEvaluationIntendedUseOfDisabledReport?.Enabled" [Font]="EducationEvaluationIntendedUseOfDisabledReport?.Font" [ForeColor]="EducationEvaluationIntendedUseOfDisabledReport?.ForeColor" [IncludeOnly]="EducationEvaluationIntendedUseOfDisabledReport?.IncludeOnly" [ReadOnly]="EducationEvaluationIntendedUseOfDisabledReport?.ReadOnly" [ShowClearButton]="EducationEvaluationIntendedUseOfDisabledReport?.ShowClearButton" [SortBy]="EducationEvaluationIntendedUseOfDisabledReport?.SortBy" [TabIndex]="EducationEvaluationIntendedUseOfDisabledReport?.TabIndex" [Value]="hCExaminationFormViewModel?._HealthCommittee?.IntendedUseOfDisabledReport?.EducationEvaluation" [Visible]="EducationEvaluationIntendedUseOfDisabledReport?.Visible" id="A26555" data-tid="A362556"></hvl-enum-combobox>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="A26556" style="margin-bottom: 5px" data-tid="A362557">
+                                        <label class="control-label col-sm-4" id="A26557" data-tid="A362558">
+                                            İstihdam
+                                        </label>
+                                        <div class="col-sm-8" id="A26558" data-tid="A362559">
+                                            <hvl-enum-combobox #Validation (ValueChange)="onEmploymentEvaluationIntendedUseOfDisabledReportChanged($event)" [BackColor]="EmploymentEvaluationIntendedUseOfDisabledReport?.BackColor" [DataTypeName]="EmploymentEvaluationIntendedUseOfDisabledReport?.DataTypeName" [Enabled]="EmploymentEvaluationIntendedUseOfDisabledReport?.Enabled" [Font]="EmploymentEvaluationIntendedUseOfDisabledReport?.Font" [ForeColor]="EmploymentEvaluationIntendedUseOfDisabledReport?.ForeColor" [IncludeOnly]="EmploymentEvaluationIntendedUseOfDisabledReport?.IncludeOnly" [ReadOnly]="EmploymentEvaluationIntendedUseOfDisabledReport?.ReadOnly" [ShowClearButton]="EmploymentEvaluationIntendedUseOfDisabledReport?.ShowClearButton" [SortBy]="EmploymentEvaluationIntendedUseOfDisabledReport?.SortBy" [TabIndex]="EmploymentEvaluationIntendedUseOfDisabledReport?.TabIndex" [Value]="hCExaminationFormViewModel?._HealthCommittee?.IntendedUseOfDisabledReport?.EmploymentEvaluation" [Visible]="EmploymentEvaluationIntendedUseOfDisabledReport?.Visible" id="A26559" data-tid="A362560"></hvl-enum-combobox>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="A26560" style="margin-bottom: 5px" data-tid="A362561">
+                                        <label class="control-label col-sm-4" id="A26561" data-tid="A362562">
+                                            Sosyal Yardım
+                                        </label>
+                                        <div class="col-sm-8" id="A26562" data-tid="A362563">
+                                            <hvl-enum-combobox #Validation (ValueChange)="onSocialAidEvaluationIntendedUseOfDisabledReportChanged($event)" [BackColor]="SocialAidEvaluationIntendedUseOfDisabledReport?.BackColor" [DataTypeName]="SocialAidEvaluationIntendedUseOfDisabledReport?.DataTypeName" [Enabled]="SocialAidEvaluationIntendedUseOfDisabledReport?.Enabled" [Font]="SocialAidEvaluationIntendedUseOfDisabledReport?.Font" [ForeColor]="SocialAidEvaluationIntendedUseOfDisabledReport?.ForeColor" [IncludeOnly]="SocialAidEvaluationIntendedUseOfDisabledReport?.IncludeOnly" [ReadOnly]="SocialAidEvaluationIntendedUseOfDisabledReport?.ReadOnly" [ShowClearButton]="SocialAidEvaluationIntendedUseOfDisabledReport?.ShowClearButton" [SortBy]="SocialAidEvaluationIntendedUseOfDisabledReport?.SortBy" [TabIndex]="SocialAidEvaluationIntendedUseOfDisabledReport?.TabIndex" [Value]="hCExaminationFormViewModel?._HealthCommittee?.IntendedUseOfDisabledReport?.SocialAidEvaluation" [Visible]="SocialAidEvaluationIntendedUseOfDisabledReport?.Visible" id="A26563" data-tid="A362564"></hvl-enum-combobox>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="A26564" style="margin-bottom: 5px" data-tid="A362565">
+                                        <label class="control-label col-sm-4" id="A26565" data-tid="A362566">
+                                            Ortez/Protez/İşitme Cihazı
+                                        </label>
+                                        <div class="col-sm-8" id="A26566" data-tid="A362567">
+                                            <hvl-enum-combobox #Validation (ValueChange)="onOrtesisProsthesEquEvaluationIntendedUseOfDisabledReportChanged($event)" [BackColor]="OrtesisProsthesEquEvaluationIntendedUseOfDisabledReport?.BackColor" [DataTypeName]="OrtesisProsthesEquEvaluationIntendedUseOfDisabledReport?.DataTypeName" [Enabled]="OrtesisProsthesEquEvaluationIntendedUseOfDisabledReport?.Enabled" [Font]="OrtesisProsthesEquEvaluationIntendedUseOfDisabledReport?.Font" [ForeColor]="OrtesisProsthesEquEvaluationIntendedUseOfDisabledReport?.ForeColor" [IncludeOnly]="OrtesisProsthesEquEvaluationIntendedUseOfDisabledReport?.IncludeOnly" [ReadOnly]="OrtesisProsthesEquEvaluationIntendedUseOfDisabledReport?.ReadOnly" [ShowClearButton]="OrtesisProsthesEquEvaluationIntendedUseOfDisabledReport?.ShowClearButton" [SortBy]="OrtesisProsthesEquEvaluationIntendedUseOfDisabledReport?.SortBy" [TabIndex]="OrtesisProsthesEquEvaluationIntendedUseOfDisabledReport?.TabIndex" [Value]="hCExaminationFormViewModel?._HealthCommittee?.IntendedUseOfDisabledReport?.OrtesisProsthesEquEvaluation" [Visible]="OrtesisProsthesEquEvaluationIntendedUseOfDisabledReport?.Visible" id="A26567" data-tid="A362568"></hvl-enum-combobox>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="A26568" style="margin-bottom: 5px" data-tid="A362569">
+                                        <label class="control-label col-sm-4" id="A26569" data-tid="A362570">
+                                            Tekerlekli Sandalye
+                                        </label>
+                                        <div class="col-sm-8" id="A26570" data-tid="A362571">
+                                            <hvl-enum-combobox #Validation (ValueChange)="onDisabledChaiEvaluationIntendedUseOfDisabledReportChanged($event)" [BackColor]="DisabledChaiEvaluationIntendedUseOfDisabledReport?.BackColor" [DataTypeName]="DisabledChaiEvaluationIntendedUseOfDisabledReport?.DataTypeName" [Enabled]="DisabledChaiEvaluationIntendedUseOfDisabledReport?.Enabled" [Font]="DisabledChaiEvaluationIntendedUseOfDisabledReport?.Font" [ForeColor]="DisabledChaiEvaluationIntendedUseOfDisabledReport?.ForeColor" [IncludeOnly]="DisabledChaiEvaluationIntendedUseOfDisabledReport?.IncludeOnly" [ReadOnly]="DisabledChaiEvaluationIntendedUseOfDisabledReport?.ReadOnly" [ShowClearButton]="DisabledChaiEvaluationIntendedUseOfDisabledReport?.ShowClearButton" [SortBy]="DisabledChaiEvaluationIntendedUseOfDisabledReport?.SortBy" [TabIndex]="DisabledChaiEvaluationIntendedUseOfDisabledReport?.TabIndex" [Value]="hCExaminationFormViewModel?._HealthCommittee?.IntendedUseOfDisabledReport?.DisabledChaiEvaluation" [Visible]="DisabledChaiEvaluationIntendedUseOfDisabledReport?.Visible" id="A26571" data-tid="A362572"></hvl-enum-combobox>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="A26572" style="margin-bottom: 5px" data-tid="A362573">
+                                        <label class="control-label col-sm-4" id="A26573" data-tid="A362574">
+                                            Engelli Kimlik Kartı
+                                        </label>
+                                        <div class="col-sm-8" id="A26574" data-tid="A362575">
+                                            <hvl-enum-combobox #Validation (ValueChange)="onDisabledIdentityCardEvalutionIntendedUseOfDisabledReportChanged($event)" [BackColor]="DisabledIdentityCardEvalutionIntendedUseOfDisabledReport?.BackColor" [DataTypeName]="DisabledIdentityCardEvalutionIntendedUseOfDisabledReport?.DataTypeName" [Enabled]="DisabledIdentityCardEvalutionIntendedUseOfDisabledReport?.Enabled" [Font]="DisabledIdentityCardEvalutionIntendedUseOfDisabledReport?.Font" [ForeColor]="DisabledIdentityCardEvalutionIntendedUseOfDisabledReport?.ForeColor" [IncludeOnly]="DisabledIdentityCardEvalutionIntendedUseOfDisabledReport?.IncludeOnly" [ReadOnly]="DisabledIdentityCardEvalutionIntendedUseOfDisabledReport?.ReadOnly" [ShowClearButton]="DisabledIdentityCardEvalutionIntendedUseOfDisabledReport?.ShowClearButton" [SortBy]="DisabledIdentityCardEvalutionIntendedUseOfDisabledReport?.SortBy" [TabIndex]="DisabledIdentityCardEvalutionIntendedUseOfDisabledReport?.TabIndex" [Value]="hCExaminationFormViewModel?._HealthCommittee?.IntendedUseOfDisabledReport?.DisabledIdentityCardEvalution" [Visible]="DisabledIdentityCardEvalutionIntendedUseOfDisabledReport?.Visible" id="A26575" data-tid="A362576"></hvl-enum-combobox>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="A26576" style="margin-bottom: 5px" data-tid="A362577">
+                                        <label class="control-label col-sm-4" id="A26577" data-tid="A362578">
+                                            2022 Sayılı Kanun
+                                        </label>
+                                        <div class="col-sm-8" id="A26578" data-tid="A362579">
+                                            <hvl-enum-combobox #Validation (ValueChange)="onLawNo2022EvaluationIntendedUseOfDisabledReportChanged($event)" [BackColor]="LawNo2022EvaluationIntendedUseOfDisabledReport?.BackColor" [DataTypeName]="LawNo2022EvaluationIntendedUseOfDisabledReport?.DataTypeName" [Enabled]="LawNo2022EvaluationIntendedUseOfDisabledReport?.Enabled" [Font]="LawNo2022EvaluationIntendedUseOfDisabledReport?.Font" [ForeColor]="LawNo2022EvaluationIntendedUseOfDisabledReport?.ForeColor" [IncludeOnly]="LawNo2022EvaluationIntendedUseOfDisabledReport?.IncludeOnly" [ReadOnly]="LawNo2022EvaluationIntendedUseOfDisabledReport?.ReadOnly" [ShowClearButton]="LawNo2022EvaluationIntendedUseOfDisabledReport?.ShowClearButton" [SortBy]="LawNo2022EvaluationIntendedUseOfDisabledReport?.SortBy" [TabIndex]="LawNo2022EvaluationIntendedUseOfDisabledReport?.TabIndex" [Value]="hCExaminationFormViewModel?._HealthCommittee?.IntendedUseOfDisabledReport?.LawNo2022Evaluation" [Visible]="LawNo2022EvaluationIntendedUseOfDisabledReport?.Visible" id="A26579" data-tid="A362580"></hvl-enum-combobox>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="A26580" data-tid="A362581">
+                                        <label class="control-label col-sm-4" id="A26581" data-tid="A362582">
+                                            Diğer(Açıklama)
+                                        </label>
+                                        <div class="col-sm-8" id="A26582" data-tid="A362583">
+                                            <hvl-text-box #Validation (TextChange)="onOtherExplanationIntendedUseOfDisabledReportChanged($event)" [BackColor]="OtherExplanationIntendedUseOfDisabledReport?.BackColor" [CharacterCasing]="OtherExplanationIntendedUseOfDisabledReport?.CharacterCasing" [Enabled]="OtherExplanationIntendedUseOfDisabledReport?.Enabled" [Font]="OtherExplanationIntendedUseOfDisabledReport?.Font" [ForeColor]="OtherExplanationIntendedUseOfDisabledReport?.ForeColor" [height]="OtherExplanationIntendedUseOfDisabledReport?.Height" [InputFormat]="OtherExplanationIntendedUseOfDisabledReport?.InputFormat" [InputTurkishCharacter]="OtherExplanationIntendedUseOfDisabledReport?.InputTurkishCharacter" [IsNonNumeric]="OtherExplanationIntendedUseOfDisabledReport?.IsNonNumeric" [MultiLine]="OtherExplanationIntendedUseOfDisabledReport?.Multiline" [ReadOnly]="OtherExplanationIntendedUseOfDisabledReport?.ReadOnly" [Required]="OtherExplanationIntendedUseOfDisabledReport?.Required" [TabIndex]="OtherExplanationIntendedUseOfDisabledReport?.TabIndex" [TextAlign]="OtherExplanationIntendedUseOfDisabledReport?.TextAlign" [Text]="hCExaminationFormViewModel?._HealthCommittee?.IntendedUseOfDisabledReport?.OtherExplanation" [Visible]="OtherExplanationIntendedUseOfDisabledReport?.Visible" id="A26583" data-tid="A362584"></hvl-text-box>
+                                        </div>
+                                    </div>
+                                    <br data-tid="A362585" />
+                                </hvl-group-box>
+
+                            </div>
+                            <div class="row" id="A26596" data-tid="A362586">
+                                <div class="col-sm-12" id="A26597" data-tid="A362587">
+                                    <dx-data-grid showColumnLines="true" showRowLines="true" showBorders="true" [wordWrapEnabled]="true" [disabled]="SystemForHealthCommitteeGrid.ReadOnly" [dataSource]="hCExaminationFormViewModel?.SystemForHealthCommitteList" [columns]="SystemForHealthCommitteeColumns" [editing]="{allowUpdating: true, mode: 'cell',allowDeleting:false}" [height]="120" id="A26598" data-tid="A362588">
+                                    </dx-data-grid>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" *ngIf="hCExaminationFormViewModel.IsDisabled != true" id="A26512" data-tid="A362589">
+                        <div class="col-md-12" data-tid="A362590">
+                            <comp-compose [Info]="systemApiService?.componentInfo" id="A12728" data-tid="A362591"></comp-compose>
+                        </div>
+                        <div class="col-md-12" data-tid="A362592">
+                            <dx-data-grid id="hCExaminationGrid" #physiotherapyWorkListGrid [columns]="hCExaminationColumns" allowColumnReordering="true" allowColumnResizing="true" [dataSource]="hCExaminationFormViewModel.HCExaminationInfoList" (onRowClick)="select($event)" [filterRow]="{visible: true}" style="padding-top: 10px;" [selection]="{mode: 'single',allowSelectAll: false, showCheckBoxesMode: 'none'}" [editing]="{mode: 'row' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" data-tid="A362593">
+
+                                <dxo-scrolling mode="virtual" id="A12721" data-tid="A362594"></dxo-scrolling>
+                                <div *dxTemplate="let data of 'buttonCellTemplate'" data-tid="A362595">
+                                    <dx-button [ngStyle]="{'height':'22px', 'font-size':'10px', 'padding':'0', 'width':'100%'}" text="Rapor" (onClick)="printDynamicHCReport(data)" class="dx-button-active dx-button-blue" data-tid="A362596"></dx-button>
+                                </div>
+                            </dx-data-grid>
+                        </div>
+                    </div>
+                </div>
+
+            </dxi-item>
+
+            <dxi-item title="Sağlık Kurulu Doktor Bilgileri" data-tid="A362597">
+                <div class="row" data-tid="A362598">
+                    <label class="control-label col-sm-12" id="A26683" data-tid="A362599">
+                        Dış XXXXXX Doktor Bilgileri
+                    </label>
+
+                    <div class="col-sm-12" data-tid="A362600">
+                        <!--<hvl-datagrid (CellValueChange)="ExternalDoctors" [AllowUserToAddRows]="_HealthCommittee.ExternalDoctors?.AllowUserToAddRows" [AllowUserToDeleteRows]="_HealthCommittee.ExternalDoctors?.AllowUserToDeleteRows" [Columns]="_HealthCommittee.ExternalDoctorsColumns" [dataSource]="dummyModel?.dataMember" [DeleteButtonWidth]="_HealthCommittee.ExternalDoctors?.DeleteButtonWidth" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [EnableFilter]="_HealthCommittee.ExternalDoctors?.ShowFilterRow" [FilterColumnName]="_HealthCommittee.ExternalDoctors?.FilterColumnName" [FilterLabel]="_HealthCommittee.ExternalDoctors?.FilterLabel" [Filter]="_HealthCommittee.ExternalDoctors?.Filter" [height]="_HealthCommittee.ExternalDoctors?.Height" [IsFilterLabelSingleLine]="_HealthCommittee.ExternalDoctors?.IsFilterLabelSingleLine" [ShowColumnHeaders]="_HealthCommittee.ExternalDoctors?.ColumnHeadersVisible" [ShowFilterCombo]="_HealthCommittee.ExternalDoctors?.ShowFilterCombo" [ShowTotalNumberOfRows]="_HealthCommittee.ExternalDoctors?.ShowTotalNumberOfRows">
+                                </hvl-datagrid>-->
+
+                        <dx-data-grid [dataSource]="hCExaminationFormViewModel?._HealthCommittee?.ExternalDoctors" keyExpr="ObjectID" data-tid="A362601">
+                            <dxi-column dataField="ExternalDoctorName" caption="Doktor Adı" [allowEditing]="false" data-tid="A362602"></dxi-column>
+                            <dxi-column dataField="Speciality.ObjectID" caption="Branş" [width]="200" [allowEditing]="false" data-tid="A362603">
+                                <dxo-lookup [dataSource]="hCExaminationFormViewModel.SpecialityDefinitionsList" displayExpr="Name" valueExpr="ObjectID" data-tid="A362604">
+                                </dxo-lookup>
+                            </dxi-column>
+                            <dxi-column dataField="ExternalDoctorRegNumber" caption="Tescil Numarası" [allowEditing]="false" data-tid="A362605"></dxi-column>
+                            <dxi-column dataField="Approve" dataType="boolean" caption="Onay" [allowEditing]="!hCExaminationFormViewModel.ReadOnly" [setCellValue]="clearGridRejectValue" data-tid="A362606"></dxi-column>
+                            <dxi-column dataField="Reject" dataType="boolean" caption="Red" [allowEditing]="!hCExaminationFormViewModel.ReadOnly" [setCellValue]="clearGridApproveValue" data-tid="A362607"></dxi-column>
+                            <dxi-column dataField="Description" caption="Red Sebebi" [allowEditing]="!hCExaminationFormViewModel.ReadOnly" data-tid="A362608"></dxi-column>
+                            <dxo-editing mode="cell" [allowUpdating]="true" [allowAdding]="false" [allowDeleting]="false" data-tid="A362609">
+                            </dxo-editing>
+                        </dx-data-grid>
+                    </div>
+                </div>
+
+                <br data-tid="A362610" />
+
+                <div class="row" data-tid="A362611">
+                    <label class="control-label col-sm-12" id="A26683" data-tid="A362612">
+                        Heyet Üyeleri
+                    </label>
+
+                    <div class="col-sm-12" data-tid="A362613">
+
+                        <dx-data-grid [dataSource]="hCExaminationFormViewModel?._HealthCommittee?.Members" keyExpr="ObjectID" data-tid="A362614">
+                            <!--<dxi-column dataField="MemberDoctor" caption="Doktor Adı" [allowEditing]="false"></dxi-column>-->
+                            <dxi-column dataField="MemberDoctor.ObjectID" caption="Doktor" [width]="200" [allowEditing]="false" data-tid="A362615">
+                                <dxo-lookup [dataSource]="hCExaminationFormViewModel.ResUsers" displayExpr="Name" valueExpr="ObjectID" data-tid="A362616">
+                                </dxo-lookup>
+                            </dxi-column>
+                            <dxi-column dataField="Speciality.ObjectID" caption="Branş" [width]="200" [allowEditing]="false" data-tid="A362617">
+                                <dxo-lookup [dataSource]="hCExaminationFormViewModel.SpecialityDefinitionsList" displayExpr="Name" valueExpr="ObjectID" data-tid="A362618">
+                                </dxo-lookup>
+                            </dxi-column>
+                            <dxi-column dataField="Approve" dataType="boolean" caption="Onay" [allowEditing]="!hCExaminationFormViewModel.ReadOnly" [setCellValue]="clearGridRejectValue" data-tid="A362619"></dxi-column>
+                            <dxi-column dataField="Reject" dataType="boolean" caption="Red" [allowEditing]="!hCExaminationFormViewModel.ReadOnly" [setCellValue]="clearGridApproveValue" data-tid="A362620"></dxi-column>
+                            <dxi-column dataField="Description" caption="Red Sebebi" [allowEditing]="!hCExaminationFormViewModel.ReadOnly" data-tid="A362621"></dxi-column>
+                            <dxo-editing mode="cell" [allowUpdating]="true" [allowAdding]="false" [allowDeleting]="false" data-tid="A362622">
+                            </dxo-editing>
+                        </dx-data-grid>
+                    </div>
+                </div>
+            </dxi-item>
+
+            <dxi-item title="Sağlık Kurulu Tedavi Bilgileri" data-tid="A362623">
+                <div id="anamnesis_collapse" data-tid="A362624">
+                    <div class="container-fluid" id="A24084" data-tid="A362625">
+                        <div class="row" style="margin-top:10px;margin-bottom:10px;" id="A24085" data-tid="A362626">
+                            <div class="col-sm-12" id="A24086" data-tid="A362627">
+                                <AnamnesisHistoryForm [anamnesisFormViewModel]="hCExaminationFormViewModel?.anamnesisFormViewModel" id="A24087" data-tid="A362628"></AnamnesisHistoryForm>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </dxi-item>
+
+            <dxi-item title="Hasta Değerlendirme Sonuçları" data-tid="A362629">
+                <div class="col-md-12" data-tid="A362630">
+                    <br data-tid="A362631" />
+                    <label class="control-label" id="I26425" data-tid="A362632"> Konsültasyon Sonucu</label>
+                    <br data-tid="A362633" />
+                    <hvl-richtextbox [Height]="&#x27;120px&#x27;" [ngModelOptions]="{ standalone: true}" [ngModel]="selectConsGridResult" [ReadOnly]="true" [Visible]="true" id="A9677" data-tid="A362634"></hvl-richtextbox>
+                </div>
+                <div class="col-md-12" data-tid="A362635">
+                    <dx-data-grid id="hCExaminationGrid" [columns]="hcConsultationColumns" allowColumnReordering="true" allowColumnResizing="true" [dataSource]="hCExaminationFormViewModel.HCConsultationInfoList" (onRowClick)="selectConsGrid($event)" [filterRow]="{visible: true}" style="padding-top: 10px;" [selection]="{mode: 'single',allowSelectAll: false, showCheckBoxesMode: 'none'}" [editing]="{mode: 'row' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" data-tid="A362636">
+
+                        <dxo-scrolling mode="virtual" id="A12721" data-tid="A362637"></dxo-scrolling>
+                    </dx-data-grid>
+                </div>
+            </dxi-item>
+
+        </dx-accordion>
+
+
+        <dx-tab-panel [selectedIndex]="0" id="A26438" *ngIf="hCExaminationFormViewModel._HealthCommittee == null" data-tid="A362638">
+            <dxi-item class="tabpanel-item" title="Sağlık Kurulu Bilgileri" i18n-title="@@M21178" id="A26439" data-tid="A362639">
+                <br id="A26440" data-tid="A362640" />
+                <div class="container-fluid" id="A26441" data-tid="A362641">
+
+                    <div class="row" id="A26508" data-tid="A362642">
+                        <div class="col-sm-12" id="A26509" data-tid="A362643">
+                            <hr id="A26510" data-tid="A362644" />
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="container-fluid" id="A26511" data-tid="A362645">
+                    <div class="col-sm-5" id="A26584" data-tid="A362646">
+
+
+                        <div class="row margin-top-10" id="A26593" data-tid="A362647">
+                            <label class="control-label" id="A26594" data-tid="A362648">
+                                {{labelSendExamination?.Text}}
+                            </label>
+                            <hvl-enum-combobox #Validation (ValueChange)="onSendExaminationChanged($event)" [BackColor]="SendExamination?.BackColor" [DataTypeName]="SendExamination?.DataTypeName" [Enabled]="SendExamination?.Enabled" [Font]="SendExamination?.Font" [ForeColor]="SendExamination?.ForeColor" [IncludeOnly]="SendExamination?.IncludeOnly" [ReadOnly]="SendExamination?.ReadOnly" [ShowClearButton]="SendExamination?.ShowClearButton" [SortBy]="SendExamination?.SortBy" [TabIndex]="SendExamination?.TabIndex" [Value]="hCExaminationFormViewModel?._HealthCommittee?.SendExamination" [Visible]="SendExamination?.Visible" id="A26595" data-tid="A362649"></hvl-enum-combobox>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid" id="A26599" data-tid="A362650">
+                    <div class="row margin-top-10" id="A26600" data-tid="A362651">
+                        <div class="col-sm-12" id="A26601" data-tid="A362652">
+                            <div class="row" id="A26602" data-tid="A362653">
+                                <div class="col-sm-4" id="A26603" data-tid="A362654">
+                                    <div class="row" id="A26604" data-tid="A362655">
+                                        <div class="col-sm-12" id="A26605" data-tid="A362656">
+                                            <label class="control-label" id="A26606" data-tid="A362657">
+                                                Raporu Teslim Alanın TC Kimlik No
+                                            </label>
+                                            <hvl-number-box #Validation (ValueChange)="onUniqueRefReceiveReportChanged($event)" [BackColor]="UniqueRefReceiveReport?.BackColor" [Enabled]="UniqueRefReceiveReport?.Enabled" [Font]="UniqueRefReceiveReport?.Font" [ForeColor]="UniqueRefReceiveReport?.ForeColor" [ReadOnly]="UniqueRefReceiveReport?.ReadOnly" [TabIndex]="UniqueRefReceiveReport?.TabIndex" [Value]="hCExaminationFormViewModel?._HealthCommittee?.UniqueRefReceiveReport" [Visible]="UniqueRefReceiveReport?.Visible" id="A26607" data-tid="A362658"></hvl-number-box>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4" id="A26608" data-tid="A362659">
+                                    <div class="row" id="A26609" data-tid="A362660">
+                                        <div class="col-sm-12" id="A26610" data-tid="A362661">
+                                            <label class="control-label" id="A26611" data-tid="A362662">
+                                                Raporu Teslim Alanın Adı Soyadı
+                                            </label>
+                                            <hvl-text-box #Validation (TextChange)="onNameSurnameReceiveReportChanged($event)" [BackColor]="NameSurnameReceiveReport?.BackColor" [CharacterCasing]="NameSurnameReceiveReport?.CharacterCasing" [Enabled]="NameSurnameReceiveReport?.Enabled" [Font]="NameSurnameReceiveReport?.Font" [ForeColor]="NameSurnameReceiveReport?.ForeColor" [height]="NameSurnameReceiveReport?.Height" [InputFormat]="NameSurnameReceiveReport?.InputFormat" [InputTurkishCharacter]="NameSurnameReceiveReport?.InputTurkishCharacter" [IsNonNumeric]="NameSurnameReceiveReport?.IsNonNumeric" [MultiLine]="NameSurnameReceiveReport?.Multiline" [ReadOnly]="NameSurnameReceiveReport?.ReadOnly" [Required]="NameSurnameReceiveReport?.Required" [TabIndex]="NameSurnameReceiveReport?.TabIndex" [TextAlign]="NameSurnameReceiveReport?.TextAlign" [Text]="hCExaminationFormViewModel?._HealthCommittee?.NameSurnameReceiveReport" [Visible]="NameSurnameReceiveReport?.Visible" id="A26612" data-tid="A362663"></hvl-text-box>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4" id="A26613" data-tid="A362664">
+                                    <div class="row" id="A26614" data-tid="A362665">
+                                        <div class="col-sm-12" id="A26615" data-tid="A362666">
+                                            <label class="control-label" id="A26616" data-tid="A362667">
+                                                Yakınlık Derecesi
+                                            </label>
+                                            <hvl-enum-combobox #Validation (ValueChange)="onDegreeOfBloodRelativesChanged($event)" [BackColor]="DegreeOfBloodRelatives?.BackColor" [DataTypeName]="DegreeOfBloodRelatives?.DataTypeName" [Enabled]="DegreeOfBloodRelatives?.Enabled" [Font]="DegreeOfBloodRelatives?.Font" [ForeColor]="DegreeOfBloodRelatives?.ForeColor" [IncludeOnly]="DegreeOfBloodRelatives?.IncludeOnly" [ReadOnly]="DegreeOfBloodRelatives?.ReadOnly" [ShowClearButton]="DegreeOfBloodRelatives?.ShowClearButton" [SortBy]="DegreeOfBloodRelatives?.SortBy" [TabIndex]="DegreeOfBloodRelatives?.TabIndex" [Value]="hCExaminationFormViewModel?._HealthCommittee?.DegreeOfBloodRelatives" [Visible]="DegreeOfBloodRelatives?.Visible" id="A26617" data-tid="A362668"></hvl-enum-combobox>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" data-tid="A362669">
+                    <label class="control-label col-sm-12" id="A26683" data-tid="A362670">
+                        Muayene Edileceği Birimler
+                    </label>
+
+                    <div class="col-sm-12" data-tid="A362671">
+
+                        <dx-data-grid [dataSource]="hCExaminationFormViewModel?._HealthCommittee?.HospitalsUnits" keyExpr="ObjectID" data-tid="A362672">
+                            <dxi-column dataField="Doctor.ObjectID" caption="Doktor" [width]="200" [allowEditing]="false" data-tid="A362673">
+                                <dxo-lookup [dataSource]="hCExaminationFormViewModel.ResUsers" displayExpr="Name" valueExpr="ObjectID" data-tid="A362674">
+                                </dxo-lookup>
+                            </dxi-column>
+                            <dxi-column dataField="Unit.ObjectID" caption="Birim" [width]="200" [allowEditing]="false" data-tid="A362675">
+                                <dxo-lookup [dataSource]="hCExaminationFormViewModel.ResSections" displayExpr="Name" valueExpr="ObjectID" data-tid="A362676">
+                                </dxo-lookup>
+                            </dxi-column>
+                            <dxi-column dataField="Speciality.ObjectID" caption="Branş" [width]="200" [allowEditing]="false" data-tid="A362677">
+                                <dxo-lookup [dataSource]="hCExaminationFormViewModel.SpecialityDefinitions" displayExpr="Name" valueExpr="ObjectID" data-tid="A362678">
+                                </dxo-lookup>
+                            </dxi-column>
+                            <dxo-editing mode="cell" [allowUpdating]="true" [allowAdding]="false" [allowDeleting]="false" data-tid="A362679">
+                            </dxo-editing>
+                        </dx-data-grid>
+
+                    </div>
+
+                </div>
+
+                <br data-tid="A362680" />
+
+
+
+            </dxi-item>
+
+            <dxi-item class="tabpanel-item" title="Hasta Değerlendirme Sonuçları" data-tid="A362681">
+
+            </dxi-item>
+        </dx-tab-panel>
+    </div>
+
+    <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A362682">
+    </dx-load-panel>
+
+    <dx-popup showTitle="false" title="Heyet Seçim Ekranı" [(visible)]="ShowHcCommission" [width]="500" height="150" i18n-title="@@M23738" id="A29353" data-tid="A362683">
+        <div *dxTemplate="let data of 'content'" id="A29371" data-tid="A362684">
+            <label class="control-label col-sm-12" style="margin-bottom: 5px;" id="A23647" data-tid="A362685">
+                Heyet
+                Seçimi
+            </label>
+            <div class="col-sm-12" id="B23642" style="margin-bottom: 5px;" data-tid="A362686">
+                <dx-select-box [items]="commissionList" displayExpr="Name" valueExpr="ObjectID" [searchEnabled]="true" [(value)]="_selectedCommission" id="B23643" data-tid="A362687"></dx-select-box>
+            </div>
+
+            <div class="col-sm-12 pull-right" id="C23642" style="margin-bottom: 5px;" data-tid="A362688">
+                <dx-button class="btn btn-round pull-right" type="success" text="Aç" icon="fa fa-user-plus" (onClick)="openHCMemberDefinitionForm(false)" hint="Seç" i18n-hint="@@M22549" id="A29060" data-tid="A362689">
+                </dx-button>
+                <dx-button class="btn btn-round pull-right" type="default" text="Yeni" icon="fa fa-pencil-square-o" (onClick)="openHCMemberDefinitionForm(true)" hint="Seç" i18n-hint="@@M22549" id="A29060" data-tid="A362690">
+                </dx-button>
+            </div>
+        </div>
+    </dx-popup>
+
+</div>

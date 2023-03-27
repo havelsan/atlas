@@ -1,0 +1,100 @@
+﻿<div class="{{this.collapseSelectedDivProperties()}}" style="height: 100%;" id="A16462" data-tid="A374881">
+    <div class="row" style="height: 100%;" data-tid="A374882">
+        <div class="col-sm-12 gradientPanel" id="A16463" data-tid="A374883">
+            <h4 style="color:#fff; font-size:19px;text-align:left;" id="A16464" data-tid="A374884">
+                <div class="btn collapseBtn" (click)="btnCollapse()" style="padding:0;margin-top:3px;margin-right: 5px;" id="A16465" data-tid="A374885">
+                    <i class="{{this.collapseIconProperties()}}" id="A16466" data-tid="A374886"></i>
+                </div>
+                <span id="A16467" data-tid="A374887">Tatil Gün Listesi</span>
+            </h4>
+        </div>
+        <div class="panel-body" style="background-color:#f6f6f6;padding-bottom:0; height:100%;padding: 0" data-tid="A374888">
+            <div class="col-md-12" style="padding: 2px;height: calc(100% - 127px);" id="A10249" data-tid="A374889">
+                <dx-data-grid #grid [dataSource]="orderRestDayDefinitionListDTOs" style="height: 650px;" [columns]="orderRestDayDefinitionColumn" [filterRow]="{visible: true}" [paging]="{pageSize:34}" (onRowClick)="selectGridRow($event)" [showBorders]="true" data-tid="A374890">
+                    <dxo-selection mode="single" data-tid="A374891"></dxo-selection>
+                </dx-data-grid>
+            </div>
+            <br data-tid="A374892" />
+            <div class="col-md-12" style="max-height: 111px;" data-tid="A374893">
+                <div class="row" data-tid="A374894">
+                    <div class="col-sm-6" data-tid="A374895">
+                        <dx-button icon="fas fa-plus" style="float: left;" stylingMode="contained" text="Tatil Gün Ekle" type="default" [width]="300" (onClick)="addNew()" data-tid="A374896">
+                        </dx-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="{{this.collapseSelectedHiddenDivProperties()}}" style="position:relative;" id="A16544" data-tid="A374897">
+    <div class="MyVerticalText" (click)="btnCollapse()" id="A16545" data-tid="A374898">
+        <i class="{{this.collapseIconProperties()}}" id="A16546" data-tid="A374899"></i>
+        <span data-tid="A374900">&nbsp;&nbsp;&nbsp;&nbsp;Tatil Gün Listesi</span>
+    </div>
+</div>
+
+
+<div class="{{this.collapsedPanelProperties()}}" style="padding-top: 1%;padding-right: 3% !important;" data-tid="A374901">
+    <div id="detail" *ngIf="selectedItemFromOpen" data-tid="A374902">
+        <div class="row" data-tid="A374903">
+            <dx-button icon="fa fa-times" style="float: right;" stylingMode="contained" text="Vazgeç" type="danger" [width]="120" (onClick)="Cancel()" data-tid="A374904">
+            </dx-button>
+            <dx-button icon="fas fa-save" style="float: right;" stylingMode="contained" text="Kaydet" type="success" [width]="120" (onClick)="Save()" data-tid="A374905">
+            </dx-button>
+        </div>
+        <br data-tid="A374906" />
+        <div class="row" data-tid="A374907">
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A374908">
+                Ekleyen Kullanıcı
+                <dx-text-box [readOnly]="true" [(value)]="creationUser" data-tid="A374909"></dx-text-box>
+            </div>
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A374910">
+                Eklenme Tarihi
+                <dx-date-box style="width: 100%;" [readOnly]="true" [(value)]="creationDate" data-tid="A374911"></dx-date-box>
+            </div>
+            <div class="col-sm-2" style="font-weight: bold;" data-tid="A374912">
+                Değiştiren Kullanıcı
+                <dx-text-box [readOnly]="true" [(value)]="lastUpdateUser" data-tid="A374913"></dx-text-box>
+            </div>
+            <div class="col-sm-1" style="font-weight: bold;" data-tid="A374914">
+                <br data-tid="A374915" />
+                <dx-button type="btn btn-default" style="font-size: 100%;border-style: unset;color: #4276a4 !important;" text="İ" (onClick)="getDetailAudit()" data-tid="A374916"></dx-button>
+            </div>
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A374917">
+                Değiştirilme Tarihi
+                <dx-date-box style="width: 100%;" [readOnly]="true" [(value)]="lastUpdateDate" data-tid="A374918"></dx-date-box>
+            </div>
+        </div>
+        <br data-tid="A374919" />
+        <div class="row" data-tid="A374920">
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A374921">
+                Order Günü *
+                <dx-date-box style="width: 100%;" [(value)]="activeOrderRestDayDefinitionItem.OrderDay" data-tid="A374922"></dx-date-box>
+            </div>
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A374923">
+                Gün *
+                <dx-text-box [(value)]="activeOrderRestDayDefinitionItem.RestDayCount" data-tid="A374924">
+                </dx-text-box>
+            </div>
+            <div class="col-sm-1" style="font-weight: bold;" data-tid="A374925">
+                <br data-tid="A374926" />
+                <dx-check-box [(value)]="isActive" [width]="400" text="Aktif" style="margin-bottom: 10px;" data-tid="A374927">
+                </dx-check-box>
+            </div>
+        </div>
+        <br data-tid="A374928" />
+
+        <div class="row" data-tid="A374929">
+            <div class="col-sm-12" style="font-weight: bold;" data-tid="A374930">
+                Tatil Günü Açıklaması
+                <dx-text-area [height]="150" [(value)]="activeOrderRestDayDefinitionItem.RestDayDescription" data-tid="A374931">
+                </dx-text-area>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<dx-load-panel shadingColor="rgba(0,0,0,0.4)" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A374932">
+</dx-load-panel>

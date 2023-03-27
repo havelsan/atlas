@@ -1,0 +1,58 @@
+﻿
+<link href="/Content/DoctorPerformance/DoctorPerformance.css" rel="stylesheet" />
+
+<div class="col-sm-12 " style="height:100%!important;width:100%!important ;box-shadow: 1px 1px 9px 2px rgba(0, 0, 0, 0.1);">
+
+    <div class="col-sm-4 " style="height:100%!important; box-shadow: 1px 1px 9px 2px rgba(0, 0, 0, 0.1);">
+        Karar Listesi
+        <dx-data-grid [columnAutoWidth]="true" [dataSource]="doctorPerformanceCommissionDecisionViewModel.DecisionList"
+                      style="height:100%!important;width:100%!important" [selection]="{mode: 'single'}"
+                      [columns]="DPDecisionColumns"   
+                      (onRowClick)="onRowClickDecisionist($event)" >
+        </dx-data-grid>
+    </div>
+    <div class="col-sm-8 " style="height:100%!important; box-shadow: 1px 1px 9px 2px rgba(0, 0, 0, 0.1); ">
+        <div class="col-sm-2 ">
+            <b>Karar Adı : </b>
+        </div>
+        <div class="col-sm-10 ">
+            <dx-text-box [showClearButton]="true" [(value)]="doctorPerformanceCommissionDecisionViewModel.SelectedDecision.Name"   ></dx-text-box>
+        </div>
+        <div class="col-sm-2 ">
+            <b>Karar Tarihi : </b>
+        </div>
+        <div class="col-sm-10 ">
+            <dx-date-box [(value)]="doctorPerformanceCommissionDecisionViewModel.SelectedDecision.Date"  type="date" displayFormat="dd/MM/yyyy"   style="width:100%" id="A30996" data-tid="A371451"> </dx-date-box>
+        </div>
+        <div class="col-sm-2 ">
+            <b>Dönem : </b>
+        </div>
+        <div class="col-sm-10 ">
+            <DPTermSelectComponent [(value)]="doctorPerformanceCommissionDecisionViewModel.SelectedDecision.TermID" (valueChange)="termValueChanged($event)"  ></DPTermSelectComponent>
+        </div>
+        <div class="col-sm-2 ">
+            <b>Komisyon Üyeleri : </b>
+        </div>
+        <div class="col-sm-10 ">
+            <dx-data-grid [columnAutoWidth]="true" [(dataSource)]="doctorPerformanceCommissionDecisionViewModel.SelectedDecision.MemberList"
+                          style="height:100%!important;width:100%!important" [selection]="{mode: 'single'}"
+                          [columns]="DPDecisionMemberColumns"  [editing]="EditingConfig"  
+                          >
+            </dx-data-grid>
+        </div>
+        <div class="col-sm-2 ">
+            <b>Karar : </b>
+        </div>
+        <div class="col-sm-10 ">
+            <hvl-richtextbox [ngModelOptions]="{ standalone: true}"  (change)="onDecissionChanged($event)"  
+                             [(ngModel)]="doctorPerformanceCommissionDecisionViewModel.SelectedDecision.Text" ></hvl-richtextbox>
+        </div>
+
+        <div class="row">
+            <dx-button type="success"  style="float: right;" icon="fa fa-pencil-square-o" (onClick)="onClickNew()" text="Yeni"></dx-button>
+            <dx-button type="default" [visible] ="saveVisible" style="float: right;" icon="fa fa-floppy-o" (onClick)="onClickSave()" text="Kaydet"></dx-button>
+            <dx-button type="success" [visible] ="approveVisible" style="float: left;" icon="fa fa-check"   (onClick)="onClickApprove()" text="Onayla"></dx-button>
+        </div>
+    </div>
+
+</div>

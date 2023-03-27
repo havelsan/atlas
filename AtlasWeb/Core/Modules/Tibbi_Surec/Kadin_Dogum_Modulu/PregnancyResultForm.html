@@ -1,0 +1,67 @@
+﻿
+
+<NeStatePanelComponent [OutgoingTransitions]="pregnancyResultFormViewModel?.OutgoingTransitions" [StateReports]="pregnancyResultFormViewModel?.CurrentStateReports" [ObjectID]="pregnancyResultFormViewModel?._PregnancyResult?.ObjectID" [ObjectDefID]="pregnancyResultFormViewModel?._PregnancyResult?.ObjectDefID" [CurrentStateDefID]="pregnancyResultFormViewModel._PregnancyResult.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" id="A19186" [CancelCommandVisible]="false" SaveButtonCaption="Ekle" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A352546">
+</NeStatePanelComponent>
+<form id="PregnancyResultForm" class="form-horizontal" role="form" data-tid="A352547">
+
+    <fieldset id="A19187" data-tid="A352548">
+        <!-- Form Name -->
+        <legend *ngIf="IsPreviousPregnancy==false" style="border-bottom:1px solid #FFAB00;" id="A19188" data-tid="A352549">Gebelik Sonucu</legend>
+        <legend *ngIf="IsPreviousPregnancy==true" style="border-bottom:1px solid #FFAB00;" id="A19188" data-tid="A352550">Çocuk Bilgileri</legend>
+
+        <div class="row" id="A19189" data-tid="A352551">
+            <div class="col-md-4" id="A19190" data-tid="A352552">
+                <label class="control-label" id="A19191" data-tid="A352553">Doğum Sonlanma Tarihi</label>
+                <hvl-date-picker #Validation (ValueChange)="onBirthTerminationDatePregnancyChanged($event)" [BackColor]="BirthTerminationDatePregnancy?.BackColor" [CustomFormat]="BirthTerminationDatePregnancy?.CustomFormat" [Enabled]="BirthTerminationDatePregnancy?.Enabled" [Font]="BirthTerminationDatePregnancy?.Font" [ForeColor]="BirthTerminationDatePregnancy?.ForeColor" [Format]="BirthTerminationDatePregnancy?.Format" [Max]="BirthTerminationDatePregnancy?.Max" [Min]="BirthTerminationDatePregnancy?.Min" [ReadOnly]="BirthTerminationDatePregnancy?.ReadOnly" [Required]="BirthTerminationDatePregnancy?.Required" [TabIndex]="BirthTerminationDatePregnancy?.TabIndex" [Value]="pregnancyResultFormViewModel?._PregnancyResult?.Pregnancy?.BirthTerminationDate" [Visible]="BirthTerminationDatePregnancy?.Visible" id="A19192" data-tid="A352554"></hvl-date-picker>
+            </div>
+            <div class="col-md-4" id="A19193" data-tid="A352555">
+                <label class="control-label" id="A19194" data-tid="A352556">Doğum Ağırlığı(gr)</label>
+                <hvl-number-box #Validation (ValueChange)="onBirthWeightChanged($event)" [BackColor]="BirthWeight?.BackColor" [Enabled]="BirthWeight?.Enabled" [Font]="BirthWeight?.Font" [ForeColor]="BirthWeight?.ForeColor" [ReadOnly]="BirthWeight?.ReadOnly" [TabIndex]="BirthWeight?.TabIndex" [Value]="pregnancyResultFormViewModel?._PregnancyResult?.BirthWeight" [Visible]="BirthWeight?.Visible" id="A19195" data-tid="A352557"></hvl-number-box>
+            </div>
+            <div class="col-md-4" id="A19196" data-tid="A352558">
+                <label class="control-label" id="A19197" data-tid="A352559">Cinsiyet</label>
+                <hvl-enum-combobox #Validation (ValueChange)="onGenderChanged($event)" [BackColor]="Gender?.BackColor" [DataTypeName]="Gender?.DataTypeName" [Enabled]="Gender?.Enabled" [Font]="Gender?.Font" [ForeColor]="Gender?.ForeColor" [IncludeOnly]="Gender?.IncludeOnly" [ReadOnly]="Gender?.ReadOnly" [ShowClearButton]="Gender?.ShowClearButton" [SortBy]="Gender?.SortBy" [TabIndex]="Gender?.TabIndex" [Value]="pregnancyResultFormViewModel?._PregnancyResult?.Gender" [Visible]="Gender?.Visible" id="A19198" data-tid="A352560"></hvl-enum-combobox>
+            </div>
+        </div>
+        <div class="row" id="A19199" data-tid="A352561">
+            <div class="col-md-4" id="A19200" data-tid="A352562">
+                <label class="control-label" id="A19201" data-tid="A352563">Bebeğin Durumu</label>
+                <hvl-enum-combobox #Validation (ValueChange)="onBabyStatusChanged($event)" [BackColor]="BabyStatus?.BackColor" [DataTypeName]="BabyStatus?.DataTypeName" [Enabled]="BabyStatus?.Enabled" [Font]="BabyStatus?.Font" [ForeColor]="BabyStatus?.ForeColor" [IncludeOnly]="BabyStatus?.IncludeOnly" [ReadOnly]="BabyStatus?.ReadOnly" [ShowClearButton]="BabyStatus?.ShowClearButton" [SortBy]="BabyStatus?.SortBy" [TabIndex]="BabyStatus?.TabIndex" [Value]="pregnancyResultFormViewModel?._PregnancyResult?.BabyStatus" [Visible]="BabyStatus?.Visible" id="A19202" data-tid="A352564"></hvl-enum-combobox>
+            </div>
+            <div class="col-md-4" id="A19203" data-tid="A352565">
+                <label class="control-label" id="A19204" data-tid="A352566">Doğum Yöntemi</label>
+                <hvl-list-box #Validation (SelectedObjectChange)="onBirthTypeChanged($event)" [AutoCompleteDialogHeight]="BirthType?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="BirthType?.AutoCompleteDialogWidth" [AutoCompleteMode]="BirthType?.AutoCompleteMode" [BackColor]="BirthType?.BackColor" [DefinitionName]="BirthType?.ListDefName" [DisplayExpressionsCache]="pregnancyResultFormViewModel?.ListDefDisplayExpressions" [Enabled]="BirthType?.Enabled" [Font]="BirthType?.Font" [ForeColor]="BirthType?.ForeColor" [ListFilterExpression]="BirthType?.ListFilterExpression" [MinSearchLength]="BirthType?.MinSearchLength" [PopupDialogFieldConfig]="BirthType?.PopupDialogFieldConfig" [PopupDialogGridColumns]="BirthType?.PopupDialogGridColumns" [PopupDialogHeight]="BirthType?.PopupDialogHeight" [PopupDialogTitle]="BirthType?.PopupDialogTitle" [PopupDialogWidth]="BirthType?.PopupDialogWidth" [ReadOnly]="BirthType?.ReadOnly" [SearchMode]="BirthType?.SearchMode" [SearchTimeout]="BirthType?.SearchTimeout" [SelectedObject]="pregnancyResultFormViewModel?._PregnancyResult?.BirthType" [TabIndex]="BirthType?.TabIndex" [Visible]="BirthType?.Visible" [width]="BirthType?.Width" id="A19205" data-tid="A352567"></hvl-list-box>
+            </div>
+            <div class="col-md-4" id="A19206" data-tid="A352568">
+                <label class="control-label" id="A19207" data-tid="A352569">Doğum Sonucu</label>
+                <hvl-list-box #Validation (SelectedObjectChange)="onBirthResultChanged($event)" [AutoCompleteDialogHeight]="BirthResult?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="BirthResult?.AutoCompleteDialogWidth" [AutoCompleteMode]="BirthResult?.AutoCompleteMode" [BackColor]="BirthResult?.BackColor" [DefinitionName]="BirthResult?.ListDefName" [DisplayExpressionsCache]="pregnancyResultFormViewModel?.ListDefDisplayExpressions" [Enabled]="BirthResult?.Enabled" [Font]="BirthResult?.Font" [ForeColor]="BirthResult?.ForeColor" [ListFilterExpression]="BirthResult?.ListFilterExpression" [MinSearchLength]="BirthResult?.MinSearchLength" [PopupDialogFieldConfig]="BirthResult?.PopupDialogFieldConfig" [PopupDialogGridColumns]="BirthResult?.PopupDialogGridColumns" [PopupDialogHeight]="BirthResult?.PopupDialogHeight" [PopupDialogTitle]="BirthResult?.PopupDialogTitle" [PopupDialogWidth]="BirthResult?.PopupDialogWidth" [ReadOnly]="BirthResult?.ReadOnly" [SearchMode]="BirthResult?.SearchMode" [SearchTimeout]="BirthResult?.SearchTimeout" [SelectedObject]="pregnancyResultFormViewModel?._PregnancyResult?.BirthResult" [TabIndex]="BirthResult?.TabIndex" [Visible]="BirthResult?.Visible" [width]="BirthResult?.Width" id="A19208" data-tid="A352570"></hvl-list-box>
+            </div>
+        </div>
+        <div class="row" id="A19209" data-tid="A352571">
+            <div class="col-md-4" id="A19210" data-tid="A352572">
+                <label class="control-label" id="A19211" data-tid="A352573">Konjenital Anomalili Doğum Varlığı</label>
+                <hvl-list-box #Validation (SelectedObjectChange)="onCongenitalAnomaliesChanged($event)" [AutoCompleteDialogHeight]="CongenitalAnomalies?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="CongenitalAnomalies?.AutoCompleteDialogWidth" [AutoCompleteMode]="CongenitalAnomalies?.AutoCompleteMode" [BackColor]="CongenitalAnomalies?.BackColor" [DefinitionName]="CongenitalAnomalies?.ListDefName" [DisplayExpressionsCache]="pregnancyResultFormViewModel?.ListDefDisplayExpressions" [Enabled]="CongenitalAnomalies?.Enabled" [Font]="CongenitalAnomalies?.Font" [ForeColor]="CongenitalAnomalies?.ForeColor" [ListFilterExpression]="CongenitalAnomalies?.ListFilterExpression" [MinSearchLength]="CongenitalAnomalies?.MinSearchLength" [PopupDialogFieldConfig]="CongenitalAnomalies?.PopupDialogFieldConfig" [PopupDialogGridColumns]="CongenitalAnomalies?.PopupDialogGridColumns" [PopupDialogHeight]="CongenitalAnomalies?.PopupDialogHeight" [PopupDialogTitle]="CongenitalAnomalies?.PopupDialogTitle" [PopupDialogWidth]="CongenitalAnomalies?.PopupDialogWidth" [ReadOnly]="CongenitalAnomalies?.ReadOnly" [SearchMode]="CongenitalAnomalies?.SearchMode" [SearchTimeout]="CongenitalAnomalies?.SearchTimeout" [SelectedObject]="pregnancyResultFormViewModel?._PregnancyResult?.CongenitalAnomalies" [TabIndex]="CongenitalAnomalies?.TabIndex" [Visible]="CongenitalAnomalies?.Visible" [width]="CongenitalAnomalies?.Width" id="A19212" data-tid="A352574"></hvl-list-box>
+            </div>
+            <div class="col-md-4" id="A19213" data-tid="A352575"></div>
+            <div class="col-md-4" id="A19214" data-tid="A352576"></div>
+        </div>
+        <div class="row" id="A19215" data-tid="A352577">
+            <div class="col-md-12" id="A19216" data-tid="A352578">
+                <label class="control-label" id="A19217" data-tid="A352579">Doğum Açıklaması</label>
+                <hvl-text-box #Validation (TextChange)="onBirthDescriptionChanged($event)" [BackColor]="BirthDescription?.BackColor" [CharacterCasing]="BirthDescription?.CharacterCasing" [Enabled]="BirthDescription?.Enabled" [Font]="BirthDescription?.Font" [ForeColor]="BirthDescription?.ForeColor" [height]="BirthDescription?.Height" [InputFormat]="BirthDescription?.InputFormat" [InputTurkishCharacter]="BirthDescription?.InputTurkishCharacter" [IsNonNumeric]="BirthDescription?.IsNonNumeric" [MultiLine]="BirthDescription?.Multiline" [ReadOnly]="BirthDescription?.ReadOnly" [Required]="BirthDescription?.Required" [TabIndex]="BirthDescription?.TabIndex" [TextAlign]="BirthDescription?.TextAlign" [Text]="pregnancyResultFormViewModel?._PregnancyResult?.BirthDescription" [Visible]="BirthDescription?.Visible" id="A19218" data-tid="A352580"></hvl-text-box>
+            </div>
+        </div>
+        <div class="row" id="A19219" data-tid="A352581">
+            <div class="col-md-12" id="A19220" data-tid="A352582">
+                <label class="control-label" id="A19221" data-tid="A352583">Sezaryen Nedeni</label>
+                <hvl-text-box #Validation (TextChange)="onCesareanReasonChanged($event)" [BackColor]="CesareanReason?.BackColor" [CharacterCasing]="CesareanReason?.CharacterCasing" [Enabled]="CesareanReason?.Enabled" [Font]="CesareanReason?.Font" [ForeColor]="CesareanReason?.ForeColor" [height]="CesareanReason?.Height" [InputFormat]="CesareanReason?.InputFormat" [InputTurkishCharacter]="CesareanReason?.InputTurkishCharacter" [IsNonNumeric]="CesareanReason?.IsNonNumeric" [MultiLine]="CesareanReason?.Multiline" [ReadOnly]="CesareanReason?.ReadOnly" [Required]="CesareanReason?.Required" [TabIndex]="CesareanReason?.TabIndex" [TextAlign]="CesareanReason?.TextAlign" [Text]="pregnancyResultFormViewModel?._PregnancyResult?.CesareanReason" [Visible]="CesareanReason?.Visible" id="A19222" data-tid="A352584"></hvl-text-box>
+            </div>
+        </div>
+        <div class="row" id="A19223" data-tid="A352585">
+            <div class="col-md-12" id="A19224" data-tid="A352586">
+                <label class="control-label" id="A19225" data-tid="A352587">Doğum Sonrası Öyküsü</label>
+                <hvl-text-box #Validation (TextChange)="onAfterBirthStoryChanged($event)" [BackColor]="AfterBirthStory?.BackColor" [CharacterCasing]="AfterBirthStory?.CharacterCasing" [Enabled]="AfterBirthStory?.Enabled" [Font]="AfterBirthStory?.Font" [ForeColor]="AfterBirthStory?.ForeColor" [height]="AfterBirthStory?.Height" [InputFormat]="AfterBirthStory?.InputFormat" [InputTurkishCharacter]="AfterBirthStory?.InputTurkishCharacter" [IsNonNumeric]="AfterBirthStory?.IsNonNumeric" [MultiLine]="AfterBirthStory?.Multiline" [ReadOnly]="AfterBirthStory?.ReadOnly" [Required]="AfterBirthStory?.Required" [TabIndex]="AfterBirthStory?.TabIndex" [TextAlign]="AfterBirthStory?.TextAlign" [Text]="pregnancyResultFormViewModel?._PregnancyResult?.AfterBirthStory" [Visible]="AfterBirthStory?.Visible" id="A19226" data-tid="A352588"></hvl-text-box>
+            </div>
+        </div>
+    </fieldset>
+</form>

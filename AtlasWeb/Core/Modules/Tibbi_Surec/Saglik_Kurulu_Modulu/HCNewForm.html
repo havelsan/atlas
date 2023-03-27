@@ -1,0 +1,239 @@
+﻿
+
+<NeStatePanelComponent [OutgoingTransitions]="hCNewFormViewModel?.OutgoingTransitions" [StateReports]="hCNewFormViewModel?.CurrentStateReports" [ObjectID]="hCNewFormViewModel?._HealthCommittee?.ObjectID" [ObjectDefID]="hCNewFormViewModel?._HealthCommittee?.ObjectDefID" [CurrentStateDefID]="hCNewFormViewModel._HealthCommittee.CurrentStateDefID" (onSetState)="onSetState($event)" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()" id="A26626" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A362691">
+</NeStatePanelComponent>
+<div class="container-fluid" id="A26627" data-tid="A362692">
+    <form id="HCNewForm" class="form-horizontal" role="form" data-tid="A362693"></form>
+    <div class="row" id="A26628" data-tid="A362694">
+        <br id="A26629" data-tid="A362695" />
+        <div class="col-md-4 col-sm-12" id="A26630" data-tid="A362696">
+            <patient-demographics-form [actionId]="hCNewFormViewModel._HealthCommittee?.ObjectID" id="A26631" data-tid="A362697"></patient-demographics-form>
+        </div>
+    </div>
+
+    <div class="row" id="A26632" data-tid="A362698">
+        <dx-tab-panel [selectedIndex]="0" id="A26633" data-tid="A362699">
+            <dxi-item class="tabpanel-item" title="Sağlık Kurulu Bilgileri" i18n-title="@@M21178" id="A26634" style="height:75vh !important" data-tid="A362700">
+                <dx-scroll-view #scrollView id="scrollview" [scrollByContent]="true" [scrollByThumb]="true" [showScrollbar]="always" data-tid="A362701">
+                    <div class="col-sm-12" id="I26628" data-tid="A362702">
+                        <div class="row" id="A26635" data-tid="A362703">
+                            <div class="col-md-10" id="A26636" data-tid="A362704">
+                                <div class="row" style="color: red;font-weight: 700;" id="A26637" data-tid="A362705">
+                                    <label class="control-label col-sm-6" style="color: red;" id="A26638" data-tid="A362706">
+                                        {{labelUnCompletedExaminationExists}}
+                                    </label>
+                                </div>
+                                <br id="A26639" data-tid="A362707" />
+                                <div class="row" id="A26640" data-tid="A362708">
+                                    <label class="control-label col-sm-2" id="A26641" data-tid="A362709">
+                                        İstek Tarihi
+                                    </label>
+                                    <div class="col-sm-4" id="A26642" data-tid="A362710">
+                                        <hvl-date-picker #Validation (ValueChange)="onRequestDateChanged($event)" [BackColor]="RequestDate?.BackColor" [CustomFormat]="RequestDate?.CustomFormat" [Enabled]="RequestDate?.Enabled" [Font]="RequestDate?.Font" [ForeColor]="RequestDate?.ForeColor" [Format]="RequestDate?.Format" [Max]="RequestDate?.Max" [Min]="RequestDate?.Min" [ReadOnly]="RequestDate?.ReadOnly" [Required]="RequestDate?.Required" [TabIndex]="RequestDate?.TabIndex" [Value]="hCNewFormViewModel?._HealthCommittee?.RequestDate" [Visible]="RequestDate?.Visible" id="A26643" data-tid="A362711"></hvl-date-picker>
+                                    </div>
+                                    <label class="control-label col-sm-2" id="A26644" data-tid="A362712">
+                                        Birimi
+                                    </label>
+                                    <div class="col-sm-4" id="A26645" data-tid="A362713">
+                                        <hvl-list-box #Validation (SelectedObjectChange)="onMasterResourceChanged($event)" [AutoCompleteDialogHeight]="MasterResource?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="MasterResource?.AutoCompleteDialogWidth" [AutoCompleteMode]="MasterResource?.AutoCompleteMode" [BackColor]="MasterResource?.BackColor" [DefinitionName]="MasterResource?.ListDefName" [DisplayExpressionsCache]="hCNewFormViewModel?.ListDefDisplayExpressions" [Enabled]="MasterResource?.Enabled" [Font]="MasterResource?.Font" [ForeColor]="MasterResource?.ForeColor" [ListFilterExpression]="MasterResource?.ListFilterExpression" [MinSearchLength]="MasterResource?.MinSearchLength" [PopupDialogFieldConfig]="MasterResource?.PopupDialogFieldConfig" [PopupDialogGridColumns]="MasterResource?.PopupDialogGridColumns" [PopupDialogHeight]="MasterResource?.PopupDialogHeight" [PopupDialogTitle]="MasterResource?.PopupDialogTitle" [PopupDialogWidth]="MasterResource?.PopupDialogWidth" [ReadOnly]="MasterResource?.ReadOnly" [SearchMode]="MasterResource?.SearchMode" [SearchTimeout]="MasterResource?.SearchTimeout" [SelectedObject]="hCNewFormViewModel?._HealthCommittee?.MasterResource" [TabIndex]="MasterResource?.TabIndex" [Visible]="MasterResource?.Visible" [width]="MasterResource?.Width" id="A26646" data-tid="A362714"></hvl-list-box>
+                                    </div>
+                                </div>
+                                <br id="A26647" data-tid="A362715" />
+                                <div class="row" id="A26648" data-tid="A362716">
+                                    <label class="control-label col-sm-2" id="A26649" data-tid="A362717">
+                                        Sevk/Evrak Tarihi
+                                    </label>
+                                    <div class="col-sm-4" id="A26650" data-tid="A362718">
+                                        <hvl-date-picker #Validation (ValueChange)="DocumentDate.NullableValue=$event;" [BackColor]="DocumentDate?.BackColor" [CustomFormat]="DocumentDate?.CustomFormat" [Enabled]="DocumentDate?.Enabled" [Font]="DocumentDate?.Font" [ForeColor]="DocumentDate?.ForeColor" [Format]="DocumentDate?.Format" [Max]="DocumentDate?.Max" [Min]="DocumentDate?.Min" [ReadOnly]="DocumentDate?.ReadOnly" [Required]="DocumentDate?.Required" [TabIndex]="DocumentDate?.TabIndex" [Value]="DocumentDate?.NullableValue" [Visible]="DocumentDate?.Visible" id="A26651" data-tid="A362719"></hvl-date-picker>
+                                    </div>
+                                    <label class="control-label col-sm-2" id="A26652" data-tid="A362720">
+                                        Ücreti Ödeyecek
+                                    </label>
+                                    <div class="col-sm-4" id="A26653" data-tid="A362721">
+                                        <hvl-enum-combobox #Validation (ValueChange)="onWhoPaysChanged($event)" [BackColor]="WhoPays?.BackColor" [DataTypeName]="WhoPays?.DataTypeName" [Enabled]="WhoPays?.Enabled" [Font]="WhoPays?.Font" [ForeColor]="WhoPays?.ForeColor" [IncludeOnly]="WhoPays?.IncludeOnly" [ReadOnly]="WhoPays?.ReadOnly" [ShowClearButton]="WhoPays?.ShowClearButton" [SortBy]="WhoPays?.SortBy" [TabIndex]="WhoPays?.TabIndex" [Value]="hCNewFormViewModel?._HealthCommittee?.WhoPays" [Visible]="WhoPays?.Visible" id="A26654" data-tid="A362722"></hvl-enum-combobox>
+                                    </div>
+                                </div>
+
+                                <br id="A26655" data-tid="A362723" />
+                                <div class="row" id="A26656" data-tid="A362724">
+                                    <label class="control-label col-sm-2" id="A26657" data-tid="A362725">
+                                        Kaçıncı İşlemi
+                                    </label>
+                                    <div class="col-sm-4" id="A26658" data-tid="A362726">
+                                        <hvl-number-box #Validation (ValueChange)="onNumberOfProcedureChanged($event)" [BackColor]="NumberOfProcedure?.BackColor" [Enabled]="NumberOfProcedure?.Enabled" [Font]="NumberOfProcedure?.Font" [ForeColor]="NumberOfProcedure?.ForeColor" [ReadOnly]="NumberOfProcedure?.ReadOnly" [TabIndex]="NumberOfProcedure?.TabIndex" [Value]="hCNewFormViewModel?._HealthCommittee?.NumberOfProcedure" [Visible]="NumberOfProcedure?.Visible" id="A26659" data-tid="A362727"></hvl-number-box>
+                                    </div>
+
+                                </div>
+                                <br id="A26660" data-tid="A362728" />
+
+                                <div class="row" id="A26661" data-tid="A362729">
+                                    <label class="control-label col-sm-2" id="A26662" data-tid="A362730">
+                                        Ağırlık (kg.)
+                                    </label>
+                                    <div class="col-sm-1" id="A26663" data-tid="A362731">
+                                        <!-- <dx-text-box [value]="hCNewFormViewModel._HealthCommittee.ClinicWeight" (onValueChanged)="onWeightChanged($event)" id="A26664"></dx-text-box> -->
+                                        <hvl-number-box #Validation (ValueChange)="onWeightChanged($event)" [BackColor]="Weight?.BackColor" [Enabled]="Weight?.Enabled" [Font]="Weight?.Font" [ForeColor]="Weight?.ForeColor" [ReadOnly]="Weight?.ReadOnly" [TabIndex]="Weight?.TabIndex" [Value]="hCNewFormViewModel?._HealthCommittee?.ClinicWeight" [Visible]="Weight?.Visible" id="A26664" data-tid="A362732"></hvl-number-box>
+                                    </div>
+                                    <div class="col-sm-1" id="A26665" data-tid="A362733">
+                                    </div>
+                                    <label class="control-label col-sm-1" id="A26666" data-tid="A362734">
+                                        Boy (cm.)
+                                    </label>
+                                    <div class="col-sm-1" id="A26667" data-tid="A362735">
+                                        <hvl-number-box #Validation (ValueChange)="onHeightChanged($event)" [BackColor]="Height?.BackColor" [Enabled]="Height?.Enabled" [Font]="Height?.Font" [ForeColor]="Height?.ForeColor" [ReadOnly]="Height?.ReadOnly" [TabIndex]="Height?.TabIndex" [Value]="hCNewFormViewModel?._HealthCommittee?.ClinicHeight" [Visible]="Height?.Visible" id="A26668" data-tid="A362736"></hvl-number-box>
+                                    </div>
+                                </div>
+                            </div>
+                            <br id="A26669" data-tid="A362737" />
+                            <div class="col-md-2" id="A26670" data-tid="A362738">
+                                <img src="{{this.avatarProfilPhotoPath()}}" class="media-object" style="min-width:30px; max-width:60px;max-height:60px;" id="A26671" data-tid="A362739" />
+                            </div>
+
+
+                        </div>
+                        <br id="A26672" data-tid="A362740" />
+                        <div class="row" id="A26673" data-tid="A362741">
+                            <label class="control-label col-sm-12" id="A26674" data-tid="A362742">
+                                İstek Sebebi
+                            </label>
+                            <div class="col-sm-6" id="A26675" data-tid="A362743">
+                                <hvl-list-box #Validation (SelectedObjectChange)="onHCRequestReasonChanged($event)" [AutoCompleteDialogHeight]="HCRequestReason?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="HCRequestReason?.AutoCompleteDialogWidth" [AutoCompleteMode]="HCRequestReason?.AutoCompleteMode" [BackColor]="HCRequestReason?.BackColor" [DefinitionName]="HCRequestReason?.ListDefName" [DisplayExpressionsCache]="hCNewFormViewModel?.ListDefDisplayExpressions" [Enabled]="HCRequestReason?.Enabled" [Font]="HCRequestReason?.Font" [ForeColor]="HCRequestReason?.ForeColor" [ListFilterExpression]="HCRequestReason?.ListFilterExpression" [MinSearchLength]="HCRequestReason?.MinSearchLength" [PopupDialogFieldConfig]="HCRequestReason?.PopupDialogFieldConfig" [PopupDialogGridColumns]="HCRequestReason?.PopupDialogGridColumns" [PopupDialogHeight]="HCRequestReason?.PopupDialogHeight" [PopupDialogTitle]="HCRequestReason?.PopupDialogTitle" [PopupDialogWidth]="HCRequestReason?.PopupDialogWidth" [ReadOnly]="HCRequestReason?.ReadOnly" [SearchMode]="HCRequestReason?.SearchMode" [SearchTimeout]="HCRequestReason?.SearchTimeout" [SelectedObject]="hCNewFormViewModel?._HealthCommittee?.HCRequestReason" [TabIndex]="HCRequestReason?.TabIndex" [Visible]="HCRequestReason?.Visible" [width]="HCRequestReason?.Width" id="A26676" data-tid="A362744"></hvl-list-box>
+                            </div>
+                        </div>
+                        <div class="row" id="A26677" data-tid="A362745">
+                            <label class="control-label col-sm-12" id="A26678" data-tid="A362746">
+                                Rapor Türü
+                            </label>
+                            <div class="col-sm-6" id="A26679" data-tid="A362747">
+                                <hvl-list-box #Validation (SelectedObjectChange)="onReasonForExaminationHCRequestReasonChanged($event)" [AutoCompleteDialogHeight]="ReasonForExaminationHCRequestReason?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ReasonForExaminationHCRequestReason?.AutoCompleteDialogWidth" [AutoCompleteMode]="ReasonForExaminationHCRequestReason?.AutoCompleteMode" [BackColor]="ReasonForExaminationHCRequestReason?.BackColor" [DefinitionName]="ReasonForExaminationHCRequestReason?.ListDefName" [DisplayExpressionsCache]="hCNewFormViewModel?.ListDefDisplayExpressions" [Enabled]="ReasonForExaminationHCRequestReason?.Enabled" [Font]="ReasonForExaminationHCRequestReason?.Font" [ForeColor]="ReasonForExaminationHCRequestReason?.ForeColor" [ListFilterExpression]="ReasonForExaminationHCRequestReason?.ListFilterExpression" [MinSearchLength]="ReasonForExaminationHCRequestReason?.MinSearchLength" [PopupDialogFieldConfig]="ReasonForExaminationHCRequestReason?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ReasonForExaminationHCRequestReason?.PopupDialogGridColumns" [PopupDialogHeight]="ReasonForExaminationHCRequestReason?.PopupDialogHeight" [PopupDialogTitle]="ReasonForExaminationHCRequestReason?.PopupDialogTitle" [PopupDialogWidth]="ReasonForExaminationHCRequestReason?.PopupDialogWidth" [ReadOnly]="ReasonForExaminationHCRequestReason?.ReadOnly" [SearchMode]="ReasonForExaminationHCRequestReason?.SearchMode" [SearchTimeout]="ReasonForExaminationHCRequestReason?.SearchTimeout" [SelectedObject]="hCNewFormViewModel?._HealthCommittee?.HCRequestReason?.ReasonForExamination" [TabIndex]="ReasonForExaminationHCRequestReason?.TabIndex" [Visible]="ReasonForExaminationHCRequestReason?.Visible" [width]="ReasonForExaminationHCRequestReason?.Width" id="A26680" data-tid="A362748"></hvl-list-box>
+                            </div>
+                        </div>
+                        <br id="A26681" data-tid="A362749" />
+                        <div class="row" id="A26682" data-tid="A362750">
+                            <label class="control-label col-sm-12" id="A26683" data-tid="A362751">
+                                Muayene Edileceği Birimler
+                            </label>
+                        </div>
+                        <div class="row" id="A26684" data-tid="A362752">
+                            <div class="col-sm-12" id="A26685" data-tid="A362753">
+                                <hvl-datagrid (CellValueChange)="HospitalsUnits_CellValueChangedEmitted($event)" [AllowUserToAddRows]="false" [AllowUserToDeleteRows]="false" [Columns]="HospitalsUnitsColumns" [dataSource]="hCNewFormViewModel?._HealthCommittee?.HospitalsUnits" [DeleteButtonWidth]="HospitalsUnits?.DeleteButtonWidth" [DisplayExpressionsCache]="hCNewFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="HospitalsUnits?.ShowFilterRow" [FilterColumnName]="HospitalsUnits?.FilterColumnName" [FilterLabel]="HospitalsUnits?.FilterLabel" [Filter]="HospitalsUnits?.Filter" [height]="HospitalsUnits?.Height" [IsFilterLabelSingleLine]="HospitalsUnits?.IsFilterLabelSingleLine" [ShowColumnHeaders]="HospitalsUnits?.ColumnHeadersVisible" [ShowFilterCombo]="HospitalsUnits?.ShowFilterCombo" [ShowTotalNumberOfRows]="HospitalsUnits?.ShowTotalNumberOfRows" id="A26686" data-tid="A362754"></hvl-datagrid>
+                            </div>
+                        </div>
+                        <div class="row" data-tid="A362755">
+                            <label class="control-label col-sm-12" data-tid="A362756">
+                                Dış XXXXXX Doktor Bilgileri
+                            </label>
+                        </div>
+                        <div class="row" id="A26684" data-tid="A362757">
+                            <div class="col-sm-12" data-tid="A362758">
+                                <!--<hvl-datagrid [AllowUserToAddRows]="ExternalDoctors?.AllowUserToAddRows" [AllowUserToDeleteRows]="ExternalDoctors?.AllowUserToDeleteRows" [Columns]="ExternalDoctorsColumns"
+                                              [dataSource]="hCNewFormViewModel?._HealthCommittee?.ExternalDoctors" [DeleteButtonWidth]="ExternalDoctors?.DeleteButtonWidth" [DisplayExpressionsCache]="hCNewFormViewModel?.ListDefDisplayExpressions"
+                                              [EnableFilter]="ExternalDoctors?.ShowFilterRow" [FilterColumnName]="ExternalDoctors?.FilterColumnName" [FilterLabel]="ExternalDoctors?.FilterLabel"
+                                              [Filter]="ExternalDoctors?.Filter" [height]="ExternalDoctors?.Height" [IsFilterLabelSingleLine]="ExternalDoctors?.IsFilterLabelSingleLine"
+                                              [ShowColumnHeaders]="ExternalDoctors?.ColumnHeadersVisible" [ShowFilterCombo]="ExternalDoctors?.ShowFilterCombo"
+                                              [ShowTotalNumberOfRows]="ExternalDoctors?.ShowTotalNumberOfRows">
+                                </hvl-datagrid>-->
+                                <dx-data-grid #externalDoctorsGrid [dataSource]="hCNewFormViewModel?._HealthCommittee?.ExternalDoctors" keyExpr="ObjectID" (onInitNewRow)="ExternalDoctors_RowInit($event)" data-tid="A362759">
+                                    <dxi-column dataField="ExternalDoctorName" caption="Doktor Adı" data-tid="A362760"></dxi-column>
+                                    <!--<dxi-column dataField="Speciality.Name" caption="Branş"></dxi-column>-->
+                                    <dxi-column dataField="Speciality.ObjectID" caption="Branş" [width]="200" data-tid="A362761">
+                                        <dxo-lookup [dataSource]="hCNewFormViewModel.SpecialityDefinitionsList" displayExpr="Name" valueExpr="ObjectID" data-tid="A362762">
+                                        </dxo-lookup>
+                                    </dxi-column>
+                                    <dxi-column dataField="ExternalDoctorRegNumber" caption="Diploma Tescil Numarası" data-tid="A362763"></dxi-column>
+                                    <dxi-column dataField="ExternalDoctorSpecialityRegNo" caption="Uzm. Tes. Numarası" data-tid="A362764"></dxi-column>
+                                    <dxi-column caption="Sil" cellTemplate="buttonCellTemplate" data-tid="A362765"></dxi-column>
+                                    <dxi-column dataField="sortID" allowSorting="false" [visible]="false" sortOrder="desc" allowEditing="false" data-tid="A362766"></dxi-column>
+
+                                    <div *dxTemplate="let cellData of 'buttonCellTemplate'" id="A27830" style="width: 25px" data-tid="A362767">
+                                        <i class="fa fa-minus-circle" style="cursor:pointer" (click)="onExternalDoctorRemoving(cellData)" id="A27831" data-tid="A362768"></i>
+                                    </div>
+                                    <!--<dxi-column dataField="Approve" dataType="boolean" caption="Onay"></dxi-column>
+                                    <dxi-column dataField="Reject" dataType="boolean" caption="Red"></dxi-column>
+                                    <dxi-column dataField="Description" caption="Red Sebebi"></dxi-column>-->
+                                    <dxo-editing mode="cell" [allowUpdating]="true" [allowAdding]="true" [allowDeleting]="false" data-tid="A362769">
+                                    </dxo-editing>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+
+                        <br id="A26681" data-tid="A362770" />
+                        <div class="row" data-tid="A362771">
+                            <label class="control-label col-sm-12" data-tid="A362772">
+                                Heyet Ekibi
+                            </label>
+                        </div>
+                        <div class="row" id="A26684" data-tid="A362773">
+                            <div class="col-sm-12" data-tid="A362774">
+                                <!--<hvl-datagrid (CellValueChange)="MemberDoctors_CellValueChangedEmitted($event)" [AllowUserToAddRows]="Members?.AllowUserToAddRows" [AllowUserToDeleteRows]="Members?.AllowUserToDeleteRows"
+                                              [Columns]="MembersColumns" [dataSource]="hCNewFormViewModel?._HealthCommittee?.Members" [DeleteButtonWidth]="Members?.DeleteButtonWidth"
+                                              [DisplayExpressionsCache]="hCNewFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="Members?.ShowFilterRow"
+                                              [FilterColumnName]="Members?.FilterColumnName" [FilterLabel]="Members?.FilterLabel" [Filter]="Members?.Filter"
+                                              [height]="Members?.Height" [IsFilterLabelSingleLine]="Members?.IsFilterLabelSingleLine"
+                                              [ShowColumnHeaders]="Members?.ColumnHeadersVisible" [ShowFilterCombo]="Members?.ShowFilterCombo"
+                                              [ShowTotalNumberOfRows]="Members?.ShowTotalNumberOfRows">
+                                </hvl-datagrid>-->
+
+                                <dx-data-grid #memberDoctorsGrid [dataSource]="hCNewFormViewModel?._HealthCommittee?.Members" keyExpr="ObjectID" (onRowUpdating)="MemberDoctors_CellValueChangedEmitted($event)" (onRowInserted)="MemberDoctors_RowInserted($event)" (onInitNewRow)="MemberDoctors_RowInit($event)" data-tid="A362775">
+                                    <dxi-column dataField="MemberDoctor.ObjectID" caption="Üye" [width]="200" data-tid="A362776">
+                                        <dxo-lookup [dataSource]="hCNewFormViewModel.DoctorandTechnicianList" displayExpr="Name" valueExpr="ObjectID" data-tid="A362777">
+                                        </dxo-lookup>
+                                    </dxi-column>
+                                    <dxi-column dataField="Speciality.ObjectID" caption="Branş" [width]="200" [setCellValue]="setMemberspecialityValueFunc" data-tid="A362778">
+                                        <dxo-lookup [dataSource]="hCNewFormViewModel.SpecialityDefinitionsList" displayExpr="Name" valueExpr="ObjectID" data-tid="A362779">
+                                        </dxo-lookup>
+                                    </dxi-column>
+                                    <dxi-column dataField="MemberDoctor.DiplomaRegisterNo" caption="Diploma Tescil Numarası" data-tid="A362780"></dxi-column>
+                                    <dxi-column dataField="MemberDoctor.SpecialityRegistryNo" caption="Uzm. Tes. Numarası" data-tid="A362781"></dxi-column>
+                                    <dxi-column caption="Sil" cellTemplate="buttonCellTemplate" data-tid="A362782"></dxi-column>
+                                    <dxi-column dataField="sortID" allowSorting="false" [visible]="false" sortOrder="desc" allowEditing="false" data-tid="A362783"></dxi-column>
+
+                                    <div *dxTemplate="let cellData of 'buttonCellTemplate'" id="A27830" style="width: 25px" data-tid="A362784">
+                                        <i class="fa fa-minus-circle" style="cursor:pointer" (click)="onMemberDoctorRemoving(cellData)" id="A27831" data-tid="A362785"></i>
+                                    </div>
+
+                                    <dxo-editing mode="cell" [allowUpdating]="true" [allowAdding]="true" [allowDeleting]="false" data-tid="A362786">
+                                    </dxo-editing>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+
+                        <br id="A26687" data-tid="A362787" />
+                        <div class="row" id="A26688" data-tid="A362788">
+                            <label class="control-label col-sm-12" id="A26689" data-tid="A362789">
+                                İade Açıklamaları
+                            </label>
+                        </div>
+                        <div class="row" id="A26690" data-tid="A362790">
+                            <div class="col-sm-12" id="A26691" data-tid="A362791">
+                                <hvl-datagrid [AllowUserToAddRows]="ReturnDescriptionGrid?.AllowUserToAddRows" [AllowUserToDeleteRows]="ReturnDescriptionGrid?.AllowUserToDeleteRows" [Columns]="ReturnDescriptionGridColumns" [dataSource]="ReturnDescriptionGrid?.Rows" [DeleteButtonWidth]="ReturnDescriptionGrid?.DeleteButtonWidth" [EnableFilter]="ReturnDescriptionGrid?.ShowFilterRow" [FilterColumnName]="ReturnDescriptionGrid?.FilterColumnName" [DisplayExpressionsCache]="hCNewFormViewModel?.ListDefDisplayExpressions" [FilterLabel]="ReturnDescriptionGrid?.FilterLabel" [Filter]="ReturnDescriptionGrid?.Filter" [height]="ReturnDescriptionGrid?.Height" [IsFilterLabelSingleLine]="ReturnDescriptionGrid?.IsFilterLabelSingleLine" [ShowColumnHeaders]="ReturnDescriptionGrid?.ColumnHeadersVisible" [ShowFilterCombo]="ReturnDescriptionGrid?.ShowFilterCombo" [ShowTotalNumberOfRows]="ReturnDescriptionGrid?.ShowTotalNumberOfRows" id="A26692" data-tid="A362792">
+                                </hvl-datagrid>
+                            </div>
+                        </div>
+                    </div>
+                </dx-scroll-view>
+            </dxi-item>
+        </dx-tab-panel>
+    </div>
+
+    <dx-popup showTitle="false" title="Heyet Seçim Ekranı" [(visible)]="ShowHcCommission" [width]="500" height="150" i18n-title="@@M23738" id="A29353" data-tid="A362793">
+        <div *dxTemplate="let data of 'content'" id="A29371" data-tid="A362794">
+            <label class="control-label col-sm-12" style="margin-bottom: 5px;" id="A23647" data-tid="A362795">
+                Heyet
+                Seçimi
+            </label>
+            <div class="col-sm-12" id="B23642" style="margin-bottom: 5px;" data-tid="A362796">
+                <dx-select-box [items]="commissionList" displayExpr="Name" valueExpr="ObjectID" [searchEnabled]="true" [(value)]="_selectedCommission" id="B23643" data-tid="A362797"></dx-select-box>
+            </div>
+
+            <div class="col-sm-12 pull-right" id="C23642" style="margin-bottom: 5px;" data-tid="A362798">
+                <dx-button class="btn btn-round pull-right" type="success" text="Aç" icon="fa fa-user-plus" (onClick)="openHCMemberDefinitionForm(false)" hint="Seç" i18n-hint="@@M22549" id="A29060" data-tid="A362799">
+                </dx-button>
+                <dx-button class="btn btn-round pull-right" type="default" text="Yeni" icon="fa fa-pencil-square-o" (onClick)="openHCMemberDefinitionForm(true)" hint="Seç" i18n-hint="@@M22549" id="A29060" data-tid="A362800">
+                </dx-button>
+            </div>
+        </div>
+    </dx-popup>
+</div>
+<!--<pre >
+    {{ _ViewModel | json }}</pre>-->

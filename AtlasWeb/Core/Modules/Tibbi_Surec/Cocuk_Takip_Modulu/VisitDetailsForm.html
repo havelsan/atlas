@@ -1,0 +1,566 @@
+﻿
+
+
+
+
+
+
+
+<NeStatePanelComponent [OutgoingTransitions]="visitDetailsFormViewModel?.OutgoingTransitions" [StateReports]="visitDetailsFormViewModel?.CurrentStateReports" [ObjectID]="visitDetailsFormViewModel?._ChildGrowthVisits?.ObjectID" [ObjectDefID]="visitDetailsFormViewModel?._ChildGrowthVisits?.ObjectDefID" [CurrentStateDefID]="visitDetailsFormViewModel._ChildGrowthVisits.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" [CancelCommandVisible]="false" SaveButtonCaption="Değerlendirme Ekle" i18n-SaveButtonCaption="@@M27597" id="A10533" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A340205">
+</NeStatePanelComponent>
+
+<form id="VisitDetailsForm" class="form-horizontal" role="form" data-tid="A340206">
+
+
+
+    <dx-tab-panel [selectedIndex]="0" [animationEnabled]="true" id="A10536" data-tid="A340207">
+        <dxi-item class="tabpanel-item" title="Ölçüm Bilgileri" i18n-title="@@M19911" id="A10537" data-tid="A340208">
+            <div class="col-sm-12" id="A10538" data-tid="A340209">
+                <div class="col-sm-2" id="A10539" data-tid="A340210">
+                    <label class="control-label" id="A10540" data-tid="A340211">Vizit Tarihi</label>
+                    <hvl-date-picker #Validation (ValueChange)="onVisitDateChanged($event)" [BackColor]="VisitDate?.BackColor" [CustomFormat]="VisitDate?.CustomFormat" [Enabled]="VisitDate?.Enabled" [Font]="VisitDate?.Font" [ForeColor]="VisitDate?.ForeColor" [Format]="VisitDate?.Format" [Max]="VisitDate?.Max" [Min]="VisitDate?.Min" [ReadOnly]="VisitDate?.ReadOnly" [Required]="VisitDate?.Required" [TabIndex]="VisitDate?.TabIndex" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.VisitDate" [Visible]="VisitDate?.Visible" id="A10541" data-tid="A340212"></hvl-date-picker>
+                </div>
+                <div class="col-sm-2" id="A10542" data-tid="A340213">
+                    <label class="control-label" id="A10543" data-tid="A340214">Ölçüm Şekli</label>
+                    <hvl-enum-combobox #Validation (ValueChange)="onMeasurementTypeChanged($event)" [BackColor]="MeasurementType?.BackColor" [DataTypeName]="MeasurementType?.DataTypeName" [Enabled]="MeasurementType?.Enabled" [Font]="MeasurementType?.Font" [ForeColor]="MeasurementType?.ForeColor" [IncludeOnly]="MeasurementType?.IncludeOnly" [ReadOnly]="MeasurementType?.ReadOnly" [ShowClearButton]="MeasurementType?.ShowClearButton" [SortBy]="MeasurementType?.SortBy" [TabIndex]="MeasurementType?.TabIndex" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.MeasurementType" [Visible]="MeasurementType?.Visible" id="A10544" data-tid="A340215"></hvl-enum-combobox>
+
+                </div>
+                <div class="col-sm-2" id="A10545" data-tid="A340216">
+                    <label class="control-label" id="A10546" data-tid="A340217">Kafa Çevresi(cm)</label>
+                    <hvl-number-box #Validation (ValueChange)="onHeadCircleChanged($event)" [BackColor]="HeadCircle?.BackColor" [Enabled]="HeadCircle?.Enabled" [Font]="HeadCircle?.Font" [ForeColor]="HeadCircle?.ForeColor" [ReadOnly]="HeadCircle?.ReadOnly" [TabIndex]="HeadCircle?.TabIndex" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.HeadCircle" [Visible]="HeadCircle?.Visible" id="A10547" data-tid="A340218"></hvl-number-box>
+
+                </div>
+                <div class="col-sm-2" id="A10548" data-tid="A340219">
+                    <label class="control-label" id="A10549" data-tid="A340220">Deri Kıvrımı(mm)</label>
+                    <hvl-number-box #Validation (ValueChange)="onSubscapularChanged($event)" [BackColor]="Subscapular?.BackColor" [Enabled]="Subscapular?.Enabled" [Font]="Subscapular?.Font" [ForeColor]="Subscapular?.ForeColor" [ReadOnly]="Subscapular?.ReadOnly" [TabIndex]="Subscapular?.TabIndex" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.Subscapular" [Visible]="Subscapular?.Visible" id="A10550" data-tid="A340221"></hvl-number-box>
+
+                </div>
+                <div class="col-sm-3" id="A10551" data-tid="A340222">
+                    <label class="control-label" id="A10552" data-tid="A340223">Bebeğin beslenme durumu</label>
+                    <!--<hvl-enum-combobox #Validation (ValueChange)="onInfantNutritionalStatusChanged($event)" [BackColor]="InfantNutritionalStatus?.BackColor" [DataTypeName]="InfantNutritionalStatus?.DataTypeName" [Enabled]="InfantNutritionalStatus?.Enabled" [Font]="InfantNutritionalStatus?.Font" [ForeColor]="InfantNutritionalStatus?.ForeColor" [IncludeOnly]="InfantNutritionalStatus?.IncludeOnly" [ReadOnly]="InfantNutritionalStatus?.ReadOnly" [ShowClearButton]="InfantNutritionalStatus?.ShowClearButton" [SortBy]="InfantNutritionalStatus?.SortBy" [TabIndex]="InfantNutritionalStatus?.TabIndex" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.InfantNutritionalStatus" [Visible]="InfantNutritionalStatus?.Visible"></hvl-enum-combobox>-->
+
+                    <hvl-list-box #Validation (SelectedObjectChange)="onInfantNutritionalStatusChanged($event)" [AutoCompleteDialogHeight]="InfantNutritionalStatus?.AutoCompleteDialogHeight" [AutoCompleteMode]="InfantNutritionalStatus?.AutoCompleteMode" [BackColor]="InfantNutritionalStatus?.BackColor" [DefinitionName]="InfantNutritionalStatus?.ListDefName" [DisplayExpressionsCache]="visitDetailsFormViewModel?.ListDefDisplayExpressions" [Enabled]="InfantNutritionalStatus?.Enabled" [Font]="InfantNutritionalStatus?.Font" [ForeColor]="InfantNutritionalStatus?.ForeColor" [ListFilterExpression]="InfantNutritionalStatus?.ListFilterExpression" [MinSearchLength]="InfantNutritionalStatus?.MinSearchLength" [PopupDialogFieldConfig]="InfantNutritionalStatus?.PopupDialogFieldConfig" [PopupDialogGridColumns]="InfantNutritionalStatus?.PopupDialogGridColumns" [PopupDialogHeight]="InfantNutritionalStatus?.PopupDialogHeight" [PopupDialogTitle]="InfantNutritionalStatus?.PopupDialogTitle" [PopupDialogWidth]="InfantNutritionalStatus?.PopupDialogWidth" [ReadOnly]="InfantNutritionalStatus?.ReadOnly" [SearchMode]="InfantNutritionalStatus?.SearchMode" [SearchTimeout]="InfantNutritionalStatus?.SearchTimeout" [SelectedObject]="visitDetailsFormViewModel?._ChildGrowthVisits?.InfantNutritionalStatus" [TabIndex]="InfantNutritionalStatus?.TabIndex" [Visible]="InfantNutritionalStatus?.Visible" [width]="InfantNutritionalStatus?.Width" id="A10553" data-tid="A340224"></hvl-list-box>
+                </div>
+
+            </div>
+            <div class="col-sm-12" id="A10554" data-tid="A340225">
+                <div class="col-sm-2" id="A10555" data-tid="A340226">
+                    <label class="control-label" id="A10556" data-tid="A340227">Tarih</label>
+                    <hvl-date-picker #Validation (ValueChange)="onDateChanged($event)" [BackColor]="Date?.BackColor" [CustomFormat]="Date?.CustomFormat" [Enabled]="Date?.Enabled" [Font]="Date?.Font" [ForeColor]="Date?.ForeColor" [Format]="Date?.Format" [Max]="Date?.Max" [Min]="Date?.Min" [ReadOnly]="Date?.ReadOnly" [Required]="Date?.Required" [TabIndex]="Date?.TabIndex" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.Date" [Visible]="Date?.Visible" id="A10557" data-tid="A340228"></hvl-date-picker>
+                </div>
+                <div class="col-sm-2" id="A10558" data-tid="A340229">
+                    <label class="control-label" id="A10559" data-tid="A340230">Ödem Bilgisi</label>
+                    <hvl-enum-combobox #Validation (ValueChange)="onOedemaChanged($event)" [BackColor]="Oedema?.BackColor" [DataTypeName]="Oedema?.DataTypeName" [Enabled]="Oedema?.Enabled" [Font]="Oedema?.Font" [ForeColor]="Oedema?.ForeColor" [IncludeOnly]="Oedema?.IncludeOnly" [ReadOnly]="Oedema?.ReadOnly" [ShowClearButton]="Oedema?.ShowClearButton" [SortBy]="Oedema?.SortBy" [TabIndex]="Oedema?.TabIndex" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.Oedema" [Visible]="Oedema?.Visible" id="A10560" data-tid="A340231"></hvl-enum-combobox>
+
+                </div>
+                <div class="col-sm-2" id="A10561" data-tid="A340232">
+                    <label class="control-label" id="A10562" data-tid="A340233">Kol Çevresi(cm)</label>
+                    <hvl-number-box #Validation (ValueChange)="onArmCircleChanged($event)" [BackColor]="ArmCircle?.BackColor" [Enabled]="ArmCircle?.Enabled" [Font]="ArmCircle?.Font" [ForeColor]="ArmCircle?.ForeColor" [ReadOnly]="ArmCircle?.ReadOnly" [TabIndex]="ArmCircle?.TabIndex" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.ArmCircle" [Visible]="ArmCircle?.Visible" id="A10563" data-tid="A340234"></hvl-number-box>
+
+                </div>
+                <div class="col-sm-2" id="A10564" data-tid="A340235">
+                    <label class="control-label" id="A10565" data-tid="A340236">Kıvrım Kalınlığı(mm)</label>
+                    <hvl-number-box #Validation (ValueChange)="onTricepsSkinfoldChanged($event)" [BackColor]="TricepsSkinfold?.BackColor" [Enabled]="TricepsSkinfold?.Enabled" [Font]="TricepsSkinfold?.Font" [ForeColor]="TricepsSkinfold?.ForeColor" [ReadOnly]="TricepsSkinfold?.ReadOnly" [TabIndex]="TricepsSkinfold?.TabIndex" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.TricepsSkinfold" [Visible]="TricepsSkinfold?.Visible" id="A10566" data-tid="A340237"></hvl-number-box>
+
+                </div>
+                <div class="col-sm-3" id="A10567" data-tid="A340238">
+                    <label class="control-label" id="A10568" data-tid="A340239">Gelişim Durumu</label>
+                    <!--<hvl-enum-combobox #Validation (ValueChange)="onInfantGrowthStatusInfoChanged($event)" [BackColor]="InfantGrowthStatusInfo?.BackColor" [DataTypeName]="InfantGrowthStatusInfo?.DataTypeName" [Enabled]="InfantGrowthStatusInfo?.Enabled" [Font]="InfantGrowthStatusInfo?.Font" [ForeColor]="InfantGrowthStatusInfo?.ForeColor" [IncludeOnly]="InfantGrowthStatusInfo?.IncludeOnly" [ReadOnly]="InfantGrowthStatusInfo?.ReadOnly" [ShowClearButton]="InfantGrowthStatusInfo?.ShowClearButton" [SortBy]="InfantGrowthStatusInfo?.SortBy" [TabIndex]="InfantGrowthStatusInfo?.TabIndex" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.InfantGrowthStatusInfo" [Visible]="InfantGrowthStatusInfo?.Visible"></hvl-enum-combobox>-->
+
+                    <hvl-list-box #Validation (SelectedObjectChange)="onttobjectlistbox1Changed($event)" [AutoCompleteDialogHeight]="ttobjectlistbox1?.AutoCompleteDialogHeight" [AutoCompleteMode]="ttobjectlistbox1?.AutoCompleteMode" [BackColor]="ttobjectlistbox1?.BackColor" [DefinitionName]="ttobjectlistbox1?.ListDefName" [DisplayExpressionsCache]="visitDetailsFormViewModel?.ListDefDisplayExpressions" [Enabled]="ttobjectlistbox1?.Enabled" [Font]="ttobjectlistbox1?.Font" [ForeColor]="ttobjectlistbox1?.ForeColor" [ListFilterExpression]="ttobjectlistbox1?.ListFilterExpression" [MinSearchLength]="ttobjectlistbox1?.MinSearchLength" [PopupDialogFieldConfig]="ttobjectlistbox1?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ttobjectlistbox1?.PopupDialogGridColumns" [PopupDialogHeight]="ttobjectlistbox1?.PopupDialogHeight" [PopupDialogTitle]="ttobjectlistbox1?.PopupDialogTitle" [PopupDialogWidth]="ttobjectlistbox1?.PopupDialogWidth" [ReadOnly]="ttobjectlistbox1?.ReadOnly" [SearchMode]="ttobjectlistbox1?.SearchMode" [SearchTimeout]="ttobjectlistbox1?.SearchTimeout" [SelectedObject]="visitDetailsFormViewModel?._ChildGrowthVisits?.InfantGrowthStatusInfo" [TabIndex]="ttobjectlistbox1?.TabIndex" [Visible]="ttobjectlistbox1?.Visible" [width]="ttobjectlistbox1?.Width" id="A10569" data-tid="A340240"></hvl-list-box>
+                </div>
+
+            </div>
+            <div class="col-sm-12" id="A10570" data-tid="A340241">
+                <div class="col-sm-1" id="A10571" data-tid="A340242">
+                    <label class="control-label" id="A10572" data-tid="A340243">Kilo(kg)</label>
+                    <hvl-number-box #Validation (ValueChange)="onWeightChanged($event)" [BackColor]="Weight?.BackColor" [Enabled]="Weight?.Enabled" [Font]="Weight?.Font" [ForeColor]="Weight?.ForeColor" [ReadOnly]="Weight?.ReadOnly" [TabIndex]="Weight?.TabIndex" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.Weight" [Visible]="Weight?.Visible" id="A10573" data-tid="A340244"></hvl-number-box>
+
+                </div>
+                <div class="col-sm-1" id="A10574" data-tid="A340245">
+                    <label class="control-label" id="A10575" data-tid="A340246">Boy(cm)</label>
+                    <hvl-number-box #Validation (ValueChange)="onHeightChanged($event)" [BackColor]="Height?.BackColor" [Enabled]="Height?.Enabled" [Font]="Height?.Font" [ForeColor]="Height?.ForeColor" [ReadOnly]="Height?.ReadOnly" [TabIndex]="Height?.TabIndex" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.Height" [Visible]="Height?.Visible" id="A10576" data-tid="A340247"></hvl-number-box>
+
+                </div>
+                <div class="col-sm-2" id="A10577" data-tid="A340248">
+                    <label class="control-label" id="A10578" data-tid="A340249">Vücut Kitle İndeksi</label>
+                    <hvl-number-box #Validation (ValueChange)="onBMIChanged($event)" [BackColor]="BMI?.BackColor" [Enabled]="BMI?.Enabled" [Font]="BMI?.Font" [ForeColor]="BMI?.ForeColor" [ReadOnly]="BMI?.ReadOnly" [TabIndex]="BMI?.TabIndex" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.BMI" [Visible]="BMI?.Visible" id="A10579" data-tid="A340250"></hvl-number-box>
+
+                </div>
+            </div>
+          
+                <div class="col-sm-6" style="padding-bottom:15px;" id="A10581" data-tid="A340251">
+                    <label class="control-label" id="A10582" data-tid="A340252">Notlar</label>
+                    <hvl-text-box #Validation (TextChange)="onNotesChanged($event)" [BackColor]="Notes?.BackColor" [CharacterCasing]="Notes?.CharacterCasing" [Enabled]="Notes?.Enabled" [Font]="Notes?.Font" [ForeColor]="Notes?.ForeColor" [height]="Notes?.Height" [InputFormat]="Notes?.InputFormat" [InputTurkishCharacter]="Notes?.InputTurkishCharacter" [IsNonNumeric]="Notes?.IsNonNumeric" [MultiLine]="Notes?.Multiline" [ReadOnly]="Notes?.ReadOnly" [Required]="Notes?.Required" [TabIndex]="Notes?.TabIndex" [TextAlign]="Notes?.TextAlign" [Text]="visitDetailsFormViewModel?._ChildGrowthVisits?.Notes" [Visible]="Notes?.Visible" id="A10583" data-tid="A340253"></hvl-text-box>
+
+                </div>
+                <div class="col-sm-6" style="padding-bottom:15px;" id="A10584" data-tid="A340254">
+                    <label class="control-label" id="A10585" data-tid="A340255">Değerlendirme</label>
+                    <hvl-text-box #Validation (TextChange)="onAssessmentsChanged($event)" [BackColor]="Assessments?.BackColor" [CharacterCasing]="Assessments?.CharacterCasing" [Enabled]="Assessments?.Enabled" [Font]="Assessments?.Font" [ForeColor]="Assessments?.ForeColor" [height]="Assessments?.Height" [InputFormat]="Assessments?.InputFormat" [InputTurkishCharacter]="Assessments?.InputTurkishCharacter" [IsNonNumeric]="Assessments?.IsNonNumeric" [MultiLine]="Assessments?.Multiline" [ReadOnly]="Assessments?.ReadOnly" [Required]="Assessments?.Required" [TabIndex]="Assessments?.TabIndex" [TextAlign]="Assessments?.TextAlign" [Text]="visitDetailsFormViewModel?._ChildGrowthVisits?.Assessments" [Visible]="Assessments?.Visible" id="A10586" data-tid="A340256"></hvl-text-box>
+
+                </div>
+           
+        </dxi-item>
+
+        <dxi-item class="tabpanel-item" title="Şikayet Bilgileri" i18n-title="@@M22487" id="A10587" data-tid="A340257">
+            <div class="col-sm-12" id="A10588" data-tid="A340258">
+                <div class="col-sm-2" id="A10589" data-tid="A340259">
+                    <label class="control-label " id="A10590" data-tid="A340260">
+                        Şikayet Başlangıç Tarihi
+                    </label>
+                    <hvl-date-picker #Validation (ValueChange)="onComplaintStartDateChildGrowthComplaintInfoChanged($event)" [BackColor]="ComplaintStartDateChildGrowthComplaintInfo?.BackColor" [CustomFormat]="ComplaintStartDateChildGrowthComplaintInfo?.CustomFormat" [Enabled]="ComplaintStartDateChildGrowthComplaintInfo?.Enabled" [Font]="ComplaintStartDateChildGrowthComplaintInfo?.Font" [ForeColor]="ComplaintStartDateChildGrowthComplaintInfo?.ForeColor" [Format]="ComplaintStartDateChildGrowthComplaintInfo?.Format" [Max]="ComplaintStartDateChildGrowthComplaintInfo?.Max" [Min]="ComplaintStartDateChildGrowthComplaintInfo?.Min" [ReadOnly]="ComplaintStartDateChildGrowthComplaintInfo?.ReadOnly" [Required]="ComplaintStartDateChildGrowthComplaintInfo?.Required" [TabIndex]="ComplaintStartDateChildGrowthComplaintInfo?.TabIndex" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.ComplaintStartDate" [Visible]="ComplaintStartDateChildGrowthComplaintInfo?.Visible" id="A10591" data-tid="A340261"></hvl-date-picker>
+                </div>
+            </div>
+        
+                <div class="col-sm-12" id="A10593" data-tid="A340262">
+                    <label class="control-label" id="A10594" data-tid="A340263">Bebeğin Şikayeti</label>
+                    <hvl-text-box #Validation (TextChange)="onBabyComplaintChildGrowthComplaintInfoChanged($event)" [BackColor]="BabyComplaintChildGrowthComplaintInfo?.BackColor" [CharacterCasing]="BabyComplaintChildGrowthComplaintInfo?.CharacterCasing" [Enabled]="BabyComplaintChildGrowthComplaintInfo?.Enabled" [Font]="BabyComplaintChildGrowthComplaintInfo?.Font" [ForeColor]="BabyComplaintChildGrowthComplaintInfo?.ForeColor" [height]="BabyComplaintChildGrowthComplaintInfo?.Height" [InputFormat]="BabyComplaintChildGrowthComplaintInfo?.InputFormat" [InputTurkishCharacter]="BabyComplaintChildGrowthComplaintInfo?.InputTurkishCharacter" [IsNonNumeric]="BabyComplaintChildGrowthComplaintInfo?.IsNonNumeric" [MultiLine]="BabyComplaintChildGrowthComplaintInfo?.Multiline" [ReadOnly]="BabyComplaintChildGrowthComplaintInfo?.ReadOnly" [Required]="BabyComplaintChildGrowthComplaintInfo?.Required" [TabIndex]="BabyComplaintChildGrowthComplaintInfo?.TabIndex" [TextAlign]="BabyComplaintChildGrowthComplaintInfo?.TextAlign" [Text]="visitDetailsFormViewModel?._ChildGrowthVisits?.BabyComplaint" [Visible]="BabyComplaintChildGrowthComplaintInfo?.Visible" id="A10595" data-tid="A340264"></hvl-text-box>
+                </div>
+          
+         
+                <div class="col-sm-12" id="A10597" data-tid="A340265">
+                    <label class="control-label" id="A10598" data-tid="A340266">
+                        Şikayet Aile Geçmişi
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onFamilyHistoryChildGrowthComplaintInfoChanged($event)" [BackColor]="FamilyHistoryChildGrowthComplaintInfo?.BackColor" [CharacterCasing]="FamilyHistoryChildGrowthComplaintInfo?.CharacterCasing" [Enabled]="FamilyHistoryChildGrowthComplaintInfo?.Enabled" [Font]="FamilyHistoryChildGrowthComplaintInfo?.Font" [ForeColor]="FamilyHistoryChildGrowthComplaintInfo?.ForeColor" [height]="FamilyHistoryChildGrowthComplaintInfo?.Height" [InputFormat]="FamilyHistoryChildGrowthComplaintInfo?.InputFormat" [InputTurkishCharacter]="FamilyHistoryChildGrowthComplaintInfo?.InputTurkishCharacter" [IsNonNumeric]="FamilyHistoryChildGrowthComplaintInfo?.IsNonNumeric" [MultiLine]="FamilyHistoryChildGrowthComplaintInfo?.Multiline" [ReadOnly]="FamilyHistoryChildGrowthComplaintInfo?.ReadOnly" [Required]="FamilyHistoryChildGrowthComplaintInfo?.Required" [TabIndex]="FamilyHistoryChildGrowthComplaintInfo?.TabIndex" [TextAlign]="FamilyHistoryChildGrowthComplaintInfo?.TextAlign" [Text]="visitDetailsFormViewModel?._ChildGrowthVisits?.FamilyHistory" [Visible]="FamilyHistoryChildGrowthComplaintInfo?.Visible" id="A10599" data-tid="A340267"></hvl-text-box>
+                </div>
+          
+
+          
+                <div class="col-sm-12" id="A10601" data-tid="A340268">
+                    <label class="control-label" id="A10602" data-tid="A340269">
+                        Prenatal Geçmiş
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onPrenatalHistoryChildGrowthComplaintInfoChanged($event)" [BackColor]="PrenatalHistoryChildGrowthComplaintInfo?.BackColor" [CharacterCasing]="PrenatalHistoryChildGrowthComplaintInfo?.CharacterCasing" [Enabled]="PrenatalHistoryChildGrowthComplaintInfo?.Enabled" [Font]="PrenatalHistoryChildGrowthComplaintInfo?.Font" [ForeColor]="PrenatalHistoryChildGrowthComplaintInfo?.ForeColor" [height]="PrenatalHistoryChildGrowthComplaintInfo?.Height" [InputFormat]="PrenatalHistoryChildGrowthComplaintInfo?.InputFormat" [InputTurkishCharacter]="PrenatalHistoryChildGrowthComplaintInfo?.InputTurkishCharacter" [IsNonNumeric]="PrenatalHistoryChildGrowthComplaintInfo?.IsNonNumeric" [MultiLine]="PrenatalHistoryChildGrowthComplaintInfo?.Multiline" [ReadOnly]="PrenatalHistoryChildGrowthComplaintInfo?.ReadOnly" [Required]="PrenatalHistoryChildGrowthComplaintInfo?.Required" [TabIndex]="PrenatalHistoryChildGrowthComplaintInfo?.TabIndex" [TextAlign]="PrenatalHistoryChildGrowthComplaintInfo?.TextAlign" [Text]="visitDetailsFormViewModel?._ChildGrowthVisits?.PrenatalHistory" [Visible]="PrenatalHistoryChildGrowthComplaintInfo?.Visible" id="A10603" data-tid="A340270"></hvl-text-box>
+                </div>
+          
+        
+                <div class="col-sm-12" id="A10605" data-tid="A340271">
+                    <label class="control-label" id="A10606" data-tid="A340272">
+                        Natal Geçmiş
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onNatalHistoryChildGrowthComplaintInfoChanged($event)" [BackColor]="NatalHistoryChildGrowthComplaintInfo?.BackColor" [CharacterCasing]="NatalHistoryChildGrowthComplaintInfo?.CharacterCasing" [Enabled]="NatalHistoryChildGrowthComplaintInfo?.Enabled" [Font]="NatalHistoryChildGrowthComplaintInfo?.Font" [ForeColor]="NatalHistoryChildGrowthComplaintInfo?.ForeColor" [height]="NatalHistoryChildGrowthComplaintInfo?.Height" [InputFormat]="NatalHistoryChildGrowthComplaintInfo?.InputFormat" [InputTurkishCharacter]="NatalHistoryChildGrowthComplaintInfo?.InputTurkishCharacter" [IsNonNumeric]="NatalHistoryChildGrowthComplaintInfo?.IsNonNumeric" [MultiLine]="NatalHistoryChildGrowthComplaintInfo?.Multiline" [ReadOnly]="NatalHistoryChildGrowthComplaintInfo?.ReadOnly" [Required]="NatalHistoryChildGrowthComplaintInfo?.Required" [TabIndex]="NatalHistoryChildGrowthComplaintInfo?.TabIndex" [TextAlign]="NatalHistoryChildGrowthComplaintInfo?.TextAlign" [Text]="visitDetailsFormViewModel?._ChildGrowthVisits?.NatalHistory" [Visible]="NatalHistoryChildGrowthComplaintInfo?.Visible" id="A10607" data-tid="A340273"></hvl-text-box>
+                </div>
+         
+
+        
+                <div class="col-sm-12" style="padding-bottom:15px;" id="A10609" data-tid="A340274">
+                    <label class="control-label" id="A10610" data-tid="A340275">
+                        Postnatal Geçmiş
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onPostnatalHistoryChildGrowthComplaintInfoChanged($event)" [BackColor]="PostnatalHistoryChildGrowthComplaintInfo?.BackColor" [CharacterCasing]="PostnatalHistoryChildGrowthComplaintInfo?.CharacterCasing" [Enabled]="PostnatalHistoryChildGrowthComplaintInfo?.Enabled" [Font]="PostnatalHistoryChildGrowthComplaintInfo?.Font" [ForeColor]="PostnatalHistoryChildGrowthComplaintInfo?.ForeColor" [height]="PostnatalHistoryChildGrowthComplaintInfo?.Height" [InputFormat]="PostnatalHistoryChildGrowthComplaintInfo?.InputFormat" [InputTurkishCharacter]="PostnatalHistoryChildGrowthComplaintInfo?.InputTurkishCharacter" [IsNonNumeric]="PostnatalHistoryChildGrowthComplaintInfo?.IsNonNumeric" [MultiLine]="PostnatalHistoryChildGrowthComplaintInfo?.Multiline" [ReadOnly]="PostnatalHistoryChildGrowthComplaintInfo?.ReadOnly" [Required]="PostnatalHistoryChildGrowthComplaintInfo?.Required" [TabIndex]="PostnatalHistoryChildGrowthComplaintInfo?.TabIndex" [TextAlign]="PostnatalHistoryChildGrowthComplaintInfo?.TextAlign" [Text]="visitDetailsFormViewModel?._ChildGrowthVisits?.PostnatalHistory" [Visible]="PostnatalHistoryChildGrowthComplaintInfo?.Visible" id="A10611" data-tid="A340276"></hvl-text-box>
+                </div>
+        
+        </dxi-item>
+
+
+        <dxi-item class="tabpanel-item" title="Fiziksel Muayene Bilgileri" i18n-title="@@M14398" id="A10612" data-tid="A340277">
+           
+                <div class="col-sm-6" id="A10614" data-tid="A340278">
+                    <label class="control-label" id="A10615" data-tid="A340279">
+                        Demir Lojistiği ve Desteği
+                    </label>
+                    <!--<hvl-enum-combobox #Validation (ValueChange)="onIronSupplementationInfoChanged($event)" [BackColor]="IronSupplementationInfo?.BackColor" [DataTypeName]="IronSupplementationInfo?.DataTypeName" [DefinitionName]="VitaminDSupplementationInfo?.ListDefName" [DisplayExpressionsCache]="visitDetailsFormViewModel?.ListDefDisplayExpressions" [Enabled]="IronSupplementationInfo?.Enabled" [Font]="IronSupplementationInfo?.Font" [ForeColor]="IronSupplementationInfo?.ForeColor" [IncludeOnly]="IronSupplementationInfo?.IncludeOnly" [ReadOnly]="IronSupplementationInfo?.ReadOnly" [ShowClearButton]="IronSupplementationInfo?.ShowClearButton" [SortBy]="IronSupplementationInfo?.SortBy" [TabIndex]="IronSupplementationInfo?.TabIndex" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.IronSupplementationInfo" [Visible]="IronSupplementationInfo?.Visible"></hvl-enum-combobox>-->
+
+                    <hvl-list-box #Validation (SelectedObjectChange)="onIronSupplementationInfoChanged($event)" [AutoCompleteDialogHeight]="IronSupplementationInfo?.AutoCompleteDialogHeight" [AutoCompleteMode]="IronSupplementationInfo?.AutoCompleteMode" [BackColor]="IronSupplementationInfo?.BackColor" [DefinitionName]="IronSupplementationInfo?.ListDefName" [DisplayExpressionsCache]="IronSupplementationInfo?.ListDefDisplayExpressions" [Enabled]="IronSupplementationInfo?.Enabled" [Font]="IronSupplementationInfo?.Font" [ForeColor]="IronSupplementationInfo?.ForeColor" [ListFilterExpression]="IronSupplementationInfo?.ListFilterExpression" [MinSearchLength]="IronSupplementationInfo?.MinSearchLength" [PopupDialogFieldConfig]="VitaminDSupplementationInfo?.PopupDialogFieldConfig" [PopupDialogGridColumns]="IronSupplementationInfo?.PopupDialogGridColumns" [PopupDialogHeight]="IronSupplementationInfo?.PopupDialogHeight" [PopupDialogTitle]="IronSupplementationInfo?.PopupDialogTitle" [PopupDialogWidth]="IronSupplementationInfo?.PopupDialogWidth" [ReadOnly]="IronSupplementationInfo?.ReadOnly" [SearchMode]="IronSupplementationInfo?.SearchMode" [SearchTimeout]="IronSupplementationInfo?.SearchTimeout" [SelectedObject]="visitDetailsFormViewModel?._ChildGrowthVisits?.IronSupplementationInfo" [TabIndex]="IronSupplementationInfo?.TabIndex" [Visible]="IronSupplementationInfo?.Visible" [width]="IronSupplementationInfo?.Width" id="A10616" data-tid="A340280"></hvl-list-box>
+                </div>
+                <div class="col-sm-6" id="A10617" data-tid="A340281">
+                    <label class="control-label" id="A10618" data-tid="A340282">
+                        D vitamini Lojistiği ve Desteği
+                    </label>
+                    <!--<hvl-enum-combobox #Validation (ValueChange)="onVitaminDSupplementationInfoChanged($event)" [BackColor]="VitaminDSupplementationInfo?.BackColor" [DataTypeName]="VitaminDSupplementationInfo?.DataTypeName" [Enabled]="VitaminDSupplementationInfo?.Enabled" [Font]="VitaminDSupplementationInfo?.Font" [ForeColor]="VitaminDSupplementationInfo?.ForeColor" [IncludeOnly]="VitaminDSupplementationInfo?.IncludeOnly" [ReadOnly]="VitaminDSupplementationInfo?.ReadOnly" [ShowClearButton]="VitaminDSupplementationInfo?.ShowClearButton" [SortBy]="VitaminDSupplementationInfo?.SortBy" [TabIndex]="VitaminDSupplementationInfo?.TabIndex" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.VitaminDSupplementationInfo" [Visible]="VitaminDSupplementationInfo?.Visible"></hvl-enum-combobox>-->
+
+                    <hvl-list-box #Validation (SelectedObjectChange)="onVitaminDSupplementationInfoChanged($event)" [AutoCompleteDialogHeight]="VitaminDSupplementationInfo?.AutoCompleteDialogHeight" [AutoCompleteMode]="VitaminDSupplementationInfo?.AutoCompleteMode" [BackColor]="VitaminDSupplementationInfo?.BackColor" [DefinitionName]="VitaminDSupplementationInfo?.ListDefName" [DisplayExpressionsCache]="visitDetailsFormViewModel?.ListDefDisplayExpressions" [Enabled]="VitaminDSupplementationInfo?.Enabled" [Font]="VitaminDSupplementationInfo?.Font" [ForeColor]="VitaminDSupplementationInfo?.ForeColor" [ListFilterExpression]="VitaminDSupplementationInfo?.ListFilterExpression" [MinSearchLength]="VitaminDSupplementationInfo?.MinSearchLength" [PopupDialogFieldConfig]="VitaminDSupplementationInfo?.PopupDialogFieldConfig" [PopupDialogGridColumns]="VitaminDSupplementationInfo?.PopupDialogGridColumns" [PopupDialogHeight]="VitaminDSupplementationInfo?.PopupDialogHeight" [PopupDialogTitle]="VitaminDSupplementationInfo?.PopupDialogTitle" [PopupDialogWidth]="VitaminDSupplementationInfo?.PopupDialogWidth" [ReadOnly]="VitaminDSupplementationInfo?.ReadOnly" [SearchMode]="VitaminDSupplementationInfo?.SearchMode" [SearchTimeout]="VitaminDSupplementationInfo?.SearchTimeout" [SelectedObject]="visitDetailsFormViewModel?._ChildGrowthVisits?.VitaminDSupplementationInfo" [TabIndex]="VitaminDSupplementationInfo?.TabIndex" [Visible]="VitaminDSupplementationInfo?.Visible" [width]="VitaminDSupplementationInfo?.Width" id="A10619" data-tid="A340283"></hvl-list-box>
+
+                </div>
+          
+
+           
+                <div class="col-sm-6" id="A10621" data-tid="A340284">
+                    <label class="control-label" id="A10622" data-tid="A340285">
+                        Baş, Boyun, Tiroid
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onHeadNeckThyroidInfoPhysicalExaminationChanged($event)" [BackColor]="HeadNeckThyroidInfoPhysicalExamination?.BackColor" [CharacterCasing]="HeadNeckThyroidInfoPhysicalExamination?.CharacterCasing" [Enabled]="HeadNeckThyroidInfoPhysicalExamination?.Enabled" [Font]="HeadNeckThyroidInfoPhysicalExamination?.Font" [ForeColor]="HeadNeckThyroidInfoPhysicalExamination?.ForeColor" [height]="HeadNeckThyroidInfoPhysicalExamination?.Height" [InputFormat]="HeadNeckThyroidInfoPhysicalExamination?.InputFormat" [InputTurkishCharacter]="HeadNeckThyroidInfoPhysicalExamination?.InputTurkishCharacter" [IsNonNumeric]="HeadNeckThyroidInfoPhysicalExamination?.IsNonNumeric" [MultiLine]="HeadNeckThyroidInfoPhysicalExamination?.Multiline" [ReadOnly]="HeadNeckThyroidInfoPhysicalExamination?.ReadOnly" [Required]="HeadNeckThyroidInfoPhysicalExamination?.Required" [TabIndex]="HeadNeckThyroidInfoPhysicalExamination?.TabIndex" [TextAlign]="HeadNeckThyroidInfoPhysicalExamination?.TextAlign" [Text]="visitDetailsFormViewModel?._ChildGrowthVisits?.HeadNeckThyroidInfo" [Visible]="HeadNeckThyroidInfoPhysicalExamination?.Visible" id="A10623" data-tid="A340286"></hvl-text-box>
+                </div>
+                <div class="col-sm-6" id="A10624" data-tid="A340287">
+                    <label class="control-label" id="A10625" data-tid="A340288">
+                        Nörolojik Muayene
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onNeurologicalExaminationPhysicalExaminationChanged($event)" [BackColor]="NeurologicalExaminationPhysicalExamination?.BackColor" [CharacterCasing]="NeurologicalExaminationPhysicalExamination?.CharacterCasing" [Enabled]="NeurologicalExaminationPhysicalExamination?.Enabled" [Font]="NeurologicalExaminationPhysicalExamination?.Font" [ForeColor]="NeurologicalExaminationPhysicalExamination?.ForeColor" [height]="NeurologicalExaminationPhysicalExamination?.Height" [InputFormat]="NeurologicalExaminationPhysicalExamination?.InputFormat" [InputTurkishCharacter]="NeurologicalExaminationPhysicalExamination?.InputTurkishCharacter" [IsNonNumeric]="NeurologicalExaminationPhysicalExamination?.IsNonNumeric" [MultiLine]="NeurologicalExaminationPhysicalExamination?.Multiline" [ReadOnly]="NeurologicalExaminationPhysicalExamination?.ReadOnly" [Required]="NeurologicalExaminationPhysicalExamination?.Required" [TabIndex]="NeurologicalExaminationPhysicalExamination?.TabIndex" [TextAlign]="NeurologicalExaminationPhysicalExamination?.TextAlign" [Text]="visitDetailsFormViewModel?._ChildGrowthVisits?.NeurologicalExamination" [Visible]="NeurologicalExaminationPhysicalExamination?.Visible" id="A10626" data-tid="A340289"></hvl-text-box>
+                </div>
+          
+
+                <div class="col-sm-6" id="A10628" data-tid="A340290">
+                    <label class="control-label" id="A10629" data-tid="A340291">
+                        Solunum Sistemi
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onRespiratorySystemPhysicalExaminationChanged($event)" [BackColor]="RespiratorySystemPhysicalExamination?.BackColor" [CharacterCasing]="RespiratorySystemPhysicalExamination?.CharacterCasing" [Enabled]="RespiratorySystemPhysicalExamination?.Enabled" [Font]="RespiratorySystemPhysicalExamination?.Font" [ForeColor]="RespiratorySystemPhysicalExamination?.ForeColor" [height]="RespiratorySystemPhysicalExamination?.Height" [InputFormat]="RespiratorySystemPhysicalExamination?.InputFormat" [InputTurkishCharacter]="RespiratorySystemPhysicalExamination?.InputTurkishCharacter" [IsNonNumeric]="RespiratorySystemPhysicalExamination?.IsNonNumeric" [MultiLine]="RespiratorySystemPhysicalExamination?.Multiline" [ReadOnly]="RespiratorySystemPhysicalExamination?.ReadOnly" [Required]="RespiratorySystemPhysicalExamination?.Required" [TabIndex]="RespiratorySystemPhysicalExamination?.TabIndex" [TextAlign]="RespiratorySystemPhysicalExamination?.TextAlign" [Text]="visitDetailsFormViewModel?._ChildGrowthVisits?.RespiratorySystem" [Visible]="RespiratorySystemPhysicalExamination?.Visible" id="A10630" data-tid="A340292"></hvl-text-box>
+                </div>
+                <div class="col-sm-6" id="A10631" data-tid="A340293">
+                    <label class="control-label" id="A10632" data-tid="A340294">
+                        Ekstremiteler
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onExtremitiesPhysicalExaminationChanged($event)" [BackColor]="ExtremitiesPhysicalExamination?.BackColor" [CharacterCasing]="ExtremitiesPhysicalExamination?.CharacterCasing" [Enabled]="ExtremitiesPhysicalExamination?.Enabled" [Font]="ExtremitiesPhysicalExamination?.Font" [ForeColor]="ExtremitiesPhysicalExamination?.ForeColor" [height]="ExtremitiesPhysicalExamination?.Height" [InputFormat]="ExtremitiesPhysicalExamination?.InputFormat" [InputTurkishCharacter]="ExtremitiesPhysicalExamination?.InputTurkishCharacter" [IsNonNumeric]="ExtremitiesPhysicalExamination?.IsNonNumeric" [MultiLine]="ExtremitiesPhysicalExamination?.Multiline" [ReadOnly]="ExtremitiesPhysicalExamination?.ReadOnly" [Required]="ExtremitiesPhysicalExamination?.Required" [TabIndex]="ExtremitiesPhysicalExamination?.TabIndex" [TextAlign]="ExtremitiesPhysicalExamination?.TextAlign" [Text]="visitDetailsFormViewModel?._ChildGrowthVisits?.Extremities" [Visible]="ExtremitiesPhysicalExamination?.Visible" id="A10633" data-tid="A340295"></hvl-text-box>
+                </div>
+           
+         
+                <div class="col-sm-6" id="A10635" data-tid="A340296">
+                    <label class="control-label" id="A10636" data-tid="A340297">
+                        Kardiyovasküler Sistem
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onCardiovascularSystemPhysicalExaminationChanged($event)" [BackColor]="CardiovascularSystemPhysicalExamination?.BackColor" [CharacterCasing]="CardiovascularSystemPhysicalExamination?.CharacterCasing" [Enabled]="CardiovascularSystemPhysicalExamination?.Enabled" [Font]="CardiovascularSystemPhysicalExamination?.Font" [ForeColor]="CardiovascularSystemPhysicalExamination?.ForeColor" [height]="CardiovascularSystemPhysicalExamination?.Height" [InputFormat]="CardiovascularSystemPhysicalExamination?.InputFormat" [InputTurkishCharacter]="CardiovascularSystemPhysicalExamination?.InputTurkishCharacter" [IsNonNumeric]="CardiovascularSystemPhysicalExamination?.IsNonNumeric" [MultiLine]="CardiovascularSystemPhysicalExamination?.Multiline" [ReadOnly]="CardiovascularSystemPhysicalExamination?.ReadOnly" [Required]="CardiovascularSystemPhysicalExamination?.Required" [TabIndex]="CardiovascularSystemPhysicalExamination?.TabIndex" [TextAlign]="CardiovascularSystemPhysicalExamination?.TextAlign" [Text]="visitDetailsFormViewModel?._ChildGrowthVisits?.CardiovascularSystem" [Visible]="CardiovascularSystemPhysicalExamination?.Visible" id="A10637" data-tid="A340298"></hvl-text-box>
+                </div>
+                <div class="col-sm-6" id="A10638" data-tid="A340299">
+                    <label class="control-label" id="A10639" data-tid="A340300">
+                        Günlük İzlem
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onDailyObservationsPhysicalExaminationChanged($event)" [BackColor]="DailyObservationsPhysicalExamination?.BackColor" [CharacterCasing]="DailyObservationsPhysicalExamination?.CharacterCasing" [Enabled]="DailyObservationsPhysicalExamination?.Enabled" [Font]="DailyObservationsPhysicalExamination?.Font" [ForeColor]="DailyObservationsPhysicalExamination?.ForeColor" [height]="DailyObservationsPhysicalExamination?.Height" [InputFormat]="DailyObservationsPhysicalExamination?.InputFormat" [InputTurkishCharacter]="DailyObservationsPhysicalExamination?.InputTurkishCharacter" [IsNonNumeric]="DailyObservationsPhysicalExamination?.IsNonNumeric" [MultiLine]="DailyObservationsPhysicalExamination?.Multiline" [ReadOnly]="DailyObservationsPhysicalExamination?.ReadOnly" [Required]="DailyObservationsPhysicalExamination?.Required" [TabIndex]="DailyObservationsPhysicalExamination?.TabIndex" [TextAlign]="DailyObservationsPhysicalExamination?.TextAlign" [Text]="visitDetailsFormViewModel?._ChildGrowthVisits?.DailyObservations" [Visible]="DailyObservationsPhysicalExamination?.Visible" id="A10640" data-tid="A340301"></hvl-text-box>
+                </div>
+          
+
+          
+                <div class="col-sm-6" id="A10642" data-tid="A340302">
+                    <label class="control-label" id="A10643" data-tid="A340303">
+                        Karın Muayenesi
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onAbdomenExaminationPhysicalExaminationChanged($event)" [BackColor]="AbdomenExaminationPhysicalExamination?.BackColor" [CharacterCasing]="AbdomenExaminationPhysicalExamination?.CharacterCasing" [Enabled]="AbdomenExaminationPhysicalExamination?.Enabled" [Font]="AbdomenExaminationPhysicalExamination?.Font" [ForeColor]="AbdomenExaminationPhysicalExamination?.ForeColor" [height]="AbdomenExaminationPhysicalExamination?.Height" [InputFormat]="AbdomenExaminationPhysicalExamination?.InputFormat" [InputTurkishCharacter]="AbdomenExaminationPhysicalExamination?.InputTurkishCharacter" [IsNonNumeric]="AbdomenExaminationPhysicalExamination?.IsNonNumeric" [MultiLine]="AbdomenExaminationPhysicalExamination?.Multiline" [ReadOnly]="AbdomenExaminationPhysicalExamination?.ReadOnly" [Required]="AbdomenExaminationPhysicalExamination?.Required" [TabIndex]="AbdomenExaminationPhysicalExamination?.TabIndex" [TextAlign]="AbdomenExaminationPhysicalExamination?.TextAlign" [Text]="visitDetailsFormViewModel?._ChildGrowthVisits?.AbdomenExamination" [Visible]="AbdomenExaminationPhysicalExamination?.Visible" id="A10644" data-tid="A340304"></hvl-text-box>
+                </div>
+                <div class="col-sm-6" id="A10645" data-tid="A340305">
+                    <label class="control-label" id="A10646" data-tid="A340306">
+                        Öneriler
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onSuggestionsPhysicalExaminationChanged($event)" [BackColor]="SuggestionsPhysicalExamination?.BackColor" [CharacterCasing]="SuggestionsPhysicalExamination?.CharacterCasing" [Enabled]="SuggestionsPhysicalExamination?.Enabled" [Font]="SuggestionsPhysicalExamination?.Font" [ForeColor]="SuggestionsPhysicalExamination?.ForeColor" [height]="SuggestionsPhysicalExamination?.Height" [InputFormat]="SuggestionsPhysicalExamination?.InputFormat" [InputTurkishCharacter]="SuggestionsPhysicalExamination?.InputTurkishCharacter" [IsNonNumeric]="SuggestionsPhysicalExamination?.IsNonNumeric" [MultiLine]="SuggestionsPhysicalExamination?.Multiline" [ReadOnly]="SuggestionsPhysicalExamination?.ReadOnly" [Required]="SuggestionsPhysicalExamination?.Required" [TabIndex]="SuggestionsPhysicalExamination?.TabIndex" [TextAlign]="SuggestionsPhysicalExamination?.TextAlign" [Text]="visitDetailsFormViewModel?._ChildGrowthVisits?.PhysicalExamSuggestions" [Visible]="SuggestionsPhysicalExamination?.Visible" id="A10647" data-tid="A340307"></hvl-text-box>
+                </div>
+           
+        
+                <div class="col-sm-6" style="padding-bottom:15px;" id="A10649" data-tid="A340308">
+                    <label class="control-label" id="A10650" data-tid="A340309">
+                        Anal, Genital, Lokal Muayene
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onAnalGenitalLocalExaminationPhysicalExaminationChanged($event)" [BackColor]="AnalGenitalLocalExaminationPhysicalExamination?.BackColor" [CharacterCasing]="AnalGenitalLocalExaminationPhysicalExamination?.CharacterCasing" [Enabled]="AnalGenitalLocalExaminationPhysicalExamination?.Enabled" [Font]="AnalGenitalLocalExaminationPhysicalExamination?.Font" [ForeColor]="AnalGenitalLocalExaminationPhysicalExamination?.ForeColor" [height]="AnalGenitalLocalExaminationPhysicalExamination?.Height" [InputFormat]="AnalGenitalLocalExaminationPhysicalExamination?.InputFormat" [InputTurkishCharacter]="AnalGenitalLocalExaminationPhysicalExamination?.InputTurkishCharacter" [IsNonNumeric]="AnalGenitalLocalExaminationPhysicalExamination?.IsNonNumeric" [MultiLine]="AnalGenitalLocalExaminationPhysicalExamination?.Multiline" [ReadOnly]="AnalGenitalLocalExaminationPhysicalExamination?.ReadOnly" [Required]="AnalGenitalLocalExaminationPhysicalExamination?.Required" [TabIndex]="AnalGenitalLocalExaminationPhysicalExamination?.TabIndex" [TextAlign]="AnalGenitalLocalExaminationPhysicalExamination?.TextAlign" [Text]="visitDetailsFormViewModel?._ChildGrowthVisits?.AnalGenitalLocalExamination" [Visible]="AnalGenitalLocalExaminationPhysicalExamination?.Visible" id="A10651" data-tid="A340310"></hvl-text-box>
+                </div>
+                <div class="col-sm-6" style="padding-bottom:15px;" id="A10652" data-tid="A340311">
+                    <label class="control-label" id="A10653" data-tid="A340312">
+                        Detaylar
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onDetailsPhysicalExaminationChanged($event)" [BackColor]="DetailsPhysicalExamination?.BackColor" [CharacterCasing]="DetailsPhysicalExamination?.CharacterCasing" [Enabled]="DetailsPhysicalExamination?.Enabled" [Font]="DetailsPhysicalExamination?.Font" [ForeColor]="DetailsPhysicalExamination?.ForeColor" [height]="DetailsPhysicalExamination?.Height" [InputFormat]="DetailsPhysicalExamination?.InputFormat" [InputTurkishCharacter]="DetailsPhysicalExamination?.InputTurkishCharacter" [IsNonNumeric]="DetailsPhysicalExamination?.IsNonNumeric" [MultiLine]="DetailsPhysicalExamination?.Multiline" [ReadOnly]="DetailsPhysicalExamination?.ReadOnly" [Required]="DetailsPhysicalExamination?.Required" [TabIndex]="DetailsPhysicalExamination?.TabIndex" [TextAlign]="DetailsPhysicalExamination?.TextAlign" [Text]="visitDetailsFormViewModel?._ChildGrowthVisits?.Details" [Visible]="DetailsPhysicalExamination?.Visible" id="A10654" data-tid="A340313"></hvl-text-box>
+                </div>
+          
+
+        </dxi-item>
+        <dxi-item class="tabpanel-item" title="Motor Gelişim Bilgileri" i18n-title="@@M19141" id="A10655" data-tid="A340314">
+
+      
+                <hvl-group-box class="col-sm-12" style="padding-top:15px;" [Text]="Seperator1.Text" id="A10657" data-tid="A340315">
+
+                    <div class="row" id="A10658" data-tid="A340316">
+                        <div class="col-sm-12" id="A10659" data-tid="A340317">
+                            <hvl-checkbox #Validation (ValueChange)="SittingWoSupportCheckAllMotorDevelopment.Value=$event;onSittingWoSupportCheckAllChange($event)" [AllowThreeState]="SittingWoSupportCheckAllMotorDevelopment?.ThreeState" [BackColor]="SittingWoSupportCheckAllMotorDevelopment?.BackColor" [Enabled]="SittingWoSupportCheckAllMotorDevelopment?.Enabled" [Font]="SittingWoSupportCheckAllMotorDevelopment?.Font" [ForeColor]="SittingWoSupportCheckAllMotorDevelopment?.ForeColor" [IsTitleLeft]="SittingWoSupportCheckAllMotorDevelopment?.IsTitleLeft" [Margin]="SittingWoSupportCheckAllMotorDevelopment?.Margin" [Name]="SittingWoSupportCheckAllMotorDevelopment?.Name" [ReadOnly]="SittingWoSupportCheckAllMotorDevelopment?.ReadOnly" [TabIndex]="SittingWoSupportCheckAllMotorDevelopment?.TabIndex" [TitleTopPadding]="SittingWoSupportCheckAllMotorDevelopment?.TitleTopPadding" [Title]="SittingWoSupportCheckAllMotorDevelopment?.Title" [Value]="SittingWoSupportCheckAllMotorDevelopment?.Value" [Visible]="SittingWoSupportCheckAllMotorDevelopment?.Visible" id="A10660" data-tid="A340318"></hvl-checkbox>
+                        </div>
+                    </div>
+                    <div class="row" id="A10661" data-tid="A340319">
+                        <div class="col-sm-12" id="A10662" data-tid="A340320">
+                            <hvl-checkbox #Validation (ValueChange)="onSittingWoSupport1MotorDevelopmentChanged($event)" [AllowThreeState]="SittingWoSupport1MotorDevelopment?.ThreeState" [BackColor]="SittingWoSupport1MotorDevelopment?.BackColor" [Enabled]="SittingWoSupport1MotorDevelopment?.Enabled" [Font]="SittingWoSupport1MotorDevelopment?.Font" [ForeColor]="SittingWoSupport1MotorDevelopment?.ForeColor" [IsTitleLeft]="SittingWoSupport1MotorDevelopment?.IsTitleLeft" [Margin]="SittingWoSupport1MotorDevelopment?.Margin" [ReadOnly]="SittingWoSupport1MotorDevelopment?.ReadOnly" [TabIndex]="SittingWoSupport1MotorDevelopment?.TabIndex" [TitleTopPadding]="SittingWoSupport1MotorDevelopment?.TitleTopPadding" [Title]="SittingWoSupport1MotorDevelopment?.Title" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.SittingWoSupport1" [Visible]="SittingWoSupport1MotorDevelopment?.Visible" id="A10663" data-tid="A340321"></hvl-checkbox>
+                        </div>
+                    </div>
+                    <div class="row" id="A10664" data-tid="A340322">
+                        <div class="col-sm-12" id="A10665" data-tid="A340323">
+                            <hvl-checkbox #Validation (ValueChange)="onSittingWoSupport2MotorDevelopmentChanged($event)" [AllowThreeState]="SittingWoSupport2MotorDevelopment?.ThreeState" [BackColor]="SittingWoSupport2MotorDevelopment?.BackColor" [Enabled]="SittingWoSupport2MotorDevelopment?.Enabled" [Font]="SittingWoSupport2MotorDevelopment?.Font" [ForeColor]="SittingWoSupport2MotorDevelopment?.ForeColor" [IsTitleLeft]="SittingWoSupport2MotorDevelopment?.IsTitleLeft" [Margin]="SittingWoSupport2MotorDevelopment?.Margin" [ReadOnly]="SittingWoSupport2MotorDevelopment?.ReadOnly" [TabIndex]="SittingWoSupport2MotorDevelopment?.TabIndex" [TitleTopPadding]="SittingWoSupport2MotorDevelopment?.TitleTopPadding" [Title]="SittingWoSupport2MotorDevelopment?.Title" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.SittingWoSupport2" [Visible]="SittingWoSupport2MotorDevelopment?.Visible" id="A10666" data-tid="A340324"></hvl-checkbox>
+                        </div>
+                    </div>
+
+                </hvl-group-box>
+         
+         
+                <hvl-group-box class="col-sm-12" [Text]="Seperator2.Text" id="A10668" data-tid="A340325">
+                    <div class="row" id="A10669" data-tid="A340326">
+                        <div class="col-sm-12" id="A10670" data-tid="A340327">
+                            <hvl-checkbox #Validation (ValueChange)="StandingWAssistanceCheckAllMotorDevelopment.Value=$event;onStandingWAssistanceCheckAllChange($event)" [AllowThreeState]="StandingWAssistanceCheckAllMotorDevelopment?.ThreeState" [BackColor]="StandingWAssistanceCheckAllMotorDevelopment?.BackColor" [Enabled]="StandingWAssistanceCheckAllMotorDevelopment?.Enabled" [Font]="StandingWAssistanceCheckAllMotorDevelopment?.Font" [ForeColor]="StandingWAssistanceCheckAllMotorDevelopment?.ForeColor" [IsTitleLeft]="StandingWAssistanceCheckAllMotorDevelopment?.IsTitleLeft" [Margin]="StandingWAssistanceCheckAllMotorDevelopment?.Margin" [Name]="StandingWAssistanceCheckAllMotorDevelopment?.Name" [ReadOnly]="StandingWAssistanceCheckAllMotorDevelopment?.ReadOnly" [TabIndex]="StandingWAssistanceCheckAllMotorDevelopment?.TabIndex" [TitleTopPadding]="StandingWAssistanceCheckAllMotorDevelopment?.TitleTopPadding" [Title]="StandingWAssistanceCheckAllMotorDevelopment?.Title" [Value]="StandingWAssistanceCheckAllMotorDevelopment?.Value" [Visible]="StandingWAssistanceCheckAllMotorDevelopment?.Visible" id="A10671" data-tid="A340328"></hvl-checkbox>
+                        </div>
+                    </div>
+                    <div class="row" id="A10672" data-tid="A340329">
+                        <div class="col-sm-12" id="A10673" data-tid="A340330">
+                            <hvl-checkbox #Validation (ValueChange)="onStandingWAssistance2MotorDevelopmentChanged($event)" [AllowThreeState]="StandingWAssistance2MotorDevelopment?.ThreeState" [BackColor]="StandingWAssistance2MotorDevelopment?.BackColor" [Enabled]="StandingWAssistance2MotorDevelopment?.Enabled" [Font]="StandingWAssistance2MotorDevelopment?.Font" [ForeColor]="StandingWAssistance2MotorDevelopment?.ForeColor" [IsTitleLeft]="StandingWAssistance2MotorDevelopment?.IsTitleLeft" [Margin]="StandingWAssistance2MotorDevelopment?.Margin" [ReadOnly]="StandingWAssistance2MotorDevelopment?.ReadOnly" [TabIndex]="StandingWAssistance2MotorDevelopment?.TabIndex" [TitleTopPadding]="StandingWAssistance2MotorDevelopment?.TitleTopPadding" [Title]="StandingWAssistance2MotorDevelopment?.Title" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.StandingWAssistance2" [Visible]="StandingWAssistance2MotorDevelopment?.Visible" id="A10674" data-tid="A340331"></hvl-checkbox>
+                        </div>
+                    </div>
+                    <div class="row" id="A10675" data-tid="A340332">
+                        <div class="col-sm-12" id="A10676" data-tid="A340333">
+                            <hvl-checkbox #Validation (ValueChange)="onStandingWAssistance3MotorDevelopmentChanged($event)" [AllowThreeState]="StandingWAssistance3MotorDevelopment?.ThreeState" [BackColor]="StandingWAssistance3MotorDevelopment?.BackColor" [Enabled]="StandingWAssistance3MotorDevelopment?.Enabled" [Font]="StandingWAssistance3MotorDevelopment?.Font" [ForeColor]="StandingWAssistance3MotorDevelopment?.ForeColor" [IsTitleLeft]="StandingWAssistance3MotorDevelopment?.IsTitleLeft" [Margin]="StandingWAssistance3MotorDevelopment?.Margin" [ReadOnly]="StandingWAssistance3MotorDevelopment?.ReadOnly" [TabIndex]="StandingWAssistance3MotorDevelopment?.TabIndex" [TitleTopPadding]="StandingWAssistance3MotorDevelopment?.TitleTopPadding" [Title]="StandingWAssistance3MotorDevelopment?.Title" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.StandingWAssistance3" [Visible]="StandingWAssistance3MotorDevelopment?.Visible" id="A10677" data-tid="A340334"></hvl-checkbox>
+                        </div>
+                    </div>
+                    <div class="row" id="A10678" data-tid="A340335">
+                        <div class="col-sm-12" id="A10679" data-tid="A340336">
+                            <hvl-checkbox #Validation (ValueChange)="onStandingWAssistance1MotorDevelopmentChanged($event)" [AllowThreeState]="StandingWAssistance1MotorDevelopment?.ThreeState" [BackColor]="StandingWAssistance1MotorDevelopment?.BackColor" [Enabled]="StandingWAssistance1MotorDevelopment?.Enabled" [Font]="StandingWAssistance1MotorDevelopment?.Font" [ForeColor]="StandingWAssistance1MotorDevelopment?.ForeColor" [IsTitleLeft]="StandingWAssistance1MotorDevelopment?.IsTitleLeft" [Margin]="StandingWAssistance1MotorDevelopment?.Margin" [ReadOnly]="StandingWAssistance1MotorDevelopment?.ReadOnly" [TabIndex]="StandingWAssistance1MotorDevelopment?.TabIndex" [TitleTopPadding]="StandingWAssistance1MotorDevelopment?.TitleTopPadding" [Title]="StandingWAssistance1MotorDevelopment?.Title" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.StandingWAssistance1" [Visible]="StandingWAssistance1MotorDevelopment?.Visible" id="A10680" data-tid="A340337"></hvl-checkbox>
+                        </div>
+                    </div>
+                </hvl-group-box>
+          
+         
+                <hvl-group-box class="col-sm-12" [Text]="Seperator4.Text" id="A10682" data-tid="A340338">
+
+                    <div class="row" id="A10683" data-tid="A340339">
+                        <div class="col-sm-12" id="A10684" data-tid="A340340">
+                            <hvl-checkbox #Validation (ValueChange)="WalkingWAssistanceCheckAllMotorDevelopment.Value=$event;onWalkingWAssistanceCheckAllChange($event)" [AllowThreeState]="WalkingWAssistanceCheckAllMotorDevelopment?.ThreeState" [BackColor]="WalkingWAssistanceCheckAllMotorDevelopment?.BackColor" [Enabled]="WalkingWAssistanceCheckAllMotorDevelopment?.Enabled" [Font]="WalkingWAssistanceCheckAllMotorDevelopment?.Font" [ForeColor]="WalkingWAssistanceCheckAllMotorDevelopment?.ForeColor" [IsTitleLeft]="WalkingWAssistanceCheckAllMotorDevelopment?.IsTitleLeft" [Margin]="WalkingWAssistanceCheckAllMotorDevelopment?.Margin" [Name]="WalkingWAssistanceCheckAllMotorDevelopment?.Name" [ReadOnly]="WalkingWAssistanceCheckAllMotorDevelopment?.ReadOnly" [TabIndex]="WalkingWAssistanceCheckAllMotorDevelopment?.TabIndex" [TitleTopPadding]="WalkingWAssistanceCheckAllMotorDevelopment?.TitleTopPadding" [Title]="WalkingWAssistanceCheckAllMotorDevelopment?.Title" [Value]="WalkingWAssistanceCheckAllMotorDevelopment?.Value" [Visible]="WalkingWAssistanceCheckAllMotorDevelopment?.Visible" id="A10685" data-tid="A340341"></hvl-checkbox>
+                        </div>
+                    </div>
+                    <div class="row" id="A10686" data-tid="A340342">
+                        <div class="col-sm-12" id="A10687" data-tid="A340343">
+                            <hvl-checkbox #Validation (ValueChange)="onWalkingWAssistance1MotorDevelopmentChanged($event)" [AllowThreeState]="WalkingWAssistance1MotorDevelopment?.ThreeState" [BackColor]="WalkingWAssistance1MotorDevelopment?.BackColor" [Enabled]="WalkingWAssistance1MotorDevelopment?.Enabled" [Font]="WalkingWAssistance1MotorDevelopment?.Font" [ForeColor]="WalkingWAssistance1MotorDevelopment?.ForeColor" [IsTitleLeft]="WalkingWAssistance1MotorDevelopment?.IsTitleLeft" [Margin]="WalkingWAssistance1MotorDevelopment?.Margin" [ReadOnly]="WalkingWAssistance1MotorDevelopment?.ReadOnly" [TabIndex]="WalkingWAssistance1MotorDevelopment?.TabIndex" [TitleTopPadding]="WalkingWAssistance1MotorDevelopment?.TitleTopPadding" [Title]="WalkingWAssistance1MotorDevelopment?.Title" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.WalkingWAssistance1" [Visible]="WalkingWAssistance1MotorDevelopment?.Visible" id="A10688" data-tid="A340344"></hvl-checkbox>
+                        </div>
+                    </div>
+                    <div class="row" id="A10689" data-tid="A340345">
+                        <div class="col-sm-12" id="A10690" data-tid="A340346">
+                            <hvl-checkbox #Validation (ValueChange)="onWalkingWAssistance3MotorDevelopmentChanged($event)" [AllowThreeState]="WalkingWAssistance3MotorDevelopment?.ThreeState" [BackColor]="WalkingWAssistance3MotorDevelopment?.BackColor" [Enabled]="WalkingWAssistance3MotorDevelopment?.Enabled" [Font]="WalkingWAssistance3MotorDevelopment?.Font" [ForeColor]="WalkingWAssistance3MotorDevelopment?.ForeColor" [IsTitleLeft]="WalkingWAssistance3MotorDevelopment?.IsTitleLeft" [Margin]="WalkingWAssistance3MotorDevelopment?.Margin" [ReadOnly]="WalkingWAssistance3MotorDevelopment?.ReadOnly" [TabIndex]="WalkingWAssistance3MotorDevelopment?.TabIndex" [TitleTopPadding]="WalkingWAssistance3MotorDevelopment?.TitleTopPadding" [Title]="WalkingWAssistance3MotorDevelopment?.Title" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.WalkingWAssistance3" [Visible]="WalkingWAssistance3MotorDevelopment?.Visible" id="A10691" data-tid="A340347"></hvl-checkbox>
+                        </div>
+                    </div>
+                    <div class="row" id="A10692" data-tid="A340348">
+                        <div class="col-sm-12" id="A10693" data-tid="A340349">
+                            <hvl-checkbox #Validation (ValueChange)="onWalkingWAssistance4MotorDevelopmentChanged($event)" [AllowThreeState]="WalkingWAssistance4MotorDevelopment?.ThreeState" [BackColor]="WalkingWAssistance4MotorDevelopment?.BackColor" [Enabled]="WalkingWAssistance4MotorDevelopment?.Enabled" [Font]="WalkingWAssistance4MotorDevelopment?.Font" [ForeColor]="WalkingWAssistance4MotorDevelopment?.ForeColor" [IsTitleLeft]="WalkingWAssistance4MotorDevelopment?.IsTitleLeft" [Margin]="WalkingWAssistance4MotorDevelopment?.Margin" [ReadOnly]="WalkingWAssistance4MotorDevelopment?.ReadOnly" [TabIndex]="WalkingWAssistance4MotorDevelopment?.TabIndex" [TitleTopPadding]="WalkingWAssistance4MotorDevelopment?.TitleTopPadding" [Title]="WalkingWAssistance4MotorDevelopment?.Title" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.WalkingWAssistance4" [Visible]="WalkingWAssistance4MotorDevelopment?.Visible" id="A10694" data-tid="A340350"></hvl-checkbox>
+                        </div>
+                    </div>
+                    <div class="row" id="A10695" data-tid="A340351">
+                        <div class="col-sm-12" id="A10696" data-tid="A340352">
+                            <hvl-checkbox #Validation (ValueChange)="onWalkingWAssistance2MotorDevelopmentChanged($event)" [AllowThreeState]="WalkingWAssistance2MotorDevelopment?.ThreeState" [BackColor]="WalkingWAssistance2MotorDevelopment?.BackColor" [Enabled]="WalkingWAssistance2MotorDevelopment?.Enabled" [Font]="WalkingWAssistance2MotorDevelopment?.Font" [ForeColor]="WalkingWAssistance2MotorDevelopment?.ForeColor" [IsTitleLeft]="WalkingWAssistance2MotorDevelopment?.IsTitleLeft" [Margin]="WalkingWAssistance2MotorDevelopment?.Margin" [ReadOnly]="WalkingWAssistance2MotorDevelopment?.ReadOnly" [TabIndex]="WalkingWAssistance2MotorDevelopment?.TabIndex" [TitleTopPadding]="WalkingWAssistance2MotorDevelopment?.TitleTopPadding" [Title]="WalkingWAssistance2MotorDevelopment?.Title" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.WalkingWAssistance2" [Visible]="WalkingWAssistance2MotorDevelopment?.Visible" id="A10697" data-tid="A340353"></hvl-checkbox>
+                        </div>
+                    </div>
+
+
+                </hvl-group-box>
+          
+           
+                <hvl-group-box class="col-sm-12" [Text]="Seperator5.Text" id="A10699" data-tid="A340354">
+                    <div class="row" id="A10700" data-tid="A340355">
+                        <div class="col-sm-12" id="A10701" data-tid="A340356">
+                            <hvl-checkbox #Validation (ValueChange)="StandingAloneCheckAllMotorDevelopment.Value=$event;onStandingAloneCheckAllChange($event)" [AllowThreeState]="StandingAloneCheckAllMotorDevelopment?.ThreeState" [BackColor]="StandingAloneCheckAllMotorDevelopment?.BackColor" [Enabled]="StandingAloneCheckAllMotorDevelopment?.Enabled" [Font]="StandingAloneCheckAllMotorDevelopment?.Font" [ForeColor]="StandingAloneCheckAllMotorDevelopment?.ForeColor" [IsTitleLeft]="StandingAloneCheckAllMotorDevelopment?.IsTitleLeft" [Margin]="StandingAloneCheckAllMotorDevelopment?.Margin" [Name]="StandingAloneCheckAllMotorDevelopment?.Name" [ReadOnly]="StandingAloneCheckAllMotorDevelopment?.ReadOnly" [TabIndex]="StandingAloneCheckAllMotorDevelopment?.TabIndex" [TitleTopPadding]="StandingAloneCheckAllMotorDevelopment?.TitleTopPadding" [Title]="StandingAloneCheckAllMotorDevelopment?.Title" [Value]="StandingAloneCheckAllMotorDevelopment?.Value" [Visible]="StandingAloneCheckAllMotorDevelopment?.Visible" id="A10702" data-tid="A340357"></hvl-checkbox>
+                        </div>
+                    </div>
+                    <div class="row" id="A10703" data-tid="A340358">
+                        <div class="col-sm-12" id="A10704" data-tid="A340359">
+                            <hvl-checkbox #Validation (ValueChange)="onStandingAlone2MotorDevelopmentChanged($event)" [AllowThreeState]="StandingAlone2MotorDevelopment?.ThreeState" [BackColor]="StandingAlone2MotorDevelopment?.BackColor" [Enabled]="StandingAlone2MotorDevelopment?.Enabled" [Font]="StandingAlone2MotorDevelopment?.Font" [ForeColor]="StandingAlone2MotorDevelopment?.ForeColor" [IsTitleLeft]="StandingAlone2MotorDevelopment?.IsTitleLeft" [Margin]="StandingAlone2MotorDevelopment?.Margin" [ReadOnly]="StandingAlone2MotorDevelopment?.ReadOnly" [TabIndex]="StandingAlone2MotorDevelopment?.TabIndex" [TitleTopPadding]="StandingAlone2MotorDevelopment?.TitleTopPadding" [Title]="StandingAlone2MotorDevelopment?.Title" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.StandingAlone2" [Visible]="StandingAlone2MotorDevelopment?.Visible" id="A10705" data-tid="A340360"></hvl-checkbox>
+                        </div>
+                    </div>
+                    <div class="row" id="A10706" data-tid="A340361">
+                        <div class="col-sm-12" id="A10707" data-tid="A340362">
+                            <hvl-checkbox #Validation (ValueChange)="onStandingAlone3MotorDevelopmentChanged($event)" [AllowThreeState]="StandingAlone3MotorDevelopment?.ThreeState" [BackColor]="StandingAlone3MotorDevelopment?.BackColor" [Enabled]="StandingAlone3MotorDevelopment?.Enabled" [Font]="StandingAlone3MotorDevelopment?.Font" [ForeColor]="StandingAlone3MotorDevelopment?.ForeColor" [IsTitleLeft]="StandingAlone3MotorDevelopment?.IsTitleLeft" [Margin]="StandingAlone3MotorDevelopment?.Margin" [ReadOnly]="StandingAlone3MotorDevelopment?.ReadOnly" [TabIndex]="StandingAlone3MotorDevelopment?.TabIndex" [TitleTopPadding]="StandingAlone3MotorDevelopment?.TitleTopPadding" [Title]="StandingAlone3MotorDevelopment?.Title" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.StandingAlone3" [Visible]="StandingAlone3MotorDevelopment?.Visible" id="A10708" data-tid="A340363"></hvl-checkbox>
+                        </div>
+                    </div>
+                    <div class="row" id="A10709" data-tid="A340364">
+                        <div class="col-sm-12" id="A10710" data-tid="A340365">
+                            <hvl-checkbox #Validation (ValueChange)="onStandingAlone4MotorDevelopmentChanged($event)" [AllowThreeState]="StandingAlone4MotorDevelopment?.ThreeState" [BackColor]="StandingAlone4MotorDevelopment?.BackColor" [Enabled]="StandingAlone4MotorDevelopment?.Enabled" [Font]="StandingAlone4MotorDevelopment?.Font" [ForeColor]="StandingAlone4MotorDevelopment?.ForeColor" [IsTitleLeft]="StandingAlone4MotorDevelopment?.IsTitleLeft" [Margin]="StandingAlone4MotorDevelopment?.Margin" [ReadOnly]="StandingAlone4MotorDevelopment?.ReadOnly" [TabIndex]="StandingAlone4MotorDevelopment?.TabIndex" [TitleTopPadding]="StandingAlone4MotorDevelopment?.TitleTopPadding" [Title]="StandingAlone4MotorDevelopment?.Title" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.StandingAlone4" [Visible]="StandingAlone4MotorDevelopment?.Visible" id="A10711" data-tid="A340366"></hvl-checkbox>
+                        </div>
+                    </div>
+                    <div class="row" id="A10712" data-tid="A340367">
+                        <div class="col-sm-12" id="A10713" data-tid="A340368">
+                            <hvl-checkbox #Validation (ValueChange)="onStandingAlone1MotorDevelopmentChanged($event)" [AllowThreeState]="StandingAlone1MotorDevelopment?.ThreeState" [BackColor]="StandingAlone1MotorDevelopment?.BackColor" [Enabled]="StandingAlone1MotorDevelopment?.Enabled" [Font]="StandingAlone1MotorDevelopment?.Font" [ForeColor]="StandingAlone1MotorDevelopment?.ForeColor" [IsTitleLeft]="StandingAlone1MotorDevelopment?.IsTitleLeft" [Margin]="StandingAlone1MotorDevelopment?.Margin" [ReadOnly]="StandingAlone1MotorDevelopment?.ReadOnly" [TabIndex]="StandingAlone1MotorDevelopment?.TabIndex" [TitleTopPadding]="StandingAlone1MotorDevelopment?.TitleTopPadding" [Title]="StandingAlone1MotorDevelopment?.Title" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.StandingAlone1" [Visible]="StandingAlone1MotorDevelopment?.Visible" id="A10714" data-tid="A340369"></hvl-checkbox>
+                        </div>
+                    </div>
+
+                </hvl-group-box>
+          
+            
+                <hvl-group-box class="col-sm-12" [Text]="Seperator6.Text" id="A10716" data-tid="A340370">
+                    <div class="row" id="A10717" data-tid="A340371">
+                        <div class="col-sm-12" id="A10718" data-tid="A340372">
+                            <hvl-checkbox #Validation (ValueChange)="WalkingAloneCheckAllMotorDevelopment.Value=$event;onWalkingAloneCheckAllChange($event)" [AllowThreeState]="WalkingAloneCheckAllMotorDevelopment?.ThreeState" [BackColor]="WalkingAloneCheckAllMotorDevelopment?.BackColor" [Enabled]="WalkingAloneCheckAllMotorDevelopment?.Enabled" [Font]="WalkingAloneCheckAllMotorDevelopment?.Font" [ForeColor]="WalkingAloneCheckAllMotorDevelopment?.ForeColor" [IsTitleLeft]="WalkingAloneCheckAllMotorDevelopment?.IsTitleLeft" [Margin]="WalkingAloneCheckAllMotorDevelopment?.Margin" [Name]="WalkingAloneCheckAllMotorDevelopment?.Name" [ReadOnly]="WalkingAloneCheckAllMotorDevelopment?.ReadOnly" [TabIndex]="WalkingAloneCheckAllMotorDevelopment?.TabIndex" [TitleTopPadding]="WalkingAloneCheckAllMotorDevelopment?.TitleTopPadding" [Title]="WalkingAloneCheckAllMotorDevelopment?.Title" [Value]="WalkingAloneCheckAllMotorDevelopment?.Value" [Visible]="WalkingAloneCheckAllMotorDevelopment?.Visible" id="A10719" data-tid="A340373"></hvl-checkbox>
+                        </div>
+                    </div>
+                    <div class="row" id="A10720" data-tid="A340374">
+                        <div class="col-sm-12" id="A10721" data-tid="A340375">
+                            <hvl-checkbox #Validation (ValueChange)="onWalkingAlone1MotorDevelopmentChanged($event)" [AllowThreeState]="WalkingAlone1MotorDevelopment?.ThreeState" [BackColor]="WalkingAlone1MotorDevelopment?.BackColor" [Enabled]="WalkingAlone1MotorDevelopment?.Enabled" [Font]="WalkingAlone1MotorDevelopment?.Font" [ForeColor]="WalkingAlone1MotorDevelopment?.ForeColor" [IsTitleLeft]="WalkingAlone1MotorDevelopment?.IsTitleLeft" [Margin]="WalkingAlone1MotorDevelopment?.Margin" [ReadOnly]="WalkingAlone1MotorDevelopment?.ReadOnly" [TabIndex]="WalkingAlone1MotorDevelopment?.TabIndex" [TitleTopPadding]="WalkingAlone1MotorDevelopment?.TitleTopPadding" [Title]="WalkingAlone1MotorDevelopment?.Title" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.WalkingAlone1" [Visible]="WalkingAlone1MotorDevelopment?.Visible" id="A10722" data-tid="A340376"></hvl-checkbox>
+                        </div>
+                    </div>
+                    <div class="row" id="A10723" data-tid="A340377">
+                        <div class="col-sm-12" id="A10724" data-tid="A340378">
+                            <hvl-checkbox #Validation (ValueChange)="onWalkingAlone3MotorDevelopmentChanged($event)" [AllowThreeState]="WalkingAlone3MotorDevelopment?.ThreeState" [BackColor]="WalkingAlone3MotorDevelopment?.BackColor" [Enabled]="WalkingAlone3MotorDevelopment?.Enabled" [Font]="WalkingAlone3MotorDevelopment?.Font" [ForeColor]="WalkingAlone3MotorDevelopment?.ForeColor" [IsTitleLeft]="WalkingAlone3MotorDevelopment?.IsTitleLeft" [Margin]="WalkingAlone3MotorDevelopment?.Margin" [ReadOnly]="WalkingAlone3MotorDevelopment?.ReadOnly" [TabIndex]="WalkingAlone3MotorDevelopment?.TabIndex" [TitleTopPadding]="WalkingAlone3MotorDevelopment?.TitleTopPadding" [Title]="WalkingAlone3MotorDevelopment?.Title" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.WalkingAlone3" [Visible]="WalkingAlone3MotorDevelopment?.Visible" id="A10725" data-tid="A340379"></hvl-checkbox>
+                        </div>
+                    </div>
+                    <div class="row" id="A10726" data-tid="A340380">
+                        <div class="col-sm-12" id="A10727" data-tid="A340381">
+                            <hvl-checkbox #Validation (ValueChange)="onWalkingAlone2MotorDevelopmentChanged($event)" [AllowThreeState]="WalkingAlone2MotorDevelopment?.ThreeState" [BackColor]="WalkingAlone2MotorDevelopment?.BackColor" [Enabled]="WalkingAlone2MotorDevelopment?.Enabled" [Font]="WalkingAlone2MotorDevelopment?.Font" [ForeColor]="WalkingAlone2MotorDevelopment?.ForeColor" [IsTitleLeft]="WalkingAlone2MotorDevelopment?.IsTitleLeft" [Margin]="WalkingAlone2MotorDevelopment?.Margin" [ReadOnly]="WalkingAlone2MotorDevelopment?.ReadOnly" [TabIndex]="WalkingAlone2MotorDevelopment?.TabIndex" [TitleTopPadding]="WalkingAlone2MotorDevelopment?.TitleTopPadding" [Title]="WalkingAlone2MotorDevelopment?.Title" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.WalkingAlone2" [Visible]="WalkingAlone2MotorDevelopment?.Visible" id="A10728" data-tid="A340382"></hvl-checkbox>
+                        </div>
+                    </div>
+                </hvl-group-box>
+
+
+           
+         
+                <hvl-group-box class="col-sm-12" [Text]="Seperator3.Text" id="A10730" data-tid="A340383">
+                    <div class="row" id="A10731" data-tid="A340384">
+                        <div class="col-sm-12" id="A10732" data-tid="A340385">
+                            <hvl-checkbox #Validation (ValueChange)="CrawlingCheckAllMotorDevelopment.Value=$event;onCrawlingCheckAllChange($event)" [AllowThreeState]="CrawlingCheckAllMotorDevelopment?.ThreeState" [BackColor]="CrawlingCheckAllMotorDevelopment?.BackColor" [Enabled]="CrawlingCheckAllMotorDevelopment?.Enabled" [Font]="CrawlingCheckAllMotorDevelopment?.Font" [ForeColor]="CrawlingCheckAllMotorDevelopment?.ForeColor" [IsTitleLeft]="CrawlingCheckAllMotorDevelopment?.IsTitleLeft" [Margin]="CrawlingCheckAllMotorDevelopment?.Margin" [Name]="CrawlingCheckAllMotorDevelopment?.Name" [ReadOnly]="CrawlingCheckAllMotorDevelopment?.ReadOnly" [TabIndex]="CrawlingCheckAllMotorDevelopment?.TabIndex" [TitleTopPadding]="CrawlingCheckAllMotorDevelopment?.TitleTopPadding" [Title]="CrawlingCheckAllMotorDevelopment?.Title" [Value]="CrawlingCheckAllMotorDevelopment?.Value" [Visible]="CrawlingCheckAllMotorDevelopment?.Visible" id="A10733" data-tid="A340386"></hvl-checkbox>
+                        </div>
+                    </div>
+                    <div class="row" id="A10734" data-tid="A340387">
+                        <div class="col-sm-12" id="A10735" data-tid="A340388">
+                            <hvl-checkbox #Validation (ValueChange)="onCrawling2MotorDevelopmentChanged($event)" [AllowThreeState]="Crawling2MotorDevelopment?.ThreeState" [BackColor]="Crawling2MotorDevelopment?.BackColor" [Enabled]="Crawling2MotorDevelopment?.Enabled" [Font]="Crawling2MotorDevelopment?.Font" [ForeColor]="Crawling2MotorDevelopment?.ForeColor" [IsTitleLeft]="Crawling2MotorDevelopment?.IsTitleLeft" [Margin]="Crawling2MotorDevelopment?.Margin" [ReadOnly]="Crawling2MotorDevelopment?.ReadOnly" [TabIndex]="Crawling2MotorDevelopment?.TabIndex" [TitleTopPadding]="Crawling2MotorDevelopment?.TitleTopPadding" [Title]="Crawling2MotorDevelopment?.Title" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.Crawling2" [Visible]="Crawling2MotorDevelopment?.Visible" id="A10736" data-tid="A340389"></hvl-checkbox>
+                        </div>
+                    </div>
+                    <div class="row" id="A10737" data-tid="A340390">
+                        <div class="col-sm-12" id="A10738" data-tid="A340391">
+                            <hvl-checkbox #Validation (ValueChange)="onCrawling3MotorDevelopmentChanged($event)" [AllowThreeState]="Crawling3MotorDevelopment?.ThreeState" [BackColor]="Crawling3MotorDevelopment?.BackColor" [Enabled]="Crawling3MotorDevelopment?.Enabled" [Font]="Crawling3MotorDevelopment?.Font" [ForeColor]="Crawling3MotorDevelopment?.ForeColor" [IsTitleLeft]="Crawling3MotorDevelopment?.IsTitleLeft" [Margin]="Crawling3MotorDevelopment?.Margin" [ReadOnly]="Crawling3MotorDevelopment?.ReadOnly" [TabIndex]="Crawling3MotorDevelopment?.TabIndex" [TitleTopPadding]="Crawling3MotorDevelopment?.TitleTopPadding" [Title]="Crawling3MotorDevelopment?.Title" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.Crawling3" [Visible]="Crawling3MotorDevelopment?.Visible" id="A10739" data-tid="A340392"></hvl-checkbox>
+                        </div>
+                    </div>
+                    <div class="row" id="A10740" data-tid="A340393">
+                        <div class="col-sm-12" id="A10741" data-tid="A340394">
+                            <hvl-checkbox #Validation (ValueChange)="onCrawling1MotorDevelopmentChanged($event)" [AllowThreeState]="Crawling1MotorDevelopment?.ThreeState" [BackColor]="Crawling1MotorDevelopment?.BackColor" [Enabled]="Crawling1MotorDevelopment?.Enabled" [Font]="Crawling1MotorDevelopment?.Font" [ForeColor]="Crawling1MotorDevelopment?.ForeColor" [IsTitleLeft]="Crawling1MotorDevelopment?.IsTitleLeft" [Margin]="Crawling1MotorDevelopment?.Margin" [ReadOnly]="Crawling1MotorDevelopment?.ReadOnly" [TabIndex]="Crawling1MotorDevelopment?.TabIndex" [TitleTopPadding]="Crawling1MotorDevelopment?.TitleTopPadding" [Title]="Crawling1MotorDevelopment?.Title" [Value]="visitDetailsFormViewModel?._ChildGrowthVisits?.Crawling1" [Visible]="Crawling1MotorDevelopment?.Visible" id="A10742" data-tid="A340395"></hvl-checkbox>
+                        </div>
+                    </div>
+
+
+                </hvl-group-box>
+        
+        </dxi-item>
+        <dxi-item class="tabpanel-item" title="Hemşire Vizit Bilgileri" i18n-title="@@M15665" id="A10743" data-tid="A340396">
+
+            <div class="col-sm-12" id="A10744" data-tid="A340397">
+                <div class="col-sm-4" id="A10745" data-tid="A340398">
+                    <label class="control-label" id="A10746" data-tid="A340399">
+                        Hemşire
+                    </label>
+                    <hvl-list-box #Validation (SelectedObjectChange)="onResUserNurseVisitsInfoChanged($event)" [AutoCompleteDialogHeight]="ResUserNurseVisitsInfo?.AutoCompleteDialogHeight" [AutoCompleteMode]="ResUserNurseVisitsInfo?.AutoCompleteMode" [BackColor]="ResUserNurseVisitsInfo?.BackColor" [DefinitionName]="ResUserNurseVisitsInfo?.ListDefName" [DisplayExpressionsCache]="visitDetailsFormViewModel?.ListDefDisplayExpressions" [Enabled]="ResUserNurseVisitsInfo?.Enabled" [Font]="ResUserNurseVisitsInfo?.Font" [ForeColor]="ResUserNurseVisitsInfo?.ForeColor" [ListFilterExpression]="ResUserNurseVisitsInfo?.ListFilterExpression" [MinSearchLength]="ResUserNurseVisitsInfo?.MinSearchLength" [PopupDialogFieldConfig]="ResUserNurseVisitsInfo?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ResUserNurseVisitsInfo?.PopupDialogGridColumns" [PopupDialogHeight]="ResUserNurseVisitsInfo?.PopupDialogHeight" [PopupDialogTitle]="ResUserNurseVisitsInfo?.PopupDialogTitle" [PopupDialogWidth]="ResUserNurseVisitsInfo?.PopupDialogWidth" [ReadOnly]="ResUserNurseVisitsInfo?.ReadOnly" [SearchMode]="ResUserNurseVisitsInfo?.SearchMode" [SearchTimeout]="ResUserNurseVisitsInfo?.SearchTimeout" [SelectedObject]="visitDetailsFormViewModel?._ChildGrowthVisits?.ResUser" [TabIndex]="ResUserNurseVisitsInfo?.TabIndex" [Visible]="ResUserNurseVisitsInfo?.Visible" [width]="ResUserNurseVisitsInfo?.Width" id="A10747" data-tid="A340400"></hvl-list-box>
+                </div>
+            </div>
+
+           
+                <div class="col-sm-6" id="A10749" data-tid="A340401">
+                    <label class="control-label" id="A10750" data-tid="A340402">
+                        Bir ayda hehangi bir sebepten ikiden fazla ilaç alıyor mu?
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onQuestion1NurseVisitsInfoChanged($event)" [BackColor]="Question1NurseVisitsInfo?.BackColor" [CharacterCasing]="Question1NurseVisitsInfo?.CharacterCasing" [Enabled]="Question1NurseVisitsInfo?.Enabled" [Font]="Question1NurseVisitsInfo?.Font" [ForeColor]="Question1NurseVisitsInfo?.ForeColor" [height]="Question1NurseVisitsInfo?.Height" [InputFormat]="Question1NurseVisitsInfo?.InputFormat" [InputTurkishCharacter]="Question1NurseVisitsInfo?.InputTurkishCharacter" [IsNonNumeric]="Question1NurseVisitsInfo?.IsNonNumeric" [MultiLine]="Question1NurseVisitsInfo?.Multiline" [ReadOnly]="Question1NurseVisitsInfo?.ReadOnly" [Required]="Question1NurseVisitsInfo?.Required" [TabIndex]="Question1NurseVisitsInfo?.TabIndex" [TextAlign]="Question1NurseVisitsInfo?.TextAlign" [Text]="visitDetailsFormViewModel?._ChildGrowthVisits?.NurseObservationQ1" [Visible]="Question1NurseVisitsInfo?.Visible" id="A10751" data-tid="A340403"></hvl-text-box>
+                </div>
+                <div class="col-sm-6" id="A10752" data-tid="A340404">
+                    <label class="control-label" id="A10753" data-tid="A340405">
+                        Zekayla ilgili bir sorun olduğu düşünülüyor mu?
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onQuestion5NurseVisitsInfoChanged($event)" [BackColor]="Question5NurseVisitsInfo?.BackColor" [CharacterCasing]="Question5NurseVisitsInfo?.CharacterCasing" [Enabled]="Question5NurseVisitsInfo?.Enabled" [Font]="Question5NurseVisitsInfo?.Font" [ForeColor]="Question5NurseVisitsInfo?.ForeColor" [height]="Question5NurseVisitsInfo?.Height" [InputFormat]="Question5NurseVisitsInfo?.InputFormat" [InputTurkishCharacter]="Question5NurseVisitsInfo?.InputTurkishCharacter" [IsNonNumeric]="Question5NurseVisitsInfo?.IsNonNumeric" [MultiLine]="Question5NurseVisitsInfo?.Multiline" [ReadOnly]="Question5NurseVisitsInfo?.ReadOnly" [Required]="Question5NurseVisitsInfo?.Required" [TabIndex]="Question5NurseVisitsInfo?.TabIndex" [TextAlign]="Question5NurseVisitsInfo?.TextAlign" [Text]="visitDetailsFormViewModel?._ChildGrowthVisits?.NurseObservationQ5" [Visible]="Question5NurseVisitsInfo?.Visible" id="A10754" data-tid="A340406"></hvl-text-box>
+                </div>
+        
+
+          
+                <div class="col-sm-6" id="A10756" data-tid="A340407">
+                    <label class="control-label" id="A10757" data-tid="A340408">
+                        Duyma ile ilgili herhangi bir sorunu olduğu düşünülüyor mu?
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onQuestion2NurseVisitsInfoChanged($event)" [BackColor]="Question2NurseVisitsInfo?.BackColor" [CharacterCasing]="Question2NurseVisitsInfo?.CharacterCasing" [Enabled]="Question2NurseVisitsInfo?.Enabled" [Font]="Question2NurseVisitsInfo?.Font" [ForeColor]="Question2NurseVisitsInfo?.ForeColor" [height]="Question2NurseVisitsInfo?.Height" [InputFormat]="Question2NurseVisitsInfo?.InputFormat" [InputTurkishCharacter]="Question2NurseVisitsInfo?.InputTurkishCharacter" [IsNonNumeric]="Question2NurseVisitsInfo?.IsNonNumeric" [MultiLine]="Question2NurseVisitsInfo?.Multiline" [ReadOnly]="Question2NurseVisitsInfo?.ReadOnly" [Required]="Question2NurseVisitsInfo?.Required" [TabIndex]="Question2NurseVisitsInfo?.TabIndex" [TextAlign]="Question2NurseVisitsInfo?.TextAlign" [Text]="visitDetailsFormViewModel?._ChildGrowthVisits?.NurseObservationQ2" [Visible]="Question2NurseVisitsInfo?.Visible" id="A10758" data-tid="A340409"></hvl-text-box>
+                </div>
+                <div class="col-sm-6" id="A10759" data-tid="A340410">
+                    <label class="control-label" id="A10760" data-tid="A340411">
+                        Evde hemşire ziyaretine ihtiyacı var mı?
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onQuestion6NurseVisitsInfoChanged($event)" [BackColor]="Question6NurseVisitsInfo?.BackColor" [CharacterCasing]="Question6NurseVisitsInfo?.CharacterCasing" [Enabled]="Question6NurseVisitsInfo?.Enabled" [Font]="Question6NurseVisitsInfo?.Font" [ForeColor]="Question6NurseVisitsInfo?.ForeColor" [height]="Question6NurseVisitsInfo?.Height" [InputFormat]="Question6NurseVisitsInfo?.InputFormat" [InputTurkishCharacter]="Question6NurseVisitsInfo?.InputTurkishCharacter" [IsNonNumeric]="Question6NurseVisitsInfo?.IsNonNumeric" [MultiLine]="Question6NurseVisitsInfo?.Multiline" [ReadOnly]="Question6NurseVisitsInfo?.ReadOnly" [Required]="Question6NurseVisitsInfo?.Required" [TabIndex]="Question6NurseVisitsInfo?.TabIndex" [TextAlign]="Question6NurseVisitsInfo?.TextAlign" [Text]="visitDetailsFormViewModel?._ChildGrowthVisits?.NurseObservationQ6" [Visible]="Question6NurseVisitsInfo?.Visible" id="A10761" data-tid="A340412"></hvl-text-box>
+                </div>
+ 
+
+          
+                <div class="col-sm-6" id="A10763" data-tid="A340413">
+                    <label class="control-label" id="A10764" data-tid="A340414">
+                        Geç konuşma ile ilgili bir sorunu olduğu düşünülüyor mu?
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onQuestion3NurseVisitsInfoChanged($event)" [BackColor]="Question3NurseVisitsInfo?.BackColor" [CharacterCasing]="Question3NurseVisitsInfo?.CharacterCasing" [Enabled]="Question3NurseVisitsInfo?.Enabled" [Font]="Question3NurseVisitsInfo?.Font" [ForeColor]="Question3NurseVisitsInfo?.ForeColor" [height]="Question3NurseVisitsInfo?.Height" [InputFormat]="Question3NurseVisitsInfo?.InputFormat" [InputTurkishCharacter]="Question3NurseVisitsInfo?.InputTurkishCharacter" [IsNonNumeric]="Question3NurseVisitsInfo?.IsNonNumeric" [MultiLine]="Question3NurseVisitsInfo?.Multiline" [ReadOnly]="Question3NurseVisitsInfo?.ReadOnly" [Required]="Question3NurseVisitsInfo?.Required" [TabIndex]="Question3NurseVisitsInfo?.TabIndex" [TextAlign]="Question3NurseVisitsInfo?.TextAlign" [Text]="visitDetailsFormViewModel?._ChildGrowthVisits?.NurseObservationQ3" [Visible]="Question3NurseVisitsInfo?.Visible" id="A10765" data-tid="A340415"></hvl-text-box>
+                </div>
+                <div class="col-sm-6" id="A10766" data-tid="A340416">
+                    <label class="control-label" id="A10767" data-tid="A340417">
+                        Gelişimi ile ilgili bir sorun olduğu düşünülüyor mu?
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onQuestion7NurseVisitsInfoChanged($event)" [BackColor]="Question7NurseVisitsInfo?.BackColor" [CharacterCasing]="Question7NurseVisitsInfo?.CharacterCasing" [Enabled]="Question7NurseVisitsInfo?.Enabled" [Font]="Question7NurseVisitsInfo?.Font" [ForeColor]="Question7NurseVisitsInfo?.ForeColor" [height]="Question7NurseVisitsInfo?.Height" [InputFormat]="Question7NurseVisitsInfo?.InputFormat" [InputTurkishCharacter]="Question7NurseVisitsInfo?.InputTurkishCharacter" [IsNonNumeric]="Question7NurseVisitsInfo?.IsNonNumeric" [MultiLine]="Question7NurseVisitsInfo?.Multiline" [ReadOnly]="Question7NurseVisitsInfo?.ReadOnly" [Required]="Question7NurseVisitsInfo?.Required" [TabIndex]="Question7NurseVisitsInfo?.TabIndex" [TextAlign]="Question7NurseVisitsInfo?.TextAlign" [Text]="visitDetailsFormViewModel?._ChildGrowthVisits?.NurseObservationQ7" [Visible]="Question7NurseVisitsInfo?.Visible" id="A10768" data-tid="A340418"></hvl-text-box>
+                </div>
+        
+                <div class="col-sm-6" id="A10770" data-tid="A340419">
+                    <label class="control-label" style="padding-bottom:15px;" id="A10771" data-tid="A340420">
+                        Şaşılık ile ilgili bir sorun olduğu düşünülüyor mu?
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onQuestion4NurseVisitsInfoChanged($event)" [BackColor]="Question4NurseVisitsInfo?.BackColor" [CharacterCasing]="Question4NurseVisitsInfo?.CharacterCasing" [Enabled]="Question4NurseVisitsInfo?.Enabled" [Font]="Question4NurseVisitsInfo?.Font" [ForeColor]="Question4NurseVisitsInfo?.ForeColor" [height]="Question4NurseVisitsInfo?.Height" [InputFormat]="Question4NurseVisitsInfo?.InputFormat" [InputTurkishCharacter]="Question4NurseVisitsInfo?.InputTurkishCharacter" [IsNonNumeric]="Question4NurseVisitsInfo?.IsNonNumeric" [MultiLine]="Question4NurseVisitsInfo?.Multiline" [ReadOnly]="Question4NurseVisitsInfo?.ReadOnly" [Required]="Question4NurseVisitsInfo?.Required" [TabIndex]="Question4NurseVisitsInfo?.TabIndex" [TextAlign]="Question4NurseVisitsInfo?.TextAlign" [Text]="visitDetailsFormViewModel?._ChildGrowthVisits?.NurseObservationQ4" [Visible]="Question4NurseVisitsInfo?.Visible" id="A10772" data-tid="A340421"></hvl-text-box>
+                </div>
+                <div class="col-sm-6" style="padding-bottom:15px;" id="A10773" data-tid="A340422">
+                    <label class="control-label" id="A10774" data-tid="A340423">
+                        Diğer Detaylar, Öneriler
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onSuggestionsNurseVisitsInfoChanged($event)" [BackColor]="SuggestionsNurseVisitsInfo?.BackColor" [CharacterCasing]="SuggestionsNurseVisitsInfo?.CharacterCasing" [Enabled]="SuggestionsNurseVisitsInfo?.Enabled" [Font]="SuggestionsNurseVisitsInfo?.Font" [ForeColor]="SuggestionsNurseVisitsInfo?.ForeColor" [height]="SuggestionsNurseVisitsInfo?.Height" [InputFormat]="SuggestionsNurseVisitsInfo?.InputFormat" [InputTurkishCharacter]="SuggestionsNurseVisitsInfo?.InputTurkishCharacter" [IsNonNumeric]="SuggestionsNurseVisitsInfo?.IsNonNumeric" [MultiLine]="SuggestionsNurseVisitsInfo?.Multiline" [ReadOnly]="SuggestionsNurseVisitsInfo?.ReadOnly" [Required]="SuggestionsNurseVisitsInfo?.Required" [TabIndex]="SuggestionsNurseVisitsInfo?.TabIndex" [TextAlign]="SuggestionsNurseVisitsInfo?.TextAlign" [Text]="visitDetailsFormViewModel?._ChildGrowthVisits?.NurseSuggestions" [Visible]="SuggestionsNurseVisitsInfo?.Visible" id="A10775" data-tid="A340424"></hvl-text-box>
+                </div>
+          
+
+        </dxi-item>
+        <dxi-item class="tabpanel-item" title="Risk Faktörleri" i18n-title="@@M27485" id="A10776" data-tid="A340425">
+        
+                <div class="col-sm-12" id="A10778" data-tid="A340426">
+                    <label class="control-label" id="A10779" data-tid="A340427">
+                        Bebeğin/Çocuğun Beyin Gelişimini Etkileyebilecek Riskler
+                    </label>
+                    <dx-tag-box [items]="visitDetailsFormViewModel.SKRSBebeginCocugunBeyinGelisiminiEtkileyebilecekRisklerList" displayExpr="ADI" [(value)]="visitDetailsFormViewModel.SKRSBebeginCocugunBeyinGelisiminiEtkileyebilecekRisklers" [(selectedItems)]="visitDetailsFormViewModel.SKRSBebeginCocugunBeyinGelisiminiEtkileyebilecekRisklers" [readOnly]="false" id="A10780" data-tid="A340428">
+                    </dx-tag-box>
+                </div>
+           
+          
+                <div class="col-sm-12" style="padding-bottom:15px;" id="A10782" data-tid="A340429">
+                    <label class="control-label" id="A10783" data-tid="A340430">
+                        Bebekte Risk Faktörleri Bilgisi
+                    </label>
+                    <dx-tag-box [items]="visitDetailsFormViewModel.SKRSBebekteRiskFaktorleriList" displayExpr="ADI" [(value)]="visitDetailsFormViewModel.SKRSBebekteRiskFaktorleris" [(selectedItems)]="visitDetailsFormViewModel.SKRSBebekteRiskFaktorleris" [readOnly]="false" id="A10784" data-tid="A340431">
+                    </dx-tag-box>
+                </div>
+         
+        </dxi-item>
+        <dxi-item class="tabpanel-item" title="Ebeveyn Aktiviteleri" i18n-title="@@M27588" id="A10785" data-tid="A340432">
+          
+                <div class="col-sm-12" style="padding-bottom:15px;" id="A10787" data-tid="A340433">
+                    <label class="control-label" id="A10788" data-tid="A340434">
+                        Ebeveynin Psikolojik Gelişimi Destekleyici Aktiviteleri
+                    </label>
+                    <dx-tag-box [items]="visitDetailsFormViewModel.SKRSEbeveyninPsikolojikGelisimiDestekleyiciAktiviteleriList" displayExpr="ADI" [(value)]="visitDetailsFormViewModel.SKRSEbeveyninPsikolojikGelisimiDestekleyiciAktiviteleris" [(selectedItems)]="visitDetailsFormViewModel.SKRSEbeveyninPsikolojikGelisimiDestekleyiciAktiviteleris" [readOnly]="false" id="A10789" data-tid="A340435">
+                    </dx-tag-box>
+                </div>
+           
+        </dxi-item>
+    </dx-tab-panel>
+</form>  
+
+
+<div class="col-sm-2" id="A10790" data-tid="A340436">
+    <dx-popup showTitle="false" [width]="700" [height]="600" [(visible)]="showPopup" id="A10791" data-tid="A340437">
+        <div *dxTemplate="let data of 'content'" id="A10792" data-tid="A340438">
+            <div class="row" id="A10793" data-tid="A340439">
+                <div class="col-md-6" id="A10794" data-tid="A340440">
+
+                    <dx-select-box [dataSource]="graphInfo" displayExpr="Description" valueExpr="ID" placeholder="Grafik Seçimi Yapınız..." [showClearButton]="true" (onSelectionChanged)="GraphInfoChanged($event)" i18n-placeholder="@@M14965" id="A10795" data-tid="A340441">
+
+                    </dx-select-box>
+
+
+                </div>
+            </div>
+
+
+            <div class="row" id="A10796" data-tid="A340442">
+                <div class="col-md-12" id="A10797" data-tid="A340443">
+                    <div id="chart-percentile" data-tid="A340444">
+                        <dx-chart palette="Harmony Light" [dataSource]="percentileInfo" id="A10798" data-tid="A340445">
+
+                            <dxi-series valueField="P97" name="P97" id="A10799" data-tid="A340446"></dxi-series>
+                            <dxi-series valueField="P85" name="P85" id="A10800" data-tid="A340447"></dxi-series>
+                            <dxi-series valueField="P50" name="P50" id="A10801" data-tid="A340448"></dxi-series>
+                            <dxi-series valueField="P15" name="P15" id="A10802" data-tid="A340449"></dxi-series>
+                            <dxi-series valueField="P3" name="P3" id="A10803" data-tid="A340450"></dxi-series>
+                            <dxi-series valueField="PatientInfo" name="Hasta Bilgisi" color="red" i18n-name="@@M15160" id="A10804" data-tid="A340451"></dxi-series>
+
+                            <dxo-common-series-settings #seriesSettings argumentField="age" [type]="spline" id="A10805" data-tid="A340452">
+                                <dxo-point [visible]="false" id="A10806" data-tid="A340453"></dxo-point>
+                            </dxo-common-series-settings>
+                            <dxo-margin [bottom]="20" id="A10807" data-tid="A340454"></dxo-margin>
+                            <dxo-common-axis-settings id="A10808" data-tid="A340455">
+                                <dxo-grid [visible]="true" id="A10809" data-tid="A340456"></dxo-grid>
+                            </dxo-common-axis-settings>
+                            <dxo-legend verticalAlignment="top" horizontalAlignment="right" id="A10810" data-tid="A340457">
+                            </dxo-legend>
+                            <dxo-export [enabled]="false" id="A10811" data-tid="A340458"></dxo-export>
+                            <dxo-tooltip [enabled]="true" id="A10812" data-tid="A340459"></dxo-tooltip>
+                        </dx-chart>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </dx-popup>
+</div>
+
+

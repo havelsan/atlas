@@ -1,0 +1,143 @@
+﻿
+
+<NeStatePanelComponent [ObjectDefID]="nursingBodilyFluidAnalysisFormViewModel._NursingBodyFluidAnalysis.ObjectDefID" [CurrentStateDefID]="nursingBodilyFluidAnalysisFormViewModel._NursingBodyFluidAnalysis.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" id="A17864" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A351018">
+</NeStatePanelComponent>
+<div class="container-fluid" id="A17865" data-tid="A351019">
+    <form id="NursingBodilyFluidAnalysisForm" class="form-horizontal" role="form" data-tid="A351020">
+        
+    </form>
+    <div class="row" id="A17866" data-tid="A351021">
+        <label class="control-label col-sm-2" id="A17867" data-tid="A351022">
+            Uygulama Zamanı
+        </label>
+    </div>
+    <div class="row" id="A17868" data-tid="A351023">
+        <div class="col-sm-2" id="A17869" data-tid="A351024">
+            <hvl-date-picker #Validation (ValueChange)="onApplicationDateChanged($event)" [BackColor]="ApplicationDate?.BackColor" [CustomFormat]="ApplicationDate?.CustomFormat" [Enabled]="ApplicationDate?.Enabled" [Font]="ApplicationDate?.Font" [ForeColor]="ApplicationDate?.ForeColor" [Format]="ApplicationDate?.Format" [Max]="ApplicationDate?.Max" [Min]="ApplicationDate?.Min" [ReadOnly]="ApplicationDate?.ReadOnly" [Required]="ApplicationDate?.Required" [TabIndex]="ApplicationDate?.TabIndex" [Value]="nursingBodilyFluidAnalysisFormViewModel?._NursingBodyFluidAnalysis?.ApplicationDate" [Visible]="ApplicationDate?.Visible" id="A17870" data-tid="A351025"></hvl-date-picker>
+        </div>
+    </div>
+    <!--<div class="row">
+        <div class="col-sm-12">
+            <hvl-datagrid [AllowUserToAddRows]="FluidIntakeOutputGrids?.AllowUserToAddRows" [AllowUserToDeleteRows]="FluidIntakeOutputGrids?.AllowUserToDeleteRows" [Columns]="FluidIntakeOutputGridsColumns" [dataSource]="nursingBodilyFluidAnalysisFormViewModel?._NursingBodyFluidAnalysis?.FluidIntakeOutputGrids" [DeleteButtonWidth]="FluidIntakeOutputGrids?.DeleteButtonWidth" [DisplayExpressionsCache]="nursingBodilyFluidAnalysisFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="FluidIntakeOutputGrids?.ShowFilterRow" [FilterColumnName]="FluidIntakeOutputGrids?.FilterColumnName" [FilterLabel]="FluidIntakeOutputGrids?.FilterLabel" [Filter]="FluidIntakeOutputGrids?.Filter" [height]="FluidIntakeOutputGrids?.Height" [IsFilterLabelSingleLine]="FluidIntakeOutputGrids?.IsFilterLabelSingleLine" [ShowColumnHeaders]="FluidIntakeOutputGrids?.ColumnHeadersVisible" [ShowFilterCombo]="FluidIntakeOutputGrids?.ShowFilterCombo" [ShowTotalNumberOfRows]="FluidIntakeOutputGrids?.ShowTotalNumberOfRows"></hvl-datagrid>
+        </div>
+    </div>-->
+    <div class="row" id="A17871" data-tid="A351026">
+        <div class="col-sm-1" id="A17872" data-tid="A351027">
+            <i class="fa fa-plus-circle" (click)="openFluidIntakeOutputForm(null)" id="A17873" data-tid="A351028"></i>
+        </div>
+    </div>
+    <div class="row" id="A17874" data-tid="A351029">
+        <label class="control-label col-sm-1" id="A17875" data-tid="A351030">
+            Toplam Oral
+        </label>
+        <div class="col-sm-1" id="A17876" data-tid="A351031">
+            <hvl-number-box #Validation (ValueChange)="onTotalOralIntakeChanged($event)" [BackColor]="TotalOralIntake?.BackColor" [Enabled]="TotalOralIntake?.Enabled" [Font]="TotalOralIntake?.Font" [ForeColor]="TotalOralIntake?.ForeColor" [ReadOnly]="TotalOralIntake?.ReadOnly" [TabIndex]="TotalOralIntake?.TabIndex" [Value]="nursingBodilyFluidAnalysisFormViewModel?._NursingBodyFluidAnalysis?.TotalOralIntake" [Visible]="TotalOralIntake?.Visible" id="A17877" data-tid="A351032"></hvl-number-box>
+        </div>
+        <label class="control-label col-sm-1" id="A17878" data-tid="A351033">
+            Toplam İdrar
+        </label>
+        <div class="col-sm-1" id="A17879" data-tid="A351034">
+            <hvl-number-box #Validation (ValueChange)="onTotalUrineChanged($event)" [BackColor]="TotalUrine?.BackColor" [Enabled]="TotalUrine?.Enabled" [Font]="TotalUrine?.Font" [ForeColor]="TotalUrine?.ForeColor" [ReadOnly]="TotalUrine?.ReadOnly" [TabIndex]="TotalUrine?.TabIndex" [Value]="nursingBodilyFluidAnalysisFormViewModel?._NursingBodyFluidAnalysis?.TotalUrine" [Visible]="TotalUrine?.Visible" id="A17880" data-tid="A351035"></hvl-number-box>
+        </div>
+        <label class="control-label col-sm-1" id="A17881" data-tid="A351036">
+            Toplam NGC
+        </label>
+        <div class="col-sm-1" id="A17882" data-tid="A351037">
+            <hvl-number-box #Validation (ValueChange)="onTotalNGCChanged($event)" [BackColor]="TotalNGC?.BackColor" [Enabled]="TotalNGC?.Enabled" [Font]="TotalNGC?.Font" [ForeColor]="TotalNGC?.ForeColor" [ReadOnly]="TotalNGC?.ReadOnly" [TabIndex]="TotalNGC?.TabIndex" [Value]="nursingBodilyFluidAnalysisFormViewModel?._NursingBodyFluidAnalysis?.TotalNGC" [Visible]="TotalNGC?.Visible" id="A17883" data-tid="A351038"></hvl-number-box>
+        </div>
+        <label class="control-label col-sm-1" id="A17884" data-tid="A351039">
+            Toplam Aspirasyon
+        </label>
+        <div class="col-sm-1" id="A17885" data-tid="A351040">
+            <hvl-number-box #Validation (ValueChange)="onTotalAspirationChanged($event)" [BackColor]="TotalAspiration?.BackColor" [Enabled]="TotalAspiration?.Enabled" [Font]="TotalAspiration?.Font" [ForeColor]="TotalAspiration?.ForeColor" [ReadOnly]="TotalAspiration?.ReadOnly" [TabIndex]="TotalAspiration?.TabIndex" [Value]="nursingBodilyFluidAnalysisFormViewModel?._NursingBodyFluidAnalysis?.TotalAspiration" [Visible]="TotalAspiration?.Visible" id="A17886" data-tid="A351041"></hvl-number-box>
+        </div>
+        <label class="control-label col-sm-1" id="A17887" data-tid="A351042">
+            Toplam Damar İçi Sıvılar
+        </label>
+        <div class="col-sm-1" id="A17888" data-tid="A351043">
+            <hvl-number-box #Validation (ValueChange)="onTotalVenousFluidChanged($event)" [BackColor]="TotalVenousFluid?.BackColor" [Enabled]="TotalVenousFluid?.Enabled" [Font]="TotalVenousFluid?.Font" [ForeColor]="TotalVenousFluid?.ForeColor" [ReadOnly]="TotalVenousFluid?.ReadOnly" [TabIndex]="TotalVenousFluid?.TabIndex" [Value]="nursingBodilyFluidAnalysisFormViewModel?._NursingBodyFluidAnalysis?.TotalVenousFluid" [Visible]="TotalVenousFluid?.Visible" id="A17889" data-tid="A351044"></hvl-number-box>
+        </div>
+        <label class="control-label col-sm-1" id="A17890" data-tid="A351045">
+            Toplam Kusma
+        </label>
+        <div class="col-sm-1" id="A17891" data-tid="A351046">
+            <hvl-number-box #Validation (ValueChange)="onTotalVomitChanged($event)" [BackColor]="TotalVomit?.BackColor" [Enabled]="TotalVomit?.Enabled" [Font]="TotalVomit?.Font" [ForeColor]="TotalVomit?.ForeColor" [ReadOnly]="TotalVomit?.ReadOnly" [TabIndex]="TotalVomit?.TabIndex" [Value]="nursingBodilyFluidAnalysisFormViewModel?._NursingBodyFluidAnalysis?.TotalVomit" [Visible]="TotalVomit?.Visible" id="A17892" data-tid="A351047"></hvl-number-box>
+        </div>
+    </div>
+    <div class="row" id="A17893" data-tid="A351048">
+        <label class="control-label col-sm-1" id="A17894" data-tid="A351049">
+            Toplam İlaçlar
+        </label>
+        <div class="col-sm-1" id="A17895" data-tid="A351050">
+            <hvl-number-box #Validation (ValueChange)="onTotalMedChanged($event)" [BackColor]="TotalMed?.BackColor" [Enabled]="TotalMed?.Enabled" [Font]="TotalMed?.Font" [ForeColor]="TotalMed?.ForeColor" [ReadOnly]="TotalMed?.ReadOnly" [TabIndex]="TotalMed?.TabIndex" [Value]="nursingBodilyFluidAnalysisFormViewModel?._NursingBodyFluidAnalysis?.TotalMed" [Visible]="TotalMed?.Visible" id="A17896" data-tid="A351051"></hvl-number-box>
+        </div>
+        <label class="control-label col-sm-1" id="A17897" data-tid="A351052">
+            Toplam Drenaj
+        </label>
+        <div class="col-sm-1" id="A17898" data-tid="A351053">
+            <hvl-number-box #Validation (ValueChange)="onTotalDrainageChanged($event)" [BackColor]="TotalDrainage?.BackColor" [Enabled]="TotalDrainage?.Enabled" [Font]="TotalDrainage?.Font" [ForeColor]="TotalDrainage?.ForeColor" [ReadOnly]="TotalDrainage?.ReadOnly" [TabIndex]="TotalDrainage?.TabIndex" [Value]="nursingBodilyFluidAnalysisFormViewModel?._NursingBodyFluidAnalysis?.TotalDrainage" [Visible]="TotalDrainage?.Visible" id="A17899" data-tid="A351054"></hvl-number-box>
+        </div>
+        <label class="control-label col-sm-1" id="A17900" data-tid="A351055">
+            Toplam Verilen Kan
+        </label>
+        <div class="col-sm-1" id="A17901" data-tid="A351056">
+            <hvl-number-box #Validation (ValueChange)="onTotalSuppliedBloodChanged($event)" [BackColor]="TotalSuppliedBlood?.BackColor" [Enabled]="TotalSuppliedBlood?.Enabled" [Font]="TotalSuppliedBlood?.Font" [ForeColor]="TotalSuppliedBlood?.ForeColor" [ReadOnly]="TotalSuppliedBlood?.ReadOnly" [TabIndex]="TotalSuppliedBlood?.TabIndex" [Value]="nursingBodilyFluidAnalysisFormViewModel?._NursingBodyFluidAnalysis?.TotalSuppliedBlood" [Visible]="TotalSuppliedBlood?.Visible" id="A17902" data-tid="A351057"></hvl-number-box>
+        </div>
+        <label class="control-label col-sm-1" id="A17903" data-tid="A351058">
+            Toplam Dışkı
+        </label>
+        <div class="col-sm-1" id="A17904" data-tid="A351059">
+            <hvl-number-box #Validation (ValueChange)="onTotalStoolChanged($event)" [BackColor]="TotalStool?.BackColor" [Enabled]="TotalStool?.Enabled" [Font]="TotalStool?.Font" [ForeColor]="TotalStool?.ForeColor" [ReadOnly]="TotalStool?.ReadOnly" [TabIndex]="TotalStool?.TabIndex" [Value]="nursingBodilyFluidAnalysisFormViewModel?._NursingBodyFluidAnalysis?.TotalStool" [Visible]="TotalStool?.Visible" id="A17905" data-tid="A351060"></hvl-number-box>
+        </div>
+        <label class="control-label col-sm-1" id="A17906" data-tid="A351061">
+            Toplam İrigasyon
+        </label>
+        <div class="col-sm-1" id="A17907" data-tid="A351062">
+            <hvl-number-box #Validation (ValueChange)="onTotalIrrigationChanged($event)" [BackColor]="TotalIrrigation?.BackColor" [Enabled]="TotalIrrigation?.Enabled" [Font]="TotalIrrigation?.Font" [ForeColor]="TotalIrrigation?.ForeColor" [ReadOnly]="TotalIrrigation?.ReadOnly" [TabIndex]="TotalIrrigation?.TabIndex" [Value]="nursingBodilyFluidAnalysisFormViewModel?._NursingBodyFluidAnalysis?.TotalIrrigation" [Visible]="TotalIrrigation?.Visible" id="A17908" data-tid="A351063"></hvl-number-box>
+        </div>
+        <label class="control-label col-sm-1" id="A17909" data-tid="A351064">
+            Toplam Kaybedilen Kan
+        </label>
+        <div class="col-sm-1" id="A17910" data-tid="A351065">
+            <hvl-number-box #Validation (ValueChange)="onTotalBloodLossChanged($event)" [BackColor]="TotalBloodLoss?.BackColor" [Enabled]="TotalBloodLoss?.Enabled" [Font]="TotalBloodLoss?.Font" [ForeColor]="TotalBloodLoss?.ForeColor" [ReadOnly]="TotalBloodLoss?.ReadOnly" [TabIndex]="TotalBloodLoss?.TabIndex" [Value]="nursingBodilyFluidAnalysisFormViewModel?._NursingBodyFluidAnalysis?.TotalBloodLoss" [Visible]="TotalBloodLoss?.Visible" id="A17911" data-tid="A351066"></hvl-number-box>
+        </div>
+    </div>
+    <div class="row" id="A17912" data-tid="A351067">
+        <label class="control-label col-sm-1" id="A17913" data-tid="A351068">
+            Toplam Süt Miktarı
+        </label>
+        <div class="col-sm-1" id="A17914" data-tid="A351069">
+            <hvl-number-box #Validation (ValueChange)="onTotalMilkAmountChanged($event)" [BackColor]="TotalMilkAmount?.BackColor" [Enabled]="TotalMilkAmount?.Enabled" [Font]="TotalMilkAmount?.Font" [ForeColor]="TotalMilkAmount?.ForeColor" [ReadOnly]="TotalMilkAmount?.ReadOnly" [TabIndex]="TotalMilkAmount?.TabIndex" [Value]="nursingBodilyFluidAnalysisFormViewModel?._NursingBodyFluidAnalysis?.TotalMilkAmount" [Visible]="TotalMilkAmount?.Visible" id="A17915" data-tid="A351070"></hvl-number-box>
+        </div>
+        <label class="control-label col-sm-1" id="A17916" data-tid="A351071">
+            Toplam Diğer Kaybedilen Sıvılar
+        </label>
+        <div class="col-sm-1" id="A17917" data-tid="A351072">
+            <hvl-number-box #Validation (ValueChange)="onTotalOtherBodilyFluidLossChanged($event)" [BackColor]="TotalOtherBodilyFluidLoss?.BackColor" [Enabled]="TotalOtherBodilyFluidLoss?.Enabled" [Font]="TotalOtherBodilyFluidLoss?.Font" [ForeColor]="TotalOtherBodilyFluidLoss?.ForeColor" [ReadOnly]="TotalOtherBodilyFluidLoss?.ReadOnly" [TabIndex]="TotalOtherBodilyFluidLoss?.TabIndex" [Value]="nursingBodilyFluidAnalysisFormViewModel?._NursingBodyFluidAnalysis?.TotalOtherBodilyFluidLoss" [Visible]="TotalOtherBodilyFluidLoss?.Visible" id="A17918" data-tid="A351073"></hvl-number-box>
+        </div>
+    </div>
+    <div class="row" id="A17919" data-tid="A351074">
+        <label class="control-label col-sm-1" id="A17920" data-tid="A351075">
+            Tortu
+        </label>
+        <div class="col-sm-1" id="A17921" data-tid="A351076">
+            <hvl-number-box #Validation (ValueChange)="onTotalSludgeChanged($event)" [BackColor]="TotalSludge?.BackColor" [Enabled]="TotalSludge?.Enabled" [Font]="TotalSludge?.Font" [ForeColor]="TotalSludge?.ForeColor" [ReadOnly]="TotalSludge?.ReadOnly" [TabIndex]="TotalSludge?.TabIndex" [Value]="nursingBodilyFluidAnalysisFormViewModel?._NursingBodyFluidAnalysis?.TotalSludge" [Visible]="TotalSludge?.Visible" id="A17922" data-tid="A351077"></hvl-number-box>
+        </div>
+        <label class="control-label col-sm-1" id="A17923" data-tid="A351078">
+            Toplam PAC
+        </label>
+        <div class="col-sm-1" id="A17924" data-tid="A351079">
+            <hvl-number-box #Validation (ValueChange)="onTotalPACChanged($event)" [BackColor]="TotalPAC?.BackColor" [Enabled]="TotalPAC?.Enabled" [Font]="TotalPAC?.Font" [ForeColor]="TotalPAC?.ForeColor" [ReadOnly]="TotalPAC?.ReadOnly" [TabIndex]="TotalPAC?.TabIndex" [Value]="nursingBodilyFluidAnalysisFormViewModel?._NursingBodyFluidAnalysis?.Total_PAC" [Visible]="TotalPAC?.Visible" id="A17925" data-tid="A351080"></hvl-number-box>
+        </div>
+    </div>
+    <div class="row" id="A17926" data-tid="A351081">
+        <label class="control-label col-sm-1" id="A17927" data-tid="A351082">
+            Toplam Alınan Diğer Sıvılar
+        </label>
+        <div class="col-sm-1" id="A17928" data-tid="A351083">
+            <hvl-number-box #Validation (ValueChange)="onTotalOtherBodilyFluidsTakenChanged($event)" [BackColor]="TotalOtherBodilyFluidsTaken?.BackColor" [Enabled]="TotalOtherBodilyFluidsTaken?.Enabled" [Font]="TotalOtherBodilyFluidsTaken?.Font" [ForeColor]="TotalOtherBodilyFluidsTaken?.ForeColor" [ReadOnly]="TotalOtherBodilyFluidsTaken?.ReadOnly" [TabIndex]="TotalOtherBodilyFluidsTaken?.TabIndex" [Value]="nursingBodilyFluidAnalysisFormViewModel?._NursingBodyFluidAnalysis?.TotalOtherBodilyFluidsTaken" [Visible]="TotalOtherBodilyFluidsTaken?.Visible" id="A17929" data-tid="A351084"></hvl-number-box>
+        </div>
+    </div>
+</div>
+<pre id="A17930" data-tid="A351085">
+	{{ _ViewModel | json }}</pre>

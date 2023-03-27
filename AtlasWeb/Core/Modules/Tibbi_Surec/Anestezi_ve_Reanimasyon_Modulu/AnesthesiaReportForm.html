@@ -1,0 +1,235 @@
+﻿
+<form id="AnesthesiaReportForm" class="form-horizontal" role="form" data-tid="A339579"></form>
+
+<div class="col-md-12" data-tid="A339580">
+    <NeStatePanelComponent [OutgoingTransitions]="anesthesiaReportFormViewModel?.OutgoingTransitions" [StateReports]="anesthesiaReportFormViewModel?.CurrentStateReports" [ObjectID]="anesthesiaReportFormViewModel?._AnesthesiaAndReanimation?.ObjectID" [ObjectDefID]="anesthesiaReportFormViewModel?._AnesthesiaAndReanimation?.ObjectDefID" [CurrentStateDefID]="anesthesiaReportFormViewModel._AnesthesiaAndReanimation.CurrentStateDefID" [DropStateList]="DropStateList" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" id="A10037" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A339581">
+    </NeStatePanelComponent>
+    <div class="row" data-tid="A339582">
+        <div class="col-md-6" data-tid="A339583">
+            <patient-demographics-form [actionId]="anesthesiaReportFormViewModel?._AnesthesiaAndReanimation?.ObjectID" id="A10041" data-tid="A339584"></patient-demographics-form>
+        </div>
+        <div class="col-md-6" data-tid="A339585">
+            <DiagnosisGridReadOnlyForm [EpisodeAction]="anesthesiaReportFormViewModel?._AnesthesiaAndReanimation" id="A10056" data-tid="A339586"></DiagnosisGridReadOnlyForm>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12" data-tid="A339587">
+    &nbsp;&nbsp;<u data-tid="A339588">Genel Bilgiler</u>
+    <div class="panel panel-default" data-tid="A339589">
+        <div class="panel-body" style="background-color:#f9f9f9" data-tid="A339590">
+            <div class="row" data-tid="A339591">
+                <div class="col-md-3" data-tid="A339592">
+                    <div class="col-md-12" data-tid="A339593">
+                        <label class="control-label" id="A10045" data-tid="A339594"> Anestezi İstek Tarihi	</label>
+                        <hvl-date-picker #Validation (ValueChange)="onRequestDateChanged($event)" [BackColor]="RequestDate?.BackColor" [CustomFormat]="RequestDate?.CustomFormat" [Enabled]="RequestDate?.Enabled" [Font]="RequestDate?.Font" [ForeColor]="RequestDate?.ForeColor" [Format]="RequestDate?.Format" [Max]="RequestDate?.Max" [Min]="RequestDate?.Min" [ReadOnly]="RequestDate?.ReadOnly" [Required]="RequestDate?.Required" [TabIndex]="RequestDate?.TabIndex" [Value]="anesthesiaReportFormViewModel?._AnesthesiaAndReanimation?.RequestDate" [Visible]="RequestDate?.Visible" id="A10046" data-tid="A339595"></hvl-date-picker>
+                    </div>
+                    <div class="col-md-12" *ngIf="isFiredBySurgery == true" data-tid="A339596">
+                        <label class="control-label" id="A10102" data-tid="A339597">
+                            Ameliyathane
+                        </label>
+                        <hvl-list-box #Validation (SelectedObjectChange)="onMasterResourceChanged($event)" [AutoCompleteDialogHeight]="MasterResource?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="MasterResource?.AutoCompleteDialogWidth" [AutoCompleteMode]="MasterResource?.AutoCompleteMode" [BackColor]="MasterResource?.BackColor" [DefinitionName]="MasterResource?.ListDefName" [DisplayExpressionsCache]="anesthesiaReportFormViewModel?.ListDefDisplayExpressions" [Enabled]="MasterResource?.Enabled" [Font]="MasterResource?.Font" [ForeColor]="MasterResource?.ForeColor" [ListFilterExpression]="MasterResource?.ListFilterExpression" [MinSearchLength]="MasterResource?.MinSearchLength" [PopupDialogFieldConfig]="MasterResource?.PopupDialogFieldConfig" [PopupDialogGridColumns]="MasterResource?.PopupDialogGridColumns" [PopupDialogHeight]="MasterResource?.PopupDialogHeight" [PopupDialogTitle]="MasterResource?.PopupDialogTitle" [PopupDialogWidth]="MasterResource?.PopupDialogWidth" [ReadOnly]="MasterResource?.ReadOnly" [SearchMode]="MasterResource?.SearchMode" [SearchTimeout]="MasterResource?.SearchTimeout" [SelectedObject]="anesthesiaReportFormViewModel?._AnesthesiaAndReanimation?.MainSurgery?.MasterResource" [TabIndex]="MasterResource?.TabIndex" [Visible]="MasterResource?.Visible" [width]="MasterResource?.Width" id="A10111" data-tid="A339598"></hvl-list-box>
+                    </div>
+                </div>
+                <div class="col-md-3" data-tid="A339599">
+                    <div class="col-md-12" data-tid="A339600">
+                        <label class="control-label" id="A10049" data-tid="A339601">Planlanan Uygulama Tarihi</label>
+                        <hvl-date-picker #Validation (ValueChange)="onPlannedAnesthsiaDateChanged($event)" [BackColor]="PlannedAnesthsiaDate?.BackColor" [CustomFormat]="PlannedAnesthsiaDate?.CustomFormat" [Enabled]="PlannedAnesthsiaDate?.Enabled" [Font]="PlannedAnesthsiaDate?.Font" [ForeColor]="PlannedAnesthsiaDate?.ForeColor" [Format]="PlannedAnesthsiaDate?.Format" [Max]="PlannedAnesthsiaDate?.Max" [Min]="PlannedAnesthsiaDate?.Min" [ReadOnly]="PlannedAnesthsiaDate?.ReadOnly" [Required]="PlannedAnesthsiaDate?.Required" [TabIndex]="PlannedAnesthsiaDate?.TabIndex" [Value]="anesthesiaReportFormViewModel?._AnesthesiaAndReanimation?.PlannedAnesthesiaDate" [Visible]="PlannedAnesthsiaDate?.Visible" id="A10050" data-tid="A339602"></hvl-date-picker>
+                    </div>
+                    <div class="col-md-12" *ngIf="isFiredBySurgery == true" data-tid="A339603">
+                        <label class="control-label" id="A10103" data-tid="A339604">
+                            Salon
+                        </label>
+                        <hvl-list-box #Validation (SelectedObjectChange)="onSurgeryRoomChanged($event)" [AutoCompleteDialogHeight]="SurgeryRoom?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="SurgeryRoom?.AutoCompleteDialogWidth" [AutoCompleteMode]="SurgeryRoom?.AutoCompleteMode" [BackColor]="SurgeryRoom?.BackColor" [DefinitionName]="SurgeryRoom?.ListDefName" [DisplayExpressionsCache]="anesthesiaReportFormViewModel?.ListDefDisplayExpressions" [Enabled]="SurgeryRoom?.Enabled" [Font]="SurgeryRoom?.Font" [ForeColor]="SurgeryRoom?.ForeColor" [ListFilterExpression]="SurgeryRoom?.ListFilterExpression" [MinSearchLength]="SurgeryRoom?.MinSearchLength" [PopupDialogFieldConfig]="SurgeryRoom?.PopupDialogFieldConfig" [PopupDialogGridColumns]="SurgeryRoom?.PopupDialogGridColumns" [PopupDialogHeight]="SurgeryRoom?.PopupDialogHeight" [PopupDialogTitle]="SurgeryRoom?.PopupDialogTitle" [PopupDialogWidth]="SurgeryRoom?.PopupDialogWidth" [ReadOnly]="SurgeryRoom?.ReadOnly" [SearchMode]="SurgeryRoom?.SearchMode" [SearchTimeout]="SurgeryRoom?.SearchTimeout" [SelectedObject]="anesthesiaReportFormViewModel?._AnesthesiaAndReanimation?.MainSurgery?.SurgeryRoom" [TabIndex]="SurgeryRoom?.TabIndex" [Visible]="SurgeryRoom?.Visible" [width]="SurgeryRoom?.Width" id="A10113" data-tid="A339605"></hvl-list-box>
+                    </div>
+                </div>
+                <div class="col-md-3" data-tid="A339606">
+                    <div class="col-md-12" id="A10052" data-tid="A339607">
+                        <label class="control-label" id="A10053" data-tid="A339608">Protokol No</label>
+                        <hvl-text-box #Validation (TextChange)="onProtocolNoChanged($event)" [BackColor]="ProtocolNo?.BackColor" [CharacterCasing]="ProtocolNo?.CharacterCasing" [Enabled]="ProtocolNo?.Enabled" [Font]="ProtocolNo?.Font" [ForeColor]="ProtocolNo?.ForeColor" [height]="ProtocolNo?.Height" [InputFormat]="ProtocolNo?.InputFormat" [InputTurkishCharacter]="ProtocolNo?.InputTurkishCharacter" [IsNonNumeric]="ProtocolNo?.IsNonNumeric" [MultiLine]="ProtocolNo?.Multiline" [ReadOnly]="ProtocolNo?.ReadOnly" [Required]="ProtocolNo?.Required" [TabIndex]="ProtocolNo?.TabIndex" [TextAlign]="ProtocolNo?.TextAlign" [Text]="anesthesiaReportFormViewModel?._AnesthesiaAndReanimation?.ProtocolNo" [Visible]="ProtocolNo?.Visible" id="A10054" data-tid="A339609"></hvl-text-box>
+                    </div>
+                    <div class="col-md-12" *ngIf="isFiredBySurgery == true" data-tid="A339610">
+                        <label class="control-label " id="A10104" data-tid="A339611">
+                            Masa
+                        </label>
+                        <hvl-list-box #Validation (SelectedObjectChange)="onSurgeryDeskChanged($event)" [AutoCompleteDialogHeight]="SurgeryDesk?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="SurgeryDesk?.AutoCompleteDialogWidth" [AutoCompleteMode]="SurgeryDesk?.AutoCompleteMode" [BackColor]="SurgeryDesk?.BackColor" [DefinitionName]="SurgeryDesk?.ListDefName" [DisplayExpressionsCache]="anesthesiaReportFormViewModel?.ListDefDisplayExpressions" [Enabled]="SurgeryDesk?.Enabled" [Font]="SurgeryDesk?.Font" [ForeColor]="SurgeryDesk?.ForeColor" [ListFilterExpression]="SurgeryDesk?.ListFilterExpression" [MinSearchLength]="SurgeryDesk?.MinSearchLength" [PopupDialogFieldConfig]="SurgeryDesk?.PopupDialogFieldConfig" [PopupDialogGridColumns]="SurgeryDesk?.PopupDialogGridColumns" [PopupDialogHeight]="SurgeryDesk?.PopupDialogHeight" [PopupDialogTitle]="SurgeryDesk?.PopupDialogTitle" [PopupDialogWidth]="SurgeryDesk?.PopupDialogWidth" [ReadOnly]="SurgeryDesk?.ReadOnly" [SearchMode]="SurgeryDesk?.SearchMode" [SearchTimeout]="SurgeryDesk?.SearchTimeout" [SelectedObject]="anesthesiaReportFormViewModel?._AnesthesiaAndReanimation?.MainSurgery?.SurgeryDesk" [TabIndex]="SurgeryDesk?.TabIndex" [Visible]="SurgeryDesk?.Visible" [width]="SurgeryDesk?.Width" id="A10115" data-tid="A339612"></hvl-list-box>
+                    </div>
+                </div>
+                <div class="col-md-3" *ngIf="isFiredBySurgery == true" data-tid="A339613">
+                    <div class="col-md-12" data-tid="A339614">
+                        <div class="col-md-12" *ngIf="isFiredBySurgery == true" data-tid="A339615">
+                            <label class="control-label" id="A10100" data-tid="A339616">
+                                Ameliyatı Başlatma Tarih/Saat
+                            </label>
+                            <hvl-date-picker #Validation (ValueChange)="onttdatetimepicker1Changed($event)" [BackColor]="ttdatetimepicker1?.BackColor" [CustomFormat]="ttdatetimepicker1?.CustomFormat" [Enabled]="ttdatetimepicker1?.Enabled" [Font]="ttdatetimepicker1?.Font" [ForeColor]="ttdatetimepicker1?.ForeColor" [Format]="ttdatetimepicker1?.Format" [Max]="ttdatetimepicker1?.Max" [Min]="ttdatetimepicker1?.Min" [ReadOnly]="ttdatetimepicker1?.ReadOnly" [Required]="ttdatetimepicker1?.Required" [TabIndex]="ttdatetimepicker1?.TabIndex" [Value]="anesthesiaReportFormViewModel?._AnesthesiaAndReanimation?.MainSurgery?.SurgeryStartTime" [Visible]="ttdatetimepicker1?.Visible" id="A10107" data-tid="A339617"></hvl-date-picker>
+                        </div>
+                    </div>
+                    <div class="col-md-12" data-tid="A339618">
+                        <div class="col-md-12" *ngIf="isFiredBySurgery == true" data-tid="A339619">
+                            <label class="control-label" id="A10101" data-tid="A339620">
+                                Ameliyatı Bitirme Tarih/Saat
+                            </label>
+                            <hvl-date-picker #Validation (ValueChange)="onttdatetimepicker2Changed($event)" [BackColor]="ttdatetimepicker2?.BackColor" [CustomFormat]="ttdatetimepicker2?.CustomFormat" [Enabled]="ttdatetimepicker2?.Enabled" [Font]="ttdatetimepicker2?.Font" [ForeColor]="ttdatetimepicker2?.ForeColor" [Format]="ttdatetimepicker2?.Format" [Max]="ttdatetimepicker2?.Max" [Min]="ttdatetimepicker2?.Min" [ReadOnly]="ttdatetimepicker2?.ReadOnly" [Required]="ttdatetimepicker2?.Required" [TabIndex]="ttdatetimepicker2?.TabIndex" [Value]="anesthesiaReportFormViewModel?._AnesthesiaAndReanimation?.MainSurgery?.SurgeryEndTime" [Visible]="ttdatetimepicker2?.Visible" id="A10109" data-tid="A339621"></hvl-date-picker>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12" data-tid="A339622">
+    &nbsp;&nbsp;<u data-tid="A339623">Anestezi Bilgileri</u>
+    <div class="panel panel-default" data-tid="A339624">
+        <div class="panel-body padding-bottom-0" style="background-color:#f9f9f9" data-tid="A339625">
+            <div class="row" data-tid="A339626">
+                <div class="col-md-3" data-tid="A339627">
+                    <div class="row" data-tid="A339628">
+                        <div class="col-md-6" data-tid="A339629">
+                            <label class="control-label" id="A10063" data-tid="A339630">
+                                Anestezi Başlama Tarihi
+                            </label>
+                            <dx-date-box width="100%" type="datetime" displayFormat="dd/MM/yyyy HH:mm" (onValueChanged)="onAnesthesiaStartDateTimeChanged($event)" [(value)]="anesthesiaReportFormViewModel._AnesthesiaAndReanimation.AnesthesiaStartDateTime" [readOnly]="ReadOnly" id="A10064" data-tid="A339631">
+                            </dx-date-box>
+                        </div>
+                        <div class="col-md-6" data-tid="A339632">
+                            <label class="control-label" id="A10066" data-tid="A339633">
+                                Anestezi Bitiş Tarihi
+                            </label>
+                            <dx-date-box width="100%" type="datetime" displayFormat="dd/MM/yyyy HH:mm" [(value)]="anesthesiaReportFormViewModel._AnesthesiaAndReanimation.AnesthesiaEndDateTime" [readOnly]="ReadOnly" id="A10067" data-tid="A339634">
+                            </dx-date-box>
+                        </div>
+                    </div>
+                    <div class="row" data-tid="A339635">
+                        <div class="col-md-12" data-tid="A339636">
+                            <label class="control-label" data-tid="A339637">Yara Sınıfı</label>
+                            <hvl-enum-combobox #Validation (ValueChange)="onScarTypeChanged($event)" [BackColor]="ScarType?.BackColor" [DataTypeName]="ScarType?.DataTypeName" [Enabled]="ScarType?.Enabled" [Font]="ScarType?.Font" [ForeColor]="ScarType?.ForeColor" [IncludeOnly]="ScarType?.IncludeOnly" [ReadOnly]="ScarType?.ReadOnly" [ShowClearButton]="ScarType?.ShowClearButton" [SortBy]="ScarType?.SortBy" [TabIndex]="ScarType?.TabIndex" [Value]="_AnesthesiaAndReanimation.ScarType" [Visible]="ScarType?.Visible" data-tid="A339638">
+                            </hvl-enum-combobox>
+                        </div>
+                        <div class="col-md-12" data-tid="A339639">
+                            <label class="control-label" id="A10073" data-tid="A339640">ASA Kriteri  </label>
+                            <hvl-enum-combobox #Validation (ValueChange)="onASATypeChanged($event)" [BackColor]="ASAType?.BackColor" [DataTypeName]="ASAType?.DataTypeName" [Enabled]="ASAType?.Enabled" [Font]="ASAType?.Font" [ForeColor]="ASAType?.ForeColor" [IncludeOnly]="ASAType?.IncludeOnly" [ReadOnly]="ASAType?.ReadOnly" [ShowClearButton]="ASAType?.ShowClearButton" [SortBy]="ASAType?.SortBy" [TabIndex]="ASAType?.TabIndex" [Value]="anesthesiaReportFormViewModel?._AnesthesiaAndReanimation?.ASAType" [Visible]="ASAType?.Visible" id="A10074" data-tid="A339641"></hvl-enum-combobox>
+                        </div>
+                        <div class="col-md-12" data-tid="A339642">
+                            <label class="control-label" data-tid="A339643">ASA Skoru</label>
+                            <hvl-enum-combobox #Validation (ValueChange)="onASAScoreChanged($event)" [BackColor]="ASAScore?.BackColor" [DataTypeName]="ASAScore?.DataTypeName" [Enabled]="ASAScore?.Enabled" [Font]="ASAScore?.Font" [ForeColor]="ASAScore?.ForeColor" [IncludeOnly]="ASAScore?.IncludeOnly" [ReadOnly]="ASAScore?.ReadOnly" [ShowClearButton]="ASAScore?.ShowClearButton" [SortBy]="ASAScore?.SortBy" [TabIndex]="ASAScore?.TabIndex" [Value]="_AnesthesiaAndReanimation.ASAScore" [Visible]="ASAScore?.Visible" data-tid="A339644"></hvl-enum-combobox>
+                        </div>
+                        <div class="col-md-12" data-tid="A339645">
+                            <label class="control-label" id="A10070" data-tid="A339646"> Anestezi Tekniği </label>
+                            <hvl-enum-combobox #Validation (ValueChange)="onAnesteziTeknigiChanged($event)" [BackColor]="AnesteziTeknigi?.BackColor" [DataTypeName]="AnesteziTeknigi?.DataTypeName" [Enabled]="AnesteziTeknigi?.Enabled" [Font]="AnesteziTeknigi?.Font" [ForeColor]="AnesteziTeknigi?.ForeColor" [IncludeOnly]="AnesteziTeknigi?.IncludeOnly" [ReadOnly]="AnesteziTeknigi?.ReadOnly" [ShowClearButton]="AnesteziTeknigi?.ShowClearButton" [SortBy]="AnesteziTeknigi?.SortBy" [TabIndex]="AnesteziTeknigi?.TabIndex" [Value]="anesthesiaReportFormViewModel?._AnesthesiaAndReanimation?.AnesthesiaTechnique" [Visible]="AnesteziTeknigi?.Visible" id="A10071" data-tid="A339647"></hvl-enum-combobox>
+                            <br data-tid="A339648" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-tid="A339649">
+                    <div class="row" data-tid="A339650">
+                        <div class="col-md-12" data-tid="A339651">
+                            <label class="control-label" id="A10080" data-tid="A339652">Anestezi Rapor Tarihi</label>
+                            <hvl-date-picker #Validation (ValueChange)="onAnesthesiaReportDateChanged($event)" [BackColor]="AnesthesiaReportDate?.BackColor" [CustomFormat]="AnesthesiaReportDate?.CustomFormat" [Enabled]="AnesthesiaReportDate?.Enabled" [Font]="AnesthesiaReportDate?.Font" [ForeColor]="AnesthesiaReportDate?.ForeColor" [Format]="AnesthesiaReportDate?.Format" [Max]="AnesthesiaReportDate?.Max" [Min]="AnesthesiaReportDate?.Min" [ReadOnly]="AnesthesiaReportDate?.ReadOnly" [Required]="AnesthesiaReportDate?.Required" [TabIndex]="AnesthesiaReportDate?.TabIndex" [Value]="anesthesiaReportFormViewModel?._AnesthesiaAndReanimation?.AnesthesiaReportDate" [Visible]="AnesthesiaReportDate?.Visible" id="A10081" data-tid="A339653"></hvl-date-picker>
+                        </div>
+                        <div class="col-md-12" data-tid="A339654">
+                            <div *ngIf="!anesthesiaReportFormViewModel.OnlyOneProcedureDoctor" class="col-sm-12" id="A10087" data-tid="A339655">
+                                <label class="control-label" id="A10088" data-tid="A339656">Sorumlu Anestezi Uzmanları</label>
+                                <dx-tag-box placeholder="Sorumlu Anestezi Uzmanları" [searchEnabled]="true" [showSelectionControls]="true" [(value)]="anesthesiaReportFormViewModel.SelectedResponsibleDoctorList" displayExpr="Name" [dataSource]="anesthesiaReportFormViewModel.ResponsibleDoctor_DataSource" [(selectedItems)]="anesthesiaReportFormViewModel.SelectedResponsibleDoctorList" i18n-placeholder="@@M22135" id="A10089" data-tid="A339657">
+                                </dx-tag-box>
+                            </div>
+                            <div *ngIf="anesthesiaReportFormViewModel.OnlyOneProcedureDoctor" class="col-sm-12" id="A10090" data-tid="A339658">
+                                <label class="control-label" id="A10091" data-tid="A339659">Sorumlu Anestezi Uzmanı</label>
+                                <hvl-list-box #Validation (SelectedObjectChange)="onProcedureDoctorChanged($event)" [AutoCompleteDialogHeight]="ProcedureDoctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ProcedureDoctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="ProcedureDoctor?.AutoCompleteMode" [BackColor]="ProcedureDoctor?.BackColor" [DefinitionName]="ProcedureDoctor?.ListDefName" [DisplayExpressionsCache]="anesthesiaReportFormViewModel?.ListDefDisplayExpressions" [Enabled]="ProcedureDoctor?.Enabled" [Font]="ProcedureDoctor?.Font" [ForeColor]="ProcedureDoctor?.ForeColor" [ListFilterExpression]="ProcedureDoctor?.ListFilterExpression" [MinSearchLength]="ProcedureDoctor?.MinSearchLength" [PopupDialogFieldConfig]="ProcedureDoctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ProcedureDoctor?.PopupDialogGridColumns" [PopupDialogHeight]="ProcedureDoctor?.PopupDialogHeight" [PopupDialogTitle]="ProcedureDoctor?.PopupDialogTitle" [PopupDialogWidth]="ProcedureDoctor?.PopupDialogWidth" [ReadOnly]="ProcedureDoctor?.ReadOnly" [SearchMode]="ProcedureDoctor?.SearchMode" [SearchTimeout]="ProcedureDoctor?.SearchTimeout" [SelectedObject]="anesthesiaReportFormViewModel?._AnesthesiaAndReanimation?.ProcedureDoctor" [TabIndex]="ProcedureDoctor?.TabIndex" [Visible]="ProcedureDoctor?.Visible" [width]="ProcedureDoctor?.Width" id="A10092" data-tid="A339660"></hvl-list-box>
+                            </div>
+                        </div>
+                        <div class="col-md-12" data-tid="A339661">
+                            <label class="control-label" data-tid="A339662">Laparoskopi/Endoskopi</label>
+                            <hvl-enum-combobox #Validation (ValueChange)="onLaparoscopyChanged($event)" [BackColor]="Laparoscopy?.BackColor" [DataTypeName]="Laparoscopy?.DataTypeName" [Enabled]="Laparoscopy?.Enabled" [Font]="Laparoscopy?.Font" [ForeColor]="Laparoscopy?.ForeColor" [IncludeOnly]="Laparoscopy?.IncludeOnly" [ReadOnly]="Laparoscopy?.ReadOnly" [ShowClearButton]="Laparoscopy?.ShowClearButton" [SortBy]="Laparoscopy?.SortBy" [TabIndex]="Laparoscopy?.TabIndex" [Value]="_AnesthesiaAndReanimation.Laparoscopy" [Visible]="Laparoscopy?.Visible" data-tid="A339663">
+                            </hvl-enum-combobox>
+                        </div>
+                        <div class="col-sm-12" id="A10076" data-tid="A339664">
+                            <label class="control-label" id="A10077" data-tid="A339665">&nbsp;</label>
+                            <hvl-checkbox #Validation (ValueChange)="onHasComplicationChanged($event)" [AllowThreeState]="HasComplication?.ThreeState" [BackColor]="HasComplication?.BackColor" [Enabled]="HasComplication?.Enabled" [Font]="HasComplication?.Font" [ForeColor]="HasComplication?.ForeColor" [IsTitleLeft]="HasComplication?.IsTitleLeft" [Margin]="HasComplication?.Margin" [ReadOnly]="HasComplication?.ReadOnly" [TabIndex]="HasComplication?.TabIndex" [TitleTopPadding]="HasComplication?.TitleTopPadding" [Title]="HasComplication?.Title" [Value]="_AnesthesiaAndReanimation.HasComplication" [Visible]="HasComplication?.Visible" id="A10078" data-tid="A339666">
+                            </hvl-checkbox>
+                        </div>
+                        <div class="col-sm-12" data-tid="A339667">
+                            <label *ngIf="anesthesiaReportFormViewModel._AnesthesiaAndReanimation.HasComplication == true" class="control-label" id="A10083" data-tid="A339668">
+                                <label class="control-label" id="A10084" data-tid="A339669">Komplikasyon Açıklaması</label>
+                                <hvl-text-box #Validation (TextChange)="onComplicationDescriptionChanged($event)" [BackColor]="ComplicationDescription?.BackColor" [CharacterCasing]="ComplicationDescription?.CharacterCasing" [Enabled]="ComplicationDescription?.Enabled" [Font]="ComplicationDescription?.Font" [ForeColor]="ComplicationDescription?.ForeColor" [height]="ComplicationDescription?.Height" [InputFormat]="ComplicationDescription?.InputFormat" [InputTurkishCharacter]="ComplicationDescription?.InputTurkishCharacter" [IsNonNumeric]="ComplicationDescription?.IsNonNumeric" [MultiLine]="ComplicationDescription?.Multiline" [ReadOnly]="ComplicationDescription?.ReadOnly" [Required]="ComplicationDescription?.Required" [TabIndex]="ComplicationDescription?.TabIndex" [TextAlign]="ComplicationDescription?.TextAlign" [Text]="surgeryFormViewModel?._Surgery?.ComplicationDescription" [Visible]="ComplicationDescription?.Visible" id="A10085" data-tid="A339670"></hvl-text-box>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-tid="A339671">
+                    <div class="row" data-tid="A339672">
+                        <div class="col-md-12" data-tid="A339673">
+                            <label class="control-label" id="A10094" data-tid="A339674">Anestezi Raporu </label>
+                            <hvl-richtextbox (change)="onAnesthesiaReportChanged($event)" [Height]="&#x27;152px&#x27;" [ngModelOptions]="{ standalone: true}" [ngModel]="anesthesiaReportFormViewModel?._AnesthesiaAndReanimation?.AnesthesiaReport" [ReadOnly]="AnesthesiaReport?.ReadOnly" [TemplateGroupName]="AnesthesiaReport?.TemplateGroupName" [Visible]="AnesthesiaReport?.Visible" id="A10095" data-tid="A339675"></hvl-richtextbox>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-tid="A339676">
+                    <hvl-datagrid #gridAnesthesiaPersonnels [AllowUserToAddRows]="GridAnesthesiaPersonnels?.AllowUserToAddRows" [AllowUserToDeleteRows]="GridAnesthesiaPersonnels?.AllowUserToDeleteRows" [Columns]="GridAnesthesiaPersonnelsColumns" [dataSource]="anesthesiaReportFormViewModel?._AnesthesiaAndReanimation?.AnesthesiaPersonnels" [DeleteButtonWidth]="GridAnesthesiaPersonnels?.DeleteButtonWidth" [DisplayExpressionsCache]="anesthesiaReportFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="GridAnesthesiaPersonnels?.ShowFilterRow" [FilterColumnName]="GridAnesthesiaPersonnels?.FilterColumnName" [FilterLabel]="GridAnesthesiaPersonnels?.FilterLabel" [Filter]="GridAnesthesiaPersonnels?.Filter" [height]="GridAnesthesiaPersonnels?.Height" [IsFilterLabelSingleLine]="GridAnesthesiaPersonnels?.IsFilterLabelSingleLine" [ShowColumnHeaders]="GridAnesthesiaPersonnels?.ColumnHeadersVisible" [ShowFilterCombo]="GridAnesthesiaPersonnels?.ShowFilterCombo" [ShowTotalNumberOfRows]="GridAnesthesiaPersonnels?.ShowTotalNumberOfRows" [ReadOnly]="GridAnesthesiaPersonnels?.ReadOnly" [ComfirmAddRowByFilterSelection]="ComfirmAddRowByPersonelFilterSelectionFunc" id="A10059" data-tid="A339677"></hvl-datagrid>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12" *ngIf="isFiredBySurgery == true" data-tid="A339678">
+    &nbsp;&nbsp;<u data-tid="A339679">Ameliyat işlemleri</u>
+    <div class="panel panel-default" data-tid="A339680">
+        <div class="panel-body padding-bottom-0" style="background-color:#f9f9f9" data-tid="A339681">
+            <div class="row" data-tid="A339682">
+                <div class="col-md-12" id="A10117" data-tid="A339683">
+                    <label class="control-label" id="A10118" data-tid="A339684"> Ameliyatlar </label>
+                    <hvl-datagrid [AllowUserToAddRows]="GridSurgeryProcedures?.AllowUserToAddRows" [AllowUserToDeleteRows]="GridSurgeryProcedures?.AllowUserToDeleteRows" [Columns]="GridSurgeryProceduresColumns" [dataSource]="anesthesiaReportFormViewModel?._AnesthesiaAndReanimation?.MainSurgery?.SurgeryProcedures" [DeleteButtonWidth]="GridSurgeryProcedures?.DeleteButtonWidth" [DisplayExpressionsCache]="anesthesiaReportFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="GridSurgeryProcedures?.ShowFilterRow" [FilterColumnName]="GridSurgeryProcedures?.FilterColumnName" [FilterLabel]="GridSurgeryProcedures?.FilterLabel" [Filter]="GridSurgeryProcedures?.Filter" [height]="GridSurgeryProcedures?.Height" [IsFilterLabelSingleLine]="GridSurgeryProcedures?.IsFilterLabelSingleLine" [ShowColumnHeaders]="GridSurgeryProcedures?.ColumnHeadersVisible" [ShowFilterCombo]="GridSurgeryProcedures?.ShowFilterCombo" [ShowTotalNumberOfRows]="GridSurgeryProcedures?.ShowTotalNumberOfRows" [CancelByDeleteButton]="true" id="A10119" data-tid="A339685"></hvl-datagrid>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12" data-tid="A339686">
+    &nbsp;&nbsp;<u data-tid="A339687">Anestezi İşlemi</u>
+    <div class="panel panel-default" data-tid="A339688">
+        <div class="panel-body padding-bottom-0" style="background-color:#f9f9f9" data-tid="A339689">
+            <div class="row" data-tid="A339690">
+                <div class="col-sm-12" *ngIf="showAnestesiaProcedure != true" data-tid="A339691">
+                    <h6 class="bg-danger " style="margin-top:0;" data-tid="A339692"><br data-tid="A339693" />&nbsp;   <b data-tid="A339694">Ameliyat işlemleri tamamlandığında anestezi işlermi ve grubunu görebilirsiniz!</b><br data-tid="A339695" /><br data-tid="A339696" /></h6>
+                </div>
+
+                <div class="col-sm-12" *ngIf="showAnestesiaProcedure == true" data-tid="A339697">
+                    <hvl-datagrid [AllowUserToAddRows]="GridAnesthesiaProcedures?.AllowUserToAddRows" [AllowUserToDeleteRows]="GridAnesthesiaProcedures?.AllowUserToDeleteRows" [Columns]="GridAnesthesiaProceduresColumns" [dataSource]="anesthesiaReportFormViewModel?._AnesthesiaAndReanimation?.AnaesthesiaAndReanimationAnesthesiaProcedures" [DeleteButtonWidth]="GridAnesthesiaProcedures?.DeleteButtonWidth" [DisplayExpressionsCache]="anesthesiaReportFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="GridAnesthesiaProcedures?.ShowFilterRow" [FilterColumnName]="GridAnesthesiaProcedures?.FilterColumnName" [FilterLabel]="GridAnesthesiaProcedures?.FilterLabel" [Filter]="GridAnesthesiaProcedures?.Filter" [height]="GridAnesthesiaProcedures?.Height" [IsFilterLabelSingleLine]="GridAnesthesiaProcedures?.IsFilterLabelSingleLine" [ShowColumnHeaders]="GridAnesthesiaProcedures?.ColumnHeadersVisible" [ShowFilterCombo]="GridAnesthesiaProcedures?.ShowFilterCombo" [ShowTotalNumberOfRows]="GridAnesthesiaProcedures?.ShowTotalNumberOfRows" [CancelByDeleteButton]="true" id="A10123" data-tid="A339698"></hvl-datagrid>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12" id="A10124" data-tid="A339699">
+
+    <ul class="nav nav-tabs" id="A10125" data-tid="A339700">
+        <li class="active" id="A10126" data-tid="A339701">
+            <a data-toggle="tab" href="#treatmentMaterial" id="A10127" data-tid="A339702">
+                <span id="A10128" data-tid="A339703">Cerrahi Sarf</span>
+            </a>
+        </li>
+        <li id="A10129" data-tid="A339704">
+            <a data-toggle="tab" href="#procedures" id="A10130" data-tid="A339705">
+                <span id="A10131" data-tid="A339706">Ek Hizmet</span>
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content" style="background-color:#fff;" id="A10132" data-tid="A339707">
+        <div id="treatmentMaterial" class="tab-pane fade in active" data-tid="A339708">
+            <div class="col-sm-12" id="A10133" data-tid="A339709">
+                <TreatmentMaterialForm [SelectStoreFromUserStore]="true" [EpisodeAction]="anesthesiaReportFormViewModel?._AnesthesiaAndReanimation" [TreatmentMaterialGridList]="anesthesiaReportFormViewModel?._AnesthesiaAndReanimation.AnestheAndReaniTreatMatrials" [IncludeDrugDefinition]="true" [IsReadOnly]="ReadOnly" id="A10134" data-tid="A339710"></TreatmentMaterialForm>
+            </div>
+        </div>
+        <div id="procedures" class="tab-pane fade" data-tid="A339711">
+            <div class="col-sm-12" id="A10135" data-tid="A339712">
+                <requested-procedures-form style="height:100%!important;display:block;" [EpisodeAction]="anesthesiaReportFormViewModel?._AnesthesiaAndReanimation" [IsReadOnly]="ReadOnly" id="A10136" data-tid="A339713"></requested-procedures-form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

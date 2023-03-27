@@ -1,0 +1,35 @@
+﻿
+<link href="/Content/DoctorPerformance/DoctorPerformance.css" rel="stylesheet" />
+
+<div class="col-sm-12 " style="height:100%!important;width:100%!important ;box-shadow: 1px 1px 9px 2px rgba(0, 0, 0, 0.1);">
+    <b><u>Dönemler</u></b>
+    <dx-data-grid [columnAutoWidth]="true" [dataSource]="doctorPerformanceTermOperationViewModel.TermList"
+                  style="height:100%!important;width:100%!important" [selection]="{mode: 'single'}"
+                  [columns]="DPTermColumns" [editing]="EditingConfig"
+                  (onRowInserted)="onRowInsertedTermList($event)" (onRowInserting)="onRowInsertingTermList($event)"
+                  (onRowUpdating)="onRowUpdatingTermList($event)">
+        <div *dxTemplate="let row of 'bpkrReportCellTemplate'">
+            <dx-button type="default" style=" margin-top: -7px" (onClick)="onClickBPKRReport(row)" hint="Birim performans katsayı raporu." icon="fa fa-file-text"></dx-button>
+        </div>
+    </dx-data-grid>
+
+    <dx-popup width="1200px" height="800px" [(visible)]="showBPKRReportPopup" [closeOnOutsideClick]="false" title="Birim Performans Katsayıları"   id="A31332">
+        <div *dxTemplate="let data of 'content'" id="A31333">
+            <div class="row" id="A31334">
+                <dx-data-grid height="720px" [selection]="{mode: 'single'}" [allowColumnReordering]="true" [dataSource]="BPKRReportResults"
+                              [columns]="BPKRReportColumns"
+                              [filterRow]="{visible: true}" [headerFilter]="{visible: true}" id="A31335">
+                    <dxo-grouping [autoExpandAll]="true"></dxo-grouping>
+                    <dxo-export [enabled]="true" fileName="Birim Performans Katsayı Raporu"></dxo-export>
+                    <dxo-paging [pageSize]="100" id="A31044"></dxo-paging>
+                </dx-data-grid>
+                
+
+            </div>
+          
+            <div class="row" id="A31337">
+                <dx-button type="danger" style="float: right;" icon="fa fa-times" (onClick)="this.showBPKRReportPopup = false;" text="Çıkış" i18n-text="@@M12363"></dx-button>
+            </div>
+        </div>
+    </dx-popup>
+</div>

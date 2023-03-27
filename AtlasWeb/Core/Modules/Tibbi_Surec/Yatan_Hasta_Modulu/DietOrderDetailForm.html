@@ -1,0 +1,163 @@
+﻿<div class="container-fluid" id="A28849" data-tid="A367399">
+    <NeStatePanelComponent [OutgoingTransitions]="dietOrderDetailFormViewModel?.OutgoingTransitions" [StateReports]="dietOrderDetailFormViewModel?.CurrentStateReports" [ObjectID]="dietOrderDetailFormViewModel?._DietOrderDetail?.ObjectID" [ObjectDefID]="dietOrderDetailFormViewModel?._DietOrderDetail?.ObjectDefID" [CurrentStateDefID]="dietOrderDetailFormViewModel._DietOrderDetail.CurrentStateDefID" [DropStateList]="DropStateList" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()" id="A28850" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A367400">
+    </NeStatePanelComponent>
+</div>
+<div class="container-fluid" id="A28851" data-tid="A367401">
+    <form id="DietOrderDetailForm" class="form-horizontal" role="form" data-tid="A367402">
+
+    </form>
+    <div class="container-fluid" id="A28852" data-tid="A367403">
+        <div class="row margin-top-10" id="A28853" data-tid="A367404">
+            <div class="col-md-4 col-sm-12" id="A28854" data-tid="A367405">
+                <patient-demographics-form [actionId]="dietOrderDetailFormViewModel._DietOrderDetail.PeriodicOrder" id="A28855" data-tid="A367406"></patient-demographics-form>
+            </div>
+            <div class="col-md-2 col-sm-12" id="A28856" data-tid="A367407">
+                <div class="row" id="A28857" data-tid="A367408">
+                    <div class="col-md-12" id="A28858" data-tid="A367409">
+                        <label class="control-label" id="A28859" data-tid="A367410">Sorumlu Doktor</label>
+                        <dx-text-box [readOnly]="true" [value]="dietOrderDetailFormViewModel._inpatientExtraInfo.ResponsibleDoctor" id="A28860" data-tid="A367411">
+                        </dx-text-box>
+                    </div>
+                </div>
+                <div class="row" id="A28861" data-tid="A367412">
+                    <div class="col-md-12" id="A28862" data-tid="A367413">
+                        <label class="control-label" id="A28863" data-tid="A367414">Oda Grup</label>
+                        <dx-text-box [readOnly]="true" [value]="dietOrderDetailFormViewModel._inpatientExtraInfo.RoomGroupName" id="A28864" data-tid="A367415">
+                        </dx-text-box>
+                    </div>
+                </div>
+                <div class="row" id="A28865" data-tid="A367416">
+                    <div class="col-md-6" id="A28866" data-tid="A367417">
+                        <label class="control-label" id="A28867" data-tid="A367418">Oda</label>
+                        <dx-text-box [readOnly]="true" [value]="dietOrderDetailFormViewModel._inpatientExtraInfo.RoomName" id="A28868" data-tid="A367419">
+                        </dx-text-box>
+                    </div>
+                    <div class="col-md-6" id="A28869" data-tid="A367420">
+                        <label class="control-label" id="A28870" data-tid="A367421">Yatak</label>
+                        <dx-text-box [readOnly]="true" [value]="dietOrderDetailFormViewModel._inpatientExtraInfo.BedName" id="A28871" data-tid="A367422">
+                        </dx-text-box>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6 col-sm-12" id="A28872" data-tid="A367423">
+                <DiagnosisGridReadOnlyForm [EpisodeAction]="dietOrderDetailFormViewModel._DietOrderDetail" id="A28873" data-tid="A367424">
+                </DiagnosisGridReadOnlyForm>
+            </div>
+        </div>
+    </div>
+    <hr style="margin:5px 0" id="A28874" data-tid="A367425" />
+    <div class="row" id="A28875" data-tid="A367426">
+        <div class="col-sm-4" id="A28876" data-tid="A367427">
+            <div class="row" id="A28877" data-tid="A367428">
+                <label class="control-label col-sm-12" id="A28878" data-tid="A367429">
+                    İş Listesi Tarihi
+                </label>
+            </div>
+
+            <div class="row" id="A28879" data-tid="A367430">
+                <div class="col-sm-12" id="A28880" data-tid="A367431">
+                    <hvl-date-picker #Validation (ValueChange)="onWorkListDateChanged($event)" [BackColor]="WorkListDate?.BackColor" [CustomFormat]="WorkListDate?.CustomFormat" [Enabled]="WorkListDate?.Enabled" [Font]="WorkListDate?.Font" [ForeColor]="WorkListDate?.ForeColor" [Format]="WorkListDate?.Format" [Max]="WorkListDate?.Max" [Min]="WorkListDate?.Min" [ReadOnly]="WorkListDate?.ReadOnly" [Required]="WorkListDate?.Required" [TabIndex]="WorkListDate?.TabIndex" [Value]="dietOrderDetailFormViewModel?._DietOrderDetail?.WorkListDate" [Visible]="WorkListDate?.Visible" id="A28881" data-tid="A367432"></hvl-date-picker>
+                </div>
+            </div>
+
+            <div class="row" id="A28882" data-tid="A367433">
+                <label class="control-label col-sm-12" id="A28883" data-tid="A367434">
+                    Verilen Diyet
+                </label>
+            </div>
+
+            <div class="row" id="A28884" data-tid="A367435">
+                <div class="col-sm-12" id="A28885" data-tid="A367436">
+                    <hvl-list-box #Validation (SelectedObjectChange)="onProcedureObjectChanged($event)" [AutoCompleteDialogHeight]="ProcedureObject?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ProcedureObject?.AutoCompleteDialogWidth" [AutoCompleteMode]="ProcedureObject?.AutoCompleteMode" [BackColor]="ProcedureObject?.BackColor" [DefinitionName]="ProcedureObject?.ListDefName" [DisplayExpressionsCache]="dietOrderDetailFormViewModel?.ListDefDisplayExpressions" [Enabled]="ProcedureObject?.Enabled" [Font]="ProcedureObject?.Font" [ForeColor]="ProcedureObject?.ForeColor" [ListFilterExpression]="ProcedureObject?.ListFilterExpression" [MinSearchLength]="ProcedureObject?.MinSearchLength" [PopupDialogFieldConfig]="ProcedureObject?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ProcedureObject?.PopupDialogGridColumns" [PopupDialogHeight]="ProcedureObject?.PopupDialogHeight" [PopupDialogTitle]="ProcedureObject?.PopupDialogTitle" [PopupDialogWidth]="ProcedureObject?.PopupDialogWidth" [ReadOnly]="ProcedureObject?.ReadOnly" [SearchMode]="ProcedureObject?.SearchMode" [SearchTimeout]="ProcedureObject?.SearchTimeout" [SelectedObject]="dietOrderDetailFormViewModel?._DietOrderDetail?.ProcedureObject" [TabIndex]="ProcedureObject?.TabIndex" [Visible]="ProcedureObject?.Visible" [width]="ProcedureObject?.Width" id="A28886" data-tid="A367437"></hvl-list-box>
+                </div>
+            </div>
+
+            <div class="row margin-top-10" id="A28887" data-tid="A367438">
+                <hvl-group-box class="col-sm-12" [Text]="ttgroupbox1.Text" id="A28888" data-tid="A367439">
+                    <div class="col-sm-4" id="A28889" data-tid="A367440">
+                        <hvl-checkbox #Validation (ValueChange)="onBreakfastMealTypesChanged($event)" [AllowThreeState]="BreakfastMealTypes?.ThreeState" [BackColor]="BreakfastMealTypes?.BackColor" [Enabled]="BreakfastMealTypes?.Enabled" [Font]="BreakfastMealTypes?.Font" [ForeColor]="BreakfastMealTypes?.ForeColor" [IsTitleLeft]="BreakfastMealTypes?.IsTitleLeft" [Margin]="BreakfastMealTypes?.Margin" [ReadOnly]="BreakfastMealTypes?.ReadOnly" [TabIndex]="BreakfastMealTypes?.TabIndex" [TitleTopPadding]="BreakfastMealTypes?.TitleTopPadding" [Title]="BreakfastMealTypes?.Title" [Value]="dietOrderDetailFormViewModel?._DietOrderDetail?.MealType?.Breakfast" [Visible]="BreakfastMealTypes?.Visible" id="A28890" data-tid="A367441"></hvl-checkbox>
+                        <hvl-checkbox #Validation (ValueChange)="onDinnerMealTypesChanged($event)" [AllowThreeState]="DinnerMealTypes?.ThreeState" [BackColor]="DinnerMealTypes?.BackColor" [Enabled]="DinnerMealTypes?.Enabled" [Font]="DinnerMealTypes?.Font" [ForeColor]="DinnerMealTypes?.ForeColor" [IsTitleLeft]="DinnerMealTypes?.IsTitleLeft" [Margin]="DinnerMealTypes?.Margin" [ReadOnly]="DinnerMealTypes?.ReadOnly" [TabIndex]="DinnerMealTypes?.TabIndex" [TitleTopPadding]="DinnerMealTypes?.TitleTopPadding" [Title]="DinnerMealTypes?.Title" [Value]="dietOrderDetailFormViewModel?._DietOrderDetail?.MealType?.Dinner" [Visible]="DinnerMealTypes?.Visible" id="A28891" data-tid="A367442"></hvl-checkbox>
+                        <hvl-checkbox #Validation (ValueChange)="onLunchMealTypesChanged($event)" [AllowThreeState]="LunchMealTypes?.ThreeState" [BackColor]="LunchMealTypes?.BackColor" [Enabled]="LunchMealTypes?.Enabled" [Font]="LunchMealTypes?.Font" [ForeColor]="LunchMealTypes?.ForeColor" [IsTitleLeft]="LunchMealTypes?.IsTitleLeft" [Margin]="LunchMealTypes?.Margin" [ReadOnly]="LunchMealTypes?.ReadOnly" [TabIndex]="LunchMealTypes?.TabIndex" [TitleTopPadding]="LunchMealTypes?.TitleTopPadding" [Title]="LunchMealTypes?.Title" [Value]="dietOrderDetailFormViewModel?._DietOrderDetail?.MealType?.Lunch" [Visible]="LunchMealTypes?.Visible" id="A28892" data-tid="A367443"></hvl-checkbox>
+                        <hvl-checkbox #Validation (ValueChange)="onNightBreakfastMealTypesChanged($event)" [AllowThreeState]="NightBreakfastMealTypes?.ThreeState" [BackColor]="NightBreakfastMealTypes?.BackColor" [Enabled]="NightBreakfastMealTypes?.Enabled" [Font]="NightBreakfastMealTypes?.Font" [ForeColor]="NightBreakfastMealTypes?.ForeColor" [IsTitleLeft]="NightBreakfastMealTypes?.IsTitleLeft" [Margin]="NightBreakfastMealTypes?.Margin" [ReadOnly]="NightBreakfastMealTypes?.ReadOnly" [TabIndex]="NightBreakfastMealTypes?.TabIndex" [TitleTopPadding]="NightBreakfastMealTypes?.TitleTopPadding" [Title]="NightBreakfastMealTypes?.Title" [Value]="dietOrderDetailFormViewModel?._DietOrderDetail?.MealType?.NightBreakfast" [Visible]="NightBreakfastMealTypes?.Visible" id="A28893" data-tid="A367444"></hvl-checkbox>
+                    </div>
+
+                    <div class="col-sm-3" id="A28894" data-tid="A367445">
+                        <hvl-checkbox #Validation (ValueChange)="onSnack1MealTypesChanged($event)" [AllowThreeState]="Snack1MealTypes?.ThreeState" [BackColor]="Snack1MealTypes?.BackColor" [Enabled]="Snack1MealTypes?.Enabled" [Font]="Snack1MealTypes?.Font" [ForeColor]="Snack1MealTypes?.ForeColor" [IsTitleLeft]="Snack1MealTypes?.IsTitleLeft" [Margin]="Snack1MealTypes?.Margin" [ReadOnly]="Snack1MealTypes?.ReadOnly" [TabIndex]="Snack1MealTypes?.TabIndex" [TitleTopPadding]="Snack1MealTypes?.TitleTopPadding" [Title]="Snack1MealTypes?.Title" [Value]="dietOrderDetailFormViewModel?._DietOrderDetail?.MealType?.Snack1" [Visible]="Snack1MealTypes?.Visible" id="A28895" data-tid="A367446"></hvl-checkbox>
+                        <hvl-checkbox #Validation (ValueChange)="onSnack2MealTypesChanged($event)" [AllowThreeState]="Snack2MealTypes?.ThreeState" [BackColor]="Snack2MealTypes?.BackColor" [Enabled]="Snack2MealTypes?.Enabled" [Font]="Snack2MealTypes?.Font" [ForeColor]="Snack2MealTypes?.ForeColor" [IsTitleLeft]="Snack2MealTypes?.IsTitleLeft" [Margin]="Snack2MealTypes?.Margin" [ReadOnly]="Snack2MealTypes?.ReadOnly" [TabIndex]="Snack2MealTypes?.TabIndex" [TitleTopPadding]="Snack2MealTypes?.TitleTopPadding" [Title]="Snack2MealTypes?.Title" [Value]="dietOrderDetailFormViewModel?._DietOrderDetail?.MealType?.Snack2" [Visible]="Snack2MealTypes?.Visible" id="A28896" data-tid="A367447"></hvl-checkbox>
+                        <hvl-checkbox #Validation (ValueChange)="onSnack3MealTypesChanged($event)" [AllowThreeState]="Snack3MealTypes?.ThreeState" [BackColor]="Snack3MealTypes?.BackColor" [Enabled]="Snack3MealTypes?.Enabled" [Font]="Snack3MealTypes?.Font" [ForeColor]="Snack3MealTypes?.ForeColor" [IsTitleLeft]="Snack3MealTypes?.IsTitleLeft" [Margin]="Snack3MealTypes?.Margin" [ReadOnly]="Snack3MealTypes?.ReadOnly" [TabIndex]="Snack3MealTypes?.TabIndex" [TitleTopPadding]="Snack3MealTypes?.TitleTopPadding" [Title]="Snack3MealTypes?.Title" [Value]="dietOrderDetailFormViewModel?._DietOrderDetail?.MealType?.Snack3" [Visible]="Snack3MealTypes?.Visible" id="A28897" data-tid="A367448"></hvl-checkbox>
+                    </div>
+                </hvl-group-box>
+            </div>
+
+            <div class="row" id="A28898" data-tid="A367449">
+                <label class="control-label col-sm-6" id="A28899" data-tid="A367450">Boy(cm)</label>
+                <label class="control-label col-sm-6" id="A28900" data-tid="A367451">Kilo(kg)</label>
+            </div>
+
+            <div class="row" id="A28901" data-tid="A367452">
+                <div class="col-sm-6" id="A28902" data-tid="A367453">
+                    <hvl-number-box #Validation (ValueChange)="onHeigthEpisodeChanged($event)" [BackColor]="HeigthEpisode?.BackColor" [Enabled]="HeigthEpisode?.Enabled" [Font]="HeigthEpisode?.Font" [ForeColor]="HeigthEpisode?.ForeColor" [ReadOnly]="HeigthEpisode?.ReadOnly" [TabIndex]="HeigthEpisode?.TabIndex" [Value]="dietOrderDetailFormViewModel?._DietOrderDetail?.Episode?.Patient?.Heigth" [Visible]="HeigthEpisode?.Visible" id="A28903" data-tid="A367454"></hvl-number-box>
+                </div>
+                <div class="col-sm-6" id="A28904" data-tid="A367455">
+                    <hvl-number-box #Validation (ValueChange)="onWeightEpisodeChanged($event)" [BackColor]="WeightEpisode?.BackColor" [Enabled]="WeightEpisode?.Enabled" [Font]="WeightEpisode?.Font" [ForeColor]="WeightEpisode?.ForeColor" [ReadOnly]="WeightEpisode?.ReadOnly" [TabIndex]="WeightEpisode?.TabIndex" [Value]="dietOrderDetailFormViewModel?._DietOrderDetail?.Episode?.Patient?.Weight" [Visible]="WeightEpisode?.Visible" id="A28905" data-tid="A367456"></hvl-number-box>
+                </div>
+            </div>
+
+            <div class="row" id="A28906" data-tid="A367457">
+                <label class="control-label col-sm-6" id="A28907" data-tid="A367458">V.K.İ</label>
+                <label class="control-label col-sm-6" id="A28908" data-tid="A367459">Elde Edilen Değer</label>
+            </div>
+
+            <div class="row" id="A28909" data-tid="A367460">
+                <div class="col-sm-6" id="A28910" data-tid="A367461">
+                    <dx-text-box [readOnly]="true" [value]="VKI" id="A28911" data-tid="A367462"></dx-text-box>
+                </div>
+                <div class="col-sm-6" id="A28912" data-tid="A367463">
+                    <dx-text-box [readOnly]="true" [value]="VKI_Deger" id="A28913" data-tid="A367464"></dx-text-box>
+                </div>
+            </div>
+        </div>
+        <!--   <div class="col-sm-8" id="A28914">
+            <dx-data-grid [columns]="LaboratoryTestListColumns" allowColumnReordering="true" allowColumnResizing="true" height="325" [dataSource]="dietOrderDetailFormViewModel._DietLabTestResultList" [filterRow]="{visible: true}" [columnAutoWidth]="true" style="padding-top: 20px;" [paging]="{enable: false, pageSize:1000000}" [selection]="{mode: 'single',allowSelectAll: false, showCheckBoxesMode: 'never'}" [editing]="{mode: 'row' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" id="A28915">
+            </dx-data-grid>
+        </div> -->
+        <div class=" = col-sm-7" data-tid="A367465">
+            <div class="row" data-tid="A367466">
+        <button type="button" class="btn btn-default fa fa-flask" (click)="btnShowLISResultViewForAllEpisodes_Click()" data-toggle="tooltip" data-placement="top" title="Tüm Laboratuvar Sonuçları" data-tid="A367467"></button>
+
+        <dx-button type="default" class="btn btn-primary" (click)="OpenDrugOrderList()" data-toggle="tooltip" data-placement="top" text="İlaç Order" data-tid="A367468"></dx-button>
+
+           <dx-popup width="1200px" height="600px" [(visible)]="openDrugOrder" [closeOnOutsideClick]="true" title="İlaç Order" [showCloseButton]="true" data-tid="A367469">
+
+         <drug-order-grid-component class="col-sm-12" *ngIf="visible" [MasterResource]="dietOrderDetailFormViewModel?.MasterResource" [SecondaryMasterResource]="dietOrderDetailFormViewModel?.SecondaryMasterResource" [Episode]="dietOrderDetailFormViewModel?.Episode" [SubEpisode]="dietOrderDetailFormViewModel?.SubEpisode" [ActiveInPatientPhysicianApp]="dietOrderDetailFormViewModel?.InPatientPhyApp" [IsVisible]="false" data-tid="A367470">
+            </drug-order-grid-component>
+
+        </dx-popup> 
+    </div>
+    <br data-tid="A367471" />
+        <div class="row" (height)="150" id="A29261" data-tid="A367472">
+                <div class="panel panel-default" id="A15428" data-tid="A367473">
+                        <div class="panel-heading panel-title tableHeaderStyle" id="A15429" data-tid="A367474">Geçmiş Diyet Listesi</div>
+                            <dx-data-grid id="gridContainer" [dataSource]="dietOrderDetailFormViewModel.DietOrderList" data-tid="A367475">
+                                <dxo-paging [pageSize]="20" id="A15431" data-tid="A367476"></dxo-paging>
+                                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true" id="A15432" data-tid="A367477">
+                                </dxo-pager>
+                                <dxo-filter-row [visible]="true" [applyFilter]="auto" id="A15433" data-tid="A367478"></dxo-filter-row>
+                                <dxo-header-filter [visible]="true" id="A15434" data-tid="A367479"></dxo-header-filter>
+
+                                <dxi-column dataField="DietName" caption="Diyet Türü" width="auto" i18n-caption="@@M13053" id="A15435" data-tid="A367480"></dxi-column>
+                                <dxi-column dataField="PeriodStartTime" caption="Başlangıç Tarihi" width="auto" i18n-caption="@@M13049" id="A15436" data-tid="A367481"></dxi-column>
+                                <dxi-column dataField="PeriodEndTime" caption="Bitiş Tarihi" width="auto" i18n-caption="@@M13049" id="A15436" data-tid="A367482"></dxi-column>
+                                <dxi-column dataField="WhichMeal" caption="Öğün" width="auto" i18n-caption="@@M19903" id="A15437" data-tid="A367483"></dxi-column>
+                                <dxi-column dataField="OrderDescription" caption="Açıklama" width="auto" i18n-caption="@@M10469" id="A15442" data-tid="A367484"></dxi-column>
+                                <dxi-column dataField="MasterResource" caption="Birim" width="auto" i18n-caption="@@M22986" id="A15438" data-tid="A367485"></dxi-column>
+                                <dxi-column dataField="DoctorName" caption="Doktor" width="auto" i18n-caption="@@M22986" id="A15438" data-tid="A367486"></dxi-column>
+
+                            </dx-data-grid>
+                    </div>
+        </div>
+    </div>
+    </div>
+    <hr style="margin:5px 0" id="A28916" data-tid="A367487" />
+</div>

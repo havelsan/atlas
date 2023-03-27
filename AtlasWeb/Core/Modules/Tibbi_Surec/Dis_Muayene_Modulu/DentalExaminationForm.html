@@ -1,0 +1,970 @@
+﻿<div class="row" *ngIf="isConsultation" id="A11284" data-tid="A341306">
+    <div class="col-sm-12" id="A11285" data-tid="A341307">
+        <NeStatePanelComponent [OutgoingTransitions]="dentalExaminationFormViewModel?.OutgoingTransitions" [ObjectID]="dentalExaminationFormViewModel?._DentalExamination?.ObjectID" [ObjectDefID]="dentalExaminationFormViewModel?._DentalExamination?.ObjectDefID" [CurrentStateDefID]="dentalExaminationFormViewModel._DentalExamination.CurrentStateDefID" (onSetState)="setStateToTransition($event)" id="A11286" [SaveCommandVisible]="isSaveAndCancelCommandVisible" [CancelCommandVisible]="isSaveAndCancelCommandVisible" data-tid="A341308">
+        </NeStatePanelComponent>
+    </div>
+</div>
+
+<div class="container-fluid" id="A11287" data-tid="A341309">
+    <form id="DentalExaminationForm" class="form-horizontal" role="form" data-tid="A341310"></form>
+
+    <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [visible]="loadingVisible" [showIndicator]="true" [message]="panelMessage" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" i18n-message="@@M17380" id="A19836" data-tid="A341311">
+    </dx-load-panel>
+    <ul class="nav nav-tabs" id="A11288" data-tid="A341312">
+        <li [ngClass]="ActivePage =='muayene' ? 'active' : ''" *ngIf="hasEmergencySpecialityBasedObject==true" id="A11289" data-tid="A341313">
+            <a data-toggle="tab" href="#muayene" id="A11290" data-tid="A341314">
+                <span id="A11291" data-tid="A341315">Diş Muayene</span>
+                <span class="fa fa-neuter" [ngClass]="RecentActiveTab =='muayene' ? 'fa-map-pin' : ''" (click)="TabPanelClick('muayene')" id="A11292" data-tid="A341316"></span>
+            </a>
+        </li>
+        <li [ngClass]="ActivePage =='istem' ? 'active' : ''" id="A11293" data-tid="A341317">
+            <a data-toggle="tab" href="#istem" (click)="openIstem()" id="A11294" data-tid="A341318">
+                <span id="A11295" data-tid="A341319">İstem Paneli</span>
+                <span class="fa fa-neuter" [ngClass]="RecentActiveTab =='istem' ? 'fa-map-pin' : ''" (click)="TabPanelClick('istem')" id="A11296" data-tid="A341320"></span>
+            </a>
+        </li>
+        <li [ngClass]="ActivePage =='hastaGecmisi' ? 'active' : ''" id="A11297" data-tid="A341321">
+            <a data-toggle="tab" href="#hastaGecmisi" (click)="openHastaGecmisi()" id="A11298" data-tid="A341322">
+                <span id="A11299" data-tid="A341323">Hasta Geçmişi</span>
+                <span class="fa fa-neuter" [ngClass]="RecentActiveTab =='hastaGecmisi' ? 'fa-map-pin' : ''" (click)="TabPanelClick('hastaGecmisi')" id="A11300" data-tid="A341324"></span>
+            </a>
+        </li>
+
+        <div class="btn-group" role="group" style="float:right;padding-top: 10px;padding-right: 15px;" id="B24038" data-tid="A341325">
+            <dx-button text="Randevu Ver" rtlEnabled="true" type="btn btn-default" [visible]="true" icon="fa fa-calendar-check-o" (onClick)="btnAppointment_Click()" i18n-text="@@M27480" id="A24041" data-tid="A341326"></dx-button>
+            <dx-button *ngIf="saveAndCloseCommandVisible" text="Vazgeç" type="danger" icon="revert" (onClick)="btnDentalExaminationCancel_Click($event)" i18n-text="@@M24054" id="CA24039" data-tid="A341327"></dx-button>
+            <dx-button text="Kaydet" type="default" icon="save" (onClick)="btnDentalExaminationSave_Click($event)" i18n-text="@@M17386" id="A24039" data-tid="A341328"></dx-button>
+            <dx-button *ngIf="saveAndCloseCommandVisible" text="Kaydet Kapat" type="success" icon="save" (onClick)="btnDentalExaminationSaveAndClose_Click($event)" i18n-text="@@M30113" id="BA24039" data-tid="A341329"></dx-button>
+            <!--<div *ngIf="saveAndCloseCommandVisible" class="col-sm-3" style="float:right;" id="B24038">
+                <dx-button text="Kaydet Kapat" rtlEnabled="true" style="margin-top:-5px;" class="tabHeaderButton dx-button-active dx-button-semioval dx-button-blue"
+                           icon="save" (onClick)="btnDentalExaminationSaveAndClose_Click($event)" i18n-text="@@M30113" id="BA24039"></dx-button>
+            </div>
+            <div class="col-sm-3" style="float:right;" id="A11301">
+                <dx-button text="Kaydet" rtlEnabled="true" style="margin-top:-5px;" class="tabHeaderButton dx-button-active dx-button-semioval dx-button-blue"
+                           icon="save" (onClick)="btnDentalExaminationSave_Click($event)" i18n-text="@@M17386" id="A11302"></dx-button>
+            </div>-->
+            <!--<div class="col-sm-1" style="float:right;">
+                <dx-button text="Reçete" rtlEnabled="true" style="margin-top:-5px;" class="tabHeaderButton dx-button-active dx-button-semioval" type="danger" icon="fa fa-keyboard-o"
+                           (onClick)="colorPresClick()">
+                </dx-button>
+            </div>-->
+            <!--<div *ngIf="saveAndCloseCommandVisible" class="col-sm-3" style="float:right;" id="C24038">
+                <dx-button text="Vazgeç" rtlEnabled="true" style="margin-top:-5px;" class="tabHeaderButton dx-button-semioval dx-button-danger"
+                           icon="revert" (onClick)="btnDentalExaminationCancel_Click($event)" i18n-text="@@M24054" id="CA24039"></dx-button>
+            </div>-->
+            <e-nabiz-button [episodeActionId]="dentalExaminationFormViewModel._DentalExamination?.ObjectID" [patientId]="dentalExaminationFormViewModel._DentalExamination?.Episode?.Patient?.ObjectID" data-tid="A341330"></e-nabiz-button>
+        </div>
+
+    </ul>
+    <div class="container-fluid" id="A11303" data-tid="A341331">
+        <div class="row" id="A11304" data-tid="A341332">
+            <div class="col-md-4 col-sm-12" id="A11305" data-tid="A341333">
+                <patient-demographics-form [actionId]="dentalExaminationFormViewModel._DentalExamination?.ObjectID" id="A11306" data-tid="A341334"></patient-demographics-form>
+            </div>
+            <div class="col-md-2 col-sm-12" id="A11307" data-tid="A341335">
+                <div class="row" id="A11308" data-tid="A341336">
+                    <div class="col-md-12" id="A11309" data-tid="A341337">
+                        <label class="control-label" id="A11310" data-tid="A341338">Muayene Eden Doktor</label>
+                        <hvl-list-box #Validation (SelectedObjectChange)="onExaminationProcedureDoctorChanged($event)" [AutoCompleteDialogHeight]="ExaminationProcedureDoctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ExaminationProcedureDoctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="ExaminationProcedureDoctor?.AutoCompleteMode" [BackColor]="ExaminationProcedureDoctor?.BackColor" [DefinitionName]="ExaminationProcedureDoctor?.ListDefName" [DisplayExpressionsCache]="dentalExaminationFormViewModel?.ListDefDisplayExpressions" [Enabled]="ExaminationProcedureDoctor?.Enabled" [Font]="ExaminationProcedureDoctor?.Font" [ForeColor]="ExaminationProcedureDoctor?.ForeColor" [ListFilterExpression]="ExaminationProcedureDoctor?.ListFilterExpression" [MinSearchLength]="ExaminationProcedureDoctor?.MinSearchLength" [PopupDialogFieldConfig]="ExaminationProcedureDoctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ExaminationProcedureDoctor?.PopupDialogGridColumns" [PopupDialogHeight]="ExaminationProcedureDoctor?.PopupDialogHeight" [PopupDialogTitle]="ExaminationProcedureDoctor?.PopupDialogTitle" [PopupDialogWidth]="ExaminationProcedureDoctor?.PopupDialogWidth" [ReadOnly]="ExaminationProcedureDoctor?.ReadOnly" [SearchMode]="ExaminationProcedureDoctor?.SearchMode" [SearchTimeout]="ExaminationProcedureDoctor?.SearchTimeout" [SelectedObject]="dentalExaminationFormViewModel?._DentalExamination?.ProcedureDoctor" [TabIndex]="ExaminationProcedureDoctor?.TabIndex" [Visible]="ExaminationProcedureDoctor?.Visible" [width]="ExaminationProcedureDoctor?.Width" id="A11311" data-tid="A341339"></hvl-list-box>
+                    </div>
+                </div>
+                <div class="row" id="A11312" data-tid="A341340">
+                </div>
+                <div class="row" id="A11313" data-tid="A341341">
+                    <label class="control-label col-md-12" id="A11314" data-tid="A341342">Muayene Başlama / Muayene Bitiş</label>
+                </div>
+                <div class="row" id="A11315" data-tid="A341343">
+                    <div class="col-md-12" title="Muayene Başlama ve Bitiş" style="font-size:11px; font-weight:600" i18n-title="@@M19166" id="A11316" data-tid="A341344">{{dentalExaminationFormViewModel?.ExaminationProcessAndEndDate}}</div>
+                </div>
+                <div class="row" style="padding-top:3px;" data-tid="A341345">
+                    <div class="col-sm-12" data-tid="A341346">
+                        <hvl-checkbox #Validation (ValueChange)="onEmergencyChanged($event)" [AllowThreeState]="Emergency?.ThreeState" [BackColor]="Emergency?.BackColor" [Enabled]="Emergency?.Enabled" [Font]="Emergency?.Font" [ForeColor]="Emergency?.ForeColor" [IsTitleLeft]="Emergency?.IsTitleLeft" [Margin]="Emergency?.Margin" [ReadOnly]="Emergency?.ReadOnly" [TabIndex]="Emergency?.TabIndex" [TitleTopPadding]="Emergency?.TitleTopPadding" [Title]="Emergency?.Title" [Value]="dentalExaminationFormViewModel?._DentalExamination?.Emergency" [Visible]="Emergency?.Visible" data-tid="A341347"></hvl-checkbox>
+                    </div>
+
+                </div>
+                <div class="row" style="padding-top:3px;" data-tid="A341348">
+                    <div class="col-sm-12" data-tid="A341349">
+                        <hvl-checkbox #Validation (ValueChange)="onttChkBoxGeneralAnesthesiaChanged($event)" [AllowThreeState]="ttChkBoxGeneralAnesthesia?.ThreeState" [BackColor]="ttChkBoxGeneralAnesthesia?.BackColor" [Enabled]="ttChkBoxGeneralAnesthesia?.Enabled" [Font]="ttChkBoxGeneralAnesthesia?.Font" [ForeColor]="ttChkBoxGeneralAnesthesia?.ForeColor" [IsTitleLeft]="ttChkBoxGeneralAnesthesia?.IsTitleLeft" [Margin]="ttChkBoxGeneralAnesthesia?.Margin" [ReadOnly]="ttChkBoxGeneralAnesthesia?.ReadOnly" [TabIndex]="ttChkBoxGeneralAnesthesia?.TabIndex" [TitleTopPadding]="ttChkBoxGeneralAnesthesia?.TitleTopPadding" [Title]="ttChkBoxGeneralAnesthesia?.Title" [Value]="dentalExaminationFormViewModel?._DentalExamination?.GeneralAnesthesia" [Visible]="ttChkBoxGeneralAnesthesia?.Visible" data-tid="A341350"></hvl-checkbox>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12" id="A11317" data-tid="A341351">
+                <DiagnosisGridForm [(GridDiagnosisGridList)]="dentalExaminationFormViewModel.DiagnosisGridGridList" [RemoveDeletedRow]="isContextSaved" [CheckENabiz]="true" [EpisodeAction]="dentalExaminationFormViewModel._DentalExamination" [ProcedureDoctor]="dentalExaminationFormViewModel._DentalExamination.ProcedureDoctor" (sendENabizViewModel)="setENabizViewModel($event)" data-tid="A341352"></DiagnosisGridForm>
+            </div>
+        </div>
+    </div>
+    <div #scrollPanel class="col-sm-12" style="padding-left:3px; overflow-y:auto" id="A11319" data-tid="A341353">
+        <div class="row" id="A11320" data-tid="A341354">
+            <div class="col-xs-12" id="A11321" data-tid="A341355">
+                <div class="tab-content" style="background-color:#fff;" id="A11322" data-tid="A341356">
+                    <div id="muayene" [ngClass]="ActivePage =='muayene' ? 'tab-pane fade in active' : 'tab-pane fade'" *ngIf="hasEmergencySpecialityBasedObject==true" data-tid="A341357">
+                        <div class="container-fluid" data-tid="A341358">
+                            <div class="row" data-tid="A341359">
+
+
+                                <div class="panel-group" style="padding-top:5px" data-tid="A341360">
+                                    <div class="panel panel-default" style="cursor:pointer" data-tid="A341361">
+                                        <div class="panel-heading" data-toggle="collapse" href="#anamnez_collapse" style="padding:10px 15px 5px" data-tid="A341362">
+                                            <h4 class="panel-title" data-tid="A341363">
+                                                <a data-toggle="collapse" style="font-weight: bold;" href="#anamnez_collapse" data-tid="A341364">Anamnez</a>
+                                            </h4>
+                                        </div>
+                                        <div id="anamnez_collapse" class="panel-collapse collapse" *ngIf="!isConsultation" data-tid="A341365">
+                                            <div class="container-fluid" data-tid="A341366">
+                                                <AnamnesisForm [anamnesisFormViewModel]="dentalExaminationFormViewModel?.anamnesisFormViewModel" [showVitals]="false" data-tid="A341367"></AnamnesisForm>
+
+                                            </div>
+                                        </div>
+                                        <div id="anamnez_collapse" class="panel-collapse collapse" *ngIf="isConsultation" data-tid="A341368">
+                                            <div class="row" style="padding: 5px" data-tid="A341369">
+                                                <div class="col-md-4" data-tid="A341370">
+                                                    <label class="control-label" data-tid="A341371">Şikayeti</label>
+                                                    <hvl-richtextbox [Height]="&#x27;100px&#x27;" [ngModelOptions]="{ standalone: true}" [ngModel]="dentalExaminationFormViewModel?._DentalExamination?.Complaint" [ReadOnly]="true" [Visible]="true" data-tid="A341372"></hvl-richtextbox>
+                                                </div>
+                                                <div class="col-md-4" data-tid="A341373">
+                                                    <label class="control-label" data-tid="A341374">Özgeçmişi</label>
+                                                    <hvl-richtextbox [Height]="&#x27;100px&#x27;" [ngModelOptions]="{ standalone: true}" [ngModel]="dentalExaminationFormViewModel?._DentalExamination?.PatientHistory" [ReadOnly]="true" [Visible]="true" data-tid="A341375"></hvl-richtextbox>
+                                                </div>
+                                                <div class="col-md-4" data-tid="A341376">
+                                                    <label class="control-label" data-tid="A341377">Fiziki Muayene</label>
+                                                    <hvl-richtextbox [Height]="&#x27;100px&#x27;" [ngModelOptions]="{ standalone: true}" [ngModel]="dentalExaminationFormViewModel?._DentalExamination?.PhysicalExamination" [ReadOnly]="true" [Visible]="true" data-tid="A341378"></hvl-richtextbox>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--<dx-accordion #searchAccordion class="margin-bottom-10" collapsible="true">
+                                    <dxi-item title="Anamnez" i18n-title="@@M10951">
+                                        <div id="anamnesis_collapse">
+                                            <div class="container-fluid">
+                                                <div class="row" style="margin-top:10px;margin-bottom:10px;">
+                                                    <div class="col-sm-12">
+
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </dxi-item>
+                                </dx-accordion>-->
+                                <!--<div class="row" style="padding-top:5px">
+
+                                                            <div class="col-sm-2">
+                                    <hvl-button (BtnClicked)="ttButtonOrtodontiForm_Click()" [BackColor]="ttButtonOrtodontiForm?.BackColor" [Enabled]="ttButtonOrtodontiForm?.Enabled" [Font]="ttButtonOrtodontiForm?.Font" [ForeColor]="ttButtonOrtodontiForm?.ForeColor" [height]="ttButtonOrtodontiForm?.Height" [ReadOnly]="ttButtonOrtodontiForm?.ReadOnly" [TabIndex]="ttButtonOrtodontiForm?.TabIndex" [Text]="ttButtonOrtodontiForm?.Text" [Visible]="ttButtonOrtodontiForm?.Visible"></hvl-button>
+                                </div>-->
+                                <!--<div class="col-sm-2">
+                                    <hvl-button (BtnClicked)="btnNewTreatmentDischarge_Click()" [BackColor]="btnNewTreatmentDischarge?.BackColor" [Enabled]="btnNewTreatmentDischarge?.Enabled" [Font]="btnNewTreatmentDischarge?.Font" [ForeColor]="btnNewTreatmentDischarge?.ForeColor" [height]="btnNewTreatmentDischarge?.Height" [ReadOnly]="btnNewTreatmentDischarge?.ReadOnly" [TabIndex]="btnNewTreatmentDischarge?.TabIndex" [Text]="btnNewTreatmentDischarge?.Text" [Visible]="btnNewTreatmentDischarge?.Visible"></hvl-button>
+                                </div>-->
+                                <!--<div class="col-sm-2">
+                                    <hvl-button (BtnClicked)="ttButtonTaahhut_Click()" [BackColor]="ttButtonTaahhut?.BackColor" [Enabled]="ttButtonTaahhut?.Enabled" [Font]="ttButtonTaahhut?.Font" [ForeColor]="ttButtonTaahhut?.ForeColor" [height]="ttButtonTaahhut?.Height" [ReadOnly]="ttButtonTaahhut?.ReadOnly" [TabIndex]="ttButtonTaahhut?.TabIndex" [Text]="ttButtonTaahhut?.Text" [Visible]="ttButtonTaahhut?.Visible"></hvl-button>
+                                </div>
+                                                        </div>-->
+                                <br data-tid="A341379" />
+
+                                <div class="container-fluid" #toothComponent id="A11337" data-tid="A341380">
+                                    <div class="row" id="A11338" data-tid="A341381">
+                                        <div class="row" id="A11339" data-tid="A341382">
+                                            <div class="col-sm-5" id="A11340" data-tid="A341383">
+                                            </div>
+                                            <div class="col-sm-2 " id="A11341" data-tid="A341384">
+                                                <hvl-checkbox #ch1 (ValueChange)="optionChanged($event ? '+1' : '-1' );" Title="Tüm Ağız" [(Value)]="checkValues[0]" i18n-Title="@@M23631" id="A11342" data-tid="A341385"></hvl-checkbox>
+                                            </div>
+                                            <div class="col-sm-5" id="A11343" data-tid="A341386">
+                                            </div>
+                                        </div>
+                                        <br id="A11344" data-tid="A341387" />
+                                        <div class="row" id="A11345" data-tid="A341388">
+                                            <div class="col-sm-5" id="A11346" data-tid="A341389">
+                                            </div>
+                                            <div class="col-sm-2" id="A11347" data-tid="A341390">
+                                                <hvl-checkbox #ch2 (ValueChange)="optionChanged($event ? '+2' : '-2' );" Title="Üst Çene" [(Value)]="checkValues[1]" i18n-Title="@@M23981" id="A11348" data-tid="A341391"></hvl-checkbox>
+                                            </div>
+                                            <div class="col-sm-5" id="A11349" data-tid="A341392">
+                                            </div>
+                                        </div>
+                                        <div class="row " id="A11350" data-tid="A341393">
+                                            <div class="col-sm-2" id="A11351" data-tid="A341394">
+                                            </div>
+                                            <div class="col-sm-2 " id="A11352" data-tid="A341395">
+                                                <hvl-checkbox #ch4 (ValueChange)="optionChanged($event ? '+4' : '-4' );" Title="Sağ Üst Çene" [(Value)]="checkValues[2]" i18n-Title="@@M21152" id="A11353" data-tid="A341396"></hvl-checkbox>
+                                            </div>
+                                            <div class="col-sm-2" id="A11354" data-tid="A341397">
+                                            </div>
+                                            <div class="col-sm-2" id="A11355" data-tid="A341398">
+                                            </div>
+                                            <div class="col-sm-2" id="A11356" data-tid="A341399">
+                                                <hvl-checkbox #ch5 (ValueChange)="optionChanged($event ? '+5' : '-5' );" Title="Sol Üst Çene" [(Value)]="checkValues[3]" i18n-Title="@@M22021" id="A11357" data-tid="A341400"></hvl-checkbox>
+                                            </div>
+                                            <div class="col-sm-2" id="A11358" data-tid="A341401">
+                                            </div>
+                                        </div>
+                                        <div class="row" id="A11359" data-tid="A341402">
+                                            <div class="col-sm-6" id="A11360" data-tid="A341403">
+                                                <div class="col-sm-2" id="A11361" data-tid="A341404">
+                                                </div>
+                                                <div class="col-sm-1 no-padding" id="A11362">
+                                                    <hvl-checkbox-image #ch18 (ValueChange)="optionChanged($event ? '+18' : '-18' );" Title="18" [(Value)]="checkValues[4]" id="A11363" Src="../../Content/DentalExamination/Yetiskin/18/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1 no-padding" id="A11364">
+                                                    <hvl-checkbox-image #ch17 (ValueChange)="optionChanged($event ? '+17' : '-17' );" Title="17" [(Value)]="checkValues[5]" id="A11365" Src="../../Content/DentalExamination/Yetiskin/17/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1 no-padding" id="A11366">
+                                                    <hvl-checkbox-image #ch16 (ValueChange)="optionChanged($event ? '+16' : '-16' );" Title="16" [(Value)]="checkValues[6]" id="A11367" Src="../../Content/DentalExamination/Yetiskin/16/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1 no-padding" id="A11368">
+                                                    <hvl-checkbox-image #ch15 (ValueChange)="optionChanged($event ? '+15' : '-15' );" Title="15" [(Value)]="checkValues[7]" id="A11369" Src="../../Content/DentalExamination/Yetiskin/15/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1 no-padding" id="A11370">
+                                                    <hvl-checkbox-image #ch14 (ValueChange)="optionChanged($event ? '+14' : '-14' );" Title="14" [(Value)]="checkValues[8]" id="A11371" Src="../../Content/DentalExamination/Yetiskin/14/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1 no-padding" id="A11372">
+                                                    <hvl-checkbox-image #ch13 (ValueChange)="optionChanged($event ? '+13' : '-13' );" Title="13" [(Value)]="checkValues[9]" id="A11373" Src="../../Content/DentalExamination/Yetiskin/13/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1 no-padding" id="A11374">
+                                                    <hvl-checkbox-image #ch12 (ValueChange)="optionChanged($event ? '+12' : '-12' );" Title="12" [(Value)]="checkValues[10]" id="A11375" Src="../../Content/DentalExamination/Yetiskin/12/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1 no-padding" id="A11376">
+                                                    <hvl-checkbox-image #ch11 (ValueChange)="optionChanged($event ? '+11' : '-11' );" Title="11" [(Value)]="checkValues[11]" id="A11377" Src="../../Content/DentalExamination/Yetiskin/11/1.png"></hvl-checkbox-image>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6" id="A11378">
+                                                <div class="col-sm-1 no-padding" id="A11379">
+                                                    <hvl-checkbox-image #ch21 (ValueChange)="optionChanged($event ? '+21' : '-21' );" Title="21" [(Value)]="checkValues[12]" id="A11380" Src="../../Content/DentalExamination/Yetiskin/21/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1 no-padding" id="A11381">
+                                                    <hvl-checkbox-image #ch22 (ValueChange)="optionChanged($event ? '+22' : '-22' );" Title="22" [(Value)]="checkValues[13]" id="A11382" Src="../../Content/DentalExamination/Yetiskin/22/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1 no-padding" id="A11383">
+                                                    <hvl-checkbox-image #ch23 (ValueChange)="optionChanged($event ? '+23' : '-23' );" Title="23" [(Value)]="checkValues[14]" id="A11384" Src="../../Content/DentalExamination/Yetiskin/23/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1 no-padding" id="A11385">
+                                                    <hvl-checkbox-image #ch24 (ValueChange)="optionChanged($event ? '+24' : '-24' );" Title="24" [(Value)]="checkValues[15]" id="A11386" Src="../../Content/DentalExamination/Yetiskin/24/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1 no-padding" id="A11387">
+                                                    <hvl-checkbox-image #ch25 (ValueChange)="optionChanged($event ? '+25' : '-25' );" Title="25" [(Value)]="checkValues[16]" id="A11388" Src="../../Content/DentalExamination/Yetiskin/25/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1 no-padding" id="A11389">
+                                                    <hvl-checkbox-image #ch26 (ValueChange)="optionChanged($event ? '+26' : '-26' );" Title="26" [(Value)]="checkValues[17]" id="A11390" Src="../../Content/DentalExamination/Yetiskin/26/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1 no-padding" id="A11391">
+                                                    <hvl-checkbox-image #ch27 (ValueChange)="optionChanged($event ? '+27' : '-27' );" Title="27" [(Value)]="checkValues[18]" id="A11392" Src="../../Content/DentalExamination/Yetiskin/27/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1 no-padding" id="A11393">
+                                                    <hvl-checkbox-image #ch28 (ValueChange)="optionChanged($event ? '+28' : '-28' );" Title="28" [(Value)]="checkValues[19]" id="A11394" Src="../../Content/DentalExamination/Yetiskin/28/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-2" id="A11395" data-tid="A341438">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" id="A11396" data-tid="A341439">
+                                            <div class="col-sm-6" id="A11397" data-tid="A341440">
+                                                <div class="col-sm-5" id="A11398" data-tid="A341441">
+                                                </div>
+                                                <div class="col-sm-1 no-padding" id="A11399">
+                                                    <hvl-checkbox-image #ch55 (ValueChange)="optionChanged($event ? '+55' : '-55' );" Title="55" [(Value)]="checkValues[20]" id="A11400" Src="../../Content/DentalExamination/Cocuk/55/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1 no-padding" id="A11401">
+                                                    <hvl-checkbox-image #ch54 (ValueChange)="optionChanged($event ? '+54' : '-54' );" Title="54" [(Value)]="checkValues[21]" id="A11402" Src="../../Content/DentalExamination/Cocuk/54/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1 no-padding" id="A11403">
+                                                    <hvl-checkbox-image #ch53 (ValueChange)="optionChanged($event ? '+53' : '-53' );" Title="53" [(Value)]="checkValues[22]" id="A11404" Src="../../Content/DentalExamination/Cocuk/53/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1 no-padding" id="A11405">
+                                                    <hvl-checkbox-image #ch52 (ValueChange)="optionChanged($event ? '+52' : '-52' );" Title="52" [(Value)]="checkValues[23]" id="A11406" Src="../../Content/DentalExamination/Cocuk/52/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1 no-padding" id="A11407">
+                                                    <hvl-checkbox-image #ch51 (ValueChange)="optionChanged($event ? '+51' : '-51' );" Title="51" [(Value)]="checkValues[24]" id="A11408" Src="../../Content/DentalExamination/Cocuk/51/1.png"></hvl-checkbox-image>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6" id="A11409">
+                                                <div class="col-sm-1 no-padding" id="A11410">
+                                                    <hvl-checkbox-image #ch61 (ValueChange)="optionChanged($event ? '+61' : '-61' );" Title="61" [(Value)]="checkValues[25]" id="A11411" Src="../../Content/DentalExamination/Cocuk/61/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1 no-padding" id="A11412">
+                                                    <hvl-checkbox-image #ch62 (ValueChange)="optionChanged($event ? '+62' : '-62' );" Title="62" [(Value)]="checkValues[26]" id="A11413" Src="../../Content/DentalExamination/Cocuk/62/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1 no-padding" id="A11414">
+                                                    <hvl-checkbox-image #ch63 (ValueChange)="optionChanged($event ? '+63' : '-63' );" Title="63" [(Value)]="checkValues[27]" id="A11415" Src="../../Content/DentalExamination/Cocuk/63/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1 no-padding" id="A11416">
+                                                    <hvl-checkbox-image #ch64 (ValueChange)="optionChanged($event ? '+64' : '-64' );" Title="64" [(Value)]="checkValues[28]" id="A11417" Src="../../Content/DentalExamination/Cocuk/64/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1 no-padding" id="A11418">
+                                                    <hvl-checkbox-image #ch65 (ValueChange)="optionChanged($event ? '+65' : '-65' );" Title="65" [(Value)]="checkValues[29]" id="A11419" Src="../../Content/DentalExamination/Cocuk/65/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-5" id="A11420" data-tid="A341463">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr style="display: flex;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 5px;" id="A11421" data-tid="A341464" />
+                                        <div class="row" id="A11422" data-tid="A341465">
+                                            <div class="col-sm-6" id="A11423" data-tid="A341466">
+                                                <div class="col-sm-5" id="A11424" data-tid="A341467">
+                                                </div>
+                                                <div class="col-sm-1" id="A11425">
+                                                    <hvl-checkbox-image #ch85 (ValueChange)="optionChanged($event ? '+85' : '-85' );" Title="85" [(Value)]="checkValues[30]" id="A11426" Src="../../Content/DentalExamination/Cocuk/85/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1" id="A11427">
+                                                    <hvl-checkbox-image #ch84 (ValueChange)="optionChanged($event ? '+84' : '-84' );" Title="84" [(Value)]="checkValues[31]" id="A11428" Src="../../Content/DentalExamination/Cocuk/84/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1" id="A11429">
+                                                    <hvl-checkbox-image #ch83 (ValueChange)="optionChanged($event ? '+83' : '-83' );" Title="83" [(Value)]="checkValues[32]" id="A11430" Src="../../Content/DentalExamination/Cocuk/83/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1" id="A11431">
+                                                    <hvl-checkbox-image #ch82 (ValueChange)="optionChanged($event ? '+82' : '-82' );" Title="82" [(Value)]="checkValues[33]" id="A11432" Src="../../Content/DentalExamination/Cocuk/82/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1" id="A11433">
+                                                    <hvl-checkbox-image #ch81 (ValueChange)="optionChanged($event ? '+81' : '-81' );" Title="81" [(Value)]="checkValues[34]" id="A11434" Src="../../Content/DentalExamination/Cocuk/81/1.png"></hvl-checkbox-image>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6" id="A11435">
+                                                <div class="col-sm-1" id="A11436">
+                                                    <hvl-checkbox-image #ch71 (ValueChange)="optionChanged($event ? '+71' : '-71' );" Title="71" [(Value)]="checkValues[35]" id="A11437" Src="../../Content/DentalExamination/Cocuk/71/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1" id="A11438">
+                                                    <hvl-checkbox-image #ch72 (ValueChange)="optionChanged($event ? '+72' : '-72' );" Title="72" [(Value)]="checkValues[36]" id="A11439" Src="../../Content/DentalExamination/Cocuk/72/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1" id="A11440">
+                                                    <hvl-checkbox-image #ch73 (ValueChange)="optionChanged($event ? '+73' : '-73' );" Title="73" [(Value)]="checkValues[37]" id="A11441" Src="../../Content/DentalExamination/Cocuk/73/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1" id="A11442">
+                                                    <hvl-checkbox-image #ch74 (ValueChange)="optionChanged($event ? '+74' : '-74' );" Title="74" [(Value)]="checkValues[38]" id="A11443" Src="../../Content/DentalExamination/Cocuk/74/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1" id="A11444">
+                                                    <hvl-checkbox-image #ch75 (ValueChange)="optionChanged($event ? '+75' : '-75' );" Title="75" [(Value)]="checkValues[39]" id="A11445" Src="../../Content/DentalExamination/Cocuk/75/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-5" id="A11446" data-tid="A341489">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" id="A11447" data-tid="A341490">
+                                            <div class="col-sm-6" id="A11448" data-tid="A341491">
+                                                <div class="col-sm-2" id="A11449" data-tid="A341492">
+                                                </div>
+                                                <div class="col-sm-1" id="A11450">
+                                                    <hvl-checkbox-image #ch48 (ValueChange)="optionChanged($event ? '+48' : '-48' );" Title="48" [(Value)]="checkValues[40]" id="A11451" Src="../../Content/DentalExamination/Yetiskin/48/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1" id="A11452">
+                                                    <hvl-checkbox-image #ch47 (ValueChange)="optionChanged($event ? '+47' : '-47' );" Title="47" [(Value)]="checkValues[41]" id="A11453" Src="../../Content/DentalExamination/Yetiskin/47/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1" id="A11454">
+                                                    <hvl-checkbox-image #ch46 (ValueChange)="optionChanged($event ? '+46' : '-46' );" Title="46" [(Value)]="checkValues[42]" id="A11455" Src="../../Content/DentalExamination/Yetiskin/46/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1" id="A11456">
+                                                    <hvl-checkbox-image #ch45 (ValueChange)="optionChanged($event ? '+45' : '-45' );" Title="45" [(Value)]="checkValues[43]" id="A11457" Src="../../Content/DentalExamination/Yetiskin/45/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1" id="A11458">
+                                                    <hvl-checkbox-image #ch44 (ValueChange)="optionChanged($event ? '+44' : '-44' );" Title="44" [(Value)]="checkValues[44]" id="A11459" Src="../../Content/DentalExamination/Yetiskin/44/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1" id="A11460">
+                                                    <hvl-checkbox-image #ch43 (ValueChange)="optionChanged($event ? '+43' : '-43' );" Title="43" [(Value)]="checkValues[45]" id="A11461" Src="../../Content/DentalExamination/Yetiskin/43/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1" id="A11462">
+                                                    <hvl-checkbox-image #ch42 (ValueChange)="optionChanged($event ? '+42' : '-42' );" Title="42" [(Value)]="checkValues[46]" id="A11463" Src="../../Content/DentalExamination/Yetiskin/42/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1" id="A11464">
+                                                    <hvl-checkbox-image #ch41 (ValueChange)="optionChanged($event ? '+41' : '-41' );" Title="41" [(Value)]="checkValues[47]" id="A11465" Src="../../Content/DentalExamination/Yetiskin/41/1.png"></hvl-checkbox-image>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6" id="A11466">
+                                                <div class="col-sm-1" id="A11467">
+                                                    <hvl-checkbox-image #ch31 (ValueChange)="optionChanged($event ? '+31' : '-31' );" Title="31" [(Value)]="checkValues[48]" id="A11468" Src="../../Content/DentalExamination/Yetiskin/31/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1" id="A11469">
+                                                    <hvl-checkbox-image #ch32 (ValueChange)="optionChanged($event ? '+32' : '-32' );" Title="32" [(Value)]="checkValues[49]" id="A11470" Src="../../Content/DentalExamination/Yetiskin/32/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1" id="A11471">
+                                                    <hvl-checkbox-image #ch33 (ValueChange)="optionChanged($event ? '+33' : '-33' );" Title="33" [(Value)]="checkValues[50]" id="A11472" Src="../../Content/DentalExamination/Yetiskin/33/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1" id="A11473">
+                                                    <hvl-checkbox-image #ch34 (ValueChange)="optionChanged($event ? '+34' : '-34' );" Title="34" [(Value)]="checkValues[51]" id="A11474" Src="../../Content/DentalExamination/Yetiskin/34/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1" id="A11475">
+                                                    <hvl-checkbox-image #ch35 (ValueChange)="optionChanged($event ? '+35' : '-35' );" Title="35" [(Value)]="checkValues[52]" id="A11476" Src="../../Content/DentalExamination/Yetiskin/35/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1" id="A11477">
+                                                    <hvl-checkbox-image #ch36 (ValueChange)="optionChanged($event ? '+36' : '-36' );" Title="36" [(Value)]="checkValues[53]" id="A11478" Src="../../Content/DentalExamination/Yetiskin/36/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1" id="A11479">
+                                                    <hvl-checkbox-image #ch37 (ValueChange)="optionChanged($event ? '+37' : '-37' );" Title="37" [(Value)]="checkValues[54]" id="A11480" Src="../../Content/DentalExamination/Yetiskin/37/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-1" id="A11481">
+                                                    <hvl-checkbox-image #ch38 (ValueChange)="optionChanged($event ? '+38' : '-38' );" Title="38" [(Value)]="checkValues[55]" id="A11482" Src="../../Content/DentalExamination/Yetiskin/38/1.png"></hvl-checkbox-image>
+                                                </div>
+                                                <div class="col-sm-2" id="A11483" data-tid="A341526">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" id="A11484" data-tid="A341527">
+                                            <div class="col-sm-2" id="A11485" data-tid="A341528">
+                                            </div>
+                                            <div class="col-sm-2" id="A11486" data-tid="A341529">
+                                                <hvl-checkbox #ch6 (ValueChange)="optionChanged($event ? '+6' : '-6' );" Title="Sağ Alt Çene" [(Value)]="checkValues[56]" i18n-Title="@@M21126" id="A11487" data-tid="A341530"></hvl-checkbox>
+                                            </div>
+                                            <div class="col-sm-2" id="A11488" data-tid="A341531">
+                                            </div>
+                                            <div class="col-sm-2" id="A11489" data-tid="A341532">
+                                            </div>
+                                            <div class="col-sm-2" id="A11490" data-tid="A341533">
+                                                <hvl-checkbox #ch7 (ValueChange)="optionChanged($event ? '+7' : '-7' );" Title="Sol Alt Çene" [(Value)]="checkValues[57]" i18n-Title="@@M22002" id="A11491" data-tid="A341534"></hvl-checkbox>
+                                            </div>
+                                            <div class="col-sm-2" id="A11492" data-tid="A341535">
+                                            </div>
+                                        </div>
+                                        <div class="row" id="A11493" data-tid="A341536">
+                                            <div class="col-sm-5" id="A11494" data-tid="A341537">
+                                            </div>
+                                            <div class="col-sm-2" id="A11495" data-tid="A341538">
+                                                <hvl-checkbox #ch3 (ValueChange)="optionChanged($event ? '+3' : '-3' );" Title="Alt Çene" [(Value)]="checkValues[58]" i18n-Title="@@M10740" id="A11496" data-tid="A341539"></hvl-checkbox>
+                                            </div>
+                                            <div class="col-sm-5" id="A11497" data-tid="A341540">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br id="A11498" data-tid="A341541" />
+                                <div class="row" id="A11499" data-tid="A341542">
+                                    <div [class.col-sm-6]="!isConsultation" [class.col-sm-4]="isConsultation" id="A11500" data-tid="A341543">
+
+                                    </div>
+                                    <div class="col-sm-4" *ngIf="isConsultation" id="A11502" data-tid="A341544">
+                                        <div class="row" id="A11503" data-tid="A341545">
+                                            <div class="col-md-12" id="A11504" data-tid="A341546">
+                                                <label class="control-label" id="A11505" data-tid="A341547">İstek Yapan</label>
+                                                <hvl-list-box #Validation [(SelectedObject)]="dentalExaminationFormViewModel._DentalExamination.RequesterDoctor" [AutoCompleteDialogHeight]="RequesterDoctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="RequesterDoctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="RequesterDoctor?.AutoCompleteMode" [BackColor]="RequesterDoctor?.BackColor" [DefinitionName]="RequesterDoctor?.ListDefName" [DisplayExpressionsCache]="dentalExaminationFormViewModel?.ListDefDisplayExpressions" [Enabled]="RequesterDoctor?.Enabled" [Font]="RequesterDoctor?.Font" [ForeColor]="RequesterDoctor?.ForeColor" [ListFilterExpression]="RequesterDoctor?.ListFilterExpression" [MinSearchLength]="RequesterDoctor?.MinSearchLength" [PopupDialogFieldConfig]="RequesterDoctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="RequesterDoctor?.PopupDialogGridColumns" [PopupDialogHeight]="RequesterDoctor?.PopupDialogHeight" [PopupDialogTitle]="RequesterDoctor?.PopupDialogTitle" [PopupDialogWidth]="RequesterDoctor?.PopupDialogWidth" [ReadOnly]="RequesterDoctor?.ReadOnly" [SearchMode]="RequesterDoctor?.SearchMode" [SearchTimeout]="RequesterDoctor?.SearchTimeout" [TabIndex]="RequesterDoctor?.TabIndex" [Visible]="RequesterDoctor?.Visible" [width]="RequesterDoctor?.Width" id="A11506" data-tid="A341548"></hvl-list-box>
+                                            </div>
+                                        </div>
+                                        <div class="row" id="A11507" data-tid="A341549">
+                                            <div class="col-md-12" id="A11508" data-tid="A341550">
+                                                <label class="control-label" id="A11509" data-tid="A341551">Konsültasyonun Yapıldığı Birim</label>
+                                                <hvl-list-box #Validation [(SelectedObject)]="dentalExaminationFormViewModel._DentalExamination.FromResource" [AutoCompleteDialogHeight]="FromResource?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="FromResource?.AutoCompleteDialogWidth" [AutoCompleteMode]="FromResource?.AutoCompleteMode" [BackColor]="FromResource?.BackColor" [DefinitionName]="FromResource?.ListDefName" [DisplayExpressionsCache]="dentalExaminationFormViewModel?.ListDefDisplayExpressions" [Enabled]="FromResource?.Enabled" [Font]="FromResource?.Font" [ForeColor]="FromResource?.ForeColor" [ListFilterExpression]="FromResource?.ListFilterExpression" [MinSearchLength]="FromResource?.MinSearchLength" [PopupDialogFieldConfig]="FromResource?.PopupDialogFieldConfig" [PopupDialogGridColumns]="FromResource?.PopupDialogGridColumns" [PopupDialogHeight]="FromResource?.PopupDialogHeight" [PopupDialogTitle]="FromResource?.PopupDialogTitle" [PopupDialogWidth]="FromResource?.PopupDialogWidth" [ReadOnly]="FromResource?.ReadOnly" [SearchMode]="FromResource?.SearchMode" [SearchTimeout]="FromResource?.SearchTimeout" [TabIndex]="FromResource?.TabIndex" [Visible]="FromResource?.Visible" [width]="FromResource?.Width" id="A11510" data-tid="A341552"></hvl-list-box>
+                                            </div>
+                                        </div>
+                                        <div class="row" id="A11511" data-tid="A341553">
+                                            <div class="col-md-12" id="A11512" data-tid="A341554">
+                                                <label class="control-label" id="A11513" data-tid="A341555">Konsültasyon İstem Sebebi</label>
+                                                <hvl-richtextbox [(ngModel)]="dentalExaminationFormViewModel._DentalExamination.RequestDescription" [ngModelOptions]="{ standalone: true}" [ReadOnly]="RequestDescription?.ReadOnly" [TemplateGroupName]="RequestDescription?.TemplateGroupName" [Visible]="RequestDescription?.Visible" id="A11514" data-tid="A341556"></hvl-richtextbox>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4" *ngIf="isConsultation" id="A11515" data-tid="A341557">
+                                        <div class="row" id="A11516" data-tid="A341558">
+                                            <div class="col-md-12" id="A11517" data-tid="A341559">
+                                                <label class="control-label" id="A11518" data-tid="A341560">Konsültasyon Başlangıç Tarihi</label>
+                                                <hvl-date-picker #Validation [(Value)]="dentalExaminationFormViewModel._DentalExamination.RequestDate" [BackColor]="RequestDate?.BackColor" [CustomFormat]="RequestDate?.CustomFormat" [Enabled]="RequestDate?.Enabled" [Font]="RequestDate?.Font" [ForeColor]="RequestDate?.ForeColor" [Format]="RequestDate?.Format" [Max]="RequestDate?.Max" [Min]="RequestDate?.Min" [ReadOnly]="RequestDate?.ReadOnly" [Required]="RequestDate?.Required" [TabIndex]="RequestDate?.TabIndex" [Visible]="RequestDate?.Visible" id="A11519" data-tid="A341561"></hvl-date-picker>
+                                            </div>
+                                        </div>
+                                        <div class="row" id="A11520" data-tid="A341562">
+                                            <div class="col-md-12" id="A11521" data-tid="A341563">
+                                                <label class="control-label" id="A11522" data-tid="A341564">Konsültasyon Bitiş Tarihi</label>
+                                                <hvl-date-picker #Validation [(Value)]="dentalExaminationFormViewModel._DentalExamination.ActionDate" [BackColor]="ActionDate?.BackColor" [CustomFormat]="ActionDate?.CustomFormat" [Enabled]="ActionDate?.Enabled" [Font]="ActionDate?.Font" [ForeColor]="ActionDate?.ForeColor" [Format]="ActionDate?.Format" [Max]="ActionDate?.Max" [Min]="ActionDate?.Min" [ReadOnly]="ActionDate?.ReadOnly" [Required]="ActionDate?.Required" [TabIndex]="ActionDate?.TabIndex" [Visible]="ActionDate?.Visible" id="A11523" data-tid="A341565"></hvl-date-picker>
+                                            </div>
+                                        </div>
+                                        <div class="row" id="A11524" data-tid="A341566">
+                                            <div class="col-md-12" id="A11525" data-tid="A341567">
+                                                <label class="control-label" id="A11526" data-tid="A341568">Konsültasyon Sonuç ve Önerileri</label>
+                                                <hvl-richtextbox (change)="onConsultationResultAndOffersChanged($event)" [ngModelOptions]="{ standalone: true}" [ngModel]="dentalExaminationFormViewModel?._DentalExamination?.ConsultationResultAndOffers" [ReadOnly]="ConsultationResultAndOffers?.ReadOnly" [TemplateGroupName]="ConsultationResultAndOffers?.TemplateGroupName" [Visible]="ConsultationResultAndOffers?.Visible" id="A11527" data-tid="A341569"></hvl-richtextbox>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<div class="col-sm-6" *ngIf="!isConsultation">
+                                        <hvl-richtextbox (change)="onDentalExaminationFile1Changed($event)" [ngModelOptions]="{ standalone: true}" [ngModel]="dentalExaminationFormViewModel?._DentalExamination?.DentalExaminationFile" [ReadOnly]="DentalExaminationFile1?.ReadOnly" [TemplateGroupName]="DentalExaminationFile1?.TemplateGroupName" [Visible]="DentalExaminationFile1?.Visible"></hvl-richtextbox>
+                                    </div>-->
+                                    <!--<div class="col-sm-6" *ngIf="!isConsultation">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <hvl-button (BtnClicked)="createProcedure()" [BackColor]="ttbuttonTopluIslemTamamla?.BackColor" [Enabled]="ttbuttonTopluIslemTamamla?.Enabled" [Font]="ttbuttonTopluIslemTamamla?.Font" [ForeColor]="ttbuttonTopluIslemTamamla?.ForeColor" [height]="ttbuttonTopluIslemTamamla?.Height" [ReadOnly]="ttbuttonTopluIslemTamamla?.ReadOnly" [TabIndex]="ttbuttonTopluIslemTamamla?.TabIndex" [Text]="ttbuttonTopluIslemTamamla?.Text" [Visible]="ttbuttonTopluIslemTamamla?.Visible"></hvl-button>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <hvl-button (BtnClicked)="ttbuttonTemizle_Click()" [BackColor]="ttbuttonTemizle?.BackColor" [Enabled]="ttbuttonTemizle?.Enabled" [Font]="ttbuttonTemizle?.Font" [ForeColor]="ttbuttonTemizle?.ForeColor" [height]="ttbuttonTemizle?.Height" [ReadOnly]="ttbuttonTemizle?.ReadOnly" [TabIndex]="ttbuttonTemizle?.TabIndex" [Text]="ttbuttonTemizle?.Text" [Visible]="ttbuttonTemizle?.Visible"></hvl-button>
+                                            </div>
+                                        </div>
+                                    </div>-->
+                                </div>
+                                <!--<div class="row" id="A11530" *ngIf="isConsultation">
+                                    <div class="col-sm-2" id="A11531">
+                                        <hvl-button (BtnClicked)="ttbuttonTopluIslemTamamla_Click()" [BackColor]="ttbuttonTopluIslemTamamla?.BackColor" [Enabled]="ttbuttonTopluIslemTamamla?.Enabled"
+                                            [Font]="ttbuttonTopluIslemTamamla?.Font" [ForeColor]="ttbuttonTopluIslemTamamla?.ForeColor"
+                                            [height]="ttbuttonTopluIslemTamamla?.Height" [ReadOnly]="ttbuttonTopluIslemTamamla?.ReadOnly"
+                                            [TabIndex]="ttbuttonTopluIslemTamamla?.TabIndex" [Text]="ttbuttonTopluIslemTamamla?.Text"
+                                            [Visible]="ttbuttonTopluIslemTamamla?.Visible" id="A11532"></hvl-button>
+                                    </div>
+                                    <div class="col-sm-2" id="A11533">
+                                        <hvl-button (BtnClicked)="ttbuttonTemizle_Click()" [BackColor]="ttbuttonTemizle?.BackColor" [Enabled]="ttbuttonTemizle?.Enabled"
+                                            [Font]="ttbuttonTemizle?.Font" [ForeColor]="ttbuttonTemizle?.ForeColor" [height]="ttbuttonTemizle?.Height"
+                                            [ReadOnly]="ttbuttonTemizle?.ReadOnly" [TabIndex]="ttbuttonTemizle?.TabIndex" [Text]="ttbuttonTemizle?.Text"
+                                            [Visible]="ttbuttonTemizle?.Visible" id="A11534"></hvl-button>
+                                    </div>
+                                </div>-->
+                                <!--<div class="row">
+                                    <div class="col-sm-12">
+                                        <ul class="nav nav-tabs">
+                                            <li class="active">
+                                                <a data-toggle="tab" href="#dentalProcedures">Diş İşlemi</a>
+                                            </li>
+                                            <li>
+                                                <a data-toggle="tab" href="#materials">Mlz.Sarf</a>
+                                            </li>
+                                            <li>
+                                                <a data-toggle="tab" href="#labProcedures">Lab İşlemleri</a>
+                                            </li>
+                                            <!--<li [hidden]="!enablePrescriptionTab">
+                                                <a data-toggle="tab" href="#prescription">Reçete</a>
+                                            </li>
+                                            <li>
+                                                <a data-toggle="tab" href="#reports">Raporlar</a>
+                                            </li>
+                                            <li>
+                                                <a data-toggle="tab" href="#consultation" (click)="selectTab('Konsültasyon')">Konsültasyon</a>
+                                            </li>
+                                        </ul>
+
+                                        <div class="tab-content">
+                                            <div id="dentalProcedures" class="tab-pane fade in active">
+                                                <br />
+                                                <div class="row" id="A11537">
+                                                    <div class="col-sm-10">
+                                                        <div class="row">
+                                                            <label class="col-sm-1 bold" style="font-size:15px;text-align:center !important;padding-top:8px">
+                                                                İşlemler
+                                                            </label>
+                                                            <div class="col-sm-7">
+                                                                <dx-tag-box [items]="dentalProcedure" displayExpr="Name" placeholder="İşlemi Seç" [showSelectionControls]="false" [searchEnabled]="true"
+                                                                            [(value)]="selectedDentalProcedure" i18n-placeholder="@@M16916"
+                                                                            id="A11501" applyValueMode="useButtons">
+                                                                </dx-tag-box>
+                                                            </div>
+                                                            <div class="col-sm-2">
+                                                                <hvl-button (BtnClicked)="createProcedure()" [BackColor]="ttbuttonTopluIslemTamamla?.BackColor" [Enabled]="ttbuttonTopluIslemTamamla?.Enabled" [Font]="ttbuttonTopluIslemTamamla?.Font" [ForeColor]="ttbuttonTopluIslemTamamla?.ForeColor" [height]="ttbuttonTopluIslemTamamla?.Height" [ReadOnly]="ttbuttonTopluIslemTamamla?.ReadOnly" [TabIndex]="ttbuttonTopluIslemTamamla?.TabIndex" [Text]="ttbuttonTopluIslemTamamla?.Text" [Visible]="ttbuttonTopluIslemTamamla?.Visible"></hvl-button>
+                                                            </div>
+                                                            <div class="col-sm-2">
+                                                                <hvl-button (BtnClicked)="ttbuttonTemizle_Click()" [BackColor]="ttbuttonTemizle?.BackColor" [Enabled]="ttbuttonTemizle?.Enabled" [Font]="ttbuttonTemizle?.Font" [ForeColor]="ttbuttonTemizle?.ForeColor" [height]="ttbuttonTemizle?.Height" [ReadOnly]="ttbuttonTemizle?.ReadOnly" [TabIndex]="ttbuttonTemizle?.TabIndex" [Text]="ttbuttonTemizle?.Text" [Visible]="ttbuttonTemizle?.Visible"></hvl-button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-2" id="A11538" style="text-align:center">
+                                                        <div class="row" style="padding-top:3px !important">
+                                                            <div class="col-sm-12">
+                                                                <hvl-button (BtnClicked)="ttButtonHizmetKontrol_Click()" [BackColor]="ttButtonHizmetKontrol?.BackColor" [Enabled]="ttButtonHizmetKontrol?.Enabled"
+                                                                    [Font]="ttButtonHizmetKontrol?.Font" [ForeColor]="ttButtonHizmetKontrol?.ForeColor"
+                                                                    [height]="ttButtonHizmetKontrol?.Height" [ReadOnly]="ttButtonHizmetKontrol?.ReadOnly"
+                                                                    [TabIndex]="ttButtonHizmetKontrol?.TabIndex" [Text]="ttButtonHizmetKontrol?.Text"
+                                                                    [Visible]="ttButtonHizmetKontrol?.Visible" id="A11539"></hvl-button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row" id="A11541">
+                                                    <div class="col-sm-12" id="A11542">
+                                                        <hvl-datagrid (CellContentClicked)="DentalProsthesis_CellContentClickEmitted($event)" (CellValueChange)="DentalProsthesis_CellContentClickEmitted($event)"
+                                                            [CancelByDeleteButton]="false" [AllowUserToAddRows]="DentalProsthesis?.AllowUserToAddRows"
+                                                            [AllowUserToDeleteRows]="DentalProsthesis?.AllowUserToDeleteRows"
+                                                            [Columns]="DentalProsthesisColumns" [dataSource]="dentalExaminationFormViewModel?.DentalProsthesisGridList"
+                                                            [DeleteButtonWidth]="DentalProsthesis?.DeleteButtonWidth" [EnableFilter]="DentalProsthesis?.ShowFilterRow"
+                                                            [FilterColumnName]="DentalProsthesis?.FilterColumnName" [FilterLabel]="DentalProsthesis?.FilterLabel"
+                                                            [Filter]="DentalProsthesis?.Filter" [height]="DentalProsthesis?.Height"
+                                                            [IsFilterLabelSingleLine]="DentalProsthesis?.IsFilterLabelSingleLine"
+                                                            [ShowColumnHeaders]="DentalProsthesis?.ColumnHeadersVisible" [ShowFilterCombo]="DentalProsthesis?.ShowFilterCombo"
+                                                            [ShowTotalNumberOfRows]="DentalProsthesis?.ShowTotalNumberOfRows"
+                                                            id="A11543"></hvl-datagrid>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="materials" class="tab-pane fade">
+                                                <span id="A11545"></span>
+                                                <div *ngIf="isMlzSarf==true" id="A11546">
+                                                    <div class="container-fluid" id="A11547">
+                                                        <TreatmentMaterialForm [EpisodeAction]="dentalExaminationFormViewModel._DentalExamination" [StoreResourceId]="dentalExaminationFormViewModel._DentalExamination.MasterResource?.ObjectID"
+                                                            [TreatmentMaterialGridList]="dentalExaminationFormViewModel.UsedMaterialsGridList"
+                                                            [IncludeDrugDefinition]="dentalExaminationFormViewModel.includeDrugDefinition"
+                                                            [IsReadOnly]="ReadOnly" id="A11548"></TreatmentMaterialForm>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="labProcedures" class="tab-pane fade">
+                                                <span id="A11550"></span>
+                                                <div *ngIf="isLabIslemleri==true" id="A11551">
+                                                    <div class="row" id="A11552">
+                                                        <div class="col-sm-12" id="A11553">
+                                                            <hvl-datagrid (CellValueChange)="ttgrid3_CellValueChangedEmitted($event)" [AllowUserToAddRows]="ttgrid3?.AllowUserToAddRows"
+                                                                [AllowUserToDeleteRows]="ttgrid3?.AllowUserToDeleteRows" [Columns]="ttgrid3Columns"
+                                                                [dataSource]="dentalExaminationFormViewModel?._DentalExamination?.SuggestedProsthesis"
+                                                                [DeleteButtonWidth]="ttgrid3?.DeleteButtonWidth" [DisplayExpressionsCache]="dentalExaminationFormViewModel?.ListDefDisplayExpressions"
+                                                                [EnableFilter]="ttgrid3?.ShowFilterRow" [FilterColumnName]="ttgrid3?.FilterColumnName"
+                                                                [FilterLabel]="ttgrid3?.FilterLabel" [Filter]="ttgrid3?.Filter"
+                                                                [height]="ttgrid3?.Height" [IsFilterLabelSingleLine]="ttgrid3?.IsFilterLabelSingleLine"
+                                                                [ShowColumnHeaders]="ttgrid3?.ColumnHeadersVisible" [ShowFilterCombo]="ttgrid3?.ShowFilterCombo"
+                                                                [ShowTotalNumberOfRows]="ttgrid3?.ShowTotalNumberOfRows" id="A11554"></hvl-datagrid>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="prescription" class="tab-pane fade">
+                                                <span id="A11556"></span>
+                                                <div *ngIf="isRecete==true" id="A11557">
+                                                    <div class="container-fluid" style="padding:0" id="A11558">
+                                                        <br id="A11559" />
+                                                        <div class="row" id="A11560">
+                                                            <div class="col-xs-12" id="A11561">
+                                                                <dx-button icon="edit" type="success" text="Reçete Yaz" (onClick)="onDrugOrderIntruductionOpen()" i18n-text="@@M20965" id="A11562">
+                                                                </dx-button>
+                                                            </div>
+                                                        </div>
+                                                        <br id="A11563" />
+                                                        <div class="row" id="A11564">
+                                                            <div class="col-xs-12" id="A11565">
+                                                                <dx-data-grid [columns]="PrescriptionGridColumns" [dataSource]="PrescriptionList" [selection]="{mode: 'single',allowSelectAll: false}"
+                                                                    [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:false}"
+                                                                    style="height : 350px" id="A11566">
+                                                                    <div *dxTemplate="let row of 'buttonCellTemplate'" id="A11567">
+                                                                        <dx-button style="height:20px;margin-bottom: -5px;margin-left: -6px;margin-top: -9px;" (onClick)="select(row)" icon="fa fa-pencil-square-o"
+                                                                            id="A11568"></dx-button>
+                                                                    </div>
+                                                                </dx-data-grid>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="reports" class="tab-pane fade">
+                                                <span id="A11570"></span>
+                                                <div *ngIf="isRaporlar==true" id="A11571">
+                                                    <div class="container-fluid" id="A11572">
+                                                        <br id="A11573" />
+                                                        <div class="row" id="A11574">
+                                                            <label class="control-label col-sm-1"  id="A11575">Rapor Türü</label>
+                                                            <div class="col-sm-3" id="A11576">
+                                                                <hvl-enum-combobox #Validation (ValueChange)="onSelectedReportOpen($event)"
+                                                                    [(Value)]="dentalExaminationFormViewModel.reportType" [BackColor]="cmbReportType?.BackColor"
+                                                                    [DataTypeName]="cmbReportType?.DataTypeName" [Enabled]="cmbReportType?.Enabled"
+                                                                    [Font]="cmbReportType?.Font" [ForeColor]="cmbReportType?.ForeColor"
+                                                                    [IncludeOnly]="cmbReportType?.IncludeOnly" [ReadOnly]="cmbReportType?.ReadOnly"
+                                                                    [ShowClearButton]="cmbReportType?.ShowClearButton" [SortBy]="cmbReportType?.SortBy"
+                                                                    [TabIndex]="cmbReportType?.TabIndex" [Visible]="cmbReportType?.Visible"
+                                                                    id="A11577"></hvl-enum-combobox>
+                                                            </div>
+                                                            <!--<div class="col-sm-1"> <dx-button icon="edit" type="success" text="Rapor Yaz" (onClick)="onSelectedReportOpen()" i18n-text="@@M20879"> </dx-button></div>
+                                                            <div class="col-sm-3" id="A11578">
+                                                                <dx-check-box (onValueChanged)="onShowAllReports($event)" text="Tüm Raporlar"
+                                                                    i18n-text="@@M30208" id="A11579"></dx-check-box>
+                                                            </div>
+                                                            <div class="col-sm-2" id="A11580">
+                                                                <dx-check-box (onValueChanged)="onShowCancelledReports($event)"
+                                                                    text="İptal Edilenleri Getir" i18n-text="@@M16546" id="A11581"></dx-check-box>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" id="A11582">
+                                                            <div class="col-xs-12" id="A11583">
+                                                                <hvl-datagrid [AllowUserToDeleteRows]="false" [AllowUserToAddRows]="false" [Columns]="GridPatientReportsColumns" [dataSource]="dentalExaminationFormViewModel.PatientReportInfoList"
+                                                                    (CellContentClicked)="GridPatientReports_CellContentClicked($event)"
+                                                                    id="A11584">
+
+                                                                </hvl-datagrid>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br id="A11586" />
+                                            <div *ngIf="isKonsultasyon==true" id="A11587">
+                                                <ConsultationRequestForm style="height:100%!important;display:block;" [EpisodeAction]="dentalExaminationFormViewModel._DentalExamination"
+                                                    [GridList]="dentalExaminationFormViewModel.GrdConsAndPatientInterviewFormGridList"
+                                                    id="A11588"></ConsultationRequestForm>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>-->
+
+                                <dx-tab-panel [selectedIndex]="0" (onSelectionChanged)="selectTab($event)" id="A11535" data-tid="A341570">
+                                    <dxi-item class="tabpanel-item" title="Diş İşlemi" i18n-title="@@M12897" id="A11536" data-tid="A341571">
+                                        <br data-tid="A341572" />
+                                        <div class="row" id="A11537" data-tid="A341573">
+                                            <div class="col-sm-10" data-tid="A341574">
+                                                <div class="row" data-tid="A341575">
+                                                    <label class="col-sm-1 bold" style="font-size:15px;text-align:center !important;padding-top:8px" data-tid="A341576">
+                                                        İşlemler
+                                                    </label>
+                                                    <div class="col-sm-7" data-tid="A341577">
+                                                        <dx-tag-box [items]="dentalProcedure" displayExpr="Name" placeholder="İşlemi Seç" [showSelectionControls]="false" [searchEnabled]="true" [(value)]="selectedDentalProcedure" i18n-placeholder="@@M16916" id="A11501" applyValueMode="useButtons" data-tid="A341578">
+                                                        </dx-tag-box>
+                                                    </div>
+                                                    <div class="col-sm-2" data-tid="A341579">
+                                                        <hvl-button (BtnClicked)="createProcedure()" [BackColor]="ttbuttonTopluIslemTamamla?.BackColor" [Enabled]="ttbuttonTopluIslemTamamla?.Enabled" [Font]="ttbuttonTopluIslemTamamla?.Font" [ForeColor]="ttbuttonTopluIslemTamamla?.ForeColor" [height]="ttbuttonTopluIslemTamamla?.Height" [ReadOnly]="ttbuttonTopluIslemTamamla?.ReadOnly" [TabIndex]="ttbuttonTopluIslemTamamla?.TabIndex" [Text]="ttbuttonTopluIslemTamamla?.Text" [Visible]="ttbuttonTopluIslemTamamla?.Visible" data-tid="A341580"></hvl-button>
+                                                    </div>
+                                                    <div class="col-sm-2" data-tid="A341581">
+                                                        <hvl-button (BtnClicked)="ttbuttonTemizle_Click()" [BackColor]="ttbuttonTemizle?.BackColor" [Enabled]="ttbuttonTemizle?.Enabled" [Font]="ttbuttonTemizle?.Font" [ForeColor]="ttbuttonTemizle?.ForeColor" [height]="ttbuttonTemizle?.Height" [ReadOnly]="ttbuttonTemizle?.ReadOnly" [TabIndex]="ttbuttonTemizle?.TabIndex" [Text]="ttbuttonTemizle?.Text" [Visible]="ttbuttonTemizle?.Visible" data-tid="A341582"></hvl-button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2" id="A11538" style="text-align:center" data-tid="A341583">
+                                                <div class="row" style="padding-top:3px !important" data-tid="A341584">
+                                                    <div class="col-sm-12" data-tid="A341585">
+                                                        <hvl-button (BtnClicked)="ttButtonHizmetKontrol_Click()" [BackColor]="ttButtonHizmetKontrol?.BackColor" [Enabled]="ttButtonHizmetKontrol?.Enabled" [Font]="ttButtonHizmetKontrol?.Font" [ForeColor]="ttButtonHizmetKontrol?.ForeColor" [height]="ttButtonHizmetKontrol?.Height" [ReadOnly]="ttButtonHizmetKontrol?.ReadOnly" [TabIndex]="ttButtonHizmetKontrol?.TabIndex" [Text]="ttButtonHizmetKontrol?.Text" [Visible]="ttButtonHizmetKontrol?.Visible" id="A11539" data-tid="A341586"></hvl-button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" id="A11541" data-tid="A341587">
+                                            <div class="col-sm-12" id="A11542" data-tid="A341588">
+                                                <hvl-datagrid (CellContentClicked)="DentalProsthesis_CellContentClickEmitted($event)" (CellValueChange)="DentalProsthesis_CellContentClickEmitted($event)" [CancelByDeleteButton]="true" [AllowUserToAddRows]="DentalProsthesis?.AllowUserToAddRows" [AllowUserToDeleteRows]="DentalProsthesis?.AllowUserToDeleteRows" [Columns]="DentalProsthesisColumns" [dataSource]="dentalExaminationFormViewModel?.DentalProsthesisGridList" [DeleteButtonWidth]="DentalProsthesis?.DeleteButtonWidth" [EnableFilter]="DentalProsthesis?.ShowFilterRow" [FilterColumnName]="DentalProsthesis?.FilterColumnName" [FilterLabel]="DentalProsthesis?.FilterLabel" [Filter]="DentalProsthesis?.Filter" [height]="DentalProsthesis?.Height" [IsFilterLabelSingleLine]="DentalProsthesis?.IsFilterLabelSingleLine" [ShowColumnHeaders]="DentalProsthesis?.ColumnHeadersVisible" [ShowFilterCombo]="DentalProsthesis?.ShowFilterCombo" [ShowTotalNumberOfRows]="DentalProsthesis?.ShowTotalNumberOfRows" id="A11543" data-tid="A341589"></hvl-datagrid>
+                                            </div>
+                                        </div>
+                                    </dxi-item>
+                                    <dxi-item class="tabpanel-item" title="Mlz.Sarf" style="height:350px !important" i18n-title="@@M19108" id="A11544" data-tid="A341590">
+                                        <span id="A11545" data-tid="A341591"></span>
+                                        <div *ngIf="isMlzSarf==true" id="A11546" data-tid="A341592">
+                                            <div class="container-fluid" id="A11547" data-tid="A341593">
+                                                <TreatmentMaterialForm [EpisodeAction]="dentalExaminationFormViewModel._DentalExamination" [StoreResourceId]="dentalExaminationFormViewModel._DentalExamination.MasterResource?.ObjectID" [TreatmentMaterialGridList]="dentalExaminationFormViewModel.UsedMaterialsGridList" [IncludeDrugDefinition]="dentalExaminationFormViewModel.includeDrugDefinition" [IsReadOnly]="ReadOnly" id="A11548" data-tid="A341594"></TreatmentMaterialForm>
+                                            </div>
+                                        </div>
+                                    </dxi-item>
+                                    <dxi-item class="tabpanel-item" title="Lab İşlemleri" i18n-title="@@M18144" id="A11549" data-tid="A341595">
+                                        <span id="A11550" data-tid="A341596"></span>
+                                        <div *ngIf="isLabIslemleri==true" id="A11551" data-tid="A341597">
+                                            <!--<div class="row" id="A11552">
+                                                <div class="col-sm-12" id="A11553">
+                                                    <hvl-datagrid [AllowUserToAddRows]="ttgrid3?.AllowUserToAddRows" [AllowUserToDeleteRows]="ttgrid3?.AllowUserToDeleteRows" [Columns]="ttgrid3Columns" [dataSource]="dentalExaminationFormViewModel?._DentalExamination?.SuggestedProsthesis" [DeleteButtonWidth]="ttgrid3?.DeleteButtonWidth" [DisplayExpressionsCache]="dentalExaminationFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="ttgrid3?.ShowFilterRow" [FilterColumnName]="ttgrid3?.FilterColumnName" [FilterLabel]="ttgrid3?.FilterLabel" [Filter]="ttgrid3?.Filter" [height]="ttgrid3?.Height" [IsFilterLabelSingleLine]="ttgrid3?.IsFilterLabelSingleLine" [ShowColumnHeaders]="ttgrid3?.ColumnHeadersVisible" [ShowFilterCombo]="ttgrid3?.ShowFilterCombo" [ShowTotalNumberOfRows]="ttgrid3?.ShowTotalNumberOfRows" id="A11554"></hvl-datagrid>
+                                                </div>
+                                            </div>-->
+                                            <div class="row" data-tid="A341598">
+                                                <div class="col-sm-12" data-tid="A341599">
+                                                    <dx-data-grid showColumnLines="true" [height]="300" [paging]="{pageSize:30,enabled:true}" [pager]="{allowedPageSizes:[10, 20, 30],showPageSizeSelector:true}" showRowLines="true" showBorders="true" [columns]="dentalProsthesisesColumns" [dataSource]="dentalExaminationFormViewModel?._DentalExamination?.SuggestedProsthesis" allowColumnReordering="true" allowColumnResizing="true" [selection]="{mode: 'single',allowSelectAll: false}" [editing]="{allowDeleting:true,allowUpdating:true,allowAdding:true, mode: 'cell'}" id="A28130" data-tid="A341600">
+
+                                                        <div *dxTemplate="let row of 'actionDateTemplate'" id="AY28131" data-tid="A341601">
+                                                            <dx-date-box [(value)]="row.key.ActionDate" type="date" displayFormat="dd.MM.yyyy" data-tid="A341602"></dx-date-box>
+                                                        </div>
+
+
+                                                        <div *dxTemplate="let row of 'lstBoxProcedureObject'" data-tid="A341603">
+                                                            <hvl-list-box [(SelectedObject)]="row.data.SuggestedProsthesisProcedure" [AutoCompleteMode]="SUGGESTEDPROSTHESISPROCEDURE?.AutoCompleteMode" [Enabled]="true" [BackColor]="SUGGESTEDPROSTHESISPROCEDURE?.BackColor" [DefinitionName]="SUGGESTEDPROSTHESISPROCEDURE?.ListDefName" [Font]="SUGGESTEDPROSTHESISPROCEDURE?.Font" [ForeColor]="SUGGESTEDPROSTHESISPROCEDURE?.ForeColor" [ListFilterExpression]="SUGGESTEDPROSTHESISPROCEDURE?.ListFilterExpression" [MinSearchLength]="SUGGESTEDPROSTHESISPROCEDURE?.MinSearchLength" [PopupDialogFieldConfig]="SUGGESTEDPROSTHESISPROCEDURE?.PopupDialogFieldConfig" [PopupDialogGridColumns]="SUGGESTEDPROSTHESISPROCEDURE?.PopupDialogGridColumns" [PopupDialogTitle]="SUGGESTEDPROSTHESISPROCEDURE?.PopupDialogTitle" [ReadOnly]="false" [SearchMode]="SUGGESTEDPROSTHESISPROCEDURE?.SearchMode" [SearchTimeout]="SUGGESTEDPROSTHESISPROCEDURE?.SearchTimeout" [TabIndex]="SUGGESTEDPROSTHESISPROCEDURE?.TabIndex" [Visible]="SUGGESTEDPROSTHESISPROCEDURE?.Visible" [width]="SUGGESTEDPROSTHESISPROCEDURE?.Width" data-tid="A341604"></hvl-list-box>
+                                                        </div>
+                                                        <div *dxTemplate="let row of 'currentStateTemplate'" data-tid="A341605">
+                                                            <hvl-enum-combobox #Validation [(Value)]="row.key.CurrentState" [BackColor]="CurrentState?.BackColor" [DataTypeName]="CurrentState?.DataTypeName" [Enabled]="CurrentState?.Enabled" [Font]="CurrentState?.Font" [ForeColor]="CurrentState?.ForeColor" [IncludeOnly]="CurrentState?.IncludeOnly" [ReadOnly]="CurrentState?.ReadOnly" [ShowClearButton]="CurrentState?.ShowClearButton" [SortBy]="CurrentState?.SortBy" [TabIndex]="CurrentState?.TabIndex" [Visible]="CurrentState?.Visible" id="A11577" data-tid="A341606"></hvl-enum-combobox>
+                                                        </div>
+                                                        <div *dxTemplate="let row of 'toothNumberTemplate'" data-tid="A341607">
+                                                            <hvl-enum-combobox #Validation [(Value)]="row.key.ToothNumber" [BackColor]="ProsthesisToothNumber?.BackColor" [DataTypeName]="ProsthesisToothNumber?.DataTypeName" [Enabled]="ProsthesisToothNumber?.Enabled" [Font]="ProsthesisToothNumber?.Font" [ForeColor]="ProsthesisToothNumber?.ForeColor" [IncludeOnly]="ProsthesisToothNumber?.IncludeOnly" [ReadOnly]="ProsthesisToothNumber?.ReadOnly" [ShowClearButton]="ProsthesisToothNumber?.ShowClearButton" [SortBy]="ProsthesisToothNumber?.SortBy" [TabIndex]="ProsthesisToothNumber?.TabIndex" [Visible]="ProsthesisToothNumber?.Visible" id="A11577" data-tid="A341608"></hvl-enum-combobox>
+                                                        </div>
+
+                                                        <div *dxTemplate="let row of 'lstBoxResourceObject'" data-tid="A341609">
+                                                            <hvl-list-box [(SelectedObject)]="row.data.Department" [AutoCompleteMode]="ProsthesisDepartment?.AutoCompleteMode" [Enabled]="true" [BackColor]="ProsthesisDepartment?.BackColor" [DefinitionName]="ProsthesisDepartment?.ListDefName" [Font]="ProsthesisDepartment?.Font" [ForeColor]="ProsthesisDepartment?.ForeColor" [ListFilterExpression]="ProsthesisDepartment?.ListFilterExpression" [MinSearchLength]="ProsthesisDepartment?.MinSearchLength" [PopupDialogFieldConfig]="ProsthesisDepartment?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ProsthesisDepartment?.PopupDialogGridColumns" [PopupDialogTitle]="ProsthesisDepartment?.PopupDialogTitle" [ReadOnly]="false" [SearchMode]="ProsthesisDepartment?.SearchMode" [SearchTimeout]="ProsthesisDepartment?.SearchTimeout" [TabIndex]="ProsthesisDepartment?.TabIndex" [Visible]="ProsthesisDepartment?.Visible" [width]="ProsthesisDepartment?.Width" data-tid="A341610"></hvl-list-box>
+                                                        </div>
+                                                        <div *dxTemplate="let row of 'descriptionTemplate'" id="AY28131" data-tid="A341611">
+                                                            <dx-text-box [readOnly]="row.key.isProcedureReadOnly" [(value)]="row.key.Definition" data-tid="A341612"></dx-text-box>
+                                                        </div>
+                                                        <div *dxTemplate="let row of 'colorTemplate'" id="AY28131" data-tid="A341613">
+                                                            <dx-text-box [readOnly]="row.key.isProcedureReadOnly" [(value)]="row.key.Color" data-tid="A341614"></dx-text-box>
+                                                        </div>
+
+
+
+                                                    </dx-data-grid>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </dxi-item>
+                                    <dxi-item [visible]="enablePrescriptionTab" class="tabpanel-item" title="Reçete" i18n-title="@@M20924" id="A11555" data-tid="A341615">
+                                        <span id="A11556" data-tid="A341616"></span>
+                                        <div *ngIf="isRecete==true" id="A11557" data-tid="A341617">
+                                            <div class="container-fluid" style="padding:0" id="A11558" data-tid="A341618">
+                                                <br id="A11559" data-tid="A341619" />
+                                                <div class="row" id="A11560" data-tid="A341620">
+                                                    <div class="col-xs-12" id="A11561" data-tid="A341621">
+                                                        <dx-button icon="edit" type="success" text="Reçete Yaz" (onClick)="onDrugOrderIntruductionOpen()" i18n-text="@@M20965" id="A11562" data-tid="A341622">
+                                                        </dx-button>
+                                                    </div>
+                                                </div>
+                                                <br id="A11563" data-tid="A341623" />
+                                                <div class="row" id="A11564" data-tid="A341624">
+                                                    <div class="col-xs-12" id="A11565" data-tid="A341625">
+                                                        <dx-data-grid [columns]="PrescriptionGridColumns" [dataSource]="PrescriptionList" [selection]="{mode: 'single',allowSelectAll: false}" [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" style="height : 350px" id="A11566" data-tid="A341626">
+                                                            <div *dxTemplate="let row of 'buttonCellTemplate'" id="A11567" data-tid="A341627">
+                                                                <dx-button style="height:20px;margin-bottom: -5px;margin-left: -6px;margin-top: -9px;" (onClick)="select(row)" icon="fa fa-pencil-square-o" id="A11568" data-tid="A341628"></dx-button>
+                                                            </div>
+                                                        </dx-data-grid>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </dxi-item>
+                                    <dxi-item class="tabpanel-item" title="Raporlar" i18n-title="@@M20887" id="A11569" data-tid="A341629">
+                                        <span id="A11570" data-tid="A341630"></span>
+                                        <div *ngIf="isRaporlar==true" id="A11571" data-tid="A341631">
+                                            <div class="container-fluid" id="A11572" data-tid="A341632">
+                                                <br id="A11573" data-tid="A341633" />
+                                                <div class="row" id="A11574" data-tid="A341634">
+                                                    <label class="control-label col-sm-1" id="A11575" data-tid="A341635">Rapor Türü</label>
+                                                    <div class="col-sm-3" id="A11576" data-tid="A341636">
+                                                        <dx-lookup [items]="reportTypeList" class="field-customization" displayExpr="description" [value]="selectedReportType" title="Seçiniz" [showPopupTitle]="false" itemTemplate="item" searchEnabled="false" closeOnOutsideClick="true" data-tid="A341637">
+
+                                                            <div *dxTemplate="let item of 'item'" data-tid="A341638">
+                                                                <div class="custom-item" data-tid="A341639">
+                                                                    <div style="position: relative;" (click)="onSelectedReportOpen(item)" data-tid="A341640">{{item.description }}</div>
+                                                                </div>
+                                                            </div>
+                                                        </dx-lookup>
+                                                    </div>
+                                                    <!--<div class="col-sm-1"> <dx-button icon="edit" type="success" text="Rapor Yaz" (onClick)="onSelectedReportOpen()" i18n-text="@@M20879"> </dx-button></div>-->
+                                                    <div class="col-sm-3" id="A11578" data-tid="A341641">
+                                                        <dx-check-box (onValueChanged)="onShowAllReports($event)" text="Tüm Raporlar" i18n-text="@@M30208" id="A11579" data-tid="A341642"></dx-check-box>
+                                                    </div>
+                                                    <div class="col-sm-2" id="A11580" data-tid="A341643">
+                                                        <dx-check-box (onValueChanged)="onShowCancelledReports($event)" text="İptal Edilenleri Getir" i18n-text="@@M16546" id="A11581" data-tid="A341644"></dx-check-box>
+                                                    </div>
+                                                </div>
+                                                <div class="row" id="A11582" data-tid="A341645">
+                                                    <div class="col-xs-12" id="A11583" data-tid="A341646">
+                                                        <hvl-datagrid [AllowUserToDeleteRows]="false" [AllowUserToAddRows]="false" [Columns]="GridPatientReportsColumns" [dataSource]="dentalExaminationFormViewModel.PatientReportInfoList" (CellContentClicked)="GridPatientReports_CellContentClicked($event)" id="A11584" data-tid="A341647">
+
+                                                        </hvl-datagrid>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </dxi-item>
+                                    <dxi-item class="tabpanel-item" title="Konsültasyon" [visible]="!isConsultation" i18n-title="@@M17742" id="A11585" data-tid="A341648">
+                                        <br id="A11586" data-tid="A341649" />
+                                        <div *ngIf="isKonsultasyon==true" id="A11587" data-tid="A341650">
+                                            <ConsultationRequestForm style="height:100%!important;display:block;" [EpisodeAction]="dentalExaminationFormViewModel._DentalExamination" [GridList]="dentalExaminationFormViewModel.GrdConsAndPatientInterviewFormGridList" id="A11588" data-tid="A341651"></ConsultationRequestForm>
+                                        </div>
+                                    </dxi-item>
+                                    <dxi-item id="sevk" class="tabpanel-item" title="Sevk" i18n-title="@@M21695" data-tid="A341652">
+                                        <span id="A24154" data-tid="A341653"></span>
+                                        <div *ngIf="isSevk==true" id="A24155" data-tid="A341654">
+                                            <div class="col-sm-12" style="margin-left: -15px;" id="A24156" data-tid="A341655">
+                                                <atlas-form-editor [QueryParameters]="dispatchQueryParameters" [ComponentInfo]="dispatchComponentInfo" [SaveForm]="saveDispatchComponent" [OpenComponentByAddButton]="true" Title="Sevk İşlemleri" (QueryResultLoaded)="dispatchQueryResultLoaded($event)" i18n-Title="@@M27545" id="A24157" data-tid="A341656">
+                                                </atlas-form-editor>
+                                            </div>
+                                        </div>
+                                    </dxi-item>
+                                </dx-tab-panel>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="istem" [ngClass]="ActivePage =='istem' ? 'tab-pane fade in active' : 'tab-pane fade'" data-tid="A341657">
+                        <div class="container-fluid" id="A11589" data-tid="A341658">
+                            <div class="row" *ngIf="openIstemTab" id="A11590" data-tid="A341659">
+                                <div class="col-xs-12" id="A11591" data-tid="A341660">
+                                    <procedure-request-form [EpisodeAction]="dentalExaminationFormViewModel._DentalExamination" [ProcedureRequestFormResourceIDs]="dentalExaminationFormViewModel.ProcedureRequestFormResourceIDs" [MostUsedRequestedProcedures]="dentalExaminationFormViewModel.UserMostUsedFormDefinitions" [GridDiagnosisGridList]="dentalExaminationFormViewModel.DiagnosisGridGridList" id="A11592" data-tid="A341661"></procedure-request-form>
+                                </div>
+                            </div>
+                            <dx-tab-panel [selectedIndex]="0" [deferRendering]="false" [animationEnabled]="true" style="height:93%!important;margin-right:15px;margin-left:15px;" id="A11593" data-tid="A341662">
+                                <dxi-item class="tabpanel-item" title="Hizmet ve Tetkik" style="height:100%!important;" i18n-title="@@M15930" id="A11594" data-tid="A341663">
+                                    <requested-procedures-form style="height:100%!important;display:block;" [EpisodeAction]="dentalExaminationFormViewModel._DentalExamination" [GridDiagnosisGridList]="dentalExaminationFormViewModel.DiagnosisGridGridList" (OpenRequestTab)="openIstem()" id="A11595" data-tid="A341664"></requested-procedures-form>
+                                </dxi-item>
+                            </dx-tab-panel>
+                        </div>
+                    </div>
+                    <div id="hastaGecmisi" [ngClass]="ActivePage =='hastaGecmisi' ? 'tab-pane fade in active' : 'tab-pane fade'" data-tid="A341665">
+                        <div class="container-fluid" *ngIf="openHastaGecmisiTab" id="A11596" data-tid="A341666">
+                            <div class="row" id="A11597" data-tid="A341667">
+                                <div class="col-xs-12" id="A11598" data-tid="A341668">
+                                    <PatientHistoryForm [patient]="dentalExaminationFormViewModel._DentalExamination?.Episode?.Patient" id="A11599" data-tid="A341669">Hasta Geçmişi</PatientHistoryForm>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<dx-popup width="600px" height="200px" [(visible)]="showEDurumBildirirComponent" [closeOnOutsideClick]="false" title="E-Durum Bildirir Raporu Yaz" i18n-title="@@M13708" id="A24159" data-tid="A341670">
+    <div *dxTemplate="let data of 'content'" id="A24160" data-tid="A341671">
+        <eDurumBildirirComponent [episodeActionId]="dentalExaminationFormViewModel._DentalExamination?.ObjectID" [patientId]="dentalExaminationFormViewModel._DentalExamination?.Episode?.Patient?.ObjectID" data-tid="A341672">
+
+        </eDurumBildirirComponent>
+
+    </div>
+</dx-popup>
+<dx-popup class="reportStyle" [(visible)]="showStatusNotificationReportForm" [closeOnOutsideClick]="false" (OnClosing)="onStatusNotificationReportForm($event)" [fullScreen]="true" title="Durum Bildirir Raporu" i18n-title="@@M13360" id="A11600" data-tid="A341673">
+    <div *dxTemplate="let data of 'content'" id="A11601" data-tid="A341674">
+        <div class="container-fluid" id="A11602" data-tid="A341675">
+            <dx-scroll-view #scrollView id="scrollview" [scrollByContent]="true" [scrollByThumb]="true" [showScrollbar]="always" data-tid="A341676">
+                <StatusNotificationReportForm (OnClosing)="OnStatusNotificationReportFormClosing($event)" [StatusNotificationRep]="statusNotificationReportObject" [ReportActiveIDsModel]="ReportParamActiveIDsModel" id="A11603" data-tid="A341677"></StatusNotificationReportForm>
+            </dx-scroll-view>
+
+        </div>
+    </div>
+</dx-popup>
+<dx-popup class="reportStyle" [(visible)]="showMedulaTedaviRaporlariForm" [closeOnOutsideClick]="false" (OnClosing)="onMedulaTedaviRaporlariForm($event)" [fullScreen]="true" title="TEDAVİ RAPORU" i18n-title="@@M30218" id="A11604" data-tid="A341678">
+    <div *dxTemplate="let data of 'content'" id="A11605" data-tid="A341679">
+        <div class="container-fluid" id="A11606" data-tid="A341680">
+            <dx-scroll-view #scrollView id="scrollview" [scrollByContent]="true" [scrollByThumb]="true" [showScrollbar]="always" data-tid="A341681">
+                <MedulaTedaviRaporlari (OnClosing)="OnMedulaTedaviRaporlariFormClosing($event)" [MedulaTedaviRaporlariRep]="medulaTedaviRaporlariObject" [ReportActiveIDsModel]="ReportParamActiveIDsModel" id="A24170" data-tid="A341682"></MedulaTedaviRaporlari>
+
+            </dx-scroll-view>
+
+        </div>
+    </div>
+</dx-popup>
+<dx-popup class="reportStyle" [(visible)]="showParticipationFreeDrugReportNewForm" [closeOnOutsideClick]="false" (OnClosing)="onParticipationFreeDrugReportNewForm($event)" [fullScreen]="true" title="İLAÇ RAPORU" i18n-title="@@M30219" id="A24169" data-tid="A341683">
+    <div *dxTemplate="let data of 'content'" id="A24170" data-tid="A341684">
+        <div class="container-fluid" style="height:100%" data-tid="A341685">
+            <dx-scroll-view #scrollView id="scrollview" [scrollByContent]="true" [scrollByThumb]="true" [showScrollbar]="always" data-tid="A341686">
+                <ParticipationFreeDrugReportNewForm (OnClosing)="OnParticipationFreeDrugReportNewFormClosing($event)" [ParticipationFreeDrugReportNewFormRep]="ParticipationFreeDrugReportNewFormObject" [ReportActiveIDsModel]="ReportParamActiveIDsModel" data-tid="A341687"></ParticipationFreeDrugReportNewForm>
+            </dx-scroll-view>
+        </div>
+    </div>
+</dx-popup>
+
+<dx-popup width="700px" height="300px" [(visible)]="dailyApplicationControl" [closeOnOutsideClick]="false" title="Günübirlik Yatış İşlemleri" [showCloseButton]="false" data-tid="A341688">
+    <div class="margin-bottom-10" data-tid="A341689">
+        <div *dxTemplate="let data of 'content'" data-tid="A341690">
+            <div class="row" data-tid="A341691">
+                <label class="control-label col-sm-2" id="A1801" data-tid="A341692">
+                    Özet Epikriz
+                </label>
+            </div>
+            <div class="row" data-tid="A341693">
+                <div class="col-sm-12" id="A28111" data-tid="A341694">
+                    <dx-text-area [(value)]="summaryEpicrisis" width="500px" height="100px" data-tid="A341695"></dx-text-area>
+                </div>
+            </div>
+            <div class="row" data-tid="A341696">
+                <label class="control-label col-sm-2" id="A1801" data-tid="A341697">
+                    Birim Seçimi
+                </label>
+            </div>
+            <div class="row" data-tid="A341698">
+                <div class="col-sm-5" id="A28111" data-tid="A341699">
+                    <dx-select-box [items]="ClinicList" placeholder="Seçiniz" displayExpr="Name" showClearButton="true" searchEnabled="true" (showSelectionControls)="false" [(value)]="birim" valueExpr="ObjectID" id="A26313" data-tid="A341700"></dx-select-box>
+                </div>
+            </div>
+
+            <div class="row" data-tid="A341701">
+                <label class="control-label col-sm-2" id="A1801" data-tid="A341702">
+                    Yatış Tarihi
+                </label>
+            </div>
+            <div class="row" data-tid="A341703">
+                <div class="col-sm-5" id="A28111" data-tid="A341704">
+                    <dx-date-box width="100%" type="date" [(value)]="InpatientDate" [readOnly]="false" data-tid="A341705"> </dx-date-box>
+                </div>
+            </div>
+
+            <div class="row" style="padding-top: 10px" data-tid="A341706">
+
+                <div class="col-sm-5" style="float: left" data-tid="A341707">
+                    <dx-button text="Kaydet ve Taburcu Et" rtlEnabled="true" icon="save" type="success" (onClick)="DailyOperations()" data-tid="A341708"></dx-button>
+                </div>
+
+                <div class="col-sm-2" data-tid="A341709">
+                    <dx-button text="İptal" icon="clear" type="danger" rtlEnabled="true" (onClick)="onDailyOperationCancel($event)" data-tid="A341710"></dx-button>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+</dx-popup> 

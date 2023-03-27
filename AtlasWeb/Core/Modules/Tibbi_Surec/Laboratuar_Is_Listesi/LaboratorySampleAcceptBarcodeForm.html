@@ -1,0 +1,62 @@
+﻿<div class="row" id="A21096" data-tid="A356238">
+    <div class="col-md-6" data-tid="A356239">
+        <div class="row" data-tid="A356240">
+            <div class="col-md-12" data-tid="A356241">
+                <dx-text-box id="A1022" #BarcodeText [readOnly]="false" [hoverStateEnabled]="false" placeholder="Barkod okutunuz" [(value)]="BarcodeValue" valueChangeEvent="keyup" (keypress)="onBarcodeChanged($event)" i18n-placeholder="@@M17292" data-tid="A356242">
+                </dx-text-box>
+            </div>
+        </div>
+        <div class="row" style="padding-top:5px" data-tid="A356243">
+            <label class="col-md-12" data-tid="A356244">
+                Son Okutulan Barkod : {{LastReadedBarcode}}
+            </label>
+        </div>
+        <div class="row" *ngIf="IsTransitionMade != null" data-tid="A356245">
+            <div class="col-sm-12" data-tid="A356246">
+                Okutulan Barkodun İşlem Durumu :
+            </div>
+        </div>
+        <div class="row" data-tid="A356247">
+            <label class="col-sm-12" style="color: brown; font-size: 15px" *ngIf="IsTransitionMade != null && IsTransitionMade==false" data-tid="A356248">
+                Okutulan barkod daha önceden numune kabul durumuna geçirildi.
+            </label>
+            <label class="col-sm-12" style="color: green; font-size: 15px;" *ngIf="IsTransitionMade != null && IsTransitionMade==true" data-tid="A356249">
+                Okutulan barkod numune kabul durumuna başarıyla geçirildi.
+            </label>
+        </div>
+
+    </div>
+    <div class="col-md-6" *ngIf="lastReadedBarcodeAction != null" id="A21097" data-tid="A356250">
+        <patient-demographics-form [actionId]="lastReadedBarcodeAction" [ClearModel]="this.clearDemographicInfo" id="A21098" data-tid="A356251"></patient-demographics-form>
+    </div>
+    <!--<div class="col-md-6">
+        <dx-button type="default" icon="fa fa-refresh" text="Yenile" (onClick)="btnRefreshClick()"></dx-button>
+    </div>-->
+
+</div>
+<div class="row" data-tid="A356252">
+    <div class="col-sm-12" id="A21106" data-tid="A356253">
+        <dx-data-grid showColumnLines="true" [paging]="{enable: true, pageSize:60}" showRowLines="true" style="margin-left: -10px;" height="100%" [columns]="ProcedureListColumns" [dataSource]="LaboratoryProcedureList" allowColumnReordering="true" allowColumnResizing="true" allowUserToAddRows="false" allowUserToDeleteRows="false" id="A21107" data-tid="A356254">
+
+            <div *dxTemplate="let row of 'ExternalRequestCellTemplate'" id="A21109" data-tid="A356255">
+                <div class="col-md-2" style="float:left;margin-left: -16px;" id="A21110" data-tid="A356256">{{row.text}}</div>&nbsp;
+            </div>
+
+            <div *dxTemplate="let row of 'BarcodeCellTemplate'" id="A21112" data-tid="A356257">
+                <div class="col-md-2" style="float:left;margin-left: -16px;" id="A21113" data-tid="A356258">{{row.text}}</div>&nbsp;
+            </div>
+
+            <div *dxTemplate="let cellData of 'TestPriorityCellTemplate'" id="A21114" data-tid="A356259">
+                <i *ngIf="cellData.data.isLabTestEmergency" class="fa fa-ambulance" data-toggle="tooltip" data-placement="bottom" title="Acil İstem!" style="float:left;color:#e40d0d;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M10432" id="A21115" data-tid="A356260">&nbsp;</i>
+                <div *ngIf="cellData.data.isLabTestEmergency==false" class="col-md-2" style="float:left;margin-left: 6px;" id="A21116" data-tid="A356261">{{cellData.text}}</div>
+                <div *ngIf="cellData.data.isLabTestEmergency==true" class="col-md-2" style="float:left;margin-left: -10px;" id="A21117" data-tid="A356262">{{cellData.text}}</div>
+                <i *ngIf="cellData.data.hasProcedureInstruction" class="fa fa-exclamation-triangle" (click)="btnPrintTestInstructions_Click($event,cellData)" data-toggle="tooltip" data-placement="bottom" [title]="cellData.data.ProcedureInstructions" style="float:right;color:#e40d0d;margin-top: -2px;margin-bottom: -5px;" id="A28152" data-tid="A356263">&nbsp;</i>
+
+            </div>
+            <dxo-group-panel [visible]="false" id="A21118" data-tid="A356264"></dxo-group-panel>
+            <dxo-grouping #expand [autoExpandAll]="true" id="A21119" data-tid="A356265"></dxo-grouping>
+        </dx-data-grid>
+    </div>
+</div>
+<dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A21104" data-tid="A356266">
+</dx-load-panel>

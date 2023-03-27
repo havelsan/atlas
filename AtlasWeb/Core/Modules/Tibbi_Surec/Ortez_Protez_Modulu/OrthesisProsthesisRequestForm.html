@@ -1,0 +1,94 @@
+﻿
+
+<NeStatePanelComponent [OutgoingTransitions]="orthesisProsthesisRequestFormViewModel?.OutgoingTransitions" [StateReports]="orthesisProsthesisRequestFormViewModel?.CurrentStateReports" [ObjectID]="orthesisProsthesisRequestFormViewModel?._OrthesisProsthesisRequest?.ObjectID" [ObjectDefID]="orthesisProsthesisRequestFormViewModel?._OrthesisProsthesisRequest?.ObjectDefID" [CurrentStateDefID]="orthesisProsthesisRequestFormViewModel._OrthesisProsthesisRequest.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()" [DropStateList]="DropStateList" [SaveCommandVisible]="_saveCommandVisible" id="A23583" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A358905">
+</NeStatePanelComponent>
+<div class="container-fluid" id="A23584" data-tid="A358906">
+	<form id="OrthesisProsthesisRequestForm" class="form-horizontal" role="form" data-tid="A358907">
+		
+	</form>
+
+    <div class="row margin-top-10" id="A23585" data-tid="A358908">
+        <div class="col-sm-6" id="A23586" data-tid="A358909">
+            <patient-demographics-form [actionId]="actionIdForDemografic()" id="A23587" data-tid="A358910"></patient-demographics-form>
+        </div>
+        <div class="col-md-6 col-sm-12" id="A23588" data-tid="A358911">
+            <DiagnosisGridReadOnlyForm [EpisodeAction]="orthesisProsthesisRequestFormViewModel._OrthesisProsthesisRequest.MasterAction" id="A23589" data-tid="A358912"></DiagnosisGridReadOnlyForm>
+        </div>
+    </div>
+
+
+    <div class="row" id="A23590" data-tid="A358913">
+        <label class="control-label col-sm-2" id="A23591" data-tid="A358914">
+            İstek Tarihi
+        </label>
+    </div>
+    <div class="row" id="A23592" data-tid="A358915">
+        <div class="col-sm-2" id="A23593" data-tid="A358916">
+            <hvl-date-picker #Validation (ValueChange)="onRequestDateChanged($event)" [BackColor]="RequestDate?.BackColor" [CustomFormat]="RequestDate?.CustomFormat" [Enabled]="RequestDate?.Enabled" [Font]="RequestDate?.Font" [ForeColor]="RequestDate?.ForeColor" [Format]="RequestDate?.Format" [Max]="RequestDate?.Max" [Min]="RequestDate?.Min" [ReadOnly]="RequestDate?.ReadOnly" [Required]="RequestDate?.Required" [TabIndex]="RequestDate?.TabIndex" [Value]="orthesisProsthesisRequestFormViewModel?._OrthesisProsthesisRequest?.RequestDate" [Visible]="RequestDate?.Visible" id="A23594" data-tid="A358917"></hvl-date-picker>
+        </div>
+        <div class="btn-group pull-right" role="group" aria-label="..." id="A23595" data-tid="A358918">
+            <dx-button type="btn btn-default" class="dx-icon  pull-right" icon="fa fa-file-text-o" (onClick)="PrintOrthesisProsthesisWorkRequestReport()" hint="İş Talep Formu" i18n-hint="@@M16777" id="A23596" data-tid="A358919"></dx-button>
+            <dx-button type="btn btn-default" class="dx-icon  pull-right" style="margin-right:3px;" icon="fa fa-file-text" (onClick)="PrintOrthesisProsthesisCommitReport()" hint="Hasta Taahhütname" i18n-hint="@@M15308" id="A23597" data-tid="A358920"></dx-button>
+        </div>
+        <label *ngIf="!orthesisProsthesisRequestFormViewModel.HasDebt" style="font-size:large" class="control-label pull-right alert-danger" id="A23598" data-tid="A358921"> Hastanın Ödenmemiş Borcu Mevcut!</label>
+    </div>
+    <div class="row" id="A23599" data-tid="A358922">
+        <label class="control-label col-sm-3" id="A23600" data-tid="A358923">
+            İstemi Yapan Kullanıcı
+        </label>
+        <label class="control-label col-sm-3" id="A23601" data-tid="A358924">
+            İstemi Yapan Doktor
+        </label>
+        <div class="col-sm-0" id="A23602" data-tid="A358925">
+            <hvl-list-box #Validation (SelectedObjectChange)="onMasterResourceChanged($event)" [AutoCompleteDialogHeight]="MasterResource?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="MasterResource?.AutoCompleteDialogWidth" [AutoCompleteMode]="MasterResource?.AutoCompleteMode" [BackColor]="MasterResource?.BackColor" [DefinitionName]="MasterResource?.ListDefName" [DisplayExpressionsCache]="orthesisProsthesisRequestFormViewModel?.ListDefDisplayExpressions" [Enabled]="MasterResource?.Enabled" [Font]="MasterResource?.Font" [ForeColor]="MasterResource?.ForeColor" [ListFilterExpression]="MasterResource?.ListFilterExpression" [MinSearchLength]="MasterResource?.MinSearchLength" [PopupDialogFieldConfig]="MasterResource?.PopupDialogFieldConfig" [PopupDialogGridColumns]="MasterResource?.PopupDialogGridColumns" [PopupDialogHeight]="MasterResource?.PopupDialogHeight" [PopupDialogTitle]="MasterResource?.PopupDialogTitle" [PopupDialogWidth]="MasterResource?.PopupDialogWidth" [ReadOnly]="MasterResource?.ReadOnly" [SearchMode]="MasterResource?.SearchMode" [SearchTimeout]="MasterResource?.SearchTimeout" [SelectedObject]="orthesisProsthesisRequestFormViewModel?._OrthesisProsthesisRequest?.MasterResource" [TabIndex]="MasterResource?.TabIndex" [Visible]="MasterResource?.Visible" [width]="MasterResource?.Width" id="A23603" data-tid="A358926"></hvl-list-box>
+        </div>
+        <label class="control-label col-sm-5" id="A23604" data-tid="A358927">
+            İsteğin Yapıldığı Birim
+        </label>
+    </div>
+    <div class="row margin-bottom-10" style="margin-bottom: 10px;" id="A23605" data-tid="A358928">
+        <div class="col-sm-3" id="A23606" data-tid="A358929">
+            <dx-text-box [readOnly]="true" [value]="orthesisProsthesisRequestFormViewModel.RequesterUserName" id="A23607" data-tid="A358930">
+            </dx-text-box>
+        </div>
+        <div class="col-sm-3" id="A23608" data-tid="A358931">
+            <hvl-list-box #Validation (SelectedObjectChange)="onProcedureDoctorChanged($event)" [AutoCompleteDialogHeight]="ProcedureDoctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ProcedureDoctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="ProcedureDoctor?.AutoCompleteMode" [BackColor]="ProcedureDoctor?.BackColor" [DefinitionName]="ProcedureDoctor?.ListDefName" [DisplayExpressionsCache]="orthesisProsthesisRequestFormViewModel?.ListDefDisplayExpressions" [Enabled]="ProcedureDoctor?.Enabled" [Font]="ProcedureDoctor?.Font" [ForeColor]="ProcedureDoctor?.ForeColor" [ListFilterExpression]="ProcedureDoctor?.ListFilterExpression" [MinSearchLength]="ProcedureDoctor?.MinSearchLength" [PopupDialogFieldConfig]="ProcedureDoctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ProcedureDoctor?.PopupDialogGridColumns" [PopupDialogHeight]="ProcedureDoctor?.PopupDialogHeight" [PopupDialogTitle]="ProcedureDoctor?.PopupDialogTitle" [PopupDialogWidth]="ProcedureDoctor?.PopupDialogWidth" [ReadOnly]="ProcedureDoctor?.ReadOnly" [SearchMode]="ProcedureDoctor?.SearchMode" [SearchTimeout]="ProcedureDoctor?.SearchTimeout" [SelectedObject]="orthesisProsthesisRequestFormViewModel?._OrthesisProsthesisRequest?.ProcedureDoctor" [TabIndex]="ProcedureDoctor?.TabIndex" [Visible]="ProcedureDoctor?.Visible" [width]="ProcedureDoctor?.Width" id="A23609" data-tid="A358932"></hvl-list-box>
+        </div>
+        <div class="col-sm-6" id="A23610" data-tid="A358933">
+            <dx-text-box [readOnly]="true" [value]="orthesisProsthesisRequestFormViewModel.RequesterUnit" id="A23611" data-tid="A358934">
+            </dx-text-box>
+        </div>
+    </div>
+
+    <div class="row" style="margin-bottom: 10px;max-height:255px;overflow-y:auto" id="A23612" data-tid="A358935">
+        <div class="col-sm-12" id="A23613" data-tid="A358936">
+            <hvl-datagrid (CellValueChange)="OrthesisProsthesisProcedures_CellValueChangedEmitted($event)" [AllowUserToAddRows]="OrthesisProsthesisProcedures?.AllowUserToAddRows" [AllowUserToDeleteRows]="OrthesisProsthesisProcedures?.AllowUserToDeleteRows" [Columns]="OrthesisProsthesisProceduresColumns" [dataSource]="orthesisProsthesisRequestFormViewModel?._OrthesisProsthesisRequest?.OrthesisProsthesisProcedures" [DeleteButtonWidth]="OrthesisProsthesisProcedures?.DeleteButtonWidth" [DisplayExpressionsCache]="orthesisProsthesisRequestFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="OrthesisProsthesisProcedures?.ShowFilterRow" [FilterColumnName]="OrthesisProsthesisProcedures?.FilterColumnName" [FilterLabel]="OrthesisProsthesisProcedures?.FilterLabel" [Filter]="OrthesisProsthesisProcedures?.Filter" [height]="OrthesisProsthesisProcedures?.Height" [IsFilterLabelSingleLine]="OrthesisProsthesisProcedures?.IsFilterLabelSingleLine" [ShowColumnHeaders]="OrthesisProsthesisProcedures?.ColumnHeadersVisible" [ShowFilterCombo]="OrthesisProsthesisProcedures?.ShowFilterCombo" [ShowTotalNumberOfRows]="OrthesisProsthesisProcedures?.ShowTotalNumberOfRows" id="A23614" data-tid="A358937"></hvl-datagrid>
+        </div>
+    </div>
+
+    <div class="row" id="A23615" data-tid="A358938">
+        <label class="control-label col-sm-2" id="A23616" data-tid="A358939">
+            Doktor Notu
+        </label>
+    </div>
+
+    <div class="row margin-bottom-10" id="A23617" data-tid="A358940">
+        <div class="col-sm-12" id="A23618" data-tid="A358941">
+            <hvl-richtextbox (change)="onTotalDescriptionChanged($event)" [ngModelOptions]="{ standalone: true}" [ngModel]="orthesisProsthesisRequestFormViewModel?._OrthesisProsthesisRequest?.TotalDescription" [ReadOnly]="TotalDescription?.ReadOnly" [TemplateGroupName]="TotalDescription?.TemplateGroupName" [Visible]="TotalDescription?.Visible" id="A23619" data-tid="A358942"></hvl-richtextbox>
+        </div>
+    </div>
+
+    <div *ngIf="ReturnDescriptionGrid_Visibility" id="A23620" data-tid="A358943">
+        <div class="row" id="A23621" data-tid="A358944">
+            <label class="control-label col-sm-10" id="A23622" data-tid="A358945">
+                İade Açıklamaları
+            </label>
+        </div>
+
+        <div class="row" id="A23623" data-tid="A358946">
+            <div class="col-sm-12" id="A23624" data-tid="A358947">
+                <hvl-datagrid [AllowUserToAddRows]="ReturnDescriptionGrid?.AllowUserToAddRows" [AllowUserToDeleteRows]="ReturnDescriptionGrid?.AllowUserToDeleteRows" [Columns]="ReturnDescriptionGridColumns" [dataSource]="orthesisProsthesisRequestFormViewModel?._OrthesisProsthesisRequest?.ReturnDescriptions" [DeleteButtonWidth]="ReturnDescriptionGrid?.DeleteButtonWidth" [DisplayExpressionsCache]="orthesisProsthesisRequestFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="ReturnDescriptionGrid?.ShowFilterRow" [FilterColumnName]="ReturnDescriptionGrid?.FilterColumnName" [FilterLabel]="ReturnDescriptionGrid?.FilterLabel" [Filter]="ReturnDescriptionGrid?.Filter" [height]="ReturnDescriptionGrid?.Height" [IsFilterLabelSingleLine]="ReturnDescriptionGrid?.IsFilterLabelSingleLine" [ShowColumnHeaders]="ReturnDescriptionGrid?.ColumnHeadersVisible" [ShowFilterCombo]="ReturnDescriptionGrid?.ShowFilterCombo" [ShowTotalNumberOfRows]="ReturnDescriptionGrid?.ShowTotalNumberOfRows" id="A23625" data-tid="A358948"></hvl-datagrid>
+            </div>
+        </div>
+    </div>
+    </div>

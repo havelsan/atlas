@@ -1,0 +1,321 @@
+﻿
+<div class="container-fluid" style="font-size:12px;" id="A17406" data-tid="A349710">
+
+    <form id="StatusNotificationReportForm" class="form-horizontal" role="form" data-tid="A349711"></form>
+    <div class="row" data-tid="A349712">
+        <div style="width: 100%; height: 25px; text-align: center;margin-bottom:20px; background-color: #e2ecf8;" id="A17407" data-tid="A349713">
+            <span style="font-size: 18px;font-weight:bold;" id="A17408" data-tid="A349714">
+                Hasta Bilgileri
+            </span>
+        </div>
+        <patient-demographics-simply-form [actionId]="actionIdForDemografic()" id="A17409" data-tid="A349715"></patient-demographics-simply-form>
+
+        <div style="width: 100%; height: 25px; text-align: center;margin-bottom:20px; background-color: #e2ecf8;" id="A17410" data-tid="A349716">
+            <span style="font-size: 18px;font-weight:bold;" id="A17411" data-tid="A349717">
+                Rapor Bilgileri
+            </span>
+        </div>
+
+    </div>
+
+    <div class="row" id="A17412" data-tid="A349718">
+        <div class="col-sm-4" id="A17413" data-tid="A349719">
+            <span id="A17414" data-tid="A349720">
+                <b id="A17415" data-tid="A349721">
+                    Başlangıç Tarihi
+                </b>
+                <hvl-date-picker #Validation (ValueChange)="onStartDateChanged($event)" [BackColor]="StartDate?.BackColor" [CustomFormat]="StartDate?.CustomFormat" [Enabled]="StartDate?.Enabled" [Font]="StartDate?.Font" [ForeColor]="StartDate?.ForeColor" [Format]="StartDate?.Format" [Max]="StartDate?.Max" [Min]="StartDate?.Min" [ReadOnly]="statusNotificationReportFormViewModel?.ReadOnly" [Required]="statusNotificationReportFormViewModel?.Required" [TabIndex]="StartDate?.TabIndex" [Value]="statusNotificationReportFormViewModel?._StatusNotificationReport?.StartDate" [Visible]="StartDate?.Visible" id="A17416" data-tid="A349722"></hvl-date-picker>
+            </span>
+        </div>
+        <div class="col-sm-4" id="A17417" data-tid="A349723">
+
+            <span class="col-md-6" style="padding-left:0" id="A17418" data-tid="A349724">
+                <b id="A17419" data-tid="A349725">
+                    Rapor Süresi
+                </b>
+                <hvl-number-box #Validation (ValueChange)="ontxtRaporSuresiChanged($event)" [BackColor]="txtRaporSuresi?.BackColor" [Enabled]="txtRaporSuresi?.Enabled" [Font]="txtRaporSuresi?.Font" [ForeColor]="txtRaporSuresi?.ForeColor" [ReadOnly]="statusNotificationReportFormViewModel?.ReadOnly" [TabIndex]="txtRaporSuresi?.TabIndex" [Value]="statusNotificationReportFormViewModel?._StatusNotificationReport?.ReportDuration" [Visible]="txtRaporSuresi?.Visible" id="A17420" data-tid="A349726"></hvl-number-box>
+            </span>
+
+
+            <span class="col-md-6" style="padding-right:0" id="A17421" data-tid="A349727">
+                <b id="A17422" data-tid="A349728">
+                    Rapor Süre Türü
+                </b>
+                <hvl-enum-combobox #Validation (ValueChange)="cmbRaporSureTuruChanged($event)" [(Value)]="statusNotificationReportFormViewModel._StatusNotificationReport.ReportDurationType" [BackColor]="cmbRaporSureTuru?.BackColor" [DataTypeName]="cmbRaporSureTuru?.DataTypeName" [Enabled]="cmbRaporSureTuru?.Enabled" [Font]="cmbRaporSureTuru?.Font" [ForeColor]="cmbRaporSureTuru?.ForeColor" [IncludeOnly]="cmbRaporSureTuru?.IncludeOnly" [ReadOnly]="statusNotificationReportFormViewModel?.ReadOnly" [ShowClearButton]="cmbRaporSureTuru?.ShowClearButton" [SortBy]="cmbRaporSureTuru?.SortBy" [TabIndex]="cmbRaporSureTuru?.TabIndex" [Visible]="cmbRaporSureTuru?.Visible" id="A17423" data-tid="A349729"></hvl-enum-combobox>
+            </span>
+
+        </div>
+        <div class="col-sm-4" id="A17424" data-tid="A349730">
+            <span id="A17425" data-tid="A349731">
+                <b id="A17426" data-tid="A349732">
+                    Bitiş Tarihi
+                </b>
+                <hvl-date-picker #Validation (ValueChange)="onEndDateChanged($event)" [BackColor]="EndDate?.BackColor" [CustomFormat]="EndDate?.CustomFormat" [Enabled]="EndDate?.Enabled" [Font]="EndDate?.Font" [ForeColor]="EndDate?.ForeColor" [Format]="EndDate?.Format" [Max]="EndDate?.Max" [Min]="EndDate?.Min" [ReadOnly]="EndDate?.ReadOnly" [Required]="EndDate?.Required" [TabIndex]="EndDate?.TabIndex" [Value]="statusNotificationReportFormViewModel?._StatusNotificationReport?.EndDate" [Visible]="EndDate?.Visible" id="A17427" data-tid="A349733"></hvl-date-picker>
+            </span>
+        </div>
+
+    </div>
+    <div class="row" id="A17428" data-tid="A349734">
+        <div class="col-sm-4" id="A17429" data-tid="A349735">
+            <span id="A17430" data-tid="A349736">
+                <b id="A17431" data-tid="A349737">
+                    İstek Sebebi
+                </b>
+                <hvl-list-box #Validation (SelectedObjectChange)="onHCRequestReasonChanged($event)" [AutoCompleteDialogHeight]="HCRequestReason?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="HCRequestReason?.AutoCompleteDialogWidth" [AutoCompleteMode]="HCRequestReason?.AutoCompleteMode" [BackColor]="HCRequestReason?.BackColor" [DefinitionName]="HCRequestReason?.ListDefName" [DisplayExpressionsCache]="statusNotificationReportFormViewModel?.ListDefDisplayExpressions" [Enabled]="HCRequestReason?.Enabled" [Font]="HCRequestReason?.Font" [ForeColor]="HCRequestReason?.ForeColor" [ListFilterExpression]="HCRequestReason?.ListFilterExpression" [MinSearchLength]="HCRequestReason?.MinSearchLength" [PopupDialogFieldConfig]="HCRequestReason?.PopupDialogFieldConfig" [PopupDialogGridColumns]="HCRequestReason?.PopupDialogGridColumns" [PopupDialogHeight]="HCRequestReason?.PopupDialogHeight" [PopupDialogTitle]="HCRequestReason?.PopupDialogTitle" [PopupDialogWidth]="HCRequestReason?.PopupDialogWidth" [ReadOnly]="statusNotificationReportFormViewModel?.ReadOnly" [SearchMode]="HCRequestReason?.SearchMode" [SearchTimeout]="HCRequestReason?.SearchTimeout" [SelectedObject]="statusNotificationReportFormViewModel?._StatusNotificationReport?.HCRequestReason" [TabIndex]="HCRequestReason?.TabIndex" [Visible]="HCRequestReason?.Visible" [width]="HCRequestReason?.Width" id="A17432" data-tid="A349738"></hvl-list-box>
+            </span>
+        </div>
+        <div class="col-sm-4" id="A17433" *ngIf="statusNotificationOneDoctorDecisionVisible" data-tid="A349739">
+            <span id="A17434" data-tid="A349740">
+                <b id="A17435" data-tid="A349741">
+                    Rapor Türü
+                </b>
+                <!--<hvl-list-box #Validation (SelectedObjectChange)="onReasonForExaminationHCRequestReasonChanged($event)" [AutoCompleteDialogHeight]="ReasonForExaminationHCRequestReason?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ReasonForExaminationHCRequestReason?.AutoCompleteDialogWidth" [AutoCompleteMode]="ReasonForExaminationHCRequestReason?.AutoCompleteMode" [BackColor]="ReasonForExaminationHCRequestReason?.BackColor" [DefinitionName]="ReasonForExaminationHCRequestReason?.ListDefName" [DisplayExpressionsCache]="statusNotificationReportFormViewModel?.ListDefDisplayExpressions" [Enabled]="ReasonForExaminationHCRequestReason?.Enabled" [Font]="ReasonForExaminationHCRequestReason?.Font" [ForeColor]="ReasonForExaminationHCRequestReason?.ForeColor" [ListFilterExpression]="ReasonForExaminationHCRequestReason?.ListFilterExpression" [MinSearchLength]="ReasonForExaminationHCRequestReason?.MinSearchLength" [PopupDialogFieldConfig]="ReasonForExaminationHCRequestReason?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ReasonForExaminationHCRequestReason?.PopupDialogGridColumns" [PopupDialogHeight]="ReasonForExaminationHCRequestReason?.PopupDialogHeight" [PopupDialogTitle]="ReasonForExaminationHCRequestReason?.PopupDialogTitle" [PopupDialogWidth]="ReasonForExaminationHCRequestReason?.PopupDialogWidth" [ReadOnly]="statusNotificationReportFormViewModel?.ReadOnly" [SearchMode]="ReasonForExaminationHCRequestReason?.SearchMode" [SearchTimeout]="ReasonForExaminationHCRequestReason?.SearchTimeout" [SelectedObject]="statusNotificationReportFormViewModel?._StatusNotificationReport?.HCRequestReason?.ReasonForExamination" [TabIndex]="ReasonForExaminationHCRequestReason?.TabIndex" [Visible]="ReasonForExaminationHCRequestReason?.Visible" [width]="ReasonForExaminationHCRequestReason?.Width" id="A17436"></hvl-list-box>-->
+                <hvl-enum-combobox #Validation (ValueChange)="onReportReasonChanged($event)" [BackColor]="ReportReason?.BackColor" [DataTypeName]="ReportReason?.DataTypeName" [Enabled]="ReportReason?.Enabled" [Font]="ReportReason?.Font" [ForeColor]="ReportReason?.ForeColor" [IncludeOnly]="ReportReason?.IncludeOnly" [ReadOnly]="ReportReason?.ReadOnly" [ShowClearButton]="ReportReason?.ShowClearButton" [SortBy]="ReportReason?.SortBy" [TabIndex]="ReportReason?.TabIndex" [Value]="statusNotificationReportFormViewModel?._StatusNotificationReport?.ReportReason" [Visible]="ReportReason?.Visible" id="A26761" data-tid="A349742"></hvl-enum-combobox>
+            </span>
+        </div>
+        <div class="col-sm-4" id="A17437" data-tid="A349743">
+            <span id="A17438" data-tid="A349744">
+                <b id="A17439" data-tid="A349745">
+                    Rapor No
+                </b>
+                <hvl-text-box #Validation (TextChange)="onReportNoChanged($event)" [BackColor]="ReportNo?.BackColor" [CharacterCasing]="ReportNo?.CharacterCasing" [Enabled]="ReportNo?.Enabled" [Font]="ReportNo?.Font" [ForeColor]="ReportNo?.ForeColor" [height]="ReportNo?.Height" [InputFormat]="ReportNo?.InputFormat" [InputTurkishCharacter]="ReportNo?.InputTurkishCharacter" [IsNonNumeric]="ReportNo?.IsNonNumeric" [MultiLine]="ReportNo?.Multiline" [ReadOnly]="ReportNo?.ReadOnly" [Required]="ReportNo?.Required" [TabIndex]="ReportNo?.TabIndex" [TextAlign]="ReportNo?.TextAlign" [Text]="statusNotificationReportFormViewModel?._StatusNotificationReport?.ReportNo" [Visible]="ReportNo?.Visible" id="A17440" data-tid="A349746"></hvl-text-box>
+            </span>
+        </div>
+    </div>
+    <div class="row" id="A17441" data-tid="A349747">
+        <div class="col-md-4" id="A17442" data-tid="A349748">
+            <span id="A17443" data-tid="A349749">
+                <b id="A17444" data-tid="A349750">
+                    1. Doktor
+                </b>
+                <hvl-list-box #Validation (SelectedObjectChange)="onProcedureDoctorChanged($event)" [AutoCompleteDialogHeight]="ProcedureDoctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ProcedureDoctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="ProcedureDoctor?.AutoCompleteMode" [BackColor]="ProcedureDoctor?.BackColor" [DefinitionName]="ProcedureDoctor?.ListDefName" [DisplayExpressionsCache]="statusNotificationReportFormViewModel?.ListDefDisplayExpressions" [Enabled]="ProcedureDoctor?.Enabled" [Font]="ProcedureDoctor?.Font" [ForeColor]="ProcedureDoctor?.ForeColor" [ListFilterExpression]="ProcedureDoctor?.ListFilterExpression" [MinSearchLength]="ProcedureDoctor?.MinSearchLength" [PopupDialogFieldConfig]="ProcedureDoctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ProcedureDoctor?.PopupDialogGridColumns" [PopupDialogHeight]="ProcedureDoctor?.PopupDialogHeight" [PopupDialogTitle]="ProcedureDoctor?.PopupDialogTitle" [PopupDialogWidth]="ProcedureDoctor?.PopupDialogWidth" [ReadOnly]="statusNotificationReportFormViewModel?.ReadOnly" [SearchMode]="ProcedureDoctor?.SearchMode" [SearchTimeout]="ProcedureDoctor?.SearchTimeout" [SelectedObject]="statusNotificationReportFormViewModel?._StatusNotificationReport?.ProcedureDoctor" [TabIndex]="ProcedureDoctor?.TabIndex" [Visible]="ProcedureDoctor?.Visible" [width]="ProcedureDoctor?.Width" id="A17445" data-tid="A349751"></hvl-list-box>
+            </span>
+        </div>
+        <div class="col-md-4" id="A17446" data-tid="A349752">
+            <span id="A17447" data-tid="A349753">
+                <span class="col-md-2" style="padding-left:0" id="A17448" data-tid="A349754">
+                    <b id="A17449" data-tid="A349755">
+                        Heyet
+                    </b>
+                    <hvl-checkbox #Validation (ValueChange)="onCommitteeReportChanged($event)" [AllowThreeState]="CommitteeReport?.ThreeState" [BackColor]="CommitteeReport?.BackColor" [Enabled]="CommitteeReport?.Enabled" [Font]="CommitteeReport?.Font" [ForeColor]="CommitteeReport?.ForeColor" [IsTitleLeft]="false" [Margin]="CommitteeReport?.Margin" [ReadOnly]="statusNotificationReportFormViewModel?.ReadOnly" [TabIndex]="CommitteeReport?.TabIndex" [TitleTopPadding]="CommitteeReport?.TitleTopPadding" [Title]="CommitteeReport?.Title" [Value]="statusNotificationReportFormViewModel?._StatusNotificationReport?.CommitteeReport" [Visible]="CommitteeReport?.Visible" id="A17450" data-tid="A349756"></hvl-checkbox>
+                </span>
+                <span class="col-md-10" style="padding-right:0" id="A17451" data-tid="A349757">
+                    <b id="A17452" data-tid="A349758">
+                        2. Doktor
+                    </b>
+                    <hvl-list-box #Validation (SelectedObjectChange)="onSecondDoctorChanged($event)" [AutoCompleteDialogHeight]="SecondDoctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="SecondDoctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="SecondDoctor?.AutoCompleteMode" [BackColor]="SecondDoctor?.BackColor" [DefinitionName]="SecondDoctor?.ListDefName" [DisplayExpressionsCache]="statusNotificationReportFormViewModel?.ListDefDisplayExpressions" [Enabled]="SecondDoctor?.Enabled" [Font]="SecondDoctor?.Font" [ForeColor]="SecondDoctor?.ForeColor" [ListFilterExpression]="SecondDoctor?.ListFilterExpression" [MinSearchLength]="SecondDoctor?.MinSearchLength" [PopupDialogFieldConfig]="SecondDoctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="SecondDoctor?.PopupDialogGridColumns" [PopupDialogHeight]="SecondDoctor?.PopupDialogHeight" [PopupDialogTitle]="SecondDoctor?.PopupDialogTitle" [PopupDialogWidth]="SecondDoctor?.PopupDialogWidth" [ReadOnly]="statusNotificationReportFormViewModel?.ReadOnly" [SearchMode]="SecondDoctor?.SearchMode" [SearchTimeout]="SecondDoctor?.SearchTimeout" [SelectedObject]="statusNotificationReportFormViewModel?._StatusNotificationReport?.SecondDoctor" [TabIndex]="SecondDoctor?.TabIndex" [Visible]="SecondDoctor?.Visible" [width]="SecondDoctor?.Width" id="A17453" data-tid="A349759"></hvl-list-box>
+                </span>
+            </span>
+        </div>
+        <div class="col-md-4" id="A17454" data-tid="A349760">
+            <span id="A17455" data-tid="A349761">
+                <b id="A17456" data-tid="A349762">
+                    3. Doktor
+                </b>
+                <hvl-list-box #Validation (SelectedObjectChange)="onThirdDoctorChanged($event)" [AutoCompleteDialogHeight]="ThirdDoctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ThirdDoctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="ThirdDoctor?.AutoCompleteMode" [BackColor]="ThirdDoctor?.BackColor" [DefinitionName]="ThirdDoctor?.ListDefName" [DisplayExpressionsCache]="statusNotificationReportFormViewModel?.ListDefDisplayExpressions" [Enabled]="ThirdDoctor?.Enabled" [Font]="ThirdDoctor?.Font" [ForeColor]="ThirdDoctor?.ForeColor" [ListFilterExpression]="ThirdDoctor?.ListFilterExpression" [MinSearchLength]="ThirdDoctor?.MinSearchLength" [PopupDialogFieldConfig]="ThirdDoctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ThirdDoctor?.PopupDialogGridColumns" [PopupDialogHeight]="ThirdDoctor?.PopupDialogHeight" [PopupDialogTitle]="ThirdDoctor?.PopupDialogTitle" [PopupDialogWidth]="ThirdDoctor?.PopupDialogWidth" [ReadOnly]="statusNotificationReportFormViewModel?.ReadOnly" [SearchMode]="ThirdDoctor?.SearchMode" [SearchTimeout]="ThirdDoctor?.SearchTimeout" [SelectedObject]="statusNotificationReportFormViewModel?._StatusNotificationReport?.ThirdDoctor" [TabIndex]="ThirdDoctor?.TabIndex" [Visible]="ThirdDoctor?.Visible" [width]="ThirdDoctor?.Width" id="A17457" data-tid="A349763"></hvl-list-box>
+            </span>
+        </div>
+    </div>
+
+    <br id="A17458" data-tid="A349764" />
+    <div class="row" data-tid="A349765">
+        <div style="width: 100%; height: 25px; text-align: center;margin-bottom:20px; background-color: #e2ecf8;" id="A17459" data-tid="A349766">
+            <span style="font-size: 18px;font-weight:bold;" id="A17460" data-tid="A349767">
+                Rapor Detay Bilgileri
+            </span>
+        </div>
+    </div>
+
+
+    <div class="row" id="A17462" data-tid="A349768">
+        <div class="col-md-6" style="padding-left:0" id="A17463" data-tid="A349769">
+            <ReportDiagnosisForm #Report [EpisodeAction]="statusNotificationReportFormViewModel?._StatusNotificationReport?.ObjectID" [Episode]="statusNotificationReportFormViewModel?._StatusNotificationReport?.Episode" [IsNew]="statusNotificationReportFormViewModel?._StatusNotificationReport?.IsNew" [IsReadOnly]="statusNotificationReportFormViewModel.ReadOnly" (sendDiagnosisViewModel)="comingViewModel($event)" id="A17464" data-tid="A349770"></ReportDiagnosisForm>
+        </div>
+
+        <div class="col-md-6" style="padding-right:0" id="A17465" data-tid="A349771">
+            <span id="A17466" data-tid="A349772">
+                <b id="A17467" data-tid="A349773">Tanılar</b>
+                <i style="color:#08c;float:right" class="fa fa-clone fa-1" data-toggle="tooltip" data-placement="bottom" (click)="fun(this.DiagnosisDetail)" id="A17468" data-tid="A349774"></i>
+            </span>
+            <hvl-text-box #Validation (TextChange)="onDiagnosisDetailChanged($event)" [BackColor]="DiagnosisDetail?.BackColor" [CharacterCasing]="DiagnosisDetail?.CharacterCasing" [Enabled]="DiagnosisDetail?.Enabled" [Font]="DiagnosisDetail?.Font" [ForeColor]="DiagnosisDetail?.ForeColor" [height]="110" [InputFormat]="DiagnosisDetail?.InputFormat" [InputTurkishCharacter]="DiagnosisDetail?.InputTurkishCharacter" [IsNonNumeric]="DiagnosisDetail?.IsNonNumeric" [MultiLine]="DiagnosisDetail?.Multiline" [ReadOnly]="statusNotificationReportFormViewModel?.ReadOnly" [Required]="DiagnosisDetail?.Required" [TabIndex]="DiagnosisDetail?.TabIndex" [TextAlign]="DiagnosisDetail?.TextAlign" [Text]="statusNotificationReportFormViewModel?._StatusNotificationReport?.DiagnosisDetail" [Visible]="DiagnosisDetail?.Visible" id="A17469" data-tid="A349775"></hvl-text-box>
+        </div>
+    </div>
+    <br data-tid="A349776" />
+    <div class="row" data-tid="A349777">
+        <div class="col-sm-6" style="padding-right:30px;height:100px !important" data-tid="A349778">
+            <div class="row" id="A17470" data-tid="A349779">
+                <span id="A17471" data-tid="A349780">
+                    <b id="A17472" *ngIf="!statusNotificationOneDoctorDecisionVisible" data-tid="A349781">Açıklama</b>
+                    <b id="A17472" *ngIf="statusNotificationOneDoctorDecisionVisible" data-tid="A349782">Akli Meleke Raporu İçin Mini Mental Test Sonucu</b>
+
+                    <i style="color:#08c;float:right" class="fa fa-clone fa-1" data-toggle="tooltip" data-placement="bottom" (click)="fun(this.ReportDescription)" id="A17473" data-tid="A349783"></i>
+                </span>
+                <hvl-text-box #Validation (TextChange)="onReportDescriptionChanged($event)" [BackColor]="ReportDescription?.BackColor" [CharacterCasing]="ReportDescription?.CharacterCasing" [Enabled]="ReportDescription?.Enabled" [Font]="ReportDescription?.Font" [ForeColor]="ReportDescription?.ForeColor" [height]="80" [InputFormat]="ReportDescription?.InputFormat" [InputTurkishCharacter]="ReportDescription?.InputTurkishCharacter" [IsNonNumeric]="ReportDescription?.IsNonNumeric" [MultiLine]="ReportDescription?.Multiline" [ReadOnly]="statusNotificationReportFormViewModel?.ReadOnly" [Required]="ReportDescription?.Required" [TabIndex]="ReportDescription?.TabIndex" [TextAlign]="ReportDescription?.TextAlign" [Text]="statusNotificationReportFormViewModel?._StatusNotificationReport?.ReportDescription" [Visible]="ReportDescription?.Visible" id="A17474" data-tid="A349784"></hvl-text-box>
+            </div>
+        </div>
+        <div class="col-sm-6" style="padding-left:30px;height:100px !important" data-tid="A349785">
+            <div class="row" id="A17476" data-tid="A349786">
+                <span id="A17477" data-tid="A349787">
+                    <b id="A17478" data-tid="A349788">Muayene Bulguları</b>
+                    <i style="color:#08c;float:right" class="fa fa-clone fa-1" data-toggle="tooltip" data-placement="bottom" (click)="fun(this.Description)" id="A17479" data-tid="A349789"></i>
+                    <i style="color:#08c;float:right;visibility:hidden;" class="fa fa-external-link fa-lg" data-toggle="tooltip" data-placement="bottom" id="A17480" data-tid="A349790"></i>
+                    <i style="color:#08c;float:right" class="fa fa-external-link fa-lg" data-toggle="tooltip" data-placement="bottom" (click)="anamnez()" id="A17481" data-tid="A349791"></i>
+                </span>
+                <hvl-text-box #Validation (TextChange)="onDescriptionChanged($event)" [BackColor]="Description?.BackColor" [CharacterCasing]="Description?.CharacterCasing" [Enabled]="Description?.Enabled" [Font]="Description?.Font" [ForeColor]="Description?.ForeColor" [height]="80" [InputFormat]="Description?.InputFormat" [InputTurkishCharacter]="Description?.InputTurkishCharacter" [IsNonNumeric]="Description?.IsNonNumeric" [MultiLine]="Description?.Multiline" [ReadOnly]="statusNotificationReportFormViewModel?.ReadOnly" [Required]="Description?.Required" [TabIndex]="Description?.TabIndex" [TextAlign]="Description?.TextAlign" [Text]="statusNotificationReportFormViewModel?._StatusNotificationReport?.Description" [Visible]="Description?.Visible" id="A17482" data-tid="A349792"></hvl-text-box>
+            </div>
+        </div>
+    </div>
+
+    <br id="A17475" data-tid="A349793" />
+
+    <br id="A17483" data-tid="A349794" />
+    <div class="row" id="A17484" *ngIf="defaultDecisionVisible" data-tid="A349795">
+        <span id="A17485" data-tid="A349796">
+            <b id="A17486" data-tid="A349797">Karar</b>
+
+            <i style="color:#08c;float:right" class="fa fa-clone fa-1" data-toggle="tooltip" data-placement="bottom" (click)="fun(this.ReportDecision)" id="A17487" data-tid="A349798"></i>
+        </span>
+        <hvl-richtextbox [Height]="&#x27;80px&#x27;" (change)="onReportDecisionChanged($event)" [ngModelOptions]="{ standalone: true}" [ngModel]="statusNotificationReportFormViewModel?._StatusNotificationReport?.ReportDecision" [ReadOnly]="statusNotificationReportFormViewModel?.ReadOnly" [TemplateGroupName]="ReportDecision?.TemplateGroupName" [Visible]="ReportDecision?.Visible" id="A17488" data-tid="A349799"></hvl-richtextbox>
+    </div>
+    <div class="row" *ngIf="restReportDecisionVisible" style="margin-left:-30px" data-tid="A349800">
+        <!--    İstirahat Raporu ve Üç Hekim İstirahat Raporunda Açık Olacak-->
+        <div class="col-sm-12" data-tid="A349801">
+            <div class="row" data-tid="A349802">
+                <label class="col-sm-12" data-tid="A349803">
+                    <b data-tid="A349804"> Karar </b>
+                </label>
+            </div>
+            <div class="row" data-tid="A349805">
+                <div class="col-sm-12" style="font-size:16px" data-tid="A349806">
+                    {{decisionText}}
+                </div>
+            </div>
+            <div class="row" data-tid="A349807">
+                <div class="col-sm-12" style="font-size:16px" data-tid="A349808">
+                    <hvl-checkbox #Validation TitleFontSize="16px" Title="Hastalara Grup Çalışması" (ValueChange)="onAppropriateChanged($event)" [AllowThreeState]="Appropriate?.ThreeState" [BackColor]="Appropriate?.BackColor" [Enabled]="Appropriate?.Enabled" [Font]="Appropriate?.Font" [ForeColor]="Appropriate?.ForeColor" [IsTitleLeft]="false" [Margin]="Appropriate?.Margin" [ReadOnly]="statusNotificationReportFormViewModel?.ReadOnly" [TabIndex]="Appropriate?.TabIndex" [TitleTopPadding]="Appropriate?.TitleTopPadding" [Title]="Appropriate?.Title" [Value]="statusNotificationReportFormViewModel?._StatusNotificationReport?.Appropriate" [Visible]="Appropriate?.Visible" id="A17450" data-tid="A349809"></hvl-checkbox>
+                </div>
+            </div>
+            <div class="row" data-tid="A349810">
+                <div class="col-sm-12" style="font-size:16px" data-tid="A349811">
+                    <hvl-checkbox #Validation TitleFontSize="16px" Title="Hastalara Grup Çalışması" (ValueChange)="onInAppropriateChanged($event)" [AllowThreeState]="InAppropriate?.ThreeState" [BackColor]="InAppropriate?.BackColor" [Enabled]="InAppropriate?.Enabled" [Font]="InAppropriate?.Font" [ForeColor]="InAppropriate?.ForeColor" [IsTitleLeft]="false" [Margin]="InAppropriate?.Margin" [ReadOnly]="statusNotificationReportFormViewModel?.ReadOnly" [TabIndex]="InAppropriate?.TabIndex" [TitleTopPadding]="InAppropriate?.TitleTopPadding" [Title]="InAppropriate?.Title" [Value]="statusNotificationReportFormViewModel?._StatusNotificationReport?.InAppropriate" [Visible]="InAppropriate?.Visible" id="A17450" data-tid="A349812"></hvl-checkbox>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="statusNotificationOneDoctorDecisionVisible" style="margin-left:-30px" data-tid="A349813">
+        <!--    Durum Bildirir Tek Hekim Sağlık Raporunda Açık Olacak -->
+        <div class="col-sm-12" data-tid="A349814">
+            <div class="row" data-tid="A349815">
+                <label class="col-sm-12" data-tid="A349816">
+                    <b data-tid="A349817"> Karar </b>
+                </label>
+            </div>
+            <div class="row" data-tid="A349818">
+                <div class="col-sm-12" data-tid="A349819">
+                    <!--<hvl-richtextbox [Height]="&#x27;80px&#x27;" (change)="onReportDecisionChanged($event)" [ngModelOptions]="{ standalone: true}" [ngModel]="statusNotificationReportFormViewModel?._StatusNotificationReport?.ReportDecision" [ReadOnly]="statusNotificationReportFormViewModel?.ReadOnly" [TemplateGroupName]="ReportDecision?.TemplateGroupName" [Visible]="ReportDecision?.Visible" id="A17488"></hvl-richtextbox>-->
+                    <hvl-text-box #Validation (TextChange)="onReportDecisionChanged($event)" [BackColor]="ReportDescription?.BackColor" [CharacterCasing]="ReportDescription?.CharacterCasing" [Enabled]="ReportDescription?.Enabled" [Font]="ReportDescription?.Font" [ForeColor]="ReportDescription?.ForeColor" [height]="80" [InputFormat]="ReportDescription?.InputFormat" [InputTurkishCharacter]="ReportDescription?.InputTurkishCharacter" [IsNonNumeric]="ReportDescription?.IsNonNumeric" [MultiLine]="ReportDescription?.Multiline" [ReadOnly]="statusNotificationReportFormViewModel?.ReadOnly" [Required]="ReportDescription?.Required" [TabIndex]="ReportDescription?.TabIndex" [TextAlign]="ReportDescription?.TextAlign" [Text]="statusNotificationReportFormViewModel?._StatusNotificationReport?.ReportDecision" [Visible]="ReportDescription?.Visible" id="A17474" data-tid="A349820"></hvl-text-box>
+                </div>
+            </div>
+            <div class="row" style="font-size:16px" data-tid="A349821">
+                <div class="col-sm-12" data-tid="A349822">
+                    <hvl-checkbox #Validation TitleFontSize="16px" (ValueChange)="onAppropriateChanged($event)" [AllowThreeState]="Appropriate?.ThreeState" [BackColor]="Appropriate?.BackColor" [Enabled]="Appropriate?.Enabled" [Font]="Appropriate?.Font" [ForeColor]="Appropriate?.ForeColor" [IsTitleLeft]="false" [Margin]="Appropriate?.Margin" [ReadOnly]="statusNotificationReportFormViewModel?.ReadOnly" [TabIndex]="Appropriate?.TabIndex" [TitleTopPadding]="Appropriate?.TitleTopPadding" [Title]="Appropriate?.Title" [Value]="statusNotificationReportFormViewModel?._StatusNotificationReport?.Appropriate" [Visible]="Appropriate?.Visible" id="A17450" data-tid="A349823"></hvl-checkbox>
+                </div>
+            </div>
+            <div class="row" style="font-size:16px" data-tid="A349824">
+                <div class="col-sm-12" data-tid="A349825">
+                    <hvl-checkbox #Validation TitleFontSize="16px" (ValueChange)="onInAppropriateChanged($event)" [AllowThreeState]="InAppropriate?.ThreeState" [BackColor]="InAppropriate?.BackColor" [Enabled]="InAppropriate?.Enabled" [Font]="InAppropriate?.Font" [ForeColor]="InAppropriate?.ForeColor" [IsTitleLeft]="false" [Margin]="InAppropriate?.Margin" [ReadOnly]="statusNotificationReportFormViewModel?.ReadOnly" [TabIndex]="InAppropriate?.TabIndex" [TitleTopPadding]="InAppropriate?.TitleTopPadding" [Title]="InAppropriate?.Title" [Value]="statusNotificationReportFormViewModel?._StatusNotificationReport?.InAppropriate" [Visible]="InAppropriate?.Visible" id="A17450" data-tid="A349826"></hvl-checkbox>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" data-tid="A349827">
+        <div class="col-xs-6" style="padding-top:8px;text-align:left" id="A17489" data-tid="A349828">
+            <dx-button *ngIf="IsBackState==false" type="danger" style="margin-right:3px" class="btn-primary" (click)="btnBack_Click()" id="A17490" data-tid="A349829"><span class="fa fa-mail-reply" id="A17491" data-tid="A349830"></span>&nbsp;Geri Al</dx-button>
+            <dx-button *ngIf="IsCancelState==false" type="danger" class=" btn-danger" (click)="btnCancel_Click()" id="A17492" data-tid="A349831"><span class="fa fa-times" id="A17493" data-tid="A349832"></span>&nbsp;İptal Et</dx-button>
+        </div>
+        <div class="col-xs-6" style="padding-top:8px;text-align:right" id="A17494" data-tid="A349833">
+            <dx-button *ngIf="IsNewState==false" type="success" style="margin-right:3px" (click)="onSaveDiagnosis()" id="A17495" data-tid="A349834"><span class="fa fa-save" id="A17496" data-tid="A349835"></span>&nbsp;Kaydet</dx-button>
+            <dx-button *ngIf="IsNewState==false" type="success" style="margin-right:3px" (click)="onSaveAndCompleteDiagnosis()" id="A17497" data-tid="A349836"><span class="fa fa-check" id="A17498" data-tid="A349837"></span>&nbsp;Tamamla</dx-button>
+            <dx-button *ngIf="CanPrint==false" type="default" (click)="btnPrint_Click()" id="A17499" data-tid="A349838"><span class="fa fa-print" id="A17500" data-tid="A349839"></span>&nbsp;Yazdır</dx-button>
+        </div>
+    </div>
+
+    <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A17501" data-tid="A349840">
+    </dx-load-panel>
+    <dx-popup width="500px" height="580px" [(visible)]="showAnamnez" [closeOnOutsideClick]="false" title="Anamnez Bilgileri" i18n-title="@@M10952" id="A17502" data-tid="A349841">
+        <div *dxTemplate="let data of 'content'" id="A17503" data-tid="A349842">
+            <div class="container-fluid" id="A17504" data-tid="A349843">
+                <div class="row padding-tb-10" id="A17505" data-tid="A349844">
+                    <div class="row" id="A17506" data-tid="A349845">
+                        <div class="col-sm-10" id="A17507" data-tid="A349846">
+                            <label class="control-label" id="A17508" data-tid="A349847">
+                                Şikayet
+                            </label>
+                        </div>
+                        <div class="col-sm-2" id="A17509" data-tid="A349848">
+                            <dx-button text="Tamam" type="default" style="margin: 0px 5px 0px 0px" (onClick)="sendAnamnez()" i18n-text="@@M22704" id="A17510" data-tid="A349849"></dx-button>
+                        </div>
+                    </div>
+                    <div class="row" id="A17511" data-tid="A349850">
+                        <div class="col-sm-1" id="A17512" data-tid="A349851">
+                            <!--<hvl-checkbox #Validation (ValueChange)="complaintSelected.Value=$event;" [AllowThreeState]="complaintSelected?.ThreeState" [BackColor]="complaintSelected?.BackColor" [Enabled]="complaintSelected?.Enabled" [Font]="complaintSelected?.Font" [ForeColor]="complaintSelected?.ForeColor" [IsTitleLeft]="complaintSelected?.IsTitleLeft" [Margin]="complaintSelected?.Margin" [Name]="complaintSelected?.Name" [ReadOnly]="statusNotificationReportFormViewModel?.ReadOnly" [TabIndex]="complaintSelected?.TabIndex" [TitleTopPadding]="complaintSelected?.TitleTopPadding" [Title]="complaintSelected?.Title" [Value]="complaintSelected?.Value" [Visible]="complaintSelected?.Visible" id="A17513"></hvl-checkbox>-->
+                            <a (click)="copyComplaint()" class="pull-right" style="font-size:16px;" data-toggle="tooltip" data-placement="top" title="Kopyala" data-tid="A349852"><i class="glyphicon glyphicon-copy" data-tid="A349853"></i></a>
+                        </div>
+                        <div class="col-sm-11" id="A17514" data-tid="A349854">
+                            <hvl-text-box #Validation [(Text)]="statusNotificationReportFormViewModel.Complaint" [BackColor]="Complaint?.BackColor" [CharacterCasing]="Complaint?.CharacterCasing" [Enabled]="Complaint?.Enabled" [Font]="Complaint?.Font" [ForeColor]="Complaint?.ForeColor" [height]="Complaint?.Height" [InputFormat]="Complaint?.InputFormat" [InputTurkishCharacter]="Complaint?.InputTurkishCharacter" [IsNonNumeric]="Complaint?.IsNonNumeric" [MultiLine]="Complaint?.Multiline" [ReadOnly]="statusNotificationReportFormViewModel?.ReadOnly" [Required]="Complaint?.Required" [TabIndex]="Complaint?.TabIndex" [TextAlign]="Complaint?.TextAlign" [Visible]="Complaint?.Visible" id="A17515" data-tid="A349855"></hvl-text-box>
+                        </div>
+                    </div>
+                    <div class="row" id="A17516" data-tid="A349856">
+                        <div class="col-sm-12" id="A17517" data-tid="A349857">
+                            <label class="control-label" id="A17518" data-tid="A349858">
+                                Özgeçmiş/Soygeçmiş
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row" id="A17519" data-tid="A349859">
+                        <div class="col-sm-1" id="A17520" data-tid="A349860">
+                            <!--<hvl-checkbox #Validation (ValueChange)="historySelected.Value=$event;" [AllowThreeState]="historySelected?.ThreeState" [BackColor]="historySelected?.BackColor" [Enabled]="historySelected?.Enabled" [Font]="historySelected?.Font" [ForeColor]="historySelected?.ForeColor" [IsTitleLeft]="historySelected?.IsTitleLeft" [Margin]="historySelected?.Margin" [Name]="historySelected?.Name" [ReadOnly]="statusNotificationReportFormViewModel?.ReadOnly" [TabIndex]="historySelected?.TabIndex" [TitleTopPadding]="historySelected?.TitleTopPadding" [Title]="historySelected?.Title" [Value]="historySelected?.Value" [Visible]="historySelected?.Visible" id="A17521"></hvl-checkbox>-->
+                            <a (click)="copyHistory()" class="pull-right" style="font-size:16px;" data-toggle="tooltip" data-placement="top" title="Kopyala" data-tid="A349861"><i class="glyphicon glyphicon-copy" data-tid="A349862"></i></a>
+                        </div>
+                        <div class="col-sm-11" id="A17522" data-tid="A349863">
+                            <hvl-text-box #Validation [(Text)]="statusNotificationReportFormViewModel.PatientHistory" [BackColor]="PatientHistory?.BackColor" [CharacterCasing]="PatientHistory?.CharacterCasing" [Enabled]="PatientHistory?.Enabled" [Font]="PatientHistory?.Font" [ForeColor]="PatientHistory?.ForeColor" [height]="PatientHistory?.Height" [InputFormat]="PatientHistory?.InputFormat" [InputTurkishCharacter]="PatientHistory?.InputTurkishCharacter" [IsNonNumeric]="PatientHistory?.IsNonNumeric" [MultiLine]="PatientHistory?.Multiline" [ReadOnly]="statusNotificationReportFormViewModel?.ReadOnly" [Required]="PatientHistory?.Required" [TabIndex]="PatientHistory?.TabIndex" [TextAlign]="PatientHistory?.TextAlign" [Visible]="PatientHistory?.Visible" id="A17523" data-tid="A349864"></hvl-text-box>
+                        </div>
+                    </div>
+                    <div class="row" id="A17524" data-tid="A349865">
+                        <div class="col-sm-12" id="A17525" data-tid="A349866">
+                            <label class="control-label" id="A17526" data-tid="A349867">
+                                Fiziki Muayene
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row" id="A17527" data-tid="A349868">
+                        <div class="col-sm-1" id="A17528" data-tid="A349869">
+                            <!--<hvl-checkbox #Validation (ValueChange)="physicalExaminationSelected.Value=$event;" [AllowThreeState]="physicalExaminationSelected?.ThreeState" [BackColor]="physicalExaminationSelected?.BackColor" [Enabled]="physicalExaminationSelected?.Enabled" [Font]="physicalExaminationSelected?.Font" [ForeColor]="physicalExaminationSelected?.ForeColor" [IsTitleLeft]="physicalExaminationSelected?.IsTitleLeft" [Margin]="physicalExaminationSelected?.Margin" [Name]="physicalExaminationSelected?.Name" [ReadOnly]="statusNotificationReportFormViewModel?.ReadOnly" [TabIndex]="physicalExaminationSelected?.TabIndex" [TitleTopPadding]="physicalExaminationSelected?.TitleTopPadding" [Title]="physicalExaminationSelected?.Title" [Value]="physicalExaminationSelected?.Value" [Visible]="physicalExaminationSelected?.Visible" id="A17529"></hvl-checkbox>-->
+                            <a (click)="copyPhysicalExamination()" class="pull-right" style="font-size:16px;" data-toggle="tooltip" data-placement="top" title="Kopyala" data-tid="A349870"><i class="glyphicon glyphicon-copy" data-tid="A349871"></i></a>
+                        </div>
+                        <div class="col-sm-11" id="A17530" data-tid="A349872">
+                            <hvl-text-box #Validation [(Text)]="statusNotificationReportFormViewModel.PhysicalExamination" [BackColor]="PhysicalExamination?.BackColor" [CharacterCasing]="PhysicalExamination?.CharacterCasing" [Enabled]="PhysicalExamination?.Enabled" [Font]="PhysicalExamination?.Font" [ForeColor]="PhysicalExamination?.ForeColor" [height]="PhysicalExamination?.Height" [InputFormat]="PhysicalExamination?.InputFormat" [InputTurkishCharacter]="PhysicalExamination?.InputTurkishCharacter" [IsNonNumeric]="PhysicalExamination?.IsNonNumeric" [MultiLine]="PhysicalExamination?.Multiline" [ReadOnly]="statusNotificationReportFormViewModel?.ReadOnly" [Required]="PhysicalExamination?.Required" [TabIndex]="PhysicalExamination?.TabIndex" [TextAlign]="PhysicalExamination?.TextAlign" [Visible]="PhysicalExamination?.Visible" id="A17531" data-tid="A349873"></hvl-text-box>
+                        </div>
+                    </div>
+                    <div class="row" id="A17532" data-tid="A349874">
+                        <div class="col-sm-12" id="A17533" data-tid="A349875">
+                            <label class="control-label" id="A17534" data-tid="A349876">
+                                Tedavi Karar
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row" id="A17535" data-tid="A349877">
+                        <div class="col-sm-1" id="A17536" data-tid="A349878">
+                            <!--<hvl-checkbox #Validation (ValueChange)="MTSConclusionSelected.Value=$event;" [AllowThreeState]="MTSConclusionSelected?.ThreeState" [BackColor]="MTSConclusionSelected?.BackColor" [Enabled]="MTSConclusionSelected?.Enabled" [Font]="MTSConclusionSelected?.Font" [ForeColor]="MTSConclusionSelected?.ForeColor" [IsTitleLeft]="MTSConclusionSelected?.IsTitleLeft" [Margin]="MTSConclusionSelected?.Margin" [Name]="MTSConclusionSelected?.Name" [ReadOnly]="statusNotificationReportFormViewModel?.ReadOnly" [TabIndex]="MTSConclusionSelected?.TabIndex" [TitleTopPadding]="MTSConclusionSelected?.TitleTopPadding" [Title]="MTSConclusionSelected?.Title" [Value]="MTSConclusionSelected?.Value" [Visible]="MTSConclusionSelected?.Visible" id="A17537"></hvl-checkbox>-->
+                            <a (click)="copyConclusion()" class="pull-right" style="font-size:16px;" data-toggle="tooltip" data-placement="top" title="Kopyala" data-tid="A349879"><i class="glyphicon glyphicon-copy" data-tid="A349880"></i></a>
+                        </div>
+                        <div class="col-sm-11" id="A17538" data-tid="A349881">
+                            <hvl-text-box #Validation [(Text)]="statusNotificationReportFormViewModel.MTSConclusion" [BackColor]="MTSConclusion?.BackColor" [CharacterCasing]="MTSConclusion?.CharacterCasing" [Enabled]="MTSConclusion?.Enabled" [Font]="MTSConclusion?.Font" [ForeColor]="MTSConclusion?.ForeColor" [height]="MTSConclusion?.Height" [InputFormat]="MTSConclusion?.InputFormat" [InputTurkishCharacter]="MTSConclusion?.InputTurkishCharacter" [IsNonNumeric]="MTSConclusion?.IsNonNumeric" [MultiLine]="MTSConclusion?.Multiline" [ReadOnly]="statusNotificationReportFormViewModel?.ReadOnly" [Required]="MTSConclusion?.Required" [TabIndex]="MTSConclusion?.TabIndex" [TextAlign]="MTSConclusion?.TextAlign" [Visible]="MTSConclusion?.Visible" id="A17539" data-tid="A349882"></hvl-text-box>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </dx-popup>
+</div>
+

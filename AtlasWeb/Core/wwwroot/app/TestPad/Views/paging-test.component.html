@@ -1,0 +1,59 @@
+﻿
+
+
+
+<h1 data-tid="A375916">Server Side Paging</h1>
+
+
+
+<h2 data-tid="A375917">TTList Örnek : DiagnosisListDefinition</h2>
+<dx-tag-box #tagbox [(selectedItems)]="test" [showSelectionControls]="false" [searchEnabled]="true" [dataSource]="dataSource" valueExpr="Code" displayExpr="Name" itemTemplate="listItem" tagTemplate="tagItem" data-tid="A375918">
+    
+
+    <div *dxTemplate="let itemData of 'listItem'; let itemIndex = index" data-tid="A375919">
+        {{itemData.Code}} {{itemData.Name}}
+    </div>
+    <div *dxTemplate="let itemData of 'tagItem'; let itemIndex = index" data-tid="A375920">
+        {{itemData.Code}} {{itemData.Name}}
+    </div>
+</dx-tag-box>
+
+<button (click)="deneme()" data-tid="A375921">ABC</button>
+
+
+<dx-text-box placeholder="Tanı Ara" (focusIn)="focusIn($event)" (change)="change($event)" data-tid="A375922"></dx-text-box>
+<dx-data-grid #grid width="100%" height="600px" [dataSource]="diagnosisSearchDataSource" [remoteOperations]="true" [customizeColumns]="null" data-tid="A375923">
+    <dxo-group-panel [visible]="true" [allowColumnDragging]="true" data-tid="A375924">
+    </dxo-group-panel>
+
+    <dxo-filter-row [visible]="true" data-tid="A375925"></dxo-filter-row>
+    <dxo-paging [pageSize]="20" data-tid="A375926"></dxo-paging>
+    <dxo-scrolling mode="virtual" rowRenderingMode="virtual" data-tid="A375927"></dxo-scrolling>
+    
+    <dxi-column dataField="Code" width="100" data-tid="A375928"></dxi-column>
+    <dxi-column dataField="Name" data-tid="A375929"></dxi-column>
+    <dxi-column dataField="ParentGroupCode" data-tid="A375930"></dxi-column>
+
+</dx-data-grid>
+
+
+
+
+<h2 data-tid="A375931">Server Side Paging TTQuery Örnek : GetByEpisodeActionWorklistDateReport</h2>
+
+<dx-data-grid width="100%" height="400px" [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" [dataSource]="dataSource" [remoteOperations]="true" [customizeColumns]="null" data-tid="A375932">
+    <dxo-group-panel [visible]="true" [allowColumnDragging]="true" data-tid="A375933">
+    </dxo-group-panel>
+    <dxo-filter-row [visible]="true" data-tid="A375934"></dxo-filter-row>
+    <dxo-paging [pageSize]="10" data-tid="A375935"></dxo-paging>
+    <dxo-scrolling mode="virtual" rowRenderingMode="virtual" data-tid="A375936"></dxo-scrolling>
+    <dxo-selection mode="single" data-tid="A375937"></dxo-selection>
+    <dxi-column dataField="OBJECTID" width="100" data-tid="A375938"></dxi-column>
+    <dxi-column dataField="ADMISSIONTYPE" width="100" data-tid="A375939"></dxi-column>
+    <dxi-column dataField="DOCTORNAME" width="100" data-tid="A375940"></dxi-column>
+    <dxi-column dataField="FATHERNAME" width="100" data-tid="A375941"></dxi-column>
+    <dxi-column dataField="MASTERRESOURCE" width="100" data-tid="A375942"></dxi-column>
+    <dxi-column dataField="TEST" width="100" data-tid="A375943"></dxi-column>
+</dx-data-grid>
+
+<hr data-tid="A375944" />

@@ -1,0 +1,289 @@
+﻿<!--AnaDepoSelect-->
+<dx-popup width="900px" height="800px" [(visible)]="showMaterialMultiSelectForm" [closeOnOutsideClick]="true" title="Miad'ı Dolan İlaçlar" id="A32314" data-tid="A373635">
+    <div class="margin-bottom-10" id="A32315" data-tid="A373636">
+        <div *dxTemplate="let data of 'content'" id="A32316" data-tid="A373637">
+            <MaterialExpirationDateInfoForm [StoreObjectId]="store?.ObjectID" id="A32317" data-tid="A373638">
+            </MaterialExpirationDateInfoForm>
+        </div>
+    </div>
+</dx-popup>
+
+<div class="row" id="A32318" style="overflow-y:auto;" data-tid="A373639">
+
+    <!--AnaDepoSelect-->
+    <div class="row" style="margin-left: 15px !important;margin-right: 0px !important;min-height: 882px;" data-tid="A373640">
+        <div class="{{this.collapseSelectedDivProperties()}}" style="flex:1;overflow-y: scroll;max-height: 870px;" data-tid="A373641">
+            <div class="row" style="height: 100%;" data-tid="A373642">
+                <div class="col-sm-12 gradientPanel" style="height:4%;min-height: 35px;" id="A16463" data-tid="A373643">
+                    <h4 style="color:#fff; font-size:19px;text-align:left;" id="A16464" data-tid="A373644">
+                        <div class="btn collapseBtn" (click)="btnCollapse()" style="padding:0;margin-top:3px;margin-right: 5px;" data-tid="A373645">
+                            <i class="{{this.collapseIconProperties()}}" id="A16466" data-tid="A373646"></i>
+                        </div>
+                        <span id="A16467" data-tid="A373647">Malzeme Yönetimi</span>
+                    </h4>
+                </div>
+                <div class="panel-body" style="background-color:#f6f6f6;padding-bottom:0; height:100%;padding: 0; padding-bottom: 20px;" data-tid="A373648">
+
+                    <div style="margin-top: 55px;" data-tid="A373649">
+                        <dx-tree-view [items]="tabItems" (onItemClick)="selectItem($event)" [searchEnabled]="true" searchMode="contains" data-tid="A373650">
+                            <div *dxTemplate="let data of 'item'" data-tid="A373651">
+                                <div class="row" data-tid="A373652">
+                                    <div class="col-md-10" data-tid="A373653">{{data.text}}</div>
+                                    <div class="col-md-2" data-tid="A373654">
+                                        <i (click)="pinItem(data.id)" [ngClass]="data.pinned == true ? 'fa fa-neuter fa-map-pin' : 'fa fa-neuter'" data-tid="A373655"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </dx-tree-view>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="{{this.collapseSelectedHiddenDivProperties()}}" style="position:relative;" data-tid="A373656">
+            <div class="MyVerticalText" (click)="btnCollapse()" data-tid="A373657">
+                <i class="{{this.collapseIconProperties()}}" data-tid="A373658"></i>
+                <span id="A16547" data-tid="A373659">&nbsp;&nbsp;&nbsp;&nbsp;Malzeme Yönetimi</span>
+            </div>
+        </div>
+        <div class="{{this.collapsedPanelProperties()}}" data-tid="A373660">
+            <div style="background-color:#fff; height:100%;flex:3" id="A32331" data-tid="A373661">
+                <div class="col-xs-12" id="A32332" style="height:97%;" data-tid="A373662">
+                    <div class="row" style="border-bottom: 2px solid #0088CC;margin-bottom: 2px;" data-tid="A373663">
+                        <div class="col-md-7" data-tid="A373664">
+                            <ul class="nav nav-tabs" style="border-bottom: 0px !important;" data-tid="A373665">
+                                <li *ngFor="let item of tabList" [ngClass]="item.selected == true ? 'active' : ''" data-tid="A373666">
+                                    <a data-toggle="tab" (click)="openTab(item)" [ngClass]="item.selected == true ? 'activeTab' : ''" data-tid="A373667">
+                                        <span data-tid="A373668">{{ item.text }}</span> &nbsp;&nbsp;
+                                        <span *ngIf="item.closable" class="fa fa-close" (click)="tabClose(item)" data-tid="A373669"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-5" data-tid="A373670">
+                            <div class="row" id="A32321" data-tid="A373671">
+                                <!-- <div class="col-xs-3" id="A32322">
+                                    <button *ngIf="showMaterialExpirationShownOnTab==false" type="button" class="btn btn-info btn-gradient btn-round" (click)="openMaterialExpirationDateInfoForm()"
+                                        id="A32323">
+                                        <span class="fa fa-list" id="A32324"></span>&nbsp;Miad'ı Dolan İlaçlar
+                                    </button>
+                                </div> -->
+                                <div class="col-xs-1" id="A32325" data-tid="A373672">
+                                    <label id="A32326" data-tid="A373673">Depo:</label>
+                                </div>
+                                <div class="col-xs-4" id="A32327" data-tid="A373674">
+                                    <label class="control-label" style="color:#08c" id="A32328" data-tid="A373675">{{storeName}}</label>
+                                </div>
+                                <div class="col-xs-1" id="A32l329" style="padding-left: 5px; padding-right: 5px;" data-tid="A373676">
+                                    <dx-button icon="pulldown" [disabled]="boolStore" hint="Depo Değiştir" type="default" (onClick)="setStoreClick()" i18n-hint="@@M12618" id="A32330" data-tid="A373677">
+                                    </dx-button>
+                                </div>
+                                <div class="col-xs-2" data-tid="A373678">
+                                    <label data-tid="A373679">Dönem:</label>
+                                </div>
+                                <div class="col-xs-4" data-tid="A373680">
+                                    <dx-select-box #selectBox [dataSource]="costActionAccountingTerm" displayExpr="Desciption" valueExpr="ObjId" [acceptCustomValue]="true" (onValueChanged)="onYearChanged($event)" [value]="activeAccountingTerm" data-tid="A373681"></dx-select-box>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-tid="A373682">
+                        <!-- Uyarılar -->
+                        <div *ngIf="tabVisibility.warnings" [hidden]="tabHidden.warnings" class="row" data-tid="A373683">
+                            <h4 class="col-sm-12" style="text-align:center;" data-tid="A373684">Miadı Dolan İlaç/Malzemeler</h4>
+                            <div class="col-sm-12" data-tid="A373685">
+                                <MaterialExpirationDateInfoForm [StoreObjectId]="store?.ObjectID" id="A32317" data-tid="A373686">
+                                </MaterialExpirationDateInfoForm>
+                            </div>
+                            <div class="col-sm-12" data-tid="A373687">
+                                <h4 class="col-sm-12" style="text-align:center;" data-tid="A373688">Stok Seviyeleri</h4>
+                                <div class="row" data-tid="A373689">
+                                    <label class="col-sm-2" data-tid="A373690">Stok Seviyesi Filtresi</label>
+                                    <div class="col-sm-3" data-tid="A373691">
+                                        <dx-select-box [items]="CriticalStockLevelTypeItems" displayExpr="description" valueExpr="ordinal" (onValueChanged)="onStockLevelTypeChanged($event)" showClearButton="true" id="A30266" data-tid="A373692">
+                                        </dx-select-box>
+                                    </div>
+                                    <label class="col-sm-2" data-tid="A373693">Malzeme Grubu</label>
+                                    <div class="col-sm-2" data-tid="A373694">
+                                        <dx-select-box [items]="MaterialTreeForStock" displayExpr="Name" valueExpr="ObjectID" (onValueChanged)="onSelectedMaterialTreeChanged($event)" showClearButton="true" id="A30266" data-tid="A373695">
+                                        </dx-select-box>
+                                    </div>
+                                    <dx-check-box [(value)]="checkBoxValue" [width]="280" (onValueChanged)="onValueChanged($event)" text="Mevcutları Göster" i18n-text="@@M16871" id="A32388" data-tid="A373696"></dx-check-box>
+                                </div>
+                            </div>
+                            <br data-tid="A373697" />
+                            <div class="col-sm-12" data-tid="A373698">
+                                <dx-data-grid [columns]="criticalStockLevelGridColumns" [dataSource]="filteredCriticalStockLevelOfItems" style="height: 350px;" (onRowPrepared)="onRowPreparedTransactionList($event)" [filterRow]="{visible:true}" [allowColumnResizing]="true" columnResizingMode="nextColumn" data-tid="A373699">
+                                    <dxo-paging [pageSize]="11" data-tid="A373700"></dxo-paging>
+                                    <dxo-export [enabled]="true" fileName="Stok_Seviye" data-tid="A373701"></dxo-export>
+                                    <div *dxTemplate="let info of 'titleHeaderTemplateMini'" data-tid="A373702">
+                                        <i style="color: rgb(241, 93, 93)" data-tid="A373703">Belirlenen Minimum Seviye</i>
+                                    </div>
+                                    <div *dxTemplate="let info of 'titleHeaderTemplateMax'" data-tid="A373704">
+                                        <i style="color: rgb(126, 176, 237)" data-tid="A373705">Belirlenen Maximum Seviye</i>
+                                    </div>
+                                    <div *dxTemplate="let info of 'titleHeaderTemplateKrit'" data-tid="A373706">
+                                        <i style="color: maroon" data-tid="A373707">Belirlenen Kritik Seviye</i>
+                                    </div>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+
+                        <!-- Giriş İşlemleri -->
+                        <div class="row" *ngIf="tabVisibility.GIRISFISIOLUSTUR" [hidden]="tabHidden.GIRISFISIOLUSTUR" data-tid="A373708">
+                            <entry-ticket-list data-tid="A373709"></entry-ticket-list>
+                            <!-- <hvl-create-entry-ticket></hvl-create-entry-ticket> -->
+                        </div>
+
+                        <!-- Satın Alma Yönetimi -->
+                        <div class="row" *ngIf="tabVisibility.SATINALMAISLEMLERI" [hidden]="tabHidden.SATINALMAISLEMLERI" data-tid="A373710">
+                            <hvl-logistic-supplyRequestManager-view data-tid="A373711"></hvl-logistic-supplyRequestManager-view>
+                        </div>
+
+                        <!-- Raporlar -->
+
+                        <div class="row" *ngIf="tabVisibility.GIRISRAPORLARI" [hidden]="tabHidden.GIRISRAPORLARI" data-tid="A373712">
+                            <MovableTransactionInputVoucherForm [SelectedMainStore]="store" data-tid="A373713">
+                            </MovableTransactionInputVoucherForm>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.CIKISRAPORLARI" [hidden]="tabHidden.CIKISRAPORLARI" data-tid="A373714">
+                            <MovableTransactionOutVoucherForm [SelectedMainStore]="store" data-tid="A373715">
+                            </MovableTransactionOutVoucherForm>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.MUADILMALZEMERAPORU" [hidden]="tabHidden.MUADILMALZEMERAPORU" data-tid="A373716">
+                            <equivalent-material-report-form [SelectedStoreObjectID]="store?.ObjectID" data-tid="A373717">
+                            </equivalent-material-report-form>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.SONKULLANMATARIHINEGOREMALZEMERAPORU" [hidden]="tabHidden.SONKULLANMATARIHINEGOREMALZEMERAPORU" data-tid="A373718">
+                            <MaterialReportByExpirationDateForm [StoreObjectId]="store?.ObjectID" data-tid="A373719">
+                            </MaterialReportByExpirationDateForm>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.ECZANEIADERAPORU" [hidden]="tabHidden.ECZANEIADERAPORU" data-tid="A373720">
+                            <DrugReturnReportForm [StoreObjectId]="store?.ObjectID" data-tid="A373721">
+                            </DrugReturnReportForm>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.ILACKULLANIMRAPORU" [hidden]="tabHidden.ILACKULLANIMRAPORU" data-tid="A373722">
+                            <DrugUsageReportForm [StoreObjectId]="store?.ObjectID" data-tid="A373723"></DrugUsageReportForm>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.MUADILMALZEMETUKETIMRAPORU" [hidden]="tabHidden.MUADILMALZEMETUKETIMRAPORU" data-tid="A373724">
+                            <EquivalentMaterialConsumptionForm [StoreObjectId]="store?.ObjectID" data-tid="A373725">
+                            </EquivalentMaterialConsumptionForm>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.IADERAPORUORANSAL" [hidden]="tabHidden.IADERAPORUORANSAL" data-tid="A373726">
+                            <ReturnForm [SelectedMainStore]="store" data-tid="A373727"></ReturnForm>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.KULLANILMAYANMALZEMERAPORU" [hidden]="tabHidden.KULLANILMAYANMALZEMERAPORU" data-tid="A373728">
+                            <UnusedMaterialForm [SelectedMainStore]="store" data-tid="A373729"></UnusedMaterialForm>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.RECETETURUNEGOREILACCIKISI" [hidden]="tabHidden.RECETETURUNEGOREILACCIKISI" data-tid="A373730">
+                            <DrugOutForRecipeTypeForm [SelectedMainStore]="store" data-tid="A373731"></DrugOutForRecipeTypeForm>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.ILACALINANFIRMALARRAPORU" [hidden]="tabHidden.ILACALINANFIRMALARRAPORU" data-tid="A373732">
+                            <DrugPaymentFirm [SelectedMainStore]="store" data-tid="A373733"></DrugPaymentFirm>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.FAVORIILACRAPORU" [hidden]="tabHidden.FAVORIILACRAPORU" data-tid="A373734">
+                            <FavoriteDrugReportForm data-tid="A373735"></FavoriteDrugReportForm>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.ILACATCRAPORU" [hidden]="tabHidden.ILACATCRAPORU" data-tid="A373736">
+                            <DrugAtcReport [SelectedMainStore]="store" data-tid="A373737"></DrugAtcReport>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.ILACDAGILIMRAPORU" [hidden]="tabHidden.ILACDAGILIMRAPORU" data-tid="A373738">
+                            <DrugDistributionReport [SelectedMainStore]="store" data-tid="A373739"></DrugDistributionReport>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.ECZANEDENKARSILANANILACLAR" [hidden]="tabHidden.ECZANEDENKARSILANANILACLAR" data-tid="A373740">
+                            <ReceivedDrugReport [SelectedMainStore]="store" data-tid="A373741"></ReceivedDrugReport>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.ECZANEDEBULUNMAYANILACLARRAPORU" [hidden]="tabHidden.ECZANEDEBULUNMAYANILACLARRAPORU" data-tid="A373742">
+                            <DrugNotExistStockReportForm [StoreObjectId]="store?.ObjectID" data-tid="A373743">
+                            </DrugNotExistStockReportForm>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.ILACJENERIKRAPORU" [hidden]="tabHidden.ILACJENERIKRAPORU" data-tid="A373744">
+                            <DrugGenericReport [SelectedMainStore]="store" data-tid="A373745"></DrugGenericReport>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.GUNLUKDOGRULANANILACLARRAPORU" [hidden]="tabHidden.GUNLUKDOGRULANANILACLARRAPORU" data-tid="A373746">
+                            <DailyConfirmDrugReport [SelectedMainStore]="store" data-tid="A373747"></DailyConfirmDrugReport>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.DEPOMEVCUTRAPORU" [hidden]="tabHidden.DEPOMEVCUTRAPORU" data-tid="A373748">
+                            <StoreInheldReport [SelectedMainStore]="store" data-tid="A373749"></StoreInheldReport>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.TOPLAMGIRISRAPORU" [hidden]="tabHidden.TOPLAMGIRISRAPORU" data-tid="A373750">
+                            <StoreInTotalReport [SelectedMainStore]="store" data-tid="A373751"></StoreInTotalReport>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.TOPLAMCIKISRAPORU" [hidden]="tabHidden.TOPLAMCIKISRAPORU" data-tid="A373752">
+                            <StoreOutTotalReport [SelectedMainStore]="store" data-tid="A373753"></StoreOutTotalReport>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.TUKETIMCIKISRAPORU" [hidden]="tabHidden.TUKETIMCIKISRAPORU" data-tid="A373754">
+                            <ConsumedMaterialReport [SelectedMainStore]="store" data-tid="A373755"></ConsumedMaterialReport>
+                        </div>
+
+
+                        <!-- Tanımlamalar -->
+                        <div class="row" *ngIf="tabVisibility.ILACTANIMLARI" [hidden]="tabHidden.ILACTANIMLARI" data-tid="A373756">
+                            <DrugDefinitionBaseForm data-tid="A373757"></DrugDefinitionBaseForm>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.SARFEDILEBILIRMALZEMETANIMLARI" [hidden]="tabHidden.SARFEDILEBILIRMALZEMETANIMLARI" data-tid="A373758">
+                            <ConsumableMaterialDefinitionBaseForm data-tid="A373759"></ConsumableMaterialDefinitionBaseForm>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.TUKETIMMALZEMETANIMLARI" [hidden]="tabHidden.TUKETIMMALZEMETANIMLARI" data-tid="A373760">
+                            <DepletionMaterialDefinitionBaseForm data-tid="A373761"></DepletionMaterialDefinitionBaseForm>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.BAYIFIRMATANIMLARI" [hidden]="tabHidden.BAYIFIRMATANIMLARI" data-tid="A373762">
+                            <supplierandproducerdef-component data-tid="A373763"></supplierandproducerdef-component>
+                        </div>
+
+                        <div class="row" *ngIf="tabVisibility.MALZEMEGRUBUTANIMLARI" [hidden]="tabHidden.MALZEMEGRUBUTANIMLARI" data-tid="A373764">
+                            <materialtreedefinition-component data-tid="A373765"></materialtreedefinition-component>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.KOMISYONTANIMLARI" [hidden]="tabHidden.KOMISYONTANIMLARI" data-tid="A373766">
+                            <commisiondefinition-component data-tid="A373767"></commisiondefinition-component>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.ATCTANIMLARI" [hidden]="tabHidden.ATCTANIMLARI" data-tid="A373768">
+                            <atcdefinition-component data-tid="A373769"></atcdefinition-component>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.DIREKTIFZAMANCIZELGESI" [hidden]="tabHidden.DIREKTIFZAMANCIZELGESI" data-tid="A373770">
+                            <hospital-time-schedule-component data-tid="A373771"></hospital-time-schedule-component>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.ILACKULLANIMSEKLITANIMLARI" [hidden]="tabHidden.ILACKULLANIMSEKLITANIMLARI" data-tid="A373772">
+                            <routeofadmindefinition-component data-tid="A373773"></routeofadmindefinition-component>
+                        </div>
+
+                        <div class="row" *ngIf="tabVisibility.OLCUBIRIMITANIMLARI" [hidden]="tabHidden.OLCUBIRIMITANIMLARI" data-tid="A373774">
+                            <distributiondefinition-component data-tid="A373775"></distributiondefinition-component>
+                        </div>
+
+                        <!-- MKYS İşlemleri -->
+                        <div class="row" data-tid="A373776">
+                            <div *ngIf="tabVisibility.GONDERILMEYENISLEMLER" [hidden]="tabHidden.GONDERILMEYENISLEMLER" data-tid="A373777">
+                                <not-sent-operation data-tid="A373778"></not-sent-operation>
+                            </div>
+                            <div *ngIf="tabVisibility.KARSILASTIRMAISLEMLERI" [hidden]="tabHidden.KARSILASTIRMAISLEMLERI" data-tid="A373779">
+                                <compare-operation data-tid="A373780"></compare-operation>
+                            </div>
+                            <div *ngIf="tabVisibility.DISKURUMLARDANGELENBELGELER" [hidden]="tabHidden.DISKURUMLARDANGELENBELGELER" data-tid="A373781">
+                                <incoming-document [isTicketCreate]="false" data-tid="A373782"></incoming-document>
+                            </div>
+                            <div *ngIf="tabVisibility.YILSONUDEVIR" [hidden]="tabHidden.YILSONUDEVIR" data-tid="A373783">
+                                <end-of-year-transfer data-tid="A373784"></end-of-year-transfer>
+                            </div>
+                        </div>
+
+                        <!-- dashboard -->
+                        <div class="row" *ngIf="tabVisibility.DASHBOARD" [hidden]="tabHidden.DASHBOARD" data-tid="A373785">
+                            <hvl-logistic-dashboard-view [SelectedMainStore]="store" id="A32336" data-tid="A373786">
+                            </hvl-logistic-dashboard-view>
+                        </div>
+
+                        <!-- Veri Günc. Ve Ekleme -->
+                        <div class="row" *ngIf="tabVisibility.ADDANDUPDATE" [hidden]="tabHidden.ADDANDUPDATE" data-tid="A373787">
+                            <hvl-logistic-addandupdate-view id="A32344" data-tid="A373788"></hvl-logistic-addandupdate-view>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

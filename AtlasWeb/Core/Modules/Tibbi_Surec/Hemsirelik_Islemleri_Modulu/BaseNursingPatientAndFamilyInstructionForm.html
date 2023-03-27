@@ -1,0 +1,68 @@
+﻿
+
+<div class="container-fluid" id="A17592" data-tid="A350525">
+    <NeStatePanelComponent [OutgoingTransitions]="baseNursingPatientAndFamilyInstructionFormViewModel?.OutgoingTransitions" PrintReportCommandVisible="true" (onPrintReport)="printReport()" [StateReports]="baseNursingPatientAndFamilyInstructionFormViewModel?.CurrentStateReports" [ObjectID]="baseNursingPatientAndFamilyInstructionFormViewModel?._BaseNursingPatientAndFamilyInstruction?.ObjectID" [ObjectDefID]="baseNursingPatientAndFamilyInstructionFormViewModel?._BaseNursingPatientAndFamilyInstruction?.ObjectDefID" [CurrentStateDefID]="baseNursingPatientAndFamilyInstructionFormViewModel._BaseNursingPatientAndFamilyInstruction.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()" [SaveCommandVisible]="!baseNursingPatientAndFamilyInstructionFormViewModel.ReadOnly" [DropStateList]="DropStateList" id="A17593" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A350526">
+    </NeStatePanelComponent>
+	<form id="BaseNursingPatientAndFamilyInstructionForm" class="form-horizontal" role="form" data-tid="A350527">
+		
+	</form>
+
+    <div class="row margin-bottom-5" id="A17594" data-tid="A350528">
+        <div class="pull-left" style="margin-left:15px" id="A17595" data-tid="A350529">
+            <label class="control-label" style="width:100px" id="A17596" data-tid="A350530">Uygulama Zamanı		</label>
+        </div>
+        <div class="pull-left" id="A17597" data-tid="A350531">
+            <div class="col-sm-6" id="A17598" data-tid="A350532">
+                <dx-date-box width="100%" type="datetime" displayFormat="dd/MM/yyyy HH:mm" [(value)]="baseNursingPatientAndFamilyInstructionFormViewModel._BaseNursingPatientAndFamilyInstruction.ApplicationDate" [readOnly]="baseNursingPatientAndFamilyInstructionFormViewModel.ReadOnly" id="A17599" data-tid="A350533">
+                </dx-date-box>
+            </div>
+            <div class="col-sm-6" data-tid="A350534">
+                <hvl-checkbox #Validation (ValueChange)="onCompanionInstructionChanged($event)" [AllowThreeState]="CompanionInstruction?.ThreeState" [BackColor]="CompanionInstruction?.BackColor" [Enabled]="CompanionInstruction?.Enabled" [Font]="CompanionInstruction?.Font" [ForeColor]="CompanionInstruction?.ForeColor" [IsTitleLeft]="CompanionInstruction?.IsTitleLeft" [Margin]="CompanionInstruction?.Margin" [ReadOnly]="CompanionInstruction?.ReadOnly" [TabIndex]="CompanionInstruction?.TabIndex" [TitleTopPadding]="CompanionInstruction?.TitleTopPadding" [Title]="CompanionInstruction?.Title" [Value]="_BaseNursingPatientAndFamilyInstruction.CompanionInstruction" [Visible]="CompanionInstruction?.Visible" data-tid="A350535">
+                </hvl-checkbox>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="A17600" data-tid="A350536">
+        <div class="col-sm-12" id="A17601" data-tid="A350537">
+            <div class="col-sm-6 pull-left" style="margin-left: -30px" id="A17602" data-tid="A350538">
+                <label class="control-label col-sm-6 pull-left" id="A17603" data-tid="A350539">Eğitim Adı</label>
+                <label class="control-label col-sm-3 pull-left" id="A17604" data-tid="A350540">Kendisi</label>
+                <label class="control-label col-sm-3 pull-left" id="A17605" data-tid="A350541">Yakını</label>
+            </div>
+            <div class="col-sm-6 pull-left" style="margin-left: -30px" id="A17606" data-tid="A350542">
+                <label class="control-label col-sm-6 pull-left" id="A17607" data-tid="A350543">Eğitim Adı</label>
+                <label class="control-label col-sm-3 pull-left" id="A17608" data-tid="A350544">Kendisi</label>
+                <label class="control-label col-sm-3 pull-left" id="A17609" data-tid="A350545">Yakını</label>
+            </div>
+        </div>
+    </div>
+	
+    <div class="row" id="A17610" data-tid="A350546">
+		<div class="col-sm-12" id="A17611" data-tid="A350547">
+
+
+            <div class="col-sm-6 pull-left " style="margin-left: -30px;border-left:1px solid grey" *ngFor="let detail of baseNursingPatientAndFamilyInstructionFormViewModel?._BaseNursingPatientAndFamilyInstruction?.NursingPatientAndFamilyInstructions" id="A17612" data-tid="A350548">
+               
+                <div class="col-sm-6 pull-left" style="margin-top:5px" id="A17613" data-tid="A350549">
+                    <dx-text-box [value]="detail.PatientAndFamilyInstruction.Name" [hint]="detail.PatientAndFamilyInstruction.Name" [readOnly]="true" id="A17614" data-tid="A350550"></dx-text-box>
+                </div>
+
+                <div class="col-sm-3 pull-left" id="A17615" data-tid="A350551">
+                    <hvl-checkbox #Validation Margin="3px" TitleTopPadding="3px" [IsTitleLeft]="true" [(Value)]="detail.PatientGetInstruction" [ReadOnly]="baseNursingPatientAndFamilyInstructionFormViewModel.ReadOnly" id="A17616" data-tid="A350552"></hvl-checkbox>
+                </div>
+
+                <div class="col-sm-3 pull-left" id="A17617" data-tid="A350553">
+                    <hvl-checkbox #Validation Margin="3px" TitleTopPadding="3px" [IsTitleLeft]="true" [(Value)]="detail.CompanionGetInstruction" [ReadOnly]="baseNursingPatientAndFamilyInstructionFormViewModel.ReadOnly" id="A17618" data-tid="A350554"></hvl-checkbox>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row" id="A17860" data-tid="A350555">
+		<div class="col-sm-12" id="A17861" data-tid="A350556">
+            <label class="control-label" id="A17862" data-tid="A350557">Eğitim Notları</label>
+
+            <hvl-text-box #Validation (TextChange)="onInstructionNoteChanged($event)" [BackColor]="InstructionNote?.BackColor" [CharacterCasing]="InstructionNote?.CharacterCasing" [Enabled]="InstructionNote?.Enabled" [Font]="InstructionNote?.Font" [ForeColor]="InstructionNote?.ForeColor" [height]="InstructionNote?.Height" [InputFormat]="InstructionNote?.InputFormat" [InputTurkishCharacter]="InstructionNote?.InputTurkishCharacter" [IsNonNumeric]="InstructionNote?.IsNonNumeric" [MultiLine]="InstructionNote?.Multiline" [ReadOnly]="InstructionNote?.ReadOnly" [Required]="InstructionNote?.Required" [TabIndex]="InstructionNote?.TabIndex" [TextAlign]="InstructionNote?.TextAlign" [Text]="baseNursingPatientAndFamilyInstructionFormViewModel?._BaseNursingPatientAndFamilyInstruction?.InstructionNote" [Visible]="InstructionNote?.Visible" id="A17863" data-tid="A350558"></hvl-text-box>
+            </div>
+	</div>
+</div>

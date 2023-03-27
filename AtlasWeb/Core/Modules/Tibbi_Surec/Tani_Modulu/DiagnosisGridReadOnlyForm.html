@@ -1,0 +1,32 @@
+﻿
+
+
+<form id="DiagnosisGridReadOnlyForm" class="form-horizontal" role="form" data-tid="A364816">
+    
+</form>
+
+<div #diagnosisGridPanel id="A27891" data-tid="A364817">
+    <div class="row" id="A27892" data-tid="A364818">
+        <div class="col-sm-12" id="A27893" data-tid="A364819">
+            <div style="overflow:auto;max-height :110px;" class="diagnosisGridStyle" id="A27894" data-tid="A364820">
+            </div>
+            <dx-data-grid #dataGrid class="diognosisGridStyle" [ngStyle]="{'min-width':'100%' }" [columns]="columns" [allowColumnReordering]="true" [allowColumnResizing]="true" [editing]="{allowUpdating: false,allowAdding: false,allowDeleting: false, texts:{confirmDeleteMessage:''}}" [dataSource]="GridDiagnosisGridList" [height]="GridDiagnosis?.Height" id="A27825" data-tid="A364821">
+                <dxo-scrolling mode="virtual" data-tid="A364822"></dxo-scrolling>
+                <div *dxTemplate="let cellData of 'DiagnosisTypeCellTemplate'" id="A27826" data-tid="A364823">
+                    <hvl-radio-button-group [Items]="preSecDiagnosisRadioItems" SelectedValuePath="Value" [(Value)]="cellData.data.DiagnosisType" [Enabled]="false" id="A27897" data-tid="A364824"></hvl-radio-button-group>
+                </div>
+                <div style="text-align:-webkit-center;margin-top: -2px;" *dxTemplate="let cellData of 'IsMainDiagnoseCellTemplate'" id="A27828" data-tid="A364825">
+                    <hvl-checkbox #checkBox [(Value)]="cellData.data.IsMainDiagnose" [Enabled]="false" id="A27829" data-tid="A364826"></hvl-checkbox>
+                </div>
+                <div *dxTemplate="let cellData of 'deleteCellTemplate'" id="A27832" data-tid="A364827">
+                    <i class="fa fa fa-trash" style="cursor:pointer" (click)="gridDiagnosisGrid_CellContentClicked(cellData)" id="A27833" data-tid="A364828"></i>
+                </div>
+            </dx-data-grid>
+
+
+        </div>
+    </div>
+ 
+</div>
+
+

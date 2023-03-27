@@ -1,0 +1,852 @@
+﻿<div class="container-fluid" id="A31884" data-tid="A372939">
+    <br id="A31885" data-tid="A372940" />
+
+    <div class="{{this.collapseSelectedDivProperties()}}" style="flex:1;" data-tid="A372941">
+        <div class="row" style="height: 100%;" data-tid="A372942">
+            <div class="col-sm-12 gradientPanel" style="height:4%;min-height: 35px;" id="A16463" data-tid="A372943">
+                <h4 style="color:#fff; font-size:19px;text-align:left;" id="A16464" data-tid="A372944">
+                    <div class="btn collapseBtn" (click)="btnCollapse()"
+                        style="padding:0;margin-top:3px;margin-right: 5px;" data-tid="A372945">
+                        <i class="{{this.collapseIconProperties()}}" id="A16466" data-tid="A372946"></i>
+                    </div>
+                    <span id="A16467" data-tid="A372947">İşlem Menüsü</span>
+                </h4>
+            </div>
+            <div class="panel-body"
+                style="background-color:#f6f6f6;padding-bottom:0; height:100%;padding: 0; padding-bottom: 20px;"
+                data-tid="A372948">
+                <div style="margin-top: 55px;" data-tid="A372949">
+                    <dx-radio-group [(items)]="operationTypes" [value]="operationTypes[0]" layout="vertical"
+                        style="height: 850px;" (onValueChanged)="onValueChanged($event)" id="A31888" data-tid="A372950">
+                    </dx-radio-group>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="{{this.collapseSelectedHiddenDivProperties()}}" style="position:relative;" data-tid="A372951">
+        <div class="MyVerticalText" (click)="btnCollapse()" data-tid="A372952">
+            <i class="{{this.collapseIconProperties()}}" data-tid="A372953"></i>
+            <span id="A16547" data-tid="A372954">&nbsp;&nbsp;&nbsp;&nbsp;İşlem Menüsü</span>
+        </div>
+    </div>
+    <div class="{{this.collapsedPanelProperties()}}" data-tid="A372955">
+        <div style="background-color:#fff; height:100%;flex:3" id="A32331" data-tid="A372956">
+            <div class="col-xs-12" id="A32332" style="height:97%;" data-tid="A372957">
+                <div *ngIf="mkysKurumlariGuncelle" id="A31890" data-tid="A372958">
+                    <div class="dx-fieldset-header" style="text-align:center;font-weight: bold;" id="A31891"
+                        data-tid="A372959">MKYS
+                        KURUMLARI GÜNCELLE
+                    </div>
+
+                    <!-- #region mkysKurumlariGuncelle -->
+                    <dx-button type="btn btn-default" [(text)]="getmkysKurumlariGuncelleButtonText"
+                        (onClick)="getmkysKurumlariGuncelleButtonClick()" id="progress-button" data-tid="A372960">
+                    </dx-button>
+                    <!-- #region mkysKurumlariEkle -->
+                    <div class="left-side" id="A31892" data-tid="A372961">
+                        <div class="logo" id="A31893" data-tid="A372962">
+                            <div class="dx-field-label" style="font-weight: bold;" id="A31894" data-tid="A372963"> Yeni
+                                Kurumlar</div>
+                        </div>
+                    </div>
+                    <div class="row" id="A31895" data-tid="A372964">
+                        <div class="col-sm-10" id="A31896" data-tid="A372965">
+                            <dx-data-grid id="gridContainer" [dataSource]="NewAccountancyList" style="height: 300px;"
+                                [(selectedRowKeys)]="selectedNewAccountancyTempItems" data-tid="A372966">
+                                <dxo-paging [pageSize]="10" id="A31897" data-tid="A372967"></dxo-paging>
+                                <dxo-selection [selectAllMode]="allPages" [showCheckBoxesMode]="onClick" mode="multiple"
+                                    id="A31898" data-tid="A372968"></dxo-selection>
+                                <dxo-filter-row [visible]="true" id="A31899" data-tid="A372969"></dxo-filter-row>
+                                <dxi-column dataField="AccountancyCode" caption="Kurum Kodu" i18n-caption="@@M18076"
+                                    id="A31900" data-tid="A372970">
+                                </dxi-column>
+                                <dxi-column dataField="AccountancyNO" caption="Kurum No" i18n-caption="@@M18080"
+                                    id="A31901" data-tid="A372971">
+                                </dxi-column>
+                                <dxi-column dataField="AccountancyName" caption="Kurum Adı" i18n-caption="@@M18011"
+                                    id="A31902" data-tid="A372972">
+                                </dxi-column>
+                            </dx-data-grid>
+                        </div>
+                        <div class="col-sm-2" id="A31903" data-tid="A372973">
+                            <dx-button id="progress-button" [text]="CreateButtonText"
+                                (onClick)="NewAccountancyButtonClick()" [(disabled)]="CreateButtonVisible" [width]="200"
+                                data-tid="A372974">
+                            </dx-button>
+                        </div>
+                    </div>
+                    <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#gridContainer' }"
+                        [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true"
+                        [closeOnOutsideClick]="false" id="A31904" data-tid="A372975">
+                    </dx-load-panel>
+                    <!-- #endregion  mkysKurumlariEkle-->
+                    <!-- #region mkysKurumlariGüncelle -->
+                    <div class="left-side" id="A31905" data-tid="A372976">
+                        <div class="logo" id="A31906" data-tid="A372977">
+                            <div class="dx-field-label" style="font-weight: bold;" id="A31907" data-tid="A372978">
+                                Güncellenecek
+                                Kurumlar</div>
+                        </div>
+                    </div>
+                    <div class="row" id="A31908" data-tid="A372979">
+                        <div class="col-sm-10" id="A31909" data-tid="A372980">
+                            <dx-data-grid id="gridContainer2" [dataSource]="UpdateAccountancyList"
+                                style="height: 300px;" [(selectedRowKeys)]="selectedUpdateAccountancyTempItems"
+                                data-tid="A372981">
+                                <dxo-paging [pageSize]="10" id="A31910" data-tid="A372982"></dxo-paging>
+                                <dxo-filter-row [visible]="true" id="A31911" data-tid="A372983"></dxo-filter-row>
+                                <dxo-selection [selectAllMode]="allPages" [showCheckBoxesMode]="onClick" mode="multiple"
+                                    id="A31912" data-tid="A372984"></dxo-selection>
+                                <dxi-column dataField="AccountancyCode" caption="Kurum Kodu" i18n-caption="@@M18076"
+                                    id="A31913" data-tid="A372985">
+                                </dxi-column>
+                                <dxi-column dataField="AccountancyNO" caption="Kurum No" i18n-caption="@@M18080"
+                                    id="A31914" data-tid="A372986">
+                                </dxi-column>
+                                <dxi-column dataField="AccountancyName" caption="Kurum Adı" i18n-caption="@@M18011"
+                                    id="A31915" data-tid="A372987">
+                                </dxi-column>
+                            </dx-data-grid>
+                        </div>
+                        <div class="col-sm-2" id="A31916" data-tid="A372988">
+                            <dx-button id="progress-button" [text]="UpdateButtonText"
+                                (onClick)="UpdateAccountancyButtonClick()" [(disabled)]="UpdateButtonVisible"
+                                [width]="200" data-tid="A372989">
+                            </dx-button>
+                        </div>
+                    </div>
+                    <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#gridContainer2' }"
+                        [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true"
+                        [closeOnOutsideClick]="false" id="A31917" data-tid="A372990">
+                    </dx-load-panel>
+                    <!-- #endregion  mkysKurumlariGüncelle-->
+                    <!-- #endregion mkysKurumlariGuncelle-->
+
+                </div>
+
+                <div *ngIf="mkysFirmalariGuncelle" id="A31918" data-tid="A372991">
+
+                    <div class="dx-fieldset-header" style="text-align:center;font-weight: bold;" id="A31919"
+                        data-tid="A372992">MKYS FİRMALARI GÜNCELLE
+                    </div>
+                    <!-- #region mkysFirmalariGuncelle -->
+                    <dx-button id="progress-button" type="btn btn-default" [(text)]="getmkysFirmalariGuncelleButtonText"
+                        (onClick)="getmkysFirmalariGuncelleButtonButtonClick()" [width]="200" data-tid="A372993">
+                    </dx-button>
+
+                    <!-- #region mkysFirmaEkle -->
+                    <div class="left-side" id="A31920" data-tid="A372994">
+                        <div class="logo" id="A31921" data-tid="A372995">
+                            <div class="dx-field-label" style="font-weight: bold;" id="A31922" data-tid="A372996"> Yeni
+                                Firmalar</div>
+                        </div>
+                    </div>
+                    <div class="row" id="A31923" data-tid="A372997">
+                        <div class="col-sm-10" id="A31924" data-tid="A372998">
+                            <dx-data-grid id="gridContainer3" [dataSource]="NewSupplierList" style="height: 300px;"
+                                [(selectedRowKeys)]="selectedNewSupplierTempItems" data-tid="A372999">
+                                <dxo-paging [pageSize]="10" id="A31925" data-tid="A373000"></dxo-paging>
+                                <dxo-selection [selectAllMode]="allPages" [showCheckBoxesMode]="onClick" mode="multiple"
+                                    id="A31926" data-tid="A373001"></dxo-selection>
+                                <dxo-filter-row [visible]="true" id="A31927" data-tid="A373002"></dxo-filter-row>
+                                <dxi-column dataField="Name" caption="Firma Adı" i18n-caption="@@M14302" id="A31928"
+                                    data-tid="A373003">
+                                </dxi-column>
+                                <dxi-column dataField="TaxNo" caption="Vergi No" i18n-caption="@@M24088" id="A31929"
+                                    data-tid="A373004">
+                                </dxi-column>
+                                <dxi-column dataField="TaxOfficeName" caption="Vergi Dairesi" i18n-caption="@@M24086"
+                                    id="A31930" data-tid="A373005">
+                                </dxi-column>
+                            </dx-data-grid>
+                        </div>
+                        <div class="col-sm-2" id="A31931" data-tid="A373006">
+                            <dx-button id="progress-button" [text]="CreateFirmButtonText"
+                                (onClick)="NewSupplierButtonClick()" [(disabled)]="CreateSupplierButtonVisible"
+                                [width]="200" data-tid="A373007">
+                            </dx-button>
+                        </div>
+                    </div>
+                    <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#gridContainer3' }"
+                        [(visible)]="loadingVisibleSupplier" [showIndicator]="true" [showPane]="true" [shading]="true"
+                        [closeOnOutsideClick]="false" id="A31932" data-tid="A373008">
+                    </dx-load-panel>
+                    <!-- #endregion  mkysFirmaEkle-->
+                    <!-- #region mkysKurumlariGüncelle -->
+                    <div class="left-side" id="A31933" data-tid="A373009">
+                        <div class="logo" id="A31934" data-tid="A373010">
+                            <div class="dx-field-label" style="font-weight: bold;" id="A31935" data-tid="A373011">
+                                Güncellenecek
+                                Firmalar</div>
+                        </div>
+                    </div>
+                    <div class="row" id="A31936" data-tid="A373012">
+                        <div class="col-sm-10" id="A31937" data-tid="A373013">
+                            <dx-data-grid id="gridContainer4" [dataSource]="UpdateSupplierList" style="height: 300px;"
+                                [(selectedRowKeys)]="selectedUpdateSupplierTempItems" data-tid="A373014">
+                                <dxo-paging [pageSize]="10" id="A31938" data-tid="A373015"></dxo-paging>
+                                <dxo-selection [selectAllMode]="allPages" [showCheckBoxesMode]="onClick" mode="multiple"
+                                    id="A31939" data-tid="A373016"></dxo-selection>
+                                <dxo-filter-row [visible]="true" id="A31940" data-tid="A373017"></dxo-filter-row>
+                                <dxi-column dataField="Name" caption="Firma Adı" i18n-caption="@@M14302" id="A31941"
+                                    data-tid="A373018">
+                                </dxi-column>
+                                <dxi-column dataField="TaxNo" caption="Vergi No" i18n-caption="@@M24088" id="A31942"
+                                    data-tid="A373019">
+                                </dxi-column>
+                                <dxi-column dataField="TaxOfficeName" caption="Vergi Dairesi" i18n-caption="@@M24086"
+                                    id="A31943" data-tid="A373020">
+                                </dxi-column>
+                            </dx-data-grid>
+                        </div>
+                        <div class="col-sm-2" id="A31944" data-tid="A373021">
+                            <dx-button id="progress-button" [text]="UpdateFirmButtonText"
+                                (onClick)="UpdateSupplierButtonClick()" [(disabled)]="UpdateSupplierButtonVisible"
+                                [width]="200" data-tid="A373022">
+                            </dx-button>
+                        </div>
+                    </div>
+                    <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#gridContainer4' }"
+                        [(visible)]="loadingVisibleSupplier" [showIndicator]="true" [showPane]="true" [shading]="true"
+                        [closeOnOutsideClick]="false" id="A31945" data-tid="A373023">
+                    </dx-load-panel>
+                    <!-- #endregion  mkysKurumlariGüncelle-->
+                    <!-- #endregion mkysFirmalariGuncelle-->
+
+                </div>
+
+                <div *ngIf="mkysStokKartlariGuncelle" id="A31946" data-tid="A373024">
+
+                    <div class="dx-fieldset-header" style="text-align:center;font-weight: bold;" id="A31947"
+                        data-tid="A373025">MKYS STOK KARTLARI GÜNCELLE</div>
+
+                    <div class="row" id="A31948" data-tid="A373026">
+                        <div class="col-sm-4" id="A31949" data-tid="A373027">
+                            <dx-radio-group [(items)]="stockCardType" [value]="stockCardType[0]" layout="horizontal"
+                                (onValueChanged)="onStockCardTypeValueChanged($event)" id="A31950" data-tid="A373028">
+                            </dx-radio-group>
+                        </div>
+                        <div class="col-sm-3" id="A31951" data-tid="A373029">
+                            <dx-date-box [(value)]="selectedDate" type="date" id="A31952" data-tid="A373030">
+                            </dx-date-box>
+                        </div>
+                        <div class="col-sm-3" id="A31953" data-tid="A373031">
+                            <dx-button type="btn btn-default" id="progress-button"
+                                [(text)]="getmkysStokKartiGuncelleButtonText"
+                                (onClick)="getmkysStokKartiGuncelleButtonClick()" [width]="200" data-tid="A373032">
+                            </dx-button>
+                        </div>
+
+                    </div>
+                    <!-- #region mkysStockCardEkle -->
+                    <div class="left-side" id="A31954" data-tid="A373033">
+                        <div class="logo" id="A31955" data-tid="A373034">
+                            <div class="dx-field-label" style="font-weight: bold;" id="A31956" data-tid="A373035"> Yeni
+                                Stok
+                                Kartları
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="A31957" data-tid="A373036">
+                        <div class="col-sm-10" id="A31958" data-tid="A373037">
+                            <dx-data-grid id="gridContainer5" [dataSource]="NewStockCardList" [columns]="GridColumns"
+                                style="height: 300px;" [(selectedRowKeys)]="selectedNewStockCardTempItems"
+                                data-tid="A373038">
+                                <dxo-paging [pageSize]="10" id="A31959" data-tid="A373039"></dxo-paging>
+                                <dxo-selection mode="multiple" id="A31999" data-tid="A373040"></dxo-selection>
+                                <dxo-filter-row [visible]="true" id="A31961" data-tid="A373041"></dxo-filter-row>
+
+                                <div *dxTemplate="let cellData of 'LabelCellTemplate'" id="A16530" data-tid="A373042">
+                                    <span *ngIf="cellData.data.isActive==1" data-tid="A373043">Aktif</span>
+                                    <span *ngIf="cellData.data.isActive==0" data-tid="A373044">Pasif</span>
+                                    <span *ngIf="cellData.data.isActive==-1" data-tid="A373045">Tümü</span>
+                                </div>
+
+
+                            </dx-data-grid>
+                        </div>
+                        <div class="col-sm-2" id="A31965" data-tid="A373046">
+                            <dx-button id="progress-button" [text]="CreateStockCardButtonText"
+                                (onClick)="NewStockCardButtonClick()" [(disabled)]="CreateStockCardButtonVisible"
+                                [width]="200" data-tid="A373047">
+                            </dx-button>
+                        </div>
+                    </div>
+                    <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#gridContainer5' }"
+                        [(visible)]="loadingVisibleStockCard" [showIndicator]="true" [showPane]="true" [shading]="true"
+                        [closeOnOutsideClick]="false" id="A31966" data-tid="A373048">
+                    </dx-load-panel>
+                    <!-- #endregion  mkysStockCardEkle-->
+                    <!-- #region mkysStockCardGüncelle -->
+                    <div class="left-side" id="A31967" data-tid="A373049">
+                        <div class="logo" id="A31968" data-tid="A373050">
+                            <div class="dx-field-label" style="font-weight: bold;" id="A31969" data-tid="A373051">
+                                Güncellenecek Stok
+                                Kartıları</div>
+                        </div>
+                    </div>
+                    <div class="row" id="A31970" data-tid="A373052">
+                        <div class="col-sm-10" id="A31971" data-tid="A373053">
+                            <dx-data-grid id="gridContainer6" [dataSource]="UpdateStockCardList" [columns]="GridColumns"
+                                style="height: 300px;" [(selectedRowKeys)]="selectedUpdateStockCardTempItems"
+                                data-tid="A373054">
+                                <dxo-paging [pageSize]="10" id="A31972" data-tid="A373055"></dxo-paging>
+                                <dxo-selection mode="multiple" id="A31999" data-tid="A373056"></dxo-selection>
+                                <dxo-filter-row [visible]="true" id="A31974" data-tid="A373057"></dxo-filter-row>
+                                <div *dxTemplate="let cellData of 'LabelCellTemplate'" id="A16530" data-tid="A373058">
+                                    <span *ngIf="cellData.data.isActive==1" data-tid="A373059">Aktif</span>
+                                    <span *ngIf="cellData.data.isActive==0" data-tid="A373060">Pasif</span>
+                                    <span *ngIf="cellData.data.isActive==-1" data-tid="A373061">Tümü</span>
+                                </div>
+                            </dx-data-grid>
+                        </div>
+                        <div class="col-sm-2" id="A31978" data-tid="A373062">
+                            <dx-button id="progress-button" [text]="UpdateStockCardButtonText"
+                                (onClick)="UpdateStockCardButtonClick()" [(disabled)]="UpdateStockCardButtonVisible"
+                                [width]="200" data-tid="A373063">
+                            </dx-button>
+                        </div>
+                    </div>
+                    <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#gridContainer6' }"
+                        [(visible)]="loadingVisibleStockCard" [showIndicator]="true" [showPane]="true" [shading]="true"
+                        [closeOnOutsideClick]="false" id="A31979" data-tid="A373064">
+                    </dx-load-panel>
+                </div>
+                <div *ngIf="ilkGirisFiyatGuncelle" id="A31980" data-tid="A373065">
+                    <div class="dx-fieldset-header" style="text-align:center;font-weight: bold;" id="A31981"
+                        data-tid="A373066">İLK GİRİŞ
+                        FİYATLARINI
+                        GÜNCELLE</div>
+                    <div class="row" id="A31982" data-tid="A373067">
+                        <label class="control-label col-xs-2" id="A31983" data-tid="A373068">Ana Depo Seçiniz : </label>
+                        <div class="col-xs-4" id="A31984" data-tid="A373069">
+                            <dx-select-box [items]="selectedStore" displayExpr="Name" valueExpr="ObjectID"
+                                [searchEnabled]="true" (onItemClick)="SelectBoxStoreChange($event)" id="A31985"
+                                data-tid="A373070">
+                            </dx-select-box>
+                        </div>
+                        <div class="col-sm-2" id="A31986" data-tid="A373071">
+                            <dx-button type="btn btn-default" (onClick)="btnGetFirstStockIn()"
+                                text="İlk Girişleri Getir" i18n-text="@@M16443" id="A31987" data-tid="A373072">
+                            </dx-button>
+                        </div>
+                        <div class="col-sm-2" id="A31988" data-tid="A373073">
+                            <dx-button type="btn btn-default" (onClick)="btnUpdateUnitPriceForSelectedItems()"
+                                text="Seçili İşlemler için Fiyatları Güncelle" i18n-text="@@M21555" id="A31989"
+                                data-tid="A373074">
+                            </dx-button>
+                        </div>
+                        <div class="col-sm-2" id="A31988" data-tid="A373075">
+                            <dx-button type="btn btn-default" (onClick)="btnIlacAra()" text="İlaç Ara"
+                                i18n-text="@@M21555" id="A31989" data-tid="A373076"></dx-button>
+                        </div>
+                    </div>
+                    <br id="A31990" data-tid="A373077" />
+                    <br id="A31991" data-tid="A373078" />
+                    <div class="row" id="A31992" data-tid="A373079">
+                        <div class="col-sm-2" id="A31993" data-tid="A373080">
+                            <dx-data-grid [columns]="StockActionListColumns" [dataSource]="StockFirstInGridItemList"
+                                style="height: 650px;" [selection]="{mode: 'single',allowSelectAll: false}" id="A31994"
+                                data-tid="A373081">
+                                <div *dxTemplate="let row of 'buttonCellTemplate'" id="A31995" data-tid="A373082">
+                                    <dx-button height="16px" style="margin-top: -7px" (onClick)="selectAction(row)"
+                                        icon="fa fa-pencil-square-o" id="A31996" data-tid="A373083"></dx-button>
+                                </div>
+                            </dx-data-grid>
+                        </div>
+                        <div class="col-sm-10" id="A31997" data-tid="A373084">
+                            <dx-data-grid [columns]="StockActionDetailListColumns"
+                                [dataSource]="StockFirstInDetailGridItemList" [hoverStateEnabled]="true"
+                                [(selectedRowKeys)]="selectedDetailItems" id="A31998" style="height: 650px;"
+                                data-tid="A373085">
+                                <dxo-selection mode="multiple" id="A31999" data-tid="A373086"></dxo-selection>
+                                <dxo-editing mode="cell" [allowUpdating]="true" id="A32000" data-tid="A373087">
+                                </dxo-editing>
+                            </dx-data-grid>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="UTSbildirimigerektirenmalzemeler" data-tid="A373088">
+                    <div class="dx-fieldset-header" style="text-align:center;font-weight: bold;" data-tid="A373089">ÜTS
+                        BİLDİRİMİ
+                        GEREKTİREN
+                        MALZEMELERİ
+                        GÜNCELLE</div>
+                    <div class="row" data-tid="A373090">
+                        <div class="col-sm-2 m--margin-bottom-10" data-tid="A373091">
+                            <label class="control-label" data-tid="A373092">Başlangıç Tarihi</label>
+                            <dx-date-box width="100%" type="date" (value)="startDateUTS"
+                                (onValueChanged)="onStartDatePickerChanged($event)" data-tid="A373093">
+                            </dx-date-box>
+                        </div>
+                        <div class="col-sm-2" data-tid="A373094">
+                            <label class="control-label" data-tid="A373095">Bitiş Tarihi</label>
+                            <dx-date-box width="100%" type="date" (value)="endDateUTS"
+                                (onValueChanged)="onEndDatePickerChanged($event)" data-tid="A373096">
+                            </dx-date-box>
+                        </div>
+                        <div class="col-sm-2" data-tid="A373097">
+                            <label class="control-label" data-tid="A373098"> .</label>
+                            <dx-button type="btn btn-default" text="Listele" (onClick)="getUTSMaterials()"
+                                id="progress-button" style="min-width:128px;" data-tid="A373099"></dx-button>
+                        </div>
+                        <div class="col-sm-3" data-tid="A373100">
+                            <dx-check-box [(value)]="UTSSinif1" [width]="80" text="SINIF 1" data-tid="A373101">
+                            </dx-check-box>
+                            <dx-check-box [(value)]="UTSSinif2" [width]="80" text="SINIF 2" data-tid="A373102">
+                            </dx-check-box>
+                            <dx-check-box [(value)]="UTSSinif3" [width]="80" text="SINIF 3" data-tid="A373103">
+                            </dx-check-box>
+                        </div>
+                        <div class="col-sm-2" data-tid="A373104">
+                            <label class="control-label" data-tid="A373105"> .</label>
+                            <dx-button type="btn btn-default" text="Listeyi Güncelle"
+                                (onClick)="updateAllUTSMaterials()" id="progress-button" style="min-width:128px;"
+                                data-tid="A373106">
+                            </dx-button>
+                        </div>
+
+                    </div>
+                    <div class="row" style="margin: 0px 0px 10px;" data-tid="A373107">
+                        <dx-data-grid [dataSource]="UTSMaterials" style="height: 650px;" data-tid="A373108">
+                            <dxo-paging [pageSize]="25" data-tid="A373109"></dxo-paging>
+                            <dxo-filter-row [visible]="true" id="A5673" data-tid="A373110"> </dxo-filter-row>
+                            <dxi-column dataField="Barcode" caption="Barkod Numarası" [width]="250" data-tid="A373111">
+                            </dxi-column>
+                            <dxi-column dataField="Materialname" caption="Malzeme Adı" data-tid="A373112"></dxi-column>
+                            <dxi-column dataField="Producername" caption="Firma/Kurum Adı" data-tid="A373113">
+                            </dxi-column>
+                        </dx-data-grid>
+                    </div>
+                </div>
+                <div *ngIf="UXXXXXXullanimBildirimi" data-tid="A373114">
+                    <div class="dx-fieldset-header" style="text-align:center;font-weight: bold;" data-tid="A373115">ÜTS
+                        KULLANIM BİLDİRİMİ
+                    </div>
+                    <div class="row" data-tid="A373116">
+                        <div class="col-sm-2 m--margin-bottom-10" data-tid="A373117">
+                            <label class="control-label" data-tid="A373118">Başlangıç Tarihi</label>
+                            <dx-date-box [(value)]="UTSUsedStartDate" type="date" id="A31952" data-tid="A373119">
+                            </dx-date-box>
+                        </div>
+                        <div class="col-sm-2" data-tid="A373120">
+                            <label class="control-label" data-tid="A373121">Bitiş Tarihi</label>
+                            <dx-date-box [(value)]="UTSUsedEndDate" type="date" id="A31952" data-tid="A373122">
+                            </dx-date-box>
+                        </div>
+                        <div class="col-sm-8" data-tid="A373123">
+                            <label class="control-label" data-tid="A373124"> .</label>
+                            <dx-button type="btn btn-default" text="Listele" icon="fa fa-search"
+                                (onClick)="getUTSUnUsedList()" id="progress-button" style="min-width:128px;"
+                                data-tid="A373125">
+                            </dx-button>
+                        </div>
+                        <div class="col-sm-2" data-tid="A373126">
+                            <label class="control-label" data-tid="A373127"> .</label>
+                            <dx-button type="btn btn-default" text="Kullanım Bildirimi Yap" icon="check"
+                                (onClick)="updateAllUTSUse()" id="progress-button" style="min-width:128px;"
+                                data-tid="A373128"></dx-button>
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 0px 0px 10px;" data-tid="A373129">
+                        <dx-data-grid [columns]="UTSUnUsedListColumns" [dataSource]="UTSUnUsedList"
+                            (onSelectionChanged)="selectionChangeUTSUnUsedList($event)" [hoverStateEnabled]="true"
+                            [(selectedRowKeys)]="selectedUTSItems" id="A31998" style="height: 650px;"
+                            data-tid="A373130">
+                            <dxo-selection mode="multiple" id="A31999" data-tid="A373131"></dxo-selection>
+                            <dxo-filter-row [visible]="true" data-tid="A373132"></dxo-filter-row>
+                            <dxo-editing mode="cell" [allowUpdating]="true" id="A32000" data-tid="A373133">
+                            </dxo-editing>
+                            <div *dxTemplate="let row of 'buttonCellTemplate'" id="A31995" data-tid="A373134">
+                                <dx-button height="16px" style="margin-top: -7px" (onClick)="getSelectActionOpen(row)"
+                                    icon="fa fa-pencil-square-o" id="A31996" data-tid="A373135"></dx-button>
+                            </div>
+                        </dx-data-grid>
+                    </div>
+                </div>
+                <div *ngIf="ENabizHataliIslemDuzelt" data-tid="A373136">
+                    <div class="dx-fieldset-header" style="text-align:center;font-weight: bold;" data-tid="A373137">
+                        E-NABIZ HATALI
+                        İŞLEMLERİ
+                        DÜZELT
+                    </div>
+                    <div class="row" data-tid="A373138">
+                        <div class="col-sm-2 m--margin-bottom-10" data-tid="A373139">
+                            <label class="control-label" data-tid="A373140">Başlangıç Tarihi</label>
+                            <dx-date-box [(value)]="ENabizStartDate" type="date" id="A31952" data-tid="A373141">
+                            </dx-date-box>
+                        </div>
+                        <div class="col-sm-2" data-tid="A373142">
+                            <label class="control-label" data-tid="A373143">Bitiş Tarihi</label>
+                            <dx-date-box [(value)]="ENabizEndDate" type="date" id="A31952" data-tid="A373144">
+                            </dx-date-box>
+                        </div>
+                        <div class="col-sm-8" data-tid="A373145">
+                            <br data-tid="A373146" />
+                            <dx-button type="btn btn-default" text="ENabız Gitmeyen İşlmeleri Listele"
+                                icon="fa fa-search" (onClick)="getENabizErrorList()" id="progress-button"
+                                style="min-width:128px;" data-tid="A373147"></dx-button>
+                        </div>
+                        <div class="col-sm-2" data-tid="A373148">
+                            <br data-tid="A373149" />
+                            <dx-button *ngIf="ENabizGondermeListButton" type="btn btn-default"
+                                text="E-NABIZ Listesine Gönder" (onClick)="addToEnabizListEMaterials()"
+                                id="progress-button" style="min-width:128px;" data-tid="A373150"></dx-button>
+                        </div>
+
+                    </div>
+                    <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#gridContainerEnabiz' }"
+                        [(visible)]="loadingVisibleEnabiz" [showIndicator]="true" [showPane]="true" [shading]="true"
+                        [closeOnOutsideClick]="false" id="A31932" data-tid="A373151">
+                    </dx-load-panel>
+
+                    <div class="row" style="margin: 0px 0px 10px;" data-tid="A373152">
+                        <dx-data-grid id="gridContainerEnabiz" [columns]="ENabizMaterialGridListColumns"
+                            [dataSource]="ENabizMaterialGridList" [hoverStateEnabled]="true" id="A31998"
+                            style="height: 650px;" data-tid="A373153">
+                            <dxo-filter-row [visible]="true" data-tid="A373154"></dxo-filter-row>
+                            <dxo-editing mode="cell" [allowUpdating]="true" id="A32000" data-tid="A373155">
+                            </dxo-editing>
+                        </dx-data-grid>
+                    </div>
+
+                </div>
+                <div *ngIf="ConsumableMaterialPriceUpdate" data-tid="A373156">
+                    <div class="dx-fieldset-header" style="text-align:center;font-weight: bold;" data-tid="A373157">SARF
+                        MALZEMELER FİYAT
+                        GÜNCELLEME
+                    </div>
+                    <div class="row" data-tid="A373158">
+                        <div class="col-sm-2" data-tid="A373159">
+                            <br data-tid="A373160" />
+                            <dx-button type="btn btn-default" text="Güncel Fiyatları Getir"
+                                (onClick)="getConsumableMaterialPriceUpdate()" id="progress-button" data-tid="A373161">
+                            </dx-button>
+                        </div>
+                        <div class="col-sm-2" style="float: right;" data-tid="A373162">
+                            <br data-tid="A373163" />
+                            <dx-button type="btn btn-default" text="Fiyatları Güncelle"
+                                (onClick)="UpdateConsumableMaterialPrice()" id="progress-button" data-tid="A373164">
+                            </dx-button>
+                        </div>
+                        <div class="col-sm-2" style="float: right;" data-tid="A373165">
+                            <label class="control-label" data-tid="A373166">Geçerlilik Başlangıç Tarihi</label>
+                            <dx-date-box [(value)]="StartedDateOfConsumableMaterialPrice" type="date" id="A31952"
+                                data-tid="A373167">
+                            </dx-date-box>
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 0px 0px 10px;" data-tid="A373168">
+                        <dx-data-grid [columns]="UpdateMaterialPriceColumns"
+                            [dataSource]="ConsumableMaterialPriceUpdateDTO" [hoverStateEnabled]="true"
+                            [(selectedRowKeys)]="selectedConsumableMaterialPriceItems" style="height: 650px;"
+                            data-tid="A373169">
+                            <dxo-selection mode="multiple" data-tid="A373170"></dxo-selection>
+                            <dxo-paging [pageSize]="25" data-tid="A373171"></dxo-paging>
+                            <dxo-filter-row [visible]="true" data-tid="A373172"></dxo-filter-row>
+                            <dxo-editing mode="cell" [allowUpdating]="true" data-tid="A373173">
+                            </dxo-editing>
+                        </dx-data-grid>
+                    </div>
+                </div>
+                <div *ngIf="DrugDefinitionPriceUpdate" data-tid="A373174">
+                    <div class="dx-fieldset-header" style="text-align:center;font-weight: bold;" data-tid="A373175">
+                        İLAÇLAR FİYAT
+                        GÜNCELLEME
+                    </div>
+                    <div class="row" data-tid="A373176">
+                        <div class="col-sm-2" data-tid="A373177">
+                            <br data-tid="A373178" />
+                            <dx-button type="btn btn-default" text="Güncel Fiyatları Getir"
+                                (onClick)="getDrugDefinitionPriceUpdate()" id="progress-button" data-tid="A373179">
+                            </dx-button>
+                        </div>
+                        <div class="col-sm-2" style="float: right;" data-tid="A373180">
+                            <br data-tid="A373181" />
+                            <dx-button type="btn btn-default" text="Fiyatları Güncelle"
+                                (onClick)="UpdateDrugDefinitionPrice()" id="progress-button" data-tid="A373182">
+                            </dx-button>
+                        </div>
+                        <div class="col-sm-2" style="float: right;" data-tid="A373183">
+                            <label class="control-label" data-tid="A373184">Geçerlilik Başlangıç Tarihi</label>
+                            <dx-date-box [(value)]="StartedDateOfDrugDefinitionPrice" type="date" data-tid="A373185">
+                            </dx-date-box>
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 0px 0px 10px;" data-tid="A373186">
+                        <dx-data-grid [columns]="UpdateMaterialPriceColumns" [dataSource]="DrugDefinitionPriceUpdateDTO"
+                            [hoverStateEnabled]="true" [(selectedRowKeys)]="selectedDrugDefinitionPriceItems"
+                            style="height: 650px;" data-tid="A373187">
+                            <dxo-selection mode="multiple" data-tid="A373188"></dxo-selection>
+                            <dxo-paging [pageSize]="25" data-tid="A373189"></dxo-paging>
+                            <dxo-filter-row [visible]="true" data-tid="A373190"></dxo-filter-row>
+                            <dxo-editing mode="cell" [allowUpdating]="true" data-tid="A373191">
+                            </dxo-editing>
+                        </dx-data-grid>
+                    </div>
+                </div>
+                <div *ngIf="UpdateStockActionInDetail" id="A31980" data-tid="A373192">
+                    <div class="dx-fieldset-header" style="text-align:center;font-weight: bold;" data-tid="A373193">
+                        GİRİŞ DETAYLARINI
+                        GÜNCELLEME</div>
+                    <div class="row" id="A31982" data-tid="A373194">
+                        <div class="col-sm-3" data-tid="A373195">
+                            <dx-text-box [(value)]="stockActionID" placeholder="İşlem No Giriniz" data-tid="A373196">
+                            </dx-text-box>
+                        </div>
+                        <div class="col-sm-3" id="A31986" data-tid="A373197">
+                            <dx-button type="btn btn-default" (onClick)="GetStockActionInDetails()"
+                                text="İşlem Detaylarını Getir" data-tid="A373198"></dx-button>
+                        </div>
+                        <div class="col-sm-3" id="A31988" data-tid="A373199">
+                            <dx-button type="btn btn-default" (onClick)="UpdateStockActionInDetails()"
+                                text="Değişiklikleri Güncelle" data-tid="A373200">
+                            </dx-button>
+                        </div>
+
+
+                    </div>
+                    <br data-tid="A373201" />
+                    <div class="row" id="A31992" data-tid="A373202">
+                        <div class="col-sm-12" id="A31997" data-tid="A373203">
+                            <dx-data-grid #stockActionInDetailGrid id="stockActionInDetailGrid"
+                                [columns]="StockActionInDetailGridColumns" [dataSource]="stockActionInDetailDataSource"
+                                [hoverStateEnabled]="true" id="A31998" style="height: 500px;"
+                                (onRowUpdated)="onStockActionInDetailGridRowUpdated($event)"
+                                (onRowUpdating)="onStockActionInDetailGridRowUpdating($event)" data-tid="A373204">
+                                <dxo-selection mode="multiple" [showCheckBoxesMode]="none" id="A31999"
+                                    data-tid="A373205"></dxo-selection>
+                                <dxo-editing mode="cell" [allowUpdating]="true" id="A32000" data-tid="A373206">
+                                </dxo-editing>
+                                <div *dxTemplate="let info of 'titleHeaderTemplateMini'" data-tid="A373207">
+                                    <i style="color: rgb(241, 93, 93)" data-tid="A373208">{{info.column.caption}}</i>
+                                </div>
+                            </dx-data-grid>
+                        </div>
+                        <br data-tid="A373209" />
+                        <div class="row" style="float: right;margin-right: 12px;" data-tid="A373210">
+                            <div class="row" data-tid="A373211">
+                                <label class="control-label col-sm-7" data-tid="A373212">
+                                    KDV'siz Birim Fiyatlar Toplamı
+                                </label>
+                                <div class="col-sm-5" id="A8819" data-tid="A373213">
+                                    <dx-text-box [(value)]="txtNotKDV" [readOnly]="true" data-tid="A373214">
+                                    </dx-text-box>
+                                </div>
+                            </div>
+                            <div class="row" data-tid="A373215">
+                                <label class="control-label col-sm-7" data-tid="A373216">
+                                    KDV'li Birim Fiyatlar Toplamı
+                                </label>
+                                <div class="col-sm-5" id="A8819" data-tid="A373217">
+                                    <dx-text-box [(value)]="txtWithKDV" [readOnly]="true" data-tid="A373218">
+                                    </dx-text-box>
+                                </div>
+                            </div>
+                            <div class="row" data-tid="A373219">
+                                <label class="control-label col-sm-7" data-tid="A373220">
+                                    Toplam İndirim Tutarı
+                                </label>
+                                <div class="col-sm-5" id="A8819" data-tid="A373221">
+                                    <dx-text-box [(value)]="txtDiscount" [readOnly]="true" data-tid="A373222">
+                                    </dx-text-box>
+                                </div>
+                            </div>
+                            <div class="row" data-tid="A373223">
+                                <label class="control-label col-sm-7" data-tid="A373224">
+                                    Fatura Tutarı
+                                </label>
+                                <div class="col-sm-5" id="A8819" data-tid="A373225">
+                                    <dx-text-box [(value)]="txtTotalPrice" [readOnly]="true" data-tid="A373226">
+                                    </dx-text-box>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="Covid19ActionUpdate">
+                    <div class="dx-fieldset-header" style="text-align:center;font-weight: bold;">COVİD19 GİRİŞ
+                        GÜNCELLEME</div>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <dx-text-box [(value)]="covid19StockActionID" placeholder="İşlem No Giriniz"></dx-text-box>
+                        </div>
+                        <div class="col-sm-3">
+                            <dx-text-box [(value)]="covid19TifID" placeholder="Tif Numarası Giriniz"></dx-text-box>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <dx-button type="success" (onClick)="GetCovid19StockAction()"
+                                text="İşlem Detaylarını Getir"></dx-button>
+                        </div>
+
+                        <div *ngIf="CovidStockActionGet" class="col-sm-3" style="padding-left: 13%;">
+                            <dx-button type="success" (onClick)="UpdateCovid19StockAction()"
+                                text="Giriş Fişini Güncelle">
+                            </dx-button>
+                        </div>
+
+                    </div>
+                    <br />
+
+                    <div *ngIf="CovidStockActionGet">
+                        <div class="row">
+                            <div class="col-sm-1">
+                                İşlem No :
+                                <dx-text-box [(value)]="covid19StockAction.StockActionID" [disabled]="true">
+                                </dx-text-box>
+                            </div>
+                            <div class="col-sm-1">
+                                Tif No :
+                                <dx-text-box [(value)]="covid19StockAction.DocumentRecordLogNumber" [disabled]="true">
+                                </dx-text-box>
+                            </div>
+                            <div class="col-sm-2">
+                                Fiş Tarihi :
+                                <dx-date-box [(value)]="covid19StockAction.DocumentDateTime" type="date"></dx-date-box>
+                            </div>
+                            <div *ngIf="covid19StockAction.ActionType==2" class="col-sm-2">
+                                İhale No :
+                                <dx-text-box [(value)]="covid19StockAction.RegistrationAuctionNo">
+                                </dx-text-box>
+                            </div>
+                            <div *ngIf="covid19StockAction.ActionType==2" class="col-sm-2">
+                                İhale Tarihi :
+                                <dx-date-box [(value)]="covid19StockAction.AuctionDate" type="date"></dx-date-box>
+                            </div>
+                            <div *ngIf="covid19StockAction.ActionType==2" class="col-sm-2">
+                                Muayene No :
+                                <dx-text-box [(value)]="covid19StockAction.ExaminationReportNo"> </dx-text-box>
+                            </div>
+                            <div *ngIf="covid19StockAction.ActionType==2" class="col-sm-2">
+                                Muayene Tarihi :
+                                <dx-date-box [(value)]="covid19StockAction.ExaminationReportDate" type="date">
+                                </dx-date-box>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-2">
+                                Dayanak Belge No :
+                                <dx-text-box [(value)]="covid19StockAction.Waybill"> </dx-text-box>
+                            </div>
+                            <div class="col-sm-2">
+                                Dayanak Belge Tarihi :
+                                <dx-date-box [(value)]="covid19StockAction.WaybillDate" type="date"></dx-date-box>
+                            </div>
+
+                            <div class="col-sm-2">
+                                Teslim Alan :
+                                <dx-text-box [(value)]="covid19StockAction.MKYS_TeslimAlan"> </dx-text-box>
+                            </div>
+                            <div class="col-sm-2">
+                                Teslim Eden :
+                                <dx-text-box [(value)]="covid19StockAction.MKYS_TeslimEden"> </dx-text-box>
+                            </div>
+
+                            <div *ngIf="covid19StockAction.ActionType==1" class="col-sm-2">
+                                Geldiği Birim/Kurum
+                                <hvl-list-box #Validation (SelectedObjectChange)="onAccountancyChanged($event)"
+                                    [AutoCompleteDialogHeight]="Accountancy?.AutoCompleteDialogHeight"
+                                    [AutoCompleteDialogWidth]="Accountancy?.AutoCompleteDialogWidth"
+                                    [AutoCompleteMode]="Accountancy?.AutoCompleteMode"
+                                    [BackColor]="Accountancy?.BackColor" [DefinitionName]="Accountancy?.ListDefName"
+                                    [DisplayExpressionsCache]="chattelDocumentInputWithAccountancyCompletedFormViewModel?.ListDefDisplayExpressions"
+                                    [Enabled]="Accountancy?.Enabled" [Font]="Accountancy?.Font"
+                                    [ForeColor]="Accountancy?.ForeColor"
+                                    [ListFilterExpression]="Accountancy?.ListFilterExpression"
+                                    [MinSearchLength]="Accountancy?.MinSearchLength"
+                                    [PopupDialogFieldConfig]="Accountancy?.PopupDialogFieldConfig"
+                                    [PopupDialogGridColumns]="Accountancy?.PopupDialogGridColumns"
+                                    [PopupDialogHeight]="Accountancy?.PopupDialogHeight"
+                                    [PopupDialogTitle]="Accountancy?.PopupDialogTitle"
+                                    [PopupDialogWidth]="Accountancy?.PopupDialogWidth"
+                                    [ReadOnly]="Accountancy?.ReadOnly" [SearchMode]="Accountancy?.SearchMode"
+                                    [SearchTimeout]="Accountancy?.SearchTimeout"
+                                    [SelectedObject]="covid19StockAction.Accountancy" [TabIndex]="Accountancy?.TabIndex"
+                                    [Visible]="Accountancy?.Visible" [width]="Accountancy?.Width" id="A8239"
+                                    data-tid="A335847"></hvl-list-box>
+
+                            </div>
+                            <div *ngIf="covid19StockAction.ActionType==2" class="col-sm-2">
+                                Firma :
+                                <hvl-list-box #Validation (SelectedObjectChange)="onSupplierChanged($event)"
+                                    [AutoCompleteDialogHeight]="Supplier?.AutoCompleteDialogHeight"
+                                    [AutoCompleteDialogWidth]="Supplier?.AutoCompleteDialogWidth"
+                                    [AutoCompleteMode]="Supplier?.AutoCompleteMode" [BackColor]="Supplier?.BackColor"
+                                    [DefinitionName]="Supplier?.ListDefName" [Enabled]="Supplier?.Enabled"
+                                    [Font]="Supplier?.Font" [ForeColor]="Supplier?.ForeColor"
+                                    [ListFilterExpression]="Supplier?.ListFilterExpression"
+                                    [MinSearchLength]="Supplier?.MinSearchLength"
+                                    [PopupDialogFieldConfig]="Supplier?.PopupDialogFieldConfig"
+                                    [PopupDialogGridColumns]="Supplier?.PopupDialogGridColumns"
+                                    [PopupDialogHeight]="Supplier?.PopupDialogHeight"
+                                    [PopupDialogTitle]="Supplier?.PopupDialogTitle"
+                                    [PopupDialogWidth]="Supplier?.PopupDialogWidth" [ReadOnly]="Supplier?.ReadOnly"
+                                    [SearchMode]="Supplier?.SearchMode" [SearchTimeout]="Supplier?.SearchTimeout"
+                                    [TabIndex]="Supplier?.TabIndex" [Visible]="Supplier?.Visible"
+                                    [SelectedObject]="covid19StockAction.Supplier" [width]="Supplier?.Width">
+                                </hvl-list-box>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-2">
+                                Ayniyat Numarası :
+                                <dx-text-box [(value)]="covid19StockAction.ReceiptNumber" [disabled]="true">
+                                </dx-text-box>
+                            </div>
+                            <div class="col-sm-10">
+                                Açılama :
+                                <dx-text-box [(value)]="covid19StockAction.Description"> </dx-text-box>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <dx-data-grid [dataSource]="covid19StockAction.DetailsCovid19"
+                                    (onRowUpdated)="DetailsCovid19PriceUpdate($event)"
+                                    [columns]="DetailsCovid19GridColumns" height="500px">
+                                    <dxo-editing mode="cell" [allowUpdating]="true">
+                                    </dxo-editing>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-3">
+                                KDV'siz Birim Fiyatlar Toplamı
+                                <dx-text-box [(value)]="totalNotKDV" [readOnly]="true" data-tid="A373214">
+                                </dx-text-box>
+                            </div>
+                            <div class="col-sm-3">
+                                KDV'li Birim Fiyatlar Toplamı
+                                <dx-text-box [(value)]="totalKDV" [readOnly]="true" data-tid="A373218">
+                                </dx-text-box>
+                            </div>
+                            <div class="col-sm-3">
+                                Toplam İndirim Tutarı
+                                <dx-text-box [(value)]="totalDiscount" [readOnly]="true" data-tid="A373222">
+                                </dx-text-box>
+                            </div>
+                            <div class="col-sm-3">
+                                Fatura Tutarı
+                                <dx-text-box [(value)]="totalPrice" [readOnly]="true" data-tid="A373226">
+                                </dx-text-box>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div data-tid="A373227">
+    <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true"
+        [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage"
+        data-tid="A373228">
+    </dx-load-panel>
+</div>

@@ -1,0 +1,101 @@
+﻿<div class="row" [ngStyle]="accordionContainerHeight" data-tid="A366283">
+    <div class="col-md-12" style="height:100%" data-tid="A366284">
+        <dx-accordion #searchAndListAccordion class="margin-bottom-10" collapsible="true" style="height:100%" id="searchAndListAccordion" (onItemTitleClick)="accordionClick($event)" data-tid="A366285">
+            <dxi-item title="Hemodiyaliz Sorgulama Paneli" style="height:100%" data-tid="A366286">
+                <div class="row" style="height:100px" data-tid="A366287">
+                    <div class="col-md-3" data-tid="A366288">
+                        <div class="row" data-tid="A366289">
+                            <div class="col-md-12" data-tid="A366290">
+                                <label class="control-label" data-tid="A366291">Başlangıç Tarihi</label>
+                                <dx-date-box width="100%" type="date" displayFormat="dd/MM/yyyy" [(value)]="hemodialysisWorkListViewModel._SearchCriteria.WorkListStartDate" id="A12694" data-tid="A366292"></dx-date-box>
+                            </div>
+                            <div class="col-md-12" data-tid="A366293">
+                                <label class="control-label" data-tid="A366294">Hasta</label>
+                                <PatientSearchForm Width="100%" (SelectedPatientChanged)="patientChanged($event)" id="A28526" data-tid="A366295"></PatientSearchForm>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3" data-tid="A366296">
+                        <div class="row" data-tid="A366297">
+                            <div class="col-md-12" data-tid="A366298">
+                                <label class="control-label" data-tid="A366299">Bitiş Tarihi</label>
+                                <dx-date-box width="100%" type="date" displayFormat="dd/MM/yyyy" [(value)]="hemodialysisWorkListViewModel._SearchCriteria.WorkListEndDate" data-tid="A366300"></dx-date-box>
+                            </div>
+                            <div class="col-md-12" data-tid="A366301">
+                                <label class="control-label" data-tid="A366302">Hasta Durumu</label>
+                                <dx-select-box [items]="PatientTypeList" displayExpr="TypeName" valueExpr="TypeID" [searchEnabled]="true" [value]="hemodialysisWorkListViewModel._SearchCriteria.Patienttype" (onValueChanged)="onPatientTypeChanged($event)" id="A12716" data-tid="A366303"></dx-select-box>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3" data-tid="A366304">
+                        <div class="row" data-tid="A366305">
+                            <div class="col-md-12" data-tid="A366306">
+                                <label class="control-label" data-tid="A366307">Tedavi Ünitesi</label>
+                                <dx-tag-box [items]="hemodialysisWorkListViewModel.TreatmentDiagnosisUnitList" [(value)]="hemodialysisWorkListViewModel._SearchCriteria.TreatmentDiagnosisUnit" placeholder="Tedavi Ünitesi" [searchEnabled]="true" [showSelectionControls]="true" displayExpr="Name" [multiline]="false" i18n-placeholder="@@M14486" id="A12707" data-tid="A366308">
+                                </dx-tag-box>
+                            </div>
+                            <div class="col-md-12" data-tid="A366309">
+                                <label class="control-label" data-tid="A366310">Cihaz</label>
+                                <dx-tag-box [items]="hemodialysisWorkListViewModel.TreatmentEquipmentList" [(value)]="hemodialysisWorkListViewModel._SearchCriteria.TreatmentEquipment" placeholder="Cihaz" [searchEnabled]="true" [showSelectionControls]="true" displayExpr="Name" [multiline]="false" i18n-placeholder="@@M14486" id="A12707" data-tid="A366311">
+                                </dx-tag-box>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3" data-tid="A366312">
+                        <div class="row" data-tid="A366313">
+                            <div class="col-md-12" data-tid="A366314">
+                                <label class="control-label" data-tid="A366315">İşlem Adımı</label>
+                                <div class="options" data-tid="A366316">
+                                    <dx-check-box text="Kabul Yapılmış" [(value)]="hemodialysisWorkListViewModel._SearchCriteria.Request" data-tid="A366317"></dx-check-box>
+                                </div>
+                                <div class="options" data-tid="A366318">
+                                    <dx-check-box text="Seans Planlama" [(value)]="hemodialysisWorkListViewModel._SearchCriteria.Plan" data-tid="A366319"></dx-check-box>
+                                </div>
+                                <div class="options" data-tid="A366320">
+                                    <dx-check-box text="Seans Devam Eden" [(value)]="hemodialysisWorkListViewModel._SearchCriteria.Procedure" data-tid="A366321"></dx-check-box>
+                                </div>
+                                <div class="options" data-tid="A366322">
+                                    <dx-check-box text="Seans İptal" [(value)]="hemodialysisWorkListViewModel._SearchCriteria.Cancelled" data-tid="A366323"></dx-check-box>
+                                </div>
+                                <div class="options" data-tid="A366324">
+                                    <dx-check-box text="Seans Sonlandırılmış" [(value)]="hemodialysisWorkListViewModel._SearchCriteria.Completed" data-tid="A366325"></dx-check-box>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="A28537" data-tid="A366326">
+                    <div class="col-md-6" data-tid="A366327">
+                        <label class="control-label info-label" id="A28535" data-tid="A366328">Listelenen İşlem Sayısı : {{hemodialysisWorkListViewModel.WorkList?.length}}<span *ngIf="hemodialysisWorkListViewModel.maxWorklistItemCount>0" id="A28536" data-tid="A366329"> (Daha fazla kayıt var!)</span> </label>
+                    </div>
+                    <div class="col-md-6" data-tid="A366330">
+                        <dx-button class="pull-right" type="default" icon="fa fa-bars" text="Listele" (onClick)="btnSearchClicked()" i18n-text="@@M27496" style="margin-right:16px" data-tid="A366331"></dx-button>
+                    </div>
+                </div>
+
+                <div class="row" id="A12719" style="height:calc(100% - 175px)" data-tid="A366332">
+                    <div class="col-sm-12" style="height:100%" data-tid="A366333">
+
+                        <dx-data-grid #WorkListGrid height="100%" width="100%" [columns]="WorkListColumns" columnAutoWidth="true" allowColumnReordering="true" allowColumnResizing="true" [dataSource]="hemodialysisWorkListViewModel.WorkList" (onRowClick)="select($event)" (onRowPrepared)="onRowPrepared($event)" (onToolbarPreparing)="onToolbarPreparing($event)" (onContextMenuPreparing)="onContextMenuPreparing($event)" [filterRow]="{visible: true}" [ngStyle]="{'padding-top': '10px', 'min-width':'100%' }" [(selectedRowKeys)]="selectedRowKeysResultList" [selection]="{mode: 'single',allowSelectAll: false, showCheckBoxesMode: 'none'}" [editing]="{mode: 'row' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" data-tid="A366334">
+                            <dxo-scrolling mode="virtual" id="A28478" data-tid="A366335"></dxo-scrolling>
+                            <dxo-export [enabled]="true" fileName="Ayaktan Hasta İş Listesi" [allowExportSelectedData]="false" id="A28479" data-tid="A366336"></dxo-export>
+                            <dxo-column-chooser [enabled]="true" id="A28480" data-tid="A366337"></dxo-column-chooser>
+                        </dx-data-grid>
+
+                    </div>
+                </div>
+            </dxi-item>
+        </dx-accordion>
+    </div>
+    <div class="row" id="A28555" data-tid="A366338">
+        <div class="col-md-12 col-sm-12 col-xs-12" style="height:98%" id="A28556" data-tid="A366339">
+            <comp-compose #dynamicComponent [Info]="systemApiService?.componentInfo" [SaveAndCloseCommandVisible]="true" [CloseWithStateTransition]="true" (ComponentCreated)="dynamicComponentCreated($event)" (DynamicComponentActionExecuted)="dynamicComponentActionExecuted($event)" (DynamicComponentViewModelLoaded)="dynamicComponentViewModelLoaded($event)" (DynamicComponentClosed)="dynamicComponentClosed($event)" id="A28557" data-tid="A366340"></comp-compose>
+        </div>
+    </div>
+
+    <div id="A28558" data-tid="A366341">
+        <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A28559" data-tid="A366342">
+        </dx-load-panel>
+    </div>
+
+</div>

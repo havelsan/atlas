@@ -1,0 +1,123 @@
+﻿<div class="row" style="margin-bottom: 10px;" [ngStyle]="accordionContainerHeight" id="A28486" data-tid="A366215">
+    <div class="col-md-12" style="height:100%" data-tid="A366216">
+        <dx-accordion #searchAndListAccordion class="margin-bottom-10" collapsible="true" style="height:100%" id="searchAndListAccordion" (onItemTitleClick)="accordionClick($event)" data-tid="A366217">
+            <dxi-item title="EHU Onay Sorgulama Paneli" i18n-title="@@M22127" id="A28488" style="height:100%" data-tid="A366218">
+                <div class="row" id="A28489" style="height:120px" data-tid="A366219">
+                    <div class="col-sm-4" id="A28490" data-tid="A366220">
+                        <div class="row" style="margin-bottom: 5px;" id="A28491" data-tid="A366221">
+                            <div class="col-sm-6" id="A28492" data-tid="A366222">
+                                <label class="control-label" id="A28493" data-tid="A366223">Başlangıç Tarihi</label>
+                                <dx-date-box width="100%" type="date" displayFormat="dd/MM/yyyy" [(value)]="infectionCommitteeWorkListViewModel._SearchCriteria.WorkListStartDate" id="A28494" data-tid="A366224">
+                                </dx-date-box>
+                            </div>
+                            <div class="col-sm-6" id="A28495" data-tid="A366225">
+                                <label class="control-label" id="A28496" data-tid="A366226">Bitiş Tarihi</label>
+                                <dx-date-box width="100%" type="date" displayFormat="dd/MM/yyyy" [(value)]="infectionCommitteeWorkListViewModel._SearchCriteria.WorkListEndDate" id="A28497" data-tid="A366227">
+                                </dx-date-box>
+                            </div>
+
+                        </div>
+                        <div class="row" id="AY28498" data-tid="A366228">
+                            <div class="col-md-6" id="AY28451" data-tid="A366229">
+                                <label class="control-label" id="A28452" data-tid="A366230">Kabul No</label>
+                                <dx-text-box [showClearButton]="true" [(value)]="infectionCommitteeWorkListViewModel._SearchCriteria.ProtocolNo" (onEnterKey)="onProtocolNoEnterKeyDown($event)" id="AY16483" data-tid="A366231"></dx-text-box>
+
+                            </div>
+                            <div class="col-md-6" id="AY28499" data-tid="A366232">
+                                <label id="A28456" data-tid="A366233">Hasta Arama</label>
+                                <PatientSearchForm Width="100%" (SelectedPatientChanged)="patientChanged($event)" id="A28526" data-tid="A366234"></PatientSearchForm>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8" data-tid="A366235">
+                        <div class="row" style="margin-bottom: 5px;" data-tid="A366236">
+                            <div class="col-md-6" id="A28499" data-tid="A366237">
+                                <label class="control-label" id="A28500" data-tid="A366238">İstem Yapan Birim</label>
+                                <dx-tag-box [(items)]="infectionCommitteeWorkListViewModel.ResourceList" [(value)]="infectionCommitteeWorkListViewModel._SearchCriteria.Resources" placeholder="Birim" [searchEnabled]="true" [showSelectionControls]="true" displayExpr="Name" [multiline]="false" i18n-placeholder="@@M27304" id="A28501" data-tid="A366239">
+                                </dx-tag-box>
+                            </div>
+                            <div class="col-sm-3" data-tid="A366240">
+                                <label class="control-label" style="border:0; box-shadow:none; " data-tid="A366241">İstem Yapan
+                                    Doktor</label>
+                                <dx-tag-box [(items)]="infectionCommitteeWorkListViewModel.DoctorList" [(value)]="SelectedDoctor" placeholder="Birim" [searchEnabled]="true" [showSelectionControls]="true" displayExpr="Name" [multiline]="false" i18n-placeholder="@@M27304" id="A28501" data-tid="A366242">
+                                </dx-tag-box>
+                                <!--<dx-select-box [items]="infectionCommitteeWorkListViewModel.DoctorList"
+                                    [searchEnabled]="true" displayExpr="Name" (valueExpr)="Name"
+                                    [(value)]="SelectedDoctor" showSelectionControls="true" showClearButton="true"
+                                    placeholder="Doktor" [disabled]="showUnused">
+                                </dx-select-box>-->
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 5px;" data-tid="A366243">
+                            <div class="col-sm-4" data-tid="A366244">
+                                <label class="control-label" style="border:0; box-shadow:none;" data-tid="A366245">İşlem Adımı</label>
+                                <dx-select-box [items]="States" [(value)]="infectionCommitteeWorkListViewModel._SearchCriteria.SelectedState" displayExpr="text" valueExpr="value" data-tid="A366246">
+                                </dx-select-box>
+                            </div>
+                            <div class="col-sm-2" data-tid="A366247">
+                                <label class="control-label" style="border:0; box-shadow:none;" data-tid="A366248">Başlangıç Yaşı </label>
+                                <dx-number-box #numberBox [min]="0" [max]="150" style="margin-right:-23px;" [showSpinButtons]="true" [(value)]="infectionCommitteeWorkListViewModel._SearchCriteria.MinAge" data-tid="A366249">
+                                </dx-number-box>
+                            </div>
+                            <div class="col-sm-2" data-tid="A366250">
+                                <label class="control-label" style="border:0; box-shadow:none;" data-tid="A366251">Bitiş Yaşı </label>
+                                <dx-number-box #numberBox [min]="0" [max]="150" style="margin-right:-23px;" [showSpinButtons]="true" [(value)]="infectionCommitteeWorkListViewModel._SearchCriteria.MaxAge" data-tid="A366252">
+                                </dx-number-box>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 5px;" id="AY28471" data-tid="A366253">
+                    <label class="control-label col-sm-6 info-label" id="A28535" data-tid="A366254">Listelenen İşlem Sayısı
+                        : {{infectionCommitteeWorkListViewModel.WorkList?.length}}<span *ngIf="infectionCommitteeWorkListViewModel.maxWorklistItemCount>0" id="A28536" data-tid="A366255"> (Daha fazla kayıt var!)</span> </label>
+                    <div class="col-sm-6" style="float:right;" id="AY28473" data-tid="A366256">
+
+                        <dx-button type="default" icon="fa fa-bars" class="pull-right" text="Listele" (onClick)="btnSearchClicked()" i18n-text="@@M27496" id="A19856" data-tid="A366257"></dx-button>
+                    </div>
+                </div>
+
+
+
+                <div class="row" id="A28537" style="height:calc(100% - 245px)" data-tid="A366258">
+                    <div class="col-sm-12" id="A28538" style="height:100%" data-tid="A366259">
+                        <dx-data-grid #WorkListGrid height="100%" width="100%" id="WorkListGrid" [columns]="WorkListColumns" allowColumnReordering="true" allowColumnResizing="true" [dataSource]="infectionCommitteeWorkListViewModel.WorkList" (onRowClick)="select($event)" (onRowPrepared)="onRowPrepared($event)" (onToolbarPreparing)="onToolbarPreparing($event)" [filterRow]="{visible: true}" [ngStyle]="{'padding-top': '10px', 'min-width':'100%' }" [(selectedRowKeys)]="selectedRowKeysResultList" [selection]="{mode: 'single',allowSelectAll: false, showCheckBoxesMode: 'none'}" [editing]="{mode: 'row' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" data-tid="A366260">
+                            <dxo-column-chooser [enabled]="true" id="A28539" data-tid="A366261"></dxo-column-chooser>
+                            <dxo-scrolling mode="virtual" id="A28540" data-tid="A366262"></dxo-scrolling>
+                            <dxo-export [enabled]="true" fileName="Yatan Hasta İş Listesi" [allowExportSelectedData]="false" id="A28541" data-tid="A366263"></dxo-export>
+                            <div *dxTemplate="let cellData of 'PriorityCellTemplate'" id="A28542" data-tid="A366264">
+                                <div class="col-md-2" style="float:left;margin-left: -16px;" id="A28543" data-tid="A366265">
+                                    {{cellData.text}}</div>&nbsp;
+                                <i *ngIf="cellData.data.isPregnant" class="fa fa-gratipay" data-toggle="tooltip" data-placement="bottom" title="Hamile" style="float:right;color:#956be0;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M15097" id="A28544" data-tid="A366266">&nbsp;</i>
+                                <i *ngIf="cellData.data.isEmergency" class="fa fa-ambulance" data-toggle="tooltip" data-placement="bottom" title="Acil!" style="float:right;color:#e40d0d;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M10456" id="A28545" data-tid="A366267">&nbsp;</i>
+                                <i *ngIf="cellData.data.isYoung" class="fa fa-child" data-toggle="tooltip" data-placement="bottom" title="7 Yaş Altı" style="float:right;color:#26c281;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M10377" id="A28546" data-tid="A366268">&nbsp;</i>
+                                <i *ngIf="cellData.data.isOld" class="fa fa-blind" data-toggle="tooltip" data-placement="bottom" title="65 Yaş Üstü" style="float:right;color:#2f353b;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M10366" id="A28547" data-tid="A366269">&nbsp;</i>
+                                <i *ngIf="cellData.data.isVetera" class="fa fa-star-half-o" data-toggle="tooltip" data-placement="bottom" title="Harp ve vazife şehitlerinin dul ve yetimleri ile malül ve gaziler" style="float:right;color:#cec00e;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M27738" id="A28548" data-tid="A366270">&nbsp;</i>
+                                <i *ngIf="cellData.data.isDisabled" class="fa fa-wheelchair" data-toggle="tooltip" data-placement="bottom" title="Engelli" style="float:right;color:#52a5ec;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M13739" id="A28549" data-tid="A366271">&nbsp;</i>
+                                <i *ngIf="cellData.data.hasMedicalInformation" class="fa fa-exclamation-triangle" data-toggle="tooltip" data-placement="bottom" title="Önemli Tıbbi Bilgisi Var" style="float:right;color:#e06b6b;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M13739" id="A16537" data-tid="A366272">&nbsp;</i>
+
+                                <!--Yatana özel-->
+                                <i *ngIf="cellData.data.HasFallingRisk == null ? false : cellData.data.HasFallingRisk" data-toggle="tooltip" data-placement="bottom" title="Düşme Riskli Hasta" style="float:right;padding-right: 13px;height:13px; background-image:url('../../Content/YatanHasta/DusmeRisk.png')" i18n-title="@@M13392" id="A28550" data-tid="A366273"></i>
+                                <i *ngIf="cellData.data.HasAirborneContactIsolation == null ? false: cellData.data.HasAirborneContactIsolation" data-toggle="tooltip" data-placement="bottom" title="Solunum İzolasyonu" style="float:right;height:13px;padding-right: 13px;background-image:url('../../Content/YatanHasta/SolunumIzolasyon.png')" i18n-title="@@M22030" id="A28551" data-tid="A366274"></i>
+                                <i *ngIf="cellData.data.HasDropletIsolation == null ? false: cellData.data.HasDropletIsolation" data-toggle="tooltip" data-placement="bottom" title="Damlacık İzolasyonu" style="float:right;height:13px;padding-right: 15px;background-image:url('../../Content/YatanHasta/DamlacikIzolasyon.png')" i18n-title="@@M12487" id="A28552" data-tid="A366275"></i>
+                                <i *ngIf="cellData.data.HasContactIsolation == null ? false: cellData.data.HasContactIsolation" data-toggle="tooltip" data-placement="bottom" title="Temas İzolasyonu" style="float:right;height:13px;padding-right: 13px;background-image:url('../../Content/YatanHasta/TemasIzolasyon.png')" i18n-title="@@M23155" id="A28553" data-tid="A366276"></i>
+                                <i *ngIf="cellData.data.HasTightContactIsolation == null ? false: cellData.data.HasTightContactIsolation" data-toggle="tooltip" data-placement="bottom" title="Sıkı Temas İzolasyonu" style="float:right;height:11px;padding-right: 19px;background-image:url('../../Content/YatanHasta/SikiTemasIzolasyon.png')" i18n-title="@@M21800" id="A28554" data-tid="A366277"></i>
+                            </div>
+                        </dx-data-grid>
+
+                    </div>
+                </div>
+            </dxi-item>
+        </dx-accordion>
+    </div>
+</div>
+
+<div class="row" id="A28555" data-tid="A366278">
+    <div class="col-md-12 col-sm-12 col-xs-12" style="height:98%" id="A28556" [ngStyle]="composeComponentRowContainerVisible" data-tid="A366279">
+        <comp-compose #dynamicComponent [Info]="systemApiService?.componentInfo" [SaveAndCloseCommandVisible]="true" [CloseWithStateTransition]="true" (ComponentCreated)="dynamicComponentCreated($event)" (DynamicComponentActionExecuted)="dynamicComponentActionExecuted($event)" (DynamicComponentViewModelLoaded)="dynamicComponentViewModelLoaded($event)" (DynamicComponentClosed)="dynamicComponentClosed($event)" id="A28557" data-tid="A366280"></comp-compose>
+    </div>
+</div>
+
+<div id="A28558" data-tid="A366281">
+    <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A28559" data-tid="A366282">
+    </dx-load-panel>
+</div>

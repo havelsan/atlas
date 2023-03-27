@@ -1,0 +1,79 @@
+﻿<div class="col-md-12" style="height:100%;overflow-x:hidden;overflow-y:auto;padding-top: 1%;" data-tid="A337658">
+   <div class="row" style="padding-left: 1%;" data-tid="A337659">
+
+      <div class="col-sm-1" data-tid="A337660">
+         <label class="control-label" style="border:0; box-shadow:none; color:#08c" data-tid="A337661">Başlangıç Tarihi
+         </label>
+         <dx-date-box width="100%" type="date" [(value)]="StartDate" [readOnly]="false" data-tid="A337662">
+         </dx-date-box>
+      </div>
+      <div class="col-sm-1" data-tid="A337663">
+         <label class="control-label" style="border:0; box-shadow:none; color:#08c" data-tid="A337664">Bitiş Tarihi</label>
+         <dx-date-box width="100%" type="date" [(value)]="EndDate" [readOnly]="false" data-tid="A337665">
+         </dx-date-box>
+      </div>
+
+      <div class="col-sm-2" data-tid="A337666">
+         <label class="control-label" style="border:0; box-shadow:none; " data-tid="A337667">Depo Seçiniz</label>
+         <dx-tag-box [(items)]="StoreList" [(value)]="selectedStores" placeholder="Depo" [searchEnabled]="true" [showSelectionControls]="true" displayExpr="Name" [multiline]="false" id="A28501" data-tid="A337668">
+         </dx-tag-box>
+      </div>
+
+      <div class="col-md-3" data-tid="A337669">
+         <label class="control-label" data-tid="A337670">Malzeme Seçiniz</label>
+         <dx-drop-down-box #materialDrop [(value)]="selectedMaterialItem.Name" displayExpr="Name" valueExpr="ObjectID" [showClearButton]="true" [dataSource] (onOpened)="openMaterialDropDown()" (onValueChanged)="onClearMaterial($event)" data-tid="A337671">
+            <div *dxTemplate="let data of 'content'" data-tid="A337672">
+               <dx-data-grid [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" [dataSource]="materialDataSource" (onRowClick)="selectMaterial($event)" [remoteOperations]="true" [customizeColumns]="null" data-tid="A337673">
+                  <dxo-filter-row [visible]="true" data-tid="A337674"></dxo-filter-row>
+                  <dxo-paging [pageSize]="10" data-tid="A337675"></dxo-paging>
+                  <dxo-selection mode="single" data-tid="A337676"></dxo-selection>
+                  <dxi-column caption="Barkod" dataField="Barcode" width="100" data-tid="A337677"></dxi-column>
+                  <dxi-column caption="Malzeme" dataField="Name" data-tid="A337678"></dxi-column>
+               </dx-data-grid>
+            </div>
+         </dx-drop-down-box>
+      </div>
+
+      <div class="col-sm-1" data-tid="A337679">
+         <label class="control-label" data-tid="A337680">Bütçe Seçiniz</label>
+         <dx-select-box [dataSource]="budgetTypeSources" displayExpr="Name" valueExpr="ObjectID" [(value)]="budgetTypeObjectID" data-tid="A337681"></dx-select-box>
+      </div>
+
+      <div class="col-sm-3" data-tid="A337682">
+         <label class="control-label col-sm-5" id="A1582" data-tid="A337683">Özellikli İlaç</label>
+         <div class="col-sm-12" id="A1583" data-tid="A337684">
+            <dx-tag-box [dataSource]="DrugSpecificationEnumDef" [searchEnabled]="true" valueExpr="ordinal" [(value)]="selectedSpecificationList" displayExpr="description" [multiline]="false" showSelectionControls="true" [disabled]="showUnused" data-tid="A337685">
+            </dx-tag-box>
+         </div>
+      </div>
+
+      <div class="col-sm-1" id="A5668" style="margin-top: 12px;" data-tid="A337686">
+         <dx-button type="btn btn-info" icon="fa fa-bars" class="center-block" (onClick)="GetStockInheldList()" text="Sorgula" id="A5669" data-tid="A337687"></dx-button>
+      </div>
+   </div>
+   <div class="row" data-tid="A337688">
+      <div class="col-sm-12" style="margin-top:5px;" data-tid="A337689">
+         <div id="grid" data-tid="A337690">
+            <dx-data-grid [columns]="storeInColumn" [dataSource]="stockInTotal" [groupPanel]="{visible: true}" [filterRow]="{visible: true}" width="100%" height="560px" showRowLines="true" [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" data-tid="A337691">
+               <dxo-paging [pageSize]="20" data-tid="A337692"></dxo-paging>
+               <dxo-group-panel [visible]="true" data-tid="A337693"></dxo-group-panel>
+               <dxo-filter-row [visible]="true" data-tid="A337694"> </dxo-filter-row>
+               <dxo-grouping #expand [autoExpandAll]="true" data-tid="A337695"></dxo-grouping>
+               <dxo-export [enabled]="true" fileName="Toplam Giriş Raporu" [allowExportSelectedData]="false" data-tid="A337696">
+               </dxo-export>
+               <dxo-summary data-tid="A337697">
+                  <dxi-total-item column="Amount" summaryType="sum" displayFormat="T.M.: {0}" data-tid="A337698"></dxi-total-item>
+                  <dxi-total-item column="UnitePrice" summaryType="sum" displayFormat="T.B.F.: {0}" data-tid="A337699"></dxi-total-item>
+                  <dxi-total-item column="TotalPrice" summaryType="sum" displayFormat="T.F.: {0}" data-tid="A337700"></dxi-total-item>
+              </dxo-summary>
+            </dx-data-grid>
+         </div>
+      </div>
+      <div class="col-sm-12 pull pull-right" style="width:100%;color: black;padding: 15px;font-size: larger;" data-tid="A337701">
+         Toplam Kayıt Sayısı: {{ TotalNumberOfRows }}
+      </div>
+   </div>
+
+   <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" showIndicator="true" showPane="true" shading="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A337702">
+   </dx-load-panel>
+</div>

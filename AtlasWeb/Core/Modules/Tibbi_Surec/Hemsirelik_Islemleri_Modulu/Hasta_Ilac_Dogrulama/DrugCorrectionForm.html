@@ -1,0 +1,189 @@
+﻿<br id="A18646" data-tid="A351913" />
+
+    <dx-tab-panel [selectedIndex]="0" id="A18647" data-tid="A351914">
+        <dxi-item class="tabpanel-item" title="Hemşire Bilgilendirme" i18n-title="@@M15637" id="A18648" data-tid="A351915">
+            <div class="row" id="A18649" data-tid="A351916">
+                <div class="col-sm-12" id="A18650" data-tid="A351917">
+                    <dx-data-grid #gridNursing id="gridContainer" [dataSource]="olddrugOrderDetails" [allowColumnResizing]="true" (onRowPrepared)="onRowPreparedNursing($event)" style="height:400px" data-tid="A351918">
+                        <dxo-column-fixing [enabled]="true" id="A18651" data-tid="A351919"></dxo-column-fixing>
+                        <dxo-filter-row [visible]="true" id="A18652" data-tid="A351920"></dxo-filter-row>
+                        <dxi-column dataField="id" [visible]="false" id="A18653" data-tid="A351921"></dxi-column>
+                        <dxi-column dataField="stateDefID" [visible]="false" id="A18654" data-tid="A351922"></dxi-column>
+                        <dxi-column dataField="PatientFullName" caption="Hasta Adı Soyadı" i18n-caption="@@M15133" id="A18655" data-tid="A351923"></dxi-column>
+                        <dxi-column dataField="MasterResourceName" caption="Birim" i18n-caption="@@M27304" id="A18656" data-tid="A351924"></dxi-column>
+                        <dxi-column dataField="text" caption="Hizmet/Malzeme Adı" i18n-caption="@@M15935" id="A18657" data-tid="A351925"></dxi-column>
+                        <dxi-column dataField="typeName" caption="Türü" i18n-caption="@@M23679" id="A18658" data-tid="A351926"></dxi-column>
+                        <dxi-column dataField="startDate" caption="Başlangıç Zamanı" dataType="date" format="dd.MM.yyyy HH:mm:ss" i18n-caption="@@M11642" id="A18659" data-tid="A351927"></dxi-column>
+                        <dxi-column dataField="statusName" caption="Durumu" i18n-caption="@@M13372" id="A18660" data-tid="A351928"></dxi-column>
+                        <dxi-column dataField="doctorDescription" caption="Notlar" [width]="170" i18n-caption="@@M19485" id="A18661" data-tid="A351929"> </dxi-column>
+                    </dx-data-grid>
+                </div>
+            </div>
+            <div class="row" id="A18662" data-tid="A351930">
+                <div class="col-sm-12" style="float: right;margin-right: 0%;" id="A18663" data-tid="A351931">
+                    <div id="A18664" data-tid="A351932">
+                        <dx-button style="float:right;" type="default" icon="fa fa-bars" text="Listele" (onClick)="sendClick()" i18n-text="@@M27337" id="A18665" data-tid="A351933"></dx-button>
+                    </div>
+                </div>
+            </div>
+        </dxi-item>
+        <dxi-item class="tabpanel-item" title="Hasta İlaç Doğrulama" i18n-title="@@M15232" id="A18666" data-tid="A351934">
+            <div class="row" style="margin-left: 20px; margin-right: 20px;" id="A18667" data-tid="A351935">
+                <div id="A18668" data-tid="A351936">
+                    <dx-button type="default" icon="fa fa-bed" text="YENİ BİR HASTA İLAÇ DOĞRULAMA İŞLEMİ BAŞLAT" (onClick)="freshDrugCorrectionProcess()" i18n-text="@@M27766" id="A18669" data-tid="A351937"></dx-button>
+                </div>
+                <br id="A18670" data-tid="A351938" />
+                <br id="A18671" data-tid="A351939" />
+                <div class="row" id="A18672" data-tid="A351940">
+                    <div class="col-sm-5" id="A18673" data-tid="A351941">
+                        <div class="row" id="A18674" data-tid="A351942">
+                            <div class="panel panel-default" id="A18675" data-tid="A351943">
+                                <div class="panel-body" id="A18676" data-tid="A351944">
+                                    <div class="col-sm-3" id="A18677" data-tid="A351945">
+                                        <dx-text-box #wristBandText [readOnly]="false" [hoverStateEnabled]="false" [(value)]="subEpisodeIDValue" valueChangeEvent="keyup" (keypress)="PatientInfo_FromWristband_KeyPress($event)" [(visible)]="PatientInfoFromWristbandVisible" id="A18678" data-tid="A351946">
+                                        </dx-text-box>
+                                    </div>
+                                    <div class="col-sm-1" id="A18679" data-tid="A351947">
+                                        <dx-button type="default" icon="fa fa-id-card" text="Hasta Bileklik Barkodunu Okut" (onClick)="getPatientInfo_FromWristbandClick()" [(visible)]="PatientInfoFromWristbandVisible" i18n-text="@@M15155" id="A18680" data-tid="A351948">
+                                        </dx-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="A18681" data-tid="A351949">
+                            <div class="panel panel-default" id="A18682" data-tid="A351950">
+                                <div class="panel-heading" id="A18683" data-tid="A351951">
+                                    Hasta Bilgileri
+                                </div>
+                                <div class="panel-body" [style.background-color]="verificationColor" id="A18684" data-tid="A351952">
+                                    <div class="col-sm-3" id="A18685" data-tid="A351953">
+                                        <br id="A18686" data-tid="A351954" />
+                                        <label class="control-label " id="A18687" data-tid="A351955">Kimlik No</label>
+                                        <label class="control-label " id="A18688" data-tid="A351956">Adı Soyadı</label>
+                                        <label class="control-label " id="A18689" data-tid="A351957">Yattığı Klinik</label>
+                                        <label class="control-label " id="A18690" data-tid="A351958">Oda Grubu</label>
+                                        <label class="control-label " id="A18691" data-tid="A351959">Oda</label>
+                                        <label class="control-label " id="A18692" data-tid="A351960">Yatak</label>
+                                        <label class="control-label " id="A18693" data-tid="A351961">Doktor</label>
+                                    </div>
+                                    <div class="col-sm-1" id="A18694" data-tid="A351962">
+                                        <br id="A18695" data-tid="A351963" />
+                                        <label class="control-label " id="A18696" data-tid="A351964">:</label>
+                                        <label class="control-label " id="A18697" data-tid="A351965">:</label>
+                                        <label class="control-label " id="A18698" data-tid="A351966">:</label>
+                                        <label class="control-label " id="A18699" data-tid="A351967">:</label>
+                                        <label class="control-label " id="A18700" data-tid="A351968">:</label>
+                                        <label class="control-label " id="A18701" data-tid="A351969">:</label>
+                                        <label class="control-label " id="A18702" data-tid="A351970">:</label>
+                                    </div>
+                                    <div class="col-sm-7" id="A18703" data-tid="A351971">
+                                        <br id="A18704" data-tid="A351972" />
+                                        <label class="control-label " id="A18705" data-tid="A351973">{{patientInfoForWristBand?.patientRefNo}}</label>
+                                        <label class="control-label " id="A18706" data-tid="A351974">{{patientInfoForWristBand?.patientName}}</label>
+                                        <label class="control-label " id="A18707" data-tid="A351975">{{patientInfoForWristBand?.physicalStateClinic}}</label>
+                                        <label class="control-label " id="A18708" data-tid="A351976">{{patientInfoForWristBand?.roomGroup}}</label>
+                                        <label class="control-label " id="A18709" data-tid="A351977">{{patientInfoForWristBand?.room}}</label>
+                                        <label class="control-label " id="A18710" data-tid="A351978">{{patientInfoForWristBand?.bed}}</label>
+                                        <label class="control-label " id="A18711" data-tid="A351979">{{patientInfoForWristBand?.admissionDoctor}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-1" id="A18712" data-tid="A351980">
+
+                    </div>
+
+                    <div class="col-sm-5" id="A18713" data-tid="A351981">
+                        <div class="row" id="A18714" data-tid="A351982">
+                            <div class="panel panel-default" id="A18715" data-tid="A351983">
+                                <div class="panel-body" id="A18716" data-tid="A351984">
+                                    <div class="col-sm-3" id="A18717" data-tid="A351985">
+                                        <dx-text-box #drugBagText [readOnly]="false" [hoverStateEnabled]="false" [(value)]="stockActionIDValue" valueChangeEvent="keyup" (keypress)="PatientInfo_KeyPress($event)" [(visible)]="PatientDrugInfoVisible" id="A18718" data-tid="A351986">
+                                        </dx-text-box>
+                                    </div>
+                                    <div class="col-sm-1" id="A18719" data-tid="A351987">
+                                        <dx-button type="default" icon="fa fa-newspaper-o" text="İlaç Torba Barkodunu Okut" (onClick)="getPatientInfoClick()" [(visible)]="PatientDrugInfoVisible" i18n-text="@@M16373" id="A18720" data-tid="A351988">
+
+                                        </dx-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="A18721" data-tid="A351989">
+                            <div class="panel panel-default" id="A18722" data-tid="A351990">
+                                <div class="panel-heading" id="A18723" data-tid="A351991">
+                                    Hasta İlaç Torba Bilgileri
+                                </div>
+                                <div class="panel-body" [style.background-color]="verificationColor" id="A18724" data-tid="A351992">
+                                    <div class="col-sm-3" id="A18725" data-tid="A351993">
+                                        <br id="A18726" data-tid="A351994" />
+                                        <label class="control-label " id="A18727" data-tid="A351995">Kimlik No</label>
+                                        <label class="control-label " id="A18728" data-tid="A351996">Adı Soyadı</label>
+                                        <label class="control-label " id="A18729" data-tid="A351997">Yattığı Klinik</label>
+                                        <label class="control-label " id="A18730" data-tid="A351998">Oda Grubu</label>
+                                        <label class="control-label " id="A18731" data-tid="A351999">Oda</label>
+                                        <label class="control-label " id="A18732" data-tid="A352000">Yatak</label>
+                                        <label class="control-label " id="A18733" data-tid="A352001">Doktor</label>
+                                    </div>
+                                    <div class="col-sm-1" id="A18734" data-tid="A352002">
+                                        <br id="A18735" data-tid="A352003" />
+                                        <label class="control-label " id="A18736" data-tid="A352004">:</label>
+                                        <label class="control-label " id="A18737" data-tid="A352005">:</label>
+                                        <label class="control-label " id="A18738" data-tid="A352006">:</label>
+                                        <label class="control-label " id="A18739" data-tid="A352007">:</label>
+                                        <label class="control-label " id="A18740" data-tid="A352008">:</label>
+                                        <label class="control-label " id="A18741" data-tid="A352009">:</label>
+                                        <label class="control-label " id="A18742" data-tid="A352010">:</label>
+                                    </div>
+                                    <div class="col-sm-7" id="A18743" data-tid="A352011">
+                                        <br id="A18744" data-tid="A352012" />
+                                        <label class="control-label " id="A18745" data-tid="A352013">{{patientInfoForKschedule?.patientRefNo}}</label>
+                                        <label class="control-label " id="A18746" data-tid="A352014">{{patientInfoForKschedule?.patientName}}</label>
+                                        <label class="control-label " id="A18747" data-tid="A352015">{{patientInfoForKschedule?.physicalStateClinic}}</label>
+                                        <label class="control-label " id="A18748" data-tid="A352016">{{patientInfoForKschedule?.roomGroup}}</label>
+                                        <label class="control-label " id="A18749" data-tid="A352017">{{patientInfoForKschedule?.room}}</label>
+                                        <label class="control-label " id="A18750" data-tid="A352018">{{patientInfoForKschedule?.bed}}</label>
+                                        <label class="control-label " id="A18751" data-tid="A352019">{{patientInfoForKschedule?.admissionDoctor}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="A18752" data-tid="A352020">
+                    <div class="col-sm-12" id="A18753" data-tid="A352021">
+                        <hr style=" display: block;    margin-left: auto;    margin-right: auto;    border-style: outset;    border-width: 1px;" id="A18754" data-tid="A352022" />
+                        <div class="row" id="A18755" data-tid="A352023">
+                            <div class="panel panel-default" id="A18756" data-tid="A352024">
+                                <div class="panel-body" id="A18757" data-tid="A352025">
+                                    <div class="col-sm-3" id="A18758" data-tid="A352026">
+                                        <dx-text-box #drugText [readOnly]="false" [hoverStateEnabled]="false" [(value)]="drugBarcodeValue" valueChangeEvent="keyup" (keypress)="DrugBarcode_KeyPress($event)" [(visible)]="DrugBarcodeInfoVisible" id="A18759" data-tid="A352027">
+                                        </dx-text-box>
+                                    </div>
+                                    <div class="col-sm-1" id="A18760" data-tid="A352028">
+                                        <dx-button type="default" icon="fa fa-chain-broken" text="İlaç Barkodunu Okut ve Doğrula" (onClick)="readDrugBarcodeAndVerifyIt()" [(visible)]="DrugBarcodeInfoVisible" i18n-text="@@M16304" id="A18761" data-tid="A352029">
+
+                                        </dx-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="A18762" data-tid="A352030">
+                    <div class="col-sm-12" id="A18763" data-tid="A352031">
+                        <dx-data-grid #grid id="gridContainer" [(selectedRowKeys)]="selectedRowKeys" [dataSource]="patientDrugs" (onRowPrepared)="onRowPrepared($event)" data-tid="A352032">
+                            <dxi-column dataField="MaterialBarcode" caption="Barkod" [width]="140" i18n-caption="@@M27321" id="A18764" data-tid="A352033"></dxi-column>
+                            <dxi-column dataField="MaterialName" caption="İlaç Adı" [width]="400" i18n-caption="@@M16294" id="A18765" data-tid="A352034"></dxi-column>
+                            <dxi-column dataField="OrderPlannedDatetime" dataType="date" format="shortDateShortTime" caption="Planlama Zamanı" [width]="140" i18n-caption="@@M20389" id="A18766" data-tid="A352035"></dxi-column>
+                            <dxi-column dataField="Amount" caption="Doz" [width]="50" i18n-caption="@@M13284" id="A18767" data-tid="A352036"></dxi-column>
+                            <dxi-column dataField="DrugCounter" caption="Doğrulanan Doz" [width]="110" i18n-caption="@@M13096" id="A18768" data-tid="A352037"></dxi-column>
+                            <dxi-column dataField="DrugUsageType" caption="Uygulama Yolu" [width]="140" i18n-caption="@@M23770" id="A18769" data-tid="A352038"></dxi-column>
+                            <dxi-column dataField="ExpirationDatetime" caption="Son Kullanma Tarihi" [width]="140" i18n-caption="@@M22057" id="A18770" data-tid="A352039"></dxi-column>
+                        </dx-data-grid>
+                    </div>
+                </div>
+            </div>
+        </dxi-item>
+    </dx-tab-panel>

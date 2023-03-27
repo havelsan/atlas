@@ -1,0 +1,175 @@
+﻿<div style="height:100%" data-tid="A366673">
+    <div class="row" data-tid="A366674">
+        <div class="col-sm-3" data-tid="A366675">
+
+            <div class="col-sm-12" data-tid="A366676">
+                <label class="control-label" data-tid="A366677">Yatış Başlangıç Tarihi</label>
+                <dx-date-box [(value)]="inpatientStatisticReportViewModel.InpatientStartDate" type="date" showClearButton="false" width="100%" data-tid="A366678">
+                </dx-date-box>
+            </div>
+
+            <div class="col-sm-12" data-tid="A366679">
+                <label class="control-label" data-tid="A366680">Yatış Bitiş Tarihi</label>
+                <dx-date-box [(value)]="inpatientStatisticReportViewModel.InpatientEndDate" type="date" showClearButton="false" width="100%" data-tid="A366681">
+                </dx-date-box>
+            </div>
+
+
+
+
+
+        </div>
+        <div class="col-sm-3" data-tid="A366682">
+            <div class="col-sm-12" data-tid="A366683">
+                <label class="control-label" data-tid="A366684">Taburcu Başlangıç Tarihi</label>
+                <dx-date-box [(value)]="inpatientStatisticReportViewModel.DischargeStartDate" type="date" showClearButton="false" width="100%" data-tid="A366685">
+                </dx-date-box>
+            </div>
+            <div class="col-sm-12" data-tid="A366686">
+                <label class="control-label" data-tid="A366687">Taburcu Bitiş Tarihi</label>
+                <dx-date-box [(value)]="inpatientStatisticReportViewModel.DischargeEndDate" type="date" showClearButton="false" width="100%" data-tid="A366688">
+                </dx-date-box>
+            </div>
+
+
+        </div>
+        <div class="col-sm-6" data-tid="A366689">
+            <div class="col-sm-12" data-tid="A366690">
+                <label class="control-label" data-tid="A366691">Branş</label>
+
+                <dx-tag-box [items]="inpatientStatisticReportViewModel.SpecialityList" [(value)]="SelectedSpecialities" placeholder="Branş" [searchEnabled]="true" [showSelectionControls]="true" displayExpr="Name" (onValueChanged)="SpecialityChanged($event)" [multiline]="false" data-tid="A366692">
+                </dx-tag-box>
+
+
+            </div>
+            <div class="col-sm-12" data-tid="A366693">
+                <label class="control-label" data-tid="A366694">Servis</label>
+
+                <!--<dx-lookup [dataSource]="inpatientStatisticReportViewModel.ClinicList"
+                           [showPopupTitle]="false"
+                           searchEnabled="false"
+                           displayExpr="Name"
+                           closeOnOutsideClick="true"
+                           (onValueChanged)="ClinicChanged($event)"
+                           placeholder="Servis Seçiniz">
+
+                </dx-lookup>-->
+
+                <dx-tag-box [items]="inpatientStatisticReportViewModel.ClinicList" [(value)]="SelectedClinics" placeholder="Servis" [searchEnabled]="true" [showSelectionControls]="true" displayExpr="Name" [multiline]="false" data-tid="A366695">
+                </dx-tag-box>
+
+
+            </div>
+        </div>
+
+    </div>
+    <div class="row" data-tid="A366696">
+        <div class="col-sm-6" data-tid="A366697">
+            <div class="col-sm-12" data-tid="A366698">
+                <label class="control-label" data-tid="A366699">Tanı</label>
+                <dx-select-box noDataText="En az bir karakter ile arama yapmalısınız!" placeholder="Tanı Seçiniz" [dataSource]="DiagnosisArray" displayExpr="Name" valueExpr="Code" [searchEnabled]="true" (onSelectionChanged)="diagnosisSelection_ValueChanged($event.selectedItem)" (onValueChanged)="LoadAllDiagnosisDefinitions()" data-tid="A366700">
+                    <div *dxTemplate="let data of 'item'" data-tid="A366701">
+                        <div data-tid="A366702">
+                            <div class="col-sm-3" data-tid="A366703"> {{data.Code}} </div>
+                            <div class="col-sm-9" data-tid="A366704"> {{data.Name}} </div>
+                        </div>
+                    </div>
+                </dx-select-box>
+            </div>
+            <div class="col-sm-12" data-tid="A366705">
+                <label class="control-label" data-tid="A366706">Seçilen Tanılar</label>
+                <dx-data-grid showColumnLines="true" [paging]="{enable: false, pageSize:1000000}" showRowLines="true" height="100px" [columns]="DiagnosisColumns" [dataSource]="_DiagnosisList" allowColumnReordering="false" allowColumnResizing="true" data-tid="A366707">
+
+                </dx-data-grid>
+            </div>
+
+        </div>
+
+        <div class="col-sm-6" data-tid="A366708">
+            <div class="col-sm-12" data-tid="A366709">
+                <label class="control-label" data-tid="A366710">İşlem/Hizmet</label>
+                <dx-select-box noDataText="En az bir karakter ile arama yapmalısınız!" placeholder="İşlem/Hizmet Seçiniz" [dataSource]="ProcedureArray" displayExpr="Name" valueExpr="Code" [searchEnabled]="true" (onSelectionChanged)="procedureSelection_ValueChanged($event.selectedItem)" (onValueChanged)="LoadAllProcedureDefinitions()" data-tid="A366711">
+                    <div *dxTemplate="let data of 'item'" data-tid="A366712">
+                        <div data-tid="A366713">
+                            <div class="col-sm-3" data-tid="A366714"> {{data.Code}} </div>
+                            <div class="col-sm-9" data-tid="A366715"> {{data.Name}} </div>
+                        </div>
+                    </div>
+                </dx-select-box>
+            </div>
+            <div class="col-sm-12" data-tid="A366716">
+                <label class="control-label" data-tid="A366717">Seçilen İşlemler</label>
+                <dx-data-grid showColumnLines="true" [paging]="{enable: false, pageSize:1000000}" showRowLines="true" height="100px" [columns]="ProcedureColumns" [dataSource]="_ProcedureList" allowColumnReordering="false" allowColumnResizing="true" data-tid="A366718">
+
+                </dx-data-grid>
+            </div>
+
+        </div>
+
+    </div>
+    <!--<div class="col-sm-4">
+        <label class="control-label">Tarih</label>
+        <dx-date-box [(value)]="inpatientStatisticReportViewModel.ReportDate" type="date"
+                     showClearButton="false" width="100%">
+        </dx-date-box>
+    </div>
+    <div class="col-sm-4" style="float:right;margin-top:10px;">
+    </div>-->
+    <div class="col-sm-12" style="float:right;margin-top:10px;" data-tid="A366719">
+
+        <dx-button icon="far fa-file-alt" class="pull-right" type="success" hint="Rapor" text="Rapor" (onClick)="PrepareReport()" data-tid="A366720"></dx-button>
+        <dx-button icon="far fa-file-alt" class="pull-right" type="default" hint="Listele" text="Listele" (onClick)="ListInpatients()" data-tid="A366721"></dx-button>
+
+
+    </div>
+    <div class="col-sm-12" data-tid="A366722">
+        <br data-tid="A366723" />
+        <dx-data-grid showColumnLines="true" [paging]="{enable: false, pageSize:1000000}" showRowLines="true" height="400px" [columns]="InpatiensColumns" [dataSource]="_InpatientList" allowColumnReordering="false" allowColumnResizing="true" [masterDetail]="{ enabled: true, template: 'detail' }" [selection]="{mode: 'none',allowSelectAll: false}" data-tid="A366724">
+
+
+            <div *dxTemplate="let row of 'medicinesTemplate'" data-tid="A366725">
+                <i class="fas fa-pills" title="İlaçlar" (click)="OpenMedicines(row.key)" style="margin-top:-12px;margin-bottom:-12px;" data-tid="A366726"></i>
+
+            </div>
+
+            <div *dxTemplate="let test of 'detail'" data-tid="A366727">
+                <div class="internal-grid-container" data-tid="A366728">
+
+                    <div class="row" data-tid="A366729">
+                        <div class="col-sm-12" data-tid="A366730">
+                            <div class="master-detail-caption" data-tid="A366731">Tomografi Tetkikleri</div>
+                            <dx-data-grid [dataSource]="test.data.RadiologyTests" [columns]="RadiologyTestColumns" [columnAutoWidth]="true" data-tid="A366732">
+
+                                <div *dxTemplate="let row of 'reportTemplate'" data-tid="A366733">
+                                    <i class="far fa-file-alt" title="Radyoloji Raporu" (click)="OpenRadiologyReport(row.key)" style="margin-top:-12px;margin-bottom:-12px;" data-tid="A366734"></i>
+
+                                </div>
+
+
+                            </dx-data-grid>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </dx-data-grid>
+    </div>
+
+    <dx-popup [showTitle]="true" title="Hastaya Verilen İlaçlar" [width]="500" [height]="500" [(visible)]="_MedicinePopUpVisible" data-tid="A366735">
+        <div *dxTemplate="let data of 'content'" data-tid="A366736">
+
+            <div class="col-sm-12" data-tid="A366737">
+
+                <dx-text-area [height]="400" [readOnly]="true" [(value)]="_Medicines" data-tid="A366738">
+                </dx-text-area>
+            </div>
+
+
+
+
+
+        </div>
+    </dx-popup>
+
+</div>

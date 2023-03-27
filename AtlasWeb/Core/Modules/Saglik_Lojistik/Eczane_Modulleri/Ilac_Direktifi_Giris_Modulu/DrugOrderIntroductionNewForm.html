@@ -1,0 +1,484 @@
+﻿<div class="row" data-tid="A329617">
+    <div class="col-sm-2" data-tid="A329618">
+        <NeStatePanelComponent [OutgoingTransitions]="drugOrderIntroductionNewFormViewModel?.OutgoingTransitions" [StateReports]="drugOrderIntroductionNewFormViewModel?.CurrentStateReports" [ObjectID]="drugOrderIntroductionNewFormViewModel?._DrugOrderIntroduction?.ObjectID" [ObjectDefID]="drugOrderIntroductionNewFormViewModel?._DrugOrderIntroduction?.ObjectDefID" [SaveCommandVisible]="isOutpatient" [CancelCommandVisible]="false" [CurrentStateDefID]="drugOrderIntroductionNewFormViewModel._DrugOrderIntroduction.CurrentStateDefID" [DropStateList]="DropStateList" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()" id="A4005" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A329619">
+        </NeStatePanelComponent>
+    </div>
+    <!--<div class="col-sm-1" style="float:left;">
+        <dx-button text="Reçete" rtlEnabled="true" style="margin-top:-5px;right:160px;" class="tabHeaderButton dx-button-active dx-button-semioval"
+            type="danger" icon="fa fa-keyboard-o" (onClick)="colorPresClick_2()">
+        </dx-button>
+    </div>-->
+</div>
+<div class="container-fluid" id="A4006" data-tid="A329620">
+    <form id="DrugOrderIntroductionNewForm" class="form-horizontal" role="form" data-tid="A329621"></form>
+    <div class="row" id="A4007" data-tid="A329622">
+        <div class="col-md-12" style="text-align:center" id="A4008" data-tid="A329623">
+            <b id="A4009" data-tid="A329624">
+                {{drugOrderIntroductionNewFormViewModel?._DrugOrderIntroduction?.Episode?.Patient?.Name}}&nbsp; {{drugOrderIntroductionNewFormViewModel?._DrugOrderIntroduction?.Episode?.Patient?.Surname}}
+            </b>
+        </div>
+    </div>
+    <div class="row" id="A4010" data-tid="A329625">
+        <div class="col-sm-12" style="height:500px" id="A4011" data-tid="A329626">
+            <dx-tab-panel [selectedIndex]="0" (onItemRendered)="onTabItemRendered($event)" id="A4012" data-tid="A329627">
+                <dxi-item class="tabpanel-item" title="İlaç Listesi" i18n-title="@@M16350" id="A4013" data-tid="A329628">
+                    <div class="row" id="A4014" data-tid="A329629">
+                        <div class="list-container col-sm-6" id="A4015" data-tid="A329630">
+                            <div class="dx-searchbar" id="A4016" data-tid="A329631">
+                                <dx-text-box [(value)]="searchText" valueChangeEvent="keyup" placeholder="Ara" mode="search" (onValueChanged)="search($event)" i18n-placeholder="@@M27276" id="A4017" data-tid="A329632">
+                                </dx-text-box>
+                            </div>
+                            <dx-list [dataSource]="drugSource" height="400" (onItemClick)="selectedChange($event)" id="A4018" data-tid="A329633">
+                                <div *dxTemplate="let data of 'item'" id="A4019" data-tid="A329634">
+                                    <div [ngStyle]="{'color': data.Color}" data-tid="A329635">
+                                        <img src="{{GetDrugItemWithType(data.drugShapeTypeEnum)}}" style="float:left; margin-right:10px;" id="A14411" data-tid="A329636" />
+                                        <div style="float:left; width:65%;" id="A4020" data-tid="A329637">{{data.name}}</div>
+                                        <div *ngIf="isInpatient" style="float:right; width:8%;" id="A4021" data-tid="A329638">{{data.inheldStatus}}</div>
+                                        <div style="float:right; width:22%;" id="A4022" data-tid="A329639">{{data.SgkReturnPay}}</div>
+                                    </div>
+                                </div>
+                            </dx-list>
+                        </div>
+                        <div class="col-sm-2" id="A4023" data-tid="A329640">
+                            <dx-check-box [(value)]="isFavoriteDrugList" [width]="400" text="Sık Kullanılan İlaçlar" (onValueChanged)="onSelectionChanged($event)" i18n-text="@@M21798" id="A4024" data-tid="A329641"></dx-check-box>
+                        </div>
+                        <div *ngIf="isInpatient" class="col-sm-2" id="A4025" data-tid="A329642">
+                            <dx-check-box [(value)]="isInheldDrugList" [width]="400" text="Mevcutlu İlaçlar" (onValueChanged)="onInheldClicked($event)" i18n-text="@@M18968" id="A4026" data-tid="A329643"></dx-check-box>
+                        </div>
+                        <div *ngIf="isInpatient" class="col-sm-2" id="A4027" data-tid="A329644">
+                            <dx-check-box [(value)]="isPatientOwnDrug" [width]="400" text="Hastanın İlaçları" (onValueChanged)="onOwnDrugClicked($event)" i18n-text="@@M15458" id="A4028" data-tid="A329645"></dx-check-box>
+                        </div>
+                        <hvl-group-box class="col-sm-6" [Text]="ttgroupbox3.Text" id="A4029" data-tid="A329646">
+                            <div class="row" id="A4030" data-tid="A329647">
+                                <div class="col-sm-12" id="A4031" data-tid="A329648">
+                                    <label class="control-label" id="A4032" data-tid="A329649">
+                                        İlaç
+                                    </label>
+                                    <hvl-text-box #Validation (TextChange)="onDrugNameChanged($event)" [BackColor]="DrugName?.BackColor" [CharacterCasing]="DrugName?.CharacterCasing" [Enabled]="DrugName?.Enabled" [Font]="DrugName?.Font" [ForeColor]="DrugName?.ForeColor" [height]="DrugName?.Height" [InputFormat]="DrugName?.InputFormat" [InputTurkishCharacter]="DrugName?.InputTurkishCharacter" [IsNonNumeric]="DrugName?.IsNonNumeric" [MultiLine]="DrugName?.Multiline" [ReadOnly]="DrugName?.ReadOnly" [Required]="DrugName?.Required" [TabIndex]="DrugName?.TabIndex" [TextAlign]="DrugName?.TextAlign" [Text]="drugOrderIntroductionNewFormViewModel?._DrugOrderIntroduction?.DrugName" [Visible]="DrugName?.Visible" id="A4033" data-tid="A329650"></hvl-text-box>
+                                </div>
+                            </div>
+                            <div class="row" id="A4034" data-tid="A329651">
+                                <div class="col-sm-12" id="A4035" data-tid="A329652">
+                                    <dx-radio-group #eventRadioGroup id="radio-group-with-selection" [items]="frequencyies" style="margin-bottom: 10px;" (onValueChanged)="onValueChangedFrequency($event)" layout="horizontal" data-tid="A329653">
+                                    </dx-radio-group>
+                                </div>
+                            </div>
+                            <div class="row" id="A4036" data-tid="A329654">
+                                <div class="col-sm-2" id="A4037" data-tid="A329655">
+                                    <label class="control-label" id="A4038" data-tid="A329656">
+                                        Doz Aralığı
+                                    </label>
+                                    <hvl-number-box #Validation (ValueChange)="onOrderFrequencyChanged($event)" [BackColor]="OrderFrequency?.BackColor" [Enabled]="OrderFrequency?.Enabled" [Font]="OrderFrequency?.Font" [ForeColor]="OrderFrequency?.ForeColor" [ReadOnly]="OrderFrequency?.ReadOnly" [TabIndex]="OrderFrequency?.TabIndex" [Value]="drugOrderIntroductionNewFormViewModel?._DrugOrderIntroduction?.OrderFrequency" [Visible]="OrderFrequency?.Visible" id="A4039" data-tid="A329657"></hvl-number-box>
+                                </div>
+                                <label class="control-label col-sm-1" id="A4040" data-tid="A329658">
+                                    <br id="A4041" data-tid="A329659" />
+                                    <br id="A4042" data-tid="A329660" /> X
+                                </label>
+                                <div class="col-sm-2" id="A4043" data-tid="A329661">
+                                    <label class="control-label" id="A4044" data-tid="A329662">
+                                        Doz
+                                    </label>
+                                    <!--(onValueChanged)="valueChanged($event)"-->
+                                    <dx-text-box [(value)]="drugOrderIntroductionNewFormViewModel._DrugOrderIntroduction.OrderDose" valueChangeEvent="keyup" (keypress)="drugOrderDoseKeyPress($event)" id="A4045" data-tid="A329663"></dx-text-box>
+
+                                </div>
+                                <div class="col-sm-2" id="A4046" data-tid="A329664">
+                                    <label class="control-label" id="A4047" data-tid="A329665">
+                                        Peryod
+                                    </label>
+                                    <hvl-number-box #Validation (ValueChange)="onOrderDayChanged($event)" [BackColor]="OrderDay?.BackColor" [Enabled]="OrderDay?.Enabled" [Font]="OrderDay?.Font" [ForeColor]="OrderDay?.ForeColor" [ReadOnly]="OrderDay?.ReadOnly" [TabIndex]="OrderDay?.TabIndex" [Value]="drugOrderIntroductionNewFormViewModel?._DrugOrderIntroduction?.OrderDay" [Visible]="OrderDay?.Visible" id="A4048" data-tid="A329666"></hvl-number-box>
+                                </div>
+                                <div class="col-sm-3" id="A4049" data-tid="A329667">
+                                    <label class="control-label" id="A4050" data-tid="A329668">
+                                        Tipi
+                                    </label>
+                                    <hvl-enum-combobox #Validation (ValueChange)="onPeriodUnitTypeChanged($event)" [BackColor]="PeriodUnitType?.BackColor" [DataTypeName]="PeriodUnitType?.DataTypeName" [Enabled]="PeriodUnitType?.Enabled" [Font]="PeriodUnitType?.Font" [ForeColor]="PeriodUnitType?.ForeColor" [IncludeOnly]="PeriodUnitType?.IncludeOnly" [ReadOnly]="PeriodUnitType?.ReadOnly" [ShowClearButton]="PeriodUnitType?.ShowClearButton" [SortBy]="PeriodUnitType?.SortBy" [TabIndex]="PeriodUnitType?.TabIndex" [Value]="drugOrderIntroductionNewFormViewModel?._DrugOrderIntroduction?.PeriodUnitType" [Visible]="PeriodUnitType?.Visible" id="A4051" data-tid="A329669"></hvl-enum-combobox>
+                                </div>
+                                <div *ngIf="isOutpatient" class="col-sm-2" id="A4052" data-tid="A329670">
+                                    <label *ngIf="isOutpatient" class="control-label" id="A4053" data-tid="A329671">
+                                        Paket Ad.
+                                    </label>
+                                    <hvl-number-box #Validation (ValueChange)="onPackageAmountChanged($event)" [BackColor]="PackageAmount?.BackColor" [Enabled]="PackageAmount?.Enabled" [Font]="PackageAmount?.Font" [ForeColor]="PackageAmount?.ForeColor" [ReadOnly]="PackageAmount?.ReadOnly" [TabIndex]="PackageAmount?.TabIndex" [Value]="drugOrderIntroductionNewFormViewModel?._DrugOrderIntroduction?.PackageAmount" [Visible]="PackageAmount?.Visible" id="A4054" data-tid="A329672"></hvl-number-box>
+                                </div>
+                            </div>
+                            <br id="A4055" data-tid="A329673" />
+                            <div class="row" id="A4056" data-tid="A329674">
+                                <div class="col-sm-5" id="A4057" data-tid="A329675">
+                                    <label class="control-label" id="A4058" data-tid="A329676">
+                                        Başlangıç Tarihi
+                                    </label>
+                                    <hvl-date-picker #Validation (ValueChange)="onPlannedStartTimeChanged($event)" [BackColor]="PlannedStartTime?.BackColor" [CustomFormat]="PlannedStartTime?.CustomFormat" [Enabled]="PlannedStartTime?.Enabled" [Font]="PlannedStartTime?.Font" [ForeColor]="PlannedStartTime?.ForeColor" [Format]="PlannedStartTime?.Format" [Max]="PlannedStartTime?.Max" [Min]="PlannedStartTime?.Min" [ReadOnly]="PlannedStartTime?.ReadOnly" [Required]="PlannedStartTime?.Required" [TabIndex]="PlannedStartTime?.TabIndex" [Value]="selectedPlannedStartTime" [Visible]="PlannedStartTime?.Visible" id="A4059" data-tid="A329677"></hvl-date-picker>
+                                </div>
+                                <div class="col-sm-7" id="A4060" data-tid="A329678">
+                                    <label class="control-label" id="A4061" data-tid="A329679">
+                                        Kullanım Şekli
+                                    </label>
+                                    <hvl-enum-combobox #Validation (ValueChange)="onDrugUsageTypeChanged($event)" [BackColor]="DrugUsageType?.BackColor" [DataTypeName]="DrugUsageType?.DataTypeName" [Enabled]="DrugUsageType?.Enabled" [Font]="DrugUsageType?.Font" [ForeColor]="DrugUsageType?.ForeColor" [IncludeOnly]="DrugUsageType?.IncludeOnly" [ReadOnly]="DrugUsageType?.ReadOnly" [ShowClearButton]="DrugUsageType?.ShowClearButton" [SortBy]="DrugUsageType?.SortBy" [TabIndex]="DrugUsageType?.TabIndex" [Value]="drugOrderIntroductionNewFormViewModel?._DrugOrderIntroduction?.DrugUsageType" [Visible]="DrugUsageType?.Visible" id="A4062" data-tid="A329680"></hvl-enum-combobox>
+                                </div>
+                            </div>
+                            <br id="A4063" data-tid="A329681" />
+                            <div class="row" id="A4064" data-tid="A329682">
+                                <div class="col-sm-6" data-tid="A329683">
+                                    <label class="control-label" data-tid="A329684">
+                                        Tedavi Türü
+                                    </label>
+                                    <hvl-enum-combobox #Validation (ValueChange)="onDrugOrderTypeChanged($event)" [BackColor]="DrugOrderType?.BackColor" [DataTypeName]="DrugOrderType?.DataTypeName" [Enabled]="DrugOrderType?.Enabled" [Font]="DrugOrderType?.Font" [ForeColor]="DrugOrderType?.ForeColor" [IncludeOnly]="DrugOrderType?.IncludeOnly" [ReadOnly]="DrugOrderType?.ReadOnly" [ShowClearButton]="DrugOrderType?.ShowClearButton" [SortBy]="DrugOrderType?.SortBy" [TabIndex]="DrugOrderType?.TabIndex" [Value]="drugOrderIntroductionNewFormViewModel?._DrugOrderIntroduction?.DrugOrderType" [Visible]="DrugOrderType?.Visible" id="A4067" data-tid="A329685"></hvl-enum-combobox>
+                                </div>
+                                <div class="col-sm-12" id="A4068" data-tid="A329686">
+                                    <label class="control-label" id="A4069" data-tid="A329687">
+                                        Kullanım Açıklaması
+                                    </label>
+                                    <hvl-text-box #Validation (TextChange)="onDrugDescriptionChanged($event)" [BackColor]="DrugDescription?.BackColor" [CharacterCasing]="DrugDescription?.CharacterCasing" [Enabled]="DrugDescription?.Enabled" [Font]="DrugDescription?.Font" [ForeColor]="DrugDescription?.ForeColor" [height]="DrugDescription?.Height" [InputFormat]="DrugDescription?.InputFormat" [InputTurkishCharacter]="DrugDescription?.InputTurkishCharacter" [IsNonNumeric]="DrugDescription?.IsNonNumeric" [MultiLine]="DrugDescription?.Multiline" [ReadOnly]="DrugDescription?.ReadOnly" [Required]="DrugDescription?.Required" [TabIndex]="DrugDescription?.TabIndex" [TextAlign]="DrugDescription?.TextAlign" [Text]="drugOrderIntroductionNewFormViewModel?._DrugOrderIntroduction?.DrugDescription" [Visible]="DrugDescription?.Visible" id="A4070" data-tid="A329688"></hvl-text-box>
+                                </div>
+                            </div>
+                            <br id="A4071" data-tid="A329689" />
+                            <div class="row" id="A4072" data-tid="A329690">
+                                <div *ngIf="isInpatient" class="col-sm-2" id="A4073" style="padding-right:0;" data-tid="A329691">
+                                    <hvl-checkbox #Validation (ValueChange)="onPatientOwnDrugCheckChanged($event)" [AllowThreeState]="PatientOwnDrugCheck?.ThreeState" [BackColor]="PatientOwnDrugCheck?.BackColor" [Enabled]="PatientOwnDrugCheck?.Enabled" [Font]="PatientOwnDrugCheck?.Font" [ForeColor]="PatientOwnDrugCheck?.ForeColor" [IsTitleLeft]="PatientOwnDrugCheck?.IsTitleLeft" [Margin]="PatientOwnDrugCheck?.Margin" [ReadOnly]="PatientOwnDrugCheck?.ReadOnly" [TabIndex]="PatientOwnDrugCheck?.TabIndex" [TitleTopPadding]="PatientOwnDrugCheck?.TitleTopPadding" [Title]="PatientOwnDrugCheck?.Title" [Value]="drugOrderIntroductionNewFormViewModel?._DrugOrderIntroduction?.PatientOwnDrug" [Visible]="PatientOwnDrugCheck?.Visible" id="A4074" data-tid="A329692"></hvl-checkbox>
+                                </div>
+                                <div *ngIf="isInpatient" class="col-sm-2" id="A4075" style="padding-right:0;" data-tid="A329693">
+                                    <hvl-checkbox #Validation (ValueChange)="onIsImmediateCheckChanged($event)" [AllowThreeState]="IsImmediateCheck?.ThreeState" [BackColor]="IsImmediateCheck?.BackColor" [Enabled]="IsImmediateCheck?.Enabled" [Font]="IsImmediateCheck?.Font" [ForeColor]="IsImmediateCheck?.ForeColor" [IsTitleLeft]="IsImmediateCheck?.IsTitleLeft" [Margin]="IsImmediateCheck?.Margin" [ReadOnly]="IsImmediateCheck?.ReadOnly" [TabIndex]="IsImmediateCheck?.TabIndex" [TitleTopPadding]="IsImmediateCheck?.TitleTopPadding" [Title]="IsImmediateCheck?.Title" [Value]="drugOrderIntroductionNewFormViewModel?._DrugOrderIntroduction?.IsImmediate" [Visible]="IsImmediateCheck?.Visible" id="A4076" data-tid="A329694"></hvl-checkbox>
+                                </div>
+
+                                <div *ngIf="isInpatient" class="col-sm-2" id="A4077" style="padding-right:0;" data-tid="A329695">
+                                    <hvl-checkbox #Validation (ValueChange)="onCaseOfNeedCheckChanged($event)" [AllowThreeState]="CaseOfNeedCheck?.ThreeState" [BackColor]="CaseOfNeedCheck?.BackColor" [Enabled]="CaseOfNeedCheck?.Enabled" [Font]="CaseOfNeedCheck?.Font" [ForeColor]="CaseOfNeedCheck?.ForeColor" [IsTitleLeft]="CaseOfNeedCheck?.IsTitleLeft" [Margin]="CaseOfNeedCheck?.Margin" [ReadOnly]="CaseOfNeedCheck?.ReadOnly" [TabIndex]="CaseOfNeedCheck?.TabIndex" [TitleTopPadding]="CaseOfNeedCheck?.TitleTopPadding" [Title]="CaseOfNeedCheck?.Title" [Value]="drugOrderIntroductionNewFormViewModel?._DrugOrderIntroduction?.CaseOfNeed" [Visible]="CaseOfNeedCheck?.Visible" id="A4078" data-tid="A329696"></hvl-checkbox>
+                                </div>
+                                <div *ngIf="nextDayOrderVisible" class="col-sm-12 col-md-6 col-lg-4" id="A4077" style="padding:0;" data-tid="A329697">
+                                    <div class="col-sm-8" data-tid="A329698">
+                                        <hvl-checkbox #Validation (ValueChange)="onNextDayCheckChanged($event)" [AllowThreeState]="NextDayCheck?.ThreeState" [BackColor]="NextDayCheck?.BackColor" [Enabled]="NextDayCheck?.Enabled" [Font]="NextDayCheck?.Font" [ForeColor]="NextDayCheck?.ForeColor" [IsTitleLeft]="NextDayCheck?.IsTitleLeft" [Margin]="NextDayCheck?.Margin" [ReadOnly]="NextDayCheck?.ReadOnly" [TabIndex]="NextDayCheck?.TabIndex" [TitleTopPadding]="NextDayCheck?.TitleTopPadding" [Title]="NextDayCheck?.Title" [Value]="NextDayOrder1x1" [Visible]="NextDayCheck?.Visible" id="A4078" data-tid="A329699"></hvl-checkbox>
+                                    </div>
+                                    <div *ngIf="NextDayOrder1x1" class="col-sm-4" data-tid="A329700">
+                                        <div class="row" data-tid="A329701">
+                                            <dx-date-box [(value)]="selectedPlannedStartTime" type="time" data-tid="A329702">
+
+                                            </dx-date-box>
+                                        </div>
+                                        <!--<label class="row">{{selectedOrderTimeFor1x1}}</label>-->
+                                    </div>
+                                </div>
+
+                                <div *ngIf="isVademecumEntegrasyon" class="col-sm-2" style="float:right" id="A4079" data-tid="A329703">
+                                    <hvl-button (BtnClicked)="btnDrugInfo_Click()" [BackColor]="btnDrugInfo?.BackColor" [Enabled]="btnDrugInfo?.Enabled" [Font]="btnDrugInfo?.Font" [ForeColor]="btnDrugInfo?.ForeColor" [height]="btnDrugInfo?.Height" [ReadOnly]="btnDrugInfo?.ReadOnly" [TabIndex]="btnDrugInfo?.TabIndex" [Text]="btnDrugInfo?.Text" [Visible]="btnDrugInfo?.Visible" id="A4080" data-tid="A329704"></hvl-button>
+                                </div>
+                            </div>
+                            <br id="A4081" data-tid="A329705" />
+                            <div class="row" id="A4082" data-tid="A329706">
+                                <div class="col-sm-3" style="float:left" id="A4083" data-tid="A329707">
+                                    <dx-button [visible]="useOldMethodForColorPrescription" icon="edit" type="success" text="Renkli Reçete Yaz" (onClick)="colorPresClick()" i18n-text="@@M21025" id="A4084" data-tid="A329708">
+                                    </dx-button>
+                                </div>
+                                <!--<div class="col-sm-3" style="float:left" id="A4083">
+                                    <dx-button [visible]="useNewMethodForColorPrescription" icon="glyphicon glyphicon-list-alt" text="Renkli Reçete Yaz(Yeni)"
+                                        (onClick)="colorPresClick_2()" i18n-text="@@M21025" id="A4084">
+                                    </dx-button>
+                                </div>-->
+                                <div class="col-sm-2" style="float:right" id="A4085" data-tid="A329709">
+                                    <hvl-button (BtnClicked)="cmdAddDrug_Click()" [BackColor]="cmdAddDrug?.BackColor" [Enabled]="cmdAddDrug?.Enabled" [Font]="cmdAddDrug?.Font" [ForeColor]="cmdAddDrug?.ForeColor" [height]="cmdAddDrug?.Height" [ReadOnly]="cmdAddDrug?.ReadOnly" [TabIndex]="cmdAddDrug?.TabIndex" [Text]="cmdAddDrug?.Text" [Visible]="cmdAddDrug?.Visible" id="A4086" data-tid="A329710"></hvl-button>
+                                </div>
+                            </div>
+                        </hvl-group-box>
+                        <br id="A4087" data-tid="A329711" />
+                        <div class="row" id="A4088" data-tid="A329712">
+                            <div class="col-sm-3" id="A4089" data-tid="A329713">
+                                <hvl-button (BtnClicked)="cmdAddTemplate_Click()" [BackColor]="cmdAddTemplate?.BackColor" [Enabled]="cmdAddTemplate?.Enabled" [Font]="cmdAddTemplate?.Font" [ForeColor]="cmdAddTemplate?.ForeColor" [height]="cmdAddTemplate?.Height" [ReadOnly]="cmdAddTemplate?.ReadOnly" [TabIndex]="cmdAddTemplate?.TabIndex" [Text]="cmdAddTemplate?.Text" [Visible]="cmdAddTemplate?.Visible" id="A4090" data-tid="A329714"></hvl-button>
+                            </div>
+                            <div class="col-sm-3" style="float:right" id="A4091" data-tid="A329715">
+                                <hvl-button (BtnClicked)="cmdGetTemplate_Click()" [BackColor]="cmdGetTemplate?.BackColor" [Enabled]="cmdGetTemplate?.Enabled" [Font]="cmdGetTemplate?.Font" [ForeColor]="cmdGetTemplate?.ForeColor" [height]="cmdGetTemplate?.Height" [ReadOnly]="cmdGetTemplate?.ReadOnly" [TabIndex]="cmdGetTemplate?.TabIndex" [Text]="cmdGetTemplate?.Text" [Visible]="cmdGetTemplate?.Visible" id="A4092" data-tid="A329716"></hvl-button>
+                            </div>
+                        </div>
+                    </div>
+                </dxi-item>
+                <dxi-item class="tabpanel-item" title="İlaç Tedavi Profili" i18n-title="@@M16366" id="A4093" data-tid="A329717">
+                    <div class="row" id="A4094" data-tid="A329718">
+                        <div class="col-sm-12" id="A4095" data-tid="A329719">
+                            <dx-data-grid id="gridContainer" [dataSource]="tempDrugOrders" (onToolbarPreparing)="onToolbarPreparing($event)" (onSelectionChanged)="selectionChange($event)" [(selectedRowKeys)]="selectedTempItems" style="height:430px;" (onCellClick)="onTempDrugOrderGridCellClick($event)" data-tid="A329720">
+                                <dxo-editing mode="cell" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="false" data-tid="A329721">
+                                </dxo-editing>
+                                <dxo-selection mode="multiple" id="A4096" data-tid="A329722"></dxo-selection>
+                                <dxo-grouping [autoExpandAll]="expanded" id="A4097" data-tid="A329723"></dxo-grouping>
+                                <dxo-column-chooser [enabled]="true" id="A4098" data-tid="A329724"></dxo-column-chooser>
+                                <dxo-load-panel [enabled]="true" id="A4099" data-tid="A329725"></dxo-load-panel>
+                                <dxi-column name="buton" [allowEditing]="false" dataField="OrderObjectID" caption="İşlem Çeşidi" cellTemplate="enumCmbTemplate" [width]="150" i18n-caption="@@M16834" data-tid="A329726"></dxi-column>
+                                <dxi-column [allowEditing]="false" dataField="OrderDate" [groupIndex]="0" caption="Tarih" sortOrder="desc" [width]="200" dataType="date" i18n-caption="@@M27302" id="A4100" data-tid="A329727"></dxi-column>
+                                <dxi-column [allowEditing]="false" dataField="DrugName" caption="İlaç" [width]="500" i18n-caption="@@M16287" id="A4101" data-tid="A329728"></dxi-column>
+                                <dxi-column dataField="NextDayOrder" caption="Ertesi Gün" width="auto" data-tid="A329729"></dxi-column>
+                                <dxi-column [allowEditing]="false" dataField="Frequency" caption="Doz Aralığı" [width]="100" i18n-caption="@@M13285" id="A4102" data-tid="A329730"></dxi-column>
+                                <dxi-column [allowEditing]="false" dataField="DoseAmount" caption="Doz Miktarı" [width]="100" i18n-caption="@@M13294" id="A4103" data-tid="A329731"></dxi-column>
+                                <dxi-column [allowEditing]="false" dataField="Day" caption="Gün" [width]="50" i18n-caption="@@M14998" id="A4104" data-tid="A329732"></dxi-column>
+                                <dxi-column [allowEditing]="false" dataField="OrderStatus" caption="Durumu" [width]="200" i18n-caption="@@M13372" id="A4105" data-tid="A329733"></dxi-column>
+                                <!--<dxi-column [allowEditing]="false" dataField="OrderID" caption="Order ID" [width]="100" id="A4106"></dxi-column>-->
+                                <dxi-column [allowEditing]="false" dataField="UsageNote" caption="Kullanım Açıklaması" [width]="500" id="A4106" data-tid="A329734"></dxi-column>
+                                <dxi-column [allowEditing]="false" dataField="OrderType" caption="Order Şekli" [width]="500" i18n-caption="@@M19738" id="A4107" data-tid="A329735"></dxi-column>
+                                <dxi-column [allowEditing]="false" dataField="OrderObjectID" caption="ObjectID" [width]="0" id="A4108" data-tid="A329736"></dxi-column>
+                                <div style="height:16px;margin-top:-7px" *dxTemplate="let cellData of 'enumCmbTemplate'" id="A3456" data-tid="A329737">
+                                    <dx-button type="default" text="Zaman Güncelle" (onClick)="changeDrugOrderClick(cellData)" data-tid="A329738"></dx-button>
+                                </div>
+                                <dxo-summary id="A4109" data-tid="A329739">
+                                    <dxi-group-item column="OrderDate" summaryType="count" displayFormat="{0} adet" id="A4110" data-tid="A329740">
+                                    </dxi-group-item>
+                                </dxo-summary>
+
+                                <div *dxTemplate="let data of 'totalGroupCount'" id="A4111" data-tid="A329741">
+                                    <div class="informer" id="A4112" data-tid="A329742">
+                                        <h2 class="count" style="margin-top: 0px;" id="A4113" data-tid="A329743">{{totalCount}}</h2>
+                                        <span class="name" id="A4114" data-tid="A329744">Adet Grup</span>
+                                    </div>
+                                </div>
+                            </dx-data-grid>
+                        </div>
+                    </div>
+                </dxi-item>
+                <dxi-item class="tabpanel-item" title="E-Reçeteler" i18n-title="@@M13832" id="A4115" data-tid="A329745">
+                    <div *ngIf="isInpatient" class="row" id="A4116" data-tid="A329746">
+                        <div class="col-sm-12" id="A4117" data-tid="A329747">
+                            <label class="control-label col-sm-5" id="A4118" data-tid="A329748">
+                                Yazılacak Yatan Hasta Reçeteleri
+                            </label>
+                            <hvl-datagrid #inpatientPresDetail [AllowUserToAddRows]="InpatientPresDetails?.AllowUserToAddRows" [AllowUserToDeleteRows]="InpatientPresDetails?.AllowUserToDeleteRows" [Columns]="InpatientPresDetailsColumns" [dataSource]="drugOrderIntroductionNewFormViewModel?._DrugOrderIntroduction?.InpatientPresDetails" [DeleteButtonWidth]="InpatientPresDetails?.DeleteButtonWidth" [DisplayExpressionsCache]="drugOrderIntroductionNewFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="InpatientPresDetails?.ShowFilterRow" [FilterColumnName]="InpatientPresDetails?.FilterColumnName" [FilterLabel]="InpatientPresDetails?.FilterLabel" [Filter]="InpatientPresDetails?.Filter" [height]="InpatientPresDetails?.Height" [IsFilterLabelSingleLine]="InpatientPresDetails?.IsFilterLabelSingleLine" [ShowColumnHeaders]="InpatientPresDetails?.ColumnHeadersVisible" [ShowFilterCombo]="InpatientPresDetails?.ShowFilterCombo" [ShowTotalNumberOfRows]="InpatientPresDetails?.ShowTotalNumberOfRows" id="A4119" data-tid="A329749"></hvl-datagrid>
+                        </div>
+                    </div>
+                    <br id="A4120" data-tid="A329750" />
+                    <div *ngIf="isOutpatient" class="row" id="A4121" data-tid="A329751">
+                        <div class="col-sm-12" id="A4122" data-tid="A329752">
+                            <label class="control-label col-sm-5" id="A4123" data-tid="A329753">
+                                Yazılacak Ayaktan Hasta Reçeteleri
+                            </label>
+                            <hvl-datagrid #outPatientPresDetail [AllowUserToAddRows]="OutpatientPresDetails?.AllowUserToAddRows" [AllowUserToDeleteRows]="OutpatientPresDetails?.AllowUserToDeleteRows" [Columns]="OutpatientPresDetailsColumns" [dataSource]="drugOrderIntroductionNewFormViewModel?._DrugOrderIntroduction?.OutpatientPresDetails" [DeleteButtonWidth]="OutpatientPresDetails?.DeleteButtonWidth" [DisplayExpressionsCache]="drugOrderIntroductionNewFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="OutpatientPresDetails?.ShowFilterRow" [FilterColumnName]="OutpatientPresDetails?.FilterColumnName" [FilterLabel]="OutpatientPresDetails?.FilterLabel" [Filter]="OutpatientPresDetails?.Filter" [height]="OutpatientPresDetails?.Height" [IsFilterLabelSingleLine]="OutpatientPresDetails?.IsFilterLabelSingleLine" [ShowColumnHeaders]="OutpatientPresDetails?.ColumnHeadersVisible" [ShowFilterCombo]="OutpatientPresDetails?.ShowFilterCombo" [ShowTotalNumberOfRows]="OutpatientPresDetails?.ShowTotalNumberOfRows" id="A4124" data-tid="A329754"></hvl-datagrid>
+                        </div>
+                    </div>
+                </dxi-item>
+                <dxi-item class="tabpanel-item" title="E-Reçete Listeleme / Sorgulama" i18n-title="@@M13821" id="A4125" data-tid="A329755">
+                    <div class="row" id="A4126" data-tid="A329756">
+                        <div class="col-sm-11" id="A4127" data-tid="A329757">
+                            <dx-data-grid id="gridContainer" [dataSource]="eReceteDataSource" [(selectedRowKeys)]="selectedErecete" [columnAutoWidth]="true" [masterDetail]="{ enabled: true, template: 'detail' }" style="height: 210px" data-tid="A329758">
+                                <dxo-selection mode="single" id="A4128" data-tid="A329759"></dxo-selection>
+                                <dxi-column dataField="ReceteNo" caption="Reçete No" i18n-caption="@@M20953" id="A4129" data-tid="A329760"></dxi-column>
+                                <dxi-column dataField="TakipNo" caption="Takip No" i18n-caption="@@M22659" id="A4130" data-tid="A329761"></dxi-column>
+                                <dxi-column dataField="ReceteTarihi" caption="Reçete Tarihi" i18n-caption="@@M20959" id="A4131" data-tid="A329762"></dxi-column>
+                                <dxi-column dataField="Doktor" caption="Doktor" i18n-dataField="@@M27330" i18n-caption="@@M27330" id="A4132" data-tid="A329763"></dxi-column>
+                                <dxi-column dataField="Brans" caption="Branş" i18n-caption="@@M12048" id="A4133" data-tid="A329764"></dxi-column>
+                                <dxi-column dataField="ProtokolNo" caption="Protokol No" i18n-caption="@@M20566" id="A4134" data-tid="A329765"></dxi-column>
+                                <dxi-column dataField="SeriNo" caption="Seri No" i18n-caption="@@M21636" id="A4135" data-tid="A329766"></dxi-column>
+
+                                <div *dxTemplate="let recete of 'detail'" id="A4136" data-tid="A329767">
+                                    <div class="internal-grid-container" style="padding: 0 0 5px 10px;font-size: 14px;font-weight: bold;" id="A4137" data-tid="A329768">
+                                        <div id="A4138" data-tid="A329769">{{recete.data.ReceteNo + " Detayları:"}}</div>
+                                        <br id="A4139" data-tid="A329770" />
+                                        <dx-data-grid class="internal-grid" [dataSource]="recete.data.EReceteDetays" [columnAutoWidth]="true" [showBorders]="true" [(selectedRowKeys)]="selectedDrugDetailRows" id="A4140" data-tid="A329771">
+
+                                            <dxo-selection mode="multiple" id="A4141" data-tid="A329772"></dxo-selection>
+
+                                            <dxi-column dataField="Barkod" caption="Barkod" i18n-dataField="@@M27321" i18n-caption="@@M27321" id="A4142" data-tid="A329773"></dxi-column>
+                                            <dxi-column dataField="Name" caption="İlaç" i18n-caption="@@M16287" id="A4143" data-tid="A329774"></dxi-column>
+                                            <dxi-column dataField="Frequency" caption="D.Aralığı" i18n-caption="@@M27366" id="A4144" data-tid="A329775"></dxi-column>
+                                            <dxi-column dataField="DoseAmount" caption="D.Miktarı" i18n-caption="@@M27377" id="A4145" data-tid="A329776"></dxi-column>
+                                            <dxi-column dataField="Day" caption="K.Peryodu" i18n-caption="@@M27394" id="A4146" data-tid="A329777"></dxi-column>
+                                            <dxi-column dataField="PeryodUnit" caption="K.Per.Birimi" i18n-caption="@@M17002" id="A4147" data-tid="A329778"></dxi-column>
+                                            <dxi-column dataField="Amount" caption="Miktar" i18n-caption="@@M19030" id="A4148" data-tid="A329779"></dxi-column>
+                                        </dx-data-grid>
+                                    </div>
+                                </div>
+                            </dx-data-grid>
+                        </div>
+                        <div class="col-sm-1" id="A4149" data-tid="A329780">
+                            <div class="row" id="A4150" data-tid="A329781">
+                                <dx-button icon="search" type="success" text="Listele" (onClick)="searchClick()" i18n-text="@@M27337" id="A4151" data-tid="A329782">
+                                </dx-button>
+                            </div>
+                            <br id="A4152" data-tid="A329783" />
+                            <div class="row" id="A4153" data-tid="A329784">
+                                <dx-button icon="close" type="danger" text="İptal Et" (onClick)="deleteClick()" i18n-text="@@M16552" id="A4154" data-tid="A329785">
+                                </dx-button>
+                            </div>
+                            <br id="A4155" data-tid="A329786" />
+                            <div class="row" id="A4156" data-tid="A329787">
+                                <dx-button icon="fa fa-medkit" type="success" text="Tekrarla" (onClick)="repeatDrugOrders()" i18n-text="@@M23128" id="A4157" data-tid="A329788">
+                                </dx-button>
+                            </div>
+                        </div>
+                    </div>
+                    <br id="A4158" data-tid="A329789" />
+                    <br id="A4159" data-tid="A329790" />
+                    <!--<dx-popup width="1200px" height="896px" [(visible)]="showDrugOrderDetails" title="Zaman Çizelgesi">
+                            <dx-data-grid [height]="700" [columnResizingMode]="widget" [dataSource]="drugOrderIntroductionNewFormViewModel.DrugOrderDetails" [columns]="DrugOrderDetailGridColumns" [filterRow]="{visible: true}" [headerFilter]="{visible: true}">
+                                <dxo-paging [pageSize]="100" id="A31078"></dxo-paging>
+                            </dx-data-grid>
+
+                    </dx-popup>-->
+                    <dx-tab-panel id='lookupContainer' [selectedIndex]="0" style="height:200px" (onSelectionChanged)="onValueChangedErecete($event)" deferRendering="false" data-tid="A329791">
+
+                        <dxi-item class="tabpanel-item" title="İlaç Açıklama Ekle" i18n-title="@@M16292" id="A4160" data-tid="A329792">
+                            <div class="row" style="height:100px" id="A4161" data-tid="A329793">
+                                <div class="col-sm-7" id="A4162" data-tid="A329794">
+
+                                    <dx-text-area [height]="90" [(value)]="drugDescriptionForErecete" id="A4163" data-tid="A329795">
+                                    </dx-text-area>
+                                </div>
+
+                                <div class="col-sm-3" id="A4164" data-tid="A329796">
+                                    <label class="control-label" id="A4165" data-tid="A329797">
+                                        Reçete İlaç Açk. Türü
+                                    </label>
+                                    <hvl-enum-combobox #Validation (ValueChange)="onDrugDescriptionTypeChanged($event)" [BackColor]="DrugDescriptionType?.BackColor" [DataTypeName]="DrugDescriptionType?.DataTypeName" [Enabled]="DrugDescriptionType?.Enabled" [Font]="DrugDescriptionType?.Font" [ForeColor]="DrugDescriptionType?.ForeColor" [IncludeOnly]="DrugDescriptionType?.IncludeOnly" [ReadOnly]="DrugDescriptionType?.ReadOnly" [ShowClearButton]="DrugDescriptionType?.ShowClearButton" [SortBy]="DrugDescriptionType?.SortBy" [TabIndex]="DrugDescriptionType?.TabIndex" [Value]="drugOrderIntroductionNewFormViewModel?._DrugOrderIntroduction?.DrugDescriptionType" [Visible]="DrugDescriptionType?.Visible" id="A4166" data-tid="A329798"></hvl-enum-combobox>
+                                </div>
+
+                                <div class="col-sm-2" id="A4167" data-tid="A329799">
+                                    <dx-button icon="edit" type="success" text="İlaç Açıklama Ekle" (onClick)="addDrugDescription()" i18n-text="@@M16292" id="A4168" data-tid="A329800">
+                                    </dx-button>
+                                </div>
+                            </div>
+                        </dxi-item>
+
+                        <dxi-item class="tabpanel-item" title="Reçeteye Tanı Ekle" i18n-title="@@M22744" id="A4169" data-tid="A329801">
+                            <div class="row" id="A4170" data-tid="A329802">
+                                <div class="col-sm-10" id="A4171" data-tid="A329803">
+                                    <dx-lookup [dataSource]="drugOrderIntroductionNewFormViewModel.DiagnosisDefinitionList" [closeOnOutsideClick]="true" [showPopupTitle]="false" (onValueChanged)="valueChangedDiagnosis($event)" displayExpr="DiagnosisName" style="height: 25px;" id="A4172" data-tid="A329804">
+                                    </dx-lookup>
+                                </div>
+                                <div class="col-sm-1" id="A4173" data-tid="A329805">
+                                    <dx-button icon="edit" type="success" text="Reçeteye Tanı Ekle" (onClick)="addDiagnosis()" i18n-text="@@M22744" id="A4174" data-tid="A329806">
+                                    </dx-button>
+                                </div>
+
+                            </div>
+                        </dxi-item>
+
+                        <dxi-item class="tabpanel-item" title="Hastaya Tanı Ekle" i18n-title="@@M22744" id="A4175" data-tid="A329807">
+                            <div class="row" id="A4176" data-tid="A329808">
+                                <div class="col-sm-12" id="A4177" data-tid="A329809">
+                                    <DiagnosisGridForm [IsReadOnly]="false" IsOnPopUp="true" [GridDiagnosisGridList]="this.drugOrderIntroductionNewFormViewModel.GridEpisodeDiagnosisGridList" [EpisodeAction]="this._DrugOrderIntroduction" [CheckENabiz]="true" id="A4178" data-tid="A329810"></DiagnosisGridForm>
+                                </div>
+
+
+
+                            </div>
+                        </dxi-item>
+
+                        <dxi-item class="tabpanel-item" title="Reçete Açıklama Ekle" i18n-title="@@M20926" id="A4179" data-tid="A329811">
+                            <div class="row" id="A4180" data-tid="A329812">
+                                <div class="col-sm-7" id="A4181" data-tid="A329813">
+                                    <dx-text-area [height]="90" [(value)]="recipeDescription" id="A4182" data-tid="A329814">
+                                    </dx-text-area>
+                                </div>
+
+                                <div class="col-sm-3" id="A4183" data-tid="A329815">
+                                    <label class="control-label" id="A4184" data-tid="A329816">
+                                        Reçete İlaç Açk. Türü
+                                    </label>
+                                    <hvl-enum-combobox #Validation (ValueChange)="onDrugDescriptionTypeChanged($event)" [BackColor]="DrugDescriptionType?.BackColor" [DataTypeName]="DrugDescriptionType?.DataTypeName" [Enabled]="DrugDescriptionType?.Enabled" [Font]="DrugDescriptionType?.Font" [ForeColor]="DrugDescriptionType?.ForeColor" [IncludeOnly]="DrugDescriptionType?.IncludeOnly" [ReadOnly]="DrugDescriptionType?.ReadOnly" [ShowClearButton]="DrugDescriptionType?.ShowClearButton" [SortBy]="DrugDescriptionType?.SortBy" [TabIndex]="DrugDescriptionType?.TabIndex" [Value]="drugOrderIntroductionNewFormViewModel?._DrugOrderIntroduction?.DrugDescriptionType" [Visible]="DrugDescriptionType?.Visible" id="A4185" data-tid="A329817"></hvl-enum-combobox>
+                                </div>
+
+
+                                <div class="col-sm-2" id="A4186" data-tid="A329818">
+                                    <dx-button icon="edit" type="success" text="Reçete Açıklama Ekle" (onClick)="addRecipeDescription()" i18n-text="@@M20926" id="A4187" data-tid="A329819">
+                                    </dx-button>
+                                </div>
+                            </div>
+                        </dxi-item>
+                    </dx-tab-panel>
+                </dxi-item>
+                <!--[groups]="['priority']"-->
+                <dxi-item *ngIf="isInpatient" class="tabpanel-item" title="Aktif İlaçlar" i18n-title="@@M10661" id="A4188" data-tid="A329820">
+                    <div class="col-sm-12" data-tid="A329821">
+                        <dx-scheduler #scheduler [dataSource]="appointmentsData" [views]='["timelineWeek", "timelineWorkWeek"]' timeCellTemplate="timeCellTemplate" appointmentTemplate="appointment-template" appointmentTooltipTemplate="tooltip-template" currentView="timelineWeek" firstDayOfWeek="1" startDayHour="0" [endDayHour]="24" [cellDuration]="1440" [currentDate]="currentDate" [height]="450" (onOptionChanged)="onOptionChanged($event)" (onAppointmentDblClick)="onAppointmentDblClick($event)" id="A4189" data-tid="A329822">
+
+                            <dxo-editing [allowAdding]="false" [allowUpdating]="false" [allowDragging]="false" [allowResizing]="false" [allowDeleting]="false" id="A4190" data-tid="A329823"></dxo-editing>
+
+                            <dxi-resource fieldExpr="ownerId" [allowMultiple]="true" [dataSource]="resourcesData" label="Owner" [useColorAsDefault]="false" id="A4191" data-tid="A329824"></dxi-resource>
+                            <div *dxTemplate="let data of 'timeCellTemplate'" id="A4192" data-tid="A329825">
+                            </div>
+                            <div *dxTemplate="let order of 'appointment-template'" id="A4193" data-tid="A329826">
+                                <div style="font-size: 10px;  white-space: normal; height:80px;padding-top :5px" id="A4194" data-tid="A329827">
+                                    <div id="A4195" data-tid="A329828">{{order.text + ' - ' + order.state}}</div>
+                                </div>
+                            </div>
+                            <div *dxTemplate="let order of 'tooltip-template'" id="A4196" data-tid="A329829">
+                                <div id="A4197" data-tid="A329830">
+                                    {{order.text}}
+                                </div>
+                                <div id="A4198" data-tid="A329831">
+                                    {{order.orderDetail}}
+                                </div>
+                                <div id="A4199" data-tid="A329832">
+                                    {{'Başlangıç Saati: ' + (order.startDate | date:'dd.MM.yyyy hh:mm')}}
+                                    <br id="A4200" data-tid="A329833" /> {{'Bitiş Saati: ' + (order.endDate | date:'dd.MM.yyyy hh:mm')}}
+                                </div>
+                                <br id="A4201" data-tid="A329834" />
+                                <dx-button type="btn btn-default" text='Durdur' (onClick)='stopOrder(order)' i18n-text="@@M13352" id="A4202" data-tid="A329835">
+                                </dx-button>
+                            </div>
+
+                        </dx-scheduler>
+                    </div>
+                </dxi-item>
+                <dxi-item *ngIf="isInpatient" class="tabpanel-item" title="Aktif İlaç Planlamaları" i18n-title="@@M10660" id="A4203" data-tid="A329836">
+                    <dx-scheduler #detailScheduler [height]="450" width="100%" [dataSource]="orderDetailData" dateCellTemplate="dateCellTemplate" [showAllDayPanel]="false" [views]="views" currentView="week" [currentDate]="currentDate" [firstDayOfWeek]="1" [startDayHour]="0" [endDayHour]="24" [crossScrollingEnabled]="true" resourceCellTemplate="resourceCellTemplate" appointmentTemplate="appointment-template" appointmentTooltipTemplate="tooltip-template" (onAppointmentDblClick)="onAppointmentDblClick($event)" (onAppointmentUpdated)="onAppointmentUpdated($event)" (onOptionChanged)="onOptionChanged($event)" id="A4204" data-tid="A329837">
+
+                        <dxo-editing [allowAdding]="false" [allowResizing]="false" [allowDeleting]="false" id="A4205" data-tid="A329838"></dxo-editing>
+                        <dxi-resource fieldExpr="typeId" [allowMultiple]="false" [dataSource]="detailResourcesData" label="Type" [useColorAsDefault]="false" style="line-height:20px;font-size: 13px" id="A4206" data-tid="A329839">
+                        </dxi-resource>
+                        <div *dxTemplate="let data of 'dateCellTemplate'" id="A4207" data-tid="A329840">
+                            <div style="font-size: 13px; line-height: 20px" id="A4208" data-tid="A329841">{{['Pzr', 'Pts', 'Sal', 'Çrş', 'Prş', 'Cum', 'Cts'][data.date.getDay()]}}</div>
+                            <div style="font-size: 15px; line-height: 15px" id="A4209" data-tid="A329842">{{data.date.getDate()}}</div>
+                        </div>
+                        <div *dxTemplate="let resource of 'resourceCellTemplate'" id="A4210" data-tid="A329843">
+                            <div style="font-size: 13px; line-height: 20px" id="A4211" data-tid="A329844">{{resource.text}}</div>
+                        </div>
+                        <div *dxTemplate="let orderDetail of 'appointment-template'" id="A4212" data-tid="A329845">
+                            <div style="font-size: 10px;  white-space: normal; height:30px;padding-top :5px" id="A4213" data-tid="A329846">
+                                <div id="A4214" data-tid="A329847">{{orderDetail.text}}</div>
+                            </div>
+                        </div>
+                        <div *dxTemplate="let orderDetail of 'tooltip-template'" id="A4215" data-tid="A329848">
+                            <div id="A4216" data-tid="A329849">
+                                {{orderDetail.text}}
+                            </div>
+                            <div id="A4217" data-tid="A329850">
+                                {{'Uygulama Saati: ' + (orderDetail.startDate | date:'dd.MM.yyyy hh:mm')}}
+                            </div>
+                            <br id="A4218" data-tid="A329851" />
+                            <dx-button type="btn btn-default" text='Uygula' (onClick)='editDetails(orderDetail)' i18n-text="@@M23745" id="A4219" data-tid="A329852">
+                            </dx-button>
+                        </div>
+                    </dx-scheduler>
+                </dxi-item>
+
+                <dxi-item *ngIf="ShowDoseAmountManagerButton " class="tabpanel-item" title="Hasta Üzerinde Kalan Doz Sıfırlama" data-tid="A329853">
+
+                    <div class="col-sm-12" id="A4043" data-tid="A329854">
+                        <label class="control-label" data-tid="A329855">
+                            Hasta Üzerinde Doz Kaldıgında Kullanılır, Dikkatli olunmalıdır.
+                        </label>
+                    </div>
+
+                    <div class="col-sm-12" id="A4043" data-tid="A329856">
+                        <dx-text-box [(value)]="ShowDoseAmountManagerPassword" placeholder="Password" mode="password" data-tid="A329857">
+                        </dx-text-box>
+                    </div>
+
+                    <div class="col-sm-6" style="float:left" id="A4083" data-tid="A329858">
+                        <dx-button icon="edit" type="success" text="Doz Sıfırla" (onClick)="DoseManageButtonClick()" data-tid="A329859">
+                        </dx-button>
+                    </div>
+
+                    <div class="col-sm-6" style="float:left" id="A4083" data-tid="A329860">
+                        <dx-button icon="edit" type="success" text="İlaç Direktifleri Düzenle" (onClick)="CreateDrugOrderDetails()" data-tid="A329861">
+                        </dx-button>
+                    </div>
+
+                </dxi-item>
+
+            </dx-tab-panel>
+        </div>
+    </div>
+    <div class="row" id="A4220" data-tid="A329862">
+        <div class="col-sm-12" style="height:200px" id="A4221" data-tid="A329863">
+            <hvl-datagrid #drugOrderDetail (CellContentClicked)="onDrugOrderIntroductionDetailsCellContentClicked($event)" (CellValueChange)="DrugOrderIntroductionDetails_CellValueChangedEmitted($event)" (RowPrepared)="DrugOrderIntroductionDetails_RowPrepared($event)" (InitNewRow)="initDrugOrderIntroductionDetailsNewRow($event)" (RowInserting)="onDrugOrderIntroductionDetailsRowInserting($event)" (SelectedObjectChange)="onSelectionChangeDrugOrderIntroductionDetails($event)" [AllowUserToAddRows]="DrugOrderIntroductionDetails?.AllowUserToAddRows" [AllowUserToDeleteRows]="false" [Columns]="DrugOrderIntroductionDetailsColumns" [dataSource]="drugOrderIntroductionNewFormViewModel?._DrugOrderIntroduction?.DrugOrderIntroductionDetails" [DeleteButtonWidth]="DrugOrderIntroductionDetails?.DeleteButtonWidth" [DisplayExpressionsCache]="drugOrderIntroductionNewFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="DrugOrderIntroductionDetails?.ShowFilterRow" [FilterColumnName]="DrugOrderIntroductionDetails?.FilterColumnName" [FilterLabel]="DrugOrderIntroductionDetails?.FilterLabel" [Filter]="DrugOrderIntroductionDetails?.Filter" [height]="DrugOrderIntroductionDetails?.Height" [IsFilterLabelSingleLine]="DrugOrderIntroductionDetails?.IsFilterLabelSingleLine" [ShowColumnHeaders]="DrugOrderIntroductionDetails?.ColumnHeadersVisible" [ShowFilterCombo]="DrugOrderIntroductionDetails?.ShowFilterCombo" [ShowTotalNumberOfRows]="DrugOrderIntroductionDetails?.ShowTotalNumberOfRows" id="A4222" data-tid="A329864"></hvl-datagrid>
+
+        </div>
+    </div>
+</div>
+<dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#gridContainer' }" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" id="A4223" data-tid="A329865">
+</dx-load-panel>
+<dx-load-panel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#lookupContainer' }" [(visible)]="loadingVisibleDiag" [showIndicator]="true" [showPane]="true" [shading]="true" id="A4224" data-tid="A329866">
+</dx-load-panel>

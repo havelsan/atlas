@@ -1,0 +1,85 @@
+﻿<br id="A32486" data-tid="A374100" />
+<div class="container-fluid" id="A32487" data-tid="A374101">
+    <div class="row" id="A32488" data-tid="A374102">
+        <br id="A32489" data-tid="A374103" />
+        <div class="col-sm-3" id="A32490" data-tid="A374104">
+            <div class="dx-field" id="A32491" data-tid="A374105">
+                <div class="dx-field-label" id="A32492" data-tid="A374106">Satınalmaya Çıkılan Depo</div>
+                <div class="dx-field-value" id="A32493" data-tid="A374107">
+                    <dx-select-box [items]="selecttableStores" displayExpr="Name" valueExpr="ID" [searchEnabled]="true" (onItemClick)="SelectBoxChange($event)" id="A32494" data-tid="A374108">
+                    </dx-select-box>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3" id="A32495" data-tid="A374109">
+            <div class="dx-field" id="A32496" data-tid="A374110">
+                <div class="dx-field-label" id="A32497" data-tid="A374111">Başlangıç Tarihi</div>
+                <div class="dx-field-value" id="A32498" data-tid="A374112">
+                    <dx-date-box [(value)]="startDate" type="date" id="A32499" data-tid="A374113">
+                    </dx-date-box>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3" id="A32500" data-tid="A374114">
+            <div class="dx-field" id="A32501" data-tid="A374115">
+                <div class="dx-field-label" id="A32502" data-tid="A374116">Bitiş Tarihi</div>
+                <div class="dx-field-value" id="A32503" data-tid="A374117">
+                    <dx-date-box [(value)]="endDate" type="date" id="A32504" data-tid="A374118">
+                    </dx-date-box>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2" id="A32505" data-tid="A374119">
+            <dx-button id="button" type="btn btn-default" icon="fa fa-download" [height]="25" [width]="160" (onClick)="GetSupplyRequest($event)" data-tid="A374120">
+                <div *dxTemplate="let data of 'content'" id="A32506" data-tid="A374121">
+                    <dx-load-indicator class='button-indicator' [visible]="loadIndicatorVisible" id="A32507" data-tid="A374122">
+                    </dx-load-indicator>
+                    <span class='dx-button-text' id="A32508" data-tid="A374123">{{buttonText}}</span>
+                </div>
+            </dx-button>
+        </div>
+    </div>
+    <br id="A32509" data-tid="A374124" />
+    <div class="row" id="A32510" style="min-height:550px;" data-tid="A374125">
+        <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A374126">
+        </dx-load-panel>
+        <dx-data-grid [dataSource]="dataStockActionSource" [masterDetail]="{ enabled: true, template: 'detail' }" id="A32511" *ngIf="!isPurchaseEServiceFastsoft" style="padding:15px;" data-tid="A374127">
+            <dxi-column dataField="stockActionID" caption="İşlem Numarası" i18n-caption="@@M16870" id="A32512" data-tid="A374128"></dxi-column>
+            <dxi-column dataField="stockActionDate" caption="İşlem Tarihi" i18n-caption="@@M16886" id="A32513" data-tid="A374129"></dxi-column>
+            <dxi-column dataField="requestedUser" caption="İstek Yapan Personel" i18n-caption="@@M16666" id="A32514" data-tid="A374130"></dxi-column>
+            <dxi-column dataField="XXXXXXKayitId" caption="Satınalama Kayıt No" i18n-caption="@@M21340" id="A32515" data-tid="A374131"></dxi-column>
+            <dxi-column dataField="description" caption="Açıklama" i18n-caption="@@M10469" id="A32516" data-tid="A374132"></dxi-column>
+            <dxi-column dataField="isImmediate" caption="Aciliyet" i18n-caption="@@M27362" id="A32517" data-tid="A374133"></dxi-column>
+            <div *dxTemplate="let dataStockActionSource of 'detail'" id="A32518" data-tid="A374134">
+                <div class="internal-grid-container" id="A32519" data-tid="A374135">
+                    <dx-data-grid id="gridContainer" [dataSource]="dataStockActionSource.data.islemSonucs" data-tid="A374136">
+                        <dxi-column dataField="etkilenenAdetField" caption="Etkilenen Adet" i18n-caption="@@M13939" i18n-dataField="@@M13940" id="A32520" data-tid="A374137">
+                        </dxi-column>
+                        <dxi-column dataField="islemBasariliField" caption="İşlem Durumu" i18n-caption="@@M16838" id="A32521" data-tid="A374138"></dxi-column>
+                        <dxi-column dataField="mesajField" caption="Durumn" i18n-caption="@@M13371" id="A32522" data-tid="A374139"></dxi-column>
+                        <dxi-column dataField="kayitIDField" caption="Kayıt ID" i18n-caption="@@M17396" id="A32523" data-tid="A374140"></dxi-column>
+                    </dx-data-grid>
+                </div>
+            </div>
+        </dx-data-grid>
+        <dx-data-grid [dataSource]="dataStockActionSourceFastSoft" [masterDetail]="{ enabled: true, template: 'detail' }" *ngIf="isPurchaseEServiceFastsoft" (onRowPrepared)="rowPrepared($event)" data-tid="A374141">
+            <dxo-paging [pageSize]="25" data-tid="A374142"></dxo-paging>
+            <dxi-column dataField="ActionDate" caption="İşlem Tarihi" width="200" dataType="date" format="dd/MM/yyyy" data-tid="A374143"></dxi-column>
+            <dxi-column dataField="InvoiceNumber" caption="Fatura Numarası" width="200" data-tid="A374144"></dxi-column>
+            <dxi-column dataField="ItemCount" caption="Malzeme Sayısı" width="200" alignment="center" data-tid="A374145"></dxi-column>
+            <dxi-column dataField="Status" caption="Durumu" width="200" data-tid="A374146"></dxi-column>
+            <dxi-column dataField="SupplierName" caption="Tedarikçi İsmi" data-tid="A374147"></dxi-column>
+            <div *dxTemplate="let dataStockActionSourceFastSoft of 'detail'" data-tid="A374148">
+                <div class="internal-grid-container" data-tid="A374149">
+                    <dx-data-grid id="gridContainer" [dataSource]="dataStockActionSourceFastSoft.data.ItemInfos" data-tid="A374150">
+                        <dxi-column dataField="Barcode" caption="Barkod" width="200" data-tid="A374151"></dxi-column>
+                        <dxi-column dataField="MaterialName" caption="Malzeme Adı" data-tid="A374152"></dxi-column>
+                        <dxi-column dataField="Amount" caption="Miktar" width="200" alignment="center" data-tid="A374153"></dxi-column>
+                        <dxi-column dataField="Price" caption="Fiyatı" width="200" alignment="center" data-tid="A374154"></dxi-column>
+                    </dx-data-grid>
+                </div>
+            </div>
+        </dx-data-grid>
+    </div>
+</div>
+

@@ -1,0 +1,87 @@
+﻿
+<div class style="height:100%" data-tid="A345875">
+    <div class="policlinic col-md-3 no-padding" style="border-right: 1px solid;height:100%" data-tid="A345876">
+        <div class="col-md-12" data-tid="A345877">
+            <h1 style="color:#7a7d7d;font-size:50px" data-tid="A345878">Doktor:</h1>
+            <h1 style="color:#ff0000;font-size:65px" data-tid="A345879">{{currentItem?.doctorName}}</h1>
+            <br data-tid="A345880" />
+            <h1 style="color:#7a7d7d;font-size:50px" data-tid="A345881">Birim:</h1>
+            <h1 style="color:#65a2c7;font-size:65px" data-tid="A345882">{{currentItem?.polName}}</h1>
+            <!--<br />
+            <h1 style="color:#7a7d7d;font-size:50px">Açıklama:</h1>
+            <h1 style="color:#ff0000;font-size:65px">{{currentItem?.LcdNotification}}</h1>-->
+        </div>
+    </div>
+    <div style="background-color:aliceblue;height: 100%;" class="col-md-9" data-tid="A345883">
+        <!-- <h1 *ngIf="currentItem?.LcdNotification?.length > 0" class="text-center" style="color:#7a7d7d;font-size:50px">Açıklama:</h1>-->
+        <img class="pull-right" style="width:100px;height:auto;" src="https://dosyaXXXXXX.saglik.gov.tr/webfiles/sehirXXXXXXleri/images/logo.svg" data-tid="A345884" />
+        <h1 *ngIf="currentItem?.LcdNotification != null && currentItem?.LcdNotification.length > 0" class="text-center" style="color:#ff0000;font-size:100px; color: #ff0000;top: 25vh;position: fixed;padding-left: 40vh;" data-tid="A345885">{{currentItem?.LcdNotification}}</h1>
+        <div *ngIf="currentItem?.LcdNotification == null  || currentItem?.LcdNotification.length == 0" data-tid="A345886">
+            <div *ngFor="let item of currentItem?.patient" class="text-center col-md-9 no-padding" style="background-color:aliceblue;height: 100%;" data-tid="A345887">
+
+                <h1 *ngIf="item.OrderNO=='0'&&item.PriorityReason==null" style="color:#0770a5;font-size:80px" data-tid="A345888">Randevu Saati : {{(item?.CallTime| date:'HH:mm')}}</h1>
+                <h1 *ngIf="item.OrderNO!='0'&&item.PriorityReason==null" style="color:#0770a5;font-size:80px" data-tid="A345889">Sıra No : {{item?.OrderNO}}</h1>
+                <h1 style="color:#0770a5;font-size:120px" data-tid="A345890">{{item?.patientName}}</h1>
+                <h1 style="color:#0770a5;font-size:100px" data-tid="A345891">{{item?.PriorityReason}}</h1>
+            </div>
+        </div>
+        <h1 *ngIf="currentItem?.LcdNotification == null  || currentItem?.LcdNotification.length == 0" class="text-center" style="color:#0770a5;font-size:100px; color: #0770a5;font-size: 70px;bottom: 66px;position: fixed;padding-left: 40vh;" data-tid="A345892">İÇERİ GİRİNİZ</h1>
+    </div>
+</div>
+<div class="myfooter" data-tid="A345893">
+    <h3 class="text-center" data-tid="A345894">
+        <marquee data-tid="A345895">
+            {{ currentItem?.GeneralLcdNotification}}
+            <b data-tid="A345896">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@&nbsp;{{ currentItem?.hospitalName}}
+            </b>
+        </marquee>
+    </h3>
+</div>
+<style data-tid="A345897">
+    .tbody tr {
+        height: 73px;
+    }
+
+    td {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: 0;
+    }
+
+        td h3 {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+
+    .policlinic {
+        height: 90%;
+        padding-left: 30px;
+    }
+
+        .policlinic div {
+            padding: 5px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .policlinic h1 {
+            text-align: left;
+        }
+
+        .policlinic h3 {
+            text-align: right;
+        }
+
+        .policlinic .active {
+            background-color: #0770a5;
+            color: #fff;
+        }
+
+    .col-md-3 {
+        padding-right: 0;
+    }
+</style>

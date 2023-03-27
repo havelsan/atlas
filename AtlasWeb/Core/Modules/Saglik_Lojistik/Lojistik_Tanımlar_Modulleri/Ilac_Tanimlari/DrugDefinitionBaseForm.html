@@ -1,0 +1,96 @@
+﻿<div class style="display: flex;height: 100%;" data-tid="A330424">
+    <div class="{{this.collapseSelectedDivProperties()}}" id="A16462" data-tid="A330425">
+        <div class="row" style="height: 100%;" data-tid="A330426">
+            <div class="col-sm-12 gradientPanel" style="height:3%;" id="A16463" data-tid="A330427">
+                <h4 style="color:#fff;font-size: 17px;text-align:left;margin-top: 0%;" id="A16464" data-tid="A330428">
+                    <div class="btn collapseBtn" (click)="btnCollapse()" style="padding:0;margin-top:3px;margin-right: 5px;" id="A16465" data-tid="A330429">
+                        <i class="{{this.collapseIconProperties()}}" id="A16466" data-tid="A330430"></i>
+                    </div>
+                    <span id="A16467" data-tid="A330431">İlaç Listesi</span>
+                </h4>
+            </div>
+            <div class="panel-body" style="background-color:#f6f6f6;padding-bottom:0; height:100%;padding: 0" id="A16468" data-tid="A330432">
+                <div class="col-md-12" style="padding: 2px;height: calc(100% - 224px);" id="A10249" data-tid="A330433">
+                    <dx-data-grid #dataGrid class="unsetMaxWidth" [columns]="GridColumns" [dataSource]="ViewModel.GridDataSource" (onSelectionChanged)="selectionMaterial($event)" [selection]="{mode: 'single',allowSelectAll: false}" [paging]="{pageSize: 100, enable: true}" [groupPanel]="{visible: false}" [filterRow]="{visible: true}" width="100%" height="600px" id="A102501" data-tid="A330434">
+                        <!-- <dxo-scrolling mode="virtual"></dxo-scrolling> -->
+                        <div *dxTemplate="let cellData of 'LabelCellTemplate'" id="A16530" data-tid="A330435">
+                            <span *ngIf="cellData.data.IsActive==1" data-tid="A330436">Aktif</span>
+                            <span *ngIf="cellData.data.IsActive==0" data-tid="A330437">Pasif</span>
+                            <span *ngIf="cellData.data.IsActive==-1" data-tid="A330438">Tümü</span>
+                        </div>
+                    </dx-data-grid>
+                </div>
+                <div class="col-md-12" style="padding: 2px;height: 224px;" data-tid="A330439">
+                    <div class="row" data-tid="A330440">
+                        <div class="col-md-6" data-tid="A330441">
+                            <label class="control-label" data-tid="A330442">Durumu</label>
+                            <dx-select-box searchEnabled="true" [(value)]="QueryModel.IsActive" [items]="Items" (onSelectionChanged)="selectIsActive($event)" placeholder="Yeri Seçiniz..." displayExpr="Name" valueExpr="Value" data-tid="A330443"></dx-select-box>
+                        </div>
+
+                        <div class="col-md-6" data-tid="A330444">
+                            <label class="control-label" data-tid="A330445">Orderda Gizlenenler</label>
+                            <dx-select-box searchEnabled="true" [(value)]="QueryModel.ShowZeroOnDrugOrder" (onSelectionChanged)="selectOrderItems($event)" [items]="OrderItems" placeholder="Yeri Seçiniz..." displayExpr="Name" valueExpr="Value" data-tid="A330446">
+                            </dx-select-box>
+                        </div>
+                    </div>
+                    <div class="row" data-tid="A330447">
+                        <div class="col-md-6" data-tid="A330448">
+                            <label class="control-label" data-tid="A330449">Özellikli İlaçlar</label>
+                            <dx-tag-box [items]="QueryModel.DrugSpecificationEnumDef" [searchEnabled]="true" valueExpr="ordinal" displayExpr="description" [(value)]="QueryModel.DrugSpecs" (onSelectionChanged)="selectDrugSpecification($event)" [multiline]="false" showSelectionControls="false" [disabled]="showUnused" data-tid="A330450">
+                            </dx-tag-box>
+                            <!-- (onSelectionChanged)="onMaterialSelectionChanged($event)" -->
+                        </div>
+                        <div class="col-md-6" data-tid="A330451">
+                            <label class="control-label" data-tid="A330452">Stok Mevcudu</label>
+                            <dx-select-box searchEnabled="true" [(value)]="QueryModel.IsInheld" [items]="StockItems" (onSelectionChanged)="selectStockInheld($event)" placeholder="Yeri Seçiniz..." displayExpr="Name" valueExpr="Value" data-tid="A330453"></dx-select-box>
+                        </div>
+                    </div>
+                    <div class="row" data-tid="A330454">
+                        <div class="col-md-6" data-tid="A330455">
+                            <label class="control-label" data-tid="A330456">D. Belgesinde Gizlenenler</label>
+                            <dx-select-box searchEnabled="true" [(value)]="QueryModel.ShowZeroDistributionInfo" (onSelectionChanged)="selectZeroDistribution($event)" [items]="OrderItems" placeholder="Yeri Seçiniz..." displayExpr="Name" valueExpr="Value" data-tid="A330457">
+                            </dx-select-box>
+                        </div>
+                        <div class="col-md-6" data-tid="A330458">
+                            <label class="control-label" data-tid="A330459">İlaç Grubu</label>
+                            <dx-tag-box searchEnabled="true" [(value)]="QueryModel.DrugShape" [items]="QueryModel.DrugShapeTypeList" placeholder="Seçiniz..." displayExpr="name" (onSelectionChanged)="selectDrugShapeType($event)" valueExpr="ordinal" [multiline]="false" showSelectionControls="false" [disabled]="showUnused" data-tid="A330460"></dx-tag-box>
+                        </div>
+                    </div>
+                    <div class="row" data-tid="A330461">
+                        <div class="col-md-6" data-tid="A330462">
+                            <label class="control-label" data-tid="A330463">Hareket Durumu</label>
+                            <dx-select-box searchEnabled="true" [(value)]="QueryModel.ActionStatus" [items]="OrderItems" (onSelectionChanged)="selectActionStatus($event)" placeholder="Yeri Seçiniz..." displayExpr="Name" valueExpr="Value" data-tid="A330464"></dx-select-box>
+                        </div>
+                    </div>
+                    <div class="row" data-tid="A330465">
+                        <div class="col-md-6" data-tid="A330466">
+                            <dx-button type="btn btn-info" icon="plus" (onClick)="newDrugDefinition()" style="float: left;" text="Yeni İlaç Ekle" data-tid="A330467"></dx-button>
+                        </div>
+                        <div class="col-md-6" data-tid="A330468">
+                            <dx-button type="btn btn-info" icon="fa fa-bars" (onClick)="query()" style="float: right;" text="Listele" i18n-text="@@M27337" id="A10230" data-tid="A330469"></dx-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="{{this.collapseSelectedHiddenDivProperties()}}" style="position:relative;" id="A16544" data-tid="A330470">
+        <div class="MyVerticalText" (click)="btnCollapse()" id="A16545" data-tid="A330471">
+            <i class="{{this.collapseIconProperties()}}" id="A16546" data-tid="A330472"></i>
+            <span id="A16547" data-tid="A330473">&nbsp;&nbsp;&nbsp;&nbsp;İlaç Listesi</span>
+        </div>
+    </div>
+
+    <div style="flex:2;overflow-x: hidden;margin-left: -0.7%;margin-right: -0.9%;" data-tid="A330474">
+        <div class="{{this.collapsedPanelProperties()}}" style="height:100%!important" data-tid="A330475">
+            <comp-compose [Info]="componentInfo" (ComponentCreated)="onComponentCreated($event)" (DynamicComponentActionExecuted)="dynamicComponentActionExecuted($event)" [DestroyComponentOnSave]='false' data-tid="A330476"></comp-compose>
+        </div>
+    </div>
+
+</div>
+
+<dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A28706" data-tid="A330477">
+</dx-load-panel>

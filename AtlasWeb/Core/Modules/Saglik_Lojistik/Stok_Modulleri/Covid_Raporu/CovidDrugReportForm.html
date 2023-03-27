@@ -1,0 +1,37 @@
+﻿<div class="col-md-12" style="height:100%;overflow-x:hidden;overflow-y:auto;padding-top: 10px;">
+    <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" showIndicator="true"
+        showPane="true" shading="true" [closeOnOutsideClick]="false" [message]="LoadPanelMessage">
+    </dx-load-panel>
+    <div class="row" style="margin-bottom:0;padding-left: 15px" data-tid="A332206">
+        <div class="col-sm-4 ">
+            <label class="control-label" style="border:0; box-shadow:none; color:#08c" data-tid="A332246">Başlangıç
+                Tarihi </label>
+            <dx-date-box width="100%" type="date" [(value)]="covidDrugReportSearchModel.StartDate" [readOnly]="false"
+                data-tid="A332247">
+            </dx-date-box>
+        </div>
+        <div class="col-sm-4 ">
+            <label class="control-label" style="border:0; box-shadow:none; color:#08c" data-tid="A332249">Bitiş
+                Tarihi</label>
+            <dx-date-box width="100%" type="date" [(value)]="covidDrugReportSearchModel.EndDate" [readOnly]="false"
+                data-tid="A332250">
+            </dx-date-box>
+        </div>
+        <div class="col-sm-4 ">
+            <br />
+            <dx-button type="default" style="background-color:#08c; float:right;" icon="fa fa-bars" text="Sorgula"
+                (onClick)="btnSearchClick()"></dx-button>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-sm-12" >
+            <dx-data-grid showColumnLines="true" showRowLines="true" showBorders="true" [dataSource]="gridDataSource"
+                [columns]="CovidDrugReportColumns" [paging]="{enabled:true}" height="100%"
+                [editing]="{allowUpdating: false,allowDeleting: false,allowAdding: false}" [filterRow]="{visible:true}"
+                data-tid="A332221">
+                <dxo-export [enabled]="true" fileName="Covid Listesi" [allowExportSelectedData]="false"></dxo-export>
+            </dx-data-grid>
+        </div>
+    </div>
+</div>

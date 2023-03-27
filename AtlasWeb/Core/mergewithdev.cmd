@@ -1,0 +1,1 @@
+git fetch && git add . && git commit -m "%~2" && git push origin %~1 && git checkout dev && git pull origin dev && git checkout %~1 && git merge --no-ff  dev && git push origin %~1

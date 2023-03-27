@@ -1,0 +1,131 @@
+﻿<h4 class="logisticLabel" style="margin-left:40%;color:#08c;" id="A3570" data-tid="A328659">{{FormCaption}}</h4>
+
+<NeStatePanelComponent [OutgoingTransitions]="drugReturnActionCompletedFormViewModel?.OutgoingTransitions" [StateReports]="drugReturnActionCompletedFormViewModel?.CurrentStateReports" [ObjectID]="drugReturnActionCompletedFormViewModel?._DrugReturnAction?.ObjectID" [ObjectDefID]="drugReturnActionCompletedFormViewModel?._DrugReturnAction?.ObjectDefID" [CurrentStateDefID]="drugReturnActionCompletedFormViewModel._DrugReturnAction.CurrentStateDefID" [DropStateList]="DropStateList" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" id="A3399" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" (onCancel)="cancel()" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A328660">
+</NeStatePanelComponent>
+
+<form id="DrugReturnActionCompletedForm" class="form-horizontal" role="form" data-tid="A328661">
+
+    <div class="container-fluid" id="A3400" data-tid="A328662">
+
+        <div class="row" id="A3401" data-tid="A328663">
+            <div class="col-md-4 col-sm-12" id="A3402" data-tid="A328664">
+                <patient-demographics-form [actionId]="drugReturnActionCompletedFormViewModel._DrugReturnAction.ObjectID" id="A3403" data-tid="A328665">
+                </patient-demographics-form>
+            </div>
+            <div class="col-md-2 col-sm-12" id="A3404" data-tid="A328666">
+                <div class="row" id="A3405" data-tid="A328667">
+                    <div class="col-md-12" id="A3406" data-tid="A328668">
+                        <label class="control-label" id="A3407" data-tid="A328669">Klinik Protokol No</label>
+                    </div>
+                </div>
+                <div class="row" id="A3408" data-tid="A328670">
+                    <div class="col-md-12" id="A3409" data-tid="A328671">
+                        <label class="control-label" id="A3410" data-tid="A328672">Hastanın Tedavi Gördüğü Klinik</label>
+                    </div>
+                </div>
+                <div class="row" id="A3411" data-tid="A328673">
+                    <div class="col-md-6" id="A3412" data-tid="A328674">
+                        <label class="control-label" id="A3413" data-tid="A328675">Oda</label>
+                    </div>
+                    <div class="col-md-6" id="A3414" data-tid="A328676">
+                        <label class="control-label" id="A3415" data-tid="A328677">Yatak</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12" id="A3416" data-tid="A328678">
+                <DiagnosisGridReadOnlyForm [EpisodeAction]="drugReturnActionCompletedFormViewModel._DrugReturnAction" id="A3417" data-tid="A328679"></DiagnosisGridReadOnlyForm>
+
+            </div>
+        </div>
+
+
+        <br id="A3418" data-tid="A328680" />
+        <div class="row" id="A3419" data-tid="A328681">
+            <div class="col-sm-2" id="A3420" data-tid="A328682">
+                <label class="control-label" id="A3421" data-tid="A328683">
+                    İşlem No
+                </label>
+                <hvl-text-box #Validation (TextChange)="onIDChanged($event)" [BackColor]="ID?.BackColor" [CharacterCasing]="ID?.CharacterCasing" [Enabled]="ID?.Enabled" [Font]="ID?.Font" [ForeColor]="ID?.ForeColor" [height]="ID?.Height" [InputFormat]="ID?.InputFormat" [InputTurkishCharacter]="ID?.InputTurkishCharacter" [IsNonNumeric]="ID?.IsNonNumeric" [MultiLine]="ID?.Multiline" [ReadOnly]="ID?.ReadOnly" [Required]="ID?.Required" [TabIndex]="ID?.TabIndex" [TextAlign]="ID?.TextAlign" [Text]="drugReturnActionCompletedFormViewModel?._DrugReturnAction?.ID" [Visible]="ID?.Visible" id="A3422" data-tid="A328684"></hvl-text-box>
+            </div>
+            <div class="col-sm-2" id="A3423" data-tid="A328685">
+                <label class="control-label" id="A3424" data-tid="A328686">
+                    İşlem Tarihi
+                </label>
+                <hvl-date-picker #Validation (ValueChange)="onActionDateChanged($event)" [BackColor]="ActionDate?.BackColor" [CustomFormat]="ActionDate?.CustomFormat" [Enabled]="ActionDate?.Enabled" [Font]="ActionDate?.Font" [ForeColor]="ActionDate?.ForeColor" [Format]="ActionDate?.Format" [Max]="ActionDate?.Max" [Min]="ActionDate?.Min" [ReadOnly]="ActionDate?.ReadOnly" [Required]="ActionDate?.Required" [TabIndex]="ActionDate?.TabIndex" [Value]="drugReturnActionCompletedFormViewModel?._DrugReturnAction?.ActionDate" [Visible]="ActionDate?.Visible" id="A3425" data-tid="A328687"></hvl-date-picker>
+            </div>
+            <div class="col-sm-2" id="A3426" data-tid="A328688">
+                <label class="control-label" id="A3427" data-tid="A328689">
+                    Eczane
+                </label>
+                <hvl-list-box #Validation (SelectedObjectChange)="onPharmacyStoreDefinitionChanged($event)" [AutoCompleteDialogHeight]="PharmacyStoreDefinition?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="PharmacyStoreDefinition?.AutoCompleteDialogWidth" [AutoCompleteMode]="PharmacyStoreDefinition?.AutoCompleteMode" [BackColor]="PharmacyStoreDefinition?.BackColor" [DefinitionName]="PharmacyStoreDefinition?.ListDefName" [DisplayExpressionsCache]="drugReturnActionCompletedFormViewModel?.ListDefDisplayExpressions" [Enabled]="PharmacyStoreDefinition?.Enabled" [Font]="PharmacyStoreDefinition?.Font" [ForeColor]="PharmacyStoreDefinition?.ForeColor" [ListFilterExpression]="PharmacyStoreDefinition?.ListFilterExpression" [MinSearchLength]="PharmacyStoreDefinition?.MinSearchLength" [PopupDialogFieldConfig]="PharmacyStoreDefinition?.PopupDialogFieldConfig" [PopupDialogGridColumns]="PharmacyStoreDefinition?.PopupDialogGridColumns" [PopupDialogHeight]="PharmacyStoreDefinition?.PopupDialogHeight" [PopupDialogTitle]="PharmacyStoreDefinition?.PopupDialogTitle" [PopupDialogWidth]="PharmacyStoreDefinition?.PopupDialogWidth" [ReadOnly]="PharmacyStoreDefinition?.ReadOnly" [SearchMode]="PharmacyStoreDefinition?.SearchMode" [SearchTimeout]="PharmacyStoreDefinition?.SearchTimeout" [SelectedObject]="drugReturnActionCompletedFormViewModel?._DrugReturnAction?.PharmacyStoreDefinition" [TabIndex]="PharmacyStoreDefinition?.TabIndex" [Visible]="PharmacyStoreDefinition?.Visible" [width]="PharmacyStoreDefinition?.Width" id="A3428" data-tid="A328690"></hvl-list-box>
+            </div>
+
+            <div class="col-sm-2" id="A3429" data-tid="A328691">
+                <br id="A3430" data-tid="A328692" />
+                <dx-button text="MKYS'ye Gönder" type="default" (onClick)="SendToMKYS_Click()" [(disabled)]="disabledSendMkys" icon="fa fa-envelope-o" style="width: 100%;padding-right: 30%;" i18n-text="@@M27547" id="A3431" data-tid="A328693"></dx-button>
+            </div>
+            <!--<div class="col-sm-2" id="A3429">
+                <br id="A3430" />
+                <dx-button text="MKYS'den Sil" type="default" (onClick)="DeleteFromMkys()" icon="fa fa-envelope-o" style="width: 100%;padding-right: 30%;" i18n-text="@@M27547" id="A3431"></dx-button>
+            </div>-->
+            <div class="col-sm-2" id="A3432" data-tid="A328694">
+                <br id="A3433" data-tid="A328695" />
+                <dx-button text="Taşınır Tekrar Bas" type="success" (onClick)="prepareDocument_Click()" [(disabled)]="disabledReport" icon="fa fa-file-text-o" style="width: 100%;padding-right: 30%;" i18n-text="@@M27581" id="A3434" data-tid="A328696"></dx-button>
+            </div>
+        </div>
+        <br id="A3435" data-tid="A328697" />
+        <div class="row" id="A3436" data-tid="A328698">
+            <div class="col-sm-12" id="A3437" data-tid="A328699">
+                <label class="control-label" id="A3438" data-tid="A328700">
+                    İade Nedeni
+                </label>
+                <hvl-text-box #Validation [(Text)]="drugReturnActionCompletedFormViewModel._DrugReturnAction.DrugReturnReason" [BackColor]="DrugReturnReason?.BackColor" [CharacterCasing]="DrugReturnReason?.CharacterCasing" [Enabled]="DrugReturnReason?.Enabled" [Font]="DrugReturnReason?.Font" [ForeColor]="DrugReturnReason?.ForeColor" [height]="DrugReturnReason?.Height" [InputFormat]="DrugReturnReason?.InputFormat" [InputTurkishCharacter]="DrugReturnReason?.InputTurkishCharacter" [IsNonNumeric]="DrugReturnReason?.IsNonNumeric" [MultiLine]="DrugReturnReason?.Multiline" [ReadOnly]="DrugReturnReason?.ReadOnly" [Required]="DrugReturnReason?.Required" [TabIndex]="DrugReturnReason?.TabIndex" [TextAlign]="DrugReturnReason?.TextAlign" [Visible]="DrugReturnReason?.Visible" id="A3439" data-tid="A328701"></hvl-text-box>
+            </div>
+        </div>
+        <br id="A3440" data-tid="A328702" />
+        <div class="row" id="A3441" data-tid="A328703">
+            <div class="col-sm-12" id="A3442" data-tid="A328704">
+                <hvl-datagrid [AllowUserToAddRows]="DrugReturnActionDetails?.AllowUserToAddRows" [AllowUserToDeleteRows]="DrugReturnActionDetails?.AllowUserToDeleteRows" [Columns]="DrugReturnActionDetailsColumns" [dataSource]="drugReturnActionCompletedFormViewModel?._DrugReturnAction?.DrugReturnActionDetails" [DeleteButtonWidth]="DrugReturnActionDetails?.DeleteButtonWidth" [DisplayExpressionsCache]="drugReturnActionCompletedFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="DrugReturnActionDetails?.ShowFilterRow" [FilterColumnName]="DrugReturnActionDetails?.FilterColumnName" [FilterLabel]="DrugReturnActionDetails?.FilterLabel" [Filter]="DrugReturnActionDetails?.Filter" [height]="DrugReturnActionDetails?.Height" [IsFilterLabelSingleLine]="DrugReturnActionDetails?.IsFilterLabelSingleLine" [ShowColumnHeaders]="DrugReturnActionDetails?.ColumnHeadersVisible" [ShowFilterCombo]="DrugReturnActionDetails?.ShowFilterCombo" [ShowTotalNumberOfRows]="DrugReturnActionDetails?.ShowTotalNumberOfRows" id="A3443" data-tid="A328705"></hvl-datagrid>
+            </div>
+        </div>
+        <br id="A3444" data-tid="A328706" />
+        <div class="row" id="A3445" data-tid="A328707">
+            <dx-tab-panel [selectedIndex]="0" id="A3446" data-tid="A328708">
+                <dxi-item class="tabpanel-item" title="Taşınır Malın" i18n-title="@@M27509" id="A3447" data-tid="A328709">
+                    <dx-data-grid [dataSource]="_documentRecordLogs" id="A3448" data-tid="A328710">
+                        <dxi-column dataField="DocumentRecordLogNumber" caption="Belge Kayıt Numarası" i18n-caption="@@M11743" id="A3449" data-tid="A328711"></dxi-column>
+                        <dxi-column dataField="DocumentDateTime" caption="Belge Tarihi" i18n-caption="@@M11748" id="A3450" data-tid="A328712"></dxi-column>
+                        <dxi-column dataField="DocumentTransactionType" caption="İşlem Çeşidi" cellTemplate="enumCmbTemplate" i18n-caption="@@M16834" id="A3451" data-tid="A328713"></dxi-column>
+                        <dxi-column dataField="BudgeType" caption="Bütçe Tipi" cellTemplate="enumCmbBudgetTemplate" i18n-caption="@@M12145" id="A3452" data-tid="A328714"></dxi-column>
+                        <dxi-column dataField="ReceiptNumber" caption="Ayniyat Makbuz No" i18n-caption="@@M27582" id="A3453" data-tid="A328715"></dxi-column>
+                        <dxi-column dataField="TakenGivenPlace" caption="Alındığı / Verildiği Yer" i18n-caption="@@M10714" id="A3454" data-tid="A328716"></dxi-column>
+                        <dxi-column dataField="Descriptions" caption="Açıklamalar" i18n-caption="@@M10483" id="A3455" data-tid="A328717">
+                        </dxi-column>
+
+                        <div style="height:16px;margin-top:-7px" *dxTemplate="let cellData of 'enumCmbTemplate'" id="A3456" data-tid="A328718">
+                            <hvl-enum-combobox [(Value)]="cellData.data[cellData.column.dataField]" DataTypeName="DocumentTransactionTypeEnum" ReadOnly="true" id="A3457" data-tid="A328719">
+                            </hvl-enum-combobox>
+                        </div>
+                        <div style="height:16px;margin-top:-7px" *dxTemplate="let cellData of 'enumCmbBudgetTemplate'" id="A3458" data-tid="A328720">
+                            <hvl-enum-combobox [(Value)]="cellData.data[cellData.column.dataField]" DataTypeName="MKYS_EButceTurEnum" ReadOnly="true" id="A3459" data-tid="A328721"></hvl-enum-combobox>
+                        </div>
+
+                    </dx-data-grid>
+
+                </dxi-item>
+            </dx-tab-panel>
+        </div>
+    </div>
+</form>
+
+<dx-popup [width]="300" [height]="250" [showTitle]="true" title="MKYS Sonuç Mesajı" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="popupVisible" i18n-title="@@M27536" id="A3460" data-tid="A328722">
+    <div *dxTemplate="let data of 'content'" id="A3461" data-tid="A328723">
+        <p id="A3462" data-tid="A328724">
+            <span id="A3463" data-tid="A328725">{{mkysSonucMesaj}}</span>
+        </p>
+    </div>
+</dx-popup>
+
+
+<dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" showIndicator="true" showPane="true" shading="true" [closeOnOutsideClick]="false" [message]="LoadPanelMessage" data-tid="A328726">
+</dx-load-panel>

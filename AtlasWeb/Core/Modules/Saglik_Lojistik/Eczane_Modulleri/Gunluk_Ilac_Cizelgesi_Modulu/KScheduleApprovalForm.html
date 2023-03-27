@@ -1,0 +1,487 @@
+﻿<h4 class="logisticLabel" style="margin-left:40%;color:#08c;" id="A3666" data-tid="A328984">
+
+    {{FormCaption}}</h4>
+<NeStatePanelComponent [OutgoingTransitions]="kScheduleApprovalFormViewModel?.OutgoingTransitions"
+    [StateReports]="kScheduleApprovalFormViewModel?.CurrentStateReports"
+    [ObjectID]="kScheduleApprovalFormViewModel?._KSchedule?.ObjectID"
+    [ObjectDefID]="kScheduleApprovalFormViewModel?._KSchedule?.ObjectDefID"
+    [CurrentStateDefID]="kScheduleApprovalFormViewModel._KSchedule.CurrentStateDefID" [DropStateList]="DropStateList"
+    (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" (onCancel)="NewFormCancel()"
+    id="A3667" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible"
+    [CloseWithStateTransition]="closeWithStateTransition" [CustomButtonVisible]="isCancelButtonShow"
+    [CustomButtonCaption]="CancelButtonCaption" [CustomButtonIcon]="CancelButtonIcon"
+    [CustomButtonType]="CancelButtonType" (onCustomButtonClick)="cancelKSchedule($event)" data-tid="A328985">
+</NeStatePanelComponent>
+
+<form id="KScheduleApprovalForm" class="form-horizontal" role="form" data-tid="A328986">
+
+    <div class="container-fluid" id="A3668" data-tid="A328987">
+        <br id="A3669" data-tid="A328988" />
+        <div class="row" id="A3670" data-tid="A328989">
+            <div class="col-md-4 col-sm-12" id="A3671" data-tid="A328990">
+                <patient-demographics-form
+                    [actionId]="kScheduleApprovalFormViewModel._KSchedule.InPatientPhysicianApplication" id="A3672"
+                    data-tid="A328991">
+                </patient-demographics-form>
+            </div>
+            <div class="col-md-2 col-sm-12" *ngIf="hasPhysicianApplication" id="A3673" data-tid="A328992">
+                <div class="row" id="A3674" data-tid="A328993">
+                    <div class="col-md-12" id="A3675" data-tid="A328994">
+                        <label class="control-label" id="A3676" data-tid="A328995">Klinik Protokol No</label>
+                        <dx-text-box [readOnly]="true" [hoverStateEnabled]="false" [(value)]="clinicProtocolNo"
+                            id="A3677" data-tid="A328996"></dx-text-box>
+                    </div>
+                </div>
+                <div class="row" id="A3678" data-tid="A328997">
+                    <div class="col-md-6" id="A3679" data-tid="A328998">
+                        <label class="control-label" id="A3680" data-tid="A328999">Oda</label>
+                        <dx-text-box [readOnly]="true" [hoverStateEnabled]="false" [(value)]="clinicRoom" id="A3681"
+                            data-tid="A329000">
+                        </dx-text-box>
+                    </div>
+                    <div class="col-md-6" id="A3682" data-tid="A329001">
+                        <label class="control-label" id="A3683" data-tid="A329002">Yatak</label>
+                        <dx-text-box [readOnly]="true" [hoverStateEnabled]="false" [(value)]="clinicBed" id="A3684"
+                            data-tid="A329003">
+                        </dx-text-box>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12" id="A3685" data-tid="A329004">
+                <DiagnosisGridReadOnlyForm
+                    [EpisodeAction]="kScheduleApprovalFormViewModel._KSchedule.InPatientPhysicianApplication" id="A3686"
+                    data-tid="A329005"></DiagnosisGridReadOnlyForm>
+            </div>
+        </div>
+        <br id="A3687" data-tid="A329006" />
+        <div class="row" id="A3688" data-tid="A329007">
+            <div class="col-sm-3" id="A3689" data-tid="A329008">
+                <label class="control-label " id="A3690" data-tid="A329009">
+                    İşlem No
+                </label>
+                <hvl-text-box #Validation (TextChange)="onStockActionIDChanged($event)"
+                    [BackColor]="StockActionID?.BackColor" [CharacterCasing]="StockActionID?.CharacterCasing"
+                    [Enabled]="StockActionID?.Enabled" [Font]="StockActionID?.Font"
+                    [ForeColor]="StockActionID?.ForeColor" [height]="StockActionID?.Height"
+                    [InputFormat]="StockActionID?.InputFormat"
+                    [InputTurkishCharacter]="StockActionID?.InputTurkishCharacter"
+                    [IsNonNumeric]="StockActionID?.IsNonNumeric" [MultiLine]="StockActionID?.Multiline"
+                    [ReadOnly]="StockActionID?.ReadOnly" [Required]="StockActionID?.Required"
+                    [TabIndex]="StockActionID?.TabIndex" [TextAlign]="StockActionID?.TextAlign"
+                    [Text]="kScheduleApprovalFormViewModel?._KSchedule?.StockActionID"
+                    [Visible]="StockActionID?.Visible" id="A3691" data-tid="A329010"></hvl-text-box>
+            </div>
+            <div class="col-sm-3" id="A3692" data-tid="A329011">
+                <label class="control-label " id="A3693" data-tid="A329012">
+                    İşlem Tarihi
+                </label>
+                <hvl-date-picker #Validation (ValueChange)="onTransactionDateChanged($event)"
+                    [BackColor]="TransactionDate?.BackColor" [CustomFormat]="TransactionDate?.CustomFormat"
+                    [Enabled]="TransactionDate?.Enabled" [Font]="TransactionDate?.Font"
+                    [ForeColor]="TransactionDate?.ForeColor" [Format]="TransactionDate?.Format"
+                    [Max]="TransactionDate?.Max" [Min]="TransactionDate?.Min" [ReadOnly]="TransactionDate?.ReadOnly"
+                    [Required]="TransactionDate?.Required" [TabIndex]="TransactionDate?.TabIndex"
+                    [Value]="kScheduleApprovalFormViewModel?._KSchedule?.TransactionDate"
+                    [Visible]="TransactionDate?.Visible" id="A3694" data-tid="A329013"></hvl-date-picker>
+            </div>
+            <div class="col-sm-3" id="A3695" data-tid="A329014">
+                <label class="control-label " id="A3696" data-tid="A329015">
+                    İstek Yapılan Depo
+                </label>
+                <hvl-list-box #Validation (SelectedObjectChange)="onStoreChanged($event)"
+                    [AutoCompleteDialogHeight]="Store?.AutoCompleteDialogHeight"
+                    [AutoCompleteDialogWidth]="Store?.AutoCompleteDialogWidth"
+                    [AutoCompleteMode]="Store?.AutoCompleteMode" [BackColor]="Store?.BackColor"
+                    [DefinitionName]="Store?.ListDefName"
+                    [DisplayExpressionsCache]="kScheduleApprovalFormViewModel?.ListDefDisplayExpressions"
+                    [Enabled]="Store?.Enabled" [Font]="Store?.Font" [ForeColor]="Store?.ForeColor"
+                    [ListFilterExpression]="Store?.ListFilterExpression" [MinSearchLength]="Store?.MinSearchLength"
+                    [PopupDialogFieldConfig]="Store?.PopupDialogFieldConfig"
+                    [PopupDialogGridColumns]="Store?.PopupDialogGridColumns"
+                    [PopupDialogHeight]="Store?.PopupDialogHeight" [PopupDialogTitle]="Store?.PopupDialogTitle"
+                    [PopupDialogWidth]="Store?.PopupDialogWidth" [ReadOnly]="Store?.ReadOnly"
+                    [SearchMode]="Store?.SearchMode" [SearchTimeout]="Store?.SearchTimeout"
+                    [SelectedObject]="kScheduleApprovalFormViewModel?._KSchedule?.Store" [TabIndex]="Store?.TabIndex"
+                    [Visible]="Store?.Visible" [width]="Store?.Width" id="A3697" data-tid="A329016"></hvl-list-box>
+            </div>
+            <div class="col-sm-3" id="A3698" data-tid="A329017">
+                <label class="control-label " id="A3699" data-tid="A329018">
+                    İstek Yapan Depo
+                </label>
+                <hvl-list-box #Validation (SelectedObjectChange)="onDestinationStoreChanged($event)"
+                    [AutoCompleteDialogHeight]="DestinationStore?.AutoCompleteDialogHeight"
+                    [AutoCompleteDialogWidth]="DestinationStore?.AutoCompleteDialogWidth"
+                    [AutoCompleteMode]="DestinationStore?.AutoCompleteMode" [BackColor]="DestinationStore?.BackColor"
+                    [DefinitionName]="DestinationStore?.ListDefName"
+                    [DisplayExpressionsCache]="kScheduleApprovalFormViewModel?.ListDefDisplayExpressions"
+                    [Enabled]="DestinationStore?.Enabled" [Font]="DestinationStore?.Font"
+                    [ForeColor]="DestinationStore?.ForeColor"
+                    [ListFilterExpression]="DestinationStore?.ListFilterExpression"
+                    [MinSearchLength]="DestinationStore?.MinSearchLength"
+                    [PopupDialogFieldConfig]="DestinationStore?.PopupDialogFieldConfig"
+                    [PopupDialogGridColumns]="DestinationStore?.PopupDialogGridColumns"
+                    [PopupDialogHeight]="DestinationStore?.PopupDialogHeight"
+                    [PopupDialogTitle]="DestinationStore?.PopupDialogTitle"
+                    [PopupDialogWidth]="DestinationStore?.PopupDialogWidth" [ReadOnly]="DestinationStore?.ReadOnly"
+                    [SearchMode]="DestinationStore?.SearchMode" [SearchTimeout]="DestinationStore?.SearchTimeout"
+                    [SelectedObject]="kScheduleApprovalFormViewModel?._KSchedule?.DestinationStore"
+                    [TabIndex]="DestinationStore?.TabIndex" [Visible]="DestinationStore?.Visible"
+                    [width]="DestinationStore?.Width" id="A3700" data-tid="A329019"></hvl-list-box>
+            </div>
+        </div>
+        <br id="A3701" data-tid="A329020" />
+        <div class="row" id="A3702" data-tid="A329021">
+            <div class="col-sm-3" id="A3703" data-tid="A329022">
+                <label class="control-label " id="A3704" data-tid="A329023">
+                    Başlangıç Tarihi
+                </label>
+                <hvl-date-picker #Validation (ValueChange)="onStartDateChanged($event)"
+                    [BackColor]="StartDate?.BackColor" [CustomFormat]="StartDate?.CustomFormat"
+                    [Enabled]="StartDate?.Enabled" [Font]="StartDate?.Font" [ForeColor]="StartDate?.ForeColor"
+                    [Format]="StartDate?.Format" [Max]="StartDate?.Max" [Min]="StartDate?.Min"
+                    [ReadOnly]="StartDate?.ReadOnly" [Required]="StartDate?.Required" [TabIndex]="StartDate?.TabIndex"
+                    [Value]="kScheduleApprovalFormViewModel?._KSchedule?.StartDate" [Visible]="StartDate?.Visible"
+                    id="A3705" data-tid="A329024"></hvl-date-picker>
+            </div>
+            <div class="col-sm-3" id="A3706" data-tid="A329025">
+                <label class="control-label " id="A3707" data-tid="A329026">
+                    Bitiş Tarihi
+                </label>
+                <hvl-date-picker #Validation (ValueChange)="onEndDateChanged($event)" [BackColor]="EndDate?.BackColor"
+                    [CustomFormat]="EndDate?.CustomFormat" [Enabled]="EndDate?.Enabled" [Font]="EndDate?.Font"
+                    [ForeColor]="EndDate?.ForeColor" [Format]="EndDate?.Format" [Max]="EndDate?.Max"
+                    [Min]="EndDate?.Min" [ReadOnly]="EndDate?.ReadOnly" [Required]="EndDate?.Required"
+                    [TabIndex]="EndDate?.TabIndex" [Value]="kScheduleApprovalFormViewModel?._KSchedule?.EndDate"
+                    [Visible]="EndDate?.Visible" id="A3708" data-tid="A329027"></hvl-date-picker>
+            </div>
+            <div class="col-sm-2" id="A3709" data-tid="A329028">
+                <label class="control-label " id="A3710" data-tid="A329029">
+                    İstek Yapan Personel
+                </label>
+                <hvl-text-box #Validation [(Text)]="kScheduleApprovalFormViewModel._KSchedule.MKYS_TeslimAlan"
+                    [BackColor]="MKYS_TeslimAlan?.BackColor" [CharacterCasing]="MKYS_TeslimAlan?.CharacterCasing"
+                    [Enabled]="MKYS_TeslimAlan?.Enabled" [Font]="MKYS_TeslimAlan?.Font"
+                    [ForeColor]="MKYS_TeslimAlan?.ForeColor" [height]="MKYS_TeslimAlan?.Height"
+                    [InputFormat]="MKYS_TeslimAlan?.InputFormat"
+                    [InputTurkishCharacter]="MKYS_TeslimAlan?.InputTurkishCharacter"
+                    [IsNonNumeric]="MKYS_TeslimAlan?.IsNonNumeric" [MultiLine]="MKYS_TeslimAlan?.Multiline"
+                    [ReadOnly]="MKYS_TeslimAlan?.ReadOnly" [Required]="MKYS_TeslimAlan?.Required"
+                    [TabIndex]="MKYS_TeslimAlan?.TabIndex" [TextAlign]="MKYS_TeslimAlan?.TextAlign"
+                    [Visible]="MKYS_TeslimAlan?.Visible" id="A3711" data-tid="A329030"></hvl-text-box>
+            </div>
+            <div class="col-sm-2" data-tid="A329031">
+                <br id="A3713" data-tid="A329032" />
+                <!--<dx-button text="Lab. Sonuçları" type="default" (onClick)="btnShowLISResultViewForAllEpisodes_Click()">
+                </dx-button>-->
+
+                <dx-button id="btnAction" icon="fa fa-undo" type="default" icon="spindown"
+                    style="margin: 0px 5px 0px 0px; width: 100%;" text="Medikal Bilgiler" (onClick)="showActionMenu()"
+                    data-tid="A329033">
+                </dx-button>
+                <dx-context-menu [(visible)]="actionMenuVisible" [displayExpr]="'Caption'" [dataSource]="stateAction"
+                    target="#btnAction" [position]="{at: 'left bottom'}" (onItemClick)="onActionMenuClick($event)"
+                    data-tid="A329034">
+                </dx-context-menu>
+            </div>
+            <div class="col-sm-1" id="A3712" data-tid="A329035">
+                <br id="A3713" data-tid="A329036" />
+                <dx-button type="success" icon="fa fa-commenting-o" text="Dr. Mesaj" (onClick)="btnSendMessage()"
+                    style="width: 100%;" i18n-text="@@M13215" id="A3714" data-tid="A329037"></dx-button>
+            </div>
+            <div class="col-sm-1" id="A3715" data-tid="A329038">
+                <br id="A3716" data-tid="A329039" />
+                <dx-button type="default" icon="fa fa-barcode" text="Barkodu Bas" (onClick)="btnPrintlBarcode()"
+                    i18n-text="@@M27416" id="A3717" data-tid="A329040"></dx-button>
+            </div>
+        </div>
+        <br id="A3718" data-tid="A329041" />
+        <div class="row" id="A3719" data-tid="A329042">
+            <div class="col-sm-12" id="A3720" data-tid="A329043">
+                <label class="control-label " id="A3721" data-tid="A329044">
+                    Açıklama
+                </label>
+                <hvl-text-box #Validation (TextChange)="onDescriptionChanged($event)"
+                    [BackColor]="Description?.BackColor" [CharacterCasing]="Description?.CharacterCasing"
+                    [Enabled]="Description?.Enabled" [Font]="Description?.Font" [ForeColor]="Description?.ForeColor"
+                    [height]="Description?.Height" [InputFormat]="Description?.InputFormat"
+                    [InputTurkishCharacter]="Description?.InputTurkishCharacter"
+                    [IsNonNumeric]="Description?.IsNonNumeric" [MultiLine]="Description?.Multiline"
+                    [ReadOnly]="Description?.ReadOnly" [Required]="Description?.Required"
+                    [TabIndex]="Description?.TabIndex" [TextAlign]="Description?.TextAlign"
+                    [Text]="kScheduleApprovalFormViewModel?._KSchedule?.Description" [Visible]="Description?.Visible"
+                    id="A3722" data-tid="A329045"></hvl-text-box>
+            </div>
+        </div>
+        <br id="A3723" data-tid="A329046" />
+        <div class="row" id="A3724" data-tid="A329047">
+            <div class="panel panel-default" style="color:blue;background-color: powderblue;" id="A3725"
+                data-tid="A329048">
+                <div class="panel-body" id="A3726" data-tid="A329049">
+                    <div class="col-sm-6" id="A3727" data-tid="A329050">
+                        <div class="col-sm-4" id="A3728" data-tid="A329051">
+                            <dx-text-box #drugBagText [readOnly]="false" [hoverStateEnabled]="false"
+                                [(value)]="stockActionIDValue" valueChangeEvent="keyup"
+                                (keypress)="PatientInfo_KeyPress($event)" [(visible)]="PatientDrugInfoVisible"
+                                id="A3729" data-tid="A329052">
+                            </dx-text-box>
+                        </div>
+                        <div class="col-sm-2" id="A3730" data-tid="A329053">
+                            <dx-button type="default" icon="fa fa-medkit" text="İlaç Torba Barkodunu Okut"
+                                (onClick)="verifyPatientInfoClick()" [(visible)]="PatientDrugInfoVisible"
+                                i18n-text="@@M16373" id="A3731" data-tid="A329054"></dx-button>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" id="A3732" data-tid="A329055">
+                        <div class="col-sm-4" id="A3733" data-tid="A329056">
+                            <dx-text-box #drugText [readOnly]="false" [hoverStateEnabled]="false"
+                                [(value)]="drugBarcodeValue" valueChangeEvent="keyup"
+                                (keypress)="DrugBarcode_KeyPress($event)" [(visible)]="DrugBarcodeInfoVisible"
+                                id="A3734" data-tid="A329057"></dx-text-box>
+                        </div>
+                        <div class="col-sm-2" id="A3735" data-tid="A329058">
+                            <dx-button type="default" icon="fa fa-chain-broken" text="İlaç Barkodunu Okut ve Doğrula"
+                                (onClick)="readDrugBarcodeAndVerifyIt()" [(visible)]="DrugBarcodeInfoVisible"
+                                i18n-text="@@M16304" id="A3736" data-tid="A329059"></dx-button>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body" id="A3737" data-tid="A329060">
+                    <i class="fa fa-user-md" aria-hidden="true" style="color:red;" id="A3738"
+                        data-tid="A329061">{{patientOwnDrugDesciption}}</i>
+                </div>
+            </div>
+        </div>
+        <br id="A3739" data-tid="A329062" />
+        <dx-popup width="600px" height="400px" [(visible)]="showOverDosePopup" [closeOnOutsideClick]="true"
+            title="Etken Madde Etkileşimi" style="overflow-y:auto" data-tid="A329063">
+            <div *dxTemplate="let data of 'content'" style="overflow-y:auto" data-tid="A329064">
+                <div [innerHtml]="overDoseMessage" style="overflow-y:auto" data-tid="A329065"></div>
+            </div>
+        </dx-popup>
+        <dx-popup width="600px" height="400px" [(visible)]="showIngredientOverDosePopup" [closeOnOutsideClick]="true"
+            title="Etken Madde Doz Aşımı" style="overflow-y:auto" data-tid="A329066">
+            <div *dxTemplate="let data of 'content'" style="overflow-y:auto" data-tid="A329067">
+                <div [innerHtml]="ingredientMessage" style="overflow-y:auto" data-tid="A329068"></div>
+            </div>
+        </dx-popup>
+        <dx-popup width="600px" height="400px" [(visible)]="showDrugSpecPopup" [closeOnOutsideClick]="true"
+            title="Özellikli İlaç" style="overflow-y:auto" data-tid="A329069">
+            <div *dxTemplate="let data of 'content'" style="overflow-y:auto" data-tid="A329070">
+                <div [innerHtml]="drugSpecMessage" style="overflow-y:auto" data-tid="A329071"></div>
+            </div>
+        </dx-popup>
+        <dx-popup width="600px" height="400px" [(visible)]="showDescriptionPopup" [closeOnOutsideClick]="true"
+            title="Verilen Order İçin Açıklama" style="overflow-y:auto" data-tid="A329072">
+            <div *dxTemplate="let data of 'content'" style="overflow-y:auto" data-tid="A329073">
+                <div [innerHtml]="drugDescription" style="overflow-y:auto" data-tid="A329074"></div>
+            </div>
+        </dx-popup>
+        <dx-popup width="600px" height="400px" [(visible)]="showStopSameIngredient" [closeOnOutsideClick]="true"
+            title="Durdurulan Etken Madde" style="overflow-y:auto" data-tid="A329075">
+            <div *dxTemplate="let data of 'content'" style="overflow-y:auto" data-tid="A329076">
+                <div [innerHtml]="stopSameIngredientMessage" style="overflow-y:auto" data-tid="A329077"></div>
+            </div>
+        </dx-popup>
+        <dx-popup width="600px" height="400px" [(visible)]="showDefDescriptionPopup" [closeOnOutsideClick]="true"
+            title="Verilen Order İçin Tanımlanan Açıklama" style="overflow-y:auto" data-tid="A329078">
+            <div *dxTemplate="let data of 'content'" style="overflow-y:auto" data-tid="A329079">
+                <div [innerHtml]="drugDefDescription" style="overflow-y:auto" data-tid="A329080"></div>
+            </div>
+        </dx-popup>
+        <dx-popup width="600px" height="400px" [(visible)]="showRepeatDayWarningPopup" [closeOnOutsideClick]="true"
+            title="Verilen Order Tekrar Gün Süresi Uyarısı" style="overflow-y:auto" data-tid="A329081">
+            <div *dxTemplate="let data of 'content'" style="overflow-y:auto" data-tid="A329082">
+                <div [innerHtml]="repeatDayWarning" style="overflow-y:auto" data-tid="A329083"></div>
+            </div>
+        </dx-popup>
+        <div class="row" id="A3740" data-tid="A329084">
+            <dx-tab-panel [selectedIndex]="0" id="A3741" (onSelectionChanged)="tabSelectionPatient($event)"
+                data-tid="A329085">
+                <dxi-item class="tabpanel-item" title="İstenen İlaçlar" i18n-title="@@M16709" id="A3742"
+                    data-tid="A329086">
+                    <div class="row" id="A3743" data-tid="A329087">
+                        <div class="col-sm-12" id="A3744" data-tid="A329088">
+                            <div id="grid" data-tid="A329089">
+                                <dx-data-grid #materialGrid id="grid-container" [columns]="MaterialGridColumns"
+                                    [selection]="{mode: 'single',allowSelectAll: false}"
+                                    [dataSource]="kScheduleApprovalFormViewModel?.KScheduleMaterialRowViewModelList"
+                                    keyExpr="RowObjectId" [selectedRowKeys]="selectedRows"
+                                    (onRowPrepared)="onRowPrepared($event)" data-tid="A329090">
+
+                                    <div *dxTemplate="let row of 'detailCellTemplate'" style="padding-bottom: 1px;"
+                                        data-tid="A329091">
+                                        <i class="fa fa-barcode" style="cursor:pointer" (click)="getDetail(row)"
+                                            data-tid="A329092"></i>
+                                    </div>
+
+                                    <div *dxTemplate="let row of 'buttonCellTemplateDetail'"
+                                        style="padding-bottom: 1px;" data-tid="A329093">
+                                        <dx-button type="default" text="Detaylar" (onClick)="btnDetail(row)"
+                                            data-tid="A329094">
+                                        </dx-button>
+                                    </div>
+
+                                    <div *dxTemplate="let row of 'buttonCellTemplateEqual'" style="padding-bottom: 1px;"
+                                        data-tid="A329095">
+                                        <dx-button type="default" text="Eşdeğer" (onClick)="btnEqualDrug(row)"
+                                            data-tid="A329096">
+                                        </dx-button>
+                                    </div>
+
+                                    <dxo-paging [pageSize]="20" data-tid="A329097"></dxo-paging>
+                                    <dxo-filter-row [visible]="true" id="A5698" data-tid="A329098"> </dxo-filter-row>
+                                    <dxo-editing mode="cell" [allowUpdating]="true" [allowDeleting]="false"
+                                        [allowAdding]="false" data-tid="A329099"></dxo-editing>
+
+                                </dx-data-grid>
+                            </div>
+
+                        </div>
+                    </div>
+                </dxi-item>
+                <!--<dxi-item class="tabpanel-item" title="Hasta Yanında Getirdiği İlaçlar" i18n-title="@@M27671" id="A3746">
+                <div class="row" style="height:600px" id="A3747">
+                    <div class="col-sm-12" id="A3748">
+                        <hvl-datagrid (CellValueChange)="KSchedulePatienOwnDrugs_CellValueChangedEmitted($event)"
+                                      [AllowUserToAddRows]="KSchedulePatienOwnDrugs?.AllowUserToAddRows"
+                                      [AllowUserToDeleteRows]="KSchedulePatienOwnDrugs?.AllowUserToDeleteRows"
+                                      [Columns]="KSchedulePatienOwnDrugsColumns"
+                                      [dataSource]="kScheduleApprovalFormViewModel?._KSchedule?.KSchedulePatienOwnDrugs" [DeleteButtonWidth]="KSchedulePatienOwnDrugs?.DeleteButtonWidth" [DisplayExpressionsCache]="kScheduleApprovalFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="KSchedulePatienOwnDrugs?.ShowFilterRow" [FilterColumnName]="KSchedulePatienOwnDrugs?.FilterColumnName" [FilterLabel]="KSchedulePatienOwnDrugs?.FilterLabel" [Filter]="KSchedulePatienOwnDrugs?.Filter" [height]="KSchedulePatienOwnDrugs?.Height" [IsFilterLabelSingleLine]="KSchedulePatienOwnDrugs?.IsFilterLabelSingleLine" [ShowColumnHeaders]="KSchedulePatienOwnDrugs?.ColumnHeadersVisible" [ShowFilterCombo]="KSchedulePatienOwnDrugs?.ShowFilterCombo" [ShowTotalNumberOfRows]="KSchedulePatienOwnDrugs?.ShowTotalNumberOfRows" id="A3749"></hvl-datagrid>
+                    </div>
+                </div>
+            </dxi-item>-->
+
+                <dxi-item class="tabpanel-item" title="Bu Gelişe Ait İlaçlar" data-tid="A329100">
+                    <div class="row" id="A3751" style="height:600px" data-tid="A329101">
+                        <dx-data-grid [columns]="inpatientHasDrugListColumn" [dataSource]="InpatientHasDrugList"
+                            [filterRow]="{visible: true}" width="100%" height="100%" showRowLines="true"
+                            style="padding-left: 1%;"
+                            [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:false}"
+                            data-tid="A329102">
+                            <dxo-paging [pageSize]="20" data-tid="A329103"></dxo-paging>
+                        </dx-data-grid>
+                    </div>
+                </dxi-item>
+
+                <dxi-item class="tabpanel-item" title="İlaç Tedavi Profili" i18n-title="@@M16366" id="A3750"
+                    data-tid="A329104">
+                    <div class="row" style="height:600px" id="A3751" data-tid="A329105">
+                        <div class="col-sm-12" id="A3752" data-tid="A329106">
+
+                            <dx-data-grid id="gridContainer" [dataSource]="tempDrugOrders"
+                                (onToolbarPreparing)="onToolbarPreparing($event)" data-tid="A329107">
+                                <dxo-grouping [autoExpandAll]="expanded" data-tid="A329108"></dxo-grouping>
+                                <dxo-column-chooser [enabled]="true" data-tid="A329109"></dxo-column-chooser>
+                                <dxo-load-panel [enabled]="true" id="A3755" data-tid="A329110"></dxo-load-panel>
+                                <dxi-column dataField="OrderType" caption="Order Şekli" [width]="200"
+                                    i18n-caption="@@M19738" id="A3756" data-tid="A329111">
+                                </dxi-column>
+                                <dxi-column dataField="OrderDate" caption="Tarih" sortOrder="asc" [width]="200"
+                                    i18n-caption="@@M27302" id="A3757" data-tid="A329112"></dxi-column>
+                                <dxi-column dataField="DrugName" caption="İlaç" [width]="500" i18n-caption="@@M16287"
+                                    [groupIndex]="0" id="A3758" data-tid="A329113"></dxi-column>
+                                <dxi-column dataField="Frequency" caption="Doz Aralığı" [width]="100"
+                                    i18n-caption="@@M13285" id="A3759" data-tid="A329114"></dxi-column>
+                                <dxi-column dataField="DoseAmount" caption="Doz Miktarı" [width]="100"
+                                    i18n-caption="@@M13294" id="A3760" data-tid="A329115"></dxi-column>
+                                <dxi-column dataField="Day" caption="Gün" [width]="50" i18n-caption="@@M14998"
+                                    id="A3761" data-tid="A329116"></dxi-column>
+                                <dxi-column dataField="UsageNote" caption="Kullanım Açıklaması" [width]="200"
+                                    i18n-caption="@@M17961" id="A3762" data-tid="A329117"></dxi-column>
+
+                                <dxo-summary id="A3763" data-tid="A329118">
+                                    <dxi-group-item column="OrderDate" summaryType="count" displayFormat="{0} adet"
+                                        id="A3764" data-tid="A329119">
+                                    </dxi-group-item>
+                                </dxo-summary>
+
+                                <div *dxTemplate="let data of 'totalGroupCount'" id="A3765" data-tid="A329120">
+                                    <div class="informer" id="A3766" data-tid="A329121">
+                                        <h2 class="count" style="margin-top: 0px;" id="A3767" data-tid="A329122">
+                                            {{totalCount}}</h2>
+                                        <span class="name" id="A3768" data-tid="A329123">Adet Grup</span>
+                                    </div>
+                                </div>
+
+                            </dx-data-grid>
+                        </div>
+                    </div>
+                </dxi-item>
+                <dxi-item class="tabpanel-item" title="Daha Önce Karşılanan İlaçlar" i18n-title="@@M27737" id="A3769"
+                    data-tid="A329124">
+                    <div class="row" style="height:600px" id="A3770" data-tid="A329125">
+                        <div class="col-sm-12" id="A3771" data-tid="A329126">
+                            <dx-data-grid id="gridContainer" [dataSource]="completedKScheduleMaterial"
+                                data-tid="A329127">
+                                <dxi-column dataField="StockActionID" caption="İşlem No" [width]="100"
+                                    i18n-caption="@@M16866" id="A3772" data-tid="A329128"></dxi-column>
+                                <dxi-column dataField="KScheduleMaterialRowType" caption="Tipi" [width]="100"
+                                    i18n-caption="@@M27302" data-tid="A329129"></dxi-column>
+                                <dxi-column dataField="TransactionDate" caption="Tarih" dataType="date" [width]="100"
+                                    i18n-caption="@@M27302" id="A3773" data-tid="A329130"></dxi-column>
+                                <dxi-column dataField="Barcode" caption="Barkod" [width]="150" i18n-caption="@@M27321"
+                                    id="A3774" data-tid="A329131"></dxi-column>
+                                <dxi-column dataField="Name" caption="İlaç" i18n-caption="@@M16287" id="A3775"
+                                    data-tid="A329132">
+                                </dxi-column>
+                                <dxi-column dataField="Amount" caption="Miktar" [width]="100" i18n-caption="@@M19030"
+                                    id="A3776" data-tid="A329133"></dxi-column>
+                            </dx-data-grid>
+                        </div>
+                    </div>
+                </dxi-item>
+                <dxi-item class="tabpanel-item" title="Son 24 Saatte Alınan İlaçlar" i18n-title="@@M27737" id="A3769"
+                    data-tid="A329134">
+                    <div class="row" style="height:600px" id="A3770" data-tid="A329135">
+                        <div class="col-sm-12" id="A3771" data-tid="A329136">
+                            <dx-data-grid id="gridContainer"
+                                [dataSource]="kScheduleApprovalFormViewModel?.patientLastUseDrugs" data-tid="A329137">
+                                <dxi-column dataField="DrugName" caption="İlaç" i18n-caption="@@M16287" id="A3775"
+                                    data-tid="A329138">
+                                </dxi-column>
+                                <dxi-column dataField="Amount" caption="Miktar" [width]="100" i18n-caption="@@M19030"
+                                    id="A3776" data-tid="A329139"></dxi-column>
+                            </dx-data-grid>
+                        </div>
+                    </div>
+                </dxi-item>
+            </dx-tab-panel>
+        </div>
+    </div>
+</form>
+
+<dx-popup class="popup" [width]="600" [height]="350" [showTitle]="true" title="İlaç Takvimi" [dragEnabled]="true"
+    [closeOnOutsideClick]="true" [(visible)]="showOrderDetailPopup" data-tid="A329140">
+
+    <div *dxTemplate="let data of 'content'" data-tid="A329141">
+
+        <dx-data-grid [dataSource]="orderScheduleList" data-tid="A329142">
+            <dxi-column dataField="DrugName" caption="İlaç Adı" [width]="300" data-tid="A329143"></dxi-column>
+            <dxi-column dataField="StartDate" caption="Uygulama Zamanı" [width]="60" dataType="datetime"
+                format="dd.MM.yyyy HH:mm" data-tid="A329144"></dxi-column>
+        </dx-data-grid>
+
+    </div>
+</dx-popup>
+
+<dx-popup *ngIf="showPopupRadiologyTestResultsForm == true" showTitle="true"
+    [title]="popupTitleRadiologyTestResultsForm" [width]="1200" [height]="400"
+    [(visible)]="showPopupRadiologyTestResultsForm" [position]="{my:'center',at:'center'}" i18n-title="@@M30806"
+    id="A28163" data-tid="A329145">
+    <div *dxTemplate="let data of 'content'" id="A28164" data-tid="A329146">
+        <dx-scroll-view [height]="650" direction="both" id="A28165" data-tid="A329147">
+            <PatientAllRadiologyTestResultsForm [EpisodeObjectID]="EpisodeObjectID" id="A28166" data-tid="A329148">
+            </PatientAllRadiologyTestResultsForm>
+        </dx-scroll-view>
+    </div>
+</dx-popup>
+
+<dx-popup *ngIf="showPathologyResultsPopUp == true" showTitle="true" [title]="popupTitleRadiologyTestResultsForm"
+    [width]="1200" [height]="400" [(visible)]="showPathologyResultsPopUp" [position]="{my:'center',at:'center'}"
+    id="AY28163" data-tid="A329149">
+    <div *dxTemplate="let data of 'content'" id="AY28164" data-tid="A329150">
+        <dx-scroll-view [height]="650" direction="both" id="A28165" data-tid="A329151">
+            <AllPathologyReportsForm [PatientObjectID]="PatientObjectID" data-tid="A329152"></AllPathologyReportsForm>
+        </dx-scroll-view>
+    </div>
+</dx-popup>

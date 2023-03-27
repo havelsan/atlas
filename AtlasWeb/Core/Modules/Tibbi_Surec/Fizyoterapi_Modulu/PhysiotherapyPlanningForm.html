@@ -1,0 +1,434 @@
+﻿
+<form id="PhysiotherapyPlanningForm" class="form-horizontal" role="form" data-tid="A344077">
+
+    <ul class="nav nav-tabs" id="A13358" data-tid="A344078">
+        <li class="active" id="A13359" data-tid="A344079"><a data-toggle="tab" href="#fizyoterapi" id="A13360" data-tid="A344080">F.T.R. Planlama</a></li>
+        <li id="A13361" data-tid="A344081"><a data-toggle="tab" href="#hastagecmisi" (click)="openHastaGecmisi()" id="A13362" data-tid="A344082">Hasta Geçmişi</a></li>
+        <li id="A13363" data-tid="A344083"><a data-toggle="tab" href="#malzemesarf" (click)="openMalzemeSarf()" id="A13364" data-tid="A344084">Malz. Sarf</a></li>
+    </ul>
+
+    <div class="tab-content" id="A13365" data-tid="A344085">
+        <div #scrollPanel id="fizyoterapi" class="col-sm-12 tab-pane fade in active" style="overflow-y: scroll" data-tid="A344086">
+
+            <div class="row" id="A13366" data-tid="A344087">
+                <div class="col-md-5" id="A13367" data-tid="A344088">
+                    <patient-demographics-form [actionId]="physiotherapyPlanningFormViewModel._PhysiotherapyRequest?.ObjectID" [ShowFromResource]="true" id="A13368" data-tid="A344089"></patient-demographics-form>
+                </div>
+                <div class="col-md-7" id="A13369" data-tid="A344090">
+                    <div class="row" id="A13370" data-tid="A344091">
+                        <label class="control-label col-md-2" id="A13371" data-tid="A344092">
+                            <b id="A13372" data-tid="A344093">Tıbbi Bilgiler </b>
+                        </label>
+                        <div class="col-md-10" id="A13373" data-tid="A344094">
+                            {{physiotherapyPlanningFormViewModel?.MedicalInfo}}
+                        </div>
+                    </div>
+                    <div class="row" id="A13374" data-tid="A344095">
+                        <label class="control-label col-md-2" id="A13375" data-tid="A344096">
+                            <b id="A13376" data-tid="A344097">Protokol No </b>
+                        </label>
+                        <div class="col-md-3" id="A13377" data-tid="A344098">
+                            {{physiotherapyPlanningFormViewModel?._PhysiotherapyRequest.ProtocolNo}}
+                        </div>
+                    </div>
+                    <div class="row" [hidden]="physiotherapyPlanningFormViewModel.HideAnamnesisInfoButton" id="A13378" data-tid="A344099">
+                        <label class="control-label col-md-2" id="A13379" data-tid="A344100">
+                            <b id="A13380" data-tid="A344101">Anamnez Bilgileri </b>
+                        </label>
+                        <div class="col-md-1" id="A13381" data-tid="A344102">
+                            <a href="javascript:void(0)" class="nav-link" (click)="anamnesisInfoButtonClicked()" id="A13382" data-tid="A344103">
+                                <i style="float:right" class="fa fa-id-card-o fa-2x" data-toggle="tooltip" data-placement="bottom" title="Anamnez Bilgilerini Görüntüle" i18n-title="@@M30608" id="A13383" data-tid="A344104"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row" *ngIf="physiotherapyPlanningFormViewModel?.IsPhysiotherapyRequestFormUsing == true " id="A13384" data-tid="A344105">
+                <div class="col-md-12" id="A13385" data-tid="A344106">
+
+                    <div class="panel-group" id="A13386" data-tid="A344107">
+                        <div class="panel panel-info" id="A13387" data-tid="A344108">
+                            <div class="panel-heading clearfix" id="A13388" data-tid="A344109">
+                                <h4 class="panel-title pull-left" id="A13389" data-tid="A344110">
+                                    <a data-toggle="collapse" href="#collapseOrderList" id="A13390" data-tid="A344111">Seans Listesi</a>
+                                </h4>
+                                <button *ngIf="physiotherapyPlanningFormViewModel?.HasRole_Fizyoterapi_Ek_Islem==true" type="button" class="btn btn-sm btn-green btn-gradient btn-round pull-right" [class.disabled]="_readOnlyByCode==true" (click)="openCompleteSessionPopup()" id="A13391" data-tid="A344112">Ünite Seans Sonlandırma / Geri Alma</button>
+                            </div>
+                            <div id="collapseOrderList" class="panel-collapse collapse" [class.in]="IsPanelOpen==true" IsPanelOpen data-tid="A344113">
+                                <div class="panel-body" id="A13392" data-tid="A344114">
+                                    <dx-data-grid [dataSource]="physiotherapyPlanningFormViewModel?.PhysiotherapyOrderList" [(selectedRowKeys)]="selectedOrderRowKeysResult" (onSelectionChanged)="selectionOrderChange($event)" allowColumnResizing="false" (onRowPrepared)="loadPhysiotherapyOrderRow($event)" id="A13393" data-tid="A344115">
+
+                                        <dxo-load-panel [enabled]="true" id="A13394" data-tid="A344116"></dxo-load-panel>
+
+                                        <dxo-filter-row [visible]="true" id="A13395" data-tid="A344117"></dxo-filter-row>
+
+                                        <dxo-selection mode="single" id="A13396" data-tid="A344118"></dxo-selection>
+                                        <dxo-paging [pageSize]="10" id="A13397" data-tid="A344119"></dxo-paging>
+                                        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true" id="A13398" data-tid="A344120">
+                                        </dxo-pager>
+
+                                        <dxi-column dataField="TreatmentDiagnosisUnit" caption="Tedavi Ünitesi" [allowEditing]="false" width="auto" i18n-caption="@@M23046" id="A13399" data-tid="A344121"></dxi-column>
+                                        <dxi-column dataField="ApplicationArea" caption="Vücut Bölgesi" [allowEditing]="false" width="auto" i18n-caption="@@M24187" id="A13400" data-tid="A344122"></dxi-column>
+                                        <dxi-column dataField="ApplicationAreaInfo" caption="Vücut Bölgesi Açıklama" [allowEditing]="false" width="auto" i18n-caption="@@M24189" id="A13401" data-tid="A344123"></dxi-column>
+                                        <dxi-column dataField="ProcedureObject" caption="İşlem" [allowEditing]="false" width="auto" i18n-caption="@@M16818" id="A13402" data-tid="A344124"></dxi-column>
+                                        <dxi-column dataField="SessionCount" caption="Seans " [allowEditing]="false" width="auto" id="A13403" data-tid="A344125"></dxi-column>
+                                        <dxi-column dataField="Duration" caption="Süre" [allowEditing]="false" width="auto" i18n-caption="@@M22405" id="A13404" data-tid="A344126"></dxi-column>
+                                        <dxi-column dataField="Dose" caption="Doz" [allowEditing]="false" width="auto" i18n-caption="@@M13284" id="A13405" data-tid="A344127"></dxi-column>
+                                        <dxi-column dataField="TreatmentProperties" caption="Açıklama" [allowEditing]="false" width="auto" i18n-caption="@@M22416" id="A13406" data-tid="A344128"></dxi-column>
+                                    </dx-data-grid>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row" id="A13407" data-tid="A344129">
+                <br id="A13408" data-tid="A344130" />
+                <div class="col-md-4" id="A13409" data-tid="A344131">
+                    <button type="button" class="btn btn-sm btn-primary btn-gradient btn-round" [class.disabled]="_readOnlyByCode==true" (click)="printReports()" id="A13410" data-tid="A344132"><span class="fa fa-print" id="A13411" data-tid="A344133"></span>&nbsp;Planlama Raporları Yazdır</button>
+
+                    <button type="button" class="btn btn-sm btn-primary btn-gradient btn-round" [class.disabled]="_readOnlyByCode==true" (click)="printPhysiotherapyRequestReport()" id="A13412" data-tid="A344134"><span class="fa fa-print" id="A13413" data-tid="A344135"></span>&nbsp;F.T.R. İstek Formu Yazdır</button>
+                </div>
+                <div class="col-md-6" id="A13414" data-tid="A344136">
+                    <NeStatePanelComponent [OutgoingTransitions]="physiotherapyPlanningFormViewModel?.OutgoingTransitions" [StateReports]="physiotherapyPlanningFormViewModel?.CurrentStateReports" [ObjectID]="physiotherapyPlanningFormViewModel?._PhysiotherapyRequest?.ObjectID" [ObjectDefID]="physiotherapyPlanningFormViewModel?._PhysiotherapyRequest?.ObjectDefID" [CurrentStateDefID]="physiotherapyPlanningFormViewModel._PhysiotherapyRequest.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" [CancelCommandVisible]="false" [SaveCommandVisible]="true" SaveButtonCaption="Kaydet" [DropStateList]="DropStateList" i18n-SaveButtonCaption="@@M17386" id="A13415" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A344137">
+                    </NeStatePanelComponent>
+                </div>
+                <div class="col-md-2" id="A13416" data-tid="A344138">
+                    <div class="col-md-12" *ngIf="isStateCancelled==false" id="A13417" data-tid="A344139">
+                        <button type="button" class="btn btn-sm btn-danger btn-gradient btn-round pull-right" [class.disabled]="_readOnlyByCode==true" (click)="cancelPhysiotherapyRequest()" id="A13418" data-tid="A344140">İsteği İptal Et</button>
+                    </div>
+                    <div class="col-md-12" *ngIf="isStateCancelled==true" id="A13419" data-tid="A344141">
+                        <button type="button" class="btn btn-sm btn-warning btn-gradient btn-round pull-right" [class.disabled]="_readOnlyByCode==true" (click)="UndoLastTransition_SelectedEpisodeAction()" id="A13420" data-tid="A344142">İşlem Geri Al</button>
+                    </div>
+                </div>
+                <br id="A13421" data-tid="A344143" />
+            </div>
+
+
+
+
+            <div class="row" id="A13422" data-tid="A344144">
+                <div class="col-md-12" id="A13423" data-tid="A344145">
+                    <div class="panel-group" id="A13424" data-tid="A344146">
+                        <div class="panel panel-info" id="A13425" data-tid="A344147">
+                            <div class="panel-heading clearfix" id="A13426" data-tid="A344148">
+                                <h4 class="panel-title pull-left" id="A13427" data-tid="A344149">
+                                    <a data-toggle="collapse" href="#collapseOrder" id="A13428" data-tid="A344150">Seans İstek Bilgileri</a>
+                                </h4>
+                                <button *ngIf="physiotherapyPlanningFormViewModel?.HasRole_Fizyoterapi_Ek_Islem==true" type="button" class="btn btn-sm btn-green btn-gradient btn-round pull-right" [class.disabled]="_readOnlyByCode==true" [class.hidden]="IsSelectedObjExist == true" (click)="newPhysiotherapyOrder()" id="A13429" data-tid="A344151">Yeni İşlem Ekle!</button>
+                            </div>
+                            <div id="collapseOrder" class="panel-collapse collapse in" data-tid="A344152">
+                                <div class="panel-body" *ngIf="IsSelectedObjExist == false" id="A13430" data-tid="A344153">
+                                    <div class="alert alert-danger" role="alert" id="A13431" data-tid="A344154">Lütfen İşlem Seçiniz!</div>
+                                </div>
+                                <div class="panel-body" *ngIf="IsSelectedObjExist == true" id="A13432" data-tid="A344155">
+                                    <PhysiotherapyPlannedOrdersForm [physiotherapyPlannedOrdersFormViewModel]="selectedOrderItemInfo" id="A13433" data-tid="A344156"></PhysiotherapyPlannedOrdersForm>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
+            <div class="row" *ngIf="physiotherapyPlanningFormViewModel?.IsPhysiotherapyRequestFormUsing == false" id="A13434" data-tid="A344157">
+                <div class="col-md-12" id="A13435" data-tid="A344158">
+
+                    <div class="panel-group" id="A13436" data-tid="A344159">
+                        <div class="panel panel-info" id="A13437" data-tid="A344160">
+                            <div class="panel-heading" id="A13438" data-tid="A344161">
+                                <h4 class="panel-title" id="A13439" data-tid="A344162">
+                                    <a data-toggle="collapse" href="#collapse1" id="A13440" data-tid="A344163">F.T.R. İşlemleri</a>
+                                </h4>
+                            </div>
+                            <div id="collapse1" class="panel-collapse collapse" [class.in]="IsPanelOpen==true" IsPanelOpen data-tid="A344164">
+                                <div class="panel-body" id="A13441" data-tid="A344165">
+                                    <atlas-form-editor [QueryParameters]="physiotherapyOrderQueryParameters" [ComponentInfo]="physiotherapyOrderComponentInfo" [SaveForm]="saveOrders" Title="F.T.R. İşlemleri" (QueryResultLoaded)="physiotherapyOrderQueryResultLoaded($event)" (ComponentOpenedOrClosed)="formOpenedOrClosed($event)" class="hideQueryList" i18n-Title="@@M14077" id="A13442" data-tid="A344166"></atlas-form-editor>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            <div class="row" id="A13443" data-tid="A344167">
+                <div class="col-md-12" id="A13444" data-tid="A344168">
+                    <br id="A13445" data-tid="A344169" />
+
+                    <button *ngIf="IsRequestAcceptionState==false && physiotherapyPlanningFormViewModel?.HasRole_Fizyoterapi_Uygulamasi_Uygulama==true" type="button" class="btn btn-green btn-gradient btn-round" [class.disabled]="_readOnlyByCode==true" (click)="completeRecordsStart()" id="A13446" data-tid="A344170"><span class="fa fa-check" id="A13447" data-tid="A344171"></span>&nbsp;Seçilileri Tamamla</button>
+                    <button *ngIf="IsRequestAcceptionState==false && physiotherapyPlanningFormViewModel?.HasRole_Fizyoterapi_Uygulamasi_Hasta_Gelmedi==true" type="button" class="btn btn-success  btn-gradient btn-round" [class.disabled]="_readOnlyByCode==true" (click)="notComeRecords()" id="A13448" data-tid="A344172"><span class="fa fa-minus-circle" id="A13449" data-tid="A344173"></span>&nbsp;Hasta Gelmedi</button>
+                    <button *ngIf="IsRequestAcceptionState==false && physiotherapyPlanningFormViewModel?.HasRole_Fizyoterapi_Uygulamasi_Durdurma==true" type="button" class="btn btn-warning btn-gradient btn-round" [class.disabled]="_readOnlyByCode==true" (click)="abortRecords()" id="A13450" data-tid="A344174"><span class="fa fa-stop-circle-o" id="A13451" data-tid="A344175"></span>&nbsp;Seçilileri Durdur</button>
+                    <button *ngIf="physiotherapyPlanningFormViewModel?.HasRole_Fizyoterapi_Uygulamasi_Iptal_Et==true" type="button" class="btn btn-danger btn-gradient btn-round" [class.disabled]="_readOnlyByCode==true" (click)="deleteRecords()" id="A13452" data-tid="A344176"><span class="fa fa-times" id="A13453" data-tid="A344177"></span>&nbsp;Seçilileri Sil</button>
+                    <button *ngIf="physiotherapyPlanningFormViewModel?.HasRole_Fizyoterapi_Tarih_Guncelleme==true" type="button" class="btn btn-primary btn-gradient btn-round" [class.disabled]="_readOnlyByCode==true" (click)="saveDateRecords()" id="A13454" data-tid="A344178"><span class="fa fa-calendar" id="A13455" data-tid="A344179"></span>&nbsp;Tarih Güncelle</button>
+                    <button *ngIf="IsRequestAcceptionState==false && physiotherapyPlanningFormViewModel?.HasRole_Fizyoterapi_Uygulamasi_Geri_Alma==true" type="button" class="btn btn-primary btn-gradient btn-round" [class.disabled]="_readOnlyByCode==true" (click)="undoRecords()" id="A13456" data-tid="A344180"><span class="fa fa-mail-reply" id="A13457" data-tid="A344181"></span>&nbsp;Geri Al</button>
+                    <h4 style="display:initial;" id="A13458" data-tid="A344182"><span class="label label-danger" id="A13459" data-tid="A344183">{{physiotherapyPlanningFormViewModel?.PhysiotherapySessionRate}}</span></h4>
+                </div>
+            </div>
+            <div class="row" id="A13460" data-tid="A344184">
+                <div class="col-md-12" id="A13461" data-tid="A344185">
+                    <br id="A13462" data-tid="A344186" />
+                    <dx-data-grid id="PlanningGridContainer" [dataSource]="physiotherapyPlanningFormViewModel?.OrderDetailInfoList" [(selectedRowKeys)]="selectedRowKeysResultList" (onRowUpdating)="onRowUpdating($event)" allowColumnResizing="false" (onRowPrepared)="loadPlanningGridContainerRow($event)" data-tid="A344187">
+
+
+                        <dxo-load-panel [enabled]="true" id="A13463" data-tid="A344188"></dxo-load-panel>
+                        <dxo-scrolling mode="virtual" id="A13464" data-tid="A344189"></dxo-scrolling>
+                        <dxo-sorting mode="none" id="A13465" data-tid="A344190"></dxo-sorting>
+
+                        <dxo-filter-row [visible]="true" id="A13466" data-tid="A344191"></dxo-filter-row>
+                        <dxo-editing mode="cell" [allowUpdating]="true" id="A13467" data-tid="A344192">
+                        </dxo-editing>
+
+                        <dxo-export [enabled]="true" fileName="Fizyoterapi İşlem Listesi" [allowExportSelectedData]="false" id="A23668" data-tid="A344193"></dxo-export>
+
+                        <dxo-selection mode="multiple" id="A13468" data-tid="A344194"></dxo-selection>
+
+                        <dxi-column dataField="SessionNumber" caption="Seans " [groupIndex]="0" id="A13469" data-tid="A344195"></dxi-column>
+                        <dxi-column dataField="PlannedDate" caption="Tarih" dataType="date" [allowEditing]="true" width="auto" i18n-caption="@@M27302" id="A13470" data-tid="A344196"></dxi-column>
+                        <dxi-column dataField="StartTime" caption="Başlangıç" [allowEditing]="false" width="auto" i18n-caption="@@M11626" id="A13471" data-tid="A344197"></dxi-column>
+                        <dxi-column dataField="FinishTime" caption="Bitiş" [allowEditing]="false" width="auto" i18n-caption="@@M11929" id="A13472" data-tid="A344198"></dxi-column>
+                        <dxi-column dataField="PhysiotherapyState" caption="Durum" [allowEditing]="false" width="auto" i18n-caption="@@M27303" id="A13473" data-tid="A344199"></dxi-column>
+                        <dxi-column dataField="TreatmentDiagnosisUnit" caption="Tedavi Ünitesi" [allowEditing]="false" width="auto" i18n-caption="@@M23046" id="A13474" data-tid="A344200"></dxi-column>
+                        <dxi-column dataField="ProcedureObject" caption="İşlem" [allowEditing]="false" width="auto" i18n-caption="@@M16818" id="A13475" data-tid="A344201"></dxi-column>
+                        <dxi-column dataField="ApplicationAreaDef" caption="Vücut Bölgesi" [allowEditing]="false" width="auto" i18n-caption="@@M24187" id="A13476" data-tid="A344202"></dxi-column>
+                        <dxi-column dataField="ApplicationAreaInfo" caption="Vücut Bölgesi Açıklama" [allowEditing]="false" width="auto" i18n-caption="@@M24189" id="A13477" data-tid="A344203"></dxi-column>
+                        <dxi-column dataField="Duration" caption="Süre" [allowEditing]="false" width="auto" i18n-caption="@@M22405" id="A13478" data-tid="A344204"></dxi-column>
+                        <dxi-column dataField="Dose" caption="Doz" [allowEditing]="false" width="auto" i18n-caption="@@M13284" id="A13479" data-tid="A344205"></dxi-column>
+                        <dxi-column dataField="TreatmentProperties" caption="Açıklama" [allowEditing]="false" width="auto" i18n-caption="@@M10469" id="A13480" data-tid="A344206"></dxi-column>
+                        <dxi-column dataField="DoseDurationInfo" caption="Süre/Doz Açıklama" [allowEditing]="false" [encodeHtml]="false" width="auto" i18n-caption="@@M22415" id="A13481" data-tid="A344207"></dxi-column>
+                        <dxi-column dataField="Physiotherapist" caption="Fizyoterapist" [allowEditing]="false" width="auto" i18n-caption="@@M27452" id="A13482" data-tid="A344208"></dxi-column>
+                        <dxi-column dataField="Package" caption="Paket" [allowEditing]="false" width="auto" i18n-caption="@@M27308" id="A13483" data-tid="A344209"></dxi-column>
+                    </dx-data-grid>
+                </div>
+            </div>
+
+            <div class="row" id="A13484" data-tid="A344210">
+                <div class="col-md-12" id="A13485" data-tid="A344211">
+                    <br id="A13486" data-tid="A344212" />
+                    <dx-data-grid id="PlanningGridContainer" [dataSource]="physiotherapyPlanningFormViewModel?.AdditionalOrderDetailInfoList" [(selectedRowKeys)]="selectedRowKeysResultList" (onRowUpdating)="onRowUpdating($event)" allowColumnResizing="false" (onRowPrepared)="loadPlanningGridContainerRow($event)" data-tid="A344213">
+
+
+                        <dxo-load-panel [enabled]="true" id="A13487" data-tid="A344214"></dxo-load-panel>
+                        <dxo-scrolling mode="virtual" id="A13488" data-tid="A344215"></dxo-scrolling>
+                        <dxo-sorting mode="none" id="A13489" data-tid="A344216"></dxo-sorting>
+
+                        <dxo-filter-row [visible]="true" id="A13490" data-tid="A344217"></dxo-filter-row>
+                        <dxo-editing mode="cell" [allowUpdating]="true" id="A13491" data-tid="A344218">
+                        </dxo-editing>
+
+                        <dxo-export [enabled]="true" fileName="Fizyoterapi Ek İşlem Listesi" [allowExportSelectedData]="false" id="A23668" data-tid="A344219"></dxo-export>
+
+                        <dxo-selection mode="multiple" id="A13492" data-tid="A344220"></dxo-selection>
+
+                        <dxi-column dataField="SessionNumber" caption="Seans " [groupIndex]="0" id="A13493" data-tid="A344221"></dxi-column>
+                        <dxi-column dataField="PlannedDate" caption="Tarih" dataType="date" [allowEditing]="true" width="auto" i18n-caption="@@M27302" id="A13494" data-tid="A344222"></dxi-column>
+                        <dxi-column dataField="StartTime" caption="Başlangıç" [allowEditing]="false" width="auto" i18n-caption="@@M11626" id="A13495" data-tid="A344223"></dxi-column>
+                        <dxi-column dataField="FinishTime" caption="Bitiş" [allowEditing]="false" width="auto" i18n-caption="@@M11929" id="A13496" data-tid="A344224"></dxi-column>
+                        <dxi-column dataField="PhysiotherapyState" caption="Durum" [allowEditing]="false" width="auto" i18n-caption="@@M27303" id="A13473" data-tid="A344225"></dxi-column>
+                        <dxi-column dataField="TreatmentDiagnosisUnit" caption="Tedavi Ünitesi" [allowEditing]="false" width="auto" i18n-caption="@@M23046" id="A13474" data-tid="A344226"></dxi-column>
+                        <dxi-column dataField="ProcedureObject" caption="İşlem" [allowEditing]="false" width="auto" i18n-caption="@@M16818" id="A13475" data-tid="A344227"></dxi-column>
+                        <dxi-column dataField="ApplicationAreaDef" caption="Vücut Bölgesi" [allowEditing]="false" width="auto" i18n-caption="@@M24187" id="A13476" data-tid="A344228"></dxi-column>
+                        <dxi-column dataField="ApplicationAreaInfo" caption="Vücut Bölgesi Açıklama" [allowEditing]="false" width="auto" i18n-caption="@@M24189" id="A13477" data-tid="A344229"></dxi-column>
+                        <dxi-column dataField="Duration" caption="Süre" [allowEditing]="false" width="auto" i18n-caption="@@M22405" id="A13478" data-tid="A344230"></dxi-column>
+                        <dxi-column dataField="Dose" caption="Doz" [allowEditing]="false" width="auto" i18n-caption="@@M13284" id="A13479" data-tid="A344231"></dxi-column>
+                        <dxi-column dataField="TreatmentProperties" caption="Açıklama" [allowEditing]="false" width="auto" i18n-caption="@@M10469" id="A13480" data-tid="A344232"></dxi-column>
+                        <dxi-column dataField="DoseDurationInfo" caption="Süre/Doz Açıklama" [allowEditing]="false" [encodeHtml]="false" width="auto" i18n-caption="@@M22415" id="A13481" data-tid="A344233"></dxi-column>
+                        <dxi-column dataField="Physiotherapist" caption="Fizyoterapist" [allowEditing]="false" width="auto" i18n-caption="@@M27452" id="A13482" data-tid="A344234"></dxi-column>
+                        <dxi-column dataField="Package" caption="Paket" [allowEditing]="false" width="auto" i18n-caption="@@M27308" id="A13483" data-tid="A344235"></dxi-column>
+                    </dx-data-grid>
+                </div>
+            </div>
+
+        </div>
+        <div id="hastagecmisi" class="tab-pane fade" data-tid="A344236">
+            <div *ngIf="openHastaGecmisiTab" id="A13508" data-tid="A344237">
+                <PatientHistoryForm [patient]="physiotherapyPlanningFormViewModel?.PatientObjectId" id="A13509" data-tid="A344238">Hasta Geçmişi</PatientHistoryForm>
+            </div>
+        </div>
+        <div id="malzemesarf" class="tab-pane fade" data-tid="A344239">
+            <div *ngIf="openMalzemeSarfTab" id="A13510" data-tid="A344240">
+                <TreatmentMaterialForm [SelectStoreFromUserStore]="true" [EpisodeAction]="physiotherapyPlanningFormViewModel?._PhysiotherapyRequest" [TreatmentMaterialGridList]="physiotherapyPlanningFormViewModel?._PhysiotherapyRequest?.TreatmentMaterials" [IgnoreSubEpisodeClosingDate]="true" [IsReadOnly]="ReadOnly" id="A13511" data-tid="A344241"></TreatmentMaterialForm>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+</form>
+
+<dx-popup class="hidePopupHeader" [showTitle]="true" [width]="600" [height]="400" [(visible)]="showCompleteRecordsPopup" id="A13512" data-tid="A344242">
+    <div *dxTemplate="let data of 'content'" id="A13513" data-tid="A344243">
+        <div class="row" id="A13514" data-tid="A344244">
+            <div class="col-md-4" id="A13515" data-tid="A344245">
+                <label class="control-label" id="A13516" data-tid="A344246">
+                    Fizyoterapist
+                </label>
+                <hvl-list-box #Validation (SelectedObjectChange)="onLastOrderDetailResponsiblePhysiotherapistChanged($event)" [AutoCompleteDialogHeight]="LastOrderDetailResponsiblePhysiotherapist?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="LastOrderDetailResponsiblePhysiotherapist?.AutoCompleteDialogWidth" [AutoCompleteMode]="LastOrderDetailResponsiblePhysiotherapist?.AutoCompleteMode" [BackColor]="LastOrderDetailResponsiblePhysiotherapist?.BackColor" [DefinitionName]="LastOrderDetailResponsiblePhysiotherapist?.ListDefName" [DisplayExpressionsCache]="physiotherapyPlanningFormViewModel?.ListDefDisplayExpressions" [Enabled]="LastOrderDetailResponsiblePhysiotherapist?.Enabled" [Font]="LastOrderDetailResponsiblePhysiotherapist?.Font" [ForeColor]="LastOrderDetailResponsiblePhysiotherapist?.ForeColor" [ListFilterExpression]="LastOrderDetailResponsiblePhysiotherapist?.ListFilterExpression" [MinSearchLength]="LastOrderDetailResponsiblePhysiotherapist?.MinSearchLength" [PopupDialogFieldConfig]="LastOrderDetailResponsiblePhysiotherapist?.PopupDialogFieldConfig" [PopupDialogGridColumns]="LastOrderDetailResponsiblePhysiotherapist?.PopupDialogGridColumns" [PopupDialogHeight]="LastOrderDetailResponsiblePhysiotherapist?.PopupDialogHeight" [PopupDialogTitle]="LastOrderDetailResponsiblePhysiotherapist?.PopupDialogTitle" [PopupDialogWidth]="LastOrderDetailResponsiblePhysiotherapist?.PopupDialogWidth" [ReadOnly]="LastOrderDetailResponsiblePhysiotherapist?.ReadOnly" [SearchMode]="LastOrderDetailResponsiblePhysiotherapist?.SearchMode" [SearchTimeout]="LastOrderDetailResponsiblePhysiotherapist?.SearchTimeout" [SelectedObject]="physiotherapyPlanningFormViewModel?.LastOrderDetailResponsiblePhysiotherapist" [TabIndex]="LastOrderDetailResponsiblePhysiotherapist?.TabIndex" [Visible]="LastOrderDetailResponsiblePhysiotherapist?.Visible" [width]="LastOrderDetailResponsiblePhysiotherapist?.Width" id="A13517" data-tid="A344247"></hvl-list-box>
+
+            </div>
+            <div class="col-md-4" id="A13518" data-tid="A344248">
+                <label class="control-label" id="A13519" data-tid="A344249">
+                    Başlangıç Saati
+                </label>
+
+                <dx-date-box [(value)]="physiotherapyPlanningFormViewModel.LastOrderDetailStartDate" type="time" (onValueChanged)="onLastOrderDetailStartDateChanged($event)" id="A13520" data-tid="A344250"></dx-date-box>
+            </div>
+            <div class="col-md-4" id="A13521" data-tid="A344251">
+                <label class="control-label" id="A13522" data-tid="A344252">
+                    Bitiş Saati
+                </label>
+                <dx-date-box [(value)]="physiotherapyPlanningFormViewModel.LastOrderDetailFinishDate" displayFormat="HH:mm" type="time" (onValueChanged)="onLastOrderDetailFinishDateChanged($event)" id="A13523" data-tid="A344253"></dx-date-box>
+
+            </div>
+        </div>
+
+        <div class="row" *ngIf="openReportSelection == true" id="A13524" data-tid="A344254">
+            <div class="col-md-9" id="A13525" data-tid="A344255">
+                <label class="control-label" id="A13526" data-tid="A344256">Paket Hizmet</label>
+                <hvl-list-box #Validation (SelectedObjectChange)="onPackageProcedureChanged($event)" [AutoCompleteDialogHeight]="PackageProcedure?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="PackageProcedure?.AutoCompleteDialogWidth" [AutoCompleteMode]="PackageProcedure?.AutoCompleteMode" [BackColor]="PackageProcedure?.BackColor" [DefinitionName]="PackageProcedure?.ListDefName" [DisplayExpressionsCache]="physiotherapyPlanningFormViewModel?.ListDefDisplayExpressions" [Enabled]="PackageProcedure?.Enabled" [Font]="PackageProcedure?.Font" [ForeColor]="PackageProcedure?.ForeColor" [ListFilterExpression]="PackageProcedure?.ListFilterExpression" [MinSearchLength]="PackageProcedure?.MinSearchLength" [PopupDialogFieldConfig]="PackageProcedure?.PopupDialogFieldConfig" [PopupDialogGridColumns]="PackageProcedure?.PopupDialogGridColumns" [PopupDialogHeight]="PackageProcedure?.PopupDialogHeight" [PopupDialogTitle]="PackageProcedure?.PopupDialogTitle" [PopupDialogWidth]="PackageProcedure?.PopupDialogWidth" [ReadOnly]="PackageProcedure?.ReadOnly" [SearchMode]="PackageProcedure?.SearchMode" [SearchTimeout]="PackageProcedure?.SearchTimeout" [SelectedObject]="physiotherapyPlanningFormViewModel?.PackageProcedure" [TabIndex]="PackageProcedure?.TabIndex" [Visible]="PackageProcedure?.Visible" [width]="PackageProcedure?.Width" id="A13527" data-tid="A344257"></hvl-list-box>
+            </div>
+
+            <div class="col-sm-3" id="A13528" data-tid="A344258">
+                <button type="button" class="btn btn-primary btn-block btn-xs" [class.disabled]="_readOnlyByCode==true" (click)="ShowTreatmentTypeModal()" id="A13529" data-tid="A344259">Rapor Seç</button>
+            </div>
+        </div>
+
+        <div class="row" id="A13530" data-tid="A344260">
+            <br id="A13531" data-tid="A344261" />
+            <div class="col-md-12" style="text-align:right;" id="A13532" data-tid="A344262">
+                <button type="button" class="btn btn-default" (click)="CancelCompleteRecordsModal()" id="A13533" data-tid="A344263">Vazgeç</button>
+                <button type="button" class="btn btn-primary" (click)="SaveCompleteRecordsModal($event)" [class.disabled]="_readOnlyByCode==true" id="A13534" data-tid="A344264">Kaydet</button>
+            </div>
+        </div>
+    </div>
+</dx-popup>
+
+
+<dx-popup class="hidePopupHeader" [showTitle]="true" [width]="1200" [height]="800" [(visible)]="showPhysiotherapyReportPopup" id="A13535" data-tid="A344265">
+    <div *dxTemplate="let data of 'content'" id="A13536" data-tid="A344266">
+        <div class="row" id="A13537" data-tid="A344267">
+            <div class="col-md-12" id="A13538" data-tid="A344268">
+                <h4 class="bottomOrangeBorder" id="A13539" data-tid="A344269">Raporlar</h4><br id="A13540" data-tid="A344270" />
+            </div>
+        </div>
+        <div class="row" id="A13541" data-tid="A344271">
+            <div class="col-md-12" id="A13542" data-tid="A344272">
+                <div id="grid" data-tid="A344273">
+                    <dx-data-grid #grid id="grid-container" [dataSource]="physiotherapyPlanningFormViewModel.ReportItemList" [(selectedRowKeys)]="selectedRows" (onSelectionChanged)="selectionReportChanged($event)" (onRowPrepared)="rowPrepared($event)" [filterRow]="{visible: true}" [paging]="{enable: true, pageSize:100}" [selection]="{mode: 'single',allowSelectAll: false}" data-tid="A344274">
+
+                        <dxo-selection mode="single" id="A13543" data-tid="A344275">
+                        </dxo-selection>
+                        <dxo-paging [pageSize]="20" id="A13544" data-tid="A344276"></dxo-paging>
+                        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true" id="A13545" data-tid="A344277">
+                        </dxo-pager>
+                        <dxo-filter-row [visible]="true" [applyFilter]="auto" id="A13546" data-tid="A344278"></dxo-filter-row>
+
+                        <dxi-column dataField="ReportNo" caption="Rapor No" [width]="auto" i18n-caption="@@M20821" id="A13547" data-tid="A344279"></dxi-column>
+                        <dxi-column dataField="ReportDate" caption="Rapor Tarihi" [width]="auto" dataType="date" i18n-caption="@@M20864" id="A13548" data-tid="A344280"></dxi-column>
+                        <dxi-column dataField="ReportStartDate" caption="Rapor Başlangıç Tarihi" [width]="auto" dataType="date" i18n-caption="@@M20773" id="A13549" data-tid="A344281"></dxi-column>
+                        <dxi-column dataField="ReportEndDate" caption="Rapor Bitiş Tarihi" [width]="auto" dataType="date" i18n-caption="@@M20788" id="A13550" data-tid="A344282"></dxi-column>
+                        <dxi-column dataField="ApplicationAreaName" caption="Vücut Bölgesi" [width]="auto" i18n-caption="@@M24187" id="A13551" data-tid="A344283"></dxi-column>
+                        <dxi-column dataField="ReportType" caption="Rapor Türü" [width]="auto" i18n-caption="@@M20869" id="A13552" data-tid="A344284"></dxi-column>
+                        <dxi-column dataField="ReportInfo" caption="Rapor Bilgisi" [width]="auto" i18n-caption="@@M20778" id="A13553" data-tid="A344285"></dxi-column>
+                        <dxi-column dataField="ReportTime" caption="Rapor Süresi" [width]="auto" i18n-caption="@@M20850" id="A13554" data-tid="A344286"></dxi-column>
+                        <dxi-column dataField="TreatmentType" caption="Tedavi Türü" [width]="auto" i18n-caption="@@M23037" id="A13555" data-tid="A344287"></dxi-column>
+                        <dxi-column dataField="DiagnosisGroup" caption="Tanı Grubu" [width]="auto" i18n-caption="@@M22755" id="A13556" data-tid="A344288"></dxi-column>
+                    </dx-data-grid>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="physiotherapyPlanningFormViewModel.ReportItemList==null" id="A13557" data-tid="A344289">
+            <h4 class="danger" id="A13558" data-tid="A344290">{{physiotherapyPlanningFormViewModel.Message}}</h4>
+        </div>
+
+        <div class="row" id="A13559" data-tid="A344291">
+            <br id="A13560" data-tid="A344292" />
+            <div class="col-md-12" style="text-align:right;" id="A13561" data-tid="A344293">
+                <button type="button" class="btn btn-default" (click)="CancelPhysiotherapyReport()" id="A13562" data-tid="A344294">Vazgeç</button>
+                <button type="button" class="btn btn-primary" (click)="SavePhysiotherapyReportModal($event)" id="A13563" data-tid="A344295">Seç</button>
+            </div>
+        </div>
+    </div>
+</dx-popup>
+
+
+<dx-popup class="hidePopupHeader" [showTitle]="true" [width]="400" [height]="200" [(visible)]="showTreatmentTypePopup" id="A13564" data-tid="A344296">
+    <div *dxTemplate="let data of 'content'" id="A13565" data-tid="A344297">
+        <h6 class="danger" id="A13566" data-tid="A344298">Tedavi Türü Seçiniz!</h6>
+        <hvl-enum-combobox #Validation (ValueChange)="onTreatmentTypePhysiotherapyReportsChanged($event)" [BackColor]="TreatmentTypePhysiotherapyReports?.BackColor" [DataTypeName]="TreatmentTypePhysiotherapyReports?.DataTypeName" [Enabled]="TreatmentTypePhysiotherapyReports?.Enabled" [Font]="TreatmentTypePhysiotherapyReports?.Font" [ForeColor]="TreatmentTypePhysiotherapyReports?.ForeColor" [IncludeOnly]="TreatmentTypePhysiotherapyReports?.IncludeOnly" [ReadOnly]="TreatmentTypePhysiotherapyReports?.ReadOnly" [ShowClearButton]="TreatmentTypePhysiotherapyReports?.ShowClearButton" [SortBy]="TreatmentTypePhysiotherapyReports?.SortBy" [TabIndex]="TreatmentTypePhysiotherapyReports?.TabIndex" [Value]="physiotherapyPlanningFormViewModel?.TreatmentType" [Visible]="TreatmentTypePhysiotherapyReports?.Visible" id="A13567" data-tid="A344299"></hvl-enum-combobox>
+        <div class="row" id="A13568" data-tid="A344300">
+            <br id="A13569" data-tid="A344301" />
+            <div class="col-md-12" style="text-align:right;" id="A13570" data-tid="A344302">
+                <button type="button" class="btn btn-default" (click)="CancelTreatmentType()" id="A13571" data-tid="A344303">Vazgeç</button>
+                <button type="button" class="btn btn-primary" (click)="SaveTreatmentType()" id="A13572" data-tid="A344304">Tamam</button>
+            </div>
+        </div>
+    </div>
+</dx-popup>
+
+<dx-popup width="1200px" height="340px" [(visible)]="showAnamnesisInfo" [closeOnOutsideClick]="true" (onDisposing)="onAnemnesisPopUpDisposing()" title="Anamnez Bilgisi" i18n-title="@@M10954" id="A13573" data-tid="A344305">
+    <div *dxTemplate="let data of 'content'" id="A13574" data-tid="A344306">
+        <div class="row" id="A13575" data-tid="A344307">
+            <div class="col-sm-6" id="A13576" data-tid="A344308">
+                <label class="control-label" id="A13577" data-tid="A344309">Şikayeti</label>
+                <hvl-richtextbox [value]="physiotherapyPlanningFormViewModel.AnamnesisComplaintInfo" Height="100px" ReadOnly="true" id="A13578" data-tid="A344310">
+                </hvl-richtextbox>
+            </div>
+            <div class="col-sm-6" id="A13579" data-tid="A344311">
+                <label class="control-label" id="A13580" data-tid="A344312">Özgeçmişi</label>
+                <hvl-richtextbox [value]="physiotherapyPlanningFormViewModel.AnamnesisPatientHistoryInfo" Height="100px" ReadOnly="true" id="A13581" data-tid="A344313">
+                </hvl-richtextbox>
+            </div>
+        </div>
+
+        <div class="row" id="A13582" data-tid="A344314">
+            <div class="col-sm-6" id="A13583" data-tid="A344315">
+                <label class="control-label" id="A13584" data-tid="A344316">Fiziki Muayene</label>
+                <hvl-richtextbox [value]="physiotherapyPlanningFormViewModel.AnamnesisPhysicalExaminationInfo" Height="100px" ReadOnly="true" id="A13585" data-tid="A344317">
+                </hvl-richtextbox>
+            </div>
+            <div class="col-sm-6" id="A13586" data-tid="A344318">
+                <label class="control-label" id="A13587" data-tid="A344319">Tedavi Karar</label>
+                <hvl-richtextbox [value]="physiotherapyPlanningFormViewModel.AnamnesisMTSConclusionInfo" Height="100px" ReadOnly="true" id="A13588" data-tid="A344320">
+                </hvl-richtextbox>
+            </div>
+        </div>
+    </div>
+</dx-popup>
+
+<dx-popup showTitle="false" [(visible)]="showCompleteSessionPopUp" [width]="700" height="375" id="A13589" data-tid="A344321">
+    <div *dxTemplate="let data of 'content'" id="A13590" data-tid="A344322">
+        <label class="control-label col-sm-12" style="font-size: small;" id="A13591" data-tid="A344323">
+            Sonlandırmak istediğiniz seansların ünitelerini aşağıdan seçip Sonlandır butonuna basınız.
+        </label>
+        <div class="col-sm-12" id="A13592" data-tid="A344324">
+            <dx-data-grid [columns]="EndSessionColumns" [allowColumnResizing]="true" [dataSource]="physiotherapyPlanningFormViewModel.TreatmentDiagnosisUnitInfos" (onSelectionChanged)="selectionUnits($event)" [editing]="{allowDeleting:false,mode: 'row',  texts:{confirmDeleteMessage:'Silmek İstediğinizden Emin misiniz?'}}" [selection]="{mode: 'multiple',allowSelectAll: true}" [paging]="{enable: false, pageSize:50}" [filterRow]="{visible: true}" style="height:225px;" id="A13593" data-tid="A344325">
+            </dx-data-grid>
+        </div>
+        <br id="A13594" data-tid="A344326" />
+        <br id="A13595" data-tid="A344327" />
+        <div class="row" style="text-align:center" id="A13596" data-tid="A344328">
+            <div class="col-md-12" id="A13597" data-tid="A344329">
+                <dx-button type="success" text="Sonlandır" (onClick)="CompleteSessionsByUnit()" id="A13598" data-tid="A344330"></dx-button>
+                <dx-button type="success" text="Sonlandırma İşlemini Geri Al" (onClick)="UndoCompleteSessionsByUnit()" id="A13600" data-tid="A344331"></dx-button>
+            </div>
+        </div>
+    </div>
+</dx-popup>
+
+
+<dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A13357" data-tid="A344332">
+</dx-load-panel>

@@ -1,0 +1,77 @@
+﻿
+
+<div class="row" id="A21705" data-tid="A356898">
+    <div class="col-sm-12" style="float:right;margin-top:-25px;margin-right: 7px;" id="A21706" data-tid="A356899">
+        <dx-button text="Kaydet" rtlEnabled="true" class="tabHeaderButton dx-button-active dx-button-semioval dx-button-blue" icon="save" (onClick)="btnManipulationRequestSave_Click()" i18n-text="@@M17386" id="A21707" data-tid="A356900"></dx-button>
+    </div>
+</div>
+<div class="container-fluid" style="margin-top:20px" id="A21708" data-tid="A356901">
+
+    <form id="ManipulationRequestForm" class="form-horizontal" role="form" data-tid="A356902">
+        
+    </form>
+
+    <div class="row" id="A21709" data-tid="A356903">
+        <div class="col-md-6 col-sm-12" id="A21710" data-tid="A356904">
+            <patient-demographics-form [actionId]="actionIdForDemografic" id="A21711" data-tid="A356905"></patient-demographics-form>
+        </div>
+
+        <div class="col-md-6 col-sm-12" id="A21712" data-tid="A356906">
+            <DiagnosisGridReadOnlyForm [EpisodeAction]="manipulationRequestFormViewModel._ManipulationRequest" id="A21713" data-tid="A356907"></DiagnosisGridReadOnlyForm>
+        </div>
+    </div>
+
+
+    <div class="row" id="A21714" data-tid="A356908">
+        <div class="col-sm-4" id="A21715" data-tid="A356909">
+            <label class="control-label" id="A21716" data-tid="A356910"> İşlem Tarihi</label>
+            <hvl-date-picker #Validation (ValueChange)="onActionDateChanged($event)" [BackColor]="ActionDate?.BackColor" [CustomFormat]="ActionDate?.CustomFormat" [Enabled]="ActionDate?.Enabled" [Font]="ActionDate?.Font" [ForeColor]="ActionDate?.ForeColor" [Format]="ActionDate?.Format" [Max]="ActionDate?.Max" [Min]="ActionDate?.Min" [ReadOnly]="ActionDate?.ReadOnly" [Required]="ActionDate?.Required" [TabIndex]="ActionDate?.TabIndex" [Value]="manipulationRequestFormViewModel?._ManipulationRequest?.ActionDate" [Visible]="ActionDate?.Visible" id="A21717" data-tid="A356911"></hvl-date-picker>
+        </div>
+        <div class="col-sm-4" id="A21718" data-tid="A356912">
+            <label class="control-label" id="A21719" data-tid="A356913">İstek Yapan Doktor</label>
+            <hvl-list-box #Validation (SelectedObjectChange)="onProcedureDoctorChanged($event)" [AutoCompleteDialogHeight]="ProcedureDoctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ProcedureDoctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="ProcedureDoctor?.AutoCompleteMode" [BackColor]="ProcedureDoctor?.BackColor" [DefinitionName]="ProcedureDoctor?.ListDefName" [DisplayExpressionsCache]="manipulationRequestFormViewModel?.ListDefDisplayExpressions" [Enabled]="ProcedureDoctor?.Enabled" [Font]="ProcedureDoctor?.Font" [ForeColor]="ProcedureDoctor?.ForeColor" [ListFilterExpression]="ProcedureDoctor?.ListFilterExpression" [MinSearchLength]="ProcedureDoctor?.MinSearchLength" [PopupDialogFieldConfig]="ProcedureDoctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ProcedureDoctor?.PopupDialogGridColumns" [PopupDialogHeight]="ProcedureDoctor?.PopupDialogHeight" [PopupDialogTitle]="ProcedureDoctor?.PopupDialogTitle" [PopupDialogWidth]="ProcedureDoctor?.PopupDialogWidth" [ReadOnly]="ProcedureDoctor?.ReadOnly" [SearchMode]="ProcedureDoctor?.SearchMode" [SearchTimeout]="ProcedureDoctor?.SearchTimeout" [SelectedObject]="manipulationRequestFormViewModel?._ManipulationRequest?.ProcedureDoctor" [TabIndex]="ProcedureDoctor?.TabIndex" [Visible]="ProcedureDoctor?.Visible" [width]="ProcedureDoctor?.Width" id="A21720" data-tid="A356914"></hvl-list-box>
+        </div>
+        <div class="col-sm-2" id="A21721" data-tid="A356915">
+            <hvl-checkbox #Validation (ValueChange)="onApprovalFormGivenChanged($event)" [AllowThreeState]="ApprovalFormGiven?.ThreeState" [BackColor]="ApprovalFormGiven?.BackColor" [Enabled]="ApprovalFormGiven?.Enabled" [Font]="ApprovalFormGiven?.Font" [ForeColor]="ApprovalFormGiven?.ForeColor" [IsTitleLeft]="ApprovalFormGiven?.IsTitleLeft" [Margin]="ApprovalFormGiven?.Margin" [ReadOnly]="ApprovalFormGiven?.ReadOnly" [TabIndex]="ApprovalFormGiven?.TabIndex" [TitleTopPadding]="ApprovalFormGiven?.TitleTopPadding" [Title]="ApprovalFormGiven?.Title" [Value]="manipulationRequestFormViewModel?._ManipulationRequest?.IsPatientApprovalFormGiven" [Visible]="ApprovalFormGiven?.Visible" id="A21722" data-tid="A356916"></hvl-checkbox>
+        </div>
+        
+    </div>
+
+    <div class="row" id="A21723" data-tid="A356917">
+        <div class="col-sm-12" id="A21724" data-tid="A356918">
+            <label class="control-label" id="A21725" data-tid="A356919">Ön Bilgi</label>
+            <hvl-richtextbox (change)="onPreInformationChanged($event)" [Height]="&#x27;100px&#x27;" [ngModelOptions]="{ standalone: true}" [ngModel]="manipulationRequestFormViewModel?._ManipulationRequest?.PreInformation" [ReadOnly]="PreInformation?.ReadOnly" [TemplateGroupName]="PreInformation?.TemplateGroupName" [Visible]="PreInformation?.Visible" id="A21726" data-tid="A356920"></hvl-richtextbox>
+        </div>
+    </div>
+
+    <div class="row" id="A21727" data-tid="A356921">
+        <div class="col-sm-12" id="A21728" data-tid="A356922">
+
+            <div class="panel panel-default margin-top-10" id="A21729" data-tid="A356923">
+                <div class="panel-heading" id="A21730" data-tid="A356924">Tıbbi/Cerrahi Uygulama</div>
+                <div class="panel-body" id="A21731" data-tid="A356925">
+
+                    <div class="row" id="A21732" data-tid="A356926">
+                        <div class="col-sm-6" id="A21733" data-tid="A356927">
+                            <label class="control-label" id="A21734" data-tid="A356928">Tıbbi/Cerrahi Uygulama</label>
+                            <hvl-list-box #Validation (SelectedObjectChange)="manipulationSelected($event)" [AutoCompleteDialogHeight]="ManipulationProcedureList?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ManipulationProcedureList?.AutoCompleteDialogWidth" [AutoCompleteMode]="ManipulationProcedureList?.AutoCompleteMode" [BackColor]="ManipulationProcedureList?.BackColor" [DefinitionName]="ManipulationProcedureList?.ListDefName" [DisplayExpressionsCache]="manipulationRequestFormViewModel?.ListDefDisplayExpressions" [Enabled]="ManipulationProcedureList?.Enabled" [Font]="ManipulationProcedureList?.Font" [ForeColor]="ManipulationProcedureList?.ForeColor" [ListFilterExpression]="ManipulationProcedureList?.ListFilterExpression" [MinSearchLength]="ManipulationProcedureList?.MinSearchLength" [PopupDialogFieldConfig]="ManipulationProcedureList?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ManipulationProcedureList?.PopupDialogGridColumns" [PopupDialogHeight]="ManipulationProcedureList?.PopupDialogHeight" [PopupDialogTitle]="ManipulationProcedureList?.PopupDialogTitle" [PopupDialogWidth]="ManipulationProcedureList?.PopupDialogWidth" [ReadOnly]="ManipulationProcedureList?.ReadOnly" [SearchMode]="ManipulationProcedureList?.SearchMode" [SearchTimeout]="ManipulationProcedureList?.SearchTimeout" [SelectedObject]="manipulationRequestFormViewModel?._selectedManipulationProcedureObject" [TabIndex]="ManipulationProcedureList?.TabIndex" [Visible]="ManipulationProcedureList?.Visible" [width]="ManipulationProcedureList?.Width" id="A21735" data-tid="A356929"></hvl-list-box>
+                        </div>
+                    </div>
+                    <div class="row padding-tb-10" id="A21736" data-tid="A356930">
+                        <div class="col-sm-12" id="A21737" data-tid="A356931">
+                            <hvl-datagrid [AllowUserToAddRows]="false" [AllowUserToDeleteRows]="true" [Columns]="GridManipulationProceduresColumns" [ShowColumnHeaders]="true" [dataSource]="manipulationRequestFormViewModel._ManipulationRequest.ManipulationProcedures" [height]="175" [DeleteButtonWidth]="50" id="A21738" data-tid="A356932">
+                            </hvl-datagrid>
+                        </div>
+                    </div>
+
+
+                </div>
+                    </div>
+
+
+                </div>
+
+    </div>
+
+
+</div>

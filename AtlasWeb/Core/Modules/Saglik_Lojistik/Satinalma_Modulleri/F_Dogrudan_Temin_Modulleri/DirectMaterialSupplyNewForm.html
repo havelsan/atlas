@@ -1,0 +1,121 @@
+﻿
+<div class="container-fluid" id="A4828" data-tid="A330740">
+    <NeStatePanelComponent [OutgoingTransitions]="directMaterialSupplyNewFormViewModel?.OutgoingTransitions" [StateReports]="directMaterialSupplyNewFormViewModel?.CurrentStateReports" [ObjectID]="directMaterialSupplyNewFormViewModel?._DirectMaterialSupplyAction?.ObjectID" [ObjectDefID]="directMaterialSupplyNewFormViewModel?._DirectMaterialSupplyAction?.ObjectDefID" [CurrentStateDefID]="directMaterialSupplyNewFormViewModel._DirectMaterialSupplyAction.CurrentStateDefID" [DropStateList]="DropStateList" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" id="A4829" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A330741">
+    </NeStatePanelComponent>
+    <br id="A4830" data-tid="A330742" />
+    <form id="DirectMaterialSupplyNewForm" class="form-horizontal" role="form" data-tid="A330743">
+        
+        <div class="container-fluid" id="A4831" data-tid="A330744">
+            <br id="A4832" data-tid="A330745" />
+            <div class="row" id="A4833" data-tid="A330746">
+                <div class="col-md-4 col-sm-12" id="A4834" data-tid="A330747">
+                    <patient-demographics-form [actionId]="directMaterialSupplyNewFormViewModel._DirectMaterialSupplyAction.ObjectID" id="A4835" data-tid="A330748"></patient-demographics-form>
+                </div>
+                <div class="col-md-2 col-sm-12" *ngIf="hasPhysicianApplication" id="A4836" data-tid="A330749">
+                    <div class="row" id="A4837" data-tid="A330750">
+                        <div class="col-md-12" id="A4838" data-tid="A330751">
+                            <label class="control-label" id="A4839" data-tid="A330752">Klinik Protokol No</label>
+                            <dx-text-box [readOnly]="true" [hoverStateEnabled]="false" [(value)]="clinicProtocolNo" id="A4840" data-tid="A330753"></dx-text-box>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label">Hastanın Tedavi Gördüğü Klinik</label>
+                    <dx-text-box [readOnly]="true"
+                                 [hoverStateEnabled]="false"
+                                 [(value)]="clinicName"></dx-text-box>
+                </div>
+            </div> -->
+                    <div class="row" id="A4841" data-tid="A330754">
+                        <div class="col-md-6" id="A4842" data-tid="A330755">
+                            <label class="control-label" id="A4843" data-tid="A330756">Oda</label>
+                            <dx-text-box [readOnly]="true" [hoverStateEnabled]="false" [(value)]="clinicRoom" id="A4844" data-tid="A330757"></dx-text-box>
+                        </div>
+                        <div class="col-md-6" id="A4845" data-tid="A330758">
+                            <label class="control-label" id="A4846" data-tid="A330759">Yatak</label>
+                            <dx-text-box [readOnly]="true" [hoverStateEnabled]="false" [(value)]="clinicBed" id="A4847" data-tid="A330760"></dx-text-box>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label">Klinik Taburcu Tarihi</label>
+                    <dx-date-box  [(value)] ="clinicDischargeDate"
+                                 type="datetime"
+                                 [disabled]="true">
+                    </dx-date-box>
+                </div>
+            </div> -->
+                </div>
+                <div class="col-md-6 col-sm-12" id="A4848" data-tid="A330761">
+                    <DiagnosisGridReadOnlyForm [EpisodeAction]="directMaterialSupplyNewFormViewModel._DirectMaterialSupplyAction" id="A4849" data-tid="A330762"></DiagnosisGridReadOnlyForm>
+                </div>
+            </div>
+            <br id="A4850" data-tid="A330763" />
+            <div class="row" id="A4851" data-tid="A330764">
+                <div class="col-sm-2" id="A4852" data-tid="A330765">
+                    <label class="control-label" id="A4853" data-tid="A330766">
+                        İşlem Tarihi
+                    </label>
+                    <hvl-date-picker #Validation (ValueChange)="onActionDateChanged($event)" [BackColor]="ActionDate?.BackColor" [CustomFormat]="ActionDate?.CustomFormat" [Enabled]="ActionDate?.Enabled" [Font]="ActionDate?.Font" [ForeColor]="ActionDate?.ForeColor" [Format]="ActionDate?.Format" [Max]="ActionDate?.Max" [Min]="ActionDate?.Min" [ReadOnly]="ActionDate?.ReadOnly" [Required]="ActionDate?.Required" [TabIndex]="ActionDate?.TabIndex" [Value]="directMaterialSupplyNewFormViewModel?._DirectMaterialSupplyAction?.ActionDate" [Visible]="ActionDate?.Visible" id="A4854" data-tid="A330767"></hvl-date-picker>
+                </div>
+                <div class="col-sm-4" id="A4855" data-tid="A330768">
+                    <label class="control-label " id="A4856" data-tid="A330769">
+                        Gönderen Depo
+                    </label>
+                    <hvl-list-box #Validation (SelectedObjectChange)="onStoreChanged($event)" [AutoCompleteDialogHeight]="Store?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="Store?.AutoCompleteDialogWidth" [AutoCompleteMode]="Store?.AutoCompleteMode" [BackColor]="Store?.BackColor" [DefinitionName]="Store?.ListDefName" [DisplayExpressionsCache]="directMaterialSupplyNewFormViewModel?.ListDefDisplayExpressions" [Enabled]="Store?.Enabled" [Font]="Store?.Font" [ForeColor]="Store?.ForeColor" [ListFilterExpression]="Store?.ListFilterExpression" [MinSearchLength]="Store?.MinSearchLength" [PopupDialogFieldConfig]="Store?.PopupDialogFieldConfig" [PopupDialogGridColumns]="Store?.PopupDialogGridColumns" [PopupDialogHeight]="Store?.PopupDialogHeight" [PopupDialogTitle]="Store?.PopupDialogTitle" [PopupDialogWidth]="Store?.PopupDialogWidth" [ReadOnly]="Store?.ReadOnly" [SearchMode]="Store?.SearchMode" [SearchTimeout]="Store?.SearchTimeout" [SelectedObject]="directMaterialSupplyNewFormViewModel?._DirectMaterialSupplyAction?.Store" [TabIndex]="Store?.TabIndex" [Visible]="Store?.Visible" [width]="Store?.Width" id="A4857" data-tid="A330770"></hvl-list-box>
+                </div>
+                <div class="col-sm-4" id="A4858" data-tid="A330771">
+                    <label class="control-label " id="A4859" data-tid="A330772">
+                        Ana Depo
+                    </label>
+                    <hvl-list-box #Validation (SelectedObjectChange)="onDestinationStoreChanged($event)" [AutoCompleteDialogHeight]="DestinationStore?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="DestinationStore?.AutoCompleteDialogWidth" [AutoCompleteMode]="DestinationStore?.AutoCompleteMode" [BackColor]="DestinationStore?.BackColor" [DefinitionName]="DestinationStore?.ListDefName" [DisplayExpressionsCache]="directMaterialSupplyNewFormViewModel?.ListDefDisplayExpressions" [Enabled]="DestinationStore?.Enabled" [Font]="DestinationStore?.Font" [ForeColor]="DestinationStore?.ForeColor" [ListFilterExpression]="DestinationStore?.ListFilterExpression" [MinSearchLength]="DestinationStore?.MinSearchLength" [PopupDialogFieldConfig]="DestinationStore?.PopupDialogFieldConfig" [PopupDialogGridColumns]="DestinationStore?.PopupDialogGridColumns" [PopupDialogHeight]="DestinationStore?.PopupDialogHeight" [PopupDialogTitle]="DestinationStore?.PopupDialogTitle" [PopupDialogWidth]="DestinationStore?.PopupDialogWidth" [ReadOnly]="DestinationStore?.ReadOnly" [SearchMode]="DestinationStore?.SearchMode" [SearchTimeout]="DestinationStore?.SearchTimeout" [SelectedObject]="directMaterialSupplyNewFormViewModel?._DirectMaterialSupplyAction?.DestinationStore" [TabIndex]="DestinationStore?.TabIndex" [Visible]="DestinationStore?.Visible" [width]="DestinationStore?.Width" id="A4860" data-tid="A330773"></hvl-list-box>
+                </div>
+                <div class="col-sm-2" id="A4861" data-tid="A330774">
+                    <label class="control-label" id="A4862" data-tid="A330775">
+                        Karşılanma Tarihi
+                    </label>
+                    <hvl-date-picker #Validation (ValueChange)="onDateOfSupplyChanged($event)" [BackColor]="DateOfSupply?.BackColor" [CustomFormat]="DateOfSupply?.CustomFormat" [Enabled]="DateOfSupply?.Enabled" [Font]="DateOfSupply?.Font" [ForeColor]="DateOfSupply?.ForeColor" [Format]="DateOfSupply?.Format" [Max]="DateOfSupply?.Max" [Min]="DateOfSupply?.Min" [ReadOnly]="DateOfSupply?.ReadOnly" [Required]="DateOfSupply?.Required" [TabIndex]="DateOfSupply?.TabIndex" [Value]="directMaterialSupplyNewFormViewModel?._DirectMaterialSupplyAction?.DateOfSupply" [Visible]="DateOfSupply?.Visible" id="A4863" data-tid="A330776"></hvl-date-picker>
+                </div>
+            </div>
+            <br id="A4864" data-tid="A330777" />
+            <div class="row" id="A4865" data-tid="A330778">
+                <div class="col-sm-2" id="A4866" data-tid="A330779">
+                    <label class="control-label " id="A4867" data-tid="A330780">
+                        Ameliyat Tarihi
+                    </label>
+                    <hvl-date-picker #Validation (ValueChange)="onDateOfSurgeryChanged($event)" [BackColor]="DateOfSurgery?.BackColor" [CustomFormat]="DateOfSurgery?.CustomFormat" [Enabled]="DateOfSurgery?.Enabled" [Font]="DateOfSurgery?.Font" [ForeColor]="DateOfSurgery?.ForeColor" [Format]="DateOfSurgery?.Format" [Max]="DateOfSurgery?.Max" [Min]="DateOfSurgery?.Min" [ReadOnly]="DateOfSurgery?.ReadOnly" [Required]="DateOfSurgery?.Required" [TabIndex]="DateOfSurgery?.TabIndex" [Value]="directMaterialSupplyNewFormViewModel?._DirectMaterialSupplyAction?.DateOfSurgery" [Visible]="DateOfSurgery?.Visible" id="A4868" data-tid="A330781"></hvl-date-picker>
+                </div>
+                <div class="col-sm-4" id="A4869" data-tid="A330782">
+                    <label class="control-label" id="A4870" data-tid="A330783">
+                        İstek Yapan Personel
+                    </label>
+                    <hvl-list-box #Validation (SelectedObjectChange)="onProcedureByUserChanged($event)" [AutoCompleteDialogHeight]="ProcedureByUser?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ProcedureByUser?.AutoCompleteDialogWidth" [AutoCompleteMode]="ProcedureByUser?.AutoCompleteMode" [BackColor]="ProcedureByUser?.BackColor" [DefinitionName]="ProcedureByUser?.ListDefName" [DisplayExpressionsCache]="directMaterialSupplyNewFormViewModel?.ListDefDisplayExpressions" [Enabled]="ProcedureByUser?.Enabled" [Font]="ProcedureByUser?.Font" [ForeColor]="ProcedureByUser?.ForeColor" [ListFilterExpression]="ProcedureByUser?.ListFilterExpression" [MinSearchLength]="ProcedureByUser?.MinSearchLength" [PopupDialogFieldConfig]="ProcedureByUser?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ProcedureByUser?.PopupDialogGridColumns" [PopupDialogHeight]="ProcedureByUser?.PopupDialogHeight" [PopupDialogTitle]="ProcedureByUser?.PopupDialogTitle" [PopupDialogWidth]="ProcedureByUser?.PopupDialogWidth" [ReadOnly]="ProcedureByUser?.ReadOnly" [SearchMode]="ProcedureByUser?.SearchMode" [SearchTimeout]="ProcedureByUser?.SearchTimeout" [SelectedObject]="directMaterialSupplyNewFormViewModel?._DirectMaterialSupplyAction?.ProcedureByUser" [TabIndex]="ProcedureByUser?.TabIndex" [Visible]="ProcedureByUser?.Visible" [width]="ProcedureByUser?.Width" id="A4871" data-tid="A330784"></hvl-list-box>
+                </div>
+                <div class="col-sm-1" id="A4872" data-tid="A330785">
+                    <br id="A4873" data-tid="A330786" />
+                    <hvl-checkbox #Validation (ValueChange)="onIsImmediateChanged($event)" [AllowThreeState]="IsImmediate?.ThreeState" [BackColor]="IsImmediate?.BackColor" [Enabled]="IsImmediate?.Enabled" [Font]="IsImmediate?.Font" [ForeColor]="IsImmediate?.ForeColor" [IsTitleLeft]="IsImmediate?.IsTitleLeft" [Margin]="IsImmediate?.Margin" [ReadOnly]="IsImmediate?.ReadOnly" [TabIndex]="IsImmediate?.TabIndex" [TitleTopPadding]="IsImmediate?.TitleTopPadding" [Title]="IsImmediate?.Title" [Value]="directMaterialSupplyNewFormViewModel?._DirectMaterialSupplyAction?.IsImmediate" [Visible]="IsImmediate?.Visible" id="A4874" data-tid="A330787"></hvl-checkbox>
+                </div>
+            </div>
+            <br id="A4875" data-tid="A330788" />
+            <div class="row" id="A4876" data-tid="A330789">
+                <div class="col-sm-12" id="A4877" data-tid="A330790">
+                    <label class="control-label" id="A4878" data-tid="A330791">
+                        Açıklama
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onDescriptionForWorkListChanged($event)" [BackColor]="DescriptionForWorkList?.BackColor" [CharacterCasing]="DescriptionForWorkList?.CharacterCasing" [Enabled]="DescriptionForWorkList?.Enabled" [Font]="DescriptionForWorkList?.Font" [ForeColor]="DescriptionForWorkList?.ForeColor" [height]="DescriptionForWorkList?.Height" [InputFormat]="DescriptionForWorkList?.InputFormat" [InputTurkishCharacter]="DescriptionForWorkList?.InputTurkishCharacter" [IsNonNumeric]="DescriptionForWorkList?.IsNonNumeric" [MultiLine]="DescriptionForWorkList?.Multiline" [ReadOnly]="DescriptionForWorkList?.ReadOnly" [Required]="DescriptionForWorkList?.Required" [TabIndex]="DescriptionForWorkList?.TabIndex" [TextAlign]="DescriptionForWorkList?.TextAlign" [Text]="directMaterialSupplyNewFormViewModel?._DirectMaterialSupplyAction?.DescriptionForWorkList" [Visible]="DescriptionForWorkList?.Visible" id="A4879" data-tid="A330792"></hvl-text-box>
+                </div>
+            </div>
+            <br id="A4880" data-tid="A330793" />
+            <div class="row" id="A4881" data-tid="A330794">
+                <hvl-group-box class="col-sm-12" [Text]="ttgroupbox1.Text" id="A4882" data-tid="A330795">
+                    <div class="row" id="A4883" data-tid="A330796">
+                        <div class="col-sm-12" id="A4884" data-tid="A330797">
+                            <hvl-datagrid [AllowUserToAddRows]="TreatmentMaterials?.AllowUserToAddRows" [AllowUserToDeleteRows]="TreatmentMaterials?.AllowUserToDeleteRows" [Columns]="TreatmentMaterialsColumns" [dataSource]="directMaterialSupplyNewFormViewModel?._DirectMaterialSupplyAction?.TreatmentMaterials" [DeleteButtonWidth]="TreatmentMaterials?.DeleteButtonWidth" [DisplayExpressionsCache]="directMaterialSupplyNewFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="TreatmentMaterials?.ShowFilterRow" [FilterColumnName]="TreatmentMaterials?.FilterColumnName" [FilterLabel]="TreatmentMaterials?.FilterLabel" [Filter]="TreatmentMaterials?.Filter" [height]="TreatmentMaterials?.Height" [IsFilterLabelSingleLine]="TreatmentMaterials?.IsFilterLabelSingleLine" [ShowColumnHeaders]="TreatmentMaterials?.ColumnHeadersVisible" [ShowFilterCombo]="TreatmentMaterials?.ShowFilterCombo" [ShowTotalNumberOfRows]="TreatmentMaterials?.ShowTotalNumberOfRows" id="A4885" data-tid="A330798"></hvl-datagrid>
+                        </div>
+                    </div>
+                </hvl-group-box>
+            </div>
+        </div>
+    </form>
+
+</div>

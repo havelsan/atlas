@@ -1,0 +1,40 @@
+﻿<div style="height:100%;overflow-x:hidden;overflow-y:auto" id="A5662" data-tid="A332147">
+    <div class="row" style="height:96%" id="A5663" data-tid="A332148">
+        <div class="col-md-2" id="A5664" data-tid="A332149">
+            <label data-tid="A332150"> Sorgulanacak Gün Sayısı </label>
+        </div>
+        <div class="col-md-2" id="A5666" data-tid="A332151">
+            <dx-number-box #numberBox [min]="0" [showSpinButtons]="true" [(value)]="this.DayQueryNumber" id="A5667" data-tid="A332152">
+            </dx-number-box>
+        </div>
+        <div class="col-md-2" id="A5668" data-tid="A332153">
+            <dx-button type="btn btn-info" icon="fa fa-bars" class="center-block" (onClick)="GetMaterialListWithFilter()" text="Sorgula" id="A5669" data-tid="A332154"></dx-button>
+        </div>
+        <div class="col-md-1" data-tid="A332155">
+            <label data-tid="A332156">Malzeme Grubu</label>
+        </div>
+
+        <div class="col-md-4" style="padding-left: 0px" id="A5671" data-tid="A332157">
+            <dx-select-box [items]="MaterialTreeForStock" displayExpr="Name" valueExpr="ObjectID" (onValueChanged)="onSelectedMaterialTreeChanged($event)" showClearButton="true" id="A30266" data-tid="A332158">
+
+            </dx-select-box>
+        </div>
+    </div>
+    <div class="row" data-tid="A332159">
+        <div class="col-md-12" style="margin-top:10px;" id="A5672" data-tid="A332160">
+            <div id="grid" data-tid="A332161">
+                <dx-data-grid #grid id="grid-container" [dataSource]="Temporarylist" keyExpr="Stock" (onRowPrepared)="rowPrepared($event)" (onToolbarPreparing)="onToolbarPreparing($event)" data-tid="A332162">
+                    <dxo-paging [pageSize]="10" data-tid="A332163"></dxo-paging>
+                    <dxo-export [enabled]="true" fileName="Miad_Dolan" data-tid="A332164"></dxo-export>
+                    <dxo-filter-row [visible]="true" id="A5673" data-tid="A332165"> </dxo-filter-row>
+                    <dxi-column dataField="Name" caption="Adı" [width]="500" id="A5674" data-tid="A332166"></dxi-column>
+                    <dxi-column dataField="NATOStockNO" caption="Taşınır Kodu" [width]="170" id="A5675" data-tid="A332167"></dxi-column>
+                    <dxi-column dataField="Barcode" caption="Barkodu" [width]="170" data-tid="A332168"></dxi-column>
+                    <dxi-column dataField="Restamount" caption="Mevcut" id="A5677" data-tid="A332169"></dxi-column>
+                    <dxi-column dataField="DayLife" caption="Kalan Gün" id="A5678" data-tid="A332170"></dxi-column>
+                    <dxi-column dataField="ExpirationDate" caption="Son Kullanma Tarihi" dataType="date" format="dd/MM/yyyy" id="A5679" data-tid="A332171"></dxi-column>
+                </dx-data-grid>
+            </div>
+        </div>
+    </div>
+</div>

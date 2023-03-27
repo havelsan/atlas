@@ -1,0 +1,167 @@
+﻿<div class="{{this.collapseSelectedDivProperties()}}" style="height: 100%;" id="A16462" data-tid="A375043">
+    <div class="row" style="height: 100%;" data-tid="A375044">
+        <div class="col-sm-12 gradientPanel" id="A16463" data-tid="A375045">
+            <h4 style="color:#fff; font-size:19px;text-align:left;" id="A16464" data-tid="A375046">
+                <div class="btn collapseBtn" (click)="btnCollapse()" style="padding:0;margin-top:3px;margin-right: 5px;" id="A16465" data-tid="A375047">
+                    <i class="{{this.collapseIconProperties()}}" id="A16466" data-tid="A375048"></i>
+                </div>
+                <span id="A16467" data-tid="A375049">Cep Depo Listesi</span>
+            </h4>
+        </div>
+        <div class="panel-body" style="background-color:#f6f6f6;padding-bottom:0; height:100%;padding: 0" data-tid="A375050">
+            <div class="col-md-12" style="padding: 2px;height: calc(100% - 127px);" id="A10249" data-tid="A375051">
+                <dx-data-grid #grid [dataSource]="subStoreDefinitionListDTOs" style="height: 650px;" [columns]="subStoreDefinitionColumn" [filterRow]="{visible: true}" [paging]="{pageSize:34}" (onRowClick)="selectGridRow($event)" [showBorders]="true" data-tid="A375052">
+                    <dxo-selection mode="single" data-tid="A375053"></dxo-selection>
+                </dx-data-grid>
+            </div>
+            <br data-tid="A375054" />
+            <div class="col-md-12" style="max-height: 111px;" data-tid="A375055">
+                <div class="row" data-tid="A375056">
+                    <div class="col-sm-6" data-tid="A375057">
+                        <dx-button icon="fas fa-plus" style="float: left;" stylingMode="contained" text="Cep Depo Ekle" type="default" [width]="300" (onClick)="addNew()" data-tid="A375058">
+                        </dx-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="{{this.collapseSelectedHiddenDivProperties()}}" style="position:relative;" id="A16544" data-tid="A375059">
+    <div class="MyVerticalText" (click)="btnCollapse()" id="A16545" data-tid="A375060">
+        <i class="{{this.collapseIconProperties()}}" id="A16546" data-tid="A375061"></i>
+        <span data-tid="A375062">&nbsp;&nbsp;&nbsp;&nbsp;Cep Depo Listesi</span>
+    </div>
+</div>
+
+
+<div class="{{this.collapsedPanelProperties()}}" style="padding-top: 1%;padding-right: 3% !important;" data-tid="A375063">
+    <div id="detail" *ngIf="selectedItemFromOpen" data-tid="A375064">
+        <div class="row" data-tid="A375065">
+            <dx-button icon="fa fa-times" style="float: right;" stylingMode="contained" text="Vazgeç" type="danger" [width]="120" (onClick)="Cancel()" data-tid="A375066">
+            </dx-button>
+            <dx-button icon="fas fa-save" style="float: right;" stylingMode="contained" text="Kaydet" type="success" [width]="120" (onClick)="Save()" data-tid="A375067">
+            </dx-button>
+        </div>
+        <br data-tid="A375068" />
+        <div class="row" data-tid="A375069">
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A375070">
+                Ekleyen Kullanıcı
+                <dx-text-box [readOnly]="true" [(value)]="creationUser" data-tid="A375071"></dx-text-box>
+            </div>
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A375072">
+                Eklenme Tarihi
+                <dx-date-box style="width: 100%;" [readOnly]="true" [(value)]="creationDate" data-tid="A375073"></dx-date-box>
+            </div>
+            <div class="col-sm-2" style="font-weight: bold;" data-tid="A375074">
+                Değiştiren Kullanıcı
+                <dx-text-box [readOnly]="true" [(value)]="lastUpdateUser" data-tid="A375075"></dx-text-box>
+            </div>
+            <div class="col-sm-1" style="font-weight: bold;" data-tid="A375076">
+                <br data-tid="A375077" />
+                <dx-button type="btn btn-default" style="font-size: 100%;border-style: unset;color: #4276a4 !important;" text="İ" (onClick)="getDetailAudit()" data-tid="A375078"></dx-button>
+            </div>
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A375079">
+                Değiştirilme Tarihi
+                <dx-date-box style="width: 100%;" [readOnly]="true" [(value)]="lastUpdateDate" data-tid="A375080"></dx-date-box>
+            </div>
+        </div>
+        <br data-tid="A375081" />
+        <div class="row" data-tid="A375082">
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A375083">
+                Depo Kısa Adı *
+                <dx-text-box [(value)]="activeSubStoreDefinitionItem.Qref" data-tid="A375084">
+                </dx-text-box>
+            </div>
+            <div class="col-sm-8" style="font-weight: bold;" data-tid="A375085">
+                Depo Adı *
+                <dx-text-box [(value)]="activeSubStoreDefinitionItem.Name" data-tid="A375086">
+                </dx-text-box>
+            </div>
+            <div class="col-sm-1" style="font-weight: bold;" data-tid="A375087">
+                <br data-tid="A375088" />
+                <dx-check-box [(value)]="isActive" [width]="400" text="Aktif" style="margin-bottom: 10px;" data-tid="A375089">
+                </dx-check-box>
+            </div>
+        </div>
+        <br data-tid="A375090" />
+
+
+
+        <div class="row" data-tid="A375091">
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A375092">
+                Birim Kayıt No
+                <dx-text-box [(value)]="activeSubStoreDefinitionItem.UnitRegistryNo" data-tid="A375093">
+                </dx-text-box>
+            </div>
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A375094">
+                Birim Kodu
+                <dx-text-box [(value)]="activeSubStoreDefinitionItem.UnitCode" data-tid="A375095">
+                </dx-text-box>
+            </div>
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A375096">
+                Bağlı Birim ID
+                <dx-text-box [(value)]="activeSubStoreDefinitionItem.DependantUnitID" data-tid="A375097">
+                </dx-text-box>
+            </div>
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A375098">
+                Durumu
+                <dx-select-box [dataSource]="SubStoreStatus" valueExpr="ordinal" displayExpr="description" (onSelectionChanged)="onStatus($event)" [(value)]="activeSubStoreDefinitionItem.Status" data-tid="A375099">
+                </dx-select-box>
+            </div>
+        </div>
+        <br data-tid="A375100" />
+        <div class="row" data-tid="A375101">
+            <div class="col-sm-2" style="font-weight: bold;" data-tid="A375102">
+                <br data-tid="A375103" />
+                <dx-check-box [(value)]="activeSubStoreDefinitionItem.AutoReturningDocumentCreat" [width]="400" text="Otomatik İade Belgesi Oluştur" style="margin-bottom: 10px;" data-tid="A375104">
+                </dx-check-box>
+            </div>
+            <div class="col-sm-2" style="font-weight: bold;" data-tid="A375105">
+                <br data-tid="A375106" />
+                <dx-check-box [(value)]="activeSubStoreDefinitionItem.IsEmergencyStore" [width]="400" text="Acil Depo" style="margin-bottom: 10px;" data-tid="A375107">
+                </dx-check-box>
+            </div>
+
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A375108">
+                MKYS Depo Cikis Hareket Turu
+                <dx-select-box [dataSource]="MKYSCikisHareketTuru" valueExpr="ordinal" displayExpr="description" (onSelectionChanged)="onMKYSCikisHareketTuru($event)" [(value)]="activeSubStoreDefinitionItem.MKYS_CikisHareketTuru" data-tid="A375109">
+                </dx-select-box>
+            </div>
+
+            <div class="col-sm-5" data-tid="A375110">
+                Sorumlu Personel
+                <dx-drop-down-box #ddBox [(value)]="activeSubStoreDefinitionItem.StoreResponsible.ResUserName" [dataSource]="resUserDataSource" displayExpr="ResUserName" valueExpr="ObjectID" data-tid="A375111">
+                    <dxo-drop-down-options [height]="500" data-tid="A375112"></dxo-drop-down-options>
+                    <div *dxTemplate="let data of 'content'" data-tid="A375113">
+                        <dx-data-grid keyExpr="ObjectID" width="100%" (onSelectionChanged)="onSelectionChanged($event, ddBox.instance)" [dataSource]="resUserDataSource" height="100%" data-tid="A375114">
+                            <dxi-column dataField="ResUserName" data-tid="A375115"></dxi-column>
+                            <dxo-filter-row [visible]="true" data-tid="A375116"></dxo-filter-row>
+                            <dxo-scrolling mode="infinite" data-tid="A375117"></dxo-scrolling>
+                            <dxo-selection mode="single" data-tid="A375118"></dxo-selection>
+                        </dx-data-grid>
+                    </div>
+                </dx-drop-down-box>
+            </div>
+        </div>
+        <br data-tid="A375119" />
+
+        <div *ngIf="!activeSubStoreDefinitionItem.isNew" class="row" data-tid="A375120">
+            <div class="col-sm-6" style="font-weight: bold;" data-tid="A375121">
+                MKYS Deposu
+                <dx-text-box [readOnly]="true" [(value)]="activeSubStoreDefinitionItem.SubStoreMKYSName" data-tid="A375122">
+                </dx-text-box>
+            </div>
+            <div class="col-sm-3" data-tid="A375123">
+                <br data-tid="A375124" />
+                <dx-button icon="fas fa-save" style="float: right;" stylingMode="contained" text="MKYS Birim Depo Oluştur" type="success" [width]="300" (onClick)="CreatToMkys()" data-tid="A375125">
+                </dx-button>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<dx-load-panel shadingColor="rgba(0,0,0,0.4)" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A375126">
+</dx-load-panel>

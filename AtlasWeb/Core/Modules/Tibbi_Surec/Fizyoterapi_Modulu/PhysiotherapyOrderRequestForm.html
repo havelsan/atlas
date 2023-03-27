@@ -1,0 +1,217 @@
+﻿<!--<NeStatePanelComponent [ObjectDefID]="physiotherapyOrderRequestFormViewModel._PhysiotherapyOrder.ObjectDefID" [CurrentStateDefID]="physiotherapyOrderRequestFormViewModel._PhysiotherapyOrder.CurrentStateDefID" (onSetState)="setState($event)" (onSaveChanges)="save($event)">
+</NeStatePanelComponent>-->
+
+<style data-tid="A343835">
+    .requiredField:after {
+      content:" *";
+      color: red;
+    }
+  </style>
+
+<form id="PhysiotherapyOrderRequestForm" class="form-horizontal" role="form" data-tid="A343836">
+    <fieldset id="A13166" style=" height:90vh;" data-tid="A343837">
+        <dx-scroll-view #scrollView id="scrollview" [scrollByContent]="true" [scrollByThumb]="true" [showScrollbar]="always" data-tid="A343838">
+            <legend class="tableHeaderStyle" id="A13602" data-tid="A343839">Seans İstek</legend>
+            <div class="row" id="A13603" data-tid="A343840">
+                <div class="col-md-5" id="A13604" data-tid="A343841">
+                    <patient-demographics-form [actionId]="_prObj.ObjectID" id="A13605" data-tid="A343842"></patient-demographics-form>
+                </div>
+                <div class="col-md-7" id="A13606" data-tid="A343843">
+                    <div class="row" id="A13607" data-tid="A343844">
+                        <label class="control-label col-md-2" id="A13608" data-tid="A343845">
+                            <b id="A13609" data-tid="A343846">Anamnez </b>
+                        </label>
+                        <div class="col-md-10" id="A13610" data-tid="A343847">
+                            {{physiotherapyOrderRequestFormViewModel?.MedicalInfo}}
+                        </div>
+                    </div>
+                    <div class="row" id="A13611" data-tid="A343848">
+                        <label class="control-label col-md-2" id="A13612" data-tid="A343849">
+                            <b id="A13613" data-tid="A343850">Protokol No </b>
+                        </label>
+                        <div class="col-md-3" id="A13614" data-tid="A343851">
+                            {{physiotherapyOrderRequestFormViewModel._PhysiotherapyOrder.PhysiotherapyRequest.ProtocolNo}}
+                        </div>
+                    </div>
+                    <br data-tid="A343852" />
+               <div class="row" data-tid="A343853">
+                    <div class="col-md-2" id="A13614" data-tid="A343854">
+                            <label class="control-label" style="font-size: 13px;" data-tid="A343855">Gebelik</label>
+                           <dx-radio-group [items]="radioGroupItems" displayExpr="text" valueExpr="value" (onValueChanged)="onPregnancyValueChanged($event)" [(value)]="physiotherapyOrderRequestFormViewModel.Pregnancy" layout="horizontal" data-tid="A343856">
+                        </dx-radio-group>
+                    </div>
+                    <div class="col-md-2" id="A13614" data-tid="A343857">
+                            <label class="control-label" style="font-size: 13px;" data-tid="A343858">Metal İmplant</label>
+                            <dx-radio-group [items]="radioGroupItems" displayExpr="text" valueExpr="value" [(value)]="physiotherapyOrderRequestFormViewModel.MetalImplant" layout="horizontal" data-tid="A343859">
+                            </dx-radio-group>
+                    </div>
+                    <div class="col-md-3" *ngIf="physiotherapyOrderRequestFormViewModel.MetalImplant ==true" style="margin-top: 17px;margin-left: -30px;" data-tid="A343860">
+                        <dx-text-box placeholder="Metal İmplant Açıklaması Giriniz..." [(value)]="physiotherapyOrderRequestFormViewModel.MetalImplantDescription" data-tid="A343861">
+                        </dx-text-box>
+                    </div>
+                </div>
+                </div>
+                
+            </div>
+            
+            <div class="row" data-tid="A343862">
+                <label class="col-sm-1" data-tid="A343863">
+                    FTR İşlemi Ara
+                </label>
+                <div class="col-sm-2" data-tid="A343864">
+                    <dx-text-box #txtProcedureName valueChangeEvent="keyup" (keypress)="$event.charCode==13 ? procedureTextSearch(txtProcedureName):null" [(value)]="searchProcedureName" id="A27945" data-tid="A343865"></dx-text-box>
+                </div><label class="col-sm-1" data-tid="A343866">
+                    FTR İstek Zamanı
+                </label>
+                <div class="col-md-2" data-tid="A343867">
+                    <dx-date-box [(value)]="physiotherapyOrderRequestFormViewModel._physiotherapyRequestDate" type="datetime" [min]="minPhysiotherapyRequestDate" width="100%" data-tid="A343868"></dx-date-box>
+                </div>
+                <div class="col-md-1" data-tid="A343869">
+                        <dx-check-box [(value)]="physiotherapyOrderRequestFormViewModel.createTemplate" text="Şablon Olarak Kaydet" data-tid="A343870"></dx-check-box>
+                </div>
+                <div class="col-md-2" style="margin-top: -5px;" data-tid="A343871">
+                        <dx-text-box placeholder="Eklenecek Şablon Adı" [readOnly]="!physiotherapyOrderRequestFormViewModel.createTemplate" [(value)]="userTemplateName" data-tid="A343872">
+                        </dx-text-box>
+                </div>
+                <div class="col-md-3" data-tid="A343873">
+                    <NeStatePanelComponent class="col-md-10" [OutgoingTransitions]="physiotherapyOrderRequestFormViewModel?.OutgoingTransitions" [StateReports]="physiotherapyOrderRequestFormViewModel?.CurrentStateReports" [ObjectID]="physiotherapyOrderRequestFormViewModel?._PhysiotherapyOrder?.ObjectID" [ObjectDefID]="physiotherapyOrderRequestFormViewModel?._PhysiotherapyOrder?.ObjectDefID" [CurrentStateDefID]="physiotherapyOrderRequestFormViewModel._PhysiotherapyOrder.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" [CancelCommandVisible]="false" [SaveCommandVisible]="true" SaveButtonCaption="İstek Tamamlandı" [DropStateList]="DropStateList" i18n-SaveButtonCaption="@@M27412" id="A13615" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A343874">
+                    </NeStatePanelComponent>
+                    <button type="button" class="btn btn-success pull-right" (click)="addPhyOrderDetail()" data-tid="A343875"><span class="fa fa-plus" data-tid="A343876"></span>&nbsp; Ekle</button>
+                </div>
+            </div>
+            
+
+            <div class="row" id="A13167" data-tid="A343877">
+                <div class="col-md-2" id="A13174" data-tid="A343878">
+                    <label class="control-label" id="A13175" data-tid="A343879">Vücut Bölgesi</label>
+                    <hvl-list-box #Validation (SelectedObjectChange)="onFTRApplicationAreaDefChanged($event)" [AutoCompleteDialogHeight]="FTRApplicationAreaDef?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="FTRApplicationAreaDef?.AutoCompleteDialogWidth" [AutoCompleteMode]="FTRApplicationAreaDef?.AutoCompleteMode" [BackColor]="FTRApplicationAreaDef?.BackColor" [DefinitionName]="FTRApplicationAreaDef?.ListDefName" [DisplayExpressionsCache]="physiotherapyOrderRequestFormViewModel?.ListDefDisplayExpressions" [Enabled]="FTRApplicationAreaDef?.Enabled" [Font]="FTRApplicationAreaDef?.Font" [ForeColor]="FTRApplicationAreaDef?.ForeColor" [ListFilterExpression]="FTRApplicationAreaDef?.ListFilterExpression" [MinSearchLength]="FTRApplicationAreaDef?.MinSearchLength" [PopupDialogFieldConfig]="FTRApplicationAreaDef?.PopupDialogFieldConfig" [PopupDialogGridColumns]="FTRApplicationAreaDef?.PopupDialogGridColumns" [PopupDialogHeight]="FTRApplicationAreaDef?.PopupDialogHeight" [PopupDialogTitle]="FTRApplicationAreaDef?.PopupDialogTitle" [PopupDialogWidth]="FTRApplicationAreaDef?.PopupDialogWidth" [ReadOnly]="FTRApplicationAreaDef?.ReadOnly" [SearchMode]="FTRApplicationAreaDef?.SearchMode" [SearchTimeout]="FTRApplicationAreaDef?.SearchTimeout" [SelectedObject]="physiotherapyOrderRequestFormViewModel?._PhysiotherapyOrder?.FTRApplicationAreaDef" [TabIndex]="FTRApplicationAreaDef?.TabIndex" [Visible]="FTRApplicationAreaDef?.Visible" [width]="FTRApplicationAreaDef?.Width" id="A13176" data-tid="A343880"></hvl-list-box>
+                </div>
+                <div class="col-md-1" id="A13181" data-tid="A343881">
+                    <label class="control-label" id="A13182" data-tid="A343882">Seans Sayısı</label>
+                    <dx-number-box [(value)]="physiotherapyOrderRequestFormViewModel._PhysiotherapyOrder.SessionCount" [min]="1" placeholder="Seans Sayısı" [showSpinButtons]="true" i18n-placeholder="@@M21489" id="A13183" data-tid="A343883">
+                    </dx-number-box>
+                </div>
+                <div class="col-md-1" id="A13184" data-tid="A343884">
+                    <label class="control-label" id="A13185" data-tid="A343885">Süre/dk</label>
+                    <!--<hvl-number-box #Validation (ValueChange)="onDurationChanged($event)" [BackColor]="Duration?.BackColor" [Enabled]="Duration?.Enabled" [Font]="Duration?.Font" [ForeColor]="Duration?.ForeColor" [ReadOnly]="Duration?.ReadOnly" [TabIndex]="Duration?.TabIndex" [Value]="physiotherapyOrderRequestFormViewModel?._PhysiotherapyOrder?.Duration" [Visible]="Duration?.Visible" id="A13186"></hvl-number-box>-->
+                    <dx-number-box [(value)]="physiotherapyOrderRequestFormViewModel._PhysiotherapyOrder.Duration" data-tid="A343886"></dx-number-box>
+                </div>
+
+                <div class="col-md-2" id="A13187" data-tid="A343887">
+                    <label class="control-label" id="A13188" data-tid="A343888">Doz</label>
+                    <hvl-text-box #Validation (TextChange)="onDoseChanged($event)" [BackColor]="Dose?.BackColor" [CharacterCasing]="Dose?.CharacterCasing" [Enabled]="Dose?.Enabled" [Font]="Dose?.Font" [ForeColor]="Dose?.ForeColor" [height]="Dose?.Height" [InputFormat]="Dose?.InputFormat" [InputTurkishCharacter]="Dose?.InputTurkishCharacter" [IsNonNumeric]="Dose?.IsNonNumeric" [MultiLine]="Dose?.Multiline" [ReadOnly]="Dose?.ReadOnly" [Required]="Dose?.Required" [TabIndex]="Dose?.TabIndex" [TextAlign]="Dose?.TextAlign" [Text]="physiotherapyOrderRequestFormViewModel?._PhysiotherapyOrder?.Dose" [Visible]="Dose?.Visible" id="A13189" data-tid="A343889"></hvl-text-box>
+                </div>
+                <div class="col-md-3" id="A13177" data-tid="A343890">
+                    <label class="control-label" id="A13178" data-tid="A343891">Vücut Bölgesi Açıklama</label>
+                    <hvl-text-box #Validation (TextChange)="onApplicationAreaChanged($event)" [BackColor]="ApplicationArea?.BackColor" [CharacterCasing]="ApplicationArea?.CharacterCasing" [Enabled]="ApplicationArea?.Enabled" [Font]="ApplicationArea?.Font" [ForeColor]="ApplicationArea?.ForeColor" [height]="ApplicationArea?.Height" [InputFormat]="ApplicationArea?.InputFormat" [InputTurkishCharacter]="ApplicationArea?.InputTurkishCharacter" [IsNonNumeric]="ApplicationArea?.IsNonNumeric" [MultiLine]="ApplicationArea?.Multiline" [ReadOnly]="ApplicationArea?.ReadOnly" [Required]="ApplicationArea?.Required" [TabIndex]="ApplicationArea?.TabIndex" [TextAlign]="ApplicationArea?.TextAlign" [Text]="physiotherapyOrderRequestFormViewModel?._PhysiotherapyOrder?.ApplicationArea" [Visible]="ApplicationArea?.Visible" id="A13179" data-tid="A343892"></hvl-text-box>
+                </div>
+                <div class="col-md-3" id="A13190" data-tid="A343893">
+                    <label class="control-label" id="A13191" data-tid="A343894">Açıklama</label>
+                    <hvl-text-box #Validation (TextChange)="onTreatmentPropertiesChanged($event)" [BackColor]="TreatmentProperties?.BackColor" [CharacterCasing]="TreatmentProperties?.CharacterCasing" [Enabled]="TreatmentProperties?.Enabled" [Font]="TreatmentProperties?.Font" [ForeColor]="TreatmentProperties?.ForeColor" [height]="TreatmentProperties?.Height" [InputFormat]="TreatmentProperties?.InputFormat" [InputTurkishCharacter]="TreatmentProperties?.InputTurkishCharacter" [IsNonNumeric]="TreatmentProperties?.IsNonNumeric" [MultiLine]="TreatmentProperties?.Multiline" [ReadOnly]="TreatmentProperties?.ReadOnly" [Required]="TreatmentProperties?.Required" [TabIndex]="TreatmentProperties?.TabIndex" [TextAlign]="TreatmentProperties?.TextAlign" [Text]="physiotherapyOrderRequestFormViewModel?._PhysiotherapyOrder?.TreatmentProperties" [Visible]="TreatmentProperties?.Visible" id="A13192" data-tid="A343895"></hvl-text-box>
+                </div>
+            </div>
+
+            <br data-tid="A343896" />
+            <div class="row" data-tid="A343897">
+                <div class="col-md-5" data-tid="A343898">
+                    <div class="row" data-tid="A343899">
+                        <div class="col-md-5" data-tid="A343900">
+                            <b data-tid="A343901">
+                                Kullanıcı Şablonları
+                            </b>
+                        </div>
+                    </div>
+                    <div class="row" data-tid="A343902">
+                        <div class="col-md-5" data-tid="A343903">
+                            <dx-select-box #TemplateCombo [dataSource]="physiotherapyOrderRequestFormViewModel.userTemplateList" (onItemClick)="SelectUserTemplate($event)" noDataText="Kullanıcı Şablonu Bulunamadı!" displayExpr="Description" searchEnabled="true" searchMode="contains" valueExpr="ObjectID" data-tid="A343904">
+                            </dx-select-box>
+                        </div>
+                        <div class="col-md-2" style="text-align: center" data-tid="A343905">
+                            <dx-button type="default" *ngIf="physiotherapyOrderRequestFormViewModel.selectedUserTemplate != null" (onClick)="btnClearUserTemplate_Click()" text="Temizle" style="margin-left:0px;" data-tid="A343906">
+                            </dx-button>
+                        </div>
+                        <div class="col-md-2" data-tid="A343907">
+                            <dx-button type="danger" *ngIf="physiotherapyOrderRequestFormViewModel.selectedUserTemplate != null" (onClick)="btnDeleteSelectedUserTemplate_Click()" text="Sil" style="margin-left:0px;" data-tid="A343908">
+                            </dx-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br data-tid="A343909" />
+
+
+            <div class="row" data-tid="A343910">
+                <div class="col-md-12" data-tid="A343911">
+                    <a href="javascript:void(0)" class="nav-link" (click)="btnExpandAllAccordions_valueChange()" id="A27954" data-tid="A343912">
+                        <i style="float:right;margin-right: 15px;width: 10px;margin-top:10px" class="fa fa-angle-double-down fa-2x" data-toggle="tooltip" data-placement="bottom" title="Tümünü Aç" i18n-title="@@M23655" id="A27955" data-tid="A343913"></i>
+                    </a>
+                    <a href="javascript:void(0)" class="nav-link" (click)="btnCollapseAllAccordions_valueChange()" id="A27957" data-tid="A343914">
+                        <i style="float:right;margin-right:20px;width: 10px;margin-top:10px" class="fa fa-angle-double-up fa-2x" data-toggle="tooltip" data-placement="bottom" title="Tümünü Kapat" i18n-title="@@M23659" id="A27958" data-tid="A343915"></i>
+                    </a>
+                </div>
+                <div class="col-md-12" data-tid="A343916">
+                    <dx-accordion #accordion [hint]="physiotherapyOrderRequestFormViewModel._PhysiotherapyOrder.ObjectID" [dataSource]="physiotherapyOrderRequestFormViewModel.TreatmentDiagnosisInfoList" [collapsible]="true" [multiple]="true" [animationDuration]="300" data-tid="A343917">
+                        <div *dxTemplate="let treatmentItem of 'title'" data-tid="A343918">
+                            <span data-tid="A343919">{{treatmentItem.TreatmentDiagnosisUnitName}}</span>
+                        </div>
+                        <div *dxTemplate="let treatmentItem of 'item'" data-tid="A343920">
+                            <div *ngFor="let ProcedureDefinitionList of treatmentItem.ProcedureDefinitionList" data-tid="A343921">
+
+                                <div class="col-md-4" data-tid="A343922">
+                                    <hvl-checkbox #Validation Margin="5px" TitleTopPadding="3px" (ValueChange)="procedureDefinitionOnChange(treatmentItem,ProcedureDefinitionList.ProcedureDefinition.ObjectID, $event)" [IsTitleLeft]="false" [Title]="ProcedureDefinitionList.ProcedureDefinitionName" [(Value)]="ProcedureDefinitionList.isRequested" [ngStyle]="ProcedureDefinitionList.Color" data-tid="A343923"></hvl-checkbox>
+                                </div>
+
+                            </div>
+                        </div>
+                    </dx-accordion>
+
+                </div>
+
+            </div>
+
+            <div class="row" data-tid="A343924">
+                <div class="col-md-12" data-tid="A343925">
+                    <br data-tid="A343926" />
+                    <dx-data-grid id="gridContainer" [dataSource]="physiotherapyOrderRequestFormViewModel?.PhysiotherapyOrderList" [showBorders]="true" data-tid="A343927">
+
+                        <dxo-paging [enabled]="false" data-tid="A343928"></dxo-paging>
+                        <dxo-editing mode="cell" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true" data-tid="A343929">
+                        </dxo-editing>
+
+                        <dxi-column dataField="TreatmentDiagnosisUnit" caption="Tedavi Ünitesi" data-tid="A343930">
+                            <dxo-lookup [dataSource]="physiotherapyOrderRequestFormViewModel?.ResTreatmentDiagnosisUnitList" displayExpr="Name" valueExpr="ObjectID" data-tid="A343931">
+                            </dxo-lookup>
+                        </dxi-column>
+                        <dxi-column dataField="ApplicationArea" caption="Vücut Bölgesi" data-tid="A343932">
+                            <dxo-lookup [dataSource]="physiotherapyOrderRequestFormViewModel?.FTRVucutBolgesiList" displayExpr="ftrVucutBolgesiAdi" valueExpr="ObjectID" data-tid="A343933">
+                            </dxo-lookup>
+                        </dxi-column>
+                        <dxi-column dataField="ApplicationAreaInfo" caption="Vücut Bölgesi Açıklama" data-tid="A343934">
+                        </dxi-column>
+                        <dxi-column dataField="ProcedureObject" caption="İşlem" data-tid="A343935">
+                            <dxo-lookup [dataSource]="physiotherapyOrderRequestFormViewModel?.PhysiotherapyDefinitionList" displayExpr="Name" valueExpr="ObjectID" data-tid="A343936">
+                            </dxo-lookup>
+                        </dxi-column>
+                        <dxi-column dataField="SessionCount" caption="Seans" data-tid="A343937">
+                            <dxi-validation-rule type="required" message="Zorunlu alan" data-tid="A343938"></dxi-validation-rule>
+                            <dxi-validation-rule type="numeric" message="Seans sadece numara içerebilir" data-tid="A343939"></dxi-validation-rule>
+                        </dxi-column>
+                        <dxi-column dataField="Duration" caption="Süre" data-tid="A343940">
+                            <dxi-validation-rule type="required" message="Zorunlu alan" data-tid="A343941"></dxi-validation-rule>
+                            <dxi-validation-rule type="numeric" message="Süre sadece numara içerebilir" data-tid="A343942"></dxi-validation-rule>
+                        </dxi-column>
+                        <dxi-column dataField="Dose" caption="Doz" data-tid="A343943">
+                            <dxi-validation-rule type="required" message="Zorunlu alan" data-tid="A343944"></dxi-validation-rule>
+                        </dxi-column>
+                        <dxi-column dataField="TreatmentProperties" caption="Açıklama" data-tid="A343945">
+                        </dxi-column>
+
+                    </dx-data-grid>
+                    <br data-tid="A343946" />
+                </div>
+            </div>
+
+        </dx-scroll-view>
+    </fieldset>
+</form>
+<!--<dxi-validation-rule type="required"></dxi-validation-rule>-->

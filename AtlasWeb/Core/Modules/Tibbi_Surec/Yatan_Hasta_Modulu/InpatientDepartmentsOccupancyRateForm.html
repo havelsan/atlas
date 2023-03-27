@@ -1,0 +1,79 @@
+﻿<div class="row" data-tid="A367607">
+    <legend id="A19320" data-tid="A367608"> Yatan Hasta Doluluk Oranları</legend>
+</div>
+<div class="row" data-tid="A367609">
+    <div class="col-sm-3" id="A10821" data-tid="A367610">
+        <div class="col-sm-2" data-tid="A367611">
+            <label class="control-label " id="A10822" data-tid="A367612">
+                Bina
+            </label>
+        </div>
+        <div class="col-sm-10" data-tid="A367613">
+            <dx-select-box [showClearButton]="false" [(dataSource)]="this.DepartmentOccupancyRateViewModel.BuildingList" displayExpr="Name" valueExpr="ObjectID" [(value)]="selectedBuilding" (onSelectionChanged)="onBuildingChange($event)" data-tid="A367614">
+            </dx-select-box>
+        </div>
+    </div>
+
+    <div class="col-sm-3" id="A10821" data-tid="A367615">
+        <div class="col-sm-2" data-tid="A367616">
+            <label class="control-label " id="A10822" data-tid="A367617">
+                Kanat
+            </label>
+        </div>
+        <div class="col-sm-10" data-tid="A367618">
+            <dx-select-box [showClearButton]="false" [dataSource]="WingList" displayExpr="Name" valueExpr="ObjectID" [(value)]="selectedWing" (onSelectionChanged)="onWingChange($event)" data-tid="A367619">
+            </dx-select-box>
+        </div>
+    </div>
+
+    <div class="col-sm-3" id="A10821" data-tid="A367620">
+        <div class="col-sm-2" data-tid="A367621">
+            <label class="control-label" id="A10822" data-tid="A367622">
+                Kat
+            </label>
+        </div>
+        <div class="col-sm-10" data-tid="A367623">
+            <dx-select-box [showClearButton]="false" [dataSource]="FloorList" displayExpr="Name" valueExpr="ObjectID" [(value)]="selectedFloor" (onSelectionChanged)="onFloorChange($event)" data-tid="A367624">
+            </dx-select-box>
+        </div>
+    </div>
+
+    <div class="col-sm-2" id="A10821" data-tid="A367625">
+
+        <dx-button text="Temizle" rtlEnabled="true" class="default" i18n-text="@@M20324" (onClick)="Clear()" id="A10831" data-tid="A367626">
+        </dx-button>
+    </div>
+</div>
+
+<br data-tid="A367627" />
+
+<div class="row panel panel-primary" style="border-color:#808080 !important; padding-top:5px;" *ngFor="let building of BuildingModelDataList;let i=index;" data-tid="A367628">
+    <div class="col-sm-3" data-tid="A367629">
+        <dx-pie-chart id="pie" palette="material" [dataSource]="pieDataSource" [customizePoint]="customizePoint" [size]="{heigth:250,width:250}" data-tid="A367630">
+            <dxo-legend orientation="horizontal" itemTextPosition="right" horizontalAlignment="center" verticalAlignment="bottom" [columnCount]="4" data-tid="A367631"></dxo-legend>
+
+            <dxi-series argumentField="arg" valueField="val" id="A32178" data-tid="A367632"></dxi-series>
+        </dx-pie-chart>
+
+
+    </div>
+
+    <div class="col-sm-3" *ngFor="let wing of WingModelDataList;let j=index;" data-tid="A367633">
+        <div class="row" [ngStyle]="GetStyleForWingName(j)" data-tid="A367634">
+            <div id="A28788" style="text-align:center;font-weight: bold;" data-tid="A367635">{{wing.WingName}}</div>
+        </div>
+        <dx-data-grid #OccupancyGrid id="grid-container" [(dataSource)]="wing.tempFloorOccupancyDataList" data-tid="A367636">
+
+            <!-- <dxo-paging [pageSize]="5"></dxo-paging> -->
+            <dxi-column dataField="FloorName" caption="KAT / BİRİM" [width]="80" *ngIf="j == 0" data-tid="A367637">
+            </dxi-column>
+            <dxi-column dataField="EmptyBed" caption="BOŞ" [width]="80" data-tid="A367638"></dxi-column>
+            <dxi-column dataField="UsedBed" caption="DOLU" [width]="80" data-tid="A367639"></dxi-column>
+            <dxi-column dataField="TotalNumberOfBeds" caption="TOPLAM" [width]="80" data-tid="A367640"></dxi-column>
+            <dxi-column dataField="OccupancyRate" caption="DOLULUK ORANI" [width]="120" data-tid="A367641"></dxi-column>
+
+        </dx-data-grid>
+    </div>
+</div>
+<dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A31651" data-tid="A367642">
+</dx-load-panel>

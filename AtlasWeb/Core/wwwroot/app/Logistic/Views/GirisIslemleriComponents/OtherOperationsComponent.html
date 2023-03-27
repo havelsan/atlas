@@ -1,0 +1,30 @@
+﻿<dx-button [disabled]="InputModel.UTSReceiveNotifDisable" text="Alma Bildirimi" (onClick)="receivedNotification()" data-tid="A374606"></dx-button>
+&nbsp;
+<dx-button text="Satın almadan Sorgula" (onClick)="query()" data-tid="A374607"></dx-button>
+&nbsp;
+<dx-button [disabled]="InputModel.RemoveDisable" text="XML Oku" (onClick)="readXML()" data-tid="A374608"></dx-button>
+
+
+<dx-popup width="1200px" height="700px" [(visible)]="isXMLReaderOpen" [closeOnOutsideClick]="true" title="XML Okuma Sonucu" data-tid="A374609">
+    <div *dxTemplate="let data of 'content'" data-tid="A374610">
+        <div class="row" style="height: 100%;" data-tid="A374611">
+            <div class="col-md-12" style="height: 100%;" data-tid="A374612">
+                <div class="col-md-6" style="height: 90%;" data-tid="A374613">
+                    <h4 data-tid="A374614">Giden Veri</h4>
+                    <dx-text-area style=" height:100%!important" [(value)]="XMLOut" readOnly="true" data-tid="A374615"></dx-text-area>
+                </div>
+                <div class="col-md-6" style="height: 90%;" data-tid="A374616">
+                    <h4 data-tid="A374617">Gelen Veri</h4>
+                    <dx-text-area style=" height:100%!important" [(value)]="XMLIn" readOnly="true" data-tid="A374618"></dx-text-area>
+                </div>
+            </div>
+        </div>
+    </div>
+</dx-popup>
+
+<dx-popup width="1200px" height="700px" [(visible)]="isSatinAlmadanSorgulaOpen" [closeOnOutsideClick]="true" title="Satın Almadan Sorgula" data-tid="A374619">
+    <div *dxTemplate="let data of 'content'" data-tid="A374620">
+        <hvl-logistic-supplyRequestManager-view data-tid="A374621"></hvl-logistic-supplyRequestManager-view>        
+    </div>
+</dx-popup>
+

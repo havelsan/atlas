@@ -1,0 +1,217 @@
+﻿
+<link href="/Content/CashOffice/CashOfficeGeneral.css" rel="stylesheet" />
+
+<div id="InvoiceAccountancyForm" style="height: calc(100% - 30px); display: block; padding-top:5px; padding-bottom:5px" data-tid="A370969">
+    <dx-tab-panel [selectedIndex]="0" [animationEnabled]="true" style="height:100%" id="A30843" data-tid="A370970">
+        <dxi-item class="tabpanel-item" title="Medula Tutar Onaylama" i18n-title="@@M27435" id="A30844" data-tid="A370971">
+            <div class="col-sm-5 panel panel-success" [class.col-sm-12.panel.panel-success]="changeClasses()" style="height:100%;left:0;margin-bottom: 0; position:relative" id="A31848" data-tid="A370972">
+                <div class="row" id="A30705" data-tid="A370973">
+                    <label class="control-label col-sm-3" id="A30706" data-tid="A370974">
+                        Dönem
+                    </label>
+                    <div class="col-sm-3" id="A30707" data-tid="A370975">
+                        <hvl-listdef-combobox #Validation (SelectedValueChange)="onCmbTermChanged($event)" [(SelectedValue)]="invoiceAccountancyFormViewModel.TermInformation.Term" [BackColor]="cmbTerm?.BackColor" [DefinitionName]="cmbTerm?.ListDefName" [Enabled]="cmbTerm?.Enabled" [Font]="cmbTerm?.Font" [ForeColor]="cmbTerm?.ForeColor" [ReadOnly]="cmbTerm?.ReadOnly" [SearchingMode]="cmbTerm?.SearchMode" [TabIndex]="cmbTerm?.TabIndex" [Visible]="cmbTerm?.Visible" id="A30708" data-tid="A370976">
+                        </hvl-listdef-combobox>
+                    </div>
+                    <label class="control-label col-sm-3" id="A30706" data-tid="A370991">
+                        Medula Tutarı (Net)
+                    </label>
+                    <div class="col-sm-3" id="A30707" data-tid="A370992">
+                        <dx-number-box [(value)]="invoiceAccountancyFormViewModel.TermInformation.MedulaNetTotal" [disabled]="true" format="#,##0.00" data-tid="A370993"></dx-number-box>
+                    </div>
+                </div>
+                <div class="row" id="A30705" data-tid="A370980">
+                    <label class="control-label col-sm-3" id="A30709" data-tid="A370981">
+                        GSS Evrak No
+                    </label>
+                    <div class="col-sm-3" id="A30735" data-tid="A370982">
+                        <dx-number-box [(value)]="invoiceAccountancyFormViewModel.TermInformation.GSSDocumentNo" id="txtGSSDocumentNo" data-tid="A370983"></dx-number-box>
+                    </div>
+                    <label class="control-label col-sm-3" id="A30706" data-tid="A370984">
+                        Medula Tutarı (BKK Borçlu)
+                    </label>
+                    <div class="col-sm-3" id="A30707" data-tid="A370985">
+                        <dx-number-box [(value)]="invoiceAccountancyFormViewModel.TermInformation.MedulaBKKTotal" [disabled]="true" format="#,##0.00" data-tid="A370986"></dx-number-box>
+                    </div>
+                </div>
+                <div class="row" id="A30705" data-tid="A370987">
+                    <label class="control-label col-sm-3" id="A30709" data-tid="A370988">
+                        Geçici Koruma Evrak No
+                    </label>
+                    <div class="col-sm-3" id="A30735" data-tid="A370989">
+                        <dx-number-box [(value)]="invoiceAccountancyFormViewModel.TermInformation.TempProtDocumentNo" id="txtTempProtDocumentNo" data-tid="A370990"></dx-number-box>
+                    </div>
+                    <label class="control-label col-sm-3" id="A30709" data-tid="A370998">
+                        Medula Tutarı (Göç İdaresi)
+                    </label>
+                    <div class="col-sm-3" id="A30735" data-tid="A370999">
+                        <dx-number-box [(value)]="invoiceAccountancyFormViewModel.TermInformation.MedulaGocIdaresiTotal" [disabled]="true" format="#,##0.00" data-tid="A371000"></dx-number-box>
+                    </div>
+                </div>
+                <div class="row" id="A30705" data-tid="A370994">
+                    <label class="control-label col-sm-3" id="A30709" data-tid="A370995">
+                        Medula Tutarı Onaylandı
+                    </label>
+                    <div class="col-sm-3" style="padding-top:5px" id="A30735" data-tid="A370996">
+                        <dx-check-box [(value)]="invoiceAccountancyFormViewModel.TermInformation.Approved" (onValueChanged)="termApprovedCheckValueChanged($event)" data-tid="A370997"></dx-check-box>
+                    </div>
+                    <label class="control-label col-sm-3" id="A30706" data-tid="A370977">
+                        Medula Tutarı (Toplam)
+                    </label>
+                    <div class="col-sm-3" id="A30707" data-tid="A370978">
+                        <dx-number-box [(value)]="invoiceAccountancyFormViewModel.TermInformation.MedulaTotal" [disabled]="true" format="#,##0.00" data-tid="A370979"></dx-number-box>
+                    </div>
+                </div>
+                <div class="row" id="A30705" data-tid="A371001">
+                    <label class="control-label col-sm-3" id="A30709" data-tid="A371002">
+                        Onaylayan Kullanıcı
+                    </label>
+                    <div class="col-sm-3" id="A30735" data-tid="A371003">
+                        <dx-text-box id="txtApproveUser" class="form-control" [disabled]="true" [value]="invoiceAccountancyFormViewModel.TermInformation.ApproveUser" data-tid="A371004"></dx-text-box>
+                    </div>
+                    <label class="control-label col-sm-3" id="A30709" data-tid="A371005">
+                        HBYS Tutarı (Takip)
+                    </label>
+                    <div class="col-sm-3" id="A30735" data-tid="A371006">
+                        <dx-number-box [(value)]="invoiceAccountancyFormViewModel.TermInformation.HBYSSEPTotal" [disabled]="true" format="#,##0.00" data-tid="A371007"></dx-number-box>
+                    </div>
+                </div>
+                <div class="row" id="A30705" data-tid="A371008">
+                    <label class="control-label col-sm-3" id="A30709" data-tid="A371009">
+                        Onay Tarihi
+                    </label>
+                    <div class="col-sm-3" id="A30735" data-tid="A371010">
+                        <dx-date-box [(value)]="invoiceAccountancyFormViewModel.TermInformation.ApproveDate" type="date" displayFormat="dd/MM/yyyy HH:mm" [disabled]="true" style="width:100%" id="A30996" data-tid="A371011"> </dx-date-box>
+                    </div>
+                    <label class="control-label col-sm-3" id="A30709" data-tid="A371012">
+                        HBYS Tutarı (Hizmet)
+                    </label>
+                    <div class="col-sm-3" id="A30735" data-tid="A371013">
+                        <dx-number-box [(value)]="invoiceAccountancyFormViewModel.TermInformation.HBYSAccTrxTotal" [disabled]="true" format="#,##0.00" data-tid="A371014"></dx-number-box>
+                    </div>
+                </div>
+                <div class="row" style="padding-top:10px;text-align:right;" id="A30706" data-tid="A371015">
+                    <div class="col-sm-12" id="A30735" data-tid="A371016">
+                        <dx-button type="default" icon="fa fa-refresh" text="Medula'dan Takipleri Sorgula ve Kaydet" (onClick)="ReadTermInvoiceInfoFromMedula()" i18n-text="@@M13315" id="A31851" data-tid="A371017"></dx-button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-7 panel panel-success panel-success-seperator-3" [class.col-sm-12.panel.panel-success]="changeClasses()" style="position:relative; height:100%; margin:0;" id="A31853" data-tid="A371018">
+                <div class="row" style="padding-top:10px;" id="A30707" data-tid="A371019">
+                    <div class="col-sm-6" id="A30736" data-tid="A371020">
+                        <dx-button type="default" icon="fa fa-list" text="Uyumsuz Takipleri Listele" (onClick)="GetIncompatibleSEPs()" i18n-text="@@M13315" id="A31852" data-tid="A371021"></dx-button>
+                    </div>
+                    <div class="col-sm-6" style="text-align:right;" id="A30737" data-tid="A371022">
+                        <dx-button type="success" icon="fa fa-check" text="Uyumsuz Takipleri Düzenle" (onClick)="ArrangeIncompatibleSEPs()" i18n-text="@@M13316" id="A31853" data-tid="A371023"></dx-button>
+                    </div>
+                </div>
+                <div class="row" style="padding-top:10px; height: calc(100% - 30px);" id="A30706" data-tid="A371024">
+                    <dx-data-grid [selection]="{mode: 'single'}" hoverStateEnabled="true" [dataSource]="invoiceAccountancyFormViewModel.SEPInformationList" [columns]='SEPInformationColumns' (onRowClick)="SEPInformationRowClick($event)" [filterRow]="{visible: true}" height="100%" id="A31852" data-tid="A371025">
+                        <dxo-scrolling showScrollbar="always" data-tid="A371026"></dxo-scrolling>
+                        <dxo-paging [pageSize]="25" id="A31825" data-tid="A371027"></dxo-paging>
+                        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[25,50,100]" id="A31826" data-tid="A371028"></dxo-pager>
+                        <dxo-summary data-tid="A371029">
+                            <dxi-total-item column="Durum" summaryType="count" data-tid="A371030">
+                            </dxi-total-item>
+                            <dxi-total-item column="MedulaTutar" summaryType="sum" valueFormat="#,##0.00" data-tid="A371031">
+                            </dxi-total-item>
+                            <dxi-total-item column="HBYSSEPTutar" summaryType="sum" valueFormat="#,##0.00" data-tid="A371032">
+                            </dxi-total-item>
+                            <dxi-total-item column="HBYSAccTrxTutar" summaryType="sum" valueFormat="#,##0.00" data-tid="A371033">
+                            </dxi-total-item>
+                        </dxo-summary>
+                    </dx-data-grid>
+                </div>
+            </div>
+        </dxi-item>
+        <dxi-item class="tabpanel-item" title="Muhasebe İşlem Fişi" i18n-title="@@M27504" id="A30902" data-tid="A371034">
+            <div class="col-sm-5 panel panel-success" [class.col-sm-12.panel.panel-success]="changeClasses()" style="height:100%;left:0;margin-bottom: 0; position:relative" id="A31848" data-tid="A371035">
+                <div class="row" id="A30705" data-tid="A371036">
+                    <label class="control-label col-sm-1" id="A30706" data-tid="A371037">
+                        Dönem
+                    </label>
+                    <div class="col-sm-4" id="A30707" data-tid="A371038">
+                        <dx-select-box [(value)]="MIFModel.MIFInfo.TermObjectID" (onValueChanged)="MIFTermChanged($event)" searchEnabled="true" [dataSource]="MIFTermArray" displayExpr="Name" valueExpr="ObjectID" showClearButton="true" id="A30979" height="25" data-tid="A371039">
+                        </dx-select-box>
+                    </div>
+                    <label class="control-label col-sm-3" id="A30709" data-tid="A371040">
+                        <!--Oluşturan Kullanıcı-->
+                    </label>
+                    <div class="col-sm-4" id="A30735" data-tid="A371041">
+                        <!--<dx-text-box id="txtApproveUser" class="form-control" [disabled]="true" [value]="MIFModel.MIFInfo.CreateUser"></dx-text-box>-->
+                    </div>
+                </div>
+                <div class="row" id="A30705" data-tid="A371042">
+                    <label class="control-label col-sm-1" id="A30709" data-tid="A371043">
+                        Türü
+                    </label>
+                    <div class="col-sm-4" id="A30735" data-tid="A371044">
+                        <hvl-enum-combobox #Validation (ValueChange)="MIFTypeChanged($event)" [(Value)]="MIFModel.MIFInfo.MIFType" [BackColor]="cmbMIFType?.BackColor" [DataTypeName]="cmbMIFType?.DataTypeName" [Enabled]="cmbMIFType?.Enabled" [Font]="cmbMIFType?.Font" [ForeColor]="cmbMIFType?.ForeColor" [IncludeOnly]="cmbMIFType?.IncludeOnly" [ReadOnly]="cmbMIFType?.ReadOnly" [ShowClearButton]="cmbMIFType?.ShowClearButton" [SortBy]="cmbMIFType?.SortBy" [TabIndex]="cmbMIFType?.TabIndex" [Visible]="cmbMIFType?.Visible" id="A31761" data-tid="A371045">
+                        </hvl-enum-combobox>
+                    </div>
+                    <!--<label class="control-label col-sm-3"  id="A30709">
+                        Oluşturma Tarihi
+                    </label>
+                    <div class="col-sm-4" id="A30735">
+                        <dx-date-box [(value)]="MIFModel.MIFInfo.CreateDate" type="date" displayFormat="dd/MM/yyyy HH:mm:ss" [disabled]="true" style="width:100%" id="A30996"> </dx-date-box>
+                    </div>-->
+                    <div class="col-sm-3" id="A30735" data-tid="A371046">
+                        <dx-button type="default" icon="fa fa-refresh" text="Hazırla" (onClick)="PrepareNewMIF()" i18n-text="@@M13315" id="A31851" data-tid="A371047"></dx-button>
+                    </div>
+                    <div class="col-sm-4" style="text-align:right;" id="A30737" data-tid="A371048">
+                        <dx-button type="success" icon="fa fa-check" text="Onayla ve Kaydet" (onClick)="SaveNewMIF()" [disabled]="!isPrepareNewMIF" data-tid="A371049"></dx-button>
+                    </div>
+                </div>
+                <div class="row" style="padding-top:10px" id="A30705" data-tid="A371050">
+                    <label class="control-label col-sm-1" id="A30709" data-tid="A371051">
+                        MİF
+                    </label>
+                    <div class="col-sm-11" id="A30735" data-tid="A371052">
+                        <dx-select-box [(value)]="MIFModel.MIFInfo.MIFObjectID" (onValueChanged)="MIFChanged($event)" searchEnabled="true" [dataSource]="MIFArray" displayExpr="MIFName" valueExpr="MIFObjectID" showClearButton="true" id="A30979" height="25" data-tid="A371053">
+                        </dx-select-box>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-7 panel panel-success panel-success-seperator-3" [class.col-sm-12.panel.panel-success]="changeClasses()" style="position:relative; height:100%; margin:0;" id="A31853" data-tid="A371054">
+                <div class="row" style="padding-top:10px;" id="A30707" data-tid="A371055">
+                    <div class="col-sm-6" id="A30737" data-tid="A371056">
+                    </div>
+                    <div class="col-sm-3" style="text-align:right;" id="A30736" data-tid="A371057">
+                        <dx-button type="default" icon="fa fa-print" text="MİF Raporu" (onClick)="PrintMIFReport()" [disabled]="isPrepareNewMIF" data-tid="A371058"></dx-button>
+                    </div>
+                    <div class="col-sm-3" style="text-align:right;" id="A30736" data-tid="A371059">
+                        <dx-button type="default" icon="fa fa-print" text="MİF Raporu (Kurum Bazlı)" (onClick)="PrintMIFReportByPayer()" [disabled]="isPrepareNewMIF" data-tid="A371060"></dx-button>
+                    </div>
+                </div>
+                <div class="row" style="padding-top:10px; height: calc(100% - 30px);" id="A30706" data-tid="A371061">
+                    <dx-data-grid height="100%" [dataSource]="MIFModel.MIFPayers" [masterDetail]="{ enabled: true, template: 'payers' }" [showBorders]="true" data-tid="A371062">
+                        <dxo-selection mode="single" data-tid="A371063"></dxo-selection>
+                        <dxo-scrolling showScrollbar="always" data-tid="A371064"></dxo-scrolling>
+                        <dxo-paging [pageSize]="25" data-tid="A371065"></dxo-paging>
+                        <dxi-column dataField="Code" caption="Kurum Kodu" width="15%" data-tid="A371066"></dxi-column>
+                        <dxi-column dataField="Name" caption="Kurum Adı" width="85%" data-tid="A371067"></dxi-column>
+                        <div *dxTemplate="let payer of 'payers'" data-tid="A371068">
+                            <div class="internal-grid-container" id="A32449" data-tid="A371069">
+                                <dx-data-grid [selection]="{mode: 'single'}" class="internal-grid" [dataSource]="payer.data.Details" id="A32450" data-tid="A371070">
+                                    <dxi-column dataField="AccountCode" caption="Hesap No" width="13%" data-tid="A371071"></dxi-column>
+                                    <dxi-column dataField="Debt" dataType="number" caption="Borç Tutarı" format="#,##0.00" width="11%" data-tid="A371072"></dxi-column>
+                                    <dxi-column dataField="Credit" dataType="number" caption="Alacak Tutarı" format="#,##0.00" width="11%" data-tid="A371073"></dxi-column>
+                                    <dxi-column dataField="AccountName" caption="Hesap / Ayrıntı Adı" width="65%" data-tid="A371074"></dxi-column>
+                                    <dxo-summary data-tid="A371075">
+                                        <dxi-total-item column="Debt" summaryType="sum" valueFormat="#,##0.00" data-tid="A371076">
+                                        </dxi-total-item>
+                                        <dxi-total-item column="Credit" summaryType="sum" valueFormat="#,##0.00" data-tid="A371077">
+                                        </dxi-total-item>
+                                    </dxo-summary>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </dx-data-grid>
+                </div>
+            </div>
+        </dxi-item>
+    </dx-tab-panel>
+    <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A31651" data-tid="A371078">
+    </dx-load-panel>
+</div>
+

@@ -1,0 +1,53 @@
+﻿
+
+<form id="AnamnesisForm" class="form-horizontal" role="form" data-tid="A365752"></form>
+<div id="idAnamnesis" data-tid="A365753">
+    <div class="row" id="A28345" data-tid="A365754">
+        <a href="javascript:void(0)" class="nav-link" (click)="openAnamnesisHistory()" id="A28346" data-tid="A365755">
+            <i style="float:right;margin-right:20px" class="fa fa-address-card fa-2x" data-toggle="tooltip" data-placement="bottom" title="Anamnez Geçmişi" i18n-title="@@M10954" id="A28347" data-tid="A365756"></i>
+        </a>
+    </div>
+
+    <div class="row" id="A28348" data-tid="A365757">
+
+        <div class="col-sm-12" id="A28349" data-tid="A365758">
+            <div class="row" id="A28350" data-tid="A365759">
+                <div class="col-sm-6" id="A28351" data-tid="A365760">
+                    <label class="control-label" id="A28352" data-tid="A365761">Şikayet</label>
+                    <hvl-richtextbox #complaint (change)="onComplaintChanged($event)" [ngModelOptions]="{ standalone: true}" [ngModel]="anamnesisFormViewModel?._PhysicianApplication?.Complaint" [ReadOnly]="Complaint?.ReadOnly" [TemplateGroupName]="Complaint?.TemplateGroupName" [Visible]="Complaint?.Visible" id="A28353" data-tid="A365762"></hvl-richtextbox>
+                </div>
+                <div class="col-sm-6" id="A28354" data-tid="A365763">
+                    <label class="control-label" id="A28355" data-tid="A365764">Özgeçmiş / Soygeçmiş</label>
+                    <hvl-richtextbox #patientHistory (change)="onPatientHistoryChanged($event)" [ngModelOptions]="{ standalone: true}" [ngModel]="anamnesisFormViewModel?._PhysicianApplication?.PatientHistory" [ReadOnly]="PatientHistory?.ReadOnly" [TemplateGroupName]="PatientHistory?.TemplateGroupName" [Visible]="PatientHistory?.Visible" id="A28356" data-tid="A365765"></hvl-richtextbox>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top:10px" id="A28357" data-tid="A365766">
+                <div class="col-sm-6" id="A28358" data-tid="A365767">
+                    <label class="control-label" id="A28359" data-tid="A365768">Fizik Muayene</label>
+                    <hvl-richtextbox #physicalExamination (change)="onPhysicalExaminationChanged($event)" [ngModelOptions]="{ standalone: true}" [ngModel]="anamnesisFormViewModel?._PhysicianApplication?.PhysicalExamination" [ReadOnly]="PhysicalExamination?.ReadOnly" [TemplateGroupName]="PhysicalExamination?.TemplateGroupName" [Visible]="PhysicalExamination?.Visible" id="A28360" data-tid="A365769"></hvl-richtextbox>
+                </div>
+                <div class="col-sm-6" id="A28361" data-tid="A365770">
+                    <label class="control-label" id="A28362" data-tid="A365771">Tedavi Karar</label>
+                    <hvl-richtextbox #mtsConclusion (change)="onMTSConclusionChanged($event)" [ngModelOptions]="{ standalone: true}" [ngModel]="anamnesisFormViewModel?._PhysicianApplication?.MTSConclusion" [ReadOnly]="MTSConclusion?.ReadOnly" [TemplateGroupName]="MTSConclusion?.TemplateGroupName" [Visible]="MTSConclusion?.Visible" id="A28363" data-tid="A365772"></hvl-richtextbox>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="showVitals" style="margin-top:10px;margin-bottom:10px;" id="A28364" data-tid="A365773">
+                <div class="col-sm-12" id="A28365" data-tid="A365774">
+                    <VitalSingsForm [vitalSingsFormViewModel]="anamnesisFormViewModel?.vitalSingsViewModel" [heightVisible]="true" [weightVisible]="true" [bmiVisible]="true" id="A28366" data-tid="A365775"></VitalSingsForm>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<dx-popup title="Anamnez Geçmişi" [width]="1200" [height]="500" [(visible)]="showAnamnesisHistoryPopup" id="A19504" data-tid="A365776">
+    <div *dxTemplate="let data of 'content'" id="A19505" data-tid="A365777">
+        <AnamnesisHistoryForm [anamnesisFormViewModel]="_anamnesisFormViewModel" (complaintHistoryChange)="copyComplaintHistory($event)" (patientHistoryChange)="copyPatientHistory($event)" (physicalExaminationChange)="copyPhysicalExamination($event)" (mTSConclusionChange)="copyMTSConclusion($event)" data-tid="A365778"></AnamnesisHistoryForm>
+    </div>
+</dx-popup>
+
+

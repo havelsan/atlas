@@ -1,0 +1,67 @@
+﻿<div style="display: block;" class="col-sm-8 col-sm-offset-2" data-tid="A324221">
+    <div class="col-sm-2" data-tid="A324222">
+        <label class="col-sm-12" style="padding:0" data-tid="A324223">Başlangıç Tarihi</label>
+        <div class="col-sm-12" style="padding:0" data-tid="A324224">
+            <dx-date-box width="100%" [(value)]="searchModel.StartDate" showClearButton="true" data-tid="A324225">
+            </dx-date-box>
+        </div>
+    </div>
+    <div class="col-sm-2" data-tid="A324226">
+        <label class="col-sm-12" style="padding:0" data-tid="A324227">Bitiş Tarihi</label>
+        <div class="col-sm-12" style="padding:0" data-tid="A324228">
+            <dx-date-box width="100%" [(value)]="searchModel.EndDate" showClearButton="true" data-tid="A324229">
+            </dx-date-box>
+        </div>
+    </div>
+    <div class="col-sm-3" data-tid="A324230">
+        <label class="col-sm-12" style="padding:0" data-tid="A324231">Mesaj İçeriği</label>
+        <div class="col-sm-12" style="padding:0" data-tid="A324232">
+            <dx-text-box showClearButton="true" [(value)]="searchModel.MessageText" data-tid="A324233">
+            </dx-text-box>
+        </div>
+    </div>
+</div>
+<div style="display: block;" class="col-sm-8 col-sm-offset-2" data-tid="A324234">
+    <div class="col-sm-2" data-tid="A324235">
+        <label class="col-sm-12" style="padding:0" data-tid="A324236">Durum</label>
+        <div class="col-sm-12" style="padding:0" data-tid="A324237">
+            <dx-select-box [dataSource]="statusDataSource" [(value)]="searchModel.Status" showClearButton="true" displayExpr="Name" valueExpr="Value" data-tid="A324238">
+
+            </dx-select-box>
+        </div>
+    </div>
+    <div class="col-sm-2" data-tid="A324239">
+        <label class="col-sm-12" style="padding:0" data-tid="A324240">SMS Türü</label>
+        <div class="col-sm-12" style="padding:0" data-tid="A324241">
+            <dx-select-box [dataSource]="SMSTypeDataSource" [(value)]="searchModel.SMSType" showClearButton="true" displayExpr="description" valueExpr="ordinal" data-tid="A324242">
+
+            </dx-select-box>
+        </div>
+    </div>
+    <div class="col-sm-2" data-tid="A324243">
+        <label class="col-sm-12" style="padding:0" data-tid="A324244">Telefon Numarası</label>
+        <div class="col-sm-12" style="padding:0" data-tid="A324245">
+            <dx-text-box mask="(000) 000-0000" showClearButton="true" [(value)]="searchModel.PhoneNumber" data-tid="A324246">
+            </dx-text-box>
+        </div>
+    </div>
+    <div class="col-sm-3" style="padding-top: 15px" data-tid="A324247">
+        <dx-button style="float:right" text="Listele" icon="fa fa-bars" type="default" (onClick)="onListClick()" data-tid="A324248">
+
+        </dx-button>
+    </div>
+</div>
+<div style="height: calc(100% - 100px); padding-top:20px" class="col-sm-8 col-sm-offset-2" data-tid="A324249">
+    <dx-data-grid height="100%" width="100%" [columns]="logGridColumns" [filterRow]="{visible: false}" [headerFilter]="{visible: true}" [allowColumnResizing]="true" [columnResizingMode]="widget" [remoteOperations]="true" [dataSource]="SMSLogGridDataSource" data-tid="A324250">
+        <dxo-load-panel [enabled]="true" data-tid="A324251"></dxo-load-panel>
+        <dxo-paging [pageSize]="25" id="A31044" data-tid="A324252"></dxo-paging>
+        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[25,50,200]" id="A31045" data-tid="A324253"></dxo-pager>
+        <dxo-scrolling showScrollbar="always" data-tid="A324254"></dxo-scrolling>
+        <dxo-sorting mode="multiple" data-tid="A324255"></dxo-sorting>
+        <dxo-summary id="A31047" data-tid="A324256">
+            <dxi-total-item column="PhoneNumber" summaryType="count" id="A31048" data-tid="A324257">
+            </dxi-total-item>
+        </dxo-summary>
+        <dxo-export [enabled]="true" [allowExportSelectedData]="true" data-tid="A324258"></dxo-export>
+    </dx-data-grid>
+</div>

@@ -1,0 +1,102 @@
+﻿<div id="A32260" class="padding10" data-tid="A373573">
+    <div class="row" id="A32261" data-tid="A373574">
+        <div class="col-sm-6" id="A32262" data-tid="A373575">
+            <br id="A32263" data-tid="A373576" />
+            <dx-text-box #textBox placeholder="Rapor Ara" [width]="600" mode="search" valueChangeEvent="keyup" value i18n-placeholder="@@M20765" id="A32264" data-tid="A373577">
+            </dx-text-box>
+            <br id="A32265" data-tid="A373578" />
+            <dx-tree-view id="simple-treeview" [items]="dataSourceReport" displayExpr="caption" [width]="600" [height]="450" [searchValue]="textBox.value" (onItemClick)="itemClick($event)" data-tid="A373579">
+            </dx-tree-view>
+        </div>
+
+        <div class="col-sm-4" id="A32266" data-tid="A373580">
+            <br id="A32267" data-tid="A373581" />
+            <atlas-report-component [ReportDefName]="ReportDefName" (ParameterConfigInitialized)="reportParameterConfigInitilaized($event)" id="A32268" data-tid="A373582"></atlas-report-component>
+        </div> 
+        
+        <div class="col-sm-2" id="A32269" data-tid="A373583">
+
+        </div>
+
+    </div>
+    
+    <br id="A32270" data-tid="A373584" />
+
+    <div *ngIf="rowVisible" class="row" id="A32271" data-tid="A373585"> 
+
+        <div class="dx-fieldset-header" style="text-align:center;" id="A32272" data-tid="A373586">Karşılanmış Günlük İlaç Çizelgesi İşlemleri İçin Barkod Oluşturulması</div>
+
+        <br id="A32273" data-tid="A373587" />
+        <br id="A32274" data-tid="A373588" />
+     
+        <div class="col-sm-12" id="A32275" data-tid="A373589">
+            <br id="A32276" data-tid="A373590" />
+            <div class="col-sm-3" id="A32277" data-tid="A373591">
+                <div class="dx-field" id="A32278" data-tid="A373592">
+                    <div class="dx-field-label" id="A32279" data-tid="A373593">İstek Yapan Birim Deposu</div>
+                    <div class="dx-field-value" id="A32280" data-tid="A373594">
+                        <dx-select-box [items]="selecttableStores" displayExpr="name" valueExpr="id" [searchEnabled]="true" [(value)]="selectedStore" id="A32281" data-tid="A373595"></dx-select-box>  
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3" id="A32282" data-tid="A373596">
+                <div class="dx-field" id="A32283" data-tid="A373597">
+                    <div class="dx-field-label" id="A32284" data-tid="A373598">Başlangıç Tarihi</div>
+                    <div class="dx-field-value" id="A32285" data-tid="A373599">
+                        <dx-date-box [(value)]="startDate" type="datetime" id="A32286" data-tid="A373600">
+                            
+                        </dx-date-box>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3" id="A32287" data-tid="A373601">
+                <div class="dx-field" id="A32288" data-tid="A373602">
+                    <div class="dx-field-label" id="A32289" data-tid="A373603">Bitiş Tarihi</div>
+                    <div class="dx-field-value" id="A32290" data-tid="A373604">
+                        <dx-date-box [(value)]="endDate" type="datetime" id="A32291" data-tid="A373605">
+                        </dx-date-box>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3" id="A32292" data-tid="A373606">
+                <div class="row" id="A32293" data-tid="A373607">
+                    <dx-button id="button" type="btn btn-info" class="dx-icon" icon="fa fa-bars" [height]="25" [width]="250" (onClick)="GetFulfilledKSchedules()" data-tid="A373608">
+                        <div *dxTemplate="let data of 'content'" id="A32294" data-tid="A373609">
+                            <span class='dx-button-text' id="A32295" data-tid="A373610">{{buttonText}}</span>
+                        </div>
+                    </dx-button>
+                </div>
+                <br id="A32296" data-tid="A373611" />
+                <div class="row" id="A32297" data-tid="A373612">
+                    <dx-button id="button" type="btn btn-default" icon="fa fa-download" [height]="25" [width]="250" (onClick)="SendActionsForBarcodePrint()" data-tid="A373613">
+                        <div *dxTemplate="let data of 'content'" id="A32298" data-tid="A373614">
+                            <span class='dx-button-text' id="A32299" data-tid="A373615">{{buttonText2}}</span>
+                        </div>
+                    </dx-button>
+                </div>
+                
+            </div>
+        </div>
+        <br id="A32300" data-tid="A373616" />
+        <div class="col-sm-12" id="A32301" data-tid="A373617">
+            <dx-data-grid #grid id="grid-container" [dataSource]="completedActions" (onSelectionChanged)="select($event)" [masterDetail]="{ enabled: true, template: 'detail' }" data-tid="A373618">
+                <dxo-filter-row [visible]="true" id="A32302" data-tid="A373619"></dxo-filter-row>
+                <dxo-header-filter [visible]="true" id="A32303" data-tid="A373620"></dxo-header-filter>
+                <dxo-selection mode="multiple" id="A32304" data-tid="A373621"></dxo-selection>
+                <dxi-column dataField="ActionID" caption="İşlem No" i18n-caption="@@M16866" id="A32305" data-tid="A373622"></dxi-column>
+                <dxi-column dataField="PatientName" caption="Hasta Adı Soyadı" i18n-caption="@@M15133" id="A32306" data-tid="A373623"></dxi-column>
+                <dxi-column dataField="StoreName" caption="İstek Yapan Birim Deposu" i18n-caption="@@M16658" id="A32307" data-tid="A373624"></dxi-column>
+                         <div *dxTemplate="let completedActions of 'detail'" id="A32308" data-tid="A373625">
+                    <div class="internal-grid-container" id="A32309" data-tid="A373626">
+                        <dx-data-grid class="internal-grid" [dataSource]="completedActions.data.DetailList" [showBorders]="true" [columnAutoWidth]="true" id="A32310" data-tid="A373627">
+                            <dxi-column dataField="Amount" caption="Miktar" i18n-caption="@@M19030" id="A32311" data-tid="A373628"></dxi-column>
+                            <dxi-column dataField="Barcode" caption="Barkod" i18n-caption="@@M27321" id="A32312" data-tid="A373629"></dxi-column>
+                            <dxi-column dataField="MaterialName" caption="İlaç Adı" i18n-caption="@@M16294" id="A32313" data-tid="A373630"></dxi-column>
+                        </dx-data-grid>
+                    </div>
+                </div>
+            </dx-data-grid>
+           
+        </div>
+    </div>
+</div>

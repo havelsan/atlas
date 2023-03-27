@@ -1,0 +1,135 @@
+﻿<div class="{{this.collapseSelectedDivProperties()}}" style="height: 100%;" id="A16462" data-tid="A325909">
+    <div class="row" style="height: 100%;" data-tid="A325910">
+        <div class="col-sm-12 gradientPanel" id="A16463" data-tid="A325911">
+            <h4 style="color:#fff; font-size:19px;text-align:left;" id="A16464" data-tid="A325912">
+                <div class="btn collapseBtn" (click)="btnCollapse()" style="padding:0;margin-top:3px;margin-right: 5px;" id="A16465" data-tid="A325913">
+                    <i class="{{this.collapseIconProperties()}}" id="A16466" data-tid="A325914"></i>
+                </div>
+                <span id="A16467" data-tid="A325915">Kiosk Cihaz Listesi</span>
+            </h4>
+        </div>
+        <div class="panel-body" style="background-color:#f6f6f6;padding-bottom:0; height:100%;padding: 0" data-tid="A325916">
+            <div class="col-md-12" style="padding: 2px;height: calc(100% - 127px);" id="A10249" data-tid="A325917">
+                <dx-data-grid #grid [dataSource]="deviceDefinitionListDTOs" style="height: 650px;" [columns]="deviceDefinitionColumn" [filterRow]="{visible: true}" [paging]="{pageSize:34}" (onRowClick)="selectGridRow($event)" [showBorders]="true" data-tid="A325918">
+                    <dxo-selection mode="single" data-tid="A325919"></dxo-selection>
+                </dx-data-grid>
+            </div>
+            <br data-tid="A325920" />
+            <div class="col-md-12" style="max-height: 111px;" data-tid="A325921">
+                <div class="row" data-tid="A325922">
+                    <div class="col-sm-6" data-tid="A325923">
+                        <dx-button icon="fas fa-plus" style="float: left;" stylingMode="contained" text="Yeni Cihaz" type="default" [width]="120" (onClick)="addNew()" data-tid="A325924">
+                        </dx-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="{{this.collapseSelectedHiddenDivProperties()}}" style="position:relative;" id="A16544" data-tid="A325925">
+    <div class="MyVerticalText" (click)="btnCollapse()" id="A16545" data-tid="A325926">
+        <i class="{{this.collapseIconProperties()}}" id="A16546" data-tid="A325927"></i>
+        <span data-tid="A325928">&nbsp;&nbsp;&nbsp;&nbsp;Kiosk Cihaz Listesi</span>
+    </div>
+</div>
+
+
+<div class="{{this.collapsedPanelProperties()}}" style="padding-top: 1%;padding-right: 3% !important;" data-tid="A325929">
+    <div id="detail" *ngIf="selectedItemFromOpen" data-tid="A325930">
+        <div class="row" data-tid="A325931">
+            <dx-button icon="fa fa-times" style="float: right;" stylingMode="contained" text="Vazgeç" type="danger" [width]="120" (onClick)="Cancel()" data-tid="A325932">
+            </dx-button>
+            <dx-button icon="fas fa-save" style="float: right;" stylingMode="contained" text="Kaydet" type="success" [width]="120" (onClick)="Save()" data-tid="A325933">
+            </dx-button>
+        </div>
+        <br data-tid="A325934" />
+        <div class="row" data-tid="A325935">
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A325936">
+                Ekleyen Kullanıcı
+                <dx-text-box [readOnly]="true" [(value)]="creationUser" data-tid="A325937"></dx-text-box>
+            </div>
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A325938">
+                Eklenme Tarihi
+                <dx-date-box style="width: 100%;" [readOnly]="true" [(value)]="creationDate" data-tid="A325939"></dx-date-box>
+            </div>
+            <div class="col-sm-2" style="font-weight: bold;" data-tid="A325940">
+                Değiştiren Kullanıcı
+                <dx-text-box [readOnly]="true" [(value)]="lastUpdateUser" data-tid="A325941"></dx-text-box>
+            </div>
+            <div class="col-sm-1" style="font-weight: bold;" data-tid="A325942">
+                <br data-tid="A325943" />
+                <dx-button type="btn btn-default" style="font-size: 100%;border-style: unset;color: #4276a4 !important;" text="İ" (onClick)="getDetailAudit()" data-tid="A325944"></dx-button>
+            </div>
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A325945">
+                Değiştirilme Tarihi
+                <dx-date-box style="width: 100%;" [readOnly]="true" [(value)]="lastUpdateDate" data-tid="A325946"></dx-date-box>
+            </div>
+        </div>
+        <br data-tid="A325947" />
+        <div class="row" data-tid="A325948">
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A325949">
+                Kiosk Cihaz Kodu *
+                <dx-text-box [(value)]="activeDeviceDefinitionItem.DeviceCode" data-tid="A325950">
+                </dx-text-box>
+            </div>
+            <div class="col-sm-8" style="font-weight: bold;" data-tid="A325951">
+                Kiosk Cihaz Adı *
+                <dx-text-box [(value)]="activeDeviceDefinitionItem.DeviceName" data-tid="A325952">
+                </dx-text-box>
+            </div>
+            <div class="col-sm-1" style="font-weight: bold;" data-tid="A325953">
+                <br data-tid="A325954" />
+                <dx-check-box [(value)]="isActive" [width]="400" text="Aktif" style="margin-bottom: 10px;" data-tid="A325955">
+                </dx-check-box>
+            </div>
+        </div>
+        <br data-tid="A325956" />
+        <div class="row" data-tid="A325957">
+            <div class="col-sm-2" style="font-weight: bold;" data-tid="A325958">
+                Kiosk Cihaz Admini *
+            </div>
+            <div class="col-sm-10" data-tid="A325959">
+                <dx-drop-down-box #ddBox [(value)]="activeDeviceDefinitionItem.KioskMember.ResUserName" [dataSource]="resUserDataSource" displayExpr="ResUserName" valueExpr="ObjectID" data-tid="A325960">
+                    <dxo-drop-down-options [height]="500" data-tid="A325961"></dxo-drop-down-options>
+                    <div *dxTemplate="let data of 'content'" data-tid="A325962">
+                        <dx-data-grid keyExpr="ObjectID" width="100%" (onSelectionChanged)="onSelectionChanged($event, ddBox.instance)" [dataSource]="resUserDataSource" height="100%" data-tid="A325963">
+                            <dxi-column dataField="ResUserName" data-tid="A325964"></dxi-column>
+                            <dxo-filter-row [visible]="true" data-tid="A325965"></dxo-filter-row>
+                            <dxo-scrolling mode="infinite" data-tid="A325966"></dxo-scrolling>
+                            <dxo-selection mode="single" data-tid="A325967"></dxo-selection>
+                        </dx-data-grid>
+                    </div>
+                </dx-drop-down-box>
+            </div>
+        </div>
+
+
+        <div class="row" style="padding-left: 1%;" data-tid="A325968">
+            <br data-tid="A325969" />
+            <dx-check-box [(value)]="activeDeviceDefinitionItem.HasPatientAdmission" [width]="400" text="Hasta Kabul Yapabilir mi?" style="margin-bottom: 10px;" data-tid="A325970">
+            </dx-check-box>
+        </div>
+        <div class="row" style="padding-left: 1%;" data-tid="A325971">
+            <br data-tid="A325972" />
+            <dx-check-box [(value)]="activeDeviceDefinitionItem.HasMernisVerification" [width]="400" text="Mernis Sorgulaması Yapılabilir mi?" style="margin-bottom: 10px;" data-tid="A325973">
+            </dx-check-box>
+        </div>
+        <div class="row" style="padding-left: 1%;" data-tid="A325974">
+            <br data-tid="A325975" />
+            <dx-check-box [(value)]="activeDeviceDefinitionItem.HasPatientResult" [width]="400" text="Sonuç Bilgisi Alabilir mi?" style="margin-bottom: 10px;" data-tid="A325976">
+            </dx-check-box>
+        </div>
+        <div class="row" style="padding-left: 1%;" data-tid="A325977">
+            <br data-tid="A325978" />
+            <dx-check-box [(value)]="activeDeviceDefinitionItem.HasAppointmentAvailable" [width]="400" text="Randevu Verilebilir mi?" style="margin-bottom: 10px;" data-tid="A325979">
+            </dx-check-box>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+<dx-load-panel shadingColor="rgba(0,0,0,0.4)" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A325980">
+</dx-load-panel>

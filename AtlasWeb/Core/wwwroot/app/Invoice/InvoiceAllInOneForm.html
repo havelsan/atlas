@@ -1,0 +1,212 @@
+﻿<!-- <div style="height: 100%; width:200px; display: grid;grid-template-columns: repeat(2, 90px);grid-template-rows: repeat(2, minmax(40px, 90px));grid-column-gap: 10px;padding: 10px 0 0 0;grid-row-gap: 10px;"
+    class="col-sm-2"> -->
+
+<div class="col-sm-4 col-md-3 col-lg-2" style="height: 100%;padding-top:10px;" data-tid="A371079">
+    <div class="row" data-tid="A371080">
+        <a class="btn btn-sq btn-primary" (click)="onOpenInvoiceSepSearchForm()" data-tid="A371081">
+            <i class="fa fa-money fa-2x" data-tid="A371082"></i>
+            Fatura İşlemleri
+        </a>
+    </div>
+    <div class="row" style="padding-top:10px;" data-tid="A371083">
+        <a class="btn btn-sq btn-primary" (click)="onOpenInvoiceCollection()" data-tid="A371084">
+            <i class="fa fa-tasks fa-2x" data-tid="A371085"></i>
+            İcmal İşlemleri
+        </a>
+    </div>
+    <div class="row" style="padding-top:10px;" data-tid="A371086">
+        <a class="btn btn-sq btn-primary" (click)="onOpenInvoiceTerm()" data-tid="A371087">
+            <i class="fa fa-line-chart fa-2x" data-tid="A371088"></i>
+            Dönem İşlemleri
+        </a>
+    </div>
+    <div class="row" style="padding-top:10px;" data-tid="A371089">
+        <a class="btn btn-sq btn-primary" (click)="onOpenInvoicePayment()" data-tid="A371090">
+            <i class="fa fa-tasks fa-2x" data-tid="A371091"></i>
+            Tahsilat İşlemleri
+        </a>
+    </div>
+    <div class="row" style="padding-top:10px;" data-tid="A371089">
+        <a class="btn btn-sq btn-primary" (click)="onOpenInvoiceReports()" data-tid="A371090">
+            <i class="fa fa-file-text-o fa-2x" data-tid="A371091"></i>
+            Raporlar
+        </a>
+    </div>
+    <div class="row" style="position: relative;height: calc(100% - 180px);" data-tid="A371092">
+        <div class="col-sm-12" style="position: absolute;bottom: calc(100% - 470px);padding: 0;" data-tid="A371093">
+            <hr style="margin: 10px 0 18px 0;" data-tid="A371094" />
+            <h5 style="font-weight: 700;border-radius: 5px;border: 1px;text-align: center;border-style: outset;"
+                data-tid="A371095">
+                Son İşlem Yaptığım Kabul Listesi
+            </h5>
+            <dx-data-grid height="200" width="100%" [columns]="last5InvoicesColumns"
+                [dataSource]="viewModel.Last5Invoices" data-tid="A371096">
+
+            </dx-data-grid>
+        </div>
+
+    </div>
+</div>
+<div class="col-sm-8 col-md-9 col-lg-10" style="height: 100%; padding: 10px 0 0 10px;" data-tid="A371097">
+    <div class="row" data-tid="A371098">
+        <div class="col-xs-4" data-tid="A371099">
+            <div class="row" data-tid="A371100">
+                <label class="col-sm-8 col-sm-offset-2" data-tid="A371101">
+                    Dönem
+                </label>
+                <div class="col-sm-8 col-sm-offset-1" data-tid="A371102">
+                    <!-- <hvl-listdef-combobox #Validation (SelectedValueChange)="onCmbTermChanged($event)"
+                                [(SelectedValue)]="invoiceAllInOneFormSearchModel.selectedTerm" [BackColor]="cmbTerm?.BackColor"
+                                [DefinitionName]="cmbTerm?.ListDefName" [Enabled]="cmbTerm?.Enabled" [Font]="cmbTerm?.Font"
+                                [ForeColor]="cmbTerm?.ForeColor" [ReadOnly]="cmbTerm?.ReadOnly"
+                                [SearchingMode]="cmbTerm?.SearchMode" [TabIndex]="cmbTerm?.TabIndex"
+                                [Visible]="cmbTerm?.Visible" id="A30708"></hvl-listdef-combobox>
+                        </div> -->
+                    <dx-select-box [dataSource]="initViewModel.TermList" valueExpr="ObjectID" displayExpr="Name"
+                        [(value)]="invoiceAllInOneFormSearchModel.selectedTerm"
+                        (onValueChanged)="onCmbTermChanged($event)" data-tid="A371103">
+
+                    </dx-select-box>
+                </div>
+                <div class="col-sm-3" style="padding:0" data-tid="A371104">
+                    <dx-button text="Yenile" type="default" (onClick)="GetAllStatistics()" data-tid="A371105">
+
+                    </dx-button>
+                </div>
+                <div class="col-sm-12" data-tid="A371106">
+                    <!-- <dx-pie-chart id="pie" type="doughnut" theme="material.blue.light"
+                        [title]="{text:'Dönem Grafiği', font: {size: 16, weight:800}}" [size]="{height:315}"
+                        startAngle="33" sizeGroup="piesGroup" palette="greenmist"
+                        [dataSource]="viewModel.termGraphDataSource" resolveLabelOverlapping="shift">
+                        <dxo-legend [visible]="true" orientation="horizontal" itemTextPosition="right"
+                            horizontalAlignment="center" verticalAlignment="bottom" [columnCount]="4"></dxo-legend>
+                        <dxo-tooltip [enabled]="true" [customizeTooltip]="customizeTooltip">
+                        </dxo-tooltip>
+                        <dxi-series argumentField="Name" valueField="TotalPrice">
+                            <dxo-label [visible]="true" position="columns" [customizeText]="customizeLabel">
+                                <dxo-font [size]="12"></dxo-font>
+                            </dxo-label>
+                        </dxi-series>
+                    </dx-pie-chart> -->
+                    <dx-chart id="chart" [dataSource]="viewModel.termGraphDataSource" palette="softblue"
+                        theme="material.teal.light"
+                        [title]="{text:'Dönem Grafiği', horizontalAlignment:'center', font: {size: 16, weight:800}}"
+                        [size]="{height:315}" data-tid="A371107">
+                        <!-- <dxo-legend [visible]="true" orientation="horizontal" itemTextPosition="right"
+                            horizontalAlignment="center" verticalAlignment="bottom" [columnCount]="4"></dxo-legend> -->
+                        <dxo-common-series-settings argumentField="Name" type="bar" valueField="TotalPrice"
+                            [ignoreEmptyPoints]="true" data-tid="A371108">
+                            <!-- [format]="{ Zcurrency: 'TRY'}" dxo-label özelliği olarak verilabiliyor.Z -->
+                            <dxo-label [visible]="true" position="columns" [format]="{ currency: 'TRY'}"
+                                data-tid="A371109">
+                                <dxo-font [size]="12" data-tid="A371110"></dxo-font>
+                            </dxo-label>
+                        </dxo-common-series-settings>
+                        <dxo-tooltip [enabled]="true" [customizeTooltip]="customizeTooltip" data-tid="A371111">
+                        </dxo-tooltip>
+                        <dxo-series-template nameField="Name" data-tid="A371112"></dxo-series-template>
+                    </dx-chart>
+                </div>
+                <div class="col-sm-8 col-sm-offset-1" data-tid="A371113">
+                    <dx-select-box [dataSource]="distributionTypesDataSource"
+                        [(value)]="invoiceAllInOneFormSearchModel.selectedTermDistributionType" valueExpr="Id"
+                        displayExpr="Name" (onValueChanged)="onTermDistTypeChanged($event)" data-tid="A371114">
+
+                    </dx-select-box>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-4" data-tid="A371115">
+            <div class="row" style="padding-top:43px" data-tid="A371116">
+                <div class="col-sm-12" data-tid="A371117">
+                    <dx-pie-chart id="pie" type="doughnut" theme="material.teal.light"
+                        [title]="{text:'Kullanıcı Grafiği', font: {size: 16, weight:800}}" [size]="{height:315}"
+                        startAngle="33" palette="softblue" [dataSource]="viewModel.userGraphDataSource"
+                        resolveLabelOverlapping="shift" data-tid="A371118">
+                        <dxo-legend [visible]="true" orientation="horizontal" itemTextPosition="right"
+                            horizontalAlignment="center" verticalAlignment="bottom" [columnCount]="4"
+                            data-tid="A371119"></dxo-legend>
+                        <dxo-tooltip [enabled]="true" [customizeTooltip]="customizeTooltip" data-tid="A371120">
+                        </dxo-tooltip>
+                        <dxi-series argumentField="Name" valueField="TotalPrice" data-tid="A371121">
+                            <!-- [customizeText]="customizeLabel" -->
+                            <dxo-label [visible]="true" position="columns" [format]="{ currency: 'TRY'}"
+                                data-tid="A371122">
+                                <dxo-font [size]="12" data-tid="A371123"></dxo-font>
+                                <!-- <dxo-connector [visible]="true" [width]="0.5"></dxo-connector> -->
+                            </dxo-label>
+                        </dxi-series>
+                    </dx-pie-chart>
+                </div>
+            </div>
+            <div class="row" data-tid="A371124">
+                <div class="col-sm-8 col-sm-offset-2" data-tid="A371125">
+                    <dx-select-box [dataSource]="distributionTypesDataSource"
+                        [(value)]="invoiceAllInOneFormSearchModel.selectedUserDistributionType" valueExpr="Id"
+                        displayExpr="Name" (onValueChanged)="onUserDistTypeChanged($event)" data-tid="A371126">
+
+                    </dx-select-box>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-4 col-sm-3" style="padding-top: 49px;" data-tid="A371127">
+            <h5 style="font-weight: 700;border-radius: 5px;border: 1px;text-align: center;border-style: outset;"
+                data-tid="A371128">
+                Fatura Kesen Kullanıcı Listesi</h5>
+            <dx-data-grid keyExpr="ObjectID" height="200" width="100%" [columns]="invoiceUserStatColumns"
+                [filterRow]="{visible: true}" [dataSource]="viewModel.invoiceUserStatGridDataSource"
+                [(selectedRowKeys)]="invoiceAllInOneFormSearchModel.selectedUser"
+                [selection]="{mode: 'single',allowSelectAll: false}"
+                (onSelectionChanged)="onUserStatSelectionChanged($event)" data-tid="A371129">
+
+            </dx-data-grid>
+        </div>
+    </div>
+    <hr style="margin: 10px 0 10px 0" data-tid="A371130" />
+    <div class="col-sm-12" style="height: calc(100% - 400px); min-height: 200px" data-tid="A371131">
+        <div class="col-sm-6" style="height:100%" data-tid="A371132">
+            <h5 style="font-weight: 700;border-radius: 5px;border: 1px;text-align: center;border-style: outset;"
+                data-tid="A371133">
+                Kullanıcı Bazlı Kesilen Hizmetler</h5>
+            <dx-data-grid height="90%" width="100%" [columns]="userBasedProcedureGroupColumns"
+                [filterRow]="{visible: true}" [headerFilter]="{visible: true}" [allowColumnResizing]="true"
+                [columnResizingMode]="widget" [remoteOperations]="true" [dataSource]="userBasedProcedureGroupDataSource"
+                data-tid="A371134">
+                <dxo-load-panel [enabled]="true" data-tid="A371135"></dxo-load-panel>
+                <dxo-paging [pageSize]="25" id="A31044" data-tid="A371136"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[25,50,200]" id="A31045"
+                    data-tid="A371137"></dxo-pager>
+                <dxo-scrolling showScrollbar="always" data-tid="A371138"></dxo-scrolling>
+                <dxo-sorting mode="multiple" data-tid="A371139"></dxo-sorting>
+                <dxo-summary id="A31047" data-tid="A371140">
+                    <dxi-total-item column="Code" summaryType="count" id="A31048" data-tid="A371141">
+                    </dxi-total-item>
+                </dxo-summary>
+            </dx-data-grid>
+        </div>
+        <div class="col-sm-6" style="height:100%" data-tid="A371142">
+            <h5 style="font-weight: 700;border-radius: 5px;border: 1px;text-align: center;border-style: outset;"
+                data-tid="A371143">
+                Kullanıcı Bazlı Fatura Farkı Olan Kabuller</h5>
+            <dx-data-grid height="90%" width="100%" [columns]="userBasedInconsistantColumns"
+                [filterRow]="{visible: true}" [headerFilter]="{visible: true}" [allowColumnResizing]="true"
+                [columnResizingMode]="widget" [remoteOperations]="true" [dataSource]="userBasedInconsistantDataSource"
+                data-tid="A371144">
+                <dxo-load-panel [enabled]="true" data-tid="A371145"></dxo-load-panel>
+                <dxo-paging [pageSize]="25" id="A31044" data-tid="A371146"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[25,50,200]" id="A31045"
+                    data-tid="A371147"></dxo-pager>
+                <dxo-scrolling showScrollbar="always" data-tid="A371148"></dxo-scrolling>
+                <dxo-sorting mode="multiple" data-tid="A371149"></dxo-sorting>
+                <dxo-summary id="A31047" data-tid="A371150">
+                    <dxi-total-item column="ProtocolNo" summaryType="count" id="A31048" data-tid="A371151">
+                    </dxi-total-item>
+                </dxo-summary>
+            </dx-data-grid>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="col-sm-10" style="height:100%; width: calc(100% - 200px)">
+        
+        </div> -->

@@ -1,0 +1,126 @@
+﻿<div style="height: 100%; display:block;" data-tid="A324359">
+    <div style="height: 50px" class="col-sm-12" data-tid="A324360">
+        <user-search-criteria PageName="SMSPersonnelFormView" [SearchViewModel]="viewModel.PersonnelSearcModel" (ViewModelLoaded)="userSearchModelLoaded($event)" [DefaultButtonVisible]="false" PlaceHolder="Kayıtlı Sorgular" AutoCompleteClasses="col-sm-6" class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3" style="text-align:right;padding:0" i18n-PlaceHolder="@@M17434" id="A30704" data-tid="A324361">
+        </user-search-criteria>
+    </div>
+    <div style="height: calc(100% - 50px)" class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1" data-tid="A324362">
+        <div style="height: 170px; display: grid; grid-template-columns:repeat(auto-fit, minmax(25px, 1fr))" class="col-sm-12" data-tid="A324363">
+            <div style="grid-column:1" class="col-sm-12" data-tid="A324364">
+                <label style="grid-row: 1;" data-tid="A324365">Adı</label>
+                <div style="grid-row: 1;" data-tid="A324366">
+                    <dx-text-box showClearButton="true" [(value)]="viewModel.PersonnelSearcModel.FirstName" data-tid="A324367">
+
+                    </dx-text-box>
+                </div>
+                <label style="grid-row: 2;" data-tid="A324368">SoyAdı</label>
+                <div style="grid-row: 2;" data-tid="A324369">
+                    <dx-text-box showClearButton="true" [(value)]="viewModel.PersonnelSearcModel.SurName" data-tid="A324370">
+
+                    </dx-text-box>
+                </div>
+                <label style="grid-row: 3;" data-tid="A324371">Çalışma Durumu</label>
+                <div style="grid-row: 3;" data-tid="A324372">
+                    <dx-select-box [dataSource]="WorkStatusDataSource" [(value)]="viewModel.PersonnelSearcModel.WorkStatus" valueExpr="ordinal" displayExpr="description" showClearButton="true" data-tid="A324373">
+
+                    </dx-select-box>
+                </div>
+                <label style="grid-row: 4;" data-tid="A324374">Cinsiyet</label>
+                <div style="grid-row: 4;" data-tid="A324375">
+                    <dx-select-box [dataSource]="GenderDataSource" [(value)]="viewModel.PersonnelSearcModel.Gender" valueExpr="ordinal" displayExpr="description" showClearButton="true" data-tid="A324376">
+
+                    </dx-select-box>
+                </div>
+            </div>
+            <div style="grid-column:2" class="col-sm-12" data-tid="A324377">
+                <label style="grid-row: 1;" data-tid="A324378">Doğum Yeri</label>
+                <div style="grid-row: 1;" data-tid="A324379">
+                    <dx-tag-box [dataSource]="BirthPlaceDataSource" [(value)]="viewModel.PersonnelSearcModel.SelectedCitiesObjectIDs" valueExpr="ObjectID" displayExpr="Name" showSelectionControls="true" showClearButton="true" searchEnabled="true" [multiline]="false" data-tid="A324380">
+
+                    </dx-tag-box>
+                </div>
+                <label style="grid-row: 2;" data-tid="A324381">Doğum Tarihi</label>
+                <div style="grid-row: 2;" data-tid="A324382">
+                    <dx-date-box [(value)]="viewModel.PersonnelSearcModel.BirthDate" type="date" showClearButton="true" width="100%" data-tid="A324383">
+
+                    </dx-date-box>
+                </div>
+                <label style="grid-row: 3;" data-tid="A324384">Mesleği</label>
+                <div style="grid-row: 3;" data-tid="A324385">
+                    <dx-tag-box [dataSource]="OccupationDataSource" [(value)]="viewModel.PersonnelSearcModel.SelectedOccupations" valueExpr="ordinal" displayExpr="description" showSelectionControls="true" showClearButton="true" searchEnabled="true" [multiline]="false" data-tid="A324386">
+
+                    </dx-tag-box>
+                </div>
+                <label style="grid-row: 4;" data-tid="A324387">Görev Yeri</label>
+                <div style="grid-row: 4;" data-tid="A324388">
+                    <dx-tag-box [dataSource]="ResourceDataSource" [(value)]="viewModel.PersonnelSearcModel.SelectedResourcesObjectIDs" valueExpr="ObjectId" displayExpr="Name" showSelectionControls="true" showClearButton="true" searchEnabled="true" [multiline]="false" data-tid="A324389">
+
+                    </dx-tag-box>
+                </div>
+            </div>
+            <div style="grid-column:3" class="col-sm-12" data-tid="A324390">
+                <label style="grid-row: 1;" data-tid="A324391">Uzmanlık Dalı</label>
+                <div style="grid-row: 1;" data-tid="A324392">
+                    <dx-tag-box [dataSource]="SpecialityDataSource" [(value)]="viewModel.PersonnelSearcModel.SelectedSpecialityObjectIDs" valueExpr="ObjectID" displayExpr="Name" showSelectionControls="true" showClearButton="true" searchEnabled="true" [multiline]="false" data-tid="A324393">
+
+                    </dx-tag-box>
+                </div>
+                <label style="grid-row: 2;" data-tid="A324394">Ünvan</label>
+                <div style="grid-row: 2;" data-tid="A324395">
+                    <dx-select-box [dataSource]="UserTitleDataSource" [(value)]="viewModel.PersonnelSearcModel.Title" valueExpr="ordinal" displayExpr="description" showClearButton="true" data-tid="A324396">
+
+                    </dx-select-box>
+                </div>
+                <div style="padding-top:20px; grid-row: 3;" data-tid="A324397">
+                    <dx-check-box text="Tel. No'su Olanlar" [(value)]="viewModel.PersonnelSearcModel.HasPhoneNumber" data-tid="A324398">
+
+                    </dx-check-box>
+                </div>
+                <div style="grid-row: 4; padding-top:20px" data-tid="A324399">
+                    <dx-button type="default" width="75" (onClick)="SearchPersonnel()" text="Listele" data-tid="A324400">
+
+                    </dx-button>
+                </div>
+            </div>
+        </div>
+        <div style="height: calc(100% - 380px)" class="col-sm-12" data-tid="A324401">
+            <dx-data-grid height="100%" [columns]="personnelGridColumns" [dataSource]="viewModel.GridViewModel" [selection]="{mode: 'multiple',allowSelectAll: true}" [(selectedRowKeys)]="selectedPersonnelList" [filterRow]="{visible:true}" data-tid="A324402">
+
+            </dx-data-grid>
+        </div>
+
+        <div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3" style="padding:10px 0px 0px 0px" data-tid="A324403">
+
+            <user-search-criteria PageName="SMSTemplates" [SearchViewModel]="viewModel.SMSText" (ViewModelLoaded)="smsTemplateLoaded($event)" [DefaultButtonVisible]="false" PlaceHolder="SMS Şablonları" AutoCompleteClasses="col-xs-5" class="col-sm-12" style="text-align:right;padding:0" i18n-PlaceHolder="@@M17434" id="A30704" [ButtonGroupStyle]="UserSearchCriteriaButtonStyle" ButtonGroupClasses="col-sm-4 col-lg-6" data-tid="A324404">
+            </user-search-criteria>
+
+            <label class="col-xs-10" data-tid="A324405">SMS Türü</label>
+            <div class="col-xs-10" data-tid="A324406">
+                <dx-select-box [dataSource]="SMSTypeDataSource" [(value)]="SelectedSMSType" showClearButton="true" displayExpr="description" valueExpr="ordinal" data-tid="A324407">
+                </dx-select-box>
+            </div>
+
+            <label class="col-xs-10" data-tid="A324408">SMS Metni</label>
+            <div class="col-xs-10" data-tid="A324409">
+                <dx-text-area [(value)]="viewModel.SMSText" height="100px" showClearButton="true" multiline="true" data-tid="A324410">
+
+                </dx-text-area>
+                <!-- <hvl-richtextbox (change)="onrtfSMSTextChanged($event)" Height="100px"
+                    [ngModelOptions]="{ standalone: true}" [ngModel]="viewModel.SMSText" DisableResize="true"
+                    [ReadOnly]="rtfSMSText?.ReadOnly" [TemplateGroupName]="rtfSMSText?.TemplateGroupName"
+                    [Visible]="rtfSMSText?.Visible" id="A29106"></hvl-richtextbox> -->
+            </div>
+            <div style="float: right; padding: 0;" class="col-xs-2" data-tid="A324411">
+                <dx-button type="success" style="float: right" width="65px" (onClick)="SendSMS()" text="Gönder" data-tid="A324412">
+
+                </dx-button>
+            </div>
+            <div style="float: right; padding: 5px 0px 0 0;" class="col-xs-2" data-tid="A324413">
+                <dx-button type="danger" style="float: right" width="65px" (onClick)="CancelSMS()" text="İptal" data-tid="A324414">
+
+                </dx-button>
+            </div>
+        </div>
+    </div>
+
+    <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" id="A31651" message="Lütfen Bekleyiniz..." data-tid="A324415">
+    </dx-load-panel></div>

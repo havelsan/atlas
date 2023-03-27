@@ -1,0 +1,79 @@
+﻿<div style="height:100%" data-tid="A350440">
+    <div class="col-md-12" style="font-size:14px; font-weight:600;" data-tid="A350441">
+        <span data-toggle="tooltip" data-placement="top" title="Hasta Adı Soyadı" style="color:#08c;  font-weight:800;" data-tid="A350442">{{archiveDeliveryFormViewModel?.PatientNameSurname}}</span>
+        &nbsp;&nbsp;/&nbsp;&nbsp;
+        <span data-toggle="tooltip" data-placement="top" title="Kabul No" data-tid="A350443">{{archiveDeliveryFormViewModel?.ProtocolNo}}</span>
+        &nbsp;&nbsp;/&nbsp;&nbsp;
+        <span data-toggle="tooltip" data-placement="top" title="Doktor Adı" data-tid="A350444">{{archiveDeliveryFormViewModel?.DoctorName}}</span>
+        &nbsp;&nbsp;/&nbsp;&nbsp;
+        <span data-toggle="tooltip" data-placement="top" title="Servis" data-tid="A350445">{{archiveDeliveryFormViewModel?.ClinicName}}</span>
+        &nbsp;&nbsp;/&nbsp;&nbsp;
+        <span data-placement="top" title="Oda No" data-tid="A350446">{{archiveDeliveryFormViewModel?.RoomNumber}}</span>
+        &nbsp;&nbsp;/&nbsp;&nbsp;
+        <span data-placement="top" title="Yatak No" data-tid="A350447">{{archiveDeliveryFormViewModel?.BedNumber}}</span>
+        &nbsp;&nbsp;/&nbsp;&nbsp;
+        <span data-placement="top" title="Yatış Tarihi" data-tid="A350448">{{archiveDeliveryFormViewModel?.ClinicDate}}</span>
+        &nbsp;&nbsp;/&nbsp;&nbsp;
+        <span data-placement="top" title="Çıkış Tarihi" data-tid="A350449">{{archiveDeliveryFormViewModel?.DischargeDate }}</span>
+    </div>
+    <div class="col-md-12" data-tid="A350450">
+        <hr data-tid="A350451" />
+    </div>
+    <div class="col-sm-12 " data-tid="A350452">
+        <label class="control-label" data-tid="A350453">Evrak Listesi</label>
+        <dx-data-grid showColumnLines="true" [paging]="{enable: false, pageSize:1000000}" showRowLines="true" height="300px" [columns]="FolderContentColumns" [dataSource]="archiveDeliveryFormViewModel.FolderContentList" allowColumnReordering="false" allowColumnResizing="true" data-tid="A350454">
+            <dxo-editing mode="cell" [allowUpdating]="true" data-tid="A350455">
+            </dxo-editing>
+            <div align="center" *dxTemplate="let row of 'ChkTemplate'" data-tid="A350456">
+                <dx-check-box [(value)]="row.data.IsSelected" data-tid="A350457"></dx-check-box>
+
+            </div>
+
+        </dx-data-grid>
+    </div>
+    <div class="col-sm-12" data-tid="A350458">
+        <label class="control-label" data-tid="A350459">Açıklama</label>
+        <dx-text-area [height]="100" [(value)]="archiveDeliveryFormViewModel.Description" data-tid="A350460">
+        </dx-text-area>
+
+    </div>
+    <div class="col-sm-6" data-tid="A350461">
+        <label class="control-label" data-tid="A350462">Teslim Eden</label>
+        <dx-select-box [dataSource]="archiveDeliveryFormViewModel.DeliverUserList" [(value)]="archiveDeliveryFormViewModel.SelectedDelivererUserID" displayExpr="Name" valueExpr="ObjectID" showClearButton="true" searchEnabled="true" [searchExpr]="Name" data-tid="A350463">
+        </dx-select-box>
+
+        <!--<dx-select-box [items]="archiveDeliveryFormViewModel.DeliverUserList"
+                       [(value)]="archiveDeliveryFormViewModel.SelectedDelivererUserID"
+                       displayExpr="Name"
+                       [searchMode]="contains"
+                       [searchExpr]="Name"
+                       [searchTimeout]="200"
+                       [minSearchLength]="0"
+                       [searchEnabled]="true">
+        </dx-select-box>-->
+    </div>
+    <div class="col-sm-6" data-tid="A350464">
+        <label class="control-label" data-tid="A350465">Teslim Alan</label>
+        <dx-select-box [dataSource]="archiveDeliveryFormViewModel.RecipientUserList" [(value)]="archiveDeliveryFormViewModel.SelectedRecipientUserID" displayExpr="Name" valueExpr="ObjectID" showClearButton="true" searchEnabled="true" [searchExpr]="Name" data-tid="A350466">
+        </dx-select-box>
+        <!--<dx-select-box [items]="archiveDeliveryFormViewModel.RecipientUserList"
+                [(value)]="archiveDeliveryFormViewModel.SelectedRecipientUserID"
+
+                displayExpr="Name"
+                     [searchMode]="contains"
+                    [searchExpr]="Name"
+                    [searchTimeout]="200"
+                    [minSearchLength]="0"
+                    [searchEnabled]="true"
+
+            >
+    </dx-select-box>-->
+    </div>
+
+
+    <div class="col-sm-12" style="float:right;margin-top:10px;" data-tid="A350467">
+        <dx-button icon="fa fa-floppy-o" class="pull-right" type="default" hint="Kaydet" text="Kaydet" (onClick)="SaveArchieDeliveryForm()" data-tid="A350468"></dx-button>
+        <dx-button icon="fa fa-file-text-o" class="pull-right" type="success" hint="Yazdır" text="Yazdır" (onClick)="PrintArchieDeliveryForm()" data-tid="A350469"></dx-button>
+    </div>
+
+</div>

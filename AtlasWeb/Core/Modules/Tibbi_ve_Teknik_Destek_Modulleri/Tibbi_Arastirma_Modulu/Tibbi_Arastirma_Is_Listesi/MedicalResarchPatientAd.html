@@ -1,0 +1,29 @@
+﻿<div class="row" data-tid="A369943">
+    <div class="col-sm-12" data-tid="A369944">
+        <label data-tid="A369945">Hasta Arama</label>
+        <PatientSearchForm Width="100%" (SelectedPatientChanged)="patientChanged($event)" data-tid="A369946"></PatientSearchForm>
+    </div>
+</div>
+
+<div class="row" data-tid="A369947">
+    <div class="col-md-2" data-tid="A369948">
+        <photo-capture-webcamjs [Image] Width="100" Height="120" data-tid="A369949"></photo-capture-webcamjs>
+        <div *ngIf="isCameraShowing == true" id="A19910" data-tid="A369950">
+            <photo-capture data-tid="A369951"></photo-capture>
+        </div>
+    </div>
+    <div class="col-md-4" style="margin-top:10px;" id="A19912" data-tid="A369952">
+        <dx-number-box [disabled]="this.enableUnicrefNo == false" [(value)]="selectedPatient.UniqueRefNo" (keypress)="keyDownForNumericControl($event)" (onValueChanged)="onUniqueRefNoChanged($event)" name="UniqueRefNo" placeholder="Kimlik Numarası" style="padding-bottom:2px; text-align:center;border:0px;border-bottom:1px solid; border-color:lightgray;" i18n-placeholder="@@M17579" id="A19913" data-tid="A369953">
+        </dx-number-box>
+        <dx-text-box [disabled]="this.enableUnicrefNo == false" [(value)]="selectedPatient.Name" (keydown)="keyDown($event)" (onValueChanged)="onNameChanged($event)" name="Name" placeholder="Adı" style="padding-bottom:2px; text-align:center; border:0px; border-bottom:1px solid;border-color:lightgray;" i18n-placeholder="@@M10514" id="A19914" data-tid="A369954"></dx-text-box>
+        <dx-text-box [disabled]="this.enableUnicrefNo == false" [(value)]="selectedPatient.Surname" (keydown)="keyDown($event)" (onValueChanged)="onSurnameChanged($event)" name="Surname" placeholder="Soyadı" style="padding-bottom:2px;text-align:center; border:0px; border-bottom:1px solid;border-color:lightgray;" i18n-placeholder="@@M22205" id="A19915" data-tid="A369955"></dx-text-box>
+        <dx-text-box [disabled]="this.enableUnicrefNo == false" [(value)]="selectedPatient.Age" (keydown)="keyDown($event)" (onValueChanged)="onSurnameChanged($event)" name="Yaşı" placeholder="Soyadı" style="padding-bottom:2px;text-align:center; border:0px; border-bottom:1px solid;border-color:lightgray;" i18n-placeholder="@@M22205" id="A19915" data-tid="A369956"></dx-text-box>
+    </div>
+</div>
+
+<div style="padding-top: 2%;" data-tid="A369957">
+    <dx-button icon="check" type="success" text="Hastayı Araştırma Al" (onClick)="savePatientClick()" data-tid="A369958"></dx-button>
+</div>
+
+<dx-load-panel shadingColor="rgba(0,0,0,0.4)" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A369959">
+</dx-load-panel>

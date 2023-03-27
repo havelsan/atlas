@@ -1,0 +1,154 @@
+﻿
+
+<NeStatePanelComponent [OutgoingTransitions]="manipulationProcedureFormViewModel?.OutgoingTransitions" [StateReports]="manipulationProcedureFormViewModel?.CurrentStateReports" [ObjectID]="manipulationProcedureFormViewModel?._Manipulation?.ObjectID" [ObjectDefID]="manipulationProcedureFormViewModel?._Manipulation?.ObjectDefID" [CurrentStateDefID]="manipulationProcedureFormViewModel._Manipulation.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" id="A21577" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="false" data-tid="A356746">
+</NeStatePanelComponent>
+<div class="container-fluid" id="A21578" data-tid="A356747">
+    <form id="ManipulationProcedureForm" class="form-horizontal" role="form" data-tid="A356748"></form>
+    <div class="row" id="A21579" data-tid="A356749">
+        <div class="col-md-4 col-sm-12" id="A21580" data-tid="A356750">
+            <patient-demographics-form [actionId]="manipulationProcedureFormViewModel?._Manipulation.ObjectID" id="A21581" data-tid="A356751"></patient-demographics-form>
+        </div>
+        <div class="col-md-2 col-sm-12" id="A21582" data-tid="A356752">
+            <div class="row" id="A21583" data-tid="A356753">
+                <div class="col-md-12" id="A21584" data-tid="A356754">
+                    <label class="control-label" id="A21585" data-tid="A356755">İşlem Tarihi</label>
+                    <hvl-date-picker #Validation (ValueChange)="onActionDateChanged($event)" [BackColor]="ActionDate?.BackColor" [CustomFormat]="ActionDate?.CustomFormat" [Enabled]="ActionDate?.Enabled" [Font]="ActionDate?.Font" [ForeColor]="ActionDate?.ForeColor" [Format]="ActionDate?.Format" [Max]="ActionDate?.Max" [Min]="ActionDate?.Min" [ReadOnly]="ActionDate?.ReadOnly" [Required]="ActionDate?.Required" [TabIndex]="ActionDate?.TabIndex" [Value]="manipulationProcedureFormViewModel?._Manipulation?.ActionDate" [Visible]="ActionDate?.Visible" id="A21586" data-tid="A356756"></hvl-date-picker>
+                </div>
+            </div>
+            <div class="row" id="A21587" data-tid="A356757">
+                <div class="col-md-12" id="A21588" data-tid="A356758">
+                    <label class="control-label" id="A21589" data-tid="A356759">Protokol No</label>
+                    <hvl-text-box #Validation (TextChange)="onProtocolNoChanged($event)" [BackColor]="ProtocolNo?.BackColor" [CharacterCasing]="ProtocolNo?.CharacterCasing" [Enabled]="ProtocolNo?.Enabled" [Font]="ProtocolNo?.Font" [ForeColor]="ProtocolNo?.ForeColor" [height]="ProtocolNo?.Height" [InputFormat]="ProtocolNo?.InputFormat" [InputTurkishCharacter]="ProtocolNo?.InputTurkishCharacter" [IsNonNumeric]="ProtocolNo?.IsNonNumeric" [MultiLine]="ProtocolNo?.Multiline" [ReadOnly]="ProtocolNo?.ReadOnly" [Required]="ProtocolNo?.Required" [TabIndex]="ProtocolNo?.TabIndex" [TextAlign]="ProtocolNo?.TextAlign" [Text]="manipulationProcedureFormViewModel?._Manipulation?.ProtocolNo" [Visible]="ProtocolNo?.Visible" id="A21590" data-tid="A356760"></hvl-text-box>
+                </div>
+            </div>
+            <div class="row" id="A21591" data-tid="A356761">
+                <div class="col-md-12" id="A21592" data-tid="A356762">
+                    <label class="control-label" id="A21593" data-tid="A356763">Sorumlu Doktor</label>
+                    <hvl-list-box #Validation (SelectedObjectChange)="onSorumluDoktorChanged($event)" [AutoCompleteDialogHeight]="SorumluDoktor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="SorumluDoktor?.AutoCompleteDialogWidth" [AutoCompleteMode]="SorumluDoktor?.AutoCompleteMode" [BackColor]="SorumluDoktor?.BackColor" [DefinitionName]="SorumluDoktor?.ListDefName" [DisplayExpressionsCache]="manipulationProcedureFormViewModel?.ListDefDisplayExpressions" [Enabled]="SorumluDoktor?.Enabled" [Font]="SorumluDoktor?.Font" [ForeColor]="SorumluDoktor?.ForeColor" [ListFilterExpression]="SorumluDoktor?.ListFilterExpression" [MinSearchLength]="SorumluDoktor?.MinSearchLength" [PopupDialogFieldConfig]="SorumluDoktor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="SorumluDoktor?.PopupDialogGridColumns" [PopupDialogHeight]="SorumluDoktor?.PopupDialogHeight" [PopupDialogTitle]="SorumluDoktor?.PopupDialogTitle" [PopupDialogWidth]="SorumluDoktor?.PopupDialogWidth" [ReadOnly]="SorumluDoktor?.ReadOnly" [SearchMode]="SorumluDoktor?.SearchMode" [SearchTimeout]="SorumluDoktor?.SearchTimeout" [SelectedObject]="manipulationProcedureFormViewModel?._Manipulation?.ProcedureDoctor" [TabIndex]="SorumluDoktor?.TabIndex" [Visible]="SorumluDoktor?.Visible" [width]="SorumluDoktor?.Width" id="A21594" data-tid="A356764"></hvl-list-box>
+                </div>
+            </div>
+            <div *ngIf="isResponsiblePersonnelVisible == true" class="row" id="A21595" data-tid="A356765">
+                <div class="col-md-12" id="A21596" data-tid="A356766">
+                    <label class="control-label" id="A21597" data-tid="A356767">Sorumlu Personel</label>
+                    <hvl-list-box #Validation (SelectedObjectChange)="onResponsiblePersonnelChanged($event)" [AutoCompleteDialogHeight]="ResponsiblePersonnel?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ResponsiblePersonnel?.AutoCompleteDialogWidth" [AutoCompleteMode]="ResponsiblePersonnel?.AutoCompleteMode" [BackColor]="ResponsiblePersonnel?.BackColor" [DefinitionName]="ResponsiblePersonnel?.ListDefName" [DisplayExpressionsCache]="manipulationProcedureFormViewModel?.ListDefDisplayExpressions" [Enabled]="ResponsiblePersonnel?.Enabled" [Font]="ResponsiblePersonnel?.Font" [ForeColor]="ResponsiblePersonnel?.ForeColor" [ListFilterExpression]="ResponsiblePersonnel?.ListFilterExpression" [MinSearchLength]="ResponsiblePersonnel?.MinSearchLength" [PopupDialogFieldConfig]="ResponsiblePersonnel?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ResponsiblePersonnel?.PopupDialogGridColumns" [PopupDialogHeight]="ResponsiblePersonnel?.PopupDialogHeight" [PopupDialogTitle]="ResponsiblePersonnel?.PopupDialogTitle" [PopupDialogWidth]="ResponsiblePersonnel?.PopupDialogWidth" [ReadOnly]="ResponsiblePersonnel?.ReadOnly" [SearchMode]="ResponsiblePersonnel?.SearchMode" [SearchTimeout]="ResponsiblePersonnel?.SearchTimeout" [SelectedObject]="manipulationProcedureFormViewModel?._Manipulation?.ResponsiblePersonnel" [TabIndex]="ResponsiblePersonnel?.TabIndex" [Visible]="ResponsiblePersonnel?.Visible" [width]="ResponsiblePersonnel?.Width" id="A21598" data-tid="A356768"></hvl-list-box>
+                </div>
+            </div>
+            <div *ngIf="isTechnicianVisible == true" class="row" id="A21599" data-tid="A356769">
+                <div class="col-md-12" id="A21600" data-tid="A356770">
+                    <label class="control-label" id="A21601" data-tid="A356771">Sorumlu Teknisyen</label>
+                    <hvl-list-box #Validation (SelectedObjectChange)="onTechnicianChanged($event)" [AutoCompleteDialogHeight]="Technician?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="Technician?.AutoCompleteDialogWidth" [AutoCompleteMode]="Technician?.AutoCompleteMode" [BackColor]="Technician?.BackColor" [DefinitionName]="Technician?.ListDefName" [DisplayExpressionsCache]="manipulationProcedureFormViewModel?.ListDefDisplayExpressions" [Enabled]="Technician?.Enabled" [Font]="Technician?.Font" [ForeColor]="Technician?.ForeColor" [ListFilterExpression]="Technician?.ListFilterExpression" [MinSearchLength]="Technician?.MinSearchLength" [PopupDialogFieldConfig]="Technician?.PopupDialogFieldConfig" [PopupDialogGridColumns]="Technician?.PopupDialogGridColumns" [PopupDialogHeight]="Technician?.PopupDialogHeight" [PopupDialogTitle]="Technician?.PopupDialogTitle" [PopupDialogWidth]="Technician?.PopupDialogWidth" [ReadOnly]="Technician?.ReadOnly" [SearchMode]="Technician?.SearchMode" [SearchTimeout]="Technician?.SearchTimeout" [SelectedObject]="manipulationProcedureFormViewModel?._Manipulation?.Technician" [TabIndex]="Technician?.TabIndex" [Visible]="Technician?.Visible" [width]="Technician?.Width" id="A21602" data-tid="A356772"></hvl-list-box>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="manipulationProcedureFormViewModel.isCurrentUserDoctor == true" class="col-md-6 col-sm-12" id="A21603" data-tid="A356773">
+            <DiagnosisGridForm [GridDiagnosisGridList]="manipulationProcedureFormViewModel?.GridEpisodeDiagnosisGridList" [EpisodeAction]="manipulationProcedureFormViewModel?._Manipulation" [ProcedureDoctor]="manipulationProcedureFormViewModel?._Manipulation.ProcedureDoctor" [RemoveDeletedRow]="isContextSaved" id="A21604" data-tid="A356774"></DiagnosisGridForm>
+        </div>
+        <div *ngIf="manipulationProcedureFormViewModel.isCurrentUserDoctor != true" class="col-md-6 col-sm-12" id="A21605" data-tid="A356775">
+            <DiagnosisGridReadOnlyForm [EpisodeAction]="manipulationProcedureFormViewModel?._Manipulation" id="A21606" data-tid="A356776"></DiagnosisGridReadOnlyForm>
+        </div>
+    </div>
+    <div class="row" id="A21607" data-tid="A356777">
+        <div class="col-sm-12" id="A21608" data-tid="A356778">
+            <label class="control-label" id="A21609" data-tid="A356779">Ön Bilgi</label>
+            <hvl-richtextbox (change)="onPreInFormationChanged($event)" [Height]="&#x27;100px&#x27;" [ngModelOptions]="{ standalone: true}" [ngModel]="manipulationProcedureFormViewModel?._Manipulation?.ManipulationRequest?.PreInformation" [ReadOnly]="PreInFormation?.ReadOnly" [TemplateGroupName]="PreInFormation?.TemplateGroupName" [Visible]="PreInFormation?.Visible" id="A21610" data-tid="A356780"></hvl-richtextbox>
+        </div>
+    </div>
+    <div *ngIf="isProcedureReportVisible == true" class="row" id="A21611" data-tid="A356781">
+        <div class="col-sm-12" id="A21612" data-tid="A356782">
+            <label class="control-label" id="A21613" data-tid="A356783">İşlem Raporu</label>
+            <hvl-richtextbox (change)="onProcedureRaporChanged($event)" [ngModelOptions]="{ standalone: true}" [ngModel]="manipulationProcedureFormViewModel?._Manipulation?.ProcedureReport" [ReadOnly]="ProcedureRapor?.ReadOnly" [TemplateGroupName]="ProcedureRapor?.TemplateGroupName" [Visible]="ProcedureRapor?.Visible" id="A21614" data-tid="A356784"></hvl-richtextbox>
+        </div>
+    </div>
+    <div *ngIf="isReportVisible == true" class="row" id="A21615" data-tid="A356785">
+        <div class="col-sm-12" id="A21616" data-tid="A356786">
+            <label class="control-label" id="A21617" data-tid="A356787">Sonuç Raporu</label>
+            <hvl-richtextbox (change)="onDoctorRaporChanged($event)" [ngModelOptions]="{ standalone: true}" [ngModel]="manipulationProcedureFormViewModel?._Manipulation?.Report" [ReadOnly]="DoctorRapor?.ReadOnly" [TemplateGroupName]="DoctorRapor?.TemplateGroupName" [Visible]="DoctorRapor?.Visible" id="A21618" data-tid="A356788"></hvl-richtextbox>
+        </div>
+    </div>
+    <div *ngIf="isReturnReasonsVisible == true" class="row" id="A21619" data-tid="A356789">
+        <div class="col-sm-12" id="A21620" data-tid="A356790">
+            <hvl-datagrid [AllowUserToAddRows]="GridReturnReasons?.AllowUserToAddRows" [AllowUserToDeleteRows]="GridReturnReasons?.AllowUserToDeleteRows" [Columns]="GridReturnReasonsColumns" [dataSource]="manipulationProcedureFormViewModel?._Manipulation?.ManipulationReturnReasons" [DeleteButtonWidth]="GridReturnReasons?.DeleteButtonWidth" [DisplayExpressionsCache]="manipulationProcedureFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="GridReturnReasons?.ShowFilterRow" [FilterColumnName]="GridReturnReasons?.FilterColumnName" [FilterLabel]="GridReturnReasons?.FilterLabel" [Filter]="GridReturnReasons?.Filter" [height]="GridReturnReasons?.Height" [IsFilterLabelSingleLine]="GridReturnReasons?.IsFilterLabelSingleLine" [ShowColumnHeaders]="GridReturnReasons?.ColumnHeadersVisible" [ShowFilterCombo]="GridReturnReasons?.ShowFilterCombo" [ShowTotalNumberOfRows]="GridReturnReasons?.ShowTotalNumberOfRows" id="A21621" data-tid="A356791"></hvl-datagrid>
+        </div>
+    </div>
+    <div *ngIf="isReasonOfCancelVisible == true" class="row" id="A21622" data-tid="A356792">
+        <div class="col-sm-12" id="A21623" data-tid="A356793">
+            <hvl-text-box #Validation (TextChange)="onReasonOfCancelChanged($event)" [BackColor]="ReasonOfCancel?.BackColor" [CharacterCasing]="ReasonOfCancel?.CharacterCasing" [Enabled]="ReasonOfCancel?.Enabled" [Font]="ReasonOfCancel?.Font" [ForeColor]="ReasonOfCancel?.ForeColor" [height]="ReasonOfCancel?.Height" [InputFormat]="ReasonOfCancel?.InputFormat" [InputTurkishCharacter]="ReasonOfCancel?.InputTurkishCharacter" [IsNonNumeric]="ReasonOfCancel?.IsNonNumeric" [MultiLine]="ReasonOfCancel?.Multiline" [ReadOnly]="ReasonOfCancel?.ReadOnly" [Required]="ReasonOfCancel?.Required" [TabIndex]="ReasonOfCancel?.TabIndex" [TextAlign]="ReasonOfCancel?.TextAlign" [Text]="manipulationProcedureFormViewModel?._Manipulation?.ReasonOfCancel" [Visible]="ReasonOfCancel?.Visible" id="A21624" data-tid="A356794"></hvl-text-box>
+        </div>
+    </div>
+
+    <div class="row" id="hizmetformu" *ngIf="manipulationProcedureFormViewModel?.hasManipulationFormBaseObject==true" data-tid="A356795">
+        <div class="col-md-12" data-tid="A356796"><br data-tid="A356797" />       
+            <div class="panel-group" data-tid="A356798">
+                <div class="panel panel-default" data-tid="A356799">
+                    <div class="panel-heading" data-toggle="collapse" href="#manipulationFormcollapse" style="cursor:pointer" data-tid="A356800">
+                        <h4 class="panel-title" data-tid="A356801">
+                            <a data-tid="A356802">{{manipulationProcedureFormViewModel?.manipulationFormName}}</a>
+                        </h4>
+                    </div>
+                    <div id="manipulationFormcollapse" class="panel-collapse collapse in" data-tid="A356803">
+                        <div class="panel-body" data-tid="A356804">
+                            <comp-compose [Info]="componentManipulationFormBaseObjectInfo" (ComponentCreated)="onSetManipulationFormBaseObjectViewModel($event)" id="A24100" data-tid="A356805"></comp-compose>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:10px" id="A21625" data-tid="A356806">
+        <div class="col-sm-12" id="A21626" data-tid="A356807">
+            <ul class="nav nav-tabs" id="A21627" data-tid="A356808">
+                <li class="active" id="A21628" data-tid="A356809"><a data-toggle="tab" href="#GridManipulations" id="A21629" data-tid="A356810">Tıbbi/Cerrahi Uygulama</a></li>
+                <li id="A21630" data-tid="A356811"><a data-toggle="tab" href="#GridPersonnel" id="A21631" data-tid="A356812">İşlemde Görev Alan Personel</a></li>
+                <li id="A21632" data-tid="A356813"><a data-toggle="tab" href="#GridAdditionalApplications" id="A21633" data-tid="A356814">Ek Uygulamalar</a></li>
+            </ul>
+            <div class="tab-content" id="A21634" data-tid="A356815">
+                <div id="GridManipulations" class="tab-pane fade in active" data-tid="A356816">
+                    <div class="container-fluid" id="A21635" data-tid="A356817">
+                        <div class="row" id="A21636" data-tid="A356818">
+                            <hvl-datagrid [AllowUserToAddRows]="GridManipulations?.AllowUserToAddRows" [AllowUserToDeleteRows]="GridManipulations?.AllowUserToDeleteRows" [Columns]="GridManipulationsColumns" [dataSource]="manipulationProcedureFormViewModel?._Manipulation?.ManipulationProcedures" [DeleteButtonWidth]="GridManipulations?.DeleteButtonWidth" [DisplayExpressionsCache]="manipulationProcedureFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="GridManipulations?.ShowFilterRow" [FilterColumnName]="GridManipulations?.FilterColumnName" [FilterLabel]="GridManipulations?.FilterLabel" [Filter]="GridManipulations?.Filter" [height]="GridManipulations?.Height" [IsFilterLabelSingleLine]="GridManipulations?.IsFilterLabelSingleLine" [ShowColumnHeaders]="GridManipulations?.ColumnHeadersVisible" [ShowFilterCombo]="GridManipulations?.ShowFilterCombo" [ShowTotalNumberOfRows]="GridManipulations?.ShowTotalNumberOfRows" id="A21637" data-tid="A356819"></hvl-datagrid>
+                        </div>
+                    </div>
+                </div>
+                <div id="GridPersonnel" class="tab-pane fade" data-tid="A356820">
+                    <div class="container-fluid" id="A21638" data-tid="A356821">
+                        <div class="row" id="A21639" data-tid="A356822">
+                            <hvl-datagrid [AllowUserToAddRows]="GridPersonnel?.AllowUserToAddRows" [AllowUserToDeleteRows]="GridPersonnel?.AllowUserToDeleteRows" [Columns]="GridPersonnelColumns" [dataSource]="manipulationProcedureFormViewModel?._Manipulation?.ManipulationPersonnel" [DeleteButtonWidth]="GridPersonnel?.DeleteButtonWidth" [DisplayExpressionsCache]="manipulationProcedureFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="GridPersonnel?.ShowFilterRow" [FilterColumnName]="GridPersonnel?.FilterColumnName" [FilterLabel]="GridPersonnel?.FilterLabel" [Filter]="GridPersonnel?.Filter" [height]="GridPersonnel?.Height" [IsFilterLabelSingleLine]="GridPersonnel?.IsFilterLabelSingleLine" [ShowColumnHeaders]="GridPersonnel?.ColumnHeadersVisible" [ShowFilterCombo]="GridPersonnel?.ShowFilterCombo" [ShowTotalNumberOfRows]="GridPersonnel?.ShowTotalNumberOfRows" id="A21640" data-tid="A356823"></hvl-datagrid>
+                        </div>
+                    </div>
+                </div>
+                <div id="GridAdditionalApplications" class="tab-pane fade" data-tid="A356824">
+                    <div class="container-fluid" id="A21641" data-tid="A356825">
+                        <div class="row" id="A21642" data-tid="A356826">
+                            <hvl-datagrid [AllowUserToAddRows]="GridAdditionalApplications?.AllowUserToAddRows" [AllowUserToDeleteRows]="GridAdditionalApplications?.AllowUserToDeleteRows" [Columns]="GridAdditionalApplicationsColumns" [dataSource]="manipulationProcedureFormViewModel?._Manipulation?.ManipulationAdditionalApplications" [DeleteButtonWidth]="GridAdditionalApplications?.DeleteButtonWidth" [DisplayExpressionsCache]="manipulationProcedureFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="GridAdditionalApplications?.ShowFilterRow" [FilterColumnName]="GridAdditionalApplications?.FilterColumnName" [FilterLabel]="GridAdditionalApplications?.FilterLabel" [Filter]="GridAdditionalApplications?.Filter" [height]="GridAdditionalApplications?.Height" [IsFilterLabelSingleLine]="GridAdditionalApplications?.IsFilterLabelSingleLine" [ShowColumnHeaders]="GridAdditionalApplications?.ColumnHeadersVisible" [ShowFilterCombo]="GridAdditionalApplications?.ShowFilterCombo" [ShowTotalNumberOfRows]="GridAdditionalApplications?.ShowTotalNumberOfRows" id="A21643" data-tid="A356827"></hvl-datagrid>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:10px" id="A21644" data-tid="A356828">
+        <div class="col-sm-12" id="A21645" data-tid="A356829">
+            <ul *ngIf="isTreatmentMaterialVisible == true" class="nav nav-tabs" id="A21646" data-tid="A356830">
+                <li class="active" id="A21647" data-tid="A356831"><a data-toggle="tab" href="#TreatmentMaterialForm" id="A21648" data-tid="A356832">Sarf Giriş</a></li>
+                <li id="A21649" data-tid="A356833"><a data-toggle="tab" href="#DirectPurchaseGrids" id="A21650" data-tid="A356834">Doğrudan Teminle Alınan Malzemeler</a></li>
+            </ul>
+            <div class="tab-content" id="A21651" data-tid="A356835">
+                <div id="TreatmentMaterialForm" class="tab-pane fade in active" data-tid="A356836">
+                    <div class="container-fluid" id="A21652" data-tid="A356837">
+                        <div class="row" id="A21653" data-tid="A356838">
+                            <TreatmentMaterialForm [EpisodeAction]="manipulationProcedureFormViewModel?._Manipulation" [StoreResourceId]="manipulationProcedureFormViewModel?._Manipulation?.MasterResource.ObjectID" [TreatmentMaterialGridList]="manipulationProcedureFormViewModel?._Manipulation.ManipulationTreatmentMaterials" [IsReadOnly]="ReadOnly" id="A21654" data-tid="A356839"></TreatmentMaterialForm>
+                        </div>
+                    </div>
+                </div>
+                <div id="DirectPurchaseGrids" class="tab-pane fade" data-tid="A356840">
+                    <div class="container-fluid" id="A21655" data-tid="A356841">
+                        <div class="row" id="A21656" data-tid="A356842">
+                            <hvl-datagrid [AllowUserToAddRows]="DirectPurchaseGrids?.AllowUserToAddRows" [AllowUserToDeleteRows]="DirectPurchaseGrids?.AllowUserToDeleteRows" [Columns]="DirectPurchaseGridsColumns" [dataSource]="manipulationProcedureFormViewModel?._Manipulation?.DirectPurchaseGrids" [DeleteButtonWidth]="DirectPurchaseGrids?.DeleteButtonWidth" [DisplayExpressionsCache]="manipulationProcedureFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="DirectPurchaseGrids?.ShowFilterRow" [FilterColumnName]="DirectPurchaseGrids?.FilterColumnName" [FilterLabel]="DirectPurchaseGrids?.FilterLabel" [Filter]="DirectPurchaseGrids?.Filter" [height]="DirectPurchaseGrids?.Height" [IsFilterLabelSingleLine]="DirectPurchaseGrids?.IsFilterLabelSingleLine" [ShowColumnHeaders]="DirectPurchaseGrids?.ColumnHeadersVisible" [ShowFilterCombo]="DirectPurchaseGrids?.ShowFilterCombo" [ShowTotalNumberOfRows]="DirectPurchaseGrids?.ShowTotalNumberOfRows" id="A21657" data-tid="A356843"></hvl-datagrid>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

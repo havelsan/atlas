@@ -1,0 +1,56 @@
+﻿<div class="row" id="A32419" data-tid="A375203">
+        <div class="m--padding-top-7 fltLeft" id="A32354" style="margin-left:20px;" data-tid="A375204">
+            <label class="control-label " id="A32422" data-tid="A375205">
+                Başlangıç Tarihi:
+            </label>
+        </div>
+        <div class="col-sm-2" id="A32420" data-tid="A375206">
+            <dx-date-box [(value)]="startDate" type="date" id="A32424" style="width: 80%;" data-tid="A375207">
+            </dx-date-box>
+        </div>
+        <div class="m--padding-top-7 fltLeft" id="A32354" data-tid="A375208">
+            <label class="control-label " id="A32427" data-tid="A375209">
+                Bitiş Tarihi:
+            </label>
+        </div>
+        <div class="col-sm-2" id="A32425" data-tid="A375210">
+            <dx-date-box [(value)]="endDate" type="date" id="A32429" style="width: 80%;" data-tid="A375211">
+            </dx-date-box>
+        </div>
+        <div class="col-sm-2" id="A32430" data-tid="A375212">
+            <dx-button id="button" type="btn btn-default" icon="fa fa-download" [height]="25" (onClick)="GetMkysTif($event)" data-tid="A375213">
+                <div *dxTemplate="let data of 'content'" id="A32431" style="min-width: 200px;" data-tid="A375214">
+                    <dx-load-indicator class='button-indicator' [visible]="loadIndicatorVisible" id="A32432" data-tid="A375215">
+                    </dx-load-indicator>
+                    <span class='dx-button-text' id="A32433" data-tid="A375216">{{buttonText}}</span>
+                </div>
+            </dx-button>
+        </div>
+        <div class="col-sm-2" id="A32434" data-tid="A375217">
+            <dx-button *ngIf="!isTicketCreate" type="success" icon="fa fa-clone" text="Taşınır Mal Giriş İşlemi Başlat" (onClick)="selectedGridItem()" [(disabled)]="CreateButtonDisabled" i18n-text="@@M27679" id="A32435" style="min-width: 220px;" data-tid="A375218">
+            </dx-button>
+            <dx-button *ngIf="isTicketCreate" type="success" icon="fa fa-clone" text="Fiş Oluştur" (onClick)="createTicket()" [(disabled)]="CreateButtonDisabled" i18n-text="@@M27679" id="A32435" style="min-width: 220px;" data-tid="A375219">
+            </dx-button>
+        </div>
+    </div>
+    <br id="A32436" data-tid="A375220" />
+    <br id="A32437" data-tid="A375221" />
+    <dx-data-grid id="gridContainerTIF" [dataSource]="receivedDataSourceFromMkys" [masterDetail]="{ enabled: true, template: 'detail' }" (onRowPrepared)="onRowPrepared($event)" (onSelectionChanged)="DataSourceSelectionChanged($event)" [(selectedRowKeys)]="selectedTempItems" data-tid="A375222">
+        <dxo-selection [selectAllMode]="allPages" [showCheckBoxesMode]="onClick" [mode]="dataGridSelectionMode" id="A32438" data-tid="A375223"></dxo-selection>
+        <dxi-column dataField="gonderenBirimAdi" caption="Gönderen Birim Adı" i18n-caption="@@M14854" id="A32439" data-tid="A375224"></dxi-column>
+        <dxi-column dataField="gonderenBirimID" caption="Gönderen Birim ID" i18n-caption="@@M14855" id="A32440" data-tid="A375225"></dxi-column>
+        <dxi-column dataField="gonderenDepoAdi" caption="Gönderen Depo Adı" i18n-caption="@@M14860" id="A32441" data-tid="A375226"></dxi-column>
+        <dxi-column dataField="birimDepoID" caption="Birim Depo ID" i18n-caption="@@M11852" id="A32442" data-tid="A375227"></dxi-column>
+        <dxi-column dataField="gonderenButceTuruAdi" caption="Gönderen Bütce Türü" i18n-caption="@@M14858" id="A32443" data-tid="A375228"></dxi-column>
+        <dxi-column dataField="hareketTuru" caption="Hareket Türü" i18n-caption="@@M15113" id="A32444" data-tid="A375229"></dxi-column>
+        <dxi-column dataField="cikisBelgeNo" caption="Çıkış Belge No" i18n-caption="@@M12366" id="A32445" data-tid="A375230"></dxi-column>
+        <dxi-column dataField="cikisBelgeTarihi" caption="Çıkış Belge Tarihi" i18n-caption="@@M12367" id="A32446" data-tid="A375231"></dxi-column>
+        <dxi-column dataField="islemKayitNo" [width]="180" caption="İşlem Kayıt No" i18n-caption="@@M16858" id="A32447" data-tid="A375232"></dxi-column>
+
+        <div *dxTemplate="let receivedDataSourceFromMkys of 'detail'" id="A32448" data-tid="A375233">
+            <div class="internal-grid-container" id="A32449" data-tid="A375234">
+                <dx-data-grid class="internal-grid" [dataSource]="receivedDataSourceFromMkys.data.details" id="A32450" data-tid="A375235">
+                </dx-data-grid>
+            </div>
+        </div>
+    </dx-data-grid>

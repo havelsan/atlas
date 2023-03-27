@@ -1,0 +1,665 @@
+﻿<link href="/Content/Invoice/InvoiceSepForm.css" rel="stylesheet" />
+
+<div style="height:100%" id="A31652" class="fixpopup" data-tid="A372299">
+
+    <dx-accordion #searchAccordion id="searchAccordion" collapsible="true" (onItemClick)="onAccordionItemClick($event)" data-tid="A372300">
+        <dxi-item title="Sorgulama Paneli" class="remove-padding" i18n-title="@@M22127" id="A31654" data-tid="A372301">
+
+            <div style="display: grid; grid-template-columns: [first] max-content [second] 270px
+            [third] max-content [forth] minmax(200px, 700px) [fifth] max-content [sixth] minmax(80px, min-content) [seventh] minmax(150px, 400px)
+            [eigth] max-content [ninth] minmax(80px,auto) [tenth] max-content [eleventh] minmax(100px, max-content); grid-gap:3px 0" class="col-sm-12 remove-padding" data-tid="A372302">
+
+                <div style="grid-area: 1 / 1 / 1 / 1;" data-tid="A372303">
+                    <label class="search-panel-label" id="A31657" data-tid="A372304">Mür. Tarihi:</label>
+                </div>
+                <div style="grid-area: 1 / 2 / 1 / 2;" data-tid="A372305">
+                    <div class="col-sm-6 remove-padding" id="A31658" data-tid="A372306">
+                        <dx-date-box pickerType="native" min="01.01.2010" placeholder="Tarih Giriniz" [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.episodeStartDate" type="date" displayFormat="dd/MM/yyyy" width="100%" height="25" id="A31659" data-tid="A372307"></dx-date-box>
+                    </div>
+                    <div class="col-sm-6 remove-padding" id="A31660" data-tid="A372308">
+                        <dx-date-box pickerType="native" min="01.01.2010" placeholder="Tarih Giriniz" [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.episodeEndDate" type="date" displayFormat="dd/MM/yyyy" width="100%" height="25" id="A31661" data-tid="A372309"></dx-date-box>
+                    </div>
+                </div>
+
+                <div style="grid-area: 2 / 1 / 2 / 1;" data-tid="A372310">
+                    <label class="search-panel-label" id="A31662" data-tid="A372311">Yatış Tarihi:</label>
+                </div>
+                <div style="grid-area: 2 / 2 / 2 / 2;" data-tid="A372312">
+                    <div class="col-sm-6 remove-padding" id="A31663" data-tid="A372313">
+                        <dx-date-box pickerType="native" min="01.01.2010" placeholder="Tarih Giriniz" [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.inPatientAdmissionStartDate" type="date" displayFormat="dd/MM/yyyy" width="100%" height="25" id="A31664" data-tid="A372314">
+                        </dx-date-box>
+                    </div>
+                    <div class="col-sm-6 remove-padding" id="A31665" data-tid="A372315">
+                        <dx-date-box pickerType="native" min="01.01.2010" placeholder="Tarih Giriniz" [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.inPatientAdmissionEndDate" type="date" displayFormat="dd/MM/yyyy" width="100%" height="25" id="A31666" data-tid="A372316">
+                        </dx-date-box>
+                    </div>
+                </div>
+
+                <div style="grid-area: 3 / 1 / 3 / 1;" data-tid="A372317">
+                    <label class="search-panel-label" id="A31667" data-tid="A372318">Çıkış Tarihi:</label>
+                </div>
+                <div style="grid-area: 3 / 2 / 3 / 2;" data-tid="A372319">
+                    <div class="col-sm-6 remove-padding" id="A31668" data-tid="A372320">
+                        <dx-date-box pickerType="native" min="01.01.2010" placeholder="Tarih Giriniz" [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.dischargeStartDate" type="date" displayFormat="dd/MM/yyyy" width="100%" height="25" id="A31669" data-tid="A372321">
+                        </dx-date-box>
+                    </div>
+                    <div class="col-sm-6 remove-padding" id="A31670" data-tid="A372322">
+                        <dx-date-box pickerType="native" min="01.01.2010" placeholder="Tarih Giriniz" [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.dischargeEndDate" type="date" displayFormat="dd/MM/yyyy" width="100%" height="25" id="A31671" data-tid="A372323"></dx-date-box>
+                    </div>
+                </div>
+
+                <div style="grid-area: 4 / 1 / 4 / 1;" data-tid="A372324">
+                    <label class="search-panel-label" id="A31667" data-tid="A372325">Fatura Tarihi:</label>
+                </div>
+                <div style="grid-area: 4 / 2 / 4 / 2;" data-tid="A372326">
+                    <div class="col-sm-6 remove-padding" id="A31668" data-tid="A372327">
+                        <dx-date-box pickerType="native" min="01.01.2010" [disabled]="!invoiced" placeholder="Tarih Giriniz" [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.invoiceStartDate" type="date" displayFormat="dd/MM/yyyy" width="100%" height="25" id="A31669" data-tid="A372328"></dx-date-box>
+                    </div>
+                    <div class="col-sm-6 remove-padding" id="A31670" data-tid="A372329">
+                        <dx-date-box pickerType="native" min="01.01.2010" [disabled]="!invoiced" placeholder="Tarih Giriniz" [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.invoiceEndDate" type="date" displayFormat="dd/MM/yyyy" width="100%" height="25" id="A31671" data-tid="A372330"></dx-date-box>
+                    </div>
+                </div>
+
+                <div style="grid-area: 5 / 1 / 5 / 1;" data-tid="A372331">
+                    <label class="search-panel-label" data-tid="A372332"> K.Fatura T.:</label>
+                </div>
+                <div style="grid-area: 5 / 2 / 5 / 2;" data-tid="A372333">
+                    <div class="col-sm-12 remove-padding" data-tid="A372334">
+                        <dx-select-box [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.lastXDaysForInvoice" searchEnabled="true" [dataSource]="lastXDaysForInvoiceArray" displayExpr="Name" valueExpr="ObjectID" placeholder="Seçiniz" id="A30979" height="25" data-tid="A372335"></dx-select-box>
+                    </div>
+                </div>
+
+                <div style="grid-area: 6 / 1 / 6 / 1;" data-tid="A372336">
+                    <label class="search-panel-label" id="A31672" data-tid="A372337">Durum:</label>
+                </div>
+                <div style="grid-area: 6 / 2 / 6 / 2;" data-tid="A372338">
+                    <div class="col-sm-11 remove-padding" id="A31673" data-tid="A372339">
+                        <dx-tag-box [dataSource]="MedulaSubEpisodeStatusArray" (onValueChanged)="SearchCriteriaStatusEnumChanged($event)" [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.status" [multiline]="false" displayExpr="Name" valueExpr="ObjectID" placeholder="Seçiniz" style="max-width:100%!important" [showSelectionControls]="true" height="25" data-tid="A372340"></dx-tag-box>
+                    </div>
+                    <div class="col-sm-1 remove-padding" id="A31675" data-tid="A372341">
+                        <hvl-checkbox #Validation [(Value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.onlyStatus" [AllowThreeState]="chkOnlyStatus?.ThreeState" [BackColor]="chkOnlyStatus?.BackColor" [Enabled]="chkOnlyStatus?.Enabled" [Font]="chkOnlyStatus?.Font" [ForeColor]="chkOnlyStatus?.ForeColor" [IsTitleLeft]="chkOnlyStatus?.IsTitleLeft" [Margin]="chkOnlyStatus?.Margin" [ReadOnly]="chkOnlyStatus?.ReadOnly" [TabIndex]="chkOnlyStatus?.TabIndex" [TitleTopPadding]="chkOnlyStatus?.TitleTopPadding" [Title]="chkOnlyStatus?.Title" [Visible]="chkOnlyStatus?.Visible" id="A31676" data-tid="A372342">
+                        </hvl-checkbox>
+                    </div>
+                </div>
+
+                <div style="grid-area: 7 / 1 / 7 / 1;" data-tid="A372343">
+                    <label class="search-panel-label" id="A31678" data-tid="A372344">Tedavi Türü:</label>
+                </div>
+                <div style="grid-area: 7 / 2 / 7 / 2;" data-tid="A372345">
+                    <div class="col-sm-11 remove-padding" id="A31679" data-tid="A372346">
+                        <dx-tag-box [dataSource]="tedaviTuruArray" [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.tedaviTuru" [multiline]="false" displayExpr="Name" valueExpr="ObjectID" placeholder="Seçiniz" style="max-width:100%!important" [showSelectionControls]="true" height="25" data-tid="A372347"></dx-tag-box>
+                    </div>
+                    <div class="col-sm-1 remove-padding" id="A31681" data-tid="A372348">
+                        <hvl-checkbox #Validation [(Value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.tedaviTuruSadeceAyaktan" [AllowThreeState]="chkTedaviTuruSadeceAyaktan?.ThreeState" [BackColor]="chkTedaviTuruSadeceAyaktan?.BackColor" [Enabled]="chkTedaviTuruSadeceAyaktan?.Enabled" [Font]="chkTedaviTuruSadeceAyaktan?.Font" [ForeColor]="chkTedaviTuruSadeceAyaktan?.ForeColor" [IsTitleLeft]="chkTedaviTuruSadeceAyaktan?.IsTitleLeft" [Margin]="chkTedaviTuruSadeceAyaktan?.Margin" [ReadOnly]="chkTedaviTuruSadeceAyaktan?.ReadOnly" [TabIndex]="chkTedaviTuruSadeceAyaktan?.TabIndex" [TitleTopPadding]="chkTedaviTuruSadeceAyaktan?.TitleTopPadding" [Title]="chkTedaviTuruSadeceAyaktan?.Title" [Visible]="chkTedaviTuruSadeceAyaktan?.Visible" id="A31682" data-tid="A372349"></hvl-checkbox>
+                    </div>
+                </div>
+
+                <div style="grid-area: 8 / 1 / 8 / 1;" data-tid="A372350">
+                    <label class="search-panel-label" id="A31683" data-tid="A372351">Tedavi Tipi:</label>
+                </div>
+                <div style="grid-area: 8 / 2 / 8 / 2;" data-tid="A372352">
+                    <div class="col-sm-12 remove-padding" id="A31684" data-tid="A372353">
+                        <dx-tag-box [dataSource]="tedaviTipiArray" [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.tedaviTipi" [multiline]="false" displayExpr="Name" valueExpr="ObjectID" placeholder="Seçiniz" style="max-width:100%!important" [showSelectionControls]="true" height="25" data-tid="A372354"></dx-tag-box>
+                    </div>
+                </div>
+
+                <div style="grid-area: 9 / 1 / 9 / 1;" data-tid="A372355">
+                    <label class="search-panel-label" id="A31686" data-tid="A372356">Takip Tipi:</label>
+                </div>
+                <div style="grid-area: 9 / 2 / 9 / 2;" data-tid="A372357">
+
+                    <div class="col-sm-12 remove-padding" id="A31687" data-tid="A372358">
+                        <dx-tag-box [dataSource]="takipTipiArray" [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.takipTipi" [multiline]="false" displayExpr="Name" valueExpr="ObjectID" placeholder="Seçiniz" style="max-width:100%!important" [showSelectionControls]="true" height="25" data-tid="A372359"></dx-tag-box>
+                    </div>
+                </div>
+
+                <div style="grid-area: 10 / 1 / 10 / 1;" data-tid="A372360">
+                    <label class="search-panel-label" id="A31689" data-tid="A372361">Prov. Tipi:</label>
+                </div>
+                <div style="grid-area: 10 / 2 / 10 / 2;" data-tid="A372362">
+                    <div class="col-sm-12 remove-padding" id="A31690" data-tid="A372363">
+                        <dx-tag-box [dataSource]="provizyonTipiArray" [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.provizyonTipi" [multiline]="false" displayExpr="Name" valueExpr="ObjectID" placeholder="Seçiniz" style="max-width:100%!important" [showSelectionControls]="true" height="25" data-tid="A372364"></dx-tag-box>
+                    </div>
+                </div>
+
+                <div style="grid-area: 11 / 1 / 11 / 1;" data-tid="A372365">
+                    <label class="search-panel-label" id="A31692" data-tid="A372366">Devredilen K.:</label>
+                </div>
+                <div style="grid-area: 11 / 2 / 11 / 2;" data-tid="A372367">
+                    <div class="col-sm-12 remove-padding" id="A31693" data-tid="A372368">
+                        <dx-tag-box [dataSource]="devredilenKurumArray" [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.devredilenKurum" [multiline]="false" displayExpr="Name" valueExpr="ObjectID" placeholder="Seçiniz" style="max-width:100%!important" [showSelectionControls]="true" height="25" data-tid="A372369"></dx-tag-box>
+                    </div>
+                </div>
+
+                <div style="grid-area: 12 / 1 / 12 / 1;" data-tid="A372370">
+                    <label class="search-panel-label" id="A31692" data-tid="A372371">İstisnai Hal:</label>
+                </div>
+                <div style="grid-area: 12 / 2 / 12 / 2;" data-tid="A372372">
+
+                    <div class="col-sm-12 remove-padding" id="A31693" data-tid="A372373">
+                        <dx-tag-box [dataSource]="istisnaiHalArray" [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.istisnaiHal" [multiline]="false" displayExpr="Name" valueExpr="ObjectID" placeholder="Seçiniz" style="max-width:100%!important" [showSelectionControls]="true" height="25" data-tid="A372374"></dx-tag-box>
+                    </div>
+                </div>
+
+                <div style="grid-area: 13 / 1 / 13 / 1;" data-tid="A372375">
+                    <label class="search-panel-label" id="A31692" data-tid="A372376">Triaj:</label>
+                </div>
+                <div style="grid-area: 13 / 2 / 13 / 2;" data-tid="A372377">
+                    <div class="col-sm-12 remove-padding" id="A31693" data-tid="A372378">
+                        <dx-tag-box [dataSource]="triajArray" [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.triaj" [multiline]="false" displayExpr="Name" valueExpr="ObjectID" placeholder="Seçiniz" style="max-width:100%!important" [showSelectionControls]="true" height="25" data-tid="A372379"></dx-tag-box>
+                    </div>
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 1 / 3 / 1 / 3;" data-tid="A372380">
+                    <label class="search-panel-label" id="A31696" data-tid="A372381">Dönem:</label>
+                </div>
+                <div style="grid-area: 1 / 4 / 1 / 4;" data-tid="A372382">
+                    <div class="col-sm-12 remove-padding" id="A31697" data-tid="A372383">
+                        <hvl-listdef-combobox #Validation [(SelectedValue)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.term" [BackColor]="cmbTerm?.BackColor" [DefinitionName]="cmbTerm?.ListDefName" [Enabled]="cmbTerm?.Enabled" [Font]="cmbTerm?.Font" [ForeColor]="cmbTerm?.ForeColor" [ReadOnly]="cmbTerm?.ReadOnly" [SearchingMode]="cmbTerm?.SearchMode" [TabIndex]="cmbTerm?.TabIndex" [Visible]="cmbTerm?.Visible" id="A31698" data-tid="A372384">
+                        </hvl-listdef-combobox>
+                    </div>
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 2 / 3 / 2 / 3;" data-tid="A372385">
+                    <label class="search-panel-label" id="A31667" data-tid="A372386">Fatura Tutarı:</label>
+                </div>
+                <div style="grid-area: 2 / 4 / 2 / 4;" data-tid="A372387">
+                    <div class="col-sm-6 remove-padding" id="A31668" data-tid="A372388">
+                        <dx-text-box [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.firstInvoicePrice" [disabled]="!invoiced" data-tid="A372389"></dx-text-box>
+                    </div>
+                    <div class="col-sm-6 remove-padding" id="A31670" data-tid="A372390">
+                        <dx-text-box [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.lastInvoicePrice" [disabled]="!invoiced" data-tid="A372391"></dx-text-box>
+                    </div>
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 3 / 3 / 3 / 3;" data-tid="A372392">
+                    <label title="Kurum Türü" class="search-panel-label" id="A31699" data-tid="A372393">Kurum T:</label>
+                </div>
+                <div style="grid-area: 3 / 4 / 3 / 4;" data-tid="A372394">
+                    <div class="col-sm-12 remove-padding" id="A31700" data-tid="A372395">
+                        <hvl-listdef-combobox #Validation [(SelectedValue)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.payerType" [BackColor]="cmbPayerType?.BackColor" [DefinitionName]="cmbPayerType?.ListDefName" [Enabled]="cmbPayerType?.Enabled" [Font]="cmbPayerType?.Font" [ForeColor]="cmbPayerType?.ForeColor" [ReadOnly]="cmbPayerType?.ReadOnly" [SearchingMode]="cmbPayerType?.SearchMode" [TabIndex]="cmbPayerType?.TabIndex" [Visible]="cmbPayerType?.Visible" id="A31701" data-tid="A372396"></hvl-listdef-combobox>
+                    </div>
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 4 / 3 / 4 / 3;" data-tid="A372397">
+                    <label class="search-panel-label" id="A31702" data-tid="A372398">Kurum:</label>
+                </div>
+                <div style="grid-area: 4 / 4 / 4 / 4;" data-tid="A372399">
+                    <div class="col-sm-12 remove-padding" id="A31703" data-tid="A372400">
+
+                        <dx-tag-box [dataSource]="PayerDataSource" [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.payer" [multiline]="false" displayExpr="Name" valueExpr="ObjectID" placeholder="Seçiniz" searchEnabled="true" style="max-width:100%!important" [showSelectionControls]="true" height="25" data-tid="A372401"></dx-tag-box>
+                    </div>
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 5 / 3 / 5 / 3;" data-tid="A372402">
+                    <label class="search-panel-label" id="A31705" data-tid="A372403">Bina:</label>
+                </div>
+                <div style="grid-area: 5 / 4 / 5 / 4;" data-tid="A372404">
+                    <div class="col-sm-12 remove-padding" id="A31706" data-tid="A372405">
+                        <hvl-listdef-combobox #Validation [(SelectedValue)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.building" [BackColor]="cmbBuilding?.BackColor" [DefinitionName]="cmbBuilding?.ListDefName" [Enabled]="cmbBuilding?.Enabled" [Font]="cmbBuilding?.Font" [ForeColor]="cmbBuilding?.ForeColor" [ReadOnly]="cmbBuilding?.ReadOnly" [SearchingMode]="cmbBuilding?.SearchMode" [TabIndex]="cmbBuilding?.TabIndex" [Visible]="cmbBuilding?.Visible" id="A31707" data-tid="A372406">
+                        </hvl-listdef-combobox>
+                    </div>
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 6 / 3 / 6 / 3;" data-tid="A372407">
+                    <label class="search-panel-label" id="A31708" data-tid="A372408">Birim:</label>
+                </div>
+                <div style="grid-area: 6 /4 / 6 / 4;" data-tid="A372409">
+                    <div class="col-sm-12 remove-padding" id="A31709" data-tid="A372410">
+
+                        <dx-tag-box [dataSource]="ResourceDataSource" [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.section" [multiline]="false" displayExpr="Name" valueExpr="ObjectId" placeholder="Seçiniz" searchEnabled="true" style="max-width:100%!important" [showSelectionControls]="true" height="25" data-tid="A372411"></dx-tag-box>
+                    </div>
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 7 / 3 / 7 / 3;" data-tid="A372412">
+                    <label class="search-panel-label" id="A31711" data-tid="A372413">Branş:</label>
+                </div>
+                <div style="grid-area: 7 / 4 / 7 / 4;" data-tid="A372414">
+                    <div class="col-sm-12 remove-padding" id="A31712" data-tid="A372415">
+
+                        <dx-tag-box [dataSource]="BranchDataSource" [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.branch" [multiline]="false" displayExpr="Name" valueExpr="ObjectID" placeholder="Seçiniz" searchEnabled="true" style="max-width:100%!important" [showSelectionControls]="true" height="25" data-tid="A372416"></dx-tag-box>
+                    </div>
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 8 / 3 / 8 / 3;" data-tid="A372417">
+                    <label class="search-panel-label" id="A31714" data-tid="A372418">Doktor:</label>
+                </div>
+                <div style="grid-area: 8 / 4 / 8 / 4;" data-tid="A372419">
+                    <div class="col-sm-12 remove-padding" id="A31715" data-tid="A372420">
+                        <dx-tag-box [dataSource]="DoctorDataSource" [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.doctor" [multiline]="false" displayExpr="Name" valueExpr="ObjectID" placeholder="Seçiniz" searchEnabled="true" style="max-width:100%!important" [showSelectionControls]="true" height="25" data-tid="A372421"></dx-tag-box>
+                    </div>
+                </div>
+                <div class="grid-column-padding" style="grid-area: 9 / 3 / 9 / 3;" data-tid="A372422">
+                    <label class="search-panel-label" id="A31717" data-tid="A372423">İzlem:</label>
+                </div>
+                <div style="grid-area: 9 / 4 / 9 / 4;" data-tid="A372424">
+                    <div class="col-sm-12 remove-padding" id="A31718" data-tid="A372425">
+                        <hvl-enum-combobox #Validation [(Value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.sepWatchType" [BackColor]="cmbInvoiceSEPWatchTypeEnum?.BackColor" [DataTypeName]="cmbInvoiceSEPWatchTypeEnum?.DataTypeName" [Enabled]="cmbInvoiceSEPWatchTypeEnum?.Enabled" [Font]="cmbInvoiceSEPWatchTypeEnum?.Font" [ForeColor]="cmbInvoiceSEPWatchTypeEnum?.ForeColor" [IncludeOnly]="cmbInvoiceSEPWatchTypeEnum?.IncludeOnly" [ReadOnly]="cmbInvoiceSEPWatchTypeEnum?.ReadOnly" [ShowClearButton]="cmbInvoiceSEPWatchTypeEnum?.ShowClearButton" [SortBy]="cmbInvoiceSEPWatchTypeEnum?.SortBy" [TabIndex]="cmbInvoiceSEPWatchTypeEnum?.TabIndex" [Visible]="cmbInvoiceSEPWatchTypeEnum?.Visible" id="A31719" data-tid="A372426"></hvl-enum-combobox>
+                    </div>
+                </div>
+                <div class="grid-column-padding" style="grid-area: 10 / 3 / 10 / 3;" data-tid="A372427">
+                    <label title="Nabız Durumu" class="search-panel-label" id="A31720" data-tid="A372428">Nabız(700) D.:</label>
+                </div>
+                <div style="grid-area: 10 / 4 / 10 / 4;" data-tid="A372429">
+                    <div class="col-sm-12 remove-padding" id="A31721" data-tid="A372430">
+                        <dx-select-box [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.nabizStatus" searchEnabled="true" [dataSource]="Nabiz700StatusArray" displayExpr="Name" valueExpr="Id" placeholder="Seçiniz" id="A30979" data-tid="A372431"></dx-select-box>
+                    </div>
+                </div>
+                <div class="grid-column-padding" style="grid-area: 11 / 3 / 11 / 3;" data-tid="A372432">
+                    <label class="search-panel-label" id="A31759" data-tid="A372433">Hiz. Durumu:</label>
+                </div>
+                <div style="grid-area: 11 / 4 / 11 / 4;" data-tid="A372434">
+                    <div class="col-sm-12 remove-padding" data-tid="A372435">
+                        <dx-tag-box [dataSource]="procedureStateDefArray" [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.procedureStateDef" [multiline]="false" displayExpr="Name" valueExpr="ObjectID" placeholder="Seçiniz" style="max-width:100%!important" [showSelectionControls]="true" height="25" data-tid="A372436"></dx-tag-box>
+                    </div>
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 12 / 3 / 12 / 3;" data-tid="A372437">
+                    <label title="F.K. Durumu" class="search-panel-label" data-tid="A372438">F.K. Durumu:</label>
+                </div>
+                <div style="grid-area: 12 / 4 / 12 / 4;" data-tid="A372439">
+                    <div class="col-sm-12 remove-padding" data-tid="A372440">
+                        <dx-tag-box [dataSource]="invoiceControlNQLDefArray" [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.controlStatus" [multiline]="false" displayExpr="Name" valueExpr="Code" placeholder="Seçiniz" style="max-width:100%!important" [showSelectionControls]="true" height="25" data-tid="A372441"></dx-tag-box>
+                    </div>
+                </div>
+                <div class="grid-column-padding" style="grid-area: 13 / 3 / 13 / 3;" data-tid="A372507">
+                    <label class="search-panel-label" id="A31683" data-tid="A372351">Taburcu Tipi:</label>
+                </div>
+                <div style="grid-area: 13 / 4 / 13 / 4;" data-tid="A372352">
+                    <div class="col-sm-12 remove-padding" id="A31684" data-tid="A372353">
+                        <dx-tag-box [dataSource]="taburcuTipiArray" [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.taburcuTipi" [multiline]="false" displayExpr="Name" valueExpr="ObjectID" placeholder="Seçiniz" style="max-width:100%!important" [showSelectionControls]="true" height="25" data-tid="A372354"></dx-tag-box>
+                    </div>
+                </div>
+                <div class="grid-column-padding" style="grid-area: 1 / 5 / 1 / 5;" data-tid="A372447">
+                    <label class="search-panel-label" id="A31724" data-tid="A372448">Tanı:</label>
+                </div>
+                <div style="grid-area: 1 / 6 / 1 / 6;" data-tid="A372449">
+                    <div class="col-sm-12 remove-padding" id="A31725" data-tid="A372450">
+                        <hvl-enum-combobox #Validation [(Value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.diagnosState" [BackColor]="cmbState?.BackColor" [DataTypeName]="cmbState?.DataTypeName" [Enabled]="cmbState?.Enabled" [Font]="cmbState?.Font" [ForeColor]="cmbState?.ForeColor" [IncludeOnly]="cmbState?.IncludeOnly" [ReadOnly]="cmbState?.ReadOnly" [ShowClearButton]="cmbState?.ShowClearButton" [SortBy]="cmbState?.SortBy" [TabIndex]="cmbState?.TabIndex" [Visible]="cmbState?.Visible" id="A31726" data-tid="A372451">
+                        </hvl-enum-combobox>
+                    </div>
+                </div>
+                <div style="grid-area: 1 / 7 / 1 / 7" data-tid="A372452">
+                    <div class="col-sm-12 remove-padding" id="A31727" data-tid="A372453">
+                        <hvl-valuelist-box #Validation [(SelectedValue)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.diagnos" [AutoCompleteDialogHeight]="cmbDiagnos?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="cmbDiagnos?.AutoCompleteDialogWidth" [AutoCompleteMode]="cmbDiagnos?.AutoCompleteMode" [BackColor]="cmbDiagnos?.BackColor" [DefinitionName]="cmbDiagnos?.ListDefName" [Enabled]="cmbDiagnos?.Enabled" [Font]="cmbDiagnos?.Font" [ForeColor]="cmbDiagnos?.ForeColor" [ListFilterExpression]="cmbDiagnos?.ListFilterExpression" [MinSearchLength]="cmbDiagnos?.MinSearchLength" [PopupDialogFieldConfig]="cmbDiagnos?.PopupDialogFieldConfig" [PopupDialogGridColumns]="cmbDiagnos?.PopupDialogGridColumns" [PopupDialogHeight]="cmbDiagnos?.PopupDialogHeight" [PopupDialogTitle]="cmbDiagnos?.PopupDialogTitle" [PopupDialogWidth]="cmbDiagnos?.PopupDialogWidth" [ReadOnly]="cmbDiagnos?.ReadOnly" [SearchTimeout]="cmbDiagnos?.SearchTimeout" [TabIndex]="cmbDiagnos?.TabIndex" [Visible]="cmbDiagnos?.Visible" [width]="cmbDiagnos?.Width" id="A31728" data-tid="A372454">
+                        </hvl-valuelist-box>
+                    </div>
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 2 / 5 / 2/ 5;" data-tid="A372455">
+                    <label class="search-panel-label" id="A31729" data-tid="A372456">Hizmet(1):</label>
+                </div>
+                <div style="grid-area: 2 / 6 / 2 / 6;" data-tid="A372457">
+                    <div class="col-sm-12 remove-padding" id="A31730" data-tid="A372458">
+                        <hvl-enum-combobox #Validation [(Value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.procedure1State" [BackColor]="cmbState?.BackColor" [DataTypeName]="cmbState?.DataTypeName" [Enabled]="cmbState?.Enabled" [Font]="cmbState?.Font" [ForeColor]="cmbState?.ForeColor" [IncludeOnly]="cmbState?.IncludeOnly" [ReadOnly]="cmbState?.ReadOnly" [ShowClearButton]="cmbState?.ShowClearButton" [SortBy]="cmbState?.SortBy" [TabIndex]="cmbState?.TabIndex" [Visible]="cmbState?.Visible" id="A31731" data-tid="A372459">
+                        </hvl-enum-combobox>
+                    </div>
+                </div>
+                <div style="grid-area:2 / 7 / 2 / 7" data-tid="A372460">
+                    <div class="col-sm-12 remove-padding" id="A31732" data-tid="A372461">
+                        <hvl-valuelist-box #Validation [(SelectedValue)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.procedure1" [AutoCompleteDialogHeight]="cmbProcedure?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="cmbProcedure?.AutoCompleteDialogWidth" [AutoCompleteMode]="cmbProcedure?.AutoCompleteMode" [BackColor]="cmbProcedure?.BackColor" [DefinitionName]="cmbProcedure?.ListDefName" [Enabled]="cmbProcedure?.Enabled" [Font]="cmbProcedure?.Font" [ForeColor]="cmbProcedure?.ForeColor" [ListFilterExpression]="cmbProcedure?.ListFilterExpression" [MinSearchLength]="cmbProcedure?.MinSearchLength" [PopupDialogFieldConfig]="cmbProcedure?.PopupDialogFieldConfig" [PopupDialogGridColumns]="cmbProcedure?.PopupDialogGridColumns" [PopupDialogHeight]="cmbProcedure?.PopupDialogHeight" [PopupDialogTitle]="cmbProcedure?.PopupDialogTitle" [PopupDialogWidth]="cmbProcedure?.PopupDialogWidth" [ReadOnly]="cmbProcedure?.ReadOnly" [SearchTimeout]="cmbProcedure?.SearchTimeout" [TabIndex]="cmbProcedure?.TabIndex" [Visible]="cmbProcedure?.Visible" [width]="cmbProcedure?.Width" id="A31733" data-tid="A372462">
+                        </hvl-valuelist-box>
+                    </div>
+
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 3 / 5 / 3/ 5;" data-tid="A372463">
+                    <label class="search-panel-label" id="A31734" data-tid="A372464">Hizmet(2):</label>
+                </div>
+                <div style="grid-area: 3 / 6 / 3 / 6;" data-tid="A372465">
+                    <div class="col-sm-12 remove-padding" id="A31735" data-tid="A372466">
+                        <hvl-enum-combobox #Validation [(Value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.procedure2State" [BackColor]="cmbState?.BackColor" [DataTypeName]="cmbState?.DataTypeName" [Enabled]="cmbState?.Enabled" [Font]="cmbState?.Font" [ForeColor]="cmbState?.ForeColor" [IncludeOnly]="cmbState?.IncludeOnly" [ReadOnly]="cmbState?.ReadOnly" [ShowClearButton]="cmbState?.ShowClearButton" [SortBy]="cmbState?.SortBy" [TabIndex]="cmbState?.TabIndex" [Visible]="cmbState?.Visible" id="A31736" data-tid="A372467">
+                        </hvl-enum-combobox>
+                    </div>
+                </div>
+                <div style="grid-area: 3 / 7 / 3 / 7;" data-tid="A372468">
+                    <div class="col-sm-12 remove-padding" id="A31737" data-tid="A372469">
+                        <hvl-valuelist-box #Validation [(SelectedValue)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.procedure2" [AutoCompleteDialogHeight]="cmbProcedure?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="cmbProcedure?.AutoCompleteDialogWidth" [AutoCompleteMode]="cmbProcedure?.AutoCompleteMode" [BackColor]="cmbProcedure?.BackColor" [DefinitionName]="cmbProcedure?.ListDefName" [Enabled]="cmbProcedure?.Enabled" [Font]="cmbProcedure?.Font" [ForeColor]="cmbProcedure?.ForeColor" [ListFilterExpression]="cmbProcedure?.ListFilterExpression" [MinSearchLength]="cmbProcedure?.MinSearchLength" [PopupDialogFieldConfig]="cmbProcedure?.PopupDialogFieldConfig" [PopupDialogGridColumns]="cmbProcedure?.PopupDialogGridColumns" [PopupDialogHeight]="cmbProcedure?.PopupDialogHeight" [PopupDialogTitle]="cmbProcedure?.PopupDialogTitle" [PopupDialogWidth]="cmbProcedure?.PopupDialogWidth" [ReadOnly]="cmbProcedure?.ReadOnly" [SearchTimeout]="cmbProcedure?.SearchTimeout" [TabIndex]="cmbProcedure?.TabIndex" [Visible]="cmbProcedure?.Visible" [width]="cmbProcedure?.Width" id="A31738" data-tid="A372470">
+                        </hvl-valuelist-box>
+                    </div>
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 4 / 5 / 4 / 5;" data-tid="A372471">
+                    <label title="Hizmet Grup Bazlı" class="search-panel-label" id="A31739" data-tid="A372472">Hiz. Grup B.:</label>
+                </div>
+                <div style="grid-area: 4 / 6 / 4 / 6;" data-tid="A372473">
+                    <div class="col-sm-12 remove-padding" id="A31740" data-tid="A372474">
+                        <hvl-enum-combobox #Validation [(Value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.procedureGroupState" [BackColor]="cmbState?.BackColor" [DataTypeName]="cmbState?.DataTypeName" [Enabled]="cmbState?.Enabled" [Font]="cmbState?.Font" [ForeColor]="cmbState?.ForeColor" [IncludeOnly]="cmbState?.IncludeOnly" [ReadOnly]="cmbState?.ReadOnly" [ShowClearButton]="cmbState?.ShowClearButton" [SortBy]="cmbState?.SortBy" [TabIndex]="cmbState?.TabIndex" [Visible]="cmbState?.Visible" id="A31741" data-tid="A372475">
+                        </hvl-enum-combobox>
+                    </div>
+                </div>
+                <div style="grid-area: 4 / 7 / 4 / 7;" data-tid="A372476">
+                    <div class="col-sm-12 remove-padding" id="A31742" data-tid="A372477">
+
+                        <dx-tag-box [dataSource]="HizmetGrupEnumArray" [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.procedureGroup" [multiline]="false" displayExpr="description" valueExpr="ordinal" placeholder="Seçiniz" style="max-width:100%!important" [showSelectionControls]="true" height="25" data-tid="A372478"></dx-tag-box>
+                    </div>
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 5 / 5 / 5/ 5;" data-tid="A372479">
+                    <label title="Hizmet SUT Eki" class="search-panel-label" id="A31744" data-tid="A372480">Hiz. Sut E.:</label>
+                </div>
+                <div style="grid-area: 5 / 6 / 5 / 6;" data-tid="A372481">
+                    <div class="col-sm-12 remove-padding" id="A31745" data-tid="A372482">
+                        <hvl-enum-combobox #Validation [(Value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.procedureSUTAppendixState" [BackColor]="cmbState?.BackColor" [DataTypeName]="cmbState?.DataTypeName" [Enabled]="cmbState?.Enabled" [Font]="cmbState?.Font" [ForeColor]="cmbState?.ForeColor" [IncludeOnly]="cmbState?.IncludeOnly" [ReadOnly]="cmbState?.ReadOnly" [ShowClearButton]="cmbState?.ShowClearButton" [SortBy]="cmbState?.SortBy" [TabIndex]="cmbState?.TabIndex" [Visible]="cmbState?.Visible" id="A31746" data-tid="A372483">
+                        </hvl-enum-combobox>
+                    </div>
+                </div>
+                <div style="grid-area: 5 / 7 / 5 / 7;" data-tid="A372484">
+                    <div class="col-sm-12 remove-padding" id="A31747" data-tid="A372485">
+
+                        <dx-tag-box [dataSource]="SUTAppendixEnumArray" [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.procedureSUTAppendix" [multiline]="false" displayExpr="description" valueExpr="ordinal" placeholder="Seçiniz" style="max-width:100%!important" [showSelectionControls]="true" height="25" data-tid="A372486"></dx-tag-box>
+                    </div>
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 6 / 5 / 6 / 5;" data-tid="A372487">
+                    <label class="search-panel-label" id="A31749" data-tid="A372488">İlaç / Sarf:</label>
+                </div>
+                <div style="grid-area: 6 / 6 / 6 / 6;" data-tid="A372489">
+                    <div class="col-sm-12 remove-padding" id="A31750" data-tid="A372490">
+                        <hvl-enum-combobox #Validation [(Value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.materialState" [BackColor]="cmbState?.BackColor" [DataTypeName]="cmbState?.DataTypeName" [Enabled]="cmbState?.Enabled" [Font]="cmbState?.Font" [ForeColor]="cmbState?.ForeColor" [IncludeOnly]="cmbState?.IncludeOnly" [ReadOnly]="cmbState?.ReadOnly" [ShowClearButton]="cmbState?.ShowClearButton" [SortBy]="cmbState?.SortBy" [TabIndex]="cmbState?.TabIndex" [Visible]="cmbState?.Visible" id="A31751" data-tid="A372491">
+                        </hvl-enum-combobox>
+                    </div>
+                </div>
+                <div style="grid-area: 6 / 7 / 6 / 7;" data-tid="A372492">
+                    <div class="col-sm-12 remove-padding" id="A31752" data-tid="A372493">
+                        <hvl-valuelist-box #Validation [(SelectedValue)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.material" [AutoCompleteDialogHeight]="cmbMaterial?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="cmbMaterial?.AutoCompleteDialogWidth" [AutoCompleteMode]="cmbMaterial?.AutoCompleteMode" [BackColor]="cmbMaterial?.BackColor" [DefinitionName]="cmbMaterial?.ListDefName" [Enabled]="cmbMaterial?.Enabled" [Font]="cmbMaterial?.Font" [ForeColor]="cmbMaterial?.ForeColor" [ListFilterExpression]="cmbMaterial?.ListFilterExpression" [MinSearchLength]="cmbMaterial?.MinSearchLength" [PopupDialogFieldConfig]="cmbMaterial?.PopupDialogFieldConfig" [PopupDialogGridColumns]="cmbMaterial?.PopupDialogGridColumns" [PopupDialogHeight]="cmbMaterial?.PopupDialogHeight" [PopupDialogTitle]="cmbMaterial?.PopupDialogTitle" [PopupDialogWidth]="cmbMaterial?.PopupDialogWidth" [ReadOnly]="cmbMaterial?.ReadOnly" [SearchTimeout]="cmbMaterial?.SearchTimeout" [TabIndex]="cmbMaterial?.TabIndex" [Visible]="cmbMaterial?.Visible" [width]="cmbMaterial?.Width" id="A31753" data-tid="A372494">
+                        </hvl-valuelist-box>
+                    </div>
+                </div>
+
+                <!--<div class="grid-column-padding" style="grid-area: 7 / 5 / 7 / 5;">
+        <label class="search-panel-label"  id="A31754">İ/S Grup Bazlı:</label>
+    </div>
+    <div style="grid-area: 7 / 6 / 7 / 6;">
+        <div class="col-sm-12 remove-padding" id="A31755">
+            <hvl-enum-combobox #Validation
+                               [(Value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.materialGroupState"
+                               [BackColor]="cmbState?.BackColor" [DataTypeName]="cmbState?.DataTypeName"
+                               [Enabled]="cmbState?.Enabled" [Font]="cmbState?.Font" [ForeColor]="cmbState?.ForeColor"
+                               [IncludeOnly]="cmbState?.IncludeOnly" [ReadOnly]="cmbState?.ReadOnly"
+                               [ShowClearButton]="cmbState?.ShowClearButton" [SortBy]="cmbState?.SortBy"
+                               [TabIndex]="cmbState?.TabIndex" [Visible]="cmbState?.Visible" id="A31756">
+            </hvl-enum-combobox>
+        </div>
+    </div>
+    <div style="grid-area: 7 / 7 / 7 / 7;">
+        <div class="col-sm-12 remove-padding" id="A31757">
+            <hvl-valuelist-box #Validation
+                               [(SelectedValue)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.materialGroup"
+                               [AutoCompleteDialogHeight]="cmbMaterial?.AutoCompleteDialogHeight"
+                               [AutoCompleteDialogWidth]="cmbMaterial?.AutoCompleteDialogWidth"
+                               [AutoCompleteMode]="cmbMaterial?.AutoCompleteMode" [BackColor]="cmbMaterial?.BackColor"
+                               [DefinitionName]="cmbMaterial?.ListDefName" [Enabled]="cmbMaterial?.Enabled"
+                               [Font]="cmbMaterial?.Font" [ForeColor]="cmbMaterial?.ForeColor"
+                               [ListFilterExpression]="cmbMaterial?.ListFilterExpression"
+                               [MinSearchLength]="cmbMaterial?.MinSearchLength"
+                               [PopupDialogFieldConfig]="cmbMaterial?.PopupDialogFieldConfig"
+                               [PopupDialogGridColumns]="cmbMaterial?.PopupDialogGridColumns"
+                               [PopupDialogHeight]="cmbMaterial?.PopupDialogHeight"
+                               [PopupDialogTitle]="cmbMaterial?.PopupDialogTitle"
+                               [PopupDialogWidth]="cmbMaterial?.PopupDialogWidth" [ReadOnly]="cmbMaterial?.ReadOnly"
+                               [SearchTimeout]="cmbMaterial?.SearchTimeout" [TabIndex]="cmbMaterial?.TabIndex"
+                               [Visible]="cmbMaterial?.Visible" [width]="cmbMaterial?.Width" id="A31758">
+            </hvl-valuelist-box>
+        </div>
+    </div>-->
+
+                <div class="grid-column-padding" style="grid-area: 7 / 5 / 7 / 5;" data-tid="A372495">
+                    <label class="search-panel-label" id="A31754" data-tid="A372496">Fatura Açk.:</label>
+                </div>
+                <div style="grid-area: 7 / 6 / 7 / 6;" data-tid="A372497">
+                    <div class="col-sm-12 remove-padding" id="A31755" data-tid="A372498">
+                        <hvl-enum-combobox #Validation [(Value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.SEPDescriptionState" [BackColor]="cmbState?.BackColor" [DataTypeName]="cmbState?.DataTypeName" [Enabled]="cmbState?.Enabled" [Font]="cmbState?.Font" [ForeColor]="cmbState?.ForeColor" [IncludeOnly]="cmbState?.IncludeOnly" [ReadOnly]="cmbState?.ReadOnly" [ShowClearButton]="cmbState?.ShowClearButton" [SortBy]="cmbState?.SortBy" [TabIndex]="cmbState?.TabIndex" [Visible]="cmbState?.Visible" id="A31756" data-tid="A372499">
+                        </hvl-enum-combobox>
+                    </div>
+                </div>
+                <div style="grid-area: 7 / 7 / 7 / 7;" data-tid="A372500">
+                    <div class="col-sm-12 remove-padding" id="A31757" data-tid="A372501">
+                        <dx-text-box [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.SEPDescription" valueChangeEvent="keyup" [showClearButton]="true" (keypress)="enterSearchKeyPress($event)" id="A31804" data-tid="A372502"></dx-text-box>
+                    </div>
+                </div>
+                <div class="grid-column-padding" style="grid-area: 8 / 5 / 8 / 5;" data-tid="A372503">
+                    <label class="search-panel-label" id="A31786" data-tid="A372504">Kabul Tipi:</label>
+                </div>
+                <div style="grid-area: 8 / 6 / 8 / 8;" data-tid="A372505">
+                    <div class="col-sm-12 remove-padding" id="A31787" data-tid="A372506">
+                        <hvl-enum-combobox #Validation [(Value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.admissionStatus" [BackColor]="cmbAdmissionStatusEnum?.BackColor" [DataTypeName]="cmbAdmissionStatusEnum?.DataTypeName" [Enabled]="cmbAdmissionStatusEnum?.Enabled" [Font]="cmbAdmissionStatusEnum?.Font" [ForeColor]="cmbAdmissionStatusEnum?.ForeColor" [IncludeOnly]="cmbAdmissionStatusEnum?.IncludeOnly" [ReadOnly]="cmbAdmissionStatusEnum?.ReadOnly" [ShowClearButton]="v?.ShowClearButton" [SortBy]="cmbAdmissionStatusEnum?.SortBy" [TabIndex]="cmbAdmissionStatusEnum?.TabIndex" [Visible]="cmbAdmissionStatusEnum?.Visible" id="A31756" data-tid="A372507">
+                        </hvl-enum-combobox>
+                    </div>
+                </div>
+                <div class="grid-column-padding" style="grid-area: 9 / 5 / 9 / 5;" data-tid="A372442">
+                    <label title="Kullanıcı" class="search-panel-label" data-tid="A372443">Kullanıcı:</label>
+                </div>
+                <div style="grid-area: 9 / 6 / 9 / 8;" data-tid="A372444">
+                    <div class="col-sm-12 remove-padding" data-tid="A372445">
+                        <dx-select-box [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.InvoiceUser" searchEnabled="true" [dataSource]="invoiceUserArray" displayExpr="Name" valueExpr="ObjectID" placeholder="Seçiniz" id="A30979" height="25" data-tid="A372446"></dx-select-box>
+                    </div>
+                </div>
+                <div class="grid-column-padding" style="grid-area: 10 / 5 / 10 / 5;" data-tid="A372508">
+                    <label class="search-panel-label" id="A31786" data-tid="A372509">Özel Durumlar:</label>
+                </div>
+                <div style="grid-area: 10 / 6 / 10 / 8;" data-tid="A372510">
+                    <div class="col-sm-12 remove-padding" id="A31787" data-tid="A372511">
+                        <dx-text-box [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.specialCase" data-tid="A372512">
+                        </dx-text-box>
+                    </div>
+                </div>
+                <div class="grid-column-padding" style="grid-area: 11 / 5 / 11 / 5;" data-tid="A372513">
+                    <label class="search-panel-label" id="A31759" data-tid="A372514">Arama Türü:</label>
+                </div>
+                <div style="grid-area: 11 / 6 / 11 / 8;" data-tid="A372515">
+                    <div class="col-sm-12 remove-padding" id="A31760" data-tid="A372516">
+                        <hvl-enum-combobox #Validation (ValueChange)="PayerTypeEnumValueChanged($event)" [(Value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.InvoiceSearchType" [BackColor]="cmbPayerTypeEnum?.BackColor" [DataTypeName]="cmbPayerTypeEnum?.DataTypeName" [Enabled]="cmbPayerTypeEnum?.Enabled" [Font]="cmbPayerTypeEnum?.Font" [ForeColor]="cmbPayerTypeEnum?.ForeColor" [IncludeOnly]="cmbPayerTypeEnum?.IncludeOnly" [ReadOnly]="cmbPayerTypeEnum?.ReadOnly" [ShowClearButton]="cmbPayerTypeEnum?.ShowClearButton" [SortBy]="cmbPayerTypeEnum?.SortBy" [TabIndex]="cmbPayerTypeEnum?.TabIndex" [Visible]="cmbPayerTypeEnum?.Visible" id="A31761" data-tid="A372517">
+                        </hvl-enum-combobox>
+                    </div>
+                </div>
+
+                <div style="grid-area: 12 / 5 / 14 / 9;" data-tid="A372518">
+                    <div class="col-sm-12" id="A31762" style="padding-right:0" data-tid="A372519">
+                        <user-search-criteria PageName="InvoiceSEPSearchForm" [SearchViewModel]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria" (ViewModelLoaded)="userSearchModelLoaded($event)" [DefaultButtonVisible]="false" PlaceHolder="Kayıtlı Sorgular" AutoCompleteClasses="col-sm-6 remove-padding" ButtonGroupClasses="col-sm-12 remove-padding" i18n-PlaceHolder="@@M17434" id="A31763" data-tid="A372520">
+                        </user-search-criteria>
+                    </div>
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 1 / 8 / 1 / 8;" data-tid="A372521">
+                    <label class="search-panel-label" id="A31765" data-tid="A372522">Bağlı Takip:</label>
+                </div>
+                <div style="grid-area: 1 / 9 / 1 / 9;" data-tid="A372523">
+                    <div class="col-sm-12 remove-padding" id="A31766" data-tid="A372524">
+                        <hvl-enum-combobox #Validation [(Value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.bagliTakip" [BackColor]="cmbState?.BackColor" [DataTypeName]="cmbState?.DataTypeName" [Enabled]="cmbState?.Enabled" [Font]="cmbState?.Font" [ForeColor]="cmbState?.ForeColor" [IncludeOnly]="cmbState?.IncludeOnly" [ReadOnly]="cmbState?.ReadOnly" [ShowClearButton]="cmbState?.ShowClearButton" [SortBy]="cmbState?.SortBy" [TabIndex]="cmbState?.TabIndex" [Visible]="cmbState?.Visible" id="A31767" data-tid="A372525">
+                        </hvl-enum-combobox>
+                    </div>
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 2 / 8 / 2 / 8;" data-tid="A372526">
+                    <label class="search-panel-label" id="A31771" data-tid="A372527">Paket İşlem:</label>
+                </div>
+                <div style="grid-area: 2 / 9 / 2 / 9;" data-tid="A372528">
+                    <div class="col-sm-12 remove-padding" id="A31772" data-tid="A372529">
+                        <hvl-enum-combobox #Validation [(Value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.inPatientPackage" [BackColor]="cmbState?.BackColor" [DataTypeName]="cmbState?.DataTypeName" [Enabled]="cmbState?.Enabled" [Font]="cmbState?.Font" [ForeColor]="cmbState?.ForeColor" [IncludeOnly]="cmbState?.IncludeOnly" [ReadOnly]="cmbState?.ReadOnly" [ShowClearButton]="cmbState?.ShowClearButton" [SortBy]="cmbState?.SortBy" [TabIndex]="cmbState?.TabIndex" [Visible]="cmbState?.Visible" id="A31773" data-tid="A372530">
+                        </hvl-enum-combobox>
+                    </div>
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 3 / 8 / 3 / 8;" data-tid="A372531">
+                    <label title="Otomatik Fatura Engeli" class="search-panel-label" id="A31777" data-tid="A372532">Oto.Fat.Engeli:</label>
+                </div>
+                <div style="grid-area: 3 / 9 / 3 / 9;" data-tid="A372533">
+                    <div class="col-sm-12 remove-padding" id="A31778" data-tid="A372534">
+                        <hvl-enum-combobox #Validation [(Value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.bannedInvoice" [BackColor]="cmbState?.BackColor" [DataTypeName]="cmbState?.DataTypeName" [Enabled]="cmbState?.Enabled" [Font]="cmbState?.Font" [ForeColor]="cmbState?.ForeColor" [IncludeOnly]="cmbState?.IncludeOnly" [ReadOnly]="cmbState?.ReadOnly" [ShowClearButton]="cmbState?.ShowClearButton" [SortBy]="cmbState?.SortBy" [TabIndex]="cmbState?.TabIndex" [Visible]="cmbState?.Visible" id="A31779" data-tid="A372535">
+                        </hvl-enum-combobox>
+                    </div>
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 4 / 8 / 4 / 8;" data-tid="A372536">
+                    <label class="search-panel-label" id="A31780" data-tid="A372537">Muayene:</label>
+                </div>
+                <div style="grid-area: 4 / 9 / 4 / 9;" data-tid="A372538">
+                    <div class="col-sm-12 remove-padding" id="A31781" data-tid="A372539">
+                        <hvl-enum-combobox #Validation [(Value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.examination" [BackColor]="cmbState?.BackColor" [DataTypeName]="cmbState?.DataTypeName" [Enabled]="cmbState?.Enabled" [Font]="cmbState?.Font" [ForeColor]="cmbState?.ForeColor" [IncludeOnly]="cmbState?.IncludeOnly" [ReadOnly]="cmbState?.ReadOnly" [ShowClearButton]="cmbState?.ShowClearButton" [SortBy]="cmbState?.SortBy" [TabIndex]="cmbState?.TabIndex" [Visible]="cmbState?.Visible" id="A31782" data-tid="A372540">
+                        </hvl-enum-combobox>
+                    </div>
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 5 / 8 / 5 / 8;" data-tid="A372541">
+                    <label class="search-panel-label" id="A31783" data-tid="A372542">Fatura İptali:</label>
+                </div>
+                <div style="grid-area: 5 / 9 / 5 / 9;" data-tid="A372543">
+                    <div class="col-sm-12 remove-padding" id="A31784" data-tid="A372544">
+                        <hvl-enum-combobox #Validation [(Value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.invoiceCancel" [BackColor]="cmbState?.BackColor" [DataTypeName]="cmbState?.DataTypeName" [Enabled]="cmbState?.Enabled" [Font]="cmbState?.Font" [ForeColor]="cmbState?.ForeColor" [IncludeOnly]="cmbState?.IncludeOnly" [ReadOnly]="cmbState?.ReadOnly" [ShowClearButton]="cmbState?.ShowClearButton" [SortBy]="cmbState?.SortBy" [TabIndex]="cmbState?.TabIndex" [Visible]="cmbState?.Visible" id="A31785" data-tid="A372545">
+                        </hvl-enum-combobox>
+                    </div>
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 6 / 8 / 6 / 8;" data-tid="A372546">
+                    <label class="search-panel-label" id="A31786" data-tid="A372547">Yatan Statüsü:</label>
+                </div>
+                <div style="grid-area: 6 / 9 / 6 / 9;" data-tid="A372548">
+                    <div class="col-sm-12 remove-padding" id="A31787" data-tid="A372549">
+                        <hvl-enum-combobox #Validation [(Value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.inPatientStatus" [BackColor]="cmbInPatientStatus?.BackColor" [DataTypeName]="cmbInPatientStatus?.DataTypeName" [Enabled]="cmbInPatientStatus?.Enabled" [Font]="cmbInPatientStatus?.Font" [ForeColor]="cmbInPatientStatus?.ForeColor" [IncludeOnly]="cmbInPatientStatus?.IncludeOnly" [ReadOnly]="cmbInPatientStatus?.ReadOnly" [ShowClearButton]="cmbInPatientStatus?.ShowClearButton" [SortBy]="cmbInPatientStatus?.SortBy" [TabIndex]="cmbInPatientStatus?.TabIndex" [Visible]="cmbInPatientStatus?.Visible" id="A31788" data-tid="A372550">
+                        </hvl-enum-combobox>
+                    </div>
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 7 / 8 / 7 / 8;" data-tid="A372551">
+                    <label class="search-panel-label" id="A31783" data-tid="A372552">Epikriz:</label>
+                </div>
+                <div style="grid-area: 7 / 9 / 7 / 9;" data-tid="A372553">
+                    <div class="col-sm-12 remove-padding" id="A31784" data-tid="A372554">
+                        <hvl-enum-combobox #Validation [(Value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.epicrisis" [BackColor]="cmbState?.BackColor" [DataTypeName]="cmbState?.DataTypeName" [Enabled]="cmbState?.Enabled" [Font]="cmbState?.Font" [ForeColor]="cmbState?.ForeColor" [IncludeOnly]="cmbState?.IncludeOnly" [ReadOnly]="cmbState?.ReadOnly" [ShowClearButton]="cmbState?.ShowClearButton" [SortBy]="cmbState?.SortBy" [TabIndex]="cmbState?.TabIndex" [Visible]="cmbState?.Visible" id="A31785" data-tid="A372555">
+                        </hvl-enum-combobox>
+                    </div>
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 8 / 8 / 8 / 8;" data-tid="A372556">
+                    <label class="search-panel-label" id="A31786" data-tid="A372557">İncelendi:</label>
+                </div>
+                <div style="grid-area: 8 / 9 / 8 / 9;" data-tid="A372558">
+                    <div class="col-sm-12 remove-padding" id="A31787" data-tid="A372559">
+                        <hvl-enum-combobox #Validation [(Value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.investigation" [BackColor]="cmbEvetHayirDurumEnum?.BackColor" [DataTypeName]="cmbEvetHayirDurumEnum?.DataTypeName" [Enabled]="cmbEvetHayirDurumEnum?.Enabled" [Font]="cmbEvetHayirDurumEnum?.Font" [ForeColor]="cmbEvetHayirDurumEnum?.ForeColor" [IncludeOnly]="cmbEvetHayirDurumEnum?.IncludeOnly" [ReadOnly]="cmbEvetHayirDurumEnum?.ReadOnly" [ShowClearButton]="cmbEvetHayirDurumEnum?.ShowClearButton" [SortBy]="cmbEvetHayirDurumEnum?.SortBy" [TabIndex]="cmbEvetHayirDurumEnum?.TabIndex" [Visible]="cmbEvetHayirDurumEnum?.Visible" id="A31788" data-tid="A372560"></hvl-enum-combobox>
+                    </div>
+
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 9 / 8 / 9 / 8;" data-tid="A372561">
+                    <label class="search-panel-label" id="A31786" data-tid="A372562">Kontrol Edildi:</label>
+                </div>
+                <div style="grid-area: 9 / 9 / 9 / 9;" data-tid="A372563">
+                    <div class="col-sm-12 remove-padding" id="A31787" data-tid="A372564">
+                        <hvl-enum-combobox #Validation [(Value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.checkedValue" [BackColor]="cmbEvetHayirDurumEnum?.BackColor" [DataTypeName]="cmbEvetHayirDurumEnum?.DataTypeName" [Enabled]="cmbEvetHayirDurumEnum?.Enabled" [Font]="cmbEvetHayirDurumEnum?.Font" [ForeColor]="cmbEvetHayirDurumEnum?.ForeColor" [IncludeOnly]="cmbEvetHayirDurumEnum?.IncludeOnly" [ReadOnly]="cmbEvetHayirDurumEnum?.ReadOnly" [ShowClearButton]="cmbEvetHayirDurumEnum?.ShowClearButton" [SortBy]="cmbEvetHayirDurumEnum?.SortBy" [TabIndex]="cmbEvetHayirDurumEnum?.TabIndex" [Visible]="cmbEvetHayirDurumEnum?.Visible" id="A31788" data-tid="A372565"></hvl-enum-combobox>
+                    </div>
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 10 / 8 / 10 / 8;" data-tid="A372566">
+                    <label class="search-panel-label" id="A31783" data-tid="A372567">H.Fiyat Güncel:</label>
+                </div>
+                <div style="grid-area: 10 / 9 / 10 / 9;" data-tid="A372568">
+                    <div class="col-sm-12 remove-padding" id="A31784" data-tid="A372569">
+                        <hvl-enum-combobox #Validation [(Value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.accTrxUnitPriceUpdate" [BackColor]="cmbState?.BackColor" [DataTypeName]="cmbState?.DataTypeName" [Enabled]="cmbState?.Enabled" [Font]="cmbState?.Font" [ForeColor]="cmbState?.ForeColor" [IncludeOnly]="cmbState?.IncludeOnly" [ReadOnly]="cmbState?.ReadOnly" [ShowClearButton]="cmbState?.ShowClearButton" [SortBy]="cmbState?.SortBy" [TabIndex]="cmbState?.TabIndex" [Visible]="cmbState?.Visible" id="A31785" data-tid="A372570">
+                        </hvl-enum-combobox>
+                    </div>
+                </div>
+                <div class="grid-column-padding" style="grid-area: 11 / 8 / 11 / 8;" data-tid="A372571">
+                    <label title="Muayene Sonucu" class="search-panel-label" id="A31720" data-tid="A372572">Muayene Snc.:</label>
+                </div>
+                <div style="grid-area: 11 / 9 / 11 / 9;" data-tid="A372573">
+                    <div class="col-sm-12 remove-padding" id="A31721" data-tid="A372574">
+                        <hvl-enum-combobox #Validation [(Value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.treatmentResult" [BackColor]="cmbState?.BackColor" [DataTypeName]="cmbState?.DataTypeName" [Enabled]="cmbState?.Enabled" [Font]="cmbState?.Font" [ForeColor]="cmbState?.ForeColor" [IncludeOnly]="cmbState?.IncludeOnly" [ReadOnly]="cmbState?.ReadOnly" [ShowClearButton]="cmbState?.ShowClearButton" [SortBy]="cmbState?.SortBy" [TabIndex]="cmbState?.TabIndex" [Visible]="cmbState?.Visible" id="A31722" data-tid="A372575">
+                        </hvl-enum-combobox>
+                    </div>
+                </div>
+                <div class="grid-column-padding" style="grid-area: 12 / 8 / 12 / 8;" data-tid="A372576">
+                    <label title="Fatura Engeli" class="search-panel-label" id="A31720" data-tid="A372577">Fatura Engeli:</label>
+                </div>
+                <div style="grid-area: 12 / 9 / 12 / 9;" data-tid="A372578">
+                    <div class="col-sm-12 remove-padding" id="A31721" data-tid="A372579">
+                        <hvl-enum-combobox #Validation [(Value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.invoiceBlockingState" [BackColor]="cmbState?.BackColor" [DataTypeName]="cmbState?.DataTypeName" [Enabled]="cmbState?.Enabled" [Font]="cmbState?.Font" [ForeColor]="cmbState?.ForeColor" [IncludeOnly]="cmbState?.IncludeOnly" [ReadOnly]="cmbState?.ReadOnly" [ShowClearButton]="cmbState?.ShowClearButton" [SortBy]="cmbState?.SortBy" [TabIndex]="cmbState?.TabIndex" [Visible]="cmbState?.Visible" id="A31722" data-tid="A372580">
+                        </hvl-enum-combobox>
+                    </div>
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 1 / 10 / 1 / 10;" data-tid="A372581">
+                    <label class="search-panel-label" id="A31790" data-tid="A372582">Adı:</label>
+                </div>
+                <div style="grid-area: 1 / 11 / 1 / 11;" data-tid="A372583">
+                    <div class="col-sm-12 remove-padding" id="A31791" data-tid="A372584">
+                        <dx-text-box [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.patientName" valueChangeEvent="keyup" [showClearButton]="true" (keypress)="enterSearchKeyPress($event)" id="A31792" data-tid="A372585"></dx-text-box>
+                    </div>
+                </div>
+
+
+                <div class="grid-column-padding" style="grid-area: 2 / 10 / 2 / 10;" data-tid="A372586">
+                    <label class="search-panel-label" id="A31793" data-tid="A372587">Soyadı:</label>
+                </div>
+                <div style="grid-area: 2 / 11 / 2 / 11;" data-tid="A372588">
+                    <div class="col-sm-12 remove-padding" id="A31794" data-tid="A372589">
+                        <dx-text-box [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.patientSurname" valueChangeEvent="keyup" [showClearButton]="true" (keypress)="enterSearchKeyPress($event)" id="A31795" data-tid="A372590"></dx-text-box>
+                    </div>
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 3 / 10 / 3 / 10;" data-tid="A372591">
+                    <label class="search-panel-label" id="A31796" data-tid="A372592">TC:</label>
+                </div>
+                <div style="grid-area: 3 / 11 / 3 / 11;" data-tid="A372593">
+                    <div class="col-sm-12 remove-padding" id="A31797" data-tid="A372594">
+                        <dx-text-box [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.patientUniqueRefNo" valueChangeEvent="keyup" [showClearButton]="true" (keypress)="enterSearchKeyPress($event)" id="A31798" data-tid="A372595"></dx-text-box>
+                    </div>
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 4 / 10 / 4 / 10;" data-tid="A372596">
+                    <label class="search-panel-label" id="A31799" data-tid="A372597">Başvuru:</label>
+                </div>
+                <div style="grid-area: 4 / 11 / 4 / 11;" data-tid="A372598">
+                    <div class="col-sm-12 remove-padding" id="A31800" data-tid="A372599">
+                        <dx-text-box [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.basvuruNo" valueChangeEvent="keyup" [showClearButton]="true" (keypress)="enterSearchKeyPress($event)" id="A31801" data-tid="A372600"></dx-text-box>
+                    </div>
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 5 / 10 / 5 / 10;" data-tid="A372601">
+                    <label class="search-panel-label" id="A31802" data-tid="A372602">Takip:</label>
+                </div>
+                <div style="grid-area: 5 / 11 / 5 / 11;" data-tid="A372603">
+                    <div class="col-sm-12 remove-padding" id="A31803" data-tid="A372604">
+                        <dx-text-box [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.takipNo" valueChangeEvent="keyup" [showClearButton]="true" (keypress)="enterSearchKeyPress($event)" id="A31804" data-tid="A372605"></dx-text-box>
+                    </div>
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 6 / 10 / 6 / 10;" data-tid="A372606">
+                    <label class="search-panel-label" id="A31805" data-tid="A372607">Kabul:</label>
+                </div>
+                <div style="grid-area: 6 / 11 / 6 / 11;" data-tid="A372608">
+                    <div class="col-sm-12 remove-padding" id="A31806" data-tid="A372609">
+                        <dx-text-box [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.patientAdmissionNo" valueChangeEvent="keyup" [showClearButton]="true" (keypress)="enterSearchKeyPress($event)" id="A31807" data-tid="A372610"></dx-text-box>
+                    </div>
+                </div>
+
+                <div class="grid-column-padding" style="grid-area: 7 / 10 / 7 / 10;" data-tid="A372611">
+                    <label class="search-panel-label" id="A31805" data-tid="A372612">Cnsyt:</label>
+                </div>
+                <div style="grid-area: 7 / 11 / 7 / 11;" data-tid="A372613">
+                    <div class="col-sm-12 remove-padding" id="A31806" data-tid="A372614">
+                        <hvl-valuelist-box #Validation [(SelectedValue)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.sex" [AutoCompleteDialogHeight]="cmbSex?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="cmbSex?.AutoCompleteDialogWidth" [AutoCompleteMode]="cmbSex?.AutoCompleteMode" [BackColor]="cmbSex?.BackColor" [DefinitionName]="cmbSex?.ListDefName" [Enabled]="cmbSex?.Enabled" [Font]="cmbSex?.Font" [ForeColor]="cmbSex?.ForeColor" [ListFilterExpression]="cmbSex?.ListFilterExpression" [MinSearchLength]="cmbSex?.MinSearchLength" [PopupDialogFieldConfig]="cmbSex?.PopupDialogFieldConfig" [PopupDialogGridColumns]="cmbSex?.PopupDialogGridColumns" [PopupDialogHeight]="cmbSex?.PopupDialogHeight" [PopupDialogTitle]="cmbSex?.PopupDialogTitle" [PopupDialogWidth]="cmbSex?.PopupDialogWidth" [ReadOnly]="cmbSex?.ReadOnly" [SearchTimeout]="cmbSex?.SearchTimeout" [TabIndex]="cmbSex?.TabIndex" [Visible]="cmbSex?.Visible" [width]="cmbSex?.Width" id="A31704" data-tid="A372615"></hvl-valuelist-box>
+                    </div>
+                </div>
+
+                <div style="grid-area: 13 / 8 / 13 / 11;" data-tid="A372616">
+                    <div class="col-sm-7 remove-padding" style="border:1px solid #abe7ed;float:right;" id="A31810" data-tid="A372617">
+                        <dx-radio-group [items]="tabOpenType" [(value)]="invoiceSEPSearchFormModel.InvoiceSEPSearchCriteria.tabOpenType" layout="horizontal" id="A31811" data-tid="A372618">
+                        </dx-radio-group>
+                    </div>
+                </div>
+
+                <div style="grid-area: 13 / 11 / 14 / 11;" data-tid="A372619">
+                    <div class="row col-sm-12 remove-padding" style="text-align:right; padding-top:10px;" id="A31812" data-tid="A372620">
+                        <dx-button type="default" icon="fa fa-bars" text="Listele" (onClick)="btnSearchClicked(false)" i18n-text="@@M27337" id="A31813" data-tid="A372621"></dx-button>
+                    </div>
+                </div>
+
+            </div>
+        </dxi-item>
+    </dx-accordion>
+
+    <hvl-tab-panel [Tabs]="ResultTabItems" id="A31814" style="display:block" [style.height.%]="searchTabHeight" data-tid="A372622">
+    </hvl-tab-panel>
+
+</div>

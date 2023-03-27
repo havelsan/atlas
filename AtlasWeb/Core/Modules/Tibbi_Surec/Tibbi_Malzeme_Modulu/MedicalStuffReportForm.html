@@ -1,0 +1,576 @@
+﻿<form id="MedicalStuffReportForm" class="form-horizontal" role="form" data-tid="A365494"></form>
+<dx-scroll-view #scrollView id="scrollview" [scrollByContent]="true" [scrollByThumb]="true" [showScrollbar]="always" data-tid="A365495">
+
+
+    <div class="row margin-top-10" id="A28250" data-tid="A365496">
+        <div class="col-md-6 col-sm-10" id="A28251" data-tid="A365497">
+            <patient-demographics-form [actionId]="demographicEpisodeAction" id="A28252" data-tid="A365498">
+            </patient-demographics-form>
+        </div>
+        <div class="col-md-6 col-sm-11" id="A28253" data-tid="A365499">
+            <ReportDiagnosisForm [EpisodeAction]="medicalStuffReportFormViewModel?._MedicalStuffReport?.ObjectID" [Episode]="medicalStuffReportFormViewModel?._MedicalStuffReport?.Episode" [IsNew]="medicalStuffReportFormViewModel?._MedicalStuffReport?.IsNew" (sendDiagnosisViewModel)="comingViewModel($event)" id="A28254" data-tid="A365500">
+            </ReportDiagnosisForm>
+        </div>
+    </div>
+    <div class="row" style="background-color: #f0f8ff;" data-tid="A365501">
+        <div class="col-md-7" data-tid="A365502">
+            <div class="row" data-tid="A365503">
+                <div class="col-md-3" data-tid="A365504">
+                    <b data-tid="A365505">
+                        Başlangıç Tarihi
+                    </b>
+                </div>
+                <div class="col-md-1" data-tid="A365506">
+                    <b data-tid="A365507">
+                        Süresi
+                    </b>
+                </div>
+                <div class="col-md-2" data-tid="A365508">
+                    <b data-tid="A365509">
+                        Süre Türü
+                    </b>
+                </div>
+                <div class="col-md-3" data-tid="A365510">
+                    <b data-tid="A365511">
+                        Bitiş Tarihi
+                    </b>
+                </div>
+                <div class="col-md-3" data-tid="A365512">
+                    <b data-tid="A365513">
+                        Süre Seçimi
+                    </b>
+                </div>
+            </div>
+            <div class="row" data-tid="A365514">
+                <div class="col-md-3" data-tid="A365515">
+                    <hvl-date-picker #Validation (ValueChange)="onStartDateChanged($event)" [BackColor]="StartDate?.BackColor" [CustomFormat]="StartDate?.CustomFormat" [Enabled]="StartDate?.Enabled" [Font]="StartDate?.Font" [ForeColor]="StartDate?.ForeColor" [Format]="StartDate?.Format" [Max]="StartDate?.Max" [Min]="StartDate?.Min" [ReadOnly]="StartDate?.ReadOnly" [Required]="StartDate?.Required" [TabIndex]="StartDate?.TabIndex" [Value]="medicalStuffReportFormViewModel?._MedicalStuffReport?.StartDate" [Visible]="StartDate?.Visible" id="A28262" data-tid="A365516"></hvl-date-picker>
+                </div>
+                <div class="col-md-1" data-tid="A365517">
+                    <dx-number-box [(value)]="medicalStuffReportFormViewModel._MedicalStuffReport.Duration" [max]="999" style="text-align:center;" id="A28265" data-tid="A365518"></dx-number-box>
+                </div>
+                <div class="col-md-2" data-tid="A365519">
+                    <hvl-enum-combobox #Validation (ValueChange)="cmbRaporSureTuruChanged($event)" [BackColor]="cmbRaporSureTuru?.BackColor" [DataTypeName]="cmbRaporSureTuru?.DataTypeName" [Enabled]="cmbRaporSureTuru?.Enabled" [Font]="cmbRaporSureTuru?.Font" [ForeColor]="cmbRaporSureTuru?.ForeColor" [IncludeOnly]="cmbRaporSureTuru?.IncludeOnly" [ReadOnly]="cmbRaporSureTuru?.ReadOnly" [ShowClearButton]="cmbRaporSureTuru?.ShowClearButton" [SortBy]="cmbRaporSureTuru?.SortBy" [TabIndex]="cmbRaporSureTuru?.TabIndex" [Value]="medicalStuffReportFormViewModel?._MedicalStuffReport?.DurationType" [Visible]="cmbRaporSureTuru?.Visible" id="A28268" data-tid="A365520"></hvl-enum-combobox>
+                </div>
+                <div class="col-md-3" data-tid="A365521">
+                    <hvl-date-picker #Validation (ValueChange)="onEndDateChanged($event)" [BackColor]="EndDate?.BackColor" [CustomFormat]="EndDate?.CustomFormat" [Enabled]="EndDate?.Enabled" [Font]="EndDate?.Font" [ForeColor]="EndDate?.ForeColor" [Format]="EndDate?.Format" [Max]="EndDate?.Max" [Min]="EndDate?.Min" [ReadOnly]="EndDate?.ReadOnly" [Required]="EndDate?.Required" [TabIndex]="EndDate?.TabIndex" [Value]="medicalStuffReportFormViewModel?._MedicalStuffReport?.EndDate" [Visible]="EndDate?.Visible" id="A28271" data-tid="A365522"></hvl-date-picker>
+                </div>
+                <div class="col-md-3" data-tid="A365523">
+                    <dx-select-box [dataSource]="ReportDurationComboItems" [disabled]="sended" (onItemClick)="selectReportDuration($event)" displayExpr="value" style="margin-left:0px;" data-tid="A365524">
+                    </dx-select-box>
+                </div>
+            </div>
+            <div class="row" data-tid="A365525">
+                <div class="col-md-6" id="A28291" data-tid="A365526">
+                    <label class="control-label" id="A28292" data-tid="A365527">
+                        Rapor Numarası
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onReportNoChanged($event)" [BackColor]="ReportNo?.BackColor" [CharacterCasing]="ReportNo?.CharacterCasing" [Enabled]="ReportNo?.Enabled" [Font]="ReportNo?.Font" [ForeColor]="ReportNo?.ForeColor" [height]="ReportNo?.Height" [InputFormat]="ReportNo?.InputFormat" [InputTurkishCharacter]="ReportNo?.InputTurkishCharacter" [IsNonNumeric]="ReportNo?.IsNonNumeric" [MultiLine]="ReportNo?.Multiline" [ReadOnly]="ReportNo?.ReadOnly" [Required]="ReportNo?.Required" [TabIndex]="ReportNo?.TabIndex" [TextAlign]="ReportNo?.TextAlign" [Text]="medicalStuffReportFormViewModel?._MedicalStuffReport?.ReportNo" [Visible]="ReportNo?.Visible" id="A28293" data-tid="A365528"></hvl-text-box>
+                </div>
+                <div class="col-md-6" id="A28294" data-tid="A365529">
+                    <label class="control-label" id="A28295" data-tid="A365530">Rapor Takip No</label>
+                    <hvl-text-box #Validation (TextChange)="onRaporTakipNoChanged($event)" [BackColor]="RaporTakipNo?.BackColor" [CharacterCasing]="RaporTakipNo?.CharacterCasing" [Enabled]="RaporTakipNo?.Enabled" [Font]="RaporTakipNo?.Font" [ForeColor]="RaporTakipNo?.ForeColor" [height]="RaporTakipNo?.Height" [InputFormat]="RaporTakipNo?.InputFormat" [InputTurkishCharacter]="RaporTakipNo?.InputTurkishCharacter" [IsNonNumeric]="RaporTakipNo?.IsNonNumeric" [MultiLine]="RaporTakipNo?.Multiline" [ReadOnly]="RaporTakipNo?.ReadOnly" [Required]="RaporTakipNo?.Required" [TabIndex]="RaporTakipNo?.TabIndex" [TextAlign]="RaporTakipNo?.TextAlign" [Text]="medicalStuffReportFormViewModel?._MedicalStuffReport?.RaporTakipNo" [Visible]="RaporTakipNo?.Visible" id="A28296" data-tid="A365531"></hvl-text-box>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5" *ngIf="medicalStuffReportFormViewModel?._MedicalStuffReport?.RaporTakipNo == null || medicalStuffReportFormViewModel?._MedicalStuffReport?.RaporTakipNo == ''" data-tid="A365532">
+            <div class="row" data-tid="A365533">
+                <div class="col-md-12" data-tid="A365534">
+                    <div class="row" data-tid="A365535">
+                        <div class="col-md-12" data-tid="A365536">
+                            <b data-tid="A365537">
+                                Kullanıcı Şablonları
+                            </b>
+                        </div>
+                    </div>
+                    <div class="row" data-tid="A365538">
+                        <div class="col-md-8" data-tid="A365539">
+                            <dx-select-box #TemplateCombo [dataSource]="medicalStuffReportFormViewModel.userTemplateList" (onItemClick)="SelectUserTemplate($event)" noDataText="Kullanıcı Şablonu Bulunamadı!" displayExpr="Description" searchEnabled="true" searchMode="contains" valueExpr="ObjectID" data-tid="A365540">
+                            </dx-select-box>
+                        </div>
+                        <div class="col-md-2" style="text-align: center" data-tid="A365541">
+                            <dx-button type="default" *ngIf="medicalStuffReportFormViewModel.selectedUserTemplate != null" (onClick)="btnClearUserTemplate_Click()" text="Temizle" style="margin-left:0px;" data-tid="A365542">
+                            </dx-button>
+                        </div>
+                        <div class="col-md-2" data-tid="A365543">
+                            <dx-button type="danger" *ngIf="medicalStuffReportFormViewModel.selectedUserTemplate != nulll" (onClick)="btnDeleteSelectedUserTemplate_Click()" text="Sil" style="margin-left:0px;" data-tid="A365544">
+                            </dx-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="padding-top:5px" data-tid="A365545">
+                <div class="col-md-9" *ngIf="!medicalStuffReportFormViewModel._MedicalStuffReport?.IsNew" data-tid="A365546">
+
+                    <dx-text-box [(value)]="userTemplateName" placeholder="Eklenecek Şablon Adı" id="A30432" data-tid="A365547">
+                    </dx-text-box>
+                </div>
+                <div class="col-md-3" *ngIf="!medicalStuffReportFormViewModel._MedicalStuffReport?.IsNew" data-tid="A365548">
+
+                    <dx-button type="success" [disabled]="sended" (onClick)="btnAddUserTemplate_Click()" text="Şablon Oluştur" style="margin-left:0px;" data-tid="A365549"></dx-button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br id="A28285" data-tid="A365550" />
+
+    <div class="row padding-top-10" id="A28286" data-tid="A365551">
+        <div class="col-md-12" id="A28288" style="padding-top:5px" data-tid="A365552">
+            <label class="control-label" id="A28289" data-tid="A365553">Tıbbi Malzeme Listesi</label>
+            <hvl-list-box #Validation IsOnPopup="false" (SelectedObjectChange)="selectedMedicalStuffChanged($event)" [AutoCompleteDialogHeight]="MedicalStuffDef?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="MedicalStuffDef?.AutoCompleteDialogWidth" [AutoCompleteMode]="MedicalStuffDef?.AutoCompleteMode" [BackColor]="MedicalStuffDef?.BackColor" [DefinitionName]="MedicalStuffDef?.ListDefName" [DisplayExpressionsCache]="medicalStuffReportFormViewModel?.ListDefDisplayExpressions" [Enabled]="MedicalStuffDef?.Enabled" [Font]="MedicalStuffDef?.Font" [ForeColor]="MedicalStuffDef?.ForeColor" [ListFilterExpression]="MedicalStuffDef?.ListFilterExpression" [MinSearchLength]="MedicalStuffDef?.MinSearchLength" [PopupDialogFieldConfig]="MedicalStuffDef?.PopupDialogFieldConfig" [PopupDialogGridColumns]="MedicalStuffDef?.PopupDialogGridColumns" [PopupDialogHeight]="MedicalStuffDef?.PopupDialogHeight" [PopupDialogTitle]="MedicalStuffDef?.PopupDialogTitle" [PopupDialogWidth]="MedicalStuffDef?.PopupDialogWidth" [ReadOnly]="MedicalStuffDef?.ReadOnly" [SearchMode]="MedicalStuffDef?.SearchMode" [SearchTimeout]="MedicalStuffDef?.SearchTimeout" [TabIndex]="MedicalStuffDef?.TabIndex" [Visible]="MedicalStuffDef?.Visible" [width]="MedicalStuffDef?.Width" id="A28290" data-tid="A365554"></hvl-list-box>
+        </div>
+    </div>
+    <div class="row" data-tid="A365555">
+        <div class="col-md-12" id="A28297" style="padding-top:5px" data-tid="A365556">
+            <!--<hvl-datagrid [AllowUserToAddRows]="false" [CancelByDeleteButton]="true" [AllowUserToDeleteRows]="ReadOnly != true" [Columns]="gridMedulaStuffColumns" [dataSource]="medicalStuffReportFormViewModel?.MedicalStuffGridGridList" [height]="100" id="A28298">
+                            </hvl-datagrid>-->
+            <dx-data-grid height="95%" [dataSource]="medicalStuffReportFormViewModel?.MedicalStuffGridGridList" [columns]='medicalStuffColumns' id="A28704" [editing]="{allowDeleting: true}" (onRowRemoving)="onMedicalStuffRemoving($event)" data-tid="A365557">
+                <div *dxTemplate="let row of 'medicalStuffCodeTemplate'" data-tid="A365558">
+                    <dx-text-box [readOnly]="true" [(value)]="row.data.MedicalStuffDef.Code" data-tid="A365559">
+                    </dx-text-box>
+                </div>
+                <div *dxTemplate="let row of 'medicalStuffNameTemplate'" data-tid="A365560">
+                    <dx-text-box [readOnly]="true" [(value)]="row.data.MedicalStuffDef.Name" data-tid="A365561">
+                    </dx-text-box>
+                </div>
+                <div *dxTemplate="let row of 'medicalStuffGroupTemplate'" data-tid="A365562">
+                    <hvl-list-box IsOnPopup="false" [ReadOnly]="MedicalStuffGroup?.ReadOnly" [AutoCompleteDialogHeight]="MedicalStuffGroup?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="MedicalStuffGroup?.AutoCompleteDialogWidth" [AutoCompleteMode]="MedicalStuffGroup?.AutoCompleteMode" [(SelectedObject)]="row.data.MedicalStuffGroup" [DefinitionName]="MedicalStuffGroup?.ListDefName" data-tid="A365563"></hvl-list-box>
+                    <!--<hvl-list-box style="padding: 0;" [(SelectedObject)]="row.data.MedicalStuffGroup" (SelectedObjectChange)="medicalStuffGroupChange($event, row)" [AutoCompleteDialogHeight]="MedicalStuffGroup?.AutoCompleteDialogHeight"
+                                                  [AutoCompleteDialogWidth]="MedicalStuffGroup?.AutoCompleteDialogWidth" [AutoCompleteMode]="MedicalStuffGroup?.AutoCompleteMode"
+                                                  [BackColor]="MedicalStuffGroup?.BackColor" [DefinitionName]="MedicalStuffGroup?.ListDefName"
+                                                  [Font]="MedicalStuffGroup?.Font" [ForeColor]="MedicalStuffGroup?.ForeColor" [ListFilterExpression]="MedicalStuffGroup?.ListFilterExpression"
+                                                  [MinSearchLength]="MedicalStuffGroup?.MinSearchLength" [PopupDialogFieldConfig]="MedicalStuffGroup?.PopupDialogFieldConfig"
+                                                  [PopupDialogGridColumns]="MedicalStuffGroup?.PopupDialogGridColumns" [PopupDialogHeight]="MedicalStuffGroup?.PopupDialogHeight"
+                                                  [PopupDialogTitle]="MedicalStuffGroup?.PopupDialogTitle" [PopupDialogWidth]="MedicalStuffGroup?.PopupDialogWidth"
+                                                   [SearchMode]="MedicalStuffGroup?.SearchMode" [SearchTimeout]="MedicalStuffGroup?.SearchTimeout"
+                                                  [TabIndex]="MedicalStuffGroup?.TabIndex" [Visible]="MedicalStuffGroup?.Visible" [width]="MedicalStuffGroup?.Width"></hvl-list-box>-->
+                </div>
+                <div *dxTemplate="let row of 'medicalStuffAmountTemplate'" data-tid="A365564">
+                    <dx-text-box [(value)]="row.data.StuffAmount" data-tid="A365565"></dx-text-box>
+                </div>
+                <div *dxTemplate="let row of 'medicalStuffPlaceOfUsageTemplate'" data-tid="A365566">
+                    <hvl-list-box IsOnPopup="false" [ReadOnly]="MedicalStuffPlaceOfUsage?.ReadOnly" [(SelectedObject)]="row.data.MedicalStuffPlaceOfUsage" [AutoCompleteDialogHeight]="MedicalStuffPlaceOfUsage?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="MedicalStuffPlaceOfUsage?.AutoCompleteDialogWidth" [AutoCompleteMode]="MedicalStuffPlaceOfUsage?.AutoCompleteMode" [DefinitionName]="MedicalStuffPlaceOfUsage?.ListDefName" data-tid="A365567"></hvl-list-box>
+                    <!--(SelectedObjectChange)="medicalStuffPlaceOfUsageChange($event, row)" [AutoCompleteDialogHeight]="MedicalStuffPlaceOfUsage?.AutoCompleteDialogHeight"
+                                    [AutoCompleteDialogWidth]="MedicalStuffPlaceOfUsage?.AutoCompleteDialogWidth" [AutoCompleteMode]="MedicalStuffPlaceOfUsage?.AutoCompleteMode"
+                                    [BackColor]="MedicalStuffPlaceOfUsage?.BackColor" [DefinitionName]="MedicalStuffPlaceOfUsage?.ListDefName"
+                                    [Font]="MedicalStuffPlaceOfUsage?.Font" [ForeColor]="MedicalStuffPlaceOfUsage?.ForeColor" [ListFilterExpression]="MedicalStuffPlaceOfUsage?.ListFilterExpression"
+                                    [MinSearchLength]="MedicalStuffPlaceOfUsage?.MinSearchLength" [PopupDialogFieldConfig]="MedicalStuffPlaceOfUsage?.PopupDialogFieldConfig"
+                                    [PopupDialogGridColumns]="MedicalStuffPlaceOfUsage?.PopupDialogGridColumns" [PopupDialogHeight]="MedicalStuffPlaceOfUsage?.PopupDialogHeight"
+                                    [PopupDialogTitle]="MedicalStuffPlaceOfUsage?.PopupDialogTitle" [PopupDialogWidth]="MedicalStuffPlaceOfUsage?.PopupDialogWidth"
+                                     [SearchMode]="MedicalStuffPlaceOfUsage?.SearchMode" [SearchTimeout]="MedicalStuffPlaceOfUsage?.SearchTimeout"
+                                    [TabIndex]="MedicalStuffPlaceOfUsage?.TabIndex" [Visible]="MedicalStuffPlaceOfUsage?.Visible" [width]="MedicalStuffPlaceOfUsage?.Width"-->
+                </div>
+                <div *dxTemplate="let row of 'medicalStuffUsageTypeTemplate'" data-tid="A365568">
+                    <hvl-list-box IsOnPopup="false" [ReadOnly]="StuffUsageType?.ReadOnly" [(SelectedObject)]="row.data.MedicalStuffUsageType" [AutoCompleteDialogHeight]="StuffUsageType?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="StuffUsageType?.AutoCompleteDialogWidth" [AutoCompleteMode]="StuffUsageType?.AutoCompleteMode" [DefinitionName]="StuffUsageType?.ListDefName" data-tid="A365569"></hvl-list-box>
+                </div>
+                <div *dxTemplate="let row of 'medicalStuffOdyometryTestIdTemplate'" data-tid="A365570">
+                    <dx-text-box [(value)]="row.data.OdyometryTestId" data-tid="A365571"></dx-text-box>
+                </div>
+                <div *dxTemplate="let row of 'medicalStuffPeriodUnitTemplate'" data-tid="A365572">
+                    <dx-text-box [(value)]="row.data.PeriodUnit" data-tid="A365573"></dx-text-box>
+                </div>
+                <div *dxTemplate="let row of 'medicalStuffPeriodUnitTypeTemplate'" data-tid="A365574">
+                    <hvl-enum-combobox #Validation [(Value)]="row.data.PeriodUnitType" [DataTypeName]="PeriodUnitType?.DataTypeName" [ShowClearButton]="false" data-tid="A365575">
+                    </hvl-enum-combobox>
+                    <!--[BackColor]="PeriodUnitType?.BackColor"  (SelectedObjectChange)="medicalStuffPeriodUnitChange($event, row)"
+                                     [Enabled]="PeriodUnitType?.Enabled"
+                                    [Font]="PeriodUnitType?.Font" [ForeColor]="PeriodUnitType?.ForeColor"
+                                    [IncludeOnly]="PeriodUnitType?.IncludeOnly" [ReadOnly]="PeriodUnitType?.ReadOnly"
+                                    [ShowClearButton]="PeriodUnitType?.ShowClearButton" [SortBy]="PeriodUnitType?.SortBy"
+                                    [TabIndex]="PeriodUnitType?.TabIndex"
+
+                                    [Visible]="PeriodUnitType?.Visible" id="A13225"-->
+                </div>
+
+                <div *dxTemplate="let row of 'stuffDescriptionTemplate'" data-tid="A365576">
+                    <dx-text-box [(value)]="row.data.StuffDescription" data-tid="A365577"></dx-text-box>
+                </div>
+
+            </dx-data-grid>
+        </div>
+    </div>
+
+    <div class="row paddingTop5px" style="background-color: #f0f8ff94;" data-tid="A365578">
+        <div class="col-sm-6" data-tid="A365579">
+
+            <div class="row" data-tid="A365580">
+                <label class=" col-sm-12 control-label" data-tid="A365581">
+                    Medula Açıklama
+                </label>
+            </div>
+            <div class="row" data-tid="A365582">
+                <div class="col-sm-12" data-tid="A365583">
+                    <hvl-richtextbox (change)="onDescriptionChanged($event)" [Height]="&#x27;50px&#x27;" [ngModelOptions]="{ standalone: true}" [ngModel]="medicalStuffReportFormViewModel?._MedicalStuffReport?.Description" [ReadOnly]="Description?.ReadOnly" [TemplateGroupName]="Description?.TemplateGroupName" [Visible]="Description?.Visible" id="A28303" data-tid="A365584"></hvl-richtextbox>
+                </div>
+
+            </div>
+            <div class="row" data-tid="A365585">
+                <label class=" col-sm-12 control-label" data-tid="A365586">
+                    Karar
+                </label>
+            </div>
+            <div class="row" data-tid="A365587">
+                <div class="col-sm-12" data-tid="A365588">
+                    <hvl-richtextbox (change)="onReportDecisionChanged($event)" [Height]="&#x27;50px&#x27;" [ngModelOptions]="{ standalone: true}" [ngModel]="medicalStuffReportFormViewModel?._MedicalStuffReport?.ReportDecision" [ReadOnly]="ReportDecision?.ReadOnly" [TemplateGroupName]="ReportDecision?.TemplateGroupName" [Visible]="ReportDecision?.Visible" id="A28306" data-tid="A365589"></hvl-richtextbox>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-sm-6" data-tid="A365590">
+            <div class="row" data-tid="A365591">
+                <label class="col-sm-12 control-label" data-tid="A365592">
+                    Doktorlar
+                </label>
+            </div>
+            <div class="row" data-tid="A365593">
+                <label class="col-sm-2" data-tid="A365594">
+                    1.Doktor
+                </label>
+                <div class="col-sm-5" data-tid="A365595">
+                    <hvl-list-box #Validation (SelectedObjectChange)="onProcedureDoctorChanged($event)" [AutoCompleteDialogHeight]="ProcedureDoctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ProcedureDoctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="ProcedureDoctor?.AutoCompleteMode" [BackColor]="ProcedureDoctor?.BackColor" [DefinitionName]="ProcedureDoctor?.ListDefName" [DisplayExpressionsCache]="medicalStuffReportFormViewModel?.ListDefDisplayExpressions" [Enabled]="ProcedureDoctor?.Enabled" [Font]="ProcedureDoctor?.Font" [ForeColor]="ProcedureDoctor?.ForeColor" [ListFilterExpression]="ProcedureDoctor?.ListFilterExpression" [MinSearchLength]="ProcedureDoctor?.MinSearchLength" [PopupDialogFieldConfig]="ProcedureDoctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ProcedureDoctor?.PopupDialogGridColumns" [PopupDialogHeight]="ProcedureDoctor?.PopupDialogHeight" [PopupDialogTitle]="ProcedureDoctor?.PopupDialogTitle" [PopupDialogWidth]="ProcedureDoctor?.PopupDialogWidth" [ReadOnly]="ProcedureDoctor?.ReadOnly" [SearchMode]="ProcedureDoctor?.SearchMode" [SearchTimeout]="ProcedureDoctor?.SearchTimeout" [SelectedObject]="medicalStuffReportFormViewModel?._MedicalStuffReport?.ProcedureDoctor" [TabIndex]="ProcedureDoctor?.TabIndex" [Visible]="ProcedureDoctor?.Visible" [width]="ProcedureDoctor?.Width" id="A28275" data-tid="A365596"></hvl-list-box>
+                </div>
+                <div class="col-sm-2" data-tid="A365597">
+                    <hvl-checkbox #Validation (ValueChange)="onchkFtrHeyetRaporuChanged($event)" [AllowThreeState]="chkFtrHeyetRaporu?.ThreeState" [BackColor]="chkFtrHeyetRaporu?.BackColor" [Enabled]="chkFtrHeyetRaporu?.Enabled" [Font]="chkFtrHeyetRaporu?.Font" [ForeColor]="chkFtrHeyetRaporu?.ForeColor" [IsTitleLeft]="chkFtrHeyetRaporu?.IsTitleLeft" [Margin]="chkFtrHeyetRaporu?.Margin" [ReadOnly]="chkFtrHeyetRaporu?.ReadOnly" [TabIndex]="chkFtrHeyetRaporu?.TabIndex" [TitleTopPadding]="chkFtrHeyetRaporu?.TitleTopPadding" [Title]="chkFtrHeyetRaporu?.Title" [Value]="medicalStuffReportFormViewModel?._MedicalStuffReport?.CommitteeReport" [Visible]="chkFtrHeyetRaporu?.Visible" id="A28278" data-tid="A365598"></hvl-checkbox>
+                </div>
+
+            </div>
+
+            <div class="row paddingTop5px" data-tid="A365599">
+                <label class="col-sm-2" data-tid="A365600">
+                    2. Doktor
+                </label>
+                <div class="col-sm-5" data-tid="A365601">
+                    <hvl-list-box #Validation (SelectedObjectChange)="onlstTabip2Changed($event)" [AutoCompleteDialogHeight]="lstTabip2?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="lstTabip2?.AutoCompleteDialogWidth" [AutoCompleteMode]="lstTabip2?.AutoCompleteMode" [BackColor]="lstTabip2?.BackColor" [DefinitionName]="lstTabip2?.ListDefName" [DisplayExpressionsCache]="medicalStuffReportFormViewModel?.ListDefDisplayExpressions" [Enabled]="lstTabip2?.Enabled" [Font]="lstTabip2?.Font" [ForeColor]="lstTabip2?.ForeColor" [ListFilterExpression]="lstTabip2?.ListFilterExpression" [MinSearchLength]="lstTabip2?.MinSearchLength" [PopupDialogFieldConfig]="lstTabip2?.PopupDialogFieldConfig" [PopupDialogGridColumns]="lstTabip2?.PopupDialogGridColumns" [PopupDialogHeight]="lstTabip2?.PopupDialogHeight" [PopupDialogTitle]="lstTabip2?.PopupDialogTitle" [PopupDialogWidth]="lstTabip2?.PopupDialogWidth" [ReadOnly]="lstTabip2?.ReadOnly" [SearchMode]="lstTabip2?.SearchMode" [SearchTimeout]="lstTabip2?.SearchTimeout" [SelectedObject]="medicalStuffReportFormViewModel?._MedicalStuffReport?.SecondDoctor" [TabIndex]="lstTabip2?.TabIndex" [Visible]="lstTabip2?.Visible" [width]="lstTabip2?.Width" id="A28281" data-tid="A365602"></hvl-list-box>
+                </div>
+                <label class="col-sm-3" *ngIf="medicalStuffReportFormViewModel?.isStateThirdDoctorApproval == true || medicalStuffReportFormViewModel?.isStateSecondDoctorApproval == true" style="font-size:15px" data-tid="A365603">
+                    Onay Durumu : <span *ngIf="medicalStuffReportFormViewModel?._MedicalStuffReport?.IsSecondDoctorApproved" class="fa fa-check" style="color: green; font-size:20px" id="A13447" data-tid="A365604"></span>
+                    <span *ngIf="!medicalStuffReportFormViewModel?._MedicalStuffReport?.IsSecondDoctorApproved" class="fa fa-times" style="color: rgb(216, 25, 25); font-size:20px" id="A13447" data-tid="A365605"></span>
+                </label>
+                <div class="col-sm-2" style="margin-left:-30px" data-tid="A365606">
+                    <button *ngIf="(medicalStuffReportFormViewModel?.isStateThirdDoctorApproval == true || medicalStuffReportFormViewModel?.isStateSecondDoctorApproval == true) && !(medicalStuffReportFormViewModel?._MedicalStuffReport?.IsSecondDoctorApproved)" type="button" class="btn btn-primary btn-round" (click)="btnIkinciTabipOnay_Click()" id="A17171" data-tid="A365607">
+                        <span class="fa fa-check" id="A17172" data-tid="A365608"></span>&nbsp;Onay
+                    </button>
+                </div>
+            </div>
+
+            <div class="row paddingTop5px" data-tid="A365609">
+                <label class="col-sm-2" data-tid="A365610">
+                    3.Doktor
+                </label>
+                <div class="col-sm-5" data-tid="A365611">
+                    <hvl-list-box #Validation (SelectedObjectChange)="onlstTabip3Changed($event)" [AutoCompleteDialogHeight]="lstTabip3?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="lstTabip3?.AutoCompleteDialogWidth" [AutoCompleteMode]="lstTabip3?.AutoCompleteMode" [BackColor]="lstTabip3?.BackColor" [DefinitionName]="lstTabip3?.ListDefName" [DisplayExpressionsCache]="medicalStuffReportFormViewModel?.ListDefDisplayExpressions" [Enabled]="lstTabip3?.Enabled" [Font]="lstTabip3?.Font" [ForeColor]="lstTabip3?.ForeColor" [ListFilterExpression]="lstTabip3?.ListFilterExpression" [MinSearchLength]="lstTabip3?.MinSearchLength" [PopupDialogFieldConfig]="lstTabip3?.PopupDialogFieldConfig" [PopupDialogGridColumns]="lstTabip3?.PopupDialogGridColumns" [PopupDialogHeight]="lstTabip3?.PopupDialogHeight" [PopupDialogTitle]="lstTabip3?.PopupDialogTitle" [PopupDialogWidth]="lstTabip3?.PopupDialogWidth" [ReadOnly]="lstTabip3?.ReadOnly" [SearchMode]="lstTabip3?.SearchMode" [SearchTimeout]="lstTabip3?.SearchTimeout" [SelectedObject]="medicalStuffReportFormViewModel?._MedicalStuffReport?.ThirdDoctor" [TabIndex]="lstTabip3?.TabIndex" [Visible]="lstTabip3?.Visible" [width]="lstTabip3?.Width" id="A28284" data-tid="A365612"></hvl-list-box>
+                </div>
+                <label class="col-sm-3" *ngIf="medicalStuffReportFormViewModel?.isStateThirdDoctorApproval == true || medicalStuffReportFormViewModel?.isStateSecondDoctorApproval == true" style="font-size:15px" data-tid="A365613">
+                    Onay Durumu : <span *ngIf="medicalStuffReportFormViewModel?._MedicalStuffReport?.IsThirdDoctorApproved" class="fa fa-check" style="color: green; font-size:20px" id="A13447" data-tid="A365614"></span>
+                    <span *ngIf="!medicalStuffReportFormViewModel?._MedicalStuffReport?.IsThirdDoctorApproved" class="fa fa-times" style="color: rgb(216, 25, 25); font-size:20px" id="A13447" data-tid="A365615"></span>
+                </label>
+                <div class="col-sm-2" style="margin-left:-30px" data-tid="A365616">
+                    <button *ngIf="(medicalStuffReportFormViewModel?.isStateThirdDoctorApproval == true || medicalStuffReportFormViewModel?.isStateSecondDoctorApproval == true) && !(medicalStuffReportFormViewModel?._MedicalStuffReport?.IsThirdDoctorApproved)" type="button" class="btn btn-primary btn-round" (click)="btnUcuncuTabipOnay_Click()" id="A17171" data-tid="A365617">
+                        <span class="fa fa-check" id="A17172" data-tid="A365618"></span>&nbsp;Onay
+                    </button>
+                </div>
+            </div>
+            <div class="row paddingTop5px" style="padding-left: 3px" id="A28323" data-tid="A365619">
+                <div class="col-sm-12" id="A28324" data-tid="A365620">
+                    <label class="control-label" id="A28325" data-tid="A365621">Medula Sonuç</label>
+                    <hvl-text-box #Validation (TextChange)="onMedulaDescriptionChanged($event)" [BackColor]="MedulaDescription?.BackColor" [CharacterCasing]="MedulaDescription?.CharacterCasing" [Enabled]="MedulaDescription?.Enabled" [Font]="MedulaDescription?.Font" [ForeColor]="MedulaDescription?.ForeColor" [height]="MedulaDescription?.Height" [InputFormat]="MedulaDescription?.InputFormat" [InputTurkishCharacter]="MedulaDescription?.InputTurkishCharacter" [IsNonNumeric]="MedulaDescription?.IsNonNumeric" [MultiLine]="MedulaDescription?.Multiline" [ReadOnly]="MedulaDescription?.ReadOnly" [Required]="MedulaDescription?.Required" [TabIndex]="MedulaDescription?.TabIndex" [TextAlign]="MedulaDescription?.TextAlign" [Text]="medicalStuffReportFormViewModel?._MedicalStuffReport?.MedulaDescription" [Visible]="MedulaDescription?.Visible" id="A28326" data-tid="A365622"></hvl-text-box>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br id="A28299" data-tid="A365623" />
+
+
+    <br id="A28307" data-tid="A365624" />
+    <br id="A28308" data-tid="A365625" />
+    <div class="row" id="A28309" data-tid="A365626">
+        <div class="col-sm-6" id="A28310" data-tid="A365627">
+            <div class="col-md-3" id="A28311" *ngIf="medicalStuffReportFormViewModel?._MedicalStuffReport?.IsNew != true && (medicalStuffReportFormViewModel?._MedicalStuffReport?.RaporTakipNo == null || medicalStuffReportFormViewModel?._MedicalStuffReport?.RaporTakipNo == '')" data-tid="A365628">
+                <button type="button" class="btn btn-primary btn-gradient btn-round" (click)="SendToMedula()" style="width:150px" id="A28312" data-tid="A365629">
+                    Medulaya Gönder
+                </button>
+            </div>
+            <div class="col-md-3" id="A28313" *ngIf="medicalStuffReportFormViewModel?._MedicalStuffReport?.RaporTakipNo != null && medicalStuffReportFormViewModel?._MedicalStuffReport?.RaporTakipNo != ''" data-tid="A365630">
+                <button type="button" class="btn btn-primary btn-gradient btn-round" (click)="DeleteFromMedula()" style="width:150px" id="A28314" data-tid="A365631">
+                    Meduladan
+                    Sil
+                </button>
+            </div>
+            <div class="col-md-3" id="A28316" *ngIf="medicalStuffReportFormViewModel?._MedicalStuffReport?.RaporTakipNo == null || medicalStuffReportFormViewModel?._MedicalStuffReport?.RaporTakipNo == ''" data-tid="A365632">
+                <button type="button" class="btn btn-primary btn-gradient btn-round" (click)="Save()" style="width:100px" id="A28317" data-tid="A365633">
+                    Kaydet
+                </button>
+            </div>
+            <div class="col-md-3" id="A28320" *ngIf="medicalStuffReportFormViewModel?._MedicalStuffReport?.IsNew != true && (medicalStuffReportFormViewModel?._MedicalStuffReport?.RaporTakipNo == null || medicalStuffReportFormViewModel?._MedicalStuffReport?.RaporTakipNo == '')" data-tid="A365634">
+                <button type="button" class="btn btn-primary btn-gradient btn-round" (click)="Cancel()" style="width:100px" id="A28321" data-tid="A365635">
+                    İptal
+                    Et
+                </button>
+            </div>
+        </div>
+        <div class="col-sm-6" id="A28315" *ngIf="medicalStuffReportFormViewModel?._MedicalStuffReport?.RaporTakipNo != null" data-tid="A365636">
+            <!--<div class="col-md-3" id="A28318"
+                 *ngIf="medicalStuffReportFormViewModel?.isStateSecondDoctorApproval == true">
+                <button type="button" class="btn btn-primary btn-gradient btn-round"
+                        (click)="btnIkinciTabipOnay_Click()" style="width:145px"  id="A28319">
+                    İkinci
+                    Hekim Onay
+                </button>
+            </div>
+            <div class="col-md-3" id="A28318"
+                 *ngIf="medicalStuffReportFormViewModel?.isStateThirdDoctorApproval == true">
+                <button type="button" class="btn btn-primary btn-gradient btn-round"
+                        (click)="btnUcuncuTabipOnay_Click()" style="width:145px"  id="A28319">
+                    Üçüncü
+                    Hekim Onay
+                </button>
+            </div>-->
+            <div class="col-md-3" id="A28318" *ngIf="medicalStuffReportFormViewModel?.isStateHeadDoctorApproval == true" data-tid="A365637">
+                <button type="button" class="btn btn-primary btn-gradient btn-round" (click)="btnBasTabipOnay_Click()" style="width:121px" id="A28319" data-tid="A365638">
+                    Başhekim
+                    Onay
+                </button>
+            </div>
+            <!--<div class="col-md-3" id="A28318">
+                                    <button type="button" class="btn btn-primary btn-gradient btn-round" (click)="Print()" style="width:100px"  id="A28319">Yazdır</button>
+                                </div>-->
+            <div class="col-md-3" id="A28318" *ngIf="medicalStuffReportFormViewModel?._MedicalStuffReport?.RaporTakipNo != null && medicalStuffReportFormViewModel?.isPrescriptionWriteable == true" data-tid="A365639">
+                <button type="button" class="btn btn-primary btn-gradient btn-round" (click)="OpenMedicalStuffPrescription()" style="width:100px" id="A28319" data-tid="A365640">
+                    Reçete
+                </button>
+            </div>
+        </div>
+    </div>
+    <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A365641">
+    </dx-load-panel>
+    <br id="A28322" data-tid="A365642" />
+
+    <br id="A28327" data-tid="A365643" />
+    <div class="row" data-tid="A365644">
+        <div class="col-sm-12" id="A28328" data-tid="A365645">
+            <ul class="nav nav-tabs" id="A28329" data-tid="A365646">
+                <li class="active" id="A28330" data-tid="A365647">
+                    <a data-toggle="tab" href="#dbReport" (click)="clickRepScreen(1)" id="A28331" data-tid="A365648">Mevcut Raporlar</a>
+                </li>
+                <li id="A28332" data-tid="A365649">
+                    <a data-toggle="tab" href="#medulaReport" (click)="clickRepScreen(2)" id="A28333" data-tid="A365650">Medula Raporları</a>
+                </li>
+            </ul>
+            <div class="tab-content margin-top-10" style="background-color:#fff;" id="A28334" data-tid="A365651">
+                <div id="dbReport" class="tab-pane fade in active" data-tid="A365652">
+                    <div class="row" style="padding-left: 3px" id="A28335" data-tid="A365653">
+                        <div class="col-sm-12" id="A28336" data-tid="A365654">
+                            <hvl-list-view (RowPrepared)="ReportListViewRowPrepared($event)" (SelectedObjectChange)="ReportListView_Click($event)" [BackColor]="ReportListView?.BackColor" [Columns]="ReportListView?.Columns" [EnableFilter]="ReportListView?.ShowFilterRow" [EnablePaging]="ReportListView?.EnablePaging" [Enabled]="ReportListView?.Enabled" [Font]="ReportListView?.Font" [ForeColor]="ReportListView?.ForeColor" [Items]="ReportListView?.Items" [PageSize]="ReportListView?.PageSize" [ReadOnly]="ReportListView?.ReadOnly" [SelectedObject]="ReportListView?.SelectedItems" [TabIndex]="ReportListView?.TabIndex" [RowDisablePath]="ReportListView?.RowDisablePath" [Visible]="ReportListView?.Visible" [height]="125" id="A28337" data-tid="A365655">
+                            </hvl-list-view>
+                        </div>
+                    </div>
+                </div>
+                <div id="medulaReport" class="tab-pane fade in" data-tid="A365656">
+                    <div class="row" style="padding-left: 3px" id="A28338" data-tid="A365657">
+                        <div class="col-sm-12" id="A28339" data-tid="A365658">
+                            <hvl-list-view (RowPrepared)="MedulaReportListViewRowPrepared($event)" (SelectedObjectChange)="MedulaReportListView_Click($event)" [BackColor]="MedulaReportListView?.BackColor" [Columns]="MedulaReportListView?.Columns" [EnableFilter]="MedulaReportListView?.ShowFilterRow" [EnablePaging]="MedulaReportListView?.EnablePaging" [Enabled]="MedulaReportListView?.Enabled" [Font]="MedulaReportListView?.Font" [ForeColor]="MedulaReportListView?.ForeColor" [Items]="MedulaReportListView?.Items" [PageSize]="MedulaReportListView?.PageSize" [ReadOnly]="MedulaReportListView?.ReadOnly" [SelectedObject]="MedulaReportListView?.SelectedItems" [TabIndex]="MedulaReportListView?.TabIndex" [RowDisablePath]="MedulaReportListView?.RowDisablePath" [Visible]="MedulaReportListView?.Visible" [height]="125" id="A28340" data-tid="A365659">
+                            </hvl-list-view>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <dx-popup width="700px" height="400px" [(visible)]="addExtraMaterialPopUp" [closeOnOutsideClick]="false" title="Malzeme Ekle" data-tid="A365660">
+        <div *dxTemplate="let data of 'content'" data-tid="A365661">
+            <div class="row padding-top-10" id="A28286" data-tid="A365662">
+                <div class="col-md-12" id="A28288" style="padding-top:5px" data-tid="A365663">
+                    <label class="control-label" id="A28289" data-tid="A365664">Tıbbi Malzeme Listesi</label>
+                    <hvl-list-box #Validation IsOnPopup="false" (SelectedObjectChange)="selectedAdditionalMedicalStuffSelected($event)" [AutoCompleteDialogHeight]="MedicalStuffDef?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="MedicalStuffDef?.AutoCompleteDialogWidth" [AutoCompleteMode]="MedicalStuffDef?.AutoCompleteMode" [BackColor]="MedicalStuffDef?.BackColor" [DefinitionName]="MedicalStuffDef?.ListDefName" [DisplayExpressionsCache]="medicalStuffReportFormViewModel?.ListDefDisplayExpressions" [Enabled]="MedicalStuffDef?.Enabled" [Font]="MedicalStuffDef?.Font" [ForeColor]="MedicalStuffDef?.ForeColor" [ListFilterExpression]="MedicalStuffDef?.ListFilterExpression" [MinSearchLength]="MedicalStuffDef?.MinSearchLength" [PopupDialogFieldConfig]="MedicalStuffDef?.PopupDialogFieldConfig" [PopupDialogGridColumns]="MedicalStuffDef?.PopupDialogGridColumns" [PopupDialogHeight]="MedicalStuffDef?.PopupDialogHeight" [PopupDialogTitle]="MedicalStuffDef?.PopupDialogTitle" [PopupDialogWidth]="MedicalStuffDef?.PopupDialogWidth" [SelectedObject]="addedMedicalStuff?.MedicalStuffDef" [ReadOnly]="MedicalStuffDef?.ReadOnly" [SearchMode]="MedicalStuffDef?.SearchMode" [SearchTimeout]="MedicalStuffDef?.SearchTimeout" [TabIndex]="MedicalStuffDef?.TabIndex" [Visible]="MedicalStuffDef?.Visible" [width]="MedicalStuffDef?.Width" id="A28290" data-tid="A365665">
+                    </hvl-list-box>
+                </div>
+            </div>
+            <div class="row" *ngIf="addedMedicalStuff != null" data-tid="A365666">
+                <div class="col-sm-6" data-tid="A365667">
+                    <div class="row" data-tid="A365668">
+                        <label class="col-sm-12" data-tid="A365669">
+                            Malzeme Grubu
+                        </label>
+                    </div>
+                    <div class="row" data-tid="A365670">
+                        <div class="col-sm-12" data-tid="A365671">
+                            <hvl-list-box IsOnPopup="true" [ReadOnly]="MedicalStuffGroup?.ReadOnly" [AutoCompleteDialogHeight]="MedicalStuffGroup?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="MedicalStuffGroup?.AutoCompleteDialogWidth" [AutoCompleteMode]="MedicalStuffGroup?.AutoCompleteMode" [(SelectedObject)]="addedMedicalStuff.MedicalStuffGroup" [DefinitionName]="MedicalStuffGroup?.ListDefName" data-tid="A365672"></hvl-list-box>
+                        </div>
+                    </div>
+                    <div class="row" data-tid="A365673">
+                        <label class="col-sm-12" data-tid="A365674">
+                            Kullanım Yeri
+                        </label>
+                    </div>
+                    <div class="row" data-tid="A365675">
+                        <div class="col-sm-12" data-tid="A365676">
+                            <hvl-list-box IsOnPopup="true" [ReadOnly]="MedicalStuffPlaceOfUsage?.ReadOnly" [(SelectedObject)]="addedMedicalStuff.MedicalStuffPlaceOfUsage" [AutoCompleteDialogHeight]="MedicalStuffPlaceOfUsage?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="MedicalStuffPlaceOfUsage?.AutoCompleteDialogWidth" [AutoCompleteMode]="MedicalStuffPlaceOfUsage?.AutoCompleteMode" [DefinitionName]="MedicalStuffPlaceOfUsage?.ListDefName" data-tid="A365677"></hvl-list-box>
+                        </div>
+                    </div>
+                    <div class="row" data-tid="A365678">
+                        <label class="col-sm-12" data-tid="A365679">
+                            Kullanım Periyodu
+                        </label>
+                    </div>
+                    <div class="row" data-tid="A365680">
+                        <div class="col-sm-12" data-tid="A365681">
+                            <dx-text-box [(value)]="addedMedicalStuff.PeriodUnit" data-tid="A365682"></dx-text-box>
+                        </div>
+                    </div>
+                    <div class="row" data-tid="A365683">
+                        <label class="col-sm-12" data-tid="A365684">
+                            Odyometri Test Id
+                        </label>
+                    </div>
+                    <div class="row" data-tid="A365685">
+                        <div class="col-sm-12" data-tid="A365686">
+                            <dx-text-box [(value)]="addedMedicalStuff.OdyometryTestId" data-tid="A365687">
+                            </dx-text-box>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6" data-tid="A365688">
+                    <div class="row" data-tid="A365689">
+                        <label class="col-sm-12" data-tid="A365690">
+                            Miktar
+                        </label>
+                    </div>
+                    <div class="row" data-tid="A365691">
+                        <div class="col-sm-12" data-tid="A365692">
+                            <dx-number-box [(value)]="addedMedicalStuff.StuffAmount" [showSpinButtons]="true" data-tid="A365693">
+                            </dx-number-box>
+                        </div>
+                    </div>
+                    <div class="row" data-tid="A365694">
+                        <label class="col-sm-12" data-tid="A365695">
+                            Kullanım Şekli
+                        </label>
+                    </div>
+                    <div class="row" data-tid="A365696">
+                        <div class="col-sm-12" data-tid="A365697">
+                            <hvl-list-box IsOnPopup="true" [ReadOnly]="StuffUsageType?.ReadOnly" [(SelectedObject)]="addedMedicalStuff.MedicalStuffUsageType" [AutoCompleteDialogHeight]="StuffUsageType?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="StuffUsageType?.AutoCompleteDialogWidth" [AutoCompleteMode]="StuffUsageType?.AutoCompleteMode" [DefinitionName]="StuffUsageType?.ListDefName" data-tid="A365698"></hvl-list-box>
+                        </div>
+                    </div>
+
+                    <div class="row" data-tid="A365699">
+                        <label class="col-sm-12" data-tid="A365700">
+                            Kullanım Periyot Birimi
+                        </label>
+                    </div>
+                    <div class="row" data-tid="A365701">
+                        <div class="col-sm-12" data-tid="A365702">
+                            <hvl-enum-combobox #Validation [(Value)]="addedMedicalStuff.PeriodUnitType" [DataTypeName]="PeriodUnitType?.DataTypeName" [ShowClearButton]="false" data-tid="A365703">
+                            </hvl-enum-combobox>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="row" *ngIf="addedMedicalStuff != null" data-tid="A365704">
+                <label class="col-sm-12" data-tid="A365705">
+                    Açıklama
+                </label>
+            </div>
+            <div class="row" *ngIf="addedMedicalStuff != null" data-tid="A365706">
+                <div class="col-sm-12" data-tid="A365707">
+                    <dx-text-area [(value)]="addedMedicalStuff.StuffDescription" data-tid="A365708"></dx-text-area>
+                </div>
+            </div>
+            <div class="row" *ngIf="addedMedicalStuff != null" style="padding-top:5px" data-tid="A365709">
+                <div class="col-sm-12" style="text-align: right" data-tid="A365710">
+                    <dx-button type="success" (click)="AddEtkinMadde()" id="A17497" data-tid="A365711">
+                        <span class="fa fa-check" id="A17498" data-tid="A365712"></span>&nbsp;Malzeme Ekle
+                    </dx-button>
+                </div>
+            </div>
+        </div>
+    </dx-popup>
+
+    <dx-popup width="500px" height="200px" [(visible)]="addExtraDiagnosisPopUp" title="Tanı Ekle" data-tid="A365713">
+        <div *dxTemplate="let data of 'content'" data-tid="A365714">
+
+            <div class="row" data-tid="A365715">
+                <div class="col-sm-12" data-tid="A365716">
+                    <label class="control-label" data-tid="A365717">
+                        Tanı
+                    </label>
+                </div>
+            </div>
+            <div class="row" data-tid="A365718">
+                <div class="col-sm-12" data-tid="A365719">
+                    <hvl-list-box #Validation IsOnPopup="true" (SelectedObjectChange)="selectAdditionalDiagnosis($event)" [AutoCompleteDialogHeight]="300" [AutoCompleteDialogWidth]="lstDiagnosisAddedToReport?.AutoCompleteDialogWidth" [AutoCompleteMode]="lstDiagnosisAddedToReport?.AutoCompleteMode" [BackColor]="lstDiagnosisAddedToReport?.BackColor" [DefinitionName]="lstDiagnosisAddedToReport?.ListDefName" [Enabled]="true" [Font]="lstDiagnosisAddedToReport?.Font" [ForeColor]="lstDiagnosisAddedToReport?.ForeColor" [ListFilterExpression]="lstDiagnosisAddedToReport?.ListFilterExpression" [MinSearchLength]="lstDiagnosisAddedToReport?.MinSearchLength" [PopupDialogFieldConfig]="lstDiagnosisAddedToReport?.PopupDialogFieldConfig" [PopupDialogGridColumns]="lstDiagnosisAddedToReport?.PopupDialogGridColumns" [PopupDialogHeight]="lstDiagnosisAddedToReport?.PopupDialogHeight" [PopupDialogTitle]="lstDiagnosisAddedToReport?.PopupDialogTitle" [PopupDialogWidth]="lstDiagnosisAddedToReport?.PopupDialogWidth" [ReadOnly]="false" [SearchMode]="lstDiagnosisAddedToReport?.SearchMode" [SearchTimeout]="lstDiagnosisAddedToReport?.SearchTimeout" [SelectedObject]="addedDiagnosis" [TabIndex]="lstDiagnosisAddedToReport?.TabIndex" [Visible]="lstDiagnosisAddedToReport?.Visible" [width]="lstDiagnosisAddedToReport?.Width" data-tid="A365720">
+                    </hvl-list-box>
+                </div>
+            </div>
+            <div class="row" *ngIf="addedDiagnosis != null" style="padding-top:5px" data-tid="A365721">
+                <div class="col-sm-12" style="text-align: right" data-tid="A365722">
+                    <dx-button type="success" (click)="AddExtraDiagnosis()" id="A17497" data-tid="A365723">
+                        <span class="fa fa-check" id="A17498" data-tid="A365724"></span>&nbsp;Tanı Ekle
+                    </dx-button>
+                </div>
+            </div>
+        </div>
+
+
+    </dx-popup>
+
+    <dx-popup width="500px" height="200px" [(visible)]="addExtraDiagnosisPopUp" title="Tanı Ekle" data-tid="A365725">
+        <div *dxTemplate="let data of 'content'" data-tid="A365726">
+
+            <div class="row" data-tid="A365727">
+                <div class="col-sm-12" data-tid="A365728">
+                    <label class="control-label" data-tid="A365729">
+                        Tanı
+                    </label>
+                </div>
+            </div>
+            <div class="row" data-tid="A365730">
+                <div class="col-sm-12" data-tid="A365731">
+                    <hvl-list-box #Validation IsOnPopup="true" (SelectedObjectChange)="selectAdditionalDiagnosis($event)" [AutoCompleteDialogHeight]="300" [AutoCompleteDialogWidth]="lstDiagnosisAddedToReport?.AutoCompleteDialogWidth" [AutoCompleteMode]="lstDiagnosisAddedToReport?.AutoCompleteMode" [BackColor]="lstDiagnosisAddedToReport?.BackColor" [DefinitionName]="lstDiagnosisAddedToReport?.ListDefName" [Enabled]="true" [Font]="lstDiagnosisAddedToReport?.Font" [ForeColor]="lstDiagnosisAddedToReport?.ForeColor" [ListFilterExpression]="lstDiagnosisAddedToReport?.ListFilterExpression" [MinSearchLength]="lstDiagnosisAddedToReport?.MinSearchLength" [PopupDialogFieldConfig]="lstDiagnosisAddedToReport?.PopupDialogFieldConfig" [PopupDialogGridColumns]="lstDiagnosisAddedToReport?.PopupDialogGridColumns" [PopupDialogHeight]="lstDiagnosisAddedToReport?.PopupDialogHeight" [PopupDialogTitle]="lstDiagnosisAddedToReport?.PopupDialogTitle" [PopupDialogWidth]="lstDiagnosisAddedToReport?.PopupDialogWidth" [ReadOnly]="false" [SearchMode]="lstDiagnosisAddedToReport?.SearchMode" [SearchTimeout]="lstDiagnosisAddedToReport?.SearchTimeout" [SelectedObject]="addedDiagnosis" [TabIndex]="lstDiagnosisAddedToReport?.TabIndex" [Visible]="lstDiagnosisAddedToReport?.Visible" [width]="lstDiagnosisAddedToReport?.Width" data-tid="A365732">
+                    </hvl-list-box>
+                </div>
+            </div>
+            <div class="row" *ngIf="addedDiagnosis != null" style="padding-top:5px" data-tid="A365733">
+                <div class="col-sm-12" style="text-align: right" data-tid="A365734">
+                    <dx-button type="success" (click)="AddExtraDiagnosis()" id="A17497" data-tid="A365735">
+                        <span class="fa fa-check" id="A17498" data-tid="A365736"></span>&nbsp;Tanı Ekle
+                    </dx-button>
+                </div>
+            </div>
+        </div>
+
+
+    </dx-popup>
+    <dx-popup width="500px" height="400px" [(visible)]="changeDescriptionPopUp" title="Tanı Ekle" data-tid="A365737">
+        <div *dxTemplate="let data of 'content'" data-tid="A365738">
+
+            <div class="row" data-tid="A365739">
+                <div class="col-sm-12" data-tid="A365740">
+                    <label class="control-label" data-tid="A365741">
+                        Medula Açıklama
+                    </label>
+                </div>
+            </div>
+            <div class="row" data-tid="A365742">
+                <div class="col-sm-12" data-tid="A365743">
+                    <hvl-richtextbox (change)="onDescriptionChanged($event)" [Height]="&#x27;150px&#x27;" [ngModelOptions]="{ standalone: true}" [ngModel]="medicalStuffReportFormViewModel?._MedicalStuffReport?.Description" [ReadOnly]="false" [TemplateGroupName]="Description?.TemplateGroupName" [Visible]="Description?.Visible" id="A28303" data-tid="A365744"></hvl-richtextbox>
+                </div>
+            </div>
+            <div class="row" style="padding-top:5px" data-tid="A365745">
+                <div class="col-sm-12" style="text-align: right" data-tid="A365746">
+                    <dx-button type="success" (click)="changeReportDescription()" id="A17497" data-tid="A365747">
+                        <span class="fa fa-check" id="A17498" data-tid="A365748"></span>&nbsp;Açıklama Güncelle
+                    </dx-button>
+                </div>
+            </div>
+        </div>
+
+
+    </dx-popup>
+
+
+</dx-scroll-view>

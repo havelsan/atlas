@@ -1,0 +1,34 @@
+version: '3.4'
+
+services:
+  atlasweb:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment:
+      #- ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Production
+    expose:
+      - "5000"
+    restart: always
+    depends_on:
+      - proxy
+  proxy:
+    build:
+      context: ./AtlasWeb/atlasnginx
+      dockerfile: Dockerfile
+    environment:
+      # NGINX-PROXY ENVIRONMENT VARIABLES: UPDATE ME      
+      - VIRTUAL_HOST=atlascare.atlas.com.tr 
+      - VIRTUAL_PORT=443
+      - LETSENCRYPT_HOST=atlascare.atlas.com.tr
+      - LETSENCRYPT_EMAIL=my@my.com
+      # /END NGINX-PROXY ENVIRONMENT VARIABLES
+    expose:
+      - 80
+      - 443
+    restart: always
+networks:
+  default:
+    external:
+      name: nginx-proxy

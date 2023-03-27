@@ -1,0 +1,106 @@
+﻿<div class="container-fluid" data-tid="A332516">
+    <h4 class="logisticLabel" style="margin-left:40%;color:#08c;" id="A7602" data-tid="A332517">{{FormCaption}}</h4>
+    <NeStatePanelComponent [OutgoingTransitions]="mainStoreDistDocNewFormViewModel?.OutgoingTransitions" [StateReports]="mainStoreDistDocNewFormViewModel?.CurrentStateReports" [ObjectID]="mainStoreDistDocNewFormViewModel?._MainStoreDistributionDoc?.ObjectID" [ObjectDefID]="mainStoreDistDocNewFormViewModel?._MainStoreDistributionDoc?.ObjectDefID" [CurrentStateDefID]="mainStoreDistDocNewFormViewModel._MainStoreDistributionDoc.CurrentStateDefID" [DropStateList]="DropStateList" (onSetState)="stateChange($event)" (onSaveChanges)="saveForm($event)" (onCancel)="NewFormCancel()" id="A6147" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A332518">
+    </NeStatePanelComponent>
+
+    <form id="MainStoreDistDocNewForm" class="form-horizontal" role="form" data-tid="A332519"></form>
+    <div class="row" data-tid="A332520">
+        <div class="col-sm-3" id="A6150" data-tid="A332521">
+            <label class="control-label" data-tid="A332522">
+                İşlem No
+            </label>
+            <hvl-text-box #Validation (TextChange)="onStockActionIDChanged($event)" [BackColor]="StockActionID?.BackColor" [CharacterCasing]="StockActionID?.CharacterCasing" [Enabled]="StockActionID?.Enabled" [Font]="StockActionID?.Font" [ForeColor]="StockActionID?.ForeColor" [height]="StockActionID?.Height" [InputFormat]="StockActionID?.InputFormat" [InputTurkishCharacter]="StockActionID?.InputTurkishCharacter" [IsNonNumeric]="StockActionID?.IsNonNumeric" [MultiLine]="StockActionID?.Multiline" [ReadOnly]="StockActionID?.ReadOnly" [Required]="StockActionID?.Required" [TabIndex]="StockActionID?.TabIndex" [TextAlign]="StockActionID?.TextAlign" [Text]="_MainStoreDistributionDoc.StockActionID" [Visible]="StockActionID?.Visible" data-tid="A332523">
+            </hvl-text-box>
+        </div>
+        <div class="col-sm-3" id="A6150" data-tid="A332524">
+            <label class="control-label" data-tid="A332525">
+                İşlem Tarihi
+            </label>
+            <hvl-date-picker #Validation (ValueChange)="onTransactionDateChanged($event)" [BackColor]="TransactionDate?.BackColor" [CustomFormat]="TransactionDate?.CustomFormat" [Enabled]="TransactionDate?.Enabled" [Font]="TransactionDate?.Font" [ForeColor]="TransactionDate?.ForeColor" [Format]="TransactionDate?.Format" [Max]="TransactionDate?.Max" [Min]="TransactionDate?.Min" [ReadOnly]="TransactionDate?.ReadOnly" [Required]="TransactionDate?.Required" [TabIndex]="TransactionDate?.TabIndex" [Value]="_MainStoreDistributionDoc.TransactionDate" [Visible]="TransactionDate?.Visible" data-tid="A332526">
+            </hvl-date-picker>
+        </div>
+        <div class="col-sm-3" id="A6150" data-tid="A332527">
+            <label class="control-label col-sm-3" data-tid="A332528">
+                Ana Depo
+            </label>
+            <hvl-list-box #Validation (SelectedObjectChange)="onStoreChanged($event)" [AutoCompleteDialogHeight]="Store?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="Store?.AutoCompleteDialogWidth" [AutoCompleteMode]="Store?.AutoCompleteMode" [BackColor]="Store?.BackColor" [DefinitionName]="Store?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="Store?.Enabled" [Font]="Store?.Font" [ForeColor]="Store?.ForeColor" [ListFilterExpression]="Store?.ListFilterExpression" [MinSearchLength]="Store?.MinSearchLength" [PopupDialogFieldConfig]="Store?.PopupDialogFieldConfig" [PopupDialogGridColumns]="Store?.PopupDialogGridColumns" [PopupDialogHeight]="Store?.PopupDialogHeight" [PopupDialogTitle]="Store?.PopupDialogTitle" [PopupDialogWidth]="Store?.PopupDialogWidth" [ReadOnly]="Store?.ReadOnly" [SearchMode]="Store?.SearchMode" [SearchTimeout]="Store?.SearchTimeout" [SelectedObject]="_MainStoreDistributionDoc.Store" [TabIndex]="Store?.TabIndex" [Visible]="Store?.Visible" [width]="Store?.Width" data-tid="A332529">
+            </hvl-list-box>
+        </div>
+        <div class="col-sm-3" id="A6150" data-tid="A332530">
+            <label class="control-label" data-tid="A332531">
+                Cep Depo
+            </label>
+            <hvl-list-box #Validation (SelectedObjectChange)="onDestinationStoreChanged($event)" [AutoCompleteDialogHeight]="DestinationStore?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="DestinationStore?.AutoCompleteDialogWidth" [AutoCompleteMode]="DestinationStore?.AutoCompleteMode" [BackColor]="DestinationStore?.BackColor" [DefinitionName]="DestinationStore?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="DestinationStore?.Enabled" [Font]="DestinationStore?.Font" [ForeColor]="DestinationStore?.ForeColor" [ListFilterExpression]="DestinationStore?.ListFilterExpression" [MinSearchLength]="DestinationStore?.MinSearchLength" [PopupDialogFieldConfig]="DestinationStore?.PopupDialogFieldConfig" [PopupDialogGridColumns]="DestinationStore?.PopupDialogGridColumns" [PopupDialogHeight]="DestinationStore?.PopupDialogHeight" [PopupDialogTitle]="DestinationStore?.PopupDialogTitle" [PopupDialogWidth]="DestinationStore?.PopupDialogWidth" [ReadOnly]="DestinationStore?.ReadOnly" [SearchMode]="DestinationStore?.SearchMode" [SearchTimeout]="DestinationStore?.SearchTimeout" [SelectedObject]="_MainStoreDistributionDoc.DestinationStore" [TabIndex]="DestinationStore?.TabIndex" [Visible]="DestinationStore?.Visible" [width]="DestinationStore?.Width" data-tid="A332532">
+            </hvl-list-box>
+        </div>
+    </div>
+    <br id="A6148" data-tid="A332533" />
+    <div class="row" data-tid="A332534">
+        <div class="col-sm-3" id="A6164" data-tid="A332535">
+            <label class="control-label" id="A6165" data-tid="A332536">
+                İstek Yapan
+            </label>
+            <hvl-button-textbox (Clicked)="TTTeslimAlanButon_Click()" (TextChange)="onMKYS_TeslimAlanChanged($event)" [(Text)]="MKYS_TeslimAlan.Text" [BackColor]="MKYS_TeslimAlan?.BackColor" [ButtonEnabled]="MKYS_TeslimAlan?.ButtonEnabled" [ButtonOnRight]="MKYS_TeslimAlan?.ButtonOnRight" [ButtonText]="MKYS_TeslimAlan.ButtonText" [ButtonWidth]="MKYS_TeslimAlan?.ButtonWidth" [Enabled]="MKYS_TeslimAlan?.Enabled" [Font]="MKYS_TeslimAlan?.Font" [ForeColor]="MKYS_TeslimAlan?.ForeColor" [Icon]="MKYS_TeslimAlan?.Icon" [placeHolder]="MKYS_TeslimAlan?.placeHolder" [ReadOnly]="MKYS_TeslimAlan?.ReadOnly" [ShowClearButton]="MKYS_TeslimAlan?.ShowClearButton" [TabIndex]="MKYS_TeslimAlan?.TabIndex" [Type]="MKYS_TeslimAlan?.Type" [Visible]="MKYS_TeslimAlan?.Visible" id="A6166" data-tid="A332537"></hvl-button-textbox>
+        </div>
+        <div class="col-sm-3" id="A6167" data-tid="A332538">
+            <label class="control-label" id="A6168" data-tid="A332539">
+                Teslim Eden
+            </label>
+            <hvl-button-textbox (Clicked)="TTTeslimEdenButon_Click()" (TextChange)="onMKYS_TeslimEdenChanged($event)" [(Text)]="MKYS_TeslimEden.Text" [BackColor]="MKYS_TeslimEden?.BackColor" [ButtonEnabled]="MKYS_TeslimEden?.ButtonEnabled" [ButtonOnRight]="MKYS_TeslimEden?.ButtonOnRight" [ButtonText]="MKYS_TeslimEden.ButtonText" [ButtonWidth]="MKYS_TeslimEden?.ButtonWidth" [Enabled]="MKYS_TeslimEden?.Enabled" [Font]="MKYS_TeslimEden?.Font" [ForeColor]="MKYS_TeslimEden?.ForeColor" [Icon]="MKYS_TeslimEden?.Icon" [placeHolder]="MKYS_TeslimEden?.placeHolder" [ReadOnly]="MKYS_TeslimEden?.ReadOnly" [ShowClearButton]="MKYS_TeslimEden?.ShowClearButton" [TabIndex]="MKYS_TeslimEden?.TabIndex" [Type]="MKYS_TeslimEden?.Type" [Visible]="MKYS_TeslimEden?.Visible" id="A6169" data-tid="A332540"></hvl-button-textbox>
+        </div>
+        <div class="col-sm-2" id="A6173" data-tid="A332541">
+            <br id="A6174" data-tid="A332542" />
+            <dx-button type="btn btn-default" style="margin-top: -7%" text="Çoklu Malzeme Seçimi" (onClick)="OpenMaterialMultiSelectComponent()" data-tid="A332543"></dx-button>
+        </div>
+    </div>
+    <br id="A6177" data-tid="A332544" />
+    <div class="row" id="A6178" data-tid="A332545">
+        <div class="col-sm-12" id="A6179" data-tid="A332546">
+            <label class="control-label" id="A6180" data-tid="A332547">
+                Açıklama
+            </label>
+            <hvl-text-box #Validation (TextChange)="onDescriptionChanged($event)" [BackColor]="Description?.BackColor" [CharacterCasing]="Description?.CharacterCasing" [Enabled]="Description?.Enabled" [Font]="Description?.Font" [ForeColor]="Description?.ForeColor" [height]="Description?.Height" [InputFormat]="Description?.InputFormat" [InputTurkishCharacter]="Description?.InputTurkishCharacter" [IsNonNumeric]="Description?.IsNonNumeric" [MultiLine]="Description?.Multiline" [ReadOnly]="Description?.ReadOnly" [Required]="Description?.Required" [TabIndex]="Description?.TabIndex" [TextAlign]="Description?.TextAlign" [Text]="distributionDocumentNewFormViewModel?._MainStoreDistributionDoc?.Description" [Visible]="Description?.Visible" id="A6181" data-tid="A332548"></hvl-text-box>
+        </div>
+    </div>
+    <br id="A6182" data-tid="A332549" />
+    <div class="row" id="A6183" style="padding: 0 15px;" data-tid="A332550">
+        <dx-tab-panel [selectedIndex]="0" id="A6184" data-tid="A332551">
+            <dxi-item class="tabpanel-item" title="Taşınır Malın" i18n-title="@@M27509" id="A6185" data-tid="A332552">
+                <div class="row" id="A6186" data-tid="A332553">
+                    <div class="col-sm-12" id="A6187" data-tid="A332554">
+                        <div class="col-sm-6" style="padding:10px 0 !important;" data-tid="A332555">
+                            <div class="col-sm-12" style="margin: 10px 0;" data-tid="A332556">
+                                <label class="control-label" data-tid="A332557">Malzeme Seçiniz</label>
+                            </div>
+                            <div class="col-sm-12" style="margin-bottom: 10px;" data-tid="A332558">
+                                <hvl-list-box [(SelectedObject)]="selectedMaterial" [AutoCompleteDialogHeight]="400" [AutoCompleteDialogWidth]="400" [AutoCompleteMode]="MaterialDistributionDocumentMaterial?.AutoCompleteMode" [Enabled]="true" [BackColor]="MaterialDistributionDocumentMaterial?.BackColor" [DefinitionName]="MaterialDistributionDocumentMaterial?.ListDefName" [Font]="MaterialDistributionDocumentMaterial?.Font" [ForeColor]="MaterialDistributionDocumentMaterial?.ForeColor" [ListFilterExpression]="this.MaterialDistributionDocumentMaterial.ListFilterExpression" [MinSearchLength]="MaterialDistributionDocumentMaterial?.MinSearchLength" [PopupDialogFieldConfig]="MaterialDistributionDocumentMaterial?.PopupDialogFieldConfig" [PopupDialogGridColumns]="MaterialDistributionDocumentMaterial?.PopupDialogGridColumns" [PopupDialogHeight]="400" [PopupDialogTitle]="MaterialDistributionDocumentMaterial?.PopupDialogTitle" [PopupDialogWidth]="400" [ReadOnly]="MaterialDistributionDocumentMaterial?.ReadOnly" [SearchMode]="MaterialDistributionDocumentMaterial?.SearchMode" [SearchTimeout]="MaterialDistributionDocumentMaterial?.SearchTimeout" [TabIndex]="MainStoreDistDocDetail?.TabIndex" [Visible]="MaterialDistributionDocumentMaterial?.Visible" width="100%" (SelectedObjectChange)="onMaterialSelectionChange($event)" data-tid="A332559"></hvl-list-box>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" data-tid="A332560">
+                            <br data-tid="A332561" />
+                            <div class="row" data-tid="A332562">
+                            </div>
+                        </div>
+                        <div class="col-sm-12" data-tid="A332563">
+                            <dx-data-grid #mainStoreDistributionDocumentNewFormMaterialGrid id="mainStoreDistributionDocumentNewFormMaterialGrid" showColumnLines="true" showRowLines="true" rowAlternationEnabled="true" showBorders="true" height="500px" [dataSource]="mainStoreDistDocNewFormViewModel?._MainStoreDistributionDoc?.MainStoreDistDocDetails" [columns]="MainStoreDistributionDocumentMaterialsColumns" [scrolling]="{mode:'infinite'}" [selection]="{mode: 'single'}" (onRowUpdating)="materialGridRowUpdating($event)" data-tid="A332564">
+                                <dxo-editing mode="cell" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="false" data-tid="A332565">
+                                </dxo-editing>
+                                <div *dxTemplate="let cellData of 'deleteCellTemplate'" id="A27832" data-tid="A332566">
+                                    <i class="fa fa fa-trash" style="cursor:pointer" (click)="mainStoreDistributionDocumentNewFormMaterialGrid_CellContentClicked(cellData)" data-tid="A332567"></i>
+                                </div>
+                            </dx-data-grid>
+                        </div>
+                    </div>
+                </div>
+            </dxi-item>
+        </dx-tab-panel>
+    </div>
+    <dx-popup width="1400px" height="800px" style="position: inherit;" [(visible)]="showMaterialMultiSelectForm" [closeOnOutsideClick]="false" title="Malzeme Listesi" i18n-title="@@M20728" id="A6189" data-tid="A332568">
+        <div class="margin-bottom-10" id="A6190" data-tid="A332569">
+            <div *dxTemplate="let data of 'content'" id="A6191" data-tid="A332570">
+                <MaterialMultiSelectForm (SelectedMaterialsClear)="MaterialsCleared()" (SelectedMaterialsChanged)="MaterialsSelected($event)" [FilterByStockCard]="true" [ShowMuadilMedicineFilter]="true" [ClearListOnSave]="true" FilterByStockInheld="false" [StoreObjectId]="storeListFiltred" ShowZeroOnDistributionInfo="{{this.ShowZeroOnDistributionInfo}}" id="A6192" data-tid="A332571">
+                </MaterialMultiSelectForm>
+            </div>
+        </div>
+    </dx-popup>
+</div>

@@ -1,0 +1,70 @@
+﻿<div class="col-md-12" style="height:100%;overflow-x:hidden;overflow-y:auto;padding-top: 10px;" data-tid="A331969">
+    <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" showIndicator="true" showPane="true" shading="true" [closeOnOutsideClick]="false" [message]="LoadPanelMessage" data-tid="A331970">
+    </dx-load-panel>
+    <div class="row" style="margin-bottom:0;padding-left: 15px" data-tid="A331971">
+        <div class="col-sm-12 col-md-2" data-tid="A331972">
+            <div class="row" data-tid="A331973">
+                <label class="control-label" style="border:0; box-shadow:none; color:#08c" data-tid="A331974">Başlangıç Tarihi </label>
+                <dx-date-box width="100%" type="date" [(value)]="StartDate" [readOnly]="false" data-tid="A331975">
+                </dx-date-box>
+            </div>
+            <div class="row" data-tid="A331976">
+                <label class="control-label" style="border:0; box-shadow:none; color:#08c" data-tid="A331977">Bitiş Tarihi</label>
+                <dx-date-box width="100%" type="date" [(value)]="EndDate" [readOnly]="false" data-tid="A331978">
+                </dx-date-box>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-10" data-tid="A331979">
+            <div class="col-sm-12 col-md-5" style="padding-top:10px;" data-tid="A331980">
+                <div class="row" data-tid="A331981">
+                        <label class="control-label" style="border:0; box-shadow:none; color:#08c" data-tid="A331982">Hasta Adı Soyadı</label>
+                    <PatientSearchForm Width="100%" (SelectedPatientChanged)="patientChanged($event)" data-tid="A331983"></PatientSearchForm>
+                </div>
+
+            </div>
+            <div class="col-sm-12 col-md-7" style="padding-bottom:20px;" data-tid="A331984">
+                <div class="col-sm-12" data-tid="A331985">
+                    <div class="row" data-tid="A331986">
+                        <div class="col-sm-12 col-md-6" style="padding-top:10px;" data-tid="A331987">
+                            <label class="control-label" style="border:0; box-shadow:none; color:#08c" data-tid="A331988">TC Kimlik Numarası</label>
+                            <hvl-text-box #Validation [(Text)]="PatientUniqueRefNo" data-tid="A331989"></hvl-text-box>
+                        </div>
+                        <div class="col-sm-12 col-md-6" style="padding-top:10px;" data-tid="A331990">
+                            <label class="control-label" style="border:0; box-shadow:none; color:#08c" data-tid="A331991">Kabul No</label>
+                            <hvl-text-box #Validation [(Text)]="AdmissionNo" data-tid="A331992"></hvl-text-box>
+                        </div>
+                    </div>
+                </div>
+                <!--<label class="col-sm-12">Etken Madde Filtresi</label>-->
+                <div class="col-sm-12" data-tid="A331993">
+                    <!-- <dx-check-box [(value)]="AllActiveIngredientDefs" [width]="200" text="Pasif Etken Maddeleri de Göster" (onValueChanged)="onAllActiveIngredientClicked()"></dx-check-box> 
+                       <dx-list [dataSource]="ActiveIngredientList" height="150" selectAllMode="allPages" selectionMode="all" showSelectionControls="true"
+                        searchMode="contains" nextButtonText="Daha Fazla Göster" [(selectedItemKeys)]="SelectedDrugActiveIngredients"
+                        pageLoadMode="scrollBottom">
+                        <div *dxTemplate="let data of 'item'">
+                            <div>{{data.Name}}</div>
+                        </div>
+                    </dx-list>-->
+                    <dx-button type="btn btn-info" icon="fa fa-bars" class="pull-right" (onClick)="GetDrugUsageInfoGridListList()" text="Sorgula" data-tid="A331994"></dx-button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" data-tid="A331995">
+        <div class="col-sm-12" style="margin-top:5px;" data-tid="A331996">
+            <div id="grid" data-tid="A331997">
+                <dx-data-grid #grid id="grid-container" [columns]="DrugUsageInfoListColumns" [dataSource]="DrugUsageInfoGridList" style="height:100%;" data-tid="A331998">
+                    <dxo-paging [pageSize]="20" data-tid="A331999"></dxo-paging>
+                    <dxo-filter-row [visible]="true" data-tid="A332000"> </dxo-filter-row>
+                    <div *dxTemplate="let row of 'buttonCellTemplate'" style="padding-bottom: 1px;" data-tid="A332001">
+                        <button type="button" class="btn btn-default glyphicon glyphicon-list" (click)="onParticipatientReportOpen(row)" data-toggle="tooltip" data-placement="top" title="İlaç Raporunu Aç" data-tid="A332002"></button>
+                    </div>
+                    <dxo-export [enabled]="true" fileName="İlaç Kullanım Raporu" [allowExportSelectedData]="false" data-tid="A332003"></dxo-export>
+                </dx-data-grid>
+            </div>
+        </div>
+        <div class="col-sm-12 pull pull-right" style="width:100%;color: black;padding: 15px;font-size: larger;" data-tid="A332004">
+            Toplam Kayıt Sayısı: {{ TotalNumberOfRows }}
+        </div>
+    </div>
+</div>

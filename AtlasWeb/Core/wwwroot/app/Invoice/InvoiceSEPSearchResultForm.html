@@ -1,0 +1,223 @@
+﻿<link href="/Content/Invoice/InvoiceSepForm.css" rel="stylesheet" />
+
+<div class="container-fluid form-horizontal" style="height:calc(100% - 90px)!important" id="A31815" data-tid="A372623">
+
+
+    <div class="col-sm-12" data-tid="A372624">
+        <div class="col-sm-11" data-tid="A372625">
+            <dx-menu [dataSource]="menuData" (onItemClick)="onItemClickTopMenu($event)" displayExpr="name" [showFirstSubmenuMode]="{name: 'onHover',delay: {show: 100,hide: 300} }" [hideSubmenuOnMouseLeave]="true" id="A31818" data-tid="A372626">
+            </dx-menu>
+        </div>
+
+        <div class="col-sm-1" data-tid="A372627">
+            <dx-button style="float: right;" icon="fa fa-refresh" (onClick)="btnRefreshClicked()" id="A31820" class="btn btn-default" data-tid="A372628"></dx-button>
+        </div>
+    </div>
+    <div class="col-sm-12" data-tid="A372629">
+        <div class="col-sm-1 remove-padding" data-tid="A372630">
+            Hatalar:
+        </div>
+        <div class="col-sm-6 remove-padding" data-tid="A372631">
+            <dx-select-box [(value)]="invoiceSEPSearchResultFormModel.InvoiceSEPSearchCriteria.FirstSelectErrorCode" searchEnabled="true" [dataSource]="errorArrayFirst" displayExpr="Name" valueExpr="ObjectID" (onValueChanged)="onValueChangedFirstSelectErrorCode($event)" data-tid="A372632"></dx-select-box>
+        </div>
+        <div class="col-sm-1 remove-padding" data-tid="A372633">
+            SUT H.:
+        </div>
+        <div class="col-sm-4 remove-padding" data-tid="A372634">
+            <dx-select-box [(value)]="invoiceSEPSearchResultFormModel.InvoiceSEPSearchCriteria.SecondSelectErrorCode" searchEnabled="true" [dataSource]="errorArraySecond" displayExpr="Name" valueExpr="Code" (onValueChanged)="onValueChangedSecondSelectErrorCode($event)" data-tid="A372635"></dx-select-box>
+        </div>
+    </div>
+    <div class="col-sm-12" data-tid="A372636">
+        <div class="col-sm-2 remove-padding" data-tid="A372637">
+            Engelli Hizmet Durumları:
+        </div>
+        <div class="col-sm-5 remove-padding" data-tid="A372638">
+            <dx-select-box [(value)]="invoiceSEPSearchResultFormModel.InvoiceSEPSearchCriteria.BannedState" searchEnabled="true" [dataSource]="BannedStatesArray" displayExpr="Name" valueExpr="ObjectID" (onValueChanged)="onValueChangedFirstSelectErrorCode($event)" data-tid="A372639"></dx-select-box>
+        </div>
+
+    </div>
+    <div class="col-sm-12 remove-padding" style="height:95%" id="A31821" data-tid="A372640">
+        <dx-data-grid keyExpr="ObjectID" rowAlternationEnabled="true" [columnResizingMode]="widget" [selection]="{mode: 'multiple',showCheckBoxesMode: 'onLongTap', selectAllMode:'page'}" (onRowClick)="searchResultClicked($event)" [dataSource]="InvoiceSEPResultList" [columns]='InvoiceSEPSearchResultListColumns' height="100%" [(selectedRowKeys)]="selectedRowKeysSEPResultList" [disabled]="collectiveOperationStart" [remoteOperations]="true" [customizeColumns]="null" (onContentReady)="onContentReadySEPSearchResultList($event)" [filterRow]="{visible: true}" [headerFilter]="{visible: true}" [allowColumnReordering]="true" (onToolbarPreparing)="onToolbarPreparingSEPSearchResultList($event)" [allowColumnResizing]="true" [columnAutoWidth]="true" id="A31822" data-tid="A372641">
+            <dxo-column-chooser [enabled]="true" height="600" width="300" title="Takip listesi özelleştirme menüsü" i18n-title="@@M27742" id="A31823" data-tid="A372642">
+            </dxo-column-chooser>
+            <dxo-export [enabled]="true" fileName="Fatura Sorgusu Takip Listesi" [allowExportSelectedData]="true" i18n-fileName="@@M14197" id="A31824" data-tid="A372643"></dxo-export>
+            <dxo-sorting mode="multiple" data-tid="A372644"></dxo-sorting>
+            <dxo-scrolling showScrollbar="always" data-tid="A372645"></dxo-scrolling>
+            <dxo-paging [pageSize]="100" id="A31825" data-tid="A372646"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[25,50,100]" id="A31826" data-tid="A372647"></dxo-pager>
+            <dxo-summary id="A31827" data-tid="A372648">
+                <dxi-total-item column="Id" summaryType="count" id="A31828" data-tid="A372649">
+                </dxi-total-item>
+                <dxi-total-item column="Hbystutari" summaryType="sum" id="A31829" data-tid="A372650">
+                </dxi-total-item>
+                <dxi-total-item column="MedulaFaturaTutari" summaryType="sum" id="A31830" data-tid="A372651">
+                </dxi-total-item>
+            </dxo-summary>
+
+        </dx-data-grid>
+
+    </div>
+    <div class="row" style="padding-top:3px" id="A31831" data-tid="A372652">
+        <dx-box direction="row" width="100%" [height]="30" [visible]="collectiveOperationPanel" id="A31832" data-tid="A372653">
+            <dxi-item [ratio]="4" id="A31833" data-tid="A372654">
+
+
+                <dx-progress-bar [min]="0" [max]="totalCount" [statusFormat]="format" [value]="succesCount+errorCount" id="A31834" data-tid="A372655">
+                </dx-progress-bar>
+            </dxi-item>
+            <dxi-item [ratio]="4" style="align-items:center" id="A31835" data-tid="A372656">
+
+                <b id="A31836" data-tid="A372657">
+                    Toplam Çalışılan Kayıt Sayısı: <font color="#08c" id="A31837" data-tid="A372658">{{totalCount}}</font>
+                    Başarılı: <font color="#08c" id="A31838" data-tid="A372659">{{succesCount}}</font> Hatalı: <font color="#08c" id="A31839" data-tid="A372660">{{errorCount}}</font>
+                </b>
+            </dxi-item>
+
+            <dxi-item [ratio]="2" style="align-items:flex-end" id="A31840" data-tid="A372661">
+                <div class="row" id="A31841" data-tid="A372662">
+                    <dx-button icon="fa fa-list" (onClick)="onClickShowErrorList()" text="Hata Listesi" i18n-text="@@M15544" id="A31842" data-tid="A372663"></dx-button>
+                    <dx-button icon="fa fa-sort-amount-desc" (onClick)="onClickExitCollectiveOperation()" text="Gizle" i18n-text="@@M14812" id="A31843" data-tid="A372664"></dx-button>
+                </div>
+            </dxi-item>
+        </dx-box>
+    </div>
+
+    <dx-popup width="900px" height="300px" [(visible)]="showAddDiagnosisPopup || showAddDiagnosisPopupOnTask" [closeOnOutsideClick]="false" title="Tanı Ekleme Formu" i18n-title="@@M22746" id="A31291" data-tid="A372665">
+        <div *dxTemplate="let data of 'content'" id="A31292" data-tid="A372666">
+            <DiagnosisGridForm [GridDiagnosisGridList]="GridDiagnosisGridList" id="A31293" data-tid="A372667"></DiagnosisGridForm>
+
+            <div class="row" id="A31294" data-tid="A372668">
+                <dx-button type="danger" style="float: right;" icon="fa fa-times" (onClick)="this.showAddDiagnosisPopup = false;" text="Çıkış" i18n-text="@@M12363" id="A31295" data-tid="A372669">
+                </dx-button>
+                <dx-button type="default" style="float: right;" icon="fa fa-check" (onClick)="onClickAddDiagnosis()" text="Kaydet" i18n-text="@@M17386" id="A31296" data-tid="A372670"></dx-button>
+            </div>
+        </div>
+    </dx-popup>
+    <!-- (onHiding)="onHiddingScheduledTask($event)" -->
+    <dx-popup width="1500px" height="900px" [(visible)]="showSaveScheduledTaskPopup || showListScheduledTaskPopup" [showCloseButton]="false" [closeOnOutsideClick]="false" title="Planlı Görev" data-tid="A372671">
+        <div *dxTemplate="let data of 'content'" data-tid="A372672">
+            <div class="col-sm-3" data-tid="A372673">
+                <dx-data-grid rowAlternationEnabled="true" [selection]="{mode: 'single'}" [dataSource]="this.scheduledTaskViewModel.SavedTaskList" [columns]='SavedTaskListColumns' [allowColumnResizing]="true" [columnAutoWidth]="true" height="850px" (onRowClick)="onRowClickSavedTaskList($event)" data-tid="A372674">
+                </dx-data-grid>
+            </div>
+            <div class="col-sm-9" data-tid="A372675">
+                <div class="col-sm-12" data-tid="A372676"><u data-tid="A372677">Toplu İşlemler</u></div>
+                <div class="row" style="padding: 10px 10px 10px 10px!important" data-tid="A372678">
+                    <dx-button style="float: left; padding-left:5px;" [visible]="buttonVisibiltyOnPopup.takipAl" (onClick)="addTask(0,'Takip Al',2)" text="Takip Al" data-tid="A372679"></dx-button>
+                    <dx-button style="float: left; padding-left:5px;" [visible]="buttonVisibiltyOnPopup.takipSil" (onClick)="addTask(1,'Takip Sil',0)" text="Takip Sil" data-tid="A372680"></dx-button>
+                    <dx-button style="float: left; padding-left:5px;" [visible]="buttonVisibiltyOnPopup.takipBazliHizmetKayit" (onClick)="addTask(2,'Hizmet Kayit',4)" text="Hizmet Kayit" data-tid="A372681"></dx-button>
+                    <dx-button style="float: left; padding-left:5px;" [visible]="buttonVisibiltyOnPopup.takipBazliHizmetKayitIptal" (onClick)="addTask(3,'Hizmet Kayit İptal',2)" text="Hizmet Kayit İptal" data-tid="A372682"></dx-button>
+                    <dx-button style="float: left; padding-left:5px;" [visible]="buttonVisibiltyOnPopup.kuralCalistir" (onClick)="addTask(4,'Kural Çalıştır',-1)" text="Kural Çalıştır" data-tid="A372683"></dx-button>
+                    <dx-button style="float: left; padding-left:5px;" [visible]="buttonVisibiltyOnPopup.faturaKayit" (onClick)="addTask(5,'Fatura Kayıt',7)" text="Fatura Kayıt" data-tid="A372684"></dx-button>
+                    <dx-button style="float: left; padding-left:5px;" [visible]="buttonVisibiltyOnPopup.faturaIptal" (onClick)="addTask(6,'Fatura İptal',4)" text="Fatura İptal" data-tid="A372685"></dx-button>
+                    <dx-button style="float: left; padding-left:5px;" [visible]="buttonVisibiltyOnPopup.faturaTutarOku" (onClick)="addTask(7,'Fatura Tutar Oku',9)" text="Fatura Tutar Oku" data-tid="A372686"></dx-button>
+                    <dx-button style="float: left; padding-left:5px;" [visible]="buttonVisibiltyOnPopup.arrangeInvoice" (onClick)="addTask(18,'Fatura Düzelt',7)" text="Fatura Düzelt" data-tid="A372687"></dx-button>
+                    <dx-button style="float: left; padding-left:5px;" [visible]="buttonVisibiltyOnPopup.SendNabiz700" (onClick)="addTask(22,'Nabız Gönder(700)',-1)" text="Nabız Gönder(700)" data-tid="A372688"></dx-button>
+                </div>
+
+
+                <div class="col-sm-12" data-tid="A372689">
+                    <dx-data-grid rowAlternationEnabled="true" [dataSource]="this.scheduledTaskViewModel.Task.TaskList" [columns]='TaskListColumns' height="300px" [allowColumnResizing]="true" [columnAutoWidth]="true" data-tid="A372690">
+                    </dx-data-grid>
+                    <dx-button style="float: right; padding-right:5px;" (onClick)="removeTask()" [(visible)]="showSaveScheduledTaskPopup" text="Listeden Çıkar" data-tid="A372691">
+                    </dx-button>
+                </div>
+                <div class="col-sm-12" data-tid="A372692"><u data-tid="A372693">Otomatik Düzenleme İşlemleri</u></div>
+
+                <div class="col-sm-12" data-tid="A372694">
+                    <div class="col-sm-1 remove-padding" data-tid="A372695">
+                        Hatalar:
+                    </div>
+                    <div class="col-sm-6 remove-padding" data-tid="A372696">
+                        <dx-select-box [(value)]="invoiceSEPSearchResultFormModel.InvoiceSEPSearchCriteria.FirstSelectErrorCode" searchEnabled="true" [dataSource]="errorArrayFirst" displayExpr="Name" valueExpr="ObjectID" (onValueChanged)="onValueChangedFirstSelectErrorCode($event)" data-tid="A372697"></dx-select-box>
+                    </div>
+                    <div class="col-sm-1 remove-padding" data-tid="A372698">
+                        SUT H.:
+                    </div>
+                    <div class="col-sm-4 remove-padding" data-tid="A372699">
+                        <dx-select-box [(value)]="invoiceSEPSearchResultFormModel.InvoiceSEPSearchCriteria.SecondSelectErrorCode" searchEnabled="true" [dataSource]="errorArraySecond" displayExpr="Name" valueExpr="Code" data-tid="A372700">
+                        </dx-select-box>
+                    </div>
+                </div>
+                <div class="col-sm-12" data-tid="A372701">
+                    <div class="col-sm-2 remove-padding" data-tid="A372702">
+                        Engelli Hizmet Durumları:
+                    </div>
+                    <div class="col-sm-5 remove-padding" data-tid="A372703">
+                        <dx-select-box [(value)]="invoiceSEPSearchResultFormModel.InvoiceSEPSearchCriteria.BannedState" searchEnabled="true" [dataSource]="BannedStatesArray" displayExpr="Name" valueExpr="ObjectID" (onValueChanged)="onValueChangedFirstSelectErrorCode($event)" data-tid="A372704"></dx-select-box>
+                    </div>
+
+                </div>
+
+
+
+                <div class="row" style="padding: 10px 10px 10px 10px!important" data-tid="A372705">
+                    <dx-button style="float: left; padding-left:5px;" [visible]="buttonVisibiltyOnPopup.changeDoctor" (onClick)="addTask(16,'Doktor Değiştir',-2)" text="Doktor Değiştir" data-tid="A372706"></dx-button>
+                    <dx-button style="float: left; padding-left:5px;" [visible]="buttonVisibiltyOnPopup.addDiagnosis" (onClick)="addDiagnosisOnTask()" text="Tanı Ekle" data-tid="A372707"></dx-button>
+                    <dx-button style="float: left; padding-left:5px;" [visible]="buttonVisibiltyOnPopup.addMedulaDescription" (onClick)="addTask(19,'Medula Açıklaması Giriş(1299)',-2)" text="Medula Açıklaması Giriş(1299)" data-tid="A372708">
+                    </dx-button>
+                    <dx-button style="float: left; padding-left:5px;" [visible]="buttonVisibiltyOnPopup.fix1108" (onClick)="addTask(13,'1108 Hatası Düzenle',-2)" text="1108 Hatası Düzenle" data-tid="A372709"></dx-button>
+                    <dx-button style="float: left; padding-left:5px;" [visible]="buttonVisibiltyOnPopup.SetDonotSendMedula" (onClick)="addTask(20,'.... Hatalıyı Gönderme',-2)" text=".... Hatalıyı Gönderme" data-tid="A372710"></dx-button>
+                    <dx-button style="float: left; padding-left:5px;" [visible]="buttonVisibiltyOnPopup.SendNabiz" (onClick)="addTask(21,'Nabıza Gönder(1692)',-2)" text="Nabıza Gönder(1692)" data-tid="A372711"></dx-button>
+                    <dx-button style="float: left; padding-left:5px;" [visible]="buttonVisibiltyOnPopup.takipBazliHizmetKayitFix" (onClick)="addTask(2,'Hizmet Kayit',-2)" text="Hizmet Kayit" data-tid="A372712"></dx-button>
+                    <dx-button style="float: left; padding-left:5px;" [visible]="buttonVisibiltyOnPopup.faturaKayitOnFix" (onClick)="addTask(5,'Fatura Kayıt',-2)" text="Fatura Kayıt" data-tid="A372713"></dx-button>
+                    <dx-button style="float: left; padding-left:5px;" [visible]="buttonVisibiltyOnPopup.faturaTutarOkuFix" (onClick)="addTask(7,'Fatura Tutar Oku',-2)" text="Fatura Tutar Oku" data-tid="A372714"></dx-button>
+                </div>
+                <div class="col-sm-12" data-tid="A372715">
+                    <dx-data-grid rowAlternationEnabled="true" [dataSource]="this.scheduledTaskViewModel.Task.FixTaskList" [columns]='FixTaskListColumns' height="300px" [allowColumnResizing]="true" [columnAutoWidth]="true" data-tid="A372716">
+                    </dx-data-grid>
+                    <dx-button style="float: right; padding-right:5px;" (onClick)="removeFixTask()" [(visible)]="showSaveScheduledTaskPopup" text="Listeden Çıkar" data-tid="A372717">
+                    </dx-button>
+                </div>
+
+                <div class="row" style="padding: 10px 10px 10px 10px!important;" data-tid="A372718">
+                    <div class="col-sm-6" data-tid="A372719">
+                        <div class="col-sm-5" data-tid="A372720">Çalışma Zamanı</div>
+                        <div class="col-sm-7" data-tid="A372721">
+                            <dx-date-box [(value)]="this.scheduledTaskViewModel.Task.ExecTime" type="datetime" data-tid="A372722">
+                            </dx-date-box>
+
+
+                        </div>
+                    </div>
+                    <div class="col-sm-6" data-tid="A372723">
+
+                        <dx-button type="danger" style="float: right;padding-left:5px;" icon="fa fa-sign-out" (onClick)="this.showSaveScheduledTaskPopup = false;this.showListScheduledTaskPopup = false;" text="Çıkış" data-tid="A372724"></dx-button>
+                        <dx-button type="default" style="float: right;padding-left:5px;" icon="fa fa-times" [visible]="!showSaveScheduledTaskPopup" (onClick)="onClickCancelScheduledTask()" text="İptal" data-tid="A372725"></dx-button>
+                        <dx-button type="default" style="float: right;padding-left:5px;" icon="fa fa-check" [visible]="showSaveScheduledTaskPopup" (onClick)="onClickSaveScheduledTask()" text="Kaydet" data-tid="A372726"></dx-button>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </dx-popup>
+
+    <dx-popup width="1000px" height="800px" [(visible)]="showErrorListPopup" [closeOnOutsideClick]="true" title="Hatalı Kayıtlar Deyatları" i18n-title="@@M15550" id="A31844" data-tid="A372727">
+        <div *dxTemplate="let data of 'content'" id="A31845" data-tid="A372728">
+
+            <dx-data-grid [height]="700" [selection]="{mode: 'single'}" [dataSource]="errorList" [columns]="ErrorListColumns" [filterRow]="{visible: true}" [headerFilter]="{visible: true}" id="A31846" data-tid="A372729">
+                <dxo-paging [pageSize]="20" id="A31847" data-tid="A372730"></dxo-paging>
+            </dx-data-grid>
+
+        </div>
+    </dx-popup>
+    <dx-popup width="800px" height="300px" [(visible)]="showChangeTrxStatePopup" [showCloseButton]="false" [closeOnOutsideClick]="false" title="İşlem Statü Değiştirme " data-tid="A372731">
+        <div *dxTemplate="let data of 'content'" data-tid="A372732">
+            <dx-data-grid [height]="180" [selection]="{mode: 'single'}" [dataSource]="changeTrxStateDataSource" [columns]="ChangeTrxStateColumn" [filterRow]="{visible: true}" [headerFilter]="{visible: true}" [editing]="{allowUpdating: true, mode: 'cell'}" data-tid="A372733">
+                <dxo-paging [pageSize]="20" data-tid="A372734"></dxo-paging>
+                <!--<div *dxTemplate="let row of 'choiceCellTemplate'">
+                    <dx-select-box [items]="changeTrxStateLookUp"   placeholder="Lütfen Seçim Yapınız"   (onSelectionChanged)="onSelectionChangedChoice($event,row)"     [showClearButton]="true" valueChangeEvent= "change">
+                    </dx-select-box>
+                    <hvl-enum-combobox [(Value)]="row.data[row.column.dataField]" DataTypeName="ChangeTrxStateEnum" [Enabled]="true"   ShowClearButton="false" [ReadOnly]="false"></hvl-enum-combobox>
+                </div>-->
+            </dx-data-grid>
+            <dx-check-box [(value)]="approveChoice" [width]="100" text="Seçimi Onayla" data-tid="A372735"></dx-check-box>
+            <dx-button type="danger" style="margin:0!important; position:absolute!important; bottom:20px;right:10px" icon="fa fa-times" (onClick)="btnCancelChangeTrxState()" text="Çıkış" data-tid="A372736"></dx-button>
+            <dx-button type="success" style="margin:0!important; position:absolute!important; bottom:20px;right:100px" icon="fa fa-check" (onClick)="btnChangeTrxState()" text="Seçimi Uygula" data-tid="A372737"></dx-button>
+        </div>
+    </dx-popup>
+
+
+</div>

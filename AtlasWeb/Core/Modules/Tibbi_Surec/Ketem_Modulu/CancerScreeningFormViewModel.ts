@@ -1,0 +1,61 @@
+//$7035DE6C
+import { BaseViewModel } from "NebulaClient/Model/BaseViewModel";
+import { CancerScreening } from "NebulaClient/Model/AtlasClientModel";
+import { BreastBiopsy } from "NebulaClient/Model/AtlasClientModel";
+import { CervicalCytologyResults } from "NebulaClient/Model/AtlasClientModel";
+import { CervicalBiopsyResults } from "NebulaClient/Model/AtlasClientModel";
+import { ColorectalBiopsyResults } from "NebulaClient/Model/AtlasClientModel";
+import { ColonoscopyQualityCriteria } from "NebulaClient/Model/AtlasClientModel";
+import { HPVTypeInfo } from "NebulaClient/Model/AtlasClientModel";
+import { SKRSTARAMATIPI } from "NebulaClient/Model/AtlasClientModel";
+import { SKRSMemedenBiyopsiAlimi } from "NebulaClient/Model/AtlasClientModel";
+import { SKRSMemeBiyopsiSonucu } from "NebulaClient/Model/AtlasClientModel";
+import { SKRSServikalSitolojiSonucu } from "NebulaClient/Model/AtlasClientModel";
+import { SKRSServikalBiyopsiSonucu } from "NebulaClient/Model/AtlasClientModel";
+import { SKRSKolorektalBiyopsiSonucu } from "NebulaClient/Model/AtlasClientModel";
+import { SKRSKolonoskopiKaliteKriterleri } from "NebulaClient/Model/AtlasClientModel";
+import { SKRSSigmoidoskopi } from "NebulaClient/Model/AtlasClientModel";
+import { SKRSPapSmearTesti } from "NebulaClient/Model/AtlasClientModel";
+import { SKRSMamografiSonucu } from "NebulaClient/Model/AtlasClientModel";
+import { SKRSMamografi } from "NebulaClient/Model/AtlasClientModel";
+import { SKRSKolposkopi } from "NebulaClient/Model/AtlasClientModel";
+import { SKRSKolonoskopininSuresi } from "NebulaClient/Model/AtlasClientModel";
+import { SKRSKlinikMemeMuayenesi } from "NebulaClient/Model/AtlasClientModel";
+import { SKRSKendiKendineMemeMuayenesi } from "NebulaClient/Model/AtlasClientModel";
+import { SKRSHPVTaramaTesti } from "NebulaClient/Model/AtlasClientModel";
+import { SKRSKolonoskopi } from "NebulaClient/Model/AtlasClientModel";
+import { SKRSKolonGoruntulemeYontemi } from "NebulaClient/Model/AtlasClientModel";
+import { SKRSGaitadaGizliKanTesti } from "NebulaClient/Model/AtlasClientModel";
+import { SKRSHpvTipi } from "NebulaClient/Model/AtlasClientModel";
+
+export class CancerScreeningFormViewModel extends BaseViewModel {
+    public _CancerScreening: CancerScreening = new CancerScreening();
+    public BreastBiopsyGridList: Array<BreastBiopsy> = new Array<BreastBiopsy>();
+    public CervicalCytologyResultsGridList: Array<CervicalCytologyResults> = new Array<CervicalCytologyResults>();
+    public CervicalBiopsyResultsGridList: Array<CervicalBiopsyResults> = new Array<CervicalBiopsyResults>();
+    public ColorectalBiopsyResultsGridList: Array<ColorectalBiopsyResults> = new Array<ColorectalBiopsyResults>();
+    public ColonoscopyQualityCriteriaGridList: Array<ColonoscopyQualityCriteria> = new Array<ColonoscopyQualityCriteria>();
+    public HPVTypeInfoGridList: Array<HPVTypeInfo> = new Array<HPVTypeInfo>();
+    public SKRSTARAMATIPIs: Array<SKRSTARAMATIPI> = new Array<SKRSTARAMATIPI>();
+    public SKRSMemedenBiyopsiAlimis: Array<SKRSMemedenBiyopsiAlimi> = new Array<SKRSMemedenBiyopsiAlimi>();
+    public SKRSMemeBiyopsiSonucus: Array<SKRSMemeBiyopsiSonucu> = new Array<SKRSMemeBiyopsiSonucu>();
+    public SKRSServikalSitolojiSonucus: Array<SKRSServikalSitolojiSonucu> = new Array<SKRSServikalSitolojiSonucu>();
+    public SKRSServikalBiyopsiSonucus: Array<SKRSServikalBiyopsiSonucu> = new Array<SKRSServikalBiyopsiSonucu>();
+    public SKRSKolorektalBiyopsiSonucus: Array<SKRSKolorektalBiyopsiSonucu> = new Array<SKRSKolorektalBiyopsiSonucu>();
+    public SKRSKolonoskopiKaliteKriterleris: Array<SKRSKolonoskopiKaliteKriterleri> = new Array<SKRSKolonoskopiKaliteKriterleri>();
+    public SKRSSigmoidoskopis: Array<SKRSSigmoidoskopi> = new Array<SKRSSigmoidoskopi>();
+    public SKRSPapSmearTestis: Array<SKRSPapSmearTesti> = new Array<SKRSPapSmearTesti>();
+    public SKRSMamografiSonucus: Array<SKRSMamografiSonucu> = new Array<SKRSMamografiSonucu>();
+    public SKRSMamografis: Array<SKRSMamografi> = new Array<SKRSMamografi>();
+    public SKRSKolposkopis: Array<SKRSKolposkopi> = new Array<SKRSKolposkopi>();
+    public SKRSKolonoskopininSuresis: Array<SKRSKolonoskopininSuresi> = new Array<SKRSKolonoskopininSuresi>();
+    public SKRSKlinikMemeMuayenesis: Array<SKRSKlinikMemeMuayenesi> = new Array<SKRSKlinikMemeMuayenesi>();
+    public SKRSKendiKendineMemeMuayenesis: Array<SKRSKendiKendineMemeMuayenesi> = new Array<SKRSKendiKendineMemeMuayenesi>();
+    public SKRSHPVTaramaTestis: Array<SKRSHPVTaramaTesti> = new Array<SKRSHPVTaramaTesti>();
+    public SKRSKolonoskopis: Array<SKRSKolonoskopi> = new Array<SKRSKolonoskopi>();
+    public SKRSKolonGoruntulemeYontemis: Array<SKRSKolonGoruntulemeYontemi> = new Array<SKRSKolonGoruntulemeYontemi>();
+    public SKRSGaitadaGizliKanTestis: Array<SKRSGaitadaGizliKanTesti> = new Array<SKRSGaitadaGizliKanTesti>();
+    public SKRSHpvTipis: Array<SKRSHpvTipi> = new Array<SKRSHpvTipi>();
+    public IsMale: boolean;
+
+}

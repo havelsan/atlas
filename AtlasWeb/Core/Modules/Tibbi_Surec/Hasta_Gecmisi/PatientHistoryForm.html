@@ -1,0 +1,709 @@
+﻿
+<form id="PatientHistoryForm" class="form-horizontal" role="form" data-tid="A346933">
+
+    <fieldset id="A15142" data-tid="A346934">
+        <legend style="border-bottom: 1px solid #07636c;" id="A15143" data-tid="A346935">Hasta Geçmişi</legend>
+        <div class="row" *ngIf="!patientHistoryFormViewModel.CloseAllPanel" id="A15144" data-tid="A346936">
+            <div class="col-md-4 col-sm-4 col-xs-6" id="A15145" data-tid="A346937">
+                <div class="panel-group" role="tablist" aria-multiselectable="true" id="A15146" data-tid="A346938">
+                    <div class="panel panel-default" *ngIf="patientHistoryFormViewModel.visibility" id="A15147" data-tid="A346939">
+                        <div class="panel-heading" style="cursor:pointer" data-toggle="collapse" href="#collapseOne" id="headingOne" data-tid="A346940">
+                            <h4 class="panel-title" id="A15148" data-tid="A346941">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" id="A15149" data-tid="A346942">
+                                    İşlem Bazlı Görünüm
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne" data-tid="A346943">
+                            <div class="panel-body oldPatientStyle" id="A15150" data-tid="A346944">
+                                <ul id="A15151" data-tid="A346945">
+                                    <li *ngIf="policlinicProcessCount > 0" id="A15152" data-tid="A346946">
+                                        <a class="historyCollapseBtn collapsed" data-toggle="collapse" href="#collapsePoliclinic" id="A15153" data-tid="A346947">Poliklinik</a>&nbsp;<span id="A15154" data-tid="A346948">({{policlinicProcessCount}})</span>
+                                        <div id="collapsePoliclinic" class="margin-left-20 collapse" data-tid="A346949">
+                                            <a (click)="selectAll(patientHistoryFormViewModel.PoliclinicProcessTitle)" class="openAllHistoryButton" id="A15155" data-tid="A346950"><i class="fa fa-sort-amount-desc" aria-hidden="true" id="A15156" data-tid="A346951"></i> Tümünü Aç!</a>
+                                            <dx-text-box valueChangeEvent="keyup" placeholder="Ara" mode="search" (onValueChanged)="poltxtChange($event)" i18n-placeholder="@@M27276" id="A15157" data-tid="A346952">
+                                            </dx-text-box>
+                                            <div *ngFor="let row of patientHistoryFormViewModel.PoliclinicProcessTitle" id="A15158" data-tid="A346953">
+                                                <a (click)="select(row)" class="historyRowStyle" id="A15159" data-tid="A346954"><i class="fa fa-caret-right" id="A15160" data-tid="A346955"></i>{{row.RequestDate | date:"dd.MM.yyyy HH:mm"}} - {{row.DoctorName}} - {{row.SpecialityName}}</a><br id="A15161" data-tid="A346956" />
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li *ngIf="clinicProcessCount > 0" id="A15162" data-tid="A346957">
+                                        <a class="historyCollapseBtn collapsed" data-toggle="collapse" href="#collapseClinic" id="A15163" data-tid="A346958">Klinik</a>&nbsp;<span id="A15164" data-tid="A346959">({{clinicProcessCount}})</span>
+                                        <div id="collapseClinic" class="margin-left-20 collapse" data-tid="A346960">
+                                            <a (click)="selectAll(patientHistoryFormViewModel.ClinicProcessTitle)" class="openAllHistoryButton" id="A15165" data-tid="A346961"><i class="fa fa-sort-amount-desc" aria-hidden="true" id="A15166" data-tid="A346962"></i> Tümünü Aç!</a>
+                                            <dx-text-box valueChangeEvent="keyup" placeholder="Ara" mode="search" (onValueChanged)="kliniktxtChange($event)" i18n-placeholder="@@M27276" id="A15167" data-tid="A346963">
+                                            </dx-text-box>
+                                            <div *ngFor="let row of patientHistoryFormViewModel.ClinicProcessTitle" id="A15168" data-tid="A346964">
+                                                <a (click)="select(row)" class="historyRowStyle" id="A15169" data-tid="A346965"><i class="fa fa-caret-right" id="A15170" data-tid="A346966"></i>{{row.RequestDate | date:"dd.MM.yyyy HH:mm"}} - {{row.DoctorName}} - {{row.SpecialityName}}</a><br id="A15171" data-tid="A346967" />
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li *ngIf="patientHistoryFormViewModel.DiagnosisCount > 0" id="A15172" data-tid="A346968">
+                                        <a class="historyCollapseBtn collapsed" data-toggle="collapse" href="#collapseDiagnosis" (click)="GetDiagnosisGrid(patientHistoryFormViewModel.PatientId)" id="A15173" data-tid="A346969">Tanı</a>
+                                        &nbsp;<span id="A15174" data-tid="A346970">({{patientHistoryFormViewModel.DiagnosisCount}})</span>
+                                        <div id="collapseDiagnosis" class="margin-left-20 collapse" data-tid="A346971">
+                                        </div>
+                                    </li>
+
+                                    <li *ngIf="patientHistoryFormViewModel.RadiologyCount > 0" id="A15175" data-tid="A346972">
+                                        <a class="historyCollapseBtn collapsed" data-toggle="collapse" href="#collapseRadiology" (click)="GetRadiologyGrid(patientHistoryFormViewModel.PatientId)" id="A15176" data-tid="A346973">Radyoloji</a>
+                                        &nbsp;<span id="A15177" data-tid="A346974">({{patientHistoryFormViewModel.RadiologyCount}})</span>
+                                        <div id="collapseRadiology" class="margin-left-20 collapse" data-tid="A346975">
+                                        </div>
+                                    </li>
+
+                                    <li *ngIf="patientHistoryFormViewModel.LaboratoryCount > 0" id="A15178" data-tid="A346976">
+                                        <a class="historyCollapseBtn collapsed" data-toggle="collapse" href="#collapseLaboratory" (click)="GetLaboratoryGrid(patientHistoryFormViewModel.PatientId)" id="A15179" data-tid="A346977">Laboratuvar</a>
+                                        &nbsp;<span id="A15180" data-tid="A346978">({{patientHistoryFormViewModel.LaboratoryCount}})</span>
+                                        <div id="collapseLaboratory" class="margin-left-20 collapse" data-tid="A346979">
+                                        </div>
+                                    </li>
+
+
+                                    <li *ngIf="patientHistoryFormViewModel.PathologyCount > 0" id="A15181" data-tid="A346980">
+                                        <a class="historyCollapseBtn collapsed" data-toggle="collapse" href="#collapsePathology" (click)="GetPathologyGrid(patientHistoryFormViewModel.PatientId)" id="A15182" data-tid="A346981">Patoloji</a>
+                                        &nbsp;<span id="A15183" data-tid="A346982">({{patientHistoryFormViewModel.PathologyCount}})</span>
+                                        <div id="collapsePathology" class="margin-left-20 collapse" data-tid="A346983">
+                                        </div>
+                                    </li>
+
+                                    <li *ngIf="patientHistoryFormViewModel.DrugOrderCount > 0" id="A15184" data-tid="A346984">
+                                        <a class="historyCollapseBtn collapsed" data-toggle="collapse" href="#collapseDrugOrder" (click)="GetDrugOrderGrid(patientHistoryFormViewModel.PatientId)" id="A15185" data-tid="A346985">İlaç</a>
+                                        &nbsp;<span id="A15186" data-tid="A346986">({{patientHistoryFormViewModel.DrugOrderCount}})</span>
+                                        <div id="collapseDrugOrder" class="margin-left-20 collapse" data-tid="A346987">
+                                        </div>
+                                    </li>
+
+                                    <li *ngIf="surgeryCount > 0" id="A15187" data-tid="A346988">
+                                        <a class="historyCollapseBtn collapsed" data-toggle="collapse" href="#collapseSurgery" id="A15188" data-tid="A346989">Ameliyat</a>&nbsp;<span id="A15189" data-tid="A346990">({{surgeryCount}})</span>
+                                        <div id="collapseSurgery" class="margin-left-20 collapse" data-tid="A346991">
+                                            <a (click)="selectAll(patientHistoryFormViewModel.SurgeryTitles)" class="openAllHistoryButton" id="A15190" data-tid="A346992"><i class="fa fa-sort-amount-desc" aria-hidden="true" id="A15191" data-tid="A346993"></i> Tümünü Aç!</a>
+                                            <div *ngFor="let row of patientHistoryFormViewModel.SurgeryTitles" id="A15192" data-tid="A346994">
+                                                <a (click)="select(row)" class="historyRowStyle" id="A15193" data-tid="A346995"><i class="fa fa-caret-right" id="A15194" data-tid="A346996"></i>{{row.RequestDate | date:"dd.MM.yyyy HH:mm"}} - {{row.SpecialityName}}</a>
+                                                <span *ngFor="let surgery of row.SubTitles" class="historySpanStyle" id="A15195" data-tid="A346997">{{surgery.RequestDate | date:"dd.MM.yyyy HH:mm"}} - {{surgery.SpecialityName}}</span>
+                                                <br id="A15196" data-tid="A346998" />
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li *ngIf="patientHistoryFormViewModel.ImportantMedicalInformation != null" id="A15197" data-tid="A346999">
+                                        <a class="historyCollapseBtn collapsed" data-toggle="collapse" href="#collapseMedicalInfo" (click)="select(patientHistoryFormViewModel.ImportantMedicalInformation)" id="A15198" data-tid="A347000">Önemli Tıbbi Bilgiler</a>
+                                        <div id="collapseMedicalInfo" class="margin-left-20 collapse" data-tid="A347001">
+                                        </div>
+                                    </li>
+
+                                    <li *ngIf="patientHistoryFormViewModel.VaccineCount > 0" id="A15199" data-tid="A347002">
+                                        <a class="historyCollapseBtn collapsed" data-toggle="collapse" href="#collapseVaccine" (click)="GetVaccineComponent(patientHistoryFormViewModel.PatientId)" id="A15200" data-tid="A347003">Aşı Takvimi</a>
+                                        &nbsp;<span id="A15201" data-tid="A347004">({{patientHistoryFormViewModel.VaccineCount}})</span>
+                                        <div id="collapseVaccine" class="margin-left-20 collapse" data-tid="A347005">
+                                        </div>
+                                    </li>
+
+                                    <li *ngIf="patientHistoryFormViewModel.RequestedProceduresCount > 0" id="A15202" data-tid="A347006">
+                                        <a class="historyCollapseBtn collapsed" data-toggle="collapse" href="#collapseRequestedProcedure" (click)="GetRequestedProceduresGrid(patientHistoryFormViewModel.PatientId)" id="A15203" data-tid="A347007">Hizmet</a>
+                                        &nbsp;<span id="A15204" data-tid="A347008">({{patientHistoryFormViewModel.RequestedProceduresCount}})</span>
+                                        <div id="collapseRequestedProcedure" class="margin-left-20 collapse" data-tid="A347009">
+                                        </div>
+                                    </li>
+
+                                    <li *ngIf="patientHistoryFormViewModel.TreatmentMaterialsCount > 0" id="A15205" data-tid="A347010">
+                                        <a class="historyCollapseBtn collapsed" data-toggle="collapse" href="#collapseTreatmentMaterials" (click)="GetTreatmentMaterialsGrid(patientHistoryFormViewModel.PatientId)" id="A15206" data-tid="A347011">Malzeme ve Sarf</a>
+                                        &nbsp;<span id="A15207" data-tid="A347012">({{patientHistoryFormViewModel.TreatmentMaterialsCount}})</span>
+                                        <div id="collapseRequestedProcedure" class="margin-left-20 collapse" data-tid="A347013">
+                                        </div>
+                                    </li>
+
+                                    <li *ngIf="specialityCount > 0" id="A15208" data-tid="A347014">
+                                        <a class="historyCollapseBtn collapsed" data-toggle="collapse" href="#collapseSpeciality" id="A15209" data-tid="A347015">Uzmanlık Modülleri</a>&nbsp;<span id="A15210" data-tid="A347016">({{specialityCount}})</span>
+                                        <div id="collapseSpeciality" class="margin-left-20 collapse" data-tid="A347017">
+                                            <a (click)="selectAllSpecialities(patientHistoryFormViewModel.SpecialityTitles)" class="openAllHistoryButton" id="A15211" data-tid="A347018"><i class="fa fa-sort-amount-desc" aria-hidden="true" id="A15212" data-tid="A347019"></i> Tümünü Aç!</a>
+                                            <dx-text-box valueChangeEvent="keyup" placeholder="Ara" mode="search" (onValueChanged)="uzmanliktxtChange($event)" i18n-placeholder="@@M27276" id="A15213" data-tid="A347020">
+                                            </dx-text-box>
+                                            <ul id="A15214" data-tid="A347021">
+                                                <li *ngFor="let specialityBase of patientHistoryFormViewModel.SpecialityTitles" id="A15215" data-tid="A347022">
+                                                    <h6 id="A15216" data-tid="A347023">{{specialityBase.SpecialityName}}</h6>
+                                                    <div *ngFor="let speciality of specialityBase.SubTitles" id="A15217" data-tid="A347024">
+                                                        <a (click)="select(speciality)" class="historyRowStyle" id="A15218" data-tid="A347025"><i class="fa fa-caret-right" id="A15219" data-tid="A347026"></i>{{speciality.RequestDate | date:"dd.MM.yyyy HH:mm"}} - {{speciality.DoctorName}}</a><br id="A15220" data-tid="A347027" />
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+
+
+                                    <li *ngIf="emergencyObjectCount > 0" id="A15221" data-tid="A347028">
+                                        <a class="historyCollapseBtn collapsed" data-toggle="collapse" href="#collapseEmergency" id="A15222" data-tid="A347029">Acil</a>&nbsp;<span id="A15223" data-tid="A347030">({{emergencyObjectCount}})</span>
+                                        <div id="collapseEmergency" class="margin-left-20 collapse" data-tid="A347031">
+                                            <a (click)="selectAll(patientHistoryFormViewModel.EmergencyObjectTitle)" class="openAllHistoryButton" id="A15224" data-tid="A347032"><i class="fa fa-sort-amount-desc" aria-hidden="true" id="A15225" data-tid="A347033"></i> Tümünü Aç!</a>
+                                            <div *ngFor="let row of patientHistoryFormViewModel.EmergencyObjectTitle" id="A15226" data-tid="A347034">
+                                                <a (click)="select(row)" class="historyRowStyle" id="A15227" data-tid="A347035"><i class="fa fa-caret-right" id="A15228" data-tid="A347036"></i>{{row.RequestDate | date:"dd.MM.yyyy HH:mm"}} - {{row.DoctorName}}</a><br id="A15229" data-tid="A347037" />
+                                            </div>
+                                        </div>
+                                    </li>
+
+
+                                    <li *ngIf="patientHistoryFormViewModel.DietOrdersCount > 0" id="A15230" data-tid="A347038">
+                                        <a class="historyCollapseBtn collapsed" data-toggle="collapse" href="#collapseDietOrder" (click)="GetDietOrdersGrid(patientHistoryFormViewModel.PatientId)" id="A15231" data-tid="A347039">Diyet</a>
+                                        &nbsp;<span id="A15232" data-tid="A347040">({{patientHistoryFormViewModel.DietOrdersCount}})</span>
+                                        <div id="collapseDietOrder" class="margin-left-20 collapse" data-tid="A347041">
+                                        </div>
+                                    </li>
+
+                                    <li *ngIf="manipulationProcessCount > 0" id="A15233" data-tid="A347042">
+                                        <a class="historyCollapseBtn collapsed" data-toggle="collapse" href="#collapseManipulation" id="A15234" data-tid="A347043">Tıbbi/Cerrahi Uygulama</a>&nbsp;<span id="A15235" data-tid="A347044">({{manipulationProcessCount}})</span>
+                                        <div id="collapseManipulation" class="margin-left-20 collapse" data-tid="A347045">
+                                            <a (click)="selectAll(patientHistoryFormViewModel.ManipulationProcessTitle)" class="openAllHistoryButton" id="A15236" data-tid="A347046"><i class="fa fa-sort-amount-desc" aria-hidden="true" id="A15237" data-tid="A347047"></i> Tümünü Aç!</a>
+                                            <dx-text-box valueChangeEvent="keyup" placeholder="Ara" mode="search" (onValueChanged)="manipulationtxtChange($event)" i18n-placeholder="@@M27276" id="A15238" data-tid="A347048">
+                                            </dx-text-box>
+                                            <div *ngFor="let row of patientHistoryFormViewModel.ManipulationProcessTitle" id="A15239" data-tid="A347049">
+                                                <a (click)="select(row)" class="historyRowStyle" id="A15240" data-tid="A347050"><i class="fa fa-caret-right" id="A15241" data-tid="A347051"></i>{{row.RequestDate | date:"dd.MM.yyyy HH:mm"}} - {{row.DoctorName}} - {{row.SpecialityName}}</a><br id="A15242" data-tid="A347052" />
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li *ngIf="physiotherapyRequestCount > 0" id="A15243" data-tid="A347053">
+                                        <a class="historyCollapseBtn collapsed" data-toggle="collapse" href="#collapsePhysiotherapy" id="A15244" data-tid="A347054">F.T.R.</a>&nbsp;<span id="A15245" data-tid="A347055">({{physiotherapyRequestCount}})</span>
+                                        <div id="collapsePhysiotherapy" class="margin-left-20 collapse" data-tid="A347056">
+                                            <a (click)="selectAll(patientHistoryFormViewModel.PhysiotherapyRequestsTitles)" class="openAllHistoryButton" id="A15246" data-tid="A347057"><i class="fa fa-sort-amount-desc" aria-hidden="true" id="A15247" data-tid="A347058"></i> Tümünü Aç!</a>
+
+                                            <div *ngFor="let row of patientHistoryFormViewModel.PhysiotherapyRequestsTitles" id="A15248" data-tid="A347059">
+                                                <a (click)="select(row)" class="historyRowStyle" id="A15249" data-tid="A347060"><i class="fa fa-caret-right" id="A15250" data-tid="A347061"></i>{{row.RequestDate | date:"dd.MM.yyyy HH:mm"}} - {{row.DoctorName}} - {{row.SpecialityName}}</a><br id="A15251" data-tid="A347062" />
+                                            </div>
+                                        </div>
+                                    </li>
+
+
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default" id="A15252" data-tid="A347063">
+                        <div class="panel-heading" style="cursor:pointer" data-toggle="collapse" href="#collapseTwo" role="tab" id="headingTwo" data-tid="A347064">
+                            <h4 class="panel-title" id="A15253" data-tid="A347065">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" id="A15254" data-tid="A347066">
+                                    Kabul Bazlı Görünüm
+                                </a>
+                            </h4>
+                        </div>
+
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" data-tid="A347067">
+                            <div class="panel-body historySubEpisodeStyle" id="A15255" data-tid="A347068">
+                                <dx-text-box valueChangeEvent="keyup" placeholder="Ara" mode="search" (onValueChanged)="kabultxtChange($event)" i18n-placeholder="@@M27276" id="A15256" data-tid="A347069">
+                                </dx-text-box>
+                                <table class="table col-md-12" id="A15257" data-tid="A347070">
+                                    <tbody id="A15258" data-tid="A347071">
+                                        <tr *ngFor="let row of patientHistoryFormViewModel.PatientHistoryBySubEpisode" (click)="GetSubEpisodeItems(row.ObjectID,row)" id="A15259" data-tid="A347072">
+                                            <td class="col-md-4" id="A15260" data-tid="A347073">{{row.DoctorName}}</td>
+                                            <td class="col-md-4" id="A15261" data-tid="A347074">{{row.SpecialityName}}</td>
+                                            <td class="col-md-4" id="A15262" data-tid="A347075">{{row.RequestDate | date:"dd.MM.yyyy HH:mm"}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default" id="A15263" data-tid="A347076">
+                        <div class="panel-heading" style="cursor:pointer" data-toggle="collapse" href="#collapseTeleTIP" role="tab" id="headingTeleTIP" data-tid="A347077">
+                            <h4 class="panel-title" id="A15264" data-tid="A347078">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTeleTIP" aria-expanded="false" aria-controls="collapseTeleTIP" id="A15265" data-tid="A347079">
+                                    Tele TIP Sonuçları
+                                </a>
+                            </h4>
+                        </div>
+
+                        <div id="collapseTeleTIP" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTeleTIP" data-tid="A347080">
+                            <div class="panel-body historySubEpisodeStyle" id="A15266" data-tid="A347081">
+                                <ul style="list-style-type: none;padding-left:0px" id="A15267" data-tid="A347082">
+                                    <dx-button type="default" style="margin-left:30px;background-color:#08c" icon="fa fa-refresh" text="Tele TIP Görüntüle" (onClick)="btnTeleTIP_Click()" i18n-text="@@M27650" id="A15268" data-tid="A347083"></dx-button>
+                                </ul>
+                                <div class="col-sm-12" id="C23642" style="margin-bottom: 5px;" data-tid="A347084">
+
+                                    <dx-data-grid #previousStudiesGrid [dataSource]="PreviousStudies" data-tid="A347085">
+                                        <dxi-column dataField="InstitutionName" caption="XXXXXX" [width]="auto" data-tid="A347086">
+                                        </dxi-column>
+                                        <dxi-column dataField="AccessionNumber" caption="Erişim Numarası" [width]="100" data-tid="A347087">
+                                        </dxi-column>
+                                        <dxi-column dataType="date" format="dd.MM.yyyy HH:mm:ss" dataField="PerformedDate" caption="Çekim Tarihi" [width]="150" data-tid="A347088">
+                                        </dxi-column>
+                                        <dxi-column caption="Görüntü" cellTemplate="buttonCellTemplate1" [width]="25" data-tid="A347089"></dxi-column>
+                                        <!--<dxi-column caption="Rapor" cellTemplate="buttonCellTemplate2"></dxi-column>-->
+
+                                        <div *dxTemplate="let cellData of 'buttonCellTemplate1'" id="A27830" style="width: 25px" data-tid="A347090">
+                                            <i class="fa fa-television" style="cursor:pointer" (click)="openImaj(cellData)" id="A27831" data-tid="A347091"></i>
+                                        </div>
+                                        <div *dxTemplate="let cellData of 'buttonCellTemplate2'" id="A27830" style="width: 25px" data-tid="A347092">
+                                            <i class="fa fa-file-text-o" style="cursor:pointer" (click)="openReport(cellData)" id="A27831" data-tid="A347093"></i>
+                                        </div>
+                                        <dxo-editing mode="cell" [allowUpdating]="false" [allowAdding]="false" [allowDeleting]="false" data-tid="A347094">
+                                        </dxo-editing>
+                                        <dxo-scrolling mode="virtual" data-tid="A347095"></dxo-scrolling>
+                                    </dx-data-grid>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default" id="A15269" data-tid="A347096">
+                        <div class="panel-heading" style="cursor:pointer" data-toggle="collapse" href="#collapseThree" role="tab" id="headingThree" data-tid="A347097">
+                            <h4 class="panel-title" id="A15270" data-tid="A347098">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" id="A15271" data-tid="A347099">
+                                    Vaka Akışı
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse" [class.in]="patientActionListCount > 0" role="tabpanel" aria-labelledby="headingThree" data-tid="A347100">
+                            <div class="panel-body" id="A15272" data-tid="A347101">
+                                <div *ngIf="patientActionListCount > 0" id="A15273" data-tid="A347102">
+                                    {{ActionSubEpisodeInfo.RequestDate | date:"dd.MM.yyyy HH:mm"}} - {{ActionSubEpisodeInfo.DoctorName}} - {{ActionSubEpisodeInfo.SpecialityName}}<br id="A15274" data-tid="A347103" />
+                                    <div *ngFor="let row of patientHistoryFormViewModel.PatientActionList" id="A15275" data-tid="A347104">
+                                        <a (click)="selectForm(row)" class="historyRowStyle margin-left-20" id="A15276" data-tid="A347105"><i class="fa fa-caret-right" id="A15277" data-tid="A347106"></i>{{row.RequestDate | date:"dd.MM.yyyy HH:mm"}} - {{row.SpecialityName}}</a><br id="A15278" data-tid="A347107" />
+                                    </div>
+                                </div>
+
+                                <div *ngIf="patientActionListCount == 0" class="alert alert-danger" role="alert" id="A15279" data-tid="A347108">Lütfen Kabul Seçiniz!</div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default" *ngIf="patientHistoryFormViewModel.LinksVisibility" id="A15280" data-tid="A347109">
+                        <div class="panel-heading" style="cursor:pointer" data-toggle="collapse" href="#collapseFour" role="tab" id="headingFour" data-tid="A347110">
+                            <h4 class="panel-title" id="A15281" data-tid="A347111">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour" id="A15282" data-tid="A347112">
+                                    Hastanın Tetkik ve Laboratuar Sonuçları
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour" data-tid="A347113">
+                            <div class="panel-body" id="A15283" data-tid="A347114">
+                                <ul style="list-style-type: none;padding-left:0px" id="A15284" data-tid="A347115">
+                                    <li id="A15285" data-tid="A347116">
+                                        <a class="historyCollapseBtn collapsed" href="{{patientHistoryFormViewModel.AllProceduresLink}}" target="_blank" id="A15286" data-tid="A347117">Hastanın Tüm Tetkik Sonuçları</a>
+                                    </li>
+                                    <li id="A15287" data-tid="A347118">
+                                        <a class="historyCollapseBtn collapsed" href="{{patientHistoryFormViewModel.AllLabProceduresLink}}" target="_blank" id="A15288" data-tid="A347119">Hastanın Tüm Laboratuvar Sonuçları</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-8 col-xs-6" id="A15291" data-tid="A347120">
+
+                <div *ngIf="IsSingleComponent == true && componentInfo != null" id="A15292" data-tid="A347121">
+                    <div class="panel panel-default" id="A15293" data-tid="A347122">
+                        <div class="panel-heading panel-title" style="cursor:pointer" data-toggle="collapse" *ngIf="singleComponentHeader.RequestDate != null || singleComponentHeader.DoctorName != null || singleComponentHeader.SpecialityName != null" id="A15294" data-tid="A347123">
+                            <span *ngIf="singleComponentHeader.RequestDate != null" id="A15295" data-tid="A347124">{{singleComponentHeader.RequestDate | date:"dd.MM.yyyy HH:mm"}}</span>
+                            <span *ngIf="singleComponentHeader.DoctorName != null" id="A15296" data-tid="A347125"> - {{singleComponentHeader.DoctorName}}</span>
+                            <span *ngIf="singleComponentHeader.SpecialityName != null" id="A15297" data-tid="A347126"> - {{singleComponentHeader.SpecialityName}}</span>
+                        </div>
+                        <div class="panel-body" style="padding-top:0;padding-bottom:0;" id="A15298" data-tid="A347127">
+                            <comp-compose [Info]="componentInfo" id="A15299" data-tid="A347128"></comp-compose>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="IsMultiComponent == true" id="A15300" data-tid="A347129">
+                    <div *ngFor="let item of multipleComponentHeader; let i=index" id="A15301" data-tid="A347130">
+
+                        <div class="panel panel-default" id="A15302" data-tid="A347131">
+                            <div class="panel-heading panel-title" role="tab" id="headingTwo" data-tid="A347132">
+                                <a class="historyPanelStyle" [class.collapsed]="i != 0" role="button" data-toggle="collapse" data-parent="#accordion" [attr.href]="'#multiplecollapse' + i" aria-expanded="false" aria-controls="collapseTwo" id="A15303" data-tid="A347133">
+                                    <span *ngIf="item.RequestDate != null" id="A15304" data-tid="A347134">{{item.RequestDate | date:"dd.MM.yyyy HH:mm"}}</span>
+                                    <span *ngIf="item.DoctorName != null" id="A15305" data-tid="A347135"> - {{item.DoctorName}}</span>
+                                    <span *ngIf="item.SpecialityName != null" id="A15306" data-tid="A347136"> - {{item.SpecialityName}}</span>
+                                </a>
+                            </div>
+                            <div [attr.id]="'multiplecollapse' + i" class="panel-collapse collapse" [class.in]="i == 0" role="tabpanel" aria-labelledby="headingTwo" id="A15307" data-tid="A347137">
+                                <div class="panel-body" style="padding-top:0;padding-bottom:0;" id="A15308" data-tid="A347138">
+                                    <comp-compose [Info]="multipleComponent[i]" id="A15309" data-tid="A347139"></comp-compose>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="IsDiagnosisGrid == true" id="A15310" data-tid="A347140">
+
+                    <div class="panel panel-default" id="A15311" data-tid="A347141">
+                        <div class="panel-heading panel-title tableHeaderStyle" id="A15312" data-tid="A347142">Tanılar</div>
+                        <div class="panel-body" style="padding:0;" id="A15313" data-tid="A347143">
+                            <dx-data-grid id="gridContainer" [export]="{enabled:true}" [dataSource]="patientHistoryFormViewModel.DiagnoseDataList" data-tid="A347144">
+                                <dxo-paging [pageSize]="20" id="A15314" data-tid="A347145"></dxo-paging>
+                                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true" id="A15315" data-tid="A347146">
+                                </dxo-pager>
+                                <dxo-filter-row [visible]="true" [applyFilter]="auto" id="A15316" data-tid="A347147"></dxo-filter-row>
+                                <dxo-header-filter [visible]="true" id="A15317" data-tid="A347148"></dxo-header-filter>
+
+                                <dxi-column dataField="DiagnoseDate" caption="Tarih" width="auto" i18n-caption="@@M27302" id="A15318" data-tid="A347149"></dxi-column>
+                                <dxi-column dataField="DiagnoseCode" caption="Kod" width="auto" i18n-caption="@@M27283" id="A15319" data-tid="A347150"></dxi-column>
+                                <dxi-column dataField="DiagnoseName" caption="Tanı" width="auto" i18n-caption="@@M22736" id="A15320" data-tid="A347151"></dxi-column>
+                                <dxi-column dataField="FreeDiagnosis" caption="Serbest Tanı" width="auto" i18n-caption="@@M21631" id="A15321" data-tid="A347152"></dxi-column>
+                                <dxi-column dataField="Speciality" caption="Kabul Birimi" width="auto" i18n-caption="@@M17016" id="A15322" data-tid="A347153"></dxi-column>
+                                <dxi-column dataField="ResponsibleDoctor" caption="Sorumlu Doktor" width="auto" i18n-caption="@@M22142" id="A15323" data-tid="A347154"></dxi-column>
+                            </dx-data-grid>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div *ngIf="IsRadiologyGrid == true" id="A15324" data-tid="A347155">
+                    <dx-button type="success" icon="fa fa-print" text="İmaj Görüntüle" (onClick)="cmdReport_Click()" i18n-text="@@M16462" id="A15325" data-tid="A347156"></dx-button>
+                    <div class="panel panel-default" id="A15326" data-tid="A347157">
+                        <div class="panel-heading panel-title tableHeaderStyle" id="A15327" data-tid="A347158">Radyoloji</div>
+                        <div class="panel-body" style="padding:0;" id="A15328" data-tid="A347159">
+                            <dx-data-grid rowTemplate="rowTemplateName" id="gridContainer" [selection]="{mode: 'single',allowSelectAll: false}" [export]="{enabled:true}" (onSelectionChanged)="selectDetails($event)" [dataSource]="patientHistoryFormViewModel.RadiologyDataList" data-tid="A347160">
+                                <dxo-paging [pageSize]="20" id="A15329" data-tid="A347161"></dxo-paging>
+                                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true" id="A15330" data-tid="A347162">
+                                </dxo-pager>
+                                <dxo-filter-row [visible]="true" [applyFilter]="auto" id="A15331" data-tid="A347163"></dxo-filter-row>
+                                <dxo-header-filter [visible]="true" id="A15332" data-tid="A347164"></dxo-header-filter>
+
+                                <dxi-column dataField="AccesionNumber" caption="İstek Numarası" width="auto" i18n-caption="@@M16638" id="A15333" data-tid="A347165"></dxi-column>
+                                <dxi-column dataField="RequestDate" caption="İstem Tarihi" width="auto" i18n-caption="@@M16694" id="A15334" data-tid="A347166"></dxi-column>
+                                <dxi-column dataField="TestCode" caption="Tetkik Kodu" width="auto" i18n-caption="@@M23323" id="A15335" data-tid="A347167"></dxi-column>
+                                <dxi-column dataField="TestName" caption="Tetkik Adı" width="auto" i18n-caption="@@M23298" id="A15336" data-tid="A347168"></dxi-column>
+                                <dxi-column dataField="Doctor" caption="İstem Doktoru" width="auto" i18n-caption="@@M16692" id="A15337" data-tid="A347169"></dxi-column>
+                                <dxi-column dataField="FromResource" caption="İstem Birimi" width="auto" i18n-caption="@@M16691" id="A15338" data-tid="A347170"></dxi-column>
+                                <dxi-column dataField="ReportTxt" caption="Rapor" width="auto" i18n-caption="@@M20810" id="A15339" data-tid="A347171"></dxi-column>
+
+                                <tbody *dxTemplate="let radInfo of 'rowTemplateName'" id="A29143" data-tid="A347172">
+                                    <tr class="dx-row main-row" id="A29144" data-tid="A347173">
+                                        <td id="A15333" data-tid="A347174">{{radInfo?.data?.AccesionNumber}}</td>
+                                        <td id="A15334" data-tid="A347175">{{radInfo?.data?.RequestDate | date: "dd.MM.yyyy HH:mm"}}</td>
+                                        <td id="A15335" data-tid="A347176">{{radInfo?.data?.TestCode}}</td>
+                                        <td id="A15336" data-tid="A347177">{{radInfo?.data?.TestName}}</td>
+                                        <td id="A15337" data-tid="A347178">{{radInfo?.data?.Doctor}}</td>
+                                        <td id="A15338" data-tid="A347179">{{radInfo?.data?.FromResource}}</td>
+                                        <td id="A15339" width="50px" data-tid="A347180">
+                                            <button class="btn btn-xs btn-default" style="margin-top: -12px;margin-bottom: -10px;margin-left: 10px;height: 16px !important;  color:plum;" (click)="previewRadiologyReport(radInfo?.data)" id="A28138" data-tid="A347181"><i class="fa fa-print" title="Sonuç Raporu" i18n-title="@@M22107" id="A28139" data-tid="A347182"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+
+                            </dx-data-grid>
+                        </div>
+                    </div>
+                    <dx-popup showTitle="false" title="Hasta Detayları" [width]="500" [height]="250" [(visible)]="showDetailPopup" i18n-title="@@M15175" id="A15340" data-tid="A347183">
+                        <div *dxTemplate="let data of 'content'" id="A15341" data-tid="A347184">
+                            <div class="col-sm-12" id="A15342" data-tid="A347185">
+                                <hvl-richtextbox [value]="detail" id="A15343" data-tid="A347186">
+                                </hvl-richtextbox>
+                            </div>
+                        </div>
+                    </dx-popup>
+
+                </div>
+
+                <div *ngIf="IsLaboratoryGrid == true" id="A15344" data-tid="A347187">
+                    <div class="panel panel-default" id="A15345" data-tid="A347188">
+                        <div class="panel-heading panel-title tableHeaderStyle" id="A15346" data-tid="A347189">Laboratuar</div>
+                        <div class="panel-body" style="padding:0;" id="A15347" data-tid="A347190">
+                            <dx-data-grid id="gridContainer5" rowTemplate="rowTemplateName" [selection]="{mode: 'single',allowSelectAll: false}" [export]="{enabled:true}" [dataSource]="patientHistoryFormViewModel.LaboratoryDataList" data-tid="A347191">
+                                <dxo-paging [pageSize]="20" id="A15348" data-tid="A347192"></dxo-paging>
+                                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true" id="A15349" data-tid="A347193">
+                                </dxo-pager>
+                                <dxo-filter-row [visible]="true" [applyFilter]="auto" id="A15350" data-tid="A347194"></dxo-filter-row>
+                                <dxo-header-filter [visible]="true" id="A15351" data-tid="A347195"></dxo-header-filter>
+                                <dxi-column dataField="TestCode" caption="İşlem Kodu" width="auto" i18n-caption="@@M19543" id="A15358" data-tid="A347196"></dxi-column>
+                                <dxi-column dataField="LaboratoryTestName" caption="İşlem Adı" width="auto" i18n-caption="@@M16821" id="A15353" data-tid="A347197"></dxi-column>
+                                <dxi-column dataField="Result" caption="Sonuç" width="auto" i18n-caption="@@M22078" id="A15360" data-tid="A347198"></dxi-column>
+                                <dxi-column dataField="Unit" caption="Birim" width="auto" i18n-caption="@@M27304" id="A15361" data-tid="A347199"></dxi-column>
+                                <dxi-column dataField="Reference" caption="Referans Aralığı" width="auto" i18n-caption="@@M21010" id="A15362" data-tid="A347200"></dxi-column>
+                                <dxi-column dataField="RequestedByUser" caption="İsteyen Doktor" width="auto" i18n-caption="@@M16721" id="A15356" data-tid="A347201"></dxi-column>
+                                <dxi-column dataField="RequestDate" caption="İstem Tarihi" width="auto" i18n-caption="@@M16694" id="A15354" data-tid="A347202"></dxi-column>
+                                <dxi-column dataField="BarcodePrintDate" caption="Barcode Basma Tarihi" width="auto" i18n-caption="@@M27631" id="A15364" data-tid="A347203"></dxi-column>
+                                <dxi-column dataField="SampleDate" caption="Numune Alma Tarihi" width="auto" i18n-caption="@@M19540" id="A15365" data-tid="A347204"></dxi-column>
+                                <dxi-column dataField="ApproveDate" caption="Onay Tarihi" width="auto" i18n-caption="@@M19687" id="A15363" data-tid="A347205"></dxi-column>
+                                <dxi-column dataField="ResultDate" caption="Sonuç Tarihi" width="auto" i18n-caption="@@M22109" id="A15359" data-tid="A347206"></dxi-column>
+                                <dxi-column dataField="BarcodeID" caption="Barkod" width="auto" i18n-caption="@@M27321" id="A15357" data-tid="A347207"></dxi-column>
+
+
+                                <tbody *dxTemplate="let labInfo of 'rowTemplateName'" id="A29143" data-tid="A347208">
+                                    <tr class="dx-row main-row" id="A29144" data-tid="A347209">
+                                        <td id="A15358" data-tid="A347210">{{labInfo?.data?.TestCode}}</td>
+                                        <td id="A15353" data-tid="A347211">{{labInfo?.data?.LaboratoryTestName}}</td>
+                                        <td id="A15360" data-tid="A347212">
+                                            {{labInfo?.data?.Result}}
+                                            <button *ngIf="labInfo?.data?.isPanelTest" class="btn btn-xs btn-default" style="margin-top: -12px;margin-bottom: -10px;margin-left: 10px;height: 16px !important;  color:plum;" (click)="openPanelTestResultView(labInfo?.data)" id="A28138" data-tid="A347213"><i class="fa fa-desktop" title="Sonuç" i18n-title="@@M22107" id="A28139" data-tid="A347214"></i></button>
+                                        </td>
+                                        <td id="A15361" data-tid="A347215">{{labInfo?.data?.Unit}}</td>
+                                        <td id="A15362" data-tid="A347216">{{labInfo?.data?.Reference}}</td>
+                                        <td id="A15356" data-tid="A347217">{{labInfo?.data?.RequestedByUser}}</td>
+                                        <td id="A15354" data-tid="A347218">{{labInfo?.data?.RequestDate | date: "dd.MM.yyyy HH:mm"}}</td>
+                                        <td id="A15364" data-tid="A347219">{{labInfo?.data?.BarcodePrintDate | date: "dd.MM.yyyy HH:mm"}}</td>
+                                        <td id="A15365" data-tid="A347220">{{labInfo?.data?.SampleDate | date: "dd.MM.yyyy HH:mm"}}</td>
+                                        <td id="A15363" data-tid="A347221">{{labInfo?.data?.ApproveDate | date: "dd.MM.yyyy HH:mm"}}</td>
+                                        <td id="A15359" data-tid="A347222">{{labInfo?.data?.ResultDate | date: "dd.MM.yyyy HH:mm"}}</td>
+                                        <td id="A15357" data-tid="A347223">{{labInfo?.data?.BarcodeID}}</td>
+                                    </tr>
+                                </tbody>
+                            </dx-data-grid>
+                        </div>
+                    </div>
+
+                    <dx-popup showTitle="false" title="Panel Testler" [width]="1000" [height]="600" [(visible)]="showPanelTestResultPopup" i18n-title="@@M27531" id="A21010" data-tid="A347224">
+                        <div *dxTemplate="let data of 'content'" id="A21011" data-tid="A347225">
+                            <div style="float:right ; width :100%" id="A21012" data-tid="A347226">
+                                <br id="A21013" data-tid="A347227" />
+                                <br id="A21014" data-tid="A347228" />
+                                <dx-data-grid showColumnLines="true" [paging]="{enable: true, pageSize:1000000}" showRowLines="true" style="margin-left: -10px;" height="540" [columns]="PanelTestProcedureColumns" [dataSource]="this.LaboratorySubProcedureList" allowColumnReordering="true" allowColumnResizing="true" id="A21015" data-tid="A347229">
+
+                                </dx-data-grid>
+                                <span id="A21016" data-tid="A347230">PanelTestProcedureColumns</span>
+
+                            </div>
+                        </div>
+                    </dx-popup>
+
+
+                </div>
+
+                <div *ngIf="PathologyGrid == true" id="A15367" data-tid="A347231">
+
+                    <div class="panel panel-default" id="A15368" data-tid="A347232">
+                        <div class="panel-heading panel-title tableHeaderStyle" id="A15369" data-tid="A347233">Patoloji</div>
+                        <div class="panel-body" style="padding:0;" id="A15370" data-tid="A347234">
+                            <dx-data-grid rowTemplate="rowTemplateName" id="gridContainer" [export]="{enabled:true}" [dataSource]="patientHistoryFormViewModel.PathologyDataList" data-tid="A347235">
+                                <dxo-paging [pageSize]="20" id="A15371" data-tid="A347236"></dxo-paging>
+                                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true" id="A15372" data-tid="A347237">
+                                </dxo-pager>
+                                <dxo-filter-row [visible]="true" [applyFilter]="auto" id="A15373" data-tid="A347238"></dxo-filter-row>
+                                <dxo-header-filter [visible]="true" id="A15374" data-tid="A347239"></dxo-header-filter>
+
+                                <dxi-column dataField="AdmissionNumber" caption="Kabul Numarası" width="auto" i18n-caption="@@M17024" id="A15375" data-tid="A347240"></dxi-column>
+                                <dxi-column dataField="RequestDate" caption="İstem Tarihi" width="auto" i18n-caption="@@M16694" id="A15376" data-tid="A347241"></dxi-column>
+                                <dxi-column dataField="TestCode" caption="Tetkik Kodu" width="auto" i18n-caption="@@M23323" id="A15377" data-tid="A347242"></dxi-column>
+                                <dxi-column dataField="TestName" caption="Tetkik Adı" width="auto" i18n-caption="@@M23298" id="A15378" data-tid="A347243"></dxi-column>
+                                <dxi-column dataField="Doctor" caption="İstem Doktoru" width="auto" i18n-caption="@@M16692" id="A15379" data-tid="A347244"></dxi-column>
+                                <dxi-column dataField="FromResource" caption="İstem Birimi" width="auto" i18n-caption="@@M16691" id="A15380" data-tid="A347245"></dxi-column>
+                                <!--<dxi-column dataField="Macroscopy" caption="Makroskopi" width="auto" [encodeHtml]="false" i18n-caption="@@M18492" id="A15381"></dxi-column>
+    <dxi-column dataField="Microscopy" caption="Mikroskopi" width="auto" [encodeHtml]="false" i18n-caption="@@M19027" id="A15382"></dxi-column>
+    <dxi-column dataField="PathologicDiagnosis" caption="Tanı" width="auto" [encodeHtml]="false" i18n-caption="@@M22736" id="A15383"></dxi-column>
+    <dxi-column dataField="Note" caption="Not/Yorum" width="auto" [encodeHtml]="false" i18n-caption="@@M19482" id="A15384"></dxi-column>-->
+
+                                <tbody *dxTemplate="let patInfo of 'rowTemplateName'" data-tid="A347246">
+                                    <tr class="dx-row main-row" data-tid="A347247">
+                                        <td data-tid="A347248">{{patInfo?.data?.AdmissionNumber}}</td>
+                                        <td data-tid="A347249">{{patInfo?.data?.RequestDate | date: "dd.MM.yyyy HH:mm"}}</td>
+                                        <td data-tid="A347250">{{patInfo?.data?.TestCode}}</td>
+                                        <td data-tid="A347251">{{patInfo?.data?.TestName}}</td>
+                                        <td data-tid="A347252">{{patInfo?.data?.Doctor}}</td>
+                                        <td data-tid="A347253">{{patInfo?.data?.FromResource}}</td>
+                                        <td data-tid="A347254">
+                                            <button *ngIf="patInfo?.data?.IsApproved || patInfo?.data?.IsReported" class="btn btn-xs btn-default" style="margin-top: -12px;margin-bottom: -10px;margin-left: 10px;height: 16px !important;  color:plum;" (click)="printPathologyReport(patInfo?.data)" data-tid="A347255"><i class="fa fa-print" title="Patoloji Raporu" data-tid="A347256"></i></button>
+                                        </td>
+                                        <td data-tid="A347257">
+                                            <button *ngIf="patInfo?.data?.IsApproved || patInfo?.data?.IsReported" class="btn btn-xs btn-default" style="margin-top: -12px;margin-bottom: -10px;margin-left: 10px;height: 16px !important;  color:plum;" (click)="showPathologyInfo(patInfo?.data.ObjectID)" data-tid="A347258"><i class="fa fa-desktop" title="Patoloji Sonuç Ekranı" data-tid="A347259"></i></button>
+                                        </td>
+                                    </tr> 
+                                </tbody>
+
+                            </dx-data-grid>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div *ngIf="DrugOrderGrid == true" id="A15385" data-tid="A347260">
+
+                    <div class="panel panel-default" id="A15386" data-tid="A347261">
+                        <div class="panel-heading panel-title tableHeaderStyle" id="A15387" data-tid="A347262">İlaç</div>
+                        <div class="panel-body" style="padding:0;" id="A15388" data-tid="A347263">
+                            <dx-data-grid id="gridContainer" [export]="{enabled:true}" [dataSource]="patientHistoryFormViewModel.DrugOrderDataList" data-tid="A347264">
+                                <dxo-paging [pageSize]="20" id="A15389" data-tid="A347265"></dxo-paging>
+                                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true" id="A15390" data-tid="A347266">
+                                </dxo-pager>
+                                <dxo-filter-row [visible]="true" [applyFilter]="auto" id="A15391" data-tid="A347267"></dxo-filter-row>
+                                <dxo-header-filter [visible]="true" id="A15392" data-tid="A347268"></dxo-header-filter>
+                                <dxi-column dataField="ProtocolNo" caption="Kabul Numarası" width="auto" i18n-caption="@@M17024" id="A15393" data-tid="A347269"></dxi-column>
+                                <dxi-column dataField="DoseAmount" caption="Doz" width="auto" i18n-caption="@@M13284" id="A15394" data-tid="A347270"></dxi-column>
+                                <dxi-column dataField="Frequency" caption="Aralık" width="auto" i18n-caption="@@M27332" id="A15395" data-tid="A347271"></dxi-column>
+                                <dxi-column dataField="DrugAppDate" caption="Uygulama Tarihi" width="auto" i18n-caption="@@M23763" id="A15396" data-tid="A347272"></dxi-column>
+                                <dxi-column dataField="Name" caption="İlaç" width="auto" i18n-caption="@@M16287" id="A15397" data-tid="A347273"></dxi-column>
+                                <dxi-column dataField="Requested" caption="Veren Doktor" width="auto" i18n-caption="@@M24084" id="A15398" data-tid="A347274"></dxi-column>
+                                <dxi-column dataField="MasterResourceName" caption="İstenen Klinik" width="auto" [encodeHtml]="false" i18n-caption="@@M27502" id="A15399" data-tid="A347275"></dxi-column>
+                            </dx-data-grid>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div *ngIf="IsRequestedProcedureGrid == true" id="A15400" data-tid="A347276">
+
+                    <div class="panel panel-default" id="A15401" data-tid="A347277">
+                        <div class="panel-heading panel-title tableHeaderStyle" id="A15402" data-tid="A347278">Hizmet</div>
+                        <div class="panel-body" style="padding:0;" id="A15403" data-tid="A347279">
+                            <dx-data-grid id="gridContainer" [export]="{enabled:true}" [dataSource]="patientHistoryFormViewModel.RequestedProceduresList" data-tid="A347280">
+                                <dxo-paging [pageSize]="20" id="A15404" data-tid="A347281"></dxo-paging>
+                                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true" id="A15405" data-tid="A347282">
+                                </dxo-pager>
+                                <dxo-filter-row [visible]="true" [applyFilter]="auto" id="A15406" data-tid="A347283"></dxo-filter-row>
+                                <dxo-header-filter [visible]="true" id="A15407" data-tid="A347284"></dxo-header-filter>
+
+                                <dxi-column dataField="ProcedureCode" caption="İşlem Kodu" width="auto" i18n-caption="@@M16860" id="A15408" data-tid="A347285"></dxi-column>
+                                <dxi-column dataField="ProcedureName" caption="İşlem Adı" width="auto" i18n-caption="@@M16821" id="A15409" data-tid="A347286"></dxi-column>
+                                <dxi-column dataField="Amount" caption="Adet" width="auto" i18n-caption="@@M10505" id="A15410" data-tid="A347287"></dxi-column>
+                                <dxi-column dataField="RequestBy" caption="İstem Yapan" width="auto" i18n-caption="@@M16696" id="A15411" data-tid="A347288"></dxi-column>
+                                <dxi-column dataField="RequestDate" caption="İstem Tarihi" width="auto" i18n-caption="@@M16694" id="A15412" data-tid="A347289"></dxi-column>
+                                <dxi-column dataField="MasterResource" caption="İstenilen Birim" width="auto" i18n-caption="@@M16715" id="A15413" data-tid="A347290"></dxi-column>
+                                <dxi-column dataField="ActionStatus" caption="İşlem Durumu" width="auto" i18n-caption="@@M16838" id="A15414" data-tid="A347291"></dxi-column>
+                            </dx-data-grid>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div *ngIf="IsTreatmentMaterialGrid == true" id="A15415" data-tid="A347292">
+
+                    <div class="panel panel-default" id="A15416" data-tid="A347293">
+                        <div class="panel-heading panel-title tableHeaderStyle" id="A15417" data-tid="A347294">Malzeme ve Sarf</div>
+                        <div class="panel-body" style="padding:0;" id="A15418" data-tid="A347295">
+                            <dx-data-grid id="gridContainer" [export]="{enabled:true}" [dataSource]="patientHistoryFormViewModel.TreatmentMaterialsList" data-tid="A347296">
+                                <dxo-paging [pageSize]="20" id="A15419" data-tid="A347297"></dxo-paging>
+                                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true" id="A15420" data-tid="A347298">
+                                </dxo-pager>
+                                <dxo-filter-row [visible]="true" [applyFilter]="auto" id="A15421" data-tid="A347299"></dxo-filter-row>
+                                <dxo-header-filter [visible]="true" id="A15422" data-tid="A347300"></dxo-header-filter>
+
+                                <dxi-column dataField="ActionDate" caption="Tarih/Saat" width="auto" i18n-caption="@@M22842" id="A15423" data-tid="A347301"></dxi-column>
+                                <dxi-column dataField="Name" caption="Sarf Malzeme" width="auto" i18n-caption="@@M21326" id="A15424" data-tid="A347302"></dxi-column>
+                                <dxi-column dataField="Code" caption="Barkodu" width="auto" i18n-caption="@@M27355" id="A15425" data-tid="A347303"></dxi-column>
+                                <dxi-column dataField="Amount" caption="Miktar" width="auto" i18n-caption="@@M19030" id="A15426" data-tid="A347304"></dxi-column>
+                            </dx-data-grid>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div *ngIf="IsDietOrdersGrid == true" id="A15427" data-tid="A347305">
+
+                    <div class="panel panel-default" id="A15428" data-tid="A347306">
+                        <div class="panel-heading panel-title tableHeaderStyle" id="A15429" data-tid="A347307">Diyet</div>
+                        <div class="panel-body" style="padding:0;" id="A15430" data-tid="A347308">
+                            <dx-data-grid id="gridContainer" [export]="{enabled:true}" [dataSource]="patientHistoryFormViewModel.DietOrdersList" data-tid="A347309">
+                                <dxo-paging [pageSize]="20" id="A15431" data-tid="A347310"></dxo-paging>
+                                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true" id="A15432" data-tid="A347311">
+                                </dxo-pager>
+                                <dxo-filter-row [visible]="true" [applyFilter]="auto" id="A15433" data-tid="A347312"></dxo-filter-row>
+                                <dxo-header-filter [visible]="true" id="A15434" data-tid="A347313"></dxo-header-filter>
+
+                                <dxi-column dataField="DietName" caption="Diyet Tipi" width="auto" i18n-caption="@@M13053" id="A15435" data-tid="A347314"></dxi-column>
+                                <dxi-column dataField="DietDate" caption="Diyet Tarihi" width="auto" i18n-caption="@@M13049" id="A15436" data-tid="A347315"></dxi-column>
+                                <dxi-column dataField="WhichMeal" caption="Öğün" width="auto" i18n-caption="@@M19903" id="A15437" data-tid="A347316"></dxi-column>
+                                <dxi-column dataField="MasterResource" caption="Tedavi Gördüğü Klinik" width="auto" i18n-caption="@@M22986" id="A15438" data-tid="A347317"></dxi-column>
+                                <dxi-column dataField="PhysicalStateClinic" caption="Yattığı Klinik" width="auto" i18n-caption="@@M24457" id="A15439" data-tid="A347318"></dxi-column>
+                                <dxi-column dataField="RoomName" caption="Oda No" width="auto" i18n-caption="@@M27371" id="A15440" data-tid="A347319"></dxi-column>
+                                <dxi-column dataField="RoomGroupName" caption="Yatak No" width="auto" i18n-caption="@@M24365" id="A15441" data-tid="A347320"></dxi-column>
+                                <dxi-column dataField="OrderDescription" caption="Açıklama" width="auto" i18n-caption="@@M10469" id="A15442" data-tid="A347321"></dxi-column>
+                                <dxi-column dataField="CurrentStateName" caption="Onay Durumu" width="auto" i18n-caption="@@M19680" id="A15443" data-tid="A347322"></dxi-column>
+                            </dx-data-grid>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+        <div *ngIf="patientHistoryFormViewModel.CloseAllPanel" style="margin-bottom: 10px;height:80vh;" id="A15444" data-tid="A347323">
+            <dx-scroll-view #scrollView id="scrollview" [scrollByContent]="true" [scrollByThumb]="true" [showScrollbar]="always" data-tid="A347324">
+
+                <div class="row" data-tid="A347325">
+                    <div class="col-md-12" id="A12684" data-tid="A347326">
+                        <div class="panel-group" data-tid="A347327">
+                            <div class="panel panel-default" data-tid="A347328">
+                                <div class="panel-heading" data-tid="A347329">
+                                    <h4 class="panel-title" data-tid="A347330">
+                                        <a data-toggle="collapse" (click)="changeAcoordionCollapse()" i18n-title="@@M22127" data-tid="A347331">Sorgulama Paneli</a>
+                                    </h4>
+                                </div>
+                                <div id="collapse1" class="panel-collapse collapse" [class.out]="isAccordionOpened==false" [class.in]="isAccordionOpened==true" data-tid="A347332">
+                                    <div class="panel-body" data-tid="A347333">
+                                        <div class="col-md-2" data-tid="A347334">
+                                            <label class="control-label" id="A15447" data-tid="A347335">Başlangıç Tarihi</label>
+                                            <dx-date-box width="100%" type="date" displayFormat="dd/MM/yyyy" [(value)]="patientHistoryFormViewModel._historyFilter.startDate" [disabled]="patientHistoryFormViewModel._historyFilter.selectAll" id="A15452" data-tid="A347336">
+                                            </dx-date-box>
+                                        </div>
+                                        <div class="col-md-2" data-tid="A347337">
+                                            <label class="control-label" id="A15448" data-tid="A347338">Bitiş Tarihi</label>
+                                            <dx-date-box width="100%" type="date" displayFormat="dd/MM/yyyy" [(value)]="patientHistoryFormViewModel._historyFilter.endDate" [disabled]="patientHistoryFormViewModel._historyFilter.selectAll" id="A15454" data-tid="A347339">
+                                            </dx-date-box>
+                                        </div>
+                                        <div class="col-md-3" data-tid="A347340">
+                                            <label class="control-label" id="A15449" data-tid="A347341">İşlem Tipi</label>
+                                            <dx-select-box [items]="ActionTypeList" displayExpr="Text" valueExpr="Value" [searchEnabled]="true" [value]="patientHistoryFormViewModel._historyFilter.actionType" (onValueChanged)="onActionTypeChanged($event)" id="A15456" data-tid="A347342"></dx-select-box>
+                                        </div>
+                                        <div class="col-md-2" data-tid="A347343">
+                                            <label class="control-label" id="A15449" data-tid="A347344">&nbsp;</label>
+                                            <dx-check-box text="Tüm İşlemler" (onValueChanged)="onSelectAllChanged($event)" [(value)]="patientHistoryFormViewModel._historyFilter.selectAll" data-tid="A347345"></dx-check-box>
+                                        </div>
+                                        <div class="col-md-3" data-tid="A347346">
+                                            <button type="button" class="btn btn-sm btn-primary btn-gradient btn-round pull-right" (click)="btnSearchClicked()" style="margin: 0px 10px 0px 0px;" id="A15458" data-tid="A347347"><span class="fa fa-bars" id="A15459" data-tid="A347348"></span>&nbsp;Listele</button>
+                                        </div>
+
+
+                                        <div class="col-sm-12" id="A28538" data-tid="A347349">
+                                            <dx-data-grid class="ortezProtezWorkListGridComponentClosed" [columns]="PopupHistoryGridColumn" allowColumnReordering="true" allowColumnResizing="true" [dataSource]="patientHistoryFormViewModel.PopUpHistoryList" (onRowClick)="selectPopupGrid($event)" [filterRow]="{visible: true}" style="padding-top: 10px;" [selection]="{mode: 'single',allowSelectAll: false, showCheckBoxesMode: 'none'}" [editing]="{mode: 'row' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" id="A15460" data-tid="A347350">
+                                                <dxo-scrolling mode="virtual" id="A15461" data-tid="A347351"></dxo-scrolling>
+                                            </dx-data-grid>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" data-tid="A347352">
+                        <comp-compose [Info]="componentInfo" [ReadOnlyByCode]="true" (ComponentCreated)="componentCreated($event)" id="A15463" data-tid="A347353"></comp-compose>
+                    </div>
+                </div>
+
+            </dx-scroll-view>
+            <div id="A28558" data-tid="A347354">
+                <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A15464" data-tid="A347355">
+                </dx-load-panel>
+            </div>
+        </div>
+
+        <div data-tid="A347356">
+            <dx-popup showTitle="false" title="İşlem Seçimi" [width]="500" [height]="150" [(visible)]="showRadiologyProcedures" i18n-title="@@M15175" id="A15340" data-tid="A347357">
+                <div *dxTemplate="let data of 'content'" id="A15341" data-tid="A347358">
+                    <div class="col-sm-12" id="A15342" data-tid="A347359">
+                        <div data-tid="A347360">En fazla 10 tane işlem seçiniz</div>
+                        <dx-tag-box [dataSource]="RadiologyDefList" displayExpr="Name" [searchExpr]="searchExp" [showSelectionControls]="true" applyValueMode="useButtons" [searchEnabled]="true" itemTemplate="customItem" [(value)]="selectedProcedures" [multiline]="false" data-tid="A347361">
+                                    <div *dxTemplate="let product of 'customItem'" data-tid="A347362">
+                                        <div class="custom-item" data-tid="A347363">                                            
+                                            <div data-tid="A347364">
+                                                {{product.SUTCode}} {{product.Name}}
+                                            </div>
+                                        </div>
+                                    </div>                                    
+                        </dx-tag-box>
+                    </div>
+                    <div class="col-sm-12" data-tid="A347365">
+                        <dx-button type="default" class="pull-right" icon="fa fa-check" (onClick)="closePopup()" text="Sorgula" id="A20354" data-tid="A347366"></dx-button>
+                    </div>
+                </div>
+            </dx-popup>
+        </div>
+
+
+    </fieldset>
+</form>
+
+
+
+
+

@@ -1,0 +1,59 @@
+﻿<div class="row" id="sut-pricing-update" data-tid="A328265">
+    <div style="height: 50px;display: grid;grid-template-columns:repeat(4, minmax(25px, 1fr)); grid-template-rows: repeat(1, minmax(40px, auto));" class="col-sm-10 col-sm-offset-1" data-tid="A328266">
+        <div style="grid-area: 1 / 3 / 1 / 4;" data-tid="A328267">
+            <div class="col-sm-12" style="padding: 0" data-tid="A328268">
+                <label data-tid="A328269">Tarih</label>
+                <dx-date-box width="100%" [(value)]="SelectedDate" showClearButton="true" data-tid="A328270">
+
+                </dx-date-box>
+            </div>
+        </div>
+        <div style="grid-area: 1 / 4 / 1 / 4;" data-tid="A328271">
+            <div class="col-sm-12" style="padding: 15px 0 0 0" data-tid="A328272">
+                <dx-button style="float:right!important" icon="fa fa-bars" type="default" text="Listele" (onClick)="ListPrices()" data-tid="A328273">
+
+                </dx-button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-10 col-sm-offset-1" style="height:calc(100% - 75px)" data-tid="A328274">
+        <dx-data-grid height="100%" [columns]="SutPriceColumns" [dataSource]="SutPriceDataSource" [selection]="{mode: 'multiple',allowSelectAll: true}" [(selectedRowKeys)]="SelectedSUTPriceList" (onRowPrepared)="onSutPriceRowPrepared($event)" [filterRow]="{visible:true}" [headerFilter]="{visible: true}" data-tid="A328275">
+            <dxo-summary data-tid="A328276">
+                <dxi-total-item column="sutKodu" summaryType="count" data-tid="A328277">
+                </dxi-total-item>
+            </dxo-summary>
+        </dx-data-grid>
+    </div>
+    <div style="height: 50px;display: grid;grid-template-columns:repeat(5, minmax(25px, 1fr)); grid-template-rows: repeat(2, minmax(40px, auto));" class="col-sm-10 col-sm-offset-1" data-tid="A328278">
+        <div style="grid-area: 1 / 4 / 1 / 4;" data-tid="A328279">
+            <div class="col-sm-12" style="padding:0" data-tid="A328280">
+                <label data-tid="A328281">Yeni Fiyat Başlangıç Tarihi
+                    <span style="color: red;" data-tid="A328282">*</span>
+                </label>
+                <dx-date-box width="100%" [(value)]="StartDate" showClearButton="true" data-tid="A328283">
+                    <dx-validator data-tid="A328284">
+                        <dxi-validation-rule type="required" message="Lütfen Yeni Başlangıç Tarihi seçiniz." data-tid="A328285">
+                        </dxi-validation-rule>
+                    </dx-validator>
+                </dx-date-box>
+            </div>
+        </div>
+        <div style="grid-area: 2 / 4 / 2 / 4;" data-tid="A328286">
+            <div class="col-sm-12" style="padding: 15px 0 0 0" data-tid="A328287">
+                <dx-button style=" float:right!important" type="success" text="F. Güncelle" (onClick)="UpdatePrices()" data-tid="A328288">
+
+                </dx-button>
+            </div>
+        </div>
+        <div style="grid-area: 2 / 5 / 2 / 5;" data-tid="A328289">
+            <div class="col-sm-12" style="padding: 15px 0 0 0" data-tid="A328290">
+                <dx-button style=" float:right!important" type="success" text="SUT Güncelle" (onClick)="UpdateSUT()" data-tid="A328291">
+
+                </dx-button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" message="Lütfen Bekleyiniz..." data-tid="A328292">
+</dx-load-panel>

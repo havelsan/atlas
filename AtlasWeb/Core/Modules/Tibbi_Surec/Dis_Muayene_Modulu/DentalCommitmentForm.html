@@ -1,0 +1,660 @@
+﻿<div class="row" style="padding-right: 60px" data-tid="A340970">
+	<div class="col-sm-10" data-tid="A340971">
+		<NeStatePanelComponent [ObjectDefID]="dentalCommitmentFormViewModel._DentalCommitment.ObjectDefID" [CurrentStateDefID]="dentalCommitmentFormViewModel._DentalCommitment.CurrentStateDefID" (onSetState)="setState($event)" (onSaveChanges)="save($event)" (onCancel)="cancel()" data-tid="A340972">
+		</NeStatePanelComponent>
+	</div>
+	<div class="col-sm-2" data-tid="A340973">
+		<dx-button icon="save" type="default" text="Kaydet ve Medulaya Gönder" (onClick)="buttonDisTaahhutKaydet_Click()" i18n-text="@@M30522" data-tid="A340974">
+		</dx-button>
+	</div>
+
+</div>
+
+<div class="container-fluid" data-tid="A340975">
+	<form id="DentalCommitmentForm" class="form-horizontal" role="form" data-tid="A340976"></form>
+	<div class="row" data-tid="A340977">
+		<div class="col-sm-3" data-tid="A340978">
+			Hasta Adı
+			<dx-text-box [value]="dentalCommitmentFormViewModel?.patientName" [disabled]="true" data-tid="A340979">
+			</dx-text-box>
+		</div>
+		<div class="col-sm-3" data-tid="A340980">
+			Hasta Soyadı
+			<dx-text-box [value]="dentalCommitmentFormViewModel?.patientSurname" [disabled]="true" data-tid="A340981">
+			</dx-text-box>
+		</div>
+		<div class="col-sm-3" data-tid="A340982">
+			TC Kimlik Numarası
+			<dx-text-box [value]="dentalCommitmentFormViewModel?.patientUniqueRefNo" [disabled]="true" data-tid="A340983">
+			</dx-text-box>
+		</div>
+		<div class="col-sm-2" data-tid="A340984">
+			Doğum Tarihi
+			<dx-date-box [value]="dentalCommitmentFormViewModel?.patientBirthDate" [disabled]="true" type="date" displayFormat="dd.MM.yyyy" data-tid="A340985">
+			</dx-date-box>
+		</div>
+		<div class="col-sm-1" data-tid="A340986">
+			Cinsiyeti
+			<dx-text-box [value]="dentalCommitmentFormViewModel?.patientSex" [disabled]="true" data-tid="A340987">
+			</dx-text-box>
+		</div>
+	</div>
+
+	<ul class="nav nav-tabs" style="padding-top:5px" data-tid="A340988">
+		<li class="active" data-tid="A340989">
+			<a data-toggle="tab" href="#saveCommitment" data-tid="A340990">Taahhüt Kaydet</a>
+		</li>
+		<li data-tid="A340991">
+			<a data-toggle="tab" href="#searchCommitment" data-tid="A340992">Taahhüt No ile Sorgula</a>
+		</li>
+		<li data-tid="A340993">
+			<a data-toggle="tab" href="#deleteCommitment" data-tid="A340994">Taahhüt Sil</a>
+		</li>
+		<li data-tid="A340995">
+			<a data-toggle="tab" href="#searchCommitmentByUniqueNo" data-tid="A340996">TC Kimlik No ile Taahüt Sorgula</a>
+		</li>
+
+	</ul>
+	<div class="tab-content" data-tid="A340997">
+		<div id="saveCommitment" class="tab-pane fade in active" data-tid="A340998">
+			<div class="row" style="padding-top:5px" data-tid="A340999">
+				<label class="control-label col-sm-2" data-tid="A341000">
+					İl Plaka
+				</label>
+				<label class="control-label col-sm-2" data-tid="A341001">
+					İlçe Adı
+				</label>
+				<label class="control-label col-sm-1" data-tid="A341002">
+					Posta Kodu
+				</label>
+				<label class="control-label col-sm-5" data-tid="A341003">
+					Cadde-Sokak Adı
+				</label>
+				<label class="control-label col-sm-2" data-tid="A341004">
+					Dış Kapı No
+				</label>
+			</div>
+			<div class="row" style="padding-top:5px" data-tid="A341005">
+				<div class="col-sm-2" data-tid="A341006">
+					<hvl-list-box #Validation (SelectedObjectChange)="onCityChanged($event)" [AutoCompleteDialogHeight]="City?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="City?.AutoCompleteDialogWidth" [AutoCompleteMode]="City?.AutoCompleteMode" [BackColor]="City?.BackColor" [DefinitionName]="City?.ListDefName" [DisplayExpressionsCache]="_DentalCommitment.City?.ListDefDisplayExpressions" [Enabled]="City?.Enabled" [Font]="City?.Font" [ForeColor]="City?.ForeColor" [ListFilterExpression]="City?.ListFilterExpression" [MinSearchLength]="City?.MinSearchLength" [PopupDialogFieldConfig]="City?.PopupDialogFieldConfig" [PopupDialogGridColumns]="City?.PopupDialogGridColumns" [PopupDialogHeight]="City?.PopupDialogHeight" [PopupDialogTitle]="City?.PopupDialogTitle" [PopupDialogWidth]="City?.PopupDialogWidth" [ReadOnly]="City?.ReadOnly" [SearchMode]="City?.SearchMode" [SearchTimeout]="City?.SearchTimeout" [SelectedObject]="_DentalCommitment.City" [TabIndex]="City?.TabIndex" [Visible]="City?.Visible" [width]="City?.Width" IsOnPopup="true" data-tid="A341007">
+					</hvl-list-box>
+				</div>
+				<div class="col-sm-2" data-tid="A341008">
+					<hvl-list-box #Validation (SelectedObjectChange)="onTownChanged($event)" [AutoCompleteDialogHeight]="Town?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="Town?.AutoCompleteDialogWidth" [AutoCompleteMode]="Town?.AutoCompleteMode" [BackColor]="Town?.BackColor" [DefinitionName]="Town?.ListDefName" [DisplayExpressionsCache]="_DentalCommitment.Town?.ListDefDisplayExpressions" [Enabled]="Town?.Enabled" [Font]="Town?.Font" [ForeColor]="Town?.ForeColor" [ListFilterExpression]="Town?.ListFilterExpression" [MinSearchLength]="Town?.MinSearchLength" [PopupDialogFieldConfig]="Town?.PopupDialogFieldConfig" [PopupDialogGridColumns]="Town?.PopupDialogGridColumns" [PopupDialogHeight]="Town?.PopupDialogHeight" [PopupDialogTitle]="Town?.PopupDialogTitle" [PopupDialogWidth]="Town?.PopupDialogWidth" [ReadOnly]="Town?.ReadOnly" [SearchMode]="Town?.SearchMode" [SearchTimeout]="Town?.SearchTimeout" [SelectedObject]="_DentalCommitment.Town" [TabIndex]="Town?.TabIndex" [Visible]="Town?.Visible" [width]="Town?.Width" IsOnPopup="true" data-tid="A341009">
+					</hvl-list-box>
+				</div>
+				<div class="col-sm-1" data-tid="A341010">
+					<hvl-text-box #Validation (TextChange)="onPostCodeChanged($event)" [BackColor]="PostCode?.BackColor" [CharacterCasing]="PostCode?.CharacterCasing" [Enabled]="PostCode?.Enabled" [Font]="PostCode?.Font" [ForeColor]="PostCode?.ForeColor" [height]="PostCode?.Height" [InputFormat]="PostCode?.InputFormat" [InputTurkishCharacter]="PostCode?.InputTurkishCharacter" [IsNonNumeric]="PostCode?.IsNonNumeric" [MultiLine]="PostCode?.Multiline" [ReadOnly]="PostCode?.ReadOnly" [Required]="PostCode?.Required" [TabIndex]="PostCode?.TabIndex" [TextAlign]="PostCode?.TextAlign" [Text]="_DentalCommitment.PostCode" [Visible]="PostCode?.Visible" data-tid="A341011">
+					</hvl-text-box>
+				</div>
+				<div class="col-sm-5" data-tid="A341012">
+					<hvl-text-box #Validation (TextChange)="onStreetNameChanged($event)" [BackColor]="StreetName?.BackColor" [CharacterCasing]="StreetName?.CharacterCasing" [Enabled]="StreetName?.Enabled" [Font]="StreetName?.Font" [ForeColor]="StreetName?.ForeColor" [height]="StreetName?.Height" [InputFormat]="StreetName?.InputFormat" [InputTurkishCharacter]="StreetName?.InputTurkishCharacter" [IsNonNumeric]="StreetName?.IsNonNumeric" [MultiLine]="StreetName?.Multiline" [ReadOnly]="StreetName?.ReadOnly" [Required]="StreetName?.Required" [TabIndex]="StreetName?.TabIndex" [TextAlign]="StreetName?.TextAlign" [Text]="_DentalCommitment.StreetName" [Visible]="StreetName?.Visible" data-tid="A341013">
+					</hvl-text-box>
+				</div>
+				<div class="col-sm-2" data-tid="A341014">
+					<hvl-text-box #Validation (TextChange)="onOuterDoorNoChanged($event)" [BackColor]="OuterDoorNo?.BackColor" [CharacterCasing]="OuterDoorNo?.CharacterCasing" [Enabled]="OuterDoorNo?.Enabled" [Font]="OuterDoorNo?.Font" [ForeColor]="OuterDoorNo?.ForeColor" [height]="OuterDoorNo?.Height" [InputFormat]="OuterDoorNo?.InputFormat" [InputTurkishCharacter]="OuterDoorNo?.InputTurkishCharacter" [IsNonNumeric]="OuterDoorNo?.IsNonNumeric" [MultiLine]="OuterDoorNo?.Multiline" [ReadOnly]="OuterDoorNo?.ReadOnly" [Required]="OuterDoorNo?.Required" [TabIndex]="OuterDoorNo?.TabIndex" [TextAlign]="OuterDoorNo?.TextAlign" [Text]="_DentalCommitment.OuterDoorNo" [Visible]="OuterDoorNo?.Visible" data-tid="A341015">
+					</hvl-text-box>
+				</div>
+			</div>
+			<div class="row" style="padding-top:5px" data-tid="A341016">
+				<label class="control-label col-sm-2" data-tid="A341017">
+					Telefon No
+				</label>
+				<label class="control-label col-sm-2" data-tid="A341018">
+					E-Posta
+				</label>
+				<label class="control-label col-sm-3" data-tid="A341019">
+					Taahhüt Alanın Adı
+				</label>
+				<label class="control-label col-sm-3" data-tid="A341020">
+					Taahhüt Alanın Soyadı
+				</label>
+				<label class="control-label col-sm-2" data-tid="A341021">
+					İç Kapı No
+				</label>
+			</div>
+			<div class="row" style="padding-top:5px" data-tid="A341022">
+				<div class="col-sm-2" data-tid="A341023">
+					<hvl-text-box #Validation (TextChange)="onPhoneNumberChanged($event)" [BackColor]="PhoneNumber?.BackColor" [CharacterCasing]="PhoneNumber?.CharacterCasing" [Enabled]="PhoneNumber?.Enabled" [Font]="PhoneNumber?.Font" [ForeColor]="PhoneNumber?.ForeColor" [height]="PhoneNumber?.Height" [InputFormat]="PhoneNumber?.InputFormat" [InputTurkishCharacter]="PhoneNumber?.InputTurkishCharacter" [IsNonNumeric]="PhoneNumber?.IsNonNumeric" [MultiLine]="PhoneNumber?.Multiline" [ReadOnly]="PhoneNumber?.ReadOnly" [Required]="PhoneNumber?.Required" [TabIndex]="PhoneNumber?.TabIndex" [TextAlign]="PhoneNumber?.TextAlign" [Text]="_DentalCommitment.PhoneNumber" [Visible]="PhoneNumber?.Visible" data-tid="A341024">
+					</hvl-text-box>
+				</div>
+				<div class="col-sm-2" data-tid="A341025">
+					<hvl-text-box #Validation (TextChange)="onEMailChanged($event)" [BackColor]="EMail?.BackColor" [CharacterCasing]="EMail?.CharacterCasing" [Enabled]="EMail?.Enabled" [Font]="EMail?.Font" [ForeColor]="EMail?.ForeColor" [height]="EMail?.Height" [InputFormat]="EMail?.InputFormat" [InputTurkishCharacter]="EMail?.InputTurkishCharacter" [IsNonNumeric]="EMail?.IsNonNumeric" [MultiLine]="EMail?.Multiline" [ReadOnly]="EMail?.ReadOnly" [Required]="EMail?.Required" [TabIndex]="EMail?.TabIndex" [TextAlign]="EMail?.TextAlign" [Text]="_DentalCommitment.EMail" [Visible]="EMail?.Visible" data-tid="A341026">
+					</hvl-text-box>
+				</div>
+				<div class="col-sm-3" data-tid="A341027">
+					<hvl-text-box #Validation (TextChange)="onCommitmentTakenByNameChanged($event)" [BackColor]="CommitmentTakenByName?.BackColor" [CharacterCasing]="CommitmentTakenByName?.CharacterCasing" [Enabled]="CommitmentTakenByName?.Enabled" [Font]="CommitmentTakenByName?.Font" [ForeColor]="CommitmentTakenByName?.ForeColor" [height]="CommitmentTakenByName?.Height" [InputFormat]="CommitmentTakenByName?.InputFormat" [InputTurkishCharacter]="CommitmentTakenByName?.InputTurkishCharacter" [IsNonNumeric]="CommitmentTakenByName?.IsNonNumeric" [MultiLine]="CommitmentTakenByName?.Multiline" [ReadOnly]="CommitmentTakenByName?.ReadOnly" [Required]="CommitmentTakenByName?.Required" [TabIndex]="CommitmentTakenByName?.TabIndex" [TextAlign]="CommitmentTakenByName?.TextAlign" [Text]="_DentalCommitment.CommitmentTakenByName" [Visible]="CommitmentTakenByName?.Visible" data-tid="A341028">
+					</hvl-text-box>
+				</div>
+				<div class="col-sm-3" data-tid="A341029">
+					<hvl-text-box #Validation (TextChange)="onCommitmentTakenBySurnameChanged($event)" [BackColor]="CommitmentTakenBySurname?.BackColor" [CharacterCasing]="CommitmentTakenBySurname?.CharacterCasing" [Enabled]="CommitmentTakenBySurname?.Enabled" [Font]="CommitmentTakenBySurname?.Font" [ForeColor]="CommitmentTakenBySurname?.ForeColor" [height]="CommitmentTakenBySurname?.Height" [InputFormat]="CommitmentTakenBySurname?.InputFormat" [InputTurkishCharacter]="CommitmentTakenBySurname?.InputTurkishCharacter" [IsNonNumeric]="CommitmentTakenBySurname?.IsNonNumeric" [MultiLine]="CommitmentTakenBySurname?.Multiline" [ReadOnly]="CommitmentTakenBySurname?.ReadOnly" [Required]="CommitmentTakenBySurname?.Required" [TabIndex]="CommitmentTakenBySurname?.TabIndex" [TextAlign]="CommitmentTakenBySurname?.TextAlign" [Text]="_DentalCommitment.CommitmentTakenBySurname" [Visible]="CommitmentTakenBySurname?.Visible" data-tid="A341030">
+					</hvl-text-box>
+				</div>
+				<div class="col-sm-2" data-tid="A341031">
+					<hvl-text-box #Validation (TextChange)="onInnerDoorNoChanged($event)" [BackColor]="InnerDoorNo?.BackColor" [CharacterCasing]="InnerDoorNo?.CharacterCasing" [Enabled]="InnerDoorNo?.Enabled" [Font]="InnerDoorNo?.Font" [ForeColor]="InnerDoorNo?.ForeColor" [height]="InnerDoorNo?.Height" [InputFormat]="InnerDoorNo?.InputFormat" [InputTurkishCharacter]="InnerDoorNo?.InputTurkishCharacter" [IsNonNumeric]="InnerDoorNo?.IsNonNumeric" [MultiLine]="InnerDoorNo?.Multiline" [ReadOnly]="InnerDoorNo?.ReadOnly" [Required]="InnerDoorNo?.Required" [TabIndex]="InnerDoorNo?.TabIndex" [TextAlign]="InnerDoorNo?.TextAlign" [Text]="_DentalCommitment.InnerDoorNo" [Visible]="InnerDoorNo?.Visible" data-tid="A341032">
+					</hvl-text-box>
+				</div>
+			</div>
+			<div class="row" style="padding-top:5px" data-tid="A341033">
+				<div class="col-sm-12" data-tid="A341034">
+					<div class="row" data-tid="A341035">
+						<div class="row" data-tid="A341036">
+							<div class="col-sm-5" data-tid="A341037">
+							</div>
+							<div class="col-sm-2 " data-tid="A341038">
+								<hvl-checkbox #ch1 (ValueChange)="optionChanged($event ? '+1' : '-1' );" Title="Tüm Ağız" [(Value)]="checkValues[0]" i18n-Title="@@M23631" data-tid="A341039"></hvl-checkbox>
+							</div>
+							<div class="col-sm-5" data-tid="A341040">
+							</div>
+						</div>
+						<br data-tid="A341041" />
+						<div class="row" data-tid="A341042">
+							<div class="col-sm-5" data-tid="A341043">
+							</div>
+							<div class="col-sm-2" data-tid="A341044">
+								<hvl-checkbox #ch2 (ValueChange)="optionChanged($event ? '+2' : '-2' );" Title="Üst Çene" [(Value)]="checkValues[1]" i18n-Title="@@M23981" data-tid="A341045"></hvl-checkbox>
+							</div>
+							<div class="col-sm-5" data-tid="A341046">
+							</div>
+						</div>
+						<div class="row " data-tid="A341047">
+							<div class="col-sm-2" data-tid="A341048">
+							</div>
+							<div class="col-sm-2 " data-tid="A341049">
+								<hvl-checkbox #ch4 (ValueChange)="optionChanged($event ? '+4' : '-4' );" Title="Sağ Üst Çene" [(Value)]="checkValues[2]" i18n-Title="@@M21152" data-tid="A341050"></hvl-checkbox>
+							</div>
+							<div class="col-sm-2" data-tid="A341051">
+							</div>
+							<div class="col-sm-2" data-tid="A341052">
+							</div>
+							<div class="col-sm-2" data-tid="A341053">
+								<hvl-checkbox #ch5 (ValueChange)="optionChanged($event ? '+5' : '-5' );" Title="Sol Üst Çene" [(Value)]="checkValues[3]" i18n-Title="@@M22021" data-tid="A341054"></hvl-checkbox>
+							</div>
+							<div class="col-sm-2" data-tid="A341055">
+							</div>
+						</div>
+						<div class="row" data-tid="A341056">
+							<div class="col-sm-6" data-tid="A341057">
+								<div class="col-sm-2" data-tid="A341058">
+								</div>
+								<div class="col-sm-1" data-tid="A341059">
+									<hvl-checkbox #ch18 (ValueChange)="optionChanged($event ? '+18' : '-18' );" Title="18" [(Value)]="checkValues[4]" data-tid="A341060"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341061">
+									<hvl-checkbox #ch17 (ValueChange)="optionChanged($event ? '+17' : '-17' );" Title="17" [(Value)]="checkValues[5]" data-tid="A341062"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341063">
+									<hvl-checkbox #ch16 (ValueChange)="optionChanged($event ? '+16' : '-16' );" Title="16" [(Value)]="checkValues[6]" data-tid="A341064"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341065">
+									<hvl-checkbox #ch15 (ValueChange)="optionChanged($event ? '+15' : '-15' );" Title="15" [(Value)]="checkValues[7]" data-tid="A341066"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341067">
+									<hvl-checkbox #ch14 (ValueChange)="optionChanged($event ? '+14' : '-14' );" Title="14" [(Value)]="checkValues[8]" data-tid="A341068"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341069">
+									<hvl-checkbox #ch13 (ValueChange)="optionChanged($event ? '+13' : '-13' );" Title="13" [(Value)]="checkValues[9]" data-tid="A341070"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341071">
+									<hvl-checkbox #ch12 (ValueChange)="optionChanged($event ? '+12' : '-12' );" Title="12" [(Value)]="checkValues[10]" data-tid="A341072"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341073">
+									<hvl-checkbox #ch11 (ValueChange)="optionChanged($event ? '+11' : '-11' );" Title="11" [(Value)]="checkValues[11]" data-tid="A341074"></hvl-checkbox>
+								</div>
+							</div>
+							<div class="col-sm-6" data-tid="A341075">
+								<div class="col-sm-1" data-tid="A341076">
+									<hvl-checkbox #ch21 (ValueChange)="optionChanged($event ? '+21' : '-21' );" Title="21" [(Value)]="checkValues[12]" data-tid="A341077"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341078">
+									<hvl-checkbox #ch22 (ValueChange)="optionChanged($event ? '+22' : '-22' );" Title="22" [(Value)]="checkValues[13]" data-tid="A341079"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341080">
+									<hvl-checkbox #ch23 (ValueChange)="optionChanged($event ? '+23' : '-23' );" Title="23" [(Value)]="checkValues[14]" data-tid="A341081"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341082">
+									<hvl-checkbox #ch24 (ValueChange)="optionChanged($event ? '+24' : '-24' );" Title="24" [(Value)]="checkValues[15]" data-tid="A341083"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341084">
+									<hvl-checkbox #ch25 (ValueChange)="optionChanged($event ? '+25' : '-25' );" Title="25" [(Value)]="checkValues[16]" data-tid="A341085"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341086">
+									<hvl-checkbox #ch26 (ValueChange)="optionChanged($event ? '+26' : '-26' );" Title="26" [(Value)]="checkValues[17]" data-tid="A341087"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341088">
+									<hvl-checkbox #ch27 (ValueChange)="optionChanged($event ? '+27' : '-27' );" Title="27" [(Value)]="checkValues[18]" data-tid="A341089"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341090">
+									<hvl-checkbox #ch28 (ValueChange)="optionChanged($event ? '+28' : '-28' );" Title="28" [(Value)]="checkValues[19]" data-tid="A341091"></hvl-checkbox>
+								</div>
+								<div class="col-sm-2" data-tid="A341092">
+								</div>
+							</div>
+						</div>
+						<div class="row" data-tid="A341093">
+							<div class="col-sm-6" data-tid="A341094">
+								<div class="col-sm-5" data-tid="A341095">
+								</div>
+								<div class="col-sm-1" data-tid="A341096">
+									<hvl-checkbox #ch55 (ValueChange)="optionChanged($event ? '+55' : '-55' );" Title="55" [(Value)]="checkValues[20]" data-tid="A341097"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341098">
+									<hvl-checkbox #ch54 (ValueChange)="optionChanged($event ? '+54' : '-54' );" Title="54" [(Value)]="checkValues[21]" data-tid="A341099"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341100">
+									<hvl-checkbox #ch53 (ValueChange)="optionChanged($event ? '+53' : '-53' );" Title="53" [(Value)]="checkValues[22]" data-tid="A341101"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341102">
+									<hvl-checkbox #ch52 (ValueChange)="optionChanged($event ? '+52' : '-52' );" Title="52" [(Value)]="checkValues[23]" data-tid="A341103"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341104">
+									<hvl-checkbox #ch51 (ValueChange)="optionChanged($event ? '+51' : '-51' );" Title="51" [(Value)]="checkValues[24]" data-tid="A341105"></hvl-checkbox>
+								</div>
+							</div>
+							<div class="col-sm-6" data-tid="A341106">
+								<div class="col-sm-1" data-tid="A341107">
+									<hvl-checkbox #ch61 (ValueChange)="optionChanged($event ? '+61' : '-61' );" Title="61" [(Value)]="checkValues[25]" data-tid="A341108"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341109">
+									<hvl-checkbox #ch62 (ValueChange)="optionChanged($event ? '+62' : '-62' );" Title="62" [(Value)]="checkValues[26]" data-tid="A341110"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341111">
+									<hvl-checkbox #ch63 (ValueChange)="optionChanged($event ? '+63' : '-63' );" Title="63" [(Value)]="checkValues[27]" data-tid="A341112"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341113">
+									<hvl-checkbox #ch64 (ValueChange)="optionChanged($event ? '+64' : '-64' );" Title="64" [(Value)]="checkValues[28]" data-tid="A341114"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341115">
+									<hvl-checkbox #ch65 (ValueChange)="optionChanged($event ? '+65' : '-65' );" Title="65" [(Value)]="checkValues[29]" data-tid="A341116"></hvl-checkbox>
+								</div>
+								<div class="col-sm-5" data-tid="A341117">
+								</div>
+							</div>
+						</div>
+						<hr style="display: flex;margin-top: 0.5em;	margin-bottom: 0.5em;margin-left: auto;margin-right: auto;border-style: inset;border-width: 5px;" data-tid="A341118" />
+						<div class="row" data-tid="A341119">
+							<div class="col-sm-6" data-tid="A341120">
+								<div class="col-sm-5" data-tid="A341121">
+								</div>
+								<div class="col-sm-1" data-tid="A341122">
+									<hvl-checkbox #ch85 (ValueChange)="optionChanged($event ? '+85' : '-85' );" Title="85" [(Value)]="checkValues[30]" data-tid="A341123"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341124">
+									<hvl-checkbox #ch84 (ValueChange)="optionChanged($event ? '+84' : '-84' );" Title="84" [(Value)]="checkValues[31]" data-tid="A341125"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341126">
+									<hvl-checkbox #ch83 (ValueChange)="optionChanged($event ? '+83' : '-83' );" Title="83" [(Value)]="checkValues[32]" data-tid="A341127"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341128">
+									<hvl-checkbox #ch82 (ValueChange)="optionChanged($event ? '+82' : '-82' );" Title="82" [(Value)]="checkValues[33]" data-tid="A341129"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341130">
+									<hvl-checkbox #ch81 (ValueChange)="optionChanged($event ? '+81' : '-81' );" Title="81" [(Value)]="checkValues[34]" data-tid="A341131"></hvl-checkbox>
+								</div>
+							</div>
+							<div class="col-sm-6" data-tid="A341132">
+								<div class="col-sm-1" data-tid="A341133">
+									<hvl-checkbox #ch71 (ValueChange)="optionChanged($event ? '+71' : '-71' );" Title="71" [(Value)]="checkValues[35]" data-tid="A341134"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341135">
+									<hvl-checkbox #ch72 (ValueChange)="optionChanged($event ? '+72' : '-72' );" Title="72" [(Value)]="checkValues[36]" data-tid="A341136"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341137">
+									<hvl-checkbox #ch73 (ValueChange)="optionChanged($event ? '+73' : '-73' );" Title="73" [(Value)]="checkValues[37]" data-tid="A341138"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341139">
+									<hvl-checkbox #ch74 (ValueChange)="optionChanged($event ? '+74' : '-74' );" Title="74" [(Value)]="checkValues[38]" data-tid="A341140"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341141">
+									<hvl-checkbox #ch75 (ValueChange)="optionChanged($event ? '+75' : '-75' );" Title="75" [(Value)]="checkValues[39]" data-tid="A341142"></hvl-checkbox>
+								</div>
+								<div class="col-sm-5" data-tid="A341143">
+								</div>
+							</div>
+						</div>
+						<div class="row" data-tid="A341144">
+							<div class="col-sm-6" data-tid="A341145">
+								<div class="col-sm-2" data-tid="A341146">
+								</div>
+								<div class="col-sm-1" data-tid="A341147">
+									<hvl-checkbox #ch48 (ValueChange)="optionChanged($event ? '+48' : '-48' );" Title="48" [(Value)]="checkValues[40]" data-tid="A341148"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341149">
+									<hvl-checkbox #ch47 (ValueChange)="optionChanged($event ? '+47' : '-47' );" Title="47" [(Value)]="checkValues[41]" data-tid="A341150"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341151">
+									<hvl-checkbox #ch46 (ValueChange)="optionChanged($event ? '+46' : '-46' );" Title="46" [(Value)]="checkValues[42]" data-tid="A341152"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341153">
+									<hvl-checkbox #ch45 (ValueChange)="optionChanged($event ? '+45' : '-45' );" Title="45" [(Value)]="checkValues[43]" data-tid="A341154"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341155">
+									<hvl-checkbox #ch44 (ValueChange)="optionChanged($event ? '+44' : '-44' );" Title="44" [(Value)]="checkValues[44]" data-tid="A341156"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341157">
+									<hvl-checkbox #ch43 (ValueChange)="optionChanged($event ? '+43' : '-43' );" Title="43" [(Value)]="checkValues[45]" data-tid="A341158"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341159">
+									<hvl-checkbox #ch42 (ValueChange)="optionChanged($event ? '+42' : '-42' );" Title="42" [(Value)]="checkValues[46]" data-tid="A341160"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341161">
+									<hvl-checkbox #ch41 (ValueChange)="optionChanged($event ? '+41' : '-41' );" Title="41" [(Value)]="checkValues[47]" data-tid="A341162"></hvl-checkbox>
+								</div>
+							</div>
+							<div class="col-sm-6" data-tid="A341163">
+								<div class="col-sm-1" data-tid="A341164">
+									<hvl-checkbox #ch31 (ValueChange)="optionChanged($event ? '+31' : '-31' );" Title="31" [(Value)]="checkValues[48]" data-tid="A341165"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341166">
+									<hvl-checkbox #ch32 (ValueChange)="optionChanged($event ? '+32' : '-32' );" Title="32" [(Value)]="checkValues[49]" data-tid="A341167"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341168">
+									<hvl-checkbox #ch33 (ValueChange)="optionChanged($event ? '+33' : '-33' );" Title="33" [(Value)]="checkValues[50]" data-tid="A341169"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341170">
+									<hvl-checkbox #ch34 (ValueChange)="optionChanged($event ? '+34' : '-34' );" Title="34" [(Value)]="checkValues[51]" data-tid="A341171"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341172">
+									<hvl-checkbox #ch35 (ValueChange)="optionChanged($event ? '+35' : '-35' );" Title="35" [(Value)]="checkValues[52]" data-tid="A341173"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341174">
+									<hvl-checkbox #ch36 (ValueChange)="optionChanged($event ? '+36' : '-36' );" Title="36" [(Value)]="checkValues[53]" data-tid="A341175"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341176">
+									<hvl-checkbox #ch37 (ValueChange)="optionChanged($event ? '+37' : '-37' );" Title="37" [(Value)]="checkValues[54]" data-tid="A341177"></hvl-checkbox>
+								</div>
+								<div class="col-sm-1" data-tid="A341178">
+									<hvl-checkbox #ch38 (ValueChange)="optionChanged($event ? '+38' : '-38' );" Title="38" [(Value)]="checkValues[55]" data-tid="A341179"></hvl-checkbox>
+								</div>
+								<div class="col-sm-2" data-tid="A341180">
+								</div>
+							</div>
+						</div>
+						<div class="row" data-tid="A341181">
+							<div class="col-sm-2" data-tid="A341182">
+							</div>
+							<div class="col-sm-2" data-tid="A341183">
+								<hvl-checkbox #ch6 (ValueChange)="optionChanged($event ? '+6' : '-6' );" Title="Sağ Alt Çene" [(Value)]="checkValues[56]" i18n-Title="@@M21126" data-tid="A341184"></hvl-checkbox>
+							</div>
+							<div class="col-sm-2" data-tid="A341185">
+							</div>
+							<div class="col-sm-2" data-tid="A341186">
+							</div>
+							<div class="col-sm-2" data-tid="A341187">
+								<hvl-checkbox #ch7 (ValueChange)="optionChanged($event ? '+7' : '-7' );" Title="Sol Alt Çene" [(Value)]="checkValues[57]" i18n-Title="@@M22002" data-tid="A341188"></hvl-checkbox>
+							</div>
+							<div class="col-sm-2" data-tid="A341189">
+							</div>
+						</div>
+						<div class="row" data-tid="A341190">
+							<div class="col-sm-5" data-tid="A341191">
+							</div>
+							<div class="col-sm-2" data-tid="A341192">
+								<hvl-checkbox #ch3 (ValueChange)="optionChanged($event ? '+3' : '-3' );" Title="Alt Çene" [(Value)]="checkValues[58]" i18n-Title="@@M10740" data-tid="A341193"></hvl-checkbox>
+							</div>
+							<div class="col-sm-5" data-tid="A341194">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="padding-top:5px" data-tid="A341195">
+				<div class="col-sm-10" data-tid="A341196">
+					<dx-tag-box [items]="dentalCommitmentFormViewModel?.dentalProcedures" displayExpr="Name" placeholder="İşlemi Seç" [showSelectionControls]="false" [searchEnabled]="true" [(value)]="selectedDentalProcedure" applyValueMode="useButtons" data-tid="A341197">
+					</dx-tag-box>
+				</div>
+				<div class="col-sm-2" data-tid="A341198">
+					<dx-button icon="plus" type="success" text="Ekle" (onClick)="add_Click()" data-tid="A341199"></dx-button>
+				</div>
+			</div>
+			<div class="row" style="padding-top:5px" data-tid="A341200">
+				<div class="col-sm-6" data-tid="A341201">
+					<div class="row" data-tid="A341202">
+						<label class="col-sm-12" data-tid="A341203">
+							Eklenecek Taahhütler
+						</label>
+					</div>
+					<div class="row" data-tid="A341204">
+						<div class="col-sm-12" data-tid="A341205">
+							<!--<hvl-datagrid (CellValueChange)="DentalCommitmentProstethises" [AllowUserToAddRows]="_DentalCommitment.DentalCommitmentProstethises?.AllowUserToAddRows"
+                                          [AllowUserToDeleteRows]="_DentalCommitment.DentalCommitmentProstethises?.AllowUserToDeleteRows" [Columns]="_DentalCommitment.DentalCommitmentProstethisesColumns"
+                                          [dataSource]="_DentalCommitment.DentalCommitmentProstethises" [DeleteButtonWidth]="_DentalCommitment.DentalCommitmentProstethises?.DeleteButtonWidth"
+                                          [DisplayExpressionsCache]="_DentalCommitment.DentalCommitmentProstethises?.ListDefDisplayExpressions" [EnableFilter]="_DentalCommitment.DentalCommitmentProstethises?.ShowFilterRow"
+                                          [FilterColumnName]="_DentalCommitment.DentalCommitmentProstethises?.FilterColumnName" [FilterLabel]="_DentalCommitment.DentalCommitmentProstethises?.FilterLabel"
+                                          [Filter]="_DentalCommitment.DentalCommitmentProstethises?.Filter" [height]="_DentalCommitment.DentalCommitmentProstethises?.Height"
+                                          [IsFilterLabelSingleLine]="_DentalCommitment.DentalCommitmentProstethises?.IsFilterLabelSingleLine" [ShowColumnHeaders]="_DentalCommitment.DentalCommitmentProstethises?.ColumnHeadersVisible"
+                                          [ShowFilterCombo]="_DentalCommitment.DentalCommitmentProstethises?.ShowFilterCombo" [ShowTotalNumberOfRows]="_DentalCommitment.DentalCommitmentProstethises?.ShowTotalNumberOfRows">
+                            </hvl-datagrid>-->
+
+							<dx-data-grid #prosthesisGrid showColumnLines="true" showRowLines="true" showBorders="true" [allowColumnResizing]="true" height="95%" [dataSource]="dentalCommitmentFormViewModel.DentalCommitmentProstethisesGridList" [columns]='DentalCommitmentProsthesisColumns' [height]="115" id="A12579" data-tid="A341206">
+							 <div *dxTemplate="let cellData of 'deleteCellTemplate'" id="A27832" data-tid="A341207">
+								<i class="fa fa fa-trash" style="cursor:pointer" (click)="prosthesisGrid_CellContentClicked(cellData)" data-tid="A341208"></i>
+							</div>
+								<!--(onRowClick)="grdCashOfficeWorkListClick($event) (onContextMenuPreparing)="onGrdWorkListContextPreparing($event)"-->
+							</dx-data-grid>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6" data-tid="A341209">
+
+					<!--<div class="row">
+                        <div class="col-sm-6">
+                            <dx-button icon="save" type="success" text="Medulaya Kaydet" (onClick)="buttonDisTaahhutKaydet_Click()" i18n-text="@@M30522">
+                            </dx-button>
+                        </div>
+                        <div class="col-sm-6">
+                            <dx-button type="success" text="Diş Taahhüt Raporu" (onClick)="printDisTaahhutReport()" i18n-text="@@M30523">
+                            </dx-button>
+                        </div>
+                    </div>-->
+					<div class="row" data-tid="A341210">
+						<div class="col-sm-4" data-tid="A341211">
+							<div class="row" data-tid="A341212">
+								<label class="control-label col-sm-12" data-tid="A341213">
+									Taahhüt Numarası
+								</label>
+							</div>
+							<div class="row" data-tid="A341214">
+								<div class="col-sm-12" data-tid="A341215">
+									<hvl-text-box #Validation (TextChange)="onCommitmentNoChanged($event)" [BackColor]="CommitmentNo?.BackColor" [CharacterCasing]="CommitmentNo?.CharacterCasing" [Enabled]="CommitmentNo?.Enabled" [Font]="CommitmentNo?.Font" [ForeColor]="CommitmentNo?.ForeColor" [height]="CommitmentNo?.Height" [InputFormat]="CommitmentNo?.InputFormat" [InputTurkishCharacter]="CommitmentNo?.InputTurkishCharacter" [IsNonNumeric]="CommitmentNo?.IsNonNumeric" [MultiLine]="CommitmentNo?.Multiline" [ReadOnly]="CommitmentNo?.ReadOnly" [Required]="CommitmentNo?.Required" [TabIndex]="CommitmentNo?.TabIndex" [TextAlign]="CommitmentNo?.TextAlign" [Text]="_DentalCommitment.CommitmentNo" [Visible]="CommitmentNo?.Visible" data-tid="A341216">
+									</hvl-text-box>
+								</div>
+							</div>
+							<div class="row" data-tid="A341217">
+								<label class="control-label col-sm-12" data-tid="A341218">
+									Takip No
+								</label>
+							</div>
+							<div class="row" data-tid="A341219">
+								<div class="col-sm-12" data-tid="A341220">
+									<hvl-text-box #Validation (TextChange)="onCommitmentProtocolNoChanged($event)" [BackColor]="CommitmentProtocolNo?.BackColor" [CharacterCasing]="CommitmentProtocolNo?.CharacterCasing" [Enabled]="CommitmentProtocolNo?.Enabled" [Font]="CommitmentProtocolNo?.Font" [ForeColor]="CommitmentProtocolNo?.ForeColor" [height]="CommitmentProtocolNo?.Height" [InputFormat]="CommitmentProtocolNo?.InputFormat" [InputTurkishCharacter]="CommitmentProtocolNo?.InputTurkishCharacter" [IsNonNumeric]="CommitmentProtocolNo?.IsNonNumeric" [MultiLine]="CommitmentProtocolNo?.Multiline" [ReadOnly]="CommitmentProtocolNo?.ReadOnly" [Required]="CommitmentProtocolNo?.Required" [TabIndex]="CommitmentProtocolNo?.TabIndex" [TextAlign]="CommitmentProtocolNo?.TextAlign" [Text]="_DentalCommitment.CommitmentProtocolNo" [Visible]="CommitmentProtocolNo?.Visible" data-tid="A341221">
+									</hvl-text-box>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-8" data-tid="A341222">
+							<div class="row" data-tid="A341223">
+								<label class="control-label col-sm-12" data-tid="A341224">
+									Sonuç Kodu
+								</label>
+							</div>
+							<div class="row" data-tid="A341225">
+								<div class="col-sm-12" data-tid="A341226">
+									<hvl-text-box #Validation (TextChange)="onCommitmentResultCodeChanged($event)" [BackColor]="CommitmentResultCode?.BackColor" [CharacterCasing]="CommitmentResultCode?.CharacterCasing" [Enabled]="CommitmentResultCode?.Enabled" [Font]="CommitmentResultCode?.Font" [ForeColor]="CommitmentResultCode?.ForeColor" [height]="CommitmentResultCode?.Height" [InputFormat]="CommitmentResultCode?.InputFormat" [InputTurkishCharacter]="CommitmentResultCode?.InputTurkishCharacter" [IsNonNumeric]="CommitmentResultCode?.IsNonNumeric" [MultiLine]="CommitmentResultCode?.Multiline" [ReadOnly]="CommitmentResultCode?.ReadOnly" [Required]="CommitmentResultCode?.Required" [TabIndex]="CommitmentResultCode?.TabIndex" [TextAlign]="CommitmentResultCode?.TextAlign" [Text]="_DentalCommitment.CommitmentResultCode" [Visible]="CommitmentResultCode?.Visible" data-tid="A341227">
+									</hvl-text-box>
+								</div>
+							</div>
+							<div class="row" data-tid="A341228">
+								<label class="control-label col-sm-12" data-tid="A341229">
+									Sonuç Mesajı
+								</label>
+							</div>
+							<div class="row" data-tid="A341230">
+								<div class="col-sm-12" data-tid="A341231">
+									<hvl-text-box #Validation (TextChange)="onCommitmentResultMessageChanged($event)" [BackColor]="CommitmentResultMessage?.BackColor" [CharacterCasing]="CommitmentResultMessage?.CharacterCasing" [Enabled]="CommitmentResultMessage?.Enabled" [Font]="CommitmentResultMessage?.Font" [ForeColor]="CommitmentResultMessage?.ForeColor" [height]="CommitmentResultMessage?.Height" [InputFormat]="CommitmentResultMessage?.InputFormat" [InputTurkishCharacter]="CommitmentResultMessage?.InputTurkishCharacter" [IsNonNumeric]="CommitmentResultMessage?.IsNonNumeric" [MultiLine]="CommitmentResultMessage?.Multiline" [ReadOnly]="CommitmentResultMessage?.ReadOnly" [Required]="CommitmentResultMessage?.Required" [TabIndex]="CommitmentResultMessage?.TabIndex" [TextAlign]="CommitmentResultMessage?.TextAlign" [Text]="_DentalCommitment.CommitmentResultMessage" [Visible]="CommitmentResultMessage?.Visible" data-tid="A341232">
+									</hvl-text-box>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row" data-tid="A341233">
+						<div class="col-sm-2" data-tid="A341234">
+							<dx-button type="default" text="Diş Taahhüt Raporu" (onClick)="printDisTaahhutReport()" i18n-text="@@M30523" data-tid="A341235">
+							</dx-button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="searchCommitment" class="tab-pane fade" data-tid="A341236">
+			<div class="row" style="padding-top:5px" data-tid="A341237">
+				<div class="col-sm-4" data-tid="A341238">
+					<div class="row" data-tid="A341239">
+						<div class="col-sm-12" data-tid="A341240">
+							<dx-button icon="find" type="default" text="Taahhut No ile Taahhut Oku" (onClick)="buttonTaahhutNoileTaahhutOku_Click()" i18n-text="@@M30517" data-tid="A341241">
+							</dx-button>
+						</div>
+					</div>
+					<div class="row" data-tid="A341242">
+						<label class="col-sm-12" data-tid="A341243">
+							Taahhüt Numarası
+						</label>
+					</div>
+					<div class="row" data-tid="A341244">
+						<div class="col-sm-12" data-tid="A341245">
+							<dx-text-box [(value)]="okunacakTaahhutNumarasi" data-tid="A341246"> </dx-text-box>
+						</div>
+					</div>
+					<div class="row" data-tid="A341247">
+						<label class="col-sm-12" data-tid="A341248">
+							Sonuç Kodu
+						</label>
+					</div>
+					<div class="row" data-tid="A341249">
+						<div class="col-sm-12" data-tid="A341250">
+							<dx-text-box [(value)]="txtSonucKoduTaahhutNoileSorgula" [disabled]="true" data-tid="A341251"> </dx-text-box>
+						</div>
+					</div>
+
+				</div>
+				<div class="col-sm-8" data-tid="A341252">
+					<div class="row" data-tid="A341253">
+						<label class="col-sm-12" data-tid="A341254">
+							Sonuç Mesajı
+						</label>
+					</div>
+					<div class="row" data-tid="A341255">
+						<div class="col-sm-12" data-tid="A341256">
+							<dx-text-area [height]="90" [readOnly]="true" [(value)]="txtSonucMesajiTaahhutNoileSorgula" data-tid="A341257">
+							</dx-text-area>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div id="deleteCommitment" class="tab-pane fade" data-tid="A341258">
+			<div class="row" style="padding-top:5px" data-tid="A341259">
+				<div class="col-sm-4" data-tid="A341260">
+					<div class="row" data-tid="A341261">
+						<div class="col-sm-12" data-tid="A341262">
+							<dx-button icon="remove" type="danger" text="Taahhut Sil" (onClick)="buttonTaahhutSil_Click()" i18n-text="@@M30518" data-tid="A341263">
+							</dx-button>
+						</div>
+					</div>
+					<div class="row" data-tid="A341264">
+						<label class="col-sm-12" data-tid="A341265">
+							Taahhüt Numarası
+						</label>
+					</div>
+					<div class="row" data-tid="A341266">
+						<div class="col-sm-12" data-tid="A341267">
+							<dx-text-box [(value)]="silinecekTaahhutNo" data-tid="A341268"> </dx-text-box>
+						</div>
+					</div>
+					<div class="row" data-tid="A341269">
+						<label class="col-sm-12" data-tid="A341270">
+							Sonuç Kodu
+						</label>
+					</div>
+					<div class="row" data-tid="A341271">
+						<div class="col-sm-12" data-tid="A341272">
+							<dx-text-box [(value)]="txtSonucKoduTaahhutSil" [disabled]="true" data-tid="A341273"> </dx-text-box>
+						</div>
+					</div>
+
+				</div>
+				<div class="col-sm-8" data-tid="A341274">
+					<div class="row" data-tid="A341275">
+						<label class="col-sm-12" data-tid="A341276">
+							Sonuç Mesajı
+						</label>
+					</div>
+					<div class="row" data-tid="A341277">
+						<div class="col-sm-12" data-tid="A341278">
+							<dx-text-area [height]="90" [readOnly]="true" [(value)]="txtSonucMesajiTaahhutSil" data-tid="A341279">
+							</dx-text-area>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="searchCommitmentByUniqueNo" class="tab-pane fade" data-tid="A341280">
+
+			<div class="row" style="padding-top:5px" data-tid="A341281">
+				<div class="col-sm-6" data-tid="A341282">
+					<div class="row" data-tid="A341283">
+						<div class="col-sm-5" data-tid="A341284">
+							<dx-button icon="find" type="default" text="Taahhüt Sorgula" (onClick)="buttonTCKimlikNoIleTaahhutSorgula_Click()" i18n-text="@@M30520" data-tid="A341285">
+							</dx-button>
+						</div>
+						<div class="col-sm-7" data-tid="A341286">
+							<div class="row" data-tid="A341287">
+								<label class="col-sm-12" data-tid="A341288">
+									Sonuç Kodu
+								</label>
+							</div>
+							<div class="row" data-tid="A341289">
+								<div class="col-sm-12" data-tid="A341290">
+									<dx-text-box [(value)]="txtSonucKoduTCKimlikNoileSorgula" [disabled]="true" data-tid="A341291"> </dx-text-box>
+								</div>
+							</div>
+						</div>
+					</div>
+					<br data-tid="A341292" />
+					<div class="row" data-tid="A341293">
+						<div class="col-sm-12" data-tid="A341294">
+							Sonuç Mesajı
+							<dx-text-area [height]="87" [readOnly]="true" [(value)]="txtSonucMesajTCKimlikNoileSorgula" data-tid="A341295">
+							</dx-text-area>
+						</div>
+					</div>
+				</div>
+
+				<br data-tid="A341296" />
+				<div class="col-sm-6" data-tid="A341297">
+					<dx-data-grid [dataSource]="taahhutler" [hoverStateEnabled]="true" [selectedRowKeys]="[]" data-tid="A341298">
+						<dxo-selection mode="single" data-tid="A341299"></dxo-selection>
+						<dxi-column dataField="taahhutNo" caption="Taahhut No" [width]="200" data-tid="A341300"></dxi-column>
+					</dx-data-grid>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row" style="padding-top:5px" data-tid="A341301">
+		<label class="col-sm-12" data-tid="A341302">
+			Bu XXXXXXde Alınmış Taahhütler
+		</label>
+	</div>
+	<div class="row" data-tid="A341303">
+		<div class="col-sm-12" data-tid="A341304">
+			<dx-data-grid showColumnLines="true" showRowLines="true" showBorders="true" [allowColumnResizing]="true" height="95%" [dataSource]="dentalCommitmentFormViewModel.oldDentalCommitments" [columns]='oldDentalCommitmentsColumns' [height]="140" id="A12579" data-tid="A341305">
+				<!--(onRowClick)="grdCashOfficeWorkListClick($event) (onContextMenuPreparing)="onGrdWorkListContextPreparing($event)"-->
+
+			</dx-data-grid>
+		</div>
+	</div>
+
+
+</div>

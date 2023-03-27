@@ -1,0 +1,158 @@
+﻿<h4 class="logisticLabel" style="margin-left:40%;color:#08c;" id="A3570" data-tid="A328764">{{FormCaption}}</h4>
+<NeStatePanelComponent [OutgoingTransitions]="infectionCommitteeFormViewModel?.OutgoingTransitions" [StateReports]="infectionCommitteeFormViewModel?.CurrentStateReports" [ObjectID]="infectionCommitteeFormViewModel?._InfectionCommittee?.ObjectID" [ObjectDefID]="infectionCommitteeFormViewModel?._InfectionCommittee?.ObjectDefID" [CurrentStateDefID]="infectionCommitteeFormViewModel._InfectionCommittee.CurrentStateDefID" [DropStateList]="DropStateList" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" id="A3498" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A328765">
+</NeStatePanelComponent>
+<br id="A3499" data-tid="A328766" />
+<br id="A3500" data-tid="A328767" />
+<form id="InfectionCommitteeForm" class="form-horizontal" role="form" data-tid="A328768">
+
+    <div class="container-fluid" id="A3501" data-tid="A328769">
+        <div class="row" id="A3502" data-tid="A328770">
+            <div class="col-md-4 col-sm-12" id="A3503" data-tid="A328771">
+                <patient-demographics-form [actionId]="infectionCommitteeFormViewModel._InfectionCommittee.InPatientPhysicianApplication" id="A3504" data-tid="A328772"></patient-demographics-form>
+            </div>
+            <div class="col-md-2 col-sm-12" *ngIf="hasPhysicianApplication" id="A3505" data-tid="A328773">
+                <div class="row" id="A3506" data-tid="A328774">
+                    <div class="col-md-12" id="A3507" data-tid="A328775">
+                        <label class="control-label" id="A3508" data-tid="A328776">Klinik Protokol No</label>
+                        <dx-text-box [readOnly]="true" [hoverStateEnabled]="false" [(value)]="clinicProtocolNo" id="A3509" data-tid="A328777"></dx-text-box>
+                    </div>
+                </div>
+                <div class="row" id="A3510" data-tid="A328778">
+                    <div class="col-md-6" id="A3511" data-tid="A328779">
+                        <label class="control-label" id="A3512" data-tid="A328780">Oda</label>
+                        <dx-text-box [readOnly]="true" [hoverStateEnabled]="false" [(value)]="clinicRoom" id="A3513" data-tid="A328781">
+                        </dx-text-box>
+                    </div>
+                    <div class="col-md-6" id="A3514" data-tid="A328782">
+                        <label class="control-label" id="A3515" data-tid="A328783">Yatak</label>
+                        <dx-text-box [readOnly]="true" [hoverStateEnabled]="false" [(value)]="clinicBed" id="A3516" data-tid="A328784">
+                        </dx-text-box>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12" id="A3517" data-tid="A328785">
+                <DiagnosisGridReadOnlyForm [EpisodeAction]="infectionCommitteeFormViewModel._InfectionCommittee.InPatientPhysicianApplication" id="A3518" data-tid="A328786"></DiagnosisGridReadOnlyForm>
+            </div>
+        </div>
+        <br data-tid="A328787" />
+        <div class="row" data-tid="A328788">
+            <div class="col-sm-2" *ngIf="infectionCommitteeDayParameter" data-tid="A328789">
+                <label class="control-label" data-tid="A328790">Onaylanacak Gün</label>
+                <dx-text-box [(value)]="DayOfDrugOrder" (onValueChanged)="onTransactionDayChanged($event)" [(disabled)]="textdisabled" data-tid="A328791"></dx-text-box>
+            </div>
+            <div class="col-sm-2" data-tid="A328792">
+                <label class="control-label" data-tid="A328793"></label>
+                <dx-button text="Tüm Patoloji Sonuçları" type="default" (onClick)="btnShowAllPathologyResults()" data-tid="A328794">
+                </dx-button>
+            </div>
+            <div class="col-sm-2" data-tid="A328795">
+                <label class="control-label" data-tid="A328796"></label>
+                <dx-button text="Tüm Laboratuvar Sonuçları" type="default" (onClick)="btnShowLISResultViewForAllEpisodes_Click()" data-tid="A328797">
+                </dx-button>
+            </div>
+            <div class="col-sm-2" data-tid="A328798">
+                <label class="control-label" data-tid="A328799"></label>
+                <dx-button text="Geçmiş Radyoloji Sonuçları" type="default" (onClick)="btnShowPatientAllRadiologyTestResult_Click()" data-tid="A328800">
+                </dx-button>
+            </div>
+            <!--<label class="control-label"></label>
+            <div class="btn-group" role="group" aria-label="..." style="padding-top:12px;" id="A29059">
+
+                <button type="button" class="btn btn-default fas fa-notes-medical"
+                    (click)="btnShowAllPathologyResults()" data-toggle="tooltip" data-placement="top"
+                    title="Tüm Patoloji Sonuçları">Tüm Patoloji Sonuçları</button>
+                <button type="button" class="btn btn-default fa fa-flask"
+                    (click)="btnShowLISResultViewForAllEpisodes_Click()" data-toggle="tooltip" data-placement="top"
+                    title="Tüm Laboratuvar Sonuçları">Tüm Laboratuvar Sonuçları</button>
+                <button type="button" class="btn btn-default glyphicon glyphicon-cd"
+                    (click)="btnShowPatientAllRadiologyTestResult_Click()" data-toggle="tooltip" data-placement="top"
+                    title="Geçmiş Radyoloji Sonuçları">Geçmiş Radyoloji Sonuçları</button>
+            </div>-->
+        </div>
+        <br data-tid="A328801" />
+        <div class="row" id="A3519" data-tid="A328802">
+            <dx-tab-panel [selectedIndex]="0" id="A3520" (onSelectionChanged)="tabSelectionPatient($event)" data-tid="A328803">
+                <dxi-item class="tabpanel-item" title="İlaç" i18n-title="@@M16287" id="A3521" data-tid="A328804">
+                    <div class="row" id="A3522" data-tid="A328805">
+                        <div class="col-sm-12" id="A3523" data-tid="A328806">
+                            <div class="panel " style="margin-bottom:5px" data-tid="A328807">
+                                <div style="background-color: #08c;height: 20px;padding: 0px 10px !important;" data-tid="A328808">
+                                    <h4 class="panel-title" style="color: white" data-tid="A328809">
+                                        <a data-parent="#myGroup3" data-tid="A328810">EHU Onayı Gerektiren İlaçlar</a>
+                                    </h4>
+                                </div>
+                                <!--<dx-data-grid [columns]="InpatientDrugOrdersNewColumns" [height]="200"
+                                [dataSource]="infectionCommitteeFormViewModel?._InfectionCommittee?.InfectionCommitteeDetails">
+                                <dxo-paging [pageSize]="20"></dxo-paging>
+                                <dxo-editing mode="cell" [allowUpdating]="true" [allowDeleting]="false"
+                                    [allowAdding]="false"></dxo-editing>
+                            </dx-data-grid>-->
+                                <dx-data-grid [columns]="DTOList" [height]="200" [dataSource]="infectionCommitteeFormViewModel?.InfectionCommitteeDetailDTOList" data-tid="A328811">
+                                    <dxo-paging [pageSize]="20" data-tid="A328812"></dxo-paging>
+                                    <dxo-editing mode="cell" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="false" data-tid="A328813"></dxo-editing>
+                                </dx-data-grid>
+                            </div>
+                            <div style="background-color: #08c;height: 20px;padding: 0px 10px !important;" data-tid="A328814">
+                                <h4 class="panel-title" style="color: white" data-tid="A328815">
+                                    <a data-parent="#myGroup3" data-tid="A328816">Diğer İlaçlar</a>
+                                </h4>
+                            </div>
+                            <!--<dx-data-grid [columns]="InpatientDrugOrdersNewColumns" [height]="200"
+                                [dataSource]="infectionCommitteeFormViewModel?._InfectionCommittee?.InfectionCommitteeDetails">
+                                <dxo-paging [pageSize]="20"></dxo-paging>
+                                <dxo-editing mode="cell" [allowUpdating]="true" [allowDeleting]="false"
+                                    [allowAdding]="false"></dxo-editing>
+                            </dx-data-grid>-->
+                            <dx-data-grid [columns]="OrderDTOList" [height]="200" style="overflow-y: scroll;" [dataSource]="infectionCommitteeFormViewModel?.OrderDTOList" data-tid="A328817">
+                                <dxo-paging [pageSize]="20" data-tid="A328818"></dxo-paging>
+                                <dxo-editing mode="cell" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="false" data-tid="A328819"></dxo-editing>
+                            </dx-data-grid>
+                        </div>
+                    </div>
+                </dxi-item>
+                <dxi-item class="tabpanel-item" title="Yatışa Ait İlaçlar" style="height: 100%;" data-tid="A328820">
+                    <br id="A3526" data-tid="A328821" />
+                    <dx-data-grid [columns]="inpatientHasDrugListColumn" [dataSource]="InpatientHasDrugList" [groupPanel]="{visible: true}" [filterRow]="{visible: true}" width="100%" height="560px" showRowLines="true" [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" data-tid="A328822">
+                        <dxo-paging [pageSize]="20" data-tid="A328823"></dxo-paging>
+                    </dx-data-grid>
+                </dxi-item>
+               
+                <dxi-item class="tabpanel-item" title="Daha Önceki Yatışlara Ait İlaçlar" style="height: 100%;" data-tid="A328824">
+                    <br id="A3526" data-tid="A328825" />
+                    <dx-data-grid [columns]="inpatientHasDrugListColumn" [dataSource]="AllInpatientHasDrugList" [groupPanel]="{visible: true}" [filterRow]="{visible: true}" width="100%" height="560px" showRowLines="true" [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" data-tid="A328826">
+                        <dxo-paging [pageSize]="20" data-tid="A328827"></dxo-paging>
+                    </dx-data-grid>
+                </dxi-item>
+
+                
+
+                <dxi-item class="tabpanel-item" title="Hasta Geçmişi" i18n-title="@@M27456" id="A3525" data-tid="A328828">
+                    <br id="A3526" data-tid="A328829" />
+                    <br id="A3527" data-tid="A328830" />
+                    <PatientHistoryForm [patient]="infectionCommitteeFormViewModel._InfectionCommittee?.Episode?.Patient?.ObjectID" id="A3528" data-tid="A328831">
+                    </PatientHistoryForm>
+                </dxi-item>
+            </dx-tab-panel>
+        </div>
+    </div>
+    <dx-popup *ngIf="showPopupRadiologyTestResultsForm == true" showTitle="true" [title]="popupTitleRadiologyTestResultsForm" [width]="1200" [height]="400" [(visible)]="showPopupRadiologyTestResultsForm" [position]="{my:'center',at:'center'}" i18n-title="@@M30806" id="A28163" data-tid="A328832">
+        <div *dxTemplate="let data of 'content'" id="A28164" data-tid="A328833">
+            <dx-scroll-view [height]="650" direction="both" id="A28165" data-tid="A328834">
+                <PatientAllRadiologyTestResultsForm [EpisodeObjectID]="EpisodeObjectID" id="A28166" data-tid="A328835">
+                </PatientAllRadiologyTestResultsForm>
+            </dx-scroll-view>
+        </div>
+    </dx-popup>
+
+    <dx-popup *ngIf="showPathologyResultsPopUp == true" showTitle="true" [title]="popupTitleRadiologyTestResultsForm" [width]="1200" [height]="400" [(visible)]="showPathologyResultsPopUp" [position]="{my:'center',at:'center'}" id="AY28163" data-tid="A328836">
+        <div *dxTemplate="let data of 'content'" id="AY28164" data-tid="A328837">
+            <dx-scroll-view [height]="650" direction="both" id="A28165" data-tid="A328838">
+                <AllPathologyReportsForm [PatientObjectID]="PatientObjectID" data-tid="A328839"></AllPathologyReportsForm>
+            </dx-scroll-view>
+        </div>
+    </dx-popup>
+</form>
+
+
+<dx-load-panel shadingColor="rgba(0,0,0,0.4)" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A328840">
+</dx-load-panel>

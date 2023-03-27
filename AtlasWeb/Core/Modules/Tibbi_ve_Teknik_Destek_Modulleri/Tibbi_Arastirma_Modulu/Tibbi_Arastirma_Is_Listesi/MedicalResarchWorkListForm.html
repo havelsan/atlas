@@ -1,0 +1,95 @@
+﻿<div class="row" style="margin-bottom: 10px;" data-tid="A370035">
+  <div class="col-md-12" data-tid="A370036">
+    <dx-accordion #searchAccordion class="margin-bottom-10" collapsible="true" style="height: 100%;" data-tid="A370037">
+      <dxi-item title="Sorgulama Paneli" style="height: 100%;" data-tid="A370038">
+        <div class="row" data-tid="A370039">
+          <div class="col-sm-10" style="float: left;" data-tid="A370040">
+            <div class="row" data-tid="A370041">
+              <div class="col-md-2" data-tid="A370042">
+                <label class="control-label" data-tid="A370043">Dönem Seçiniz</label>
+                <dx-drop-down-box [(value)]="selectedMedicalResarchTermDefItem.TermName" displayExpr="TermName" valueExpr="ObjectID" [dataSource] (onOpened)="openMedicalResarchDefDropDown()" data-tid="A370044">
+                  <div *dxTemplate="let data of 'content'" data-tid="A370045">
+                    <dx-data-grid [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" [dataSource]="medicalResarchDefDataSource" (onRowClick)="selectMedicalResarchTermDef($event)" [remoteOperations]="true" [customizeColumns]="null" data-tid="A370046">
+                      <dxo-filter-row [visible]="true" data-tid="A370047"></dxo-filter-row>
+                      <dxo-paging [pageSize]="10" data-tid="A370048"></dxo-paging>
+                      <dxo-selection mode="single" data-tid="A370049"></dxo-selection>
+                      <dxi-column caption="Dönem Kodu" dataField="TermCode" width="100" data-tid="A370050"></dxi-column>
+                      <dxi-column caption="Dönem Adı" dataField="TermName" data-tid="A370051"></dxi-column>
+                    </dx-data-grid>
+                  </div>
+                </dx-drop-down-box>
+              </div>
+              <div class="col-md-1" data-tid="A370052">
+                <br data-tid="A370053" />
+                <dx-check-box [(value)]="medicalResarchTermStatus" [width]="116" text="Aktif Dönem Getir" data-tid="A370054"></dx-check-box>
+              </div>
+              <div class="col-md-2" data-tid="A370055">
+                <label data-tid="A370056">Araştırma Kodu</label>
+                <dx-text-box [(value)]="selectedMedicalResarchCode" data-tid="A370057"></dx-text-box>
+              </div>
+              <div *ngIf="MedicalResarchOnlyWork" class="col-md-2" data-tid="A370058">
+                <label class="control-label" data-tid="A370059">Kabul No</label>
+                <dx-text-box [showClearButton]="true" [(value)]="medicalResarchWorkListViewModel.ProtocolNo" data-tid="A370060">
+                </dx-text-box>
+              </div>
+              <div *ngIf="MedicalResarchOnlyWork" class="col-md-2" data-tid="A370061">
+                <label data-tid="A370062">Hasta Arama</label>
+                <PatientSearchForm Width="100%" (SelectedPatientChanged)="patientChanged($event)" data-tid="A370063"></PatientSearchForm>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-2" style="padding-right: 2%;" data-tid="A370064">
+            <div class="row" data-tid="A370065">
+              <dx-button icon="fa fa-building-o" text="Dönem Tanım Ekranı" type="normal" style="border-color: cornflowerblue;width: 100%;" (onClick)="medicalResarchTermDef()" data-tid="A370066">
+              </dx-button>
+            </div>
+            <div class="row" data-tid="A370067">
+              <dx-button icon="fa fa-search-plus" text="Araştırma Tanım Ekranı" type="normal" style="border-color: cornflowerblue;width: 100%;" (onClick)="medicalResarchDef()" data-tid="A370068">
+              </dx-button>
+            </div>
+            <div class="row" data-tid="A370069">
+              <dx-button icon="fa fa-bars" text="Listele" type="normal" style="border-color: cornflowerblue;width: 100%;" (onClick)="getMedicalResarchClicked()" data-tid="A370070">
+              </dx-button>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="padding-left: 1%;" data-tid="A370071">
+          <dx-radio-group [items]="priorities" [value]="priorities[0]" layout="horizontal" (onValueChanged)="onValueChanged($event)" data-tid="A370072">
+          </dx-radio-group>
+        </div>
+        <div *ngIf="!MedicalResarchOnlyWork" class="col-sm-12" style="margin-top: 20px;font-weight: bold;" id="A23669" data-tid="A370073">
+          <span id="A23670" data-tid="A370074">Listelenen İşlem Sayısı:{{medicalResarchActionList.length}}</span>
+        </div>
+        <div *ngIf="MedicalResarchOnlyWork" class="col-sm-12" style="margin-top: 20px;font-weight: bold;" id="A23669" data-tid="A370075">
+          <span id="A23670" data-tid="A370076">Toplam Hasta Sayısı:{{medicalResarchActionList.length}}</span>
+        </div>
+
+        <div class="row" style="height:calc(100% - 245px)" data-tid="A370077">
+          <div *ngIf="!MedicalResarchOnlyWork" class="col-sm-12" style="height: 100%;" data-tid="A370078">
+            <dx-data-grid #medicalResarchWorkListGrid [columns]="WorkListColumns" allowColumnReordering="true" allowColumnResizing="true" [dataSource]="medicalResarchActionList" (onRowClick)="select($event)" [filterRow]="{visible: true}" style="padding-top: 10px;height: 100%;" [selection]="{mode: 'single'}" [editing]="{mode: 'cell' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" data-tid="A370079">
+            </dx-data-grid>
+          </div>
+
+          <div *ngIf="MedicalResarchOnlyWork" class="col-sm-12" style="height: 100%;" data-tid="A370080">
+            <dx-data-grid #medicalResarchPatientWorkListGrid [columns]="PatinetWorkListColumns" allowColumnReordering="true" allowColumnResizing="true" [dataSource]="medicalResarchPatientWorkList" (onRowClick)="selectPatient($event)" [filterRow]="{visible: true}" style="padding-top: 10px;height: 100%;" [selection]="{mode: 'single'}" [editing]="{mode: 'cell' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" data-tid="A370081">
+            </dx-data-grid>
+          
+          </div>
+        </div>
+      </dxi-item>
+    </dx-accordion>
+  </div>
+</div>
+
+
+
+<div class="row" data-tid="A370082">
+  <div class="col-sm-12" data-tid="A370083">
+    <comp-compose [Info]="componentInfo" (ComponentCreated)="onComponentCreated($event)" (DynamicComponentActionExecuted)="dynamicComponentActionExecuted($event)" [DestroyComponentOnSave]='true' data-tid="A370084">
+    </comp-compose>
+  </div>
+</div>
+
+
+<dx-load-panel shadingColor="rgba(0,0,0,0.4)" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A370085">
+</dx-load-panel>

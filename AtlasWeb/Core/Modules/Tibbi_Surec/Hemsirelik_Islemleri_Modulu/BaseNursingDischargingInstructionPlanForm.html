@@ -1,0 +1,43 @@
+﻿
+
+<div class="container-fluid" id="A17543" data-tid="A350474">
+    <div class="margin-top-10" id="A17544" data-tid="A350475">
+        <NeStatePanelComponent [OutgoingTransitions]="baseNursingDischargingInstructionPlanFormViewModel?.OutgoingTransitions"
+            PrintReportCommandVisible="true" (onPrintReport)="printReport()"
+            [StateReports]="baseNursingDischargingInstructionPlanFormViewModel?.CurrentStateReports"
+            [ObjectID]="baseNursingDischargingInstructionPlanFormViewModel?._BaseNursingDischargingInstructionPlan?.ObjectID"
+            [ObjectDefID]="baseNursingDischargingInstructionPlanFormViewModel?._BaseNursingDischargingInstructionPlan?.ObjectDefID"
+            [CurrentStateDefID]="baseNursingDischargingInstructionPlanFormViewModel._BaseNursingDischargingInstructionPlan.CurrentStateDefID"
+            (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()"
+            [SaveCommandVisible]="!baseNursingDischargingInstructionPlanFormViewModel.ReadOnly" [DropStateList]="DropStateList"
+            id="A17545" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" 
+            [CloseWithStateTransition]="closeWithStateTransition" data-tid="A350476">
+        </NeStatePanelComponent>
+    </div>
+	<form id="BaseNursingDischargingInstructionPlanForm" class="form-horizontal" role="form" data-tid="A350477">
+		
+	</form>
+	<div class="row" id="A17546" data-tid="A350478">
+		<label class="control-label col-sm-4" id="A17547" data-tid="A350479">
+			Uygulama Zamanı		</label>
+	</div>
+	<div class="row" id="A17548" data-tid="A350480">
+		<div class="col-sm-4" id="A17549" data-tid="A350481">
+			<hvl-date-picker #Validation (ValueChange)="onApplicationDateChanged($event)" [BackColor]="ApplicationDate?.BackColor" [CustomFormat]="ApplicationDate?.CustomFormat" [Enabled]="ApplicationDate?.Enabled" [Font]="ApplicationDate?.Font" [ForeColor]="ApplicationDate?.ForeColor" [Format]="ApplicationDate?.Format" [Max]="ApplicationDate?.Max" [Min]="ApplicationDate?.Min" [ReadOnly]="ApplicationDate?.ReadOnly" [Required]="ApplicationDate?.Required" [TabIndex]="ApplicationDate?.TabIndex" [Value]="baseNursingDischargingInstructionPlanFormViewModel?._BaseNursingDischargingInstructionPlan?.ApplicationDate" [Visible]="ApplicationDate?.Visible" id="A17550" data-tid="A350482"></hvl-date-picker>		</div>
+	</div>
+	<div class="row" id="A17551" data-tid="A350483">
+		<div class="col-sm-12" id="A17552" data-tid="A350484">
+            <div class="col-sm-4 pull-left " style="margin-left: -30px;border-left:1px solid grey" *ngFor="let detail of baseNursingDischargingInstructionPlanFormViewModel?._BaseNursingDischargingInstructionPlan?.NursingDischargingInstructionPlans" id="A17553" data-tid="A350485">
+
+                <div class="col-sm-9 pull-left" style="margin-top:5px" id="A17554" data-tid="A350486">
+                    <dx-text-box [value]="detail.DischargingInstructionPlan.Name" [hint]="detail.DischargingInstructionPlan.Name" [readOnly]="true" id="A17555" data-tid="A350487"></dx-text-box>
+                </div>
+
+                <div class="col-sm-3 pull-left" id="A17556" data-tid="A350488">
+                    <hvl-checkbox #Validation Margin="3px" TitleTopPadding="3px" [IsTitleLeft]="true" [(Value)]="detail.PatientGetInstruction" [ReadOnly]="baseNursingDischargingInstructionPlanFormViewModel.ReadOnly" id="A17557" data-tid="A350489"></hvl-checkbox>
+                </div>
+
+            </div>
+        </div>
+	</div>
+</div>

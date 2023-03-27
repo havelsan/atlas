@@ -1,0 +1,80 @@
+﻿
+
+<div class="row" id="A20765" data-tid="A355690">
+    <div class="col-md-12" data-tid="A355691">
+        <div *ngIf="IsReadOnly!=true" class="col-sm-12" id="A20766" data-tid="A355692">
+            <hvl-checkbox #Validation (ValueChange)="chkConsultationFromExternalHospital.Value=$event;chkConsultationFromExternalHospitalChanged($event)" [AllowThreeState]="chkConsultationFromExternalHospital?.ThreeState" [BackColor]="chkConsultationFromExternalHospital?.BackColor" [Enabled]="chkConsultationFromExternalHospital?.Enabled" [Font]="chkConsultationFromExternalHospital?.Font" [ForeColor]="chkConsultationFromExternalHospital?.ForeColor" [IsTitleLeft]="chkConsultationFromExternalHospital?.IsTitleLeft" [Margin]="chkConsultationFromExternalHospital?.Margin" [Name]="chkConsultationFromExternalHospital?.Name" [ReadOnly]="chkConsultationFromExternalHospital?.ReadOnly" [TabIndex]="chkConsultationFromExternalHospital?.TabIndex" [TitleTopPadding]="chkConsultationFromExternalHospital?.TitleTopPadding" [Title]="chkConsultationFromExternalHospital?.Title" [Value]="chkConsultationFromExternalHospital?.Value" [Visible]="chkConsultationFromExternalHospital?.Visible" id="A20767" data-tid="A355693"></hvl-checkbox>
+            <br id="A20768" data-tid="A355694" />
+        </div>
+
+        <div class="col-sm-12" id="A20769" data-tid="A355695">
+            <div *ngIf="IsReadOnly!=true" class="row" id="A20770" data-tid="A355696">
+                <div [class.hidden]="isExternalConsultation == true" id="A20771" data-tid="A355697">
+                    <div class="col-sm-4" id="A20772" data-tid="A355698">
+                        <label class="control-label" id="A20773" data-tid="A355699">Konsültasyon İstenen Birim</label>
+                        <!--    <hvl-list-box #Validation (SelectedObjectChange)="ConsultationRequestedResource.SelectedObject=$event;setConsultationDoctorListFilter($event)" [AutoCompleteDialogHeight]="ConsultationRequestedResource?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ConsultationRequestedResource?.AutoCompleteDialogWidth" [AutoCompleteMode]="ConsultationRequestedResource?.AutoCompleteMode" [BackColor]="ConsultationRequestedResource?.BackColor" [DefinitionName]="ConsultationRequestedResource?.ListDefName" [Enabled]="ConsultationRequestedResource?.Enabled" [Font]="ConsultationRequestedResource?.Font" [ForeColor]="ConsultationRequestedResource?.ForeColor" [ListFilterExpression]="ConsultationRequestedResource?.ListFilterExpression" [MinSearchLength]="ConsultationRequestedResource?.MinSearchLength" [PopupDialogFieldConfig]="ConsultationRequestedResource?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ConsultationRequestedResource?.PopupDialogGridColumns" [PopupDialogHeight]="ConsultationRequestedResource?.PopupDialogHeight" [PopupDialogTitle]="ConsultationRequestedResource?.PopupDialogTitle" [PopupDialogWidth]="ConsultationRequestedResource?.PopupDialogWidth" [ReadOnly]="ConsultationRequestedResource?.ReadOnly" [SearchMode]="ConsultationRequestedResource?.SearchMode" [SearchTimeout]="ConsultationRequestedResource?.SearchTimeout" [SelectedObject]="ConsultationRequestedResource?.SelectedObject" [TabIndex]="ConsultationRequestedResource?.TabIndex" [Visible]="ConsultationRequestedResource?.Visible" [width]="ConsultationRequestedResource?.Width" id="A20774"></hvl-list-box>-->
+                    <dx-select-box [(items)]="ConsultationList" (onSelectionChanged)="setConsultationDoctorListFilter($event)" placeholder="Seçiniz" displayExpr="Name" showClearButton="true" searchEnabled="true" (showSelectionControls)="false" [(value)]="ViewModel.ResourceValue" data-tid="A355700"></dx-select-box> 
+
+                    </div>
+                    <div class="col-sm-4" id="A20775" data-tid="A355701">
+                        <label class="control-label" id="A20776" data-tid="A355702">Konsültasyon İstenen Kişi</label>
+                       <!-- <hvl-list-box #Validation (SelectedObjectChange)="ConsultationRequestedUser.SelectedObject=$event;setConsultationResourceListFilter($event)" [AutoCompleteDialogHeight]="ConsultationRequestedUser?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ConsultationRequestedUser?.AutoCompleteDialogWidth" [AutoCompleteMode]="ConsultationRequestedUser?.AutoCompleteMode" [BackColor]="ConsultationRequestedUser?.BackColor" [DefinitionName]="ConsultationRequestedUser?.ListDefName" [Enabled]="ConsultationRequestedUser?.Enabled" [Font]="ConsultationRequestedUser?.Font" [ForeColor]="ConsultationRequestedUser?.ForeColor" [ListFilterExpression]="ConsultationRequestedUser?.ListFilterExpression" [MinSearchLength]="ConsultationRequestedUser?.MinSearchLength" [PopupDialogFieldConfig]="ConsultationRequestedUser?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ConsultationRequestedUser?.PopupDialogGridColumns" [PopupDialogHeight]="ConsultationRequestedUser?.PopupDialogHeight" [PopupDialogTitle]="ConsultationRequestedUser?.PopupDialogTitle" [PopupDialogWidth]="ConsultationRequestedUser?.PopupDialogWidth" [ReadOnly]="ConsultationRequestedUser?.ReadOnly" [SearchMode]="ConsultationRequestedUser?.SearchMode" [SearchTimeout]="ConsultationRequestedUser?.SearchTimeout" [SelectedObject]="ConsultationRequestedUser?.SelectedObject" [TabIndex]="ConsultationRequestedUser?.TabIndex" [Visible]="ConsultationRequestedUser?.Visible" [width]="ConsultationRequestedUser?.Width" id="A20777"></hvl-list-box> -->
+                      <dx-select-box [(items)]="ConsultationUserList" (onSelectionChanged)="setConsultationResourceListFilter($event)" placeholder="Seçiniz" displayExpr="Name" showClearButton="true" searchEnabled="true" (showSelectionControls)="false" [(value)]="ViewModel.RequestedUser" id="A26313" data-tid="A355703"></dx-select-box> 
+
+                    </div>
+                </div>
+                <div [class.hidden]="isExternalConsultation == false" id="A20778" data-tid="A355704">
+                    <div class="col-sm-4" id="A20779" data-tid="A355705">
+                        <label class="control-label" id="A20780" data-tid="A355706">Konsültasyon İstenen Dış XXXXXX</label>
+                        <hvl-list-box #Validation (SelectedObjectChange)="ExternalRequestedHospital.SelectedObject=$event;" [AutoCompleteDialogHeight]="ExternalRequestedHospital?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ExternalRequestedHospital?.AutoCompleteDialogWidth" [AutoCompleteMode]="ExternalRequestedHospital?.AutoCompleteMode" [BackColor]="ExternalRequestedHospital?.BackColor" [DefinitionName]="ExternalRequestedHospital?.ListDefName" [Enabled]="ExternalRequestedHospital?.Enabled" [Font]="ExternalRequestedHospital?.Font" [ForeColor]="ExternalRequestedHospital?.ForeColor" [ListFilterExpression]="ExternalRequestedHospital?.ListFilterExpression" [MinSearchLength]="ExternalRequestedHospital?.MinSearchLength" [PopupDialogFieldConfig]="ExternalRequestedHospital?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ExternalRequestedHospital?.PopupDialogGridColumns" [PopupDialogHeight]="ExternalRequestedHospital?.PopupDialogHeight" [PopupDialogTitle]="ExternalRequestedHospital?.PopupDialogTitle" [PopupDialogWidth]="ExternalRequestedHospital?.PopupDialogWidth" [ReadOnly]="ExternalRequestedHospital?.ReadOnly" [SearchMode]="ExternalRequestedHospital?.SearchMode" [SearchTimeout]="ExternalRequestedHospital?.SearchTimeout" [SelectedObject]="ExternalRequestedHospital?.SelectedObject" [TabIndex]="ExternalRequestedHospital?.TabIndex" [Visible]="ExternalRequestedHospital?.Visible" [width]="ExternalRequestedHospital?.Width" id="A20781" data-tid="A355707"></hvl-list-box>
+                    </div>
+                    <div class="col-sm-4" id="A20782" data-tid="A355708">
+                        <label class="control-label" id="A20783" data-tid="A355709">Konsültasyon İstenen Dış XXXXXX Birimi</label>
+                        <hvl-list-box #Validation (SelectedObjectChange)="ExternalRequestedSpeciality.SelectedObject=$event;" [AutoCompleteDialogHeight]="ExternalRequestedSpeciality?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ExternalRequestedSpeciality?.AutoCompleteDialogWidth" [AutoCompleteMode]="ExternalRequestedSpeciality?.AutoCompleteMode" [BackColor]="ExternalRequestedSpeciality?.BackColor" [DefinitionName]="ExternalRequestedSpeciality?.ListDefName" [Enabled]="ExternalRequestedSpeciality?.Enabled" [Font]="ExternalRequestedSpeciality?.Font" [ForeColor]="ExternalRequestedSpeciality?.ForeColor" [ListFilterExpression]="ExternalRequestedSpeciality?.ListFilterExpression" [MinSearchLength]="ExternalRequestedSpeciality?.MinSearchLength" [PopupDialogFieldConfig]="ExternalRequestedSpeciality?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ExternalRequestedSpeciality?.PopupDialogGridColumns" [PopupDialogHeight]="ExternalRequestedSpeciality?.PopupDialogHeight" [PopupDialogTitle]="ExternalRequestedSpeciality?.PopupDialogTitle" [PopupDialogWidth]="ExternalRequestedSpeciality?.PopupDialogWidth" [ReadOnly]="ExternalRequestedSpeciality?.ReadOnly" [SearchMode]="ExternalRequestedSpeciality?.SearchMode" [SearchTimeout]="ExternalRequestedSpeciality?.SearchTimeout" [SelectedObject]="ExternalRequestedSpeciality?.SelectedObject" [TabIndex]="ExternalRequestedSpeciality?.TabIndex" [Visible]="ExternalRequestedSpeciality?.Visible" [width]="ExternalRequestedSpeciality?.Width" id="A20784" data-tid="A355710"></hvl-list-box>
+                    </div>
+                </div>
+                <div class="col-sm-1" id="A20785" data-tid="A355711">
+                    <br id="A20786" data-tid="A355712" />
+                    <hvl-checkbox #Validation (ValueChange)="chkConsultationEmergency.Value=$event;" [AllowThreeState]="chkConsultationEmergency?.ThreeState" [BackColor]="chkConsultationEmergency?.BackColor" [Enabled]="chkConsultationEmergency?.Enabled" [Font]="chkConsultationEmergency?.Font" [ForeColor]="chkConsultationEmergency?.ForeColor" [IsTitleLeft]="chkConsultationEmergency?.IsTitleLeft" [Margin]="chkConsultationEmergency?.Margin" [Name]="chkConsultationEmergency?.Name" [ReadOnly]="chkConsultationEmergency?.ReadOnly" [TabIndex]="chkConsultationEmergency?.TabIndex" [TitleTopPadding]="chkConsultationEmergency?.TitleTopPadding" [Title]="chkConsultationEmergency?.Title" [Value]="chkConsultationEmergency?.Value" [Visible]="chkConsultationEmergency?.Visible" id="A20787" data-tid="A355713"></hvl-checkbox>
+                </div>
+                <div class="col-sm-1" id="A20788" data-tid="A355714">
+                    <br id="A20789" data-tid="A355715" />
+                    <hvl-checkbox #Validation (ValueChange)="chkConsultationInPatientBed.Value=$event;" [AllowThreeState]="chkConsultationInPatientBed?.ThreeState" [BackColor]="chkConsultationInPatientBed?.BackColor" [Enabled]="chkConsultationInPatientBed?.Enabled" [Font]="chkConsultationInPatientBed?.Font" [ForeColor]="chkConsultationInPatientBed?.ForeColor" [IsTitleLeft]="chkConsultationInPatientBed?.IsTitleLeft" [Margin]="chkConsultationInPatientBed?.Margin" [Name]="chkConsultationInPatientBed?.Name" [ReadOnly]="chkConsultationInPatientBed?.ReadOnly" [TabIndex]="chkConsultationInPatientBed?.TabIndex" [TitleTopPadding]="chkConsultationInPatientBed?.TitleTopPadding" [Title]="chkConsultationInPatientBed?.Title" [Value]="chkConsultationInPatientBed?.Value" [Visible]="chkConsultationInPatientBed?.Visible" id="A20790" data-tid="A355716"></hvl-checkbox>
+                </div>
+            </div>
+            <div class="row" id="A20791" data-tid="A355717">
+                <br data-tid="A355718" />
+                <div *ngIf="IsReadOnly!=true" class="col-sm-4" id="A20792" data-tid="A355719">
+                    <label class="control-label" id="A20793" data-tid="A355720">Konsültasyon İstem Sebebi</label>
+                    <div style='font-size: 14px; font-weight: Normal' id="A20794" data-tid="A355721">
+                        <hvl-richtextbox (change)="ConsultationRequestDescription.Rtf=$event;" [Height] [ngModelOptions]="{ standalone: true}" [ngModel]="ConsultationRequestDescription?.Rtf" [ReadOnly]="ConsultationRequestDescription?.ReadOnly" [TemplateGroupName]="ConsultationRequestDescription?.TemplateGroupName" [Visible]="ConsultationRequestDescription?.Visible" id="A20795" data-tid="A355722"></hvl-richtextbox>
+                    </div>
+                </div>
+                <div [class.col-md-8]="IsReadOnly!=true" [class.col-md-12]="IsReadOnly==true" id="A20796" data-tid="A355723">
+                    <br id="A20797" data-tid="A355724" />
+                    <hvl-list-view (RowPrepared)="consultationListViewRowPrepared($event)" (RowRemoving)="consultationListViewRowRemoving($event)" (SelectedObjectChange)="ConsultationListView_Click($event)" [AllowUserToDeleteRows]="IsReadOnly!=true" [BackColor]="ConsultationListView?.BackColor" [Columns]="ConsultationListView?.Columns" [Enabled]="ConsultationListView?.Enabled" [EnableFilter]="ConsultationListView?.ShowFilterRow" [EnablePaging]="ConsultationListView?.EnablePaging" [Font]="ConsultationListView?.Font" [ForeColor]="ConsultationListView?.ForeColor" [height]="ConsultationListView?.Height" [Items]="ConsultationListView?.Items" [PageSize]="ConsultationListView?.PageSize" [ReadOnly]="ConsultationListView?.ReadOnly" [RowDisablePath]="ConsultationListView?.RowDisablePath" [SelectedObject]="ConsultationListView?.SelectedItems" [TabIndex]="ConsultationListView?.TabIndex" [Visible]="ConsultationListView?.Visible" id="A20798" data-tid="A355725"></hvl-list-view>
+                </div>
+            </div>
+            <div *ngIf="IsReadOnly!=true" class="row" id="A20799" data-tid="A355726">
+                <div class="col-sm-8" style="float: right;margin-right: 85px;" id="A20800" data-tid="A355727">
+                    <dx-button type="btn btn-default" (onClick)="btnConsultationRequest_Click()" text="İstek Ekle" i18n-text="@@M16655" id="A20801" data-tid="A355728"></dx-button>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+
+    <dx-popup showTitle="false" title="Konsültasyon Detayı" [width]="600" height="auto" [(visible)]="showPopup" i18n-title="@@M17751" id="A20802" data-tid="A355729">
+        <div *dxTemplate="let data of 'content'" id="A20803" data-tid="A355730">
+
+            <label class="control-label" id="A20804" data-tid="A355731">Konsültasyon İstem Sebebi</label>
+            <hvl-richtextbox (change)="pConsultationRequestDesc.Rtf=$event;" [Height] [ngModelOptions]="{ standalone: true}" [ngModel]="pConsultationRequestDesc?.Rtf" [ReadOnly]="pConsultationRequestDesc?.ReadOnly" [TemplateGroupName]="pConsultationRequestDesc?.TemplateGroupName" [Visible]="pConsultationRequestDesc?.Visible" id="A20805" data-tid="A355732"></hvl-richtextbox>
+            <label class="control-label" id="A20806" data-tid="A355733">Konsültasyon Sonucu ve Öneriler</label>
+            <hvl-richtextbox (change)="pConsultationResult.Rtf=$event;" [Height] [ngModelOptions]="{ standalone: true}" [ngModel]="pConsultationResult?.Rtf" [ReadOnly]="pConsultationResult?.ReadOnly" [TemplateGroupName]="pConsultationResult?.TemplateGroupName" [Visible]="pConsultationResult?.Visible" id="A20807" data-tid="A355734"></hvl-richtextbox>
+            <label class="control-label" id="A20806" data-tid="A355735">Konsültasyon İptal Sebebi</label>
+            <hvl-richtextbox (change)="pConsultationReasonOfCancel.Rtf=$event;" [Height] [ngModelOptions]="{ standalone: true}" [ngModel]="pConsultationReasonOfCancel?.Rtf" [ReadOnly]="pConsultationReasonOfCancel?.ReadOnly" [TemplateGroupName]="pConsultationReasonOfCancel?.TemplateGroupName" [Visible]="pConsultationReasonOfCancel?.Visible" id="A20807" data-tid="A355736"></hvl-richtextbox>
+            <dx-button type="btn btn-default" (onClick)="printClick()" text="Yazdır" i18n-text="@@M24476" id="A20808" data-tid="A355737"></dx-button>
+            <dx-button type="btn btn-default" (onClick)="okClick()" text="Tamam" i18n-text="@@M22704" id="A20809" data-tid="A355738"></dx-button>
+        </div>
+    </dx-popup>
+</div>

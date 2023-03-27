@@ -1,0 +1,33 @@
+﻿<div class="row" style="padding-top: 1%;padding-left: 2%;" data-tid="A325834">
+    <div class="row" data-tid="A325835">
+        <div class="col-sm-1" style="font-weight: bold;" data-tid="A325836">Kişi Sayısı</div>
+        <div class="col-sm-2" data-tid="A325837">
+            <dx-text-box [(value)]="TotalParticipation" [readOnly]="true" data-tid="A325838"></dx-text-box>
+        </div>
+    </div>
+
+    <div class="row" data-tid="A325839">
+        <div class="col-sm-3" data-tid="A325840">
+            <dx-data-grid #grid id="gridContainer" [dataSource]="Questions" keyExpr="ObjectId" (onRowClick)="selectGridRow($event)" [hoverStateEnabled]="true" [showBorders]="true" style="height: 400px;" data-tid="A325841">
+                <dxo-selection mode="single" data-tid="A325842"></dxo-selection>
+                <dxi-column dataField="Question" caption="Sorular" [width]="70" data-tid="A325843"></dxi-column>
+            </dx-data-grid>
+        </div>
+        <div class="col-sm-5" data-tid="A325844">
+            <dx-pie-chart id="pie" palette="bright" [dataSource]="AnwerChartList" (onPointClick)="pointClickHandler($event)" (onLegendClick)="legendClickHandler($event)" data-tid="A325845">
+                <dxi-series argumentField="AnswerName" valueField="TotalSelect" data-tid="A325846">
+                    <dxo-label [visible]="true" data-tid="A325847">
+                        <dxo-connector [visible]="true" [width]="1" data-tid="A325848"></dxo-connector>
+                    </dxo-label>
+                </dxi-series>
+                <dxo-size [width]="500" data-tid="A325849"></dxo-size>
+            </dx-pie-chart>
+        </div>
+        <div class="col-sm-4" style="padding-right: 2%;" data-tid="A325850">
+            <dx-data-grid #grid id="gridContainer" [dataSource]="Desciptions" keyExpr="Count" [hoverStateEnabled]="true" [showBorders]="true" style="height: 400px;" data-tid="A325851">
+                <dxo-selection mode="single" data-tid="A325852"></dxo-selection>
+                <dxi-column dataField="Desciption" caption="Yazılan Yorular" [width]="70" data-tid="A325853"></dxi-column>
+            </dx-data-grid>
+        </div>
+    </div>
+</div>

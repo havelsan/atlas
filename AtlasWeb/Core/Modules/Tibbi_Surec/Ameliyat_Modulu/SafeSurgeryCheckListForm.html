@@ -1,0 +1,1086 @@
+﻿<!--<NeStatePanelComponent [ObjectDefID]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.ObjectDefID" [CurrentStateDefID]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.CurrentStateDefID" (onSetState)="setState($event)" (onSaveChanges)="save($event)" >
+</NeStatePanelComponent>-->
+<div class="container-fluid" data-tid="A338515">
+	<form id="SafeSurgeryCheckListForm" class="form-horizontal" role="form" data-tid="A338516">
+	</form>
+	<div class="row" data-tid="A338517">
+		<div class="row" data-tid="A338518">
+			<div class="col-sm-6" data-tid="A338519">
+				<patient-demographics-form [actionId]="safeSurgeryCheckListFormViewModel?._Surgery?.ObjectID" id="A24049" data-tid="A338520">
+				</patient-demographics-form>
+			</div>
+			<div class="col-sm-6" data-tid="A338521">
+				<DiagnosisGridReadOnlyForm [EpisodeAction]="safeSurgeryCheckListFormViewModel?._Surgery" data-tid="A338522">
+				</DiagnosisGridReadOnlyForm>
+
+			</div>
+		</div>
+		<dx-tab-panel [selectedIndex]="0" (onSelectionChanged)="selectedTabChanged($event)" data-tid="A338523">
+			<dxi-item class="tabpanel-item" title="Klinikten Ayrılmadan Önce" data-tid="A338524">
+
+				<div class="row" data-tid="A338525">
+					<div class="col-sm-4" data-tid="A338526">
+						<br data-tid="A338527" />
+
+						<div class="row" data-tid="A338528">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px" data-tid="A338529">
+								1 - Hastanın </label>
+						</div>
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338530">
+							<div class="col-sm-12" data-tid="A338531">
+								<hvl-checkbox #Validation (ValueChange)="onPatientIDInfoVerifiedChanged($event)" [AllowThreeState]="PatientIDInfoVerified?.ThreeState" [BackColor]="PatientIDInfoVerified?.BackColor" [Enabled]="PatientIDInfoVerified?.Enabled" [Font]="PatientIDInfoVerified?.Font" [ForeColor]="PatientIDInfoVerified?.ForeColor" [IsTitleLeft]="PatientIDInfoVerified?.IsTitleLeft" [Margin]="PatientIDInfoVerified?.Margin" [ReadOnly]="PatientIDInfoVerified?.ReadOnly" [TabIndex]="PatientIDInfoVerified?.TabIndex" [TitleTopPadding]="PatientIDInfoVerified?.TitleTopPadding" [Title]="PatientIDInfoVerified?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.PatientIDInfoVerified" [Visible]="PatientIDInfoVerified?.Visible" TitleFontSize="15px" TitleFontWeight="normal" TitleFontWeight="normal" data-tid="A338532">
+								</hvl-checkbox>
+							</div>
+						</div>
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338533">
+
+							<div class="col-sm-12" data-tid="A338534">
+								<hvl-checkbox #Validation (ValueChange)="onPatientSurgeryVerifiedChanged($event)" [AllowThreeState]="PatientSurgeryVerified?.ThreeState" [BackColor]="PatientSurgeryVerified?.BackColor" [Enabled]="PatientSurgeryVerified?.Enabled" [Font]="PatientSurgeryVerified?.Font" [ForeColor]="PatientSurgeryVerified?.ForeColor" [IsTitleLeft]="PatientSurgeryVerified?.IsTitleLeft" [Margin]="PatientSurgeryVerified?.Margin" [ReadOnly]="PatientSurgeryVerified?.ReadOnly" [TabIndex]="PatientSurgeryVerified?.TabIndex" [TitleTopPadding]="PatientSurgeryVerified?.TitleTopPadding" [Title]="PatientSurgeryVerified?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.PatientSurgeryVerified" [Visible]="PatientSurgeryVerified?.Visible" TitleFontSize="15px" TitleFontWeight="normal" data-tid="A338535">
+								</hvl-checkbox>
+							</div>
+						</div>
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338536">
+
+							<div class="col-sm-12" data-tid="A338537">
+								<hvl-checkbox #Validation (ValueChange)="onPatientSurgeryAreaVerifiedChanged($event)" [AllowThreeState]="PatientSurgeryAreaVerified?.ThreeState" [BackColor]="PatientSurgeryAreaVerified?.BackColor" [Enabled]="PatientSurgeryAreaVerified?.Enabled" [Font]="PatientSurgeryAreaVerified?.Font" [ForeColor]="PatientSurgeryAreaVerified?.ForeColor" [IsTitleLeft]="PatientSurgeryAreaVerified?.IsTitleLeft" [Margin]="PatientSurgeryAreaVerified?.Margin" [ReadOnly]="PatientSurgeryAreaVerified?.ReadOnly" [TabIndex]="PatientSurgeryAreaVerified?.TabIndex" [TitleTopPadding]="PatientSurgeryAreaVerified?.TitleTopPadding" [Title]="PatientSurgeryAreaVerified?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.PatientSurgeryAreaVerified" [Visible]="PatientSurgeryAreaVerified?.Visible" TitleFontSize="15px" TitleFontWeight="normal" data-tid="A338538">
+								</hvl-checkbox>
+							</div>
+						</div>
+						<br data-tid="A338539" />
+						<div class="row" data-tid="A338540">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px" data-tid="A338541">
+								2 - Hastanın rızası kontrol edildi mi? </label>
+						</div>
+
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338542">
+							<div class="col-sm-12" data-tid="A338543">
+								<!--<hvl-checkbox #Validation="" (ValueChange)="onPatientConsentCheckedChanged($event)"
+									[AllowThreeState]="PatientConsentChecked?.ThreeState"
+									[BackColor]="PatientConsentChecked?.BackColor"
+									[Enabled]="PatientConsentChecked?.Enabled" [Font]="PatientConsentChecked?.Font"
+									[ForeColor]="PatientConsentChecked?.ForeColor"
+									[IsTitleLeft]="PatientConsentChecked?.IsTitleLeft"
+									[Margin]="PatientConsentChecked?.Margin"
+									[ReadOnly]="PatientConsentChecked?.ReadOnly"
+									[TabIndex]="PatientConsentChecked?.TabIndex"
+									[TitleTopPadding]="PatientConsentChecked?.TitleTopPadding"
+									[Title]="PatientConsentChecked?.Title"
+									[Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.PatientConsentChecked"
+									[Visible]="PatientConsentChecked?.Visible"
+									TitleFontSize="15px" TitleFontWeight="normal">
+								</hvl-checkbox> -->
+
+								<dx-radio-group [items]="radioGroupItems" displayExpr="text" valueExpr="value" [(value)]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.PatientConsentChecked" layout="horizontal" itemTemplate="radio" data-tid="A338544">
+									<div class="radio" *dxTemplate="let data of 'radio'" data-tid="A338545">
+										<p style="font-size:small" data-tid="A338546"><b data-tid="A338547">{{data.text}}</b></p>
+									</div>
+								</dx-radio-group>
+
+							</div>
+						</div>
+						<br data-tid="A338548" />
+
+						<div class="row" data-tid="A338549">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px;" data-tid="A338550">
+								3 - Hasta aç mı? </label>
+						</div>
+
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338551">
+							<div class="col-sm-12" data-tid="A338552">
+								<!--<hvl-checkbox #Validation="" (ValueChange)="onIsPatientHungryChanged($event)"
+									[AllowThreeState]="IsPatientHungry?.ThreeState"
+									[BackColor]="IsPatientHungry?.BackColor" [Enabled]="IsPatientHungry?.Enabled"
+									[Font]="IsPatientHungry?.Font" [ForeColor]="IsPatientHungry?.ForeColor"
+									[IsTitleLeft]="IsPatientHungry?.IsTitleLeft" [Margin]="IsPatientHungry?.Margin"
+									[ReadOnly]="IsPatientHungry?.ReadOnly" [TabIndex]="IsPatientHungry?.TabIndex"
+									[TitleTopPadding]="IsPatientHungry?.TitleTopPadding"
+									[Title]="IsPatientHungry?.Title"
+									[Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.IsPatientHungry"
+									[Visible]="IsPatientHungry?.Visible" TitleFontSize="15px" TitleFontWeight="normal">
+								</hvl-checkbox> -->
+								<dx-radio-group [items]="radioGroupItems" displayExpr="text" valueExpr="value" [(value)]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.IsPatientHungry" layout="horizontal" itemTemplate="radio" data-tid="A338553">
+									<div class="radio" *dxTemplate="let data of 'radio'" data-tid="A338554">
+										<p style="font-size:small" data-tid="A338555"><b data-tid="A338556">{{data.text}}</b></p>
+									</div>
+								</dx-radio-group>
+							</div>
+						</div>
+
+						<!---	<div class="row">
+							<label class="control-label col-sm-12"
+								style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px">
+								Hasta Aç Değilse Açıklaması </label>
+						</div>-->
+						<div class="row" style="padding-bottom:3px; padding-top:3px;padding-left:23px;" data-tid="A338557">
+							<div class="col-sm-6" data-tid="A338558">
+								<hvl-text-box #Validation (TextChange)="onPatientHungerDescriptionChanged($event)" [BackColor]="PatientHungerDescription?.BackColor" [CharacterCasing]="PatientHungerDescription?.CharacterCasing" [Enabled]="PatientHungerDescription?.Enabled" [Font]="PatientHungerDescription?.Font" [ForeColor]="PatientHungerDescription?.ForeColor" [height]="PatientHungerDescription?.Height" [InputFormat]="PatientHungerDescription?.InputFormat" [InputTurkishCharacter]="PatientHungerDescription?.InputTurkishCharacter" [IsNonNumeric]="PatientHungerDescription?.IsNonNumeric" [MultiLine]="PatientHungerDescription?.Multiline" [ReadOnly]="PatientHungerDescription?.ReadOnly" [Required]="PatientHungerDescription?.Required" [TabIndex]="PatientHungerDescription?.TabIndex" [TextAlign]="PatientHungerDescription?.TextAlign" [Text]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.PatientHungerDescription" [Visible]="PatientHungerDescription?.Visible" PlaceHolder="Hayır ise açıklaması..." data-tid="A338559">
+								</hvl-text-box>
+							</div>
+						</div>
+						<br data-tid="A338560" />
+
+						<div class="row" data-tid="A338561">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px" data-tid="A338562">
+								4 - Ameliyat bölgesi tıraşı yapıldı mı? </label>
+						</div>
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338563">
+							<div class="col-sm-12" data-tid="A338564">
+								<!--<hvl-checkbox #Validation="" (ValueChange)="onSurgeryAreaShavedChanged($event)"
+									[AllowThreeState]="SurgeryAreaShaved?.ThreeState"
+									[BackColor]="SurgeryAreaShaved?.BackColor" [Enabled]="SurgeryAreaShaved?.Enabled"
+									[Font]="SurgeryAreaShaved?.Font" [ForeColor]="SurgeryAreaShaved?.ForeColor"
+									[IsTitleLeft]="SurgeryAreaShaved?.IsTitleLeft" [Margin]="SurgeryAreaShaved?.Margin"
+									[ReadOnly]="SurgeryAreaShaved?.ReadOnly" [TabIndex]="SurgeryAreaShaved?.TabIndex"
+									[TitleTopPadding]="SurgeryAreaShaved?.TitleTopPadding"
+									[Title]="SurgeryAreaShaved?.Title"
+									[Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.SurgeryAreaShaved"
+									[Visible]="SurgeryAreaShaved?.Visible" TitleFontSize="15px" TitleFontWeight="normal">
+								</hvl-checkbox> -->
+
+								<dx-radio-group [items]="radioGroupItems" displayExpr="text" valueExpr="value" [(value)]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.SurgeryAreaShaved" layout="horizontal" itemTemplate="radio" data-tid="A338565">
+									<div class="radio" *dxTemplate="let data of 'radio'" data-tid="A338566">
+										<p style="font-size:small" data-tid="A338567"><b data-tid="A338568">{{data.text}}</b></p>
+									</div>
+								</dx-radio-group>
+
+							</div>
+						</div>
+
+						<!--<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;">
+							<label class="control-label col-sm-12">
+								Ameliyat Bölgesi Tıraşı Yapılmadıysa Açıklama </label>
+						</div>-->
+
+						<div class="row" style="padding-bottom:3px; padding-top:3px;padding-left:23px;" data-tid="A338569">
+							<div class="col-sm-6" data-tid="A338570">
+								<hvl-text-box #Validation (TextChange)="onSurgeryAreaShavedDescriptionChanged($event)" [BackColor]="SurgeryAreaShavedDescription?.BackColor" [CharacterCasing]="SurgeryAreaShavedDescription?.CharacterCasing" [Enabled]="SurgeryAreaShavedDescription?.Enabled" [Font]="SurgeryAreaShavedDescription?.Font" [ForeColor]="SurgeryAreaShavedDescription?.ForeColor" [height]="SurgeryAreaShavedDescription?.Height" [InputFormat]="SurgeryAreaShavedDescription?.InputFormat" [InputTurkishCharacter]="SurgeryAreaShavedDescription?.InputTurkishCharacter" [IsNonNumeric]="SurgeryAreaShavedDescription?.IsNonNumeric" [MultiLine]="SurgeryAreaShavedDescription?.Multiline" [ReadOnly]="SurgeryAreaShavedDescription?.ReadOnly" [Required]="SurgeryAreaShavedDescription?.Required" [TabIndex]="SurgeryAreaShavedDescription?.TabIndex" [TextAlign]="SurgeryAreaShavedDescription?.TextAlign" [Text]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.SurgeryAreaShavedDescription" [Visible]="SurgeryAreaShavedDescription?.Visible" PlaceHolder="Hayır ise açıklaması..." data-tid="A338571">
+								</hvl-text-box>
+							</div>
+						</div>
+
+					</div>
+					<br data-tid="A338572" />
+
+					<div class="col-sm-4" style="border-right: 2px solid; border-left: 2px solid;" data-tid="A338573">
+						<div class="row" data-tid="A338574">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px" data-tid="A338575">
+								5 - Hastada makyaj / oje, protez, değerli eşya var mı? </label>
+						</div>
+
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338576">
+							<div class="col-sm-12" data-tid="A338577">
+								<!--	<hvl-checkbox #Validation=""
+									(ValueChange)="onMakeupProsthesisValuableItemChanged($event)"
+									[AllowThreeState]="MakeupProsthesisValuableItem?.ThreeState"
+									[BackColor]="MakeupProsthesisValuableItem?.BackColor"
+									[Enabled]="MakeupProsthesisValuableItem?.Enabled"
+									[Font]="MakeupProsthesisValuableItem?.Font"
+									[ForeColor]="MakeupProsthesisValuableItem?.ForeColor"
+									[IsTitleLeft]="MakeupProsthesisValuableItem?.IsTitleLeft"
+									[Margin]="MakeupProsthesisValuableItem?.Margin"
+									[ReadOnly]="MakeupProsthesisValuableItem?.ReadOnly"
+									[TabIndex]="MakeupProsthesisValuableItem?.TabIndex"
+									[TitleTopPadding]="MakeupProsthesisValuableItem?.TitleTopPadding"
+									[Title]="MakeupProsthesisValuableItem?.Title"
+									[Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.MakeupProsthesisValuableItem"
+									[Visible]="MakeupProsthesisValuableItem?.Visible" TitleFontSize="15px" TitleFontWeight="normal">
+								</hvl-checkbox> -->
+
+								<dx-radio-group [items]="radioGroupItems" displayExpr="text" valueExpr="value" [(value)]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.MakeupProsthesisValuableItem" layout="horizontal" itemTemplate="radio" data-tid="A338578">
+									<div class="radio" *dxTemplate="let data of 'radio'" data-tid="A338579">
+										<p style="font-size:small" data-tid="A338580"><b data-tid="A338581">{{data.text}}</b></p>
+									</div>
+								</dx-radio-group>
+							</div>
+						</div>
+
+						<!--	<div class="row">
+							<label class="control-label col-sm-12" style= "padding-left:23px;">
+								Hayır ise Açıklaması </label>
+						</div> -->
+						<div class="row" style="padding-bottom:3px; padding-top:3px;padding-left:23px;" data-tid="A338582">
+							<div class="col-sm-6" data-tid="A338583">
+								<hvl-text-box #Validation (TextChange)="onMakeupProstValItemDescriptionChanged($event)" [BackColor]="MakeupProstValItemDescription?.BackColor" [CharacterCasing]="MakeupProstValItemDescription?.CharacterCasing" [Enabled]="MakeupProstValItemDescription?.Enabled" [Font]="MakeupProstValItemDescription?.Font" [ForeColor]="MakeupProstValItemDescription?.ForeColor" [height]="MakeupProstValItemDescription?.Height" [InputFormat]="MakeupProstValItemDescription?.InputFormat" [InputTurkishCharacter]="MakeupProstValItemDescription?.InputTurkishCharacter" [IsNonNumeric]="MakeupProstValItemDescription?.IsNonNumeric" [MultiLine]="MakeupProstValItemDescription?.Multiline" [ReadOnly]="MakeupProstValItemDescription?.ReadOnly" [Required]="MakeupProstValItemDescription?.Required" [TabIndex]="MakeupProstValItemDescription?.TabIndex" [TextAlign]="MakeupProstValItemDescription?.TextAlign" [Text]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.MakeupProstValItemDescription" [Visible]="MakeupProstValItemDescription?.Visible" PlaceHolder="Hayır ise açıklaması..." data-tid="A338584">
+								</hvl-text-box>
+							</div>
+						</div>
+						<br data-tid="A338585" />
+
+						<div class="row" data-tid="A338586">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px" data-tid="A338587">
+								6 - Hastanın kıyafetleri tümüyle çıkarılıp ameliyat önlüğü ve bonesi giydirildi
+								mi?
+							</label>
+						</div>
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338588">
+							<div class="col-sm-12" data-tid="A338589">
+								<!--	<hvl-checkbox #Validation="" (ValueChange)="onIsPatientClothesReadyChanged($event)"
+									[AllowThreeState]="IsPatientClothesReady?.ThreeState"
+									[BackColor]="IsPatientClothesReady?.BackColor"
+									[Enabled]="IsPatientClothesReady?.Enabled" [Font]="IsPatientClothesReady?.Font"
+									[ForeColor]="IsPatientClothesReady?.ForeColor"
+									[IsTitleLeft]="IsPatientClothesReady?.IsTitleLeft"
+									[Margin]="IsPatientClothesReady?.Margin"
+									[ReadOnly]="IsPatientClothesReady?.ReadOnly"
+									[TabIndex]="IsPatientClothesReady?.TabIndex"
+									[TitleTopPadding]="IsPatientClothesReady?.TitleTopPadding"
+									[Title]="IsPatientClothesReady?.Title"
+									[Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.IsPatientClothesReady"
+									[Visible]="IsPatientClothesReady?.Visible" TitleFontSize="15px" TitleFontWeight="normal">
+								</hvl-checkbox> -->
+
+								<dx-radio-group [items]="radioGroupItems" displayExpr="text" valueExpr="value" [(value)]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.IsPatientClothesReady" layout="horizontal" itemTemplate="radio" data-tid="A338590">
+									<div class="radio" *dxTemplate="let data of 'radio'" data-tid="A338591">
+										<p style="font-size:small" data-tid="A338592"><b data-tid="A338593">{{data.text}}</b></p>
+									</div>
+								</dx-radio-group>
+							</div>
+						</div>
+
+						<!--	<div class="row">
+							<label class="control-label col-sm-12"
+								style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px">
+								Hastanın kıyafetleri hazır değilse açıklama </label>
+						</div>-->
+
+						<div class="row" style="padding-bottom:3px; padding-top:3px;padding-left:23px;" data-tid="A338594">
+							<div class="col-sm-6" data-tid="A338595">
+								<hvl-text-box #Validation (TextChange)="onPatientClothesDescriptionChanged($event)" [BackColor]="PatientClothesDescription?.BackColor" [CharacterCasing]="PatientClothesDescription?.CharacterCasing" [Enabled]="PatientClothesDescription?.Enabled" [Font]="PatientClothesDescription?.Font" [ForeColor]="PatientClothesDescription?.ForeColor" [height]="PatientClothesDescription?.Height" [InputFormat]="PatientClothesDescription?.InputFormat" [InputTurkishCharacter]="PatientClothesDescription?.InputTurkishCharacter" [IsNonNumeric]="PatientClothesDescription?.IsNonNumeric" [MultiLine]="PatientClothesDescription?.Multiline" [ReadOnly]="PatientClothesDescription?.ReadOnly" [Required]="PatientClothesDescription?.Required" [TabIndex]="PatientClothesDescription?.TabIndex" [TextAlign]="PatientClothesDescription?.TextAlign" [Text]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.PatientClothesDescription" [Visible]="PatientClothesDescription?.Visible" PlaceHolder="Hayır ise açıklaması..." data-tid="A338596">
+								</hvl-text-box>
+							</div>
+						</div>
+						<br data-tid="A338597" />
+
+						<div class="row" data-tid="A338598">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px" data-tid="A338599">
+								7 - Ameliyat öncesi gerekli özel işlem var mı? </label>
+						</div>
+
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338600">
+							<div class="col-sm-3" data-tid="A338601">
+								<hvl-checkbox #Validation (ValueChange)="onLavmanRequiredChanged($event)" [AllowThreeState]="LavmanRequired?.ThreeState" [BackColor]="LavmanRequired?.BackColor" [Enabled]="LavmanRequired?.Enabled" [Font]="LavmanRequired?.Font" [ForeColor]="LavmanRequired?.ForeColor" [IsTitleLeft]="LavmanRequired?.IsTitleLeft" [Margin]="LavmanRequired?.Margin" [ReadOnly]="LavmanRequired?.ReadOnly" [TabIndex]="LavmanRequired?.TabIndex" [TitleTopPadding]="LavmanRequired?.TitleTopPadding" [Title]="LavmanRequired?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.LavmanRequired" [Visible]="LavmanRequired?.Visible" TitleFontSize="15px" TitleFontWeight="normal" data-tid="A338602">
+								</hvl-checkbox>
+							</div>
+							<div class="col-sm-6" data-tid="A338603">
+								<hvl-checkbox #Validation (ValueChange)="onCatheterizationRequiredChanged($event)" [AllowThreeState]="CatheterizationRequired?.ThreeState" [BackColor]="CatheterizationRequired?.BackColor" [Enabled]="CatheterizationRequired?.Enabled" [Font]="CatheterizationRequired?.Font" [ForeColor]="CatheterizationRequired?.ForeColor" [IsTitleLeft]="CatheterizationRequired?.IsTitleLeft" [Margin]="CatheterizationRequired?.Margin" [ReadOnly]="CatheterizationRequired?.ReadOnly" [TabIndex]="CatheterizationRequired?.TabIndex" [TitleTopPadding]="CatheterizationRequired?.TitleTopPadding" [Title]="CatheterizationRequired?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.CatheterizationRequired" [Visible]="CatheterizationRequired?.Visible" TitleFontSize="15px" TitleFontWeight="normal" data-tid="A338604">
+								</hvl-checkbox>
+							</div>
+						</div>
+
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338605">
+							<div class="col-sm-3" data-tid="A338606">
+								<hvl-checkbox #Validation (ValueChange)="onVaricoseBandageRequiredChanged($event)" [AllowThreeState]="VaricoseBandageRequired?.ThreeState" [BackColor]="VaricoseBandageRequired?.BackColor" [Enabled]="VaricoseBandageRequired?.Enabled" [Font]="VaricoseBandageRequired?.Font" [ForeColor]="VaricoseBandageRequired?.ForeColor" [IsTitleLeft]="VaricoseBandageRequired?.IsTitleLeft" [Margin]="VaricoseBandageRequired?.Margin" [ReadOnly]="VaricoseBandageRequired?.ReadOnly" [TabIndex]="VaricoseBandageRequired?.TabIndex" [TitleTopPadding]="VaricoseBandageRequired?.TitleTopPadding" [Title]="VaricoseBandageRequired?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.VaricoseBandageRequired" [Visible]="VaricoseBandageRequired?.Visible" TitleFontSize="15px" TitleFontWeight="normal" data-tid="A338607">
+								</hvl-checkbox>
+							</div>
+							<div class="col-sm-6" data-tid="A338608">
+								<hvl-checkbox #Validation (ValueChange)="onTreatmentProtocolRequiredChanged($event)" [AllowThreeState]="TreatmentProtocolRequired?.ThreeState" [BackColor]="TreatmentProtocolRequired?.BackColor" [Enabled]="TreatmentProtocolRequired?.Enabled" [Font]="TreatmentProtocolRequired?.Font" [ForeColor]="TreatmentProtocolRequired?.ForeColor" [IsTitleLeft]="TreatmentProtocolRequired?.IsTitleLeft" [Margin]="TreatmentProtocolRequired?.Margin" [ReadOnly]="TreatmentProtocolRequired?.ReadOnly" [TabIndex]="TreatmentProtocolRequired?.TabIndex" [TitleTopPadding]="TreatmentProtocolRequired?.TitleTopPadding" [Title]="TreatmentProtocolRequired?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.TreatmentProtocolRequired" [Visible]="TreatmentProtocolRequired?.Visible" TitleFontSize="15px" TitleFontWeight="normal" data-tid="A338609">
+								</hvl-checkbox>
+							</div>
+						</div>
+
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338610">
+
+							<div class="col-sm-3" data-tid="A338611">
+								<hvl-checkbox #Validation (ValueChange)="onOtherSpecialActionRequiredChanged($event)" [AllowThreeState]="OtherSpecialActionRequired?.ThreeState" [BackColor]="OtherSpecialActionRequired?.BackColor" [Enabled]="OtherSpecialActionRequired?.Enabled" [Font]="OtherSpecialActionRequired?.Font" [ForeColor]="OtherSpecialActionRequired?.ForeColor" [IsTitleLeft]="OtherSpecialActionRequired?.IsTitleLeft" [Margin]="OtherSpecialActionRequired?.Margin" [ReadOnly]="OtherSpecialActionRequired?.ReadOnly" [TabIndex]="OtherSpecialActionRequired?.TabIndex" [TitleTopPadding]="OtherSpecialActionRequired?.TitleTopPadding" [Title]="OtherSpecialActionRequired?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.OtherSpecialActionRequired" [Visible]="OtherSpecialActionRequired?.Visible" TitleFontSize="15px" TitleFontWeight="normal" data-tid="A338612">
+								</hvl-checkbox>
+							</div>
+						</div>
+
+						<!--<div class="row">
+							<label class="control-label col-sm-12"
+							style= "padding-left:23px;">
+								Diğer özel işlem açıklaması </label>
+						</div>-->
+						<div class="row" style="padding-bottom:3px; padding-top:12px;padding-left:23px;" data-tid="A338613">
+							<div class="col-sm-7" data-tid="A338614">
+								<hvl-text-box #Validation (TextChange)="onOtherSpecialActionDescriptionChanged($event)" [BackColor]="OtherSpecialActionDescription?.BackColor" [CharacterCasing]="OtherSpecialActionDescription?.CharacterCasing" [Enabled]="OtherSpecialActionDescription?.Enabled" [Font]="OtherSpecialActionDescription?.Font" [ForeColor]="OtherSpecialActionDescription?.ForeColor" [height]="OtherSpecialActionDescription?.Height" [InputFormat]="OtherSpecialActionDescription?.InputFormat" [InputTurkishCharacter]="OtherSpecialActionDescription?.InputTurkishCharacter" [IsNonNumeric]="OtherSpecialActionDescription?.IsNonNumeric" [MultiLine]="OtherSpecialActionDescription?.Multiline" [ReadOnly]="OtherSpecialActionDescription?.ReadOnly" [Required]="OtherSpecialActionDescription?.Required" [TabIndex]="OtherSpecialActionDescription?.TabIndex" [TextAlign]="OtherSpecialActionDescription?.TextAlign" [Text]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.OtherSpecialActionDescription" [Visible]="OtherSpecialActionDescription?.Visible" PlaceHolder="Diğer ise açıklaması..." data-tid="A338615">
+								</hvl-text-box>
+							</div>
+						</div>
+
+					</div>
+					<br data-tid="A338616" />
+
+					<div class="col-sm-4" data-tid="A338617">
+						<div class="row" data-tid="A338618">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px" data-tid="A338619">
+								8 - Ameliyat için gerekli olacak özel malzeme, implant, kan veya kan ürünleri hazırlığı
+								teyit edildi
+								mi? </label>
+
+						</div>
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338620">
+							<div class="col-sm-12" data-tid="A338621">
+								<hvl-checkbox #Validation (ValueChange)="onMaterialPreparationCheckedChanged($event)" [AllowThreeState]="MaterialPreparationChecked?.ThreeState" [BackColor]="MaterialPreparationChecked?.BackColor" [Enabled]="MaterialPreparationChecked?.Enabled" [Font]="MaterialPreparationChecked?.Font" [ForeColor]="MaterialPreparationChecked?.ForeColor" [IsTitleLeft]="MaterialPreparationChecked?.IsTitleLeft" [Margin]="MaterialPreparationChecked?.Margin" [ReadOnly]="MaterialPreparationChecked?.ReadOnly" [TabIndex]="MaterialPreparationChecked?.TabIndex" [TitleTopPadding]="MaterialPreparationChecked?.TitleTopPadding" [Title]="MaterialPreparationChecked?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.MaterialPreparationChecked" [Visible]="MaterialPreparationChecked?.Visible" TitleFontSize="15px" TitleFontWeight="normal" data-tid="A338622">
+								</hvl-checkbox>
+							</div>
+						</div>
+
+						<br data-tid="A338623" />
+
+						<div class="row" data-tid="A338624">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px" data-tid="A338625">
+								9 - Hastanın gerekli laboratuvar ve radyoloji tetkikleri mevcut mu? </label>
+						</div>
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338626">
+							<div class="col-sm-12" data-tid="A338627">
+								<hvl-checkbox #Validation (ValueChange)="onLabAndRadioTestsAvailableChanged($event)" [AllowThreeState]="LabAndRadioTestsAvailable?.ThreeState" [BackColor]="LabAndRadioTestsAvailable?.BackColor" [Enabled]="LabAndRadioTestsAvailable?.Enabled" [Font]="LabAndRadioTestsAvailable?.Font" [ForeColor]="LabAndRadioTestsAvailable?.ForeColor" [IsTitleLeft]="LabAndRadioTestsAvailable?.IsTitleLeft" [Margin]="LabAndRadioTestsAvailable?.Margin" [ReadOnly]="LabAndRadioTestsAvailable?.ReadOnly" [TabIndex]="LabAndRadioTestsAvailable?.TabIndex" [TitleTopPadding]="LabAndRadioTestsAvailable?.TitleTopPadding" [Title]="LabAndRadioTestsAvailable?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.LabAndRadioTestsAvailable" [Visible]="LabAndRadioTestsAvailable?.Visible" TitleFontSize="15px" TitleFontWeight="normal" data-tid="A338628">
+								</hvl-checkbox>
+							</div>
+						</div>
+						<br data-tid="A338629" />
+						<br data-tid="A338630" />
+
+						<div class="row" data-tid="A338631">
+
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px" data-tid="A338632">
+								Klinik Hemşiresi </label>
+						</div>
+						<div class="row" data-tid="A338633">
+							<div class="col-sm-8" data-tid="A338634">
+								<div class="row" data-tid="A338635">
+									<div class="col-sm-12" data-tid="A338636">
+										<hvl-list-box #Validation (SelectedObjectChange)="onClinicalNurseChanged($event)" [AutoCompleteDialogHeight]="ClinicalNurse?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ClinicalNurse?.AutoCompleteDialogWidth" [AutoCompleteMode]="ClinicalNurse?.AutoCompleteMode" [BackColor]="ClinicalNurse?.BackColor" [DefinitionName]="ClinicalNurse?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="ClinicalNurse?.Enabled" [Font]="ClinicalNurse?.Font" [ForeColor]="ClinicalNurse?.ForeColor" [ListFilterExpression]="ClinicalNurse?.ListFilterExpression" [MinSearchLength]="ClinicalNurse?.MinSearchLength" [PopupDialogFieldConfig]="ClinicalNurse?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ClinicalNurse?.PopupDialogGridColumns" [PopupDialogHeight]="ClinicalNurse?.PopupDialogHeight" [PopupDialogTitle]="ClinicalNurse?.PopupDialogTitle" [PopupDialogWidth]="ClinicalNurse?.PopupDialogWidth" [ReadOnly]="ClinicalNurse?.ReadOnly" [SearchMode]="ClinicalNurse?.SearchMode" [SearchTimeout]="ClinicalNurse?.SearchTimeout" [SelectedObject]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.ClinicalNurse" [TabIndex]="ClinicalNurse?.TabIndex" [Visible]="ClinicalNurse?.Visible" [width]="ClinicalNurse?.Width" data-tid="A338637">
+										</hvl-list-box>
+									</div>
+								</div>
+								<br data-tid="A338638" />
+								<div class="row" data-tid="A338639">
+									<div class="col-sm-12" data-tid="A338640">
+										<dx-button text="Kaydet" (onClick)="save()" style="float:right;width: 175px; background-color: #dcdbde;border: 1px solid;" data-tid="A338641">
+										</dx-button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</dxi-item>
+
+
+			<dxi-item class="tabpanel-item" title="Anestezi Verilmeden Önce" data-tid="A338642">
+				<div *ngIf="controlAnesthesia==false" id="A19479" data-tid="A338643">
+					<p class="alert alert-warning" data-tid="A338644">
+						Formu görüntüleyebilmek için önceki formları kaydediniz
+					</p>
+				</div>
+				<div class="row" *ngIf="controlAnesthesia==true" data-tid="A338645">
+					<div class="col-sm-6" data-tid="A338646">
+						<br data-tid="A338647" />
+
+						<div class="row" data-tid="A338648">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px" data-tid="A338649">
+								10 - Hastanın kendisinden </label>
+						</div>
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338650">
+							<div class="col-sm-12" data-tid="A338651">
+								<hvl-checkbox #Validation (ValueChange)="onPatientIDVerifiedByPatientChanged($event)" [AllowThreeState]="PatientIDVerifiedByPatient?.ThreeState" [BackColor]="PatientIDVerifiedByPatient?.BackColor" [Enabled]="PatientIDVerifiedByPatient?.Enabled" [Font]="PatientIDVerifiedByPatient?.Font" [ForeColor]="PatientIDVerifiedByPatient?.ForeColor" [IsTitleLeft]="PatientIDVerifiedByPatient?.IsTitleLeft" [Margin]="PatientIDVerifiedByPatient?.Margin" [ReadOnly]="PatientIDVerifiedByPatient?.ReadOnly" [TabIndex]="PatientIDVerifiedByPatient?.TabIndex" [TitleTopPadding]="PatientIDVerifiedByPatient?.TitleTopPadding" [Title]="PatientIDVerifiedByPatient?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.PatientIDVerifiedByPatient" [Visible]="PatientIDVerifiedByPatient?.Visible" TitleFontSize="15px" TitleFontWeight="normal" data-tid="A338652">
+								</hvl-checkbox>
+							</div>
+						</div>
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338653">
+
+							<div class="col-sm-12" data-tid="A338654">
+								<hvl-checkbox #Validation (ValueChange)="onSurgeryVerifiedByPatientChanged($event)" [AllowThreeState]="SurgeryVerifiedByPatient?.ThreeState" [BackColor]="SurgeryVerifiedByPatient?.BackColor" [Enabled]="SurgeryVerifiedByPatient?.Enabled" [Font]="SurgeryVerifiedByPatient?.Font" [ForeColor]="SurgeryVerifiedByPatient?.ForeColor" [IsTitleLeft]="SurgeryVerifiedByPatient?.IsTitleLeft" [Margin]="SurgeryVerifiedByPatient?.Margin" [ReadOnly]="SurgeryVerifiedByPatient?.ReadOnly" [TabIndex]="SurgeryVerifiedByPatient?.TabIndex" [TitleTopPadding]="SurgeryVerifiedByPatient?.TitleTopPadding" [Title]="SurgeryVerifiedByPatient?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.SurgeryVerifiedByPatient" [Visible]="SurgeryVerifiedByPatient?.Visible" TitleFontSize="15px" TitleFontWeight="normal" data-tid="A338655">
+								</hvl-checkbox>
+							</div>
+						</div>
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338656">
+
+							<div class="col-sm-12" data-tid="A338657">
+								<hvl-checkbox #Validation (ValueChange)="onSugeryAreaVerifiedByPatientChanged($event)" [AllowThreeState]="SugeryAreaVerifiedByPatient?.ThreeState" [BackColor]="SugeryAreaVerifiedByPatient?.BackColor" [Enabled]="SugeryAreaVerifiedByPatient?.Enabled" [Font]="SugeryAreaVerifiedByPatient?.Font" [ForeColor]="SugeryAreaVerifiedByPatient?.ForeColor" [IsTitleLeft]="SugeryAreaVerifiedByPatient?.IsTitleLeft" [Margin]="SugeryAreaVerifiedByPatient?.Margin" [ReadOnly]="SugeryAreaVerifiedByPatient?.ReadOnly" [TabIndex]="SugeryAreaVerifiedByPatient?.TabIndex" [TitleTopPadding]="SugeryAreaVerifiedByPatient?.TitleTopPadding" [Title]="SugeryAreaVerifiedByPatient?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.SugeryAreaVerifiedByPatient" [Visible]="SugeryAreaVerifiedByPatient?.Visible" TitleFontSize="15px" TitleFontWeight="normal" data-tid="A338658">
+								</hvl-checkbox>
+							</div>
+						</div>
+
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338659">
+
+							<div class="col-sm-12" data-tid="A338660">
+								<hvl-checkbox #Validation (ValueChange)="onConsentVerifiedByPatientChanged($event)" [AllowThreeState]="ConsentVerifiedByPatient?.ThreeState" [BackColor]="ConsentVerifiedByPatient?.BackColor" [Enabled]="ConsentVerifiedByPatient?.Enabled" [Font]="ConsentVerifiedByPatient?.Font" [ForeColor]="ConsentVerifiedByPatient?.ForeColor" [IsTitleLeft]="ConsentVerifiedByPatient?.IsTitleLeft" [Margin]="ConsentVerifiedByPatient?.Margin" [ReadOnly]="ConsentVerifiedByPatient?.ReadOnly" [TabIndex]="ConsentVerifiedByPatient?.TabIndex" [TitleTopPadding]="ConsentVerifiedByPatient?.TitleTopPadding" [Title]="ConsentVerifiedByPatient?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.ConsentVerifiedByPatient" [Visible]="ConsentVerifiedByPatient?.Visible" TitleFontSize="15px" TitleFontWeight="normal" data-tid="A338661">
+								</hvl-checkbox>
+							</div>
+						</div>
+						<br data-tid="A338662" />
+
+						<div class="row" data-tid="A338663">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px" data-tid="A338664">
+								11 - Ameliyat bölgesinde işaretleme var mı? </label>
+						</div>
+
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338665">
+							<div class="col-sm-12" data-tid="A338666">
+								<!--		<div class="col-sm-0">
+								<hvl-checkbox #Validation="" (ValueChange)="onHasSignInSurgeryAreaChanged($event)"
+									[AllowThreeState]="HasSignInSurgeryArea?.ThreeState"
+									[BackColor]="HasSignInSurgeryArea?.BackColor"
+									[Enabled]="HasSignInSurgeryArea?.Enabled" [Font]="HasSignInSurgeryArea?.Font"
+									[ForeColor]="HasSignInSurgeryArea?.ForeColor"
+									[IsTitleLeft]="HasSignInSurgeryArea?.IsTitleLeft"
+									[Margin]="HasSignInSurgeryArea?.Margin" [ReadOnly]="HasSignInSurgeryArea?.ReadOnly"
+									[TabIndex]="HasSignInSurgeryArea?.TabIndex"
+									[TitleTopPadding]="HasSignInSurgeryArea?.TitleTopPadding"
+									[Title]="HasSignInSurgeryArea?.Title"
+									[Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.HasSignInSurgeryArea"
+									[Visible]="HasSignInSurgeryArea?.Visible">
+								</hvl-checkbox>
+							</div>-->
+
+								<dx-radio-group [items]="radioItemsForSurgerySign" displayExpr="text" valueExpr="value" [(value)]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.HasSignInSurgeryArea" layout="horizontal" itemTemplate="radio" data-tid="A338667">
+									<div class="radio" *dxTemplate="let data of 'radio'" data-tid="A338668">
+										<p style="font-size:small" data-tid="A338669"><b data-tid="A338670">{{data.text}}</b></p>
+									</div>
+								</dx-radio-group>
+
+							</div>
+						</div>
+
+						<br data-tid="A338671" />
+
+						<div class="row" data-tid="A338672">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px" data-tid="A338673">
+								12 - Anestezi Güvenlik Kontrol Listesi tamamlandı mı? </label>
+
+						</div>
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338674">
+							<div class="col-sm-12" data-tid="A338675">
+								<hvl-checkbox #Validation (ValueChange)="onAnesthesiaChecklistCompletedChanged($event)" [AllowThreeState]="AnesthesiaChecklistCompleted?.ThreeState" [BackColor]="AnesthesiaChecklistCompleted?.BackColor" [Enabled]="AnesthesiaChecklistCompleted?.Enabled" [Font]="AnesthesiaChecklistCompleted?.Font" [ForeColor]="AnesthesiaChecklistCompleted?.ForeColor" [IsTitleLeft]="AnesthesiaChecklistCompleted?.IsTitleLeft" [Margin]="AnesthesiaChecklistCompleted?.Margin" [ReadOnly]="AnesthesiaChecklistCompleted?.ReadOnly" [TabIndex]="AnesthesiaChecklistCompleted?.TabIndex" [TitleTopPadding]="AnesthesiaChecklistCompleted?.TitleTopPadding" [Title]="AnesthesiaChecklistCompleted?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.AnesthesiaChecklistCompleted" [Visible]="AnesthesiaChecklistCompleted?.Visible" TitleFontSize="15px" TitleFontWeight="normal" data-tid="A338676">
+								</hvl-checkbox>
+							</div>
+						</div>
+
+						<br data-tid="A338677" />
+
+						<div class="row" data-tid="A338678">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px" data-tid="A338679">
+								13 - Pulse oksimetre hasta üzerinde ve çalışıyor mu? </label>
+						</div>
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338680">
+							<div class="col-sm-12" data-tid="A338681">
+								<hvl-checkbox #Validation (ValueChange)="onPulseOximeterWorksOutChanged($event)" [AllowThreeState]="PulseOximeterWorksOut?.ThreeState" [BackColor]="PulseOximeterWorksOut?.BackColor" [Enabled]="PulseOximeterWorksOut?.Enabled" [Font]="PulseOximeterWorksOut?.Font" [ForeColor]="PulseOximeterWorksOut?.ForeColor" [IsTitleLeft]="PulseOximeterWorksOut?.IsTitleLeft" [Margin]="PulseOximeterWorksOut?.Margin" [ReadOnly]="PulseOximeterWorksOut?.ReadOnly" [TabIndex]="PulseOximeterWorksOut?.TabIndex" [TitleTopPadding]="PulseOximeterWorksOut?.TitleTopPadding" [Title]="PulseOximeterWorksOut?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.PulseOximeterWorksOut" [Visible]="PulseOximeterWorksOut?.Visible" TitleFontSize="15px" TitleFontWeight="normal" data-tid="A338682">
+								</hvl-checkbox>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-sm-6" style="border-left: 2px solid;height: 600px;" data-tid="A338683">
+						<br data-tid="A338684" />
+						<div class="row" data-tid="A338685">
+							<label class="control-label col-sm-12" style="font-size: 20px; color: black; padding-bottom:5px; line-height:16px; text-decoration: underline;" data-tid="A338686">
+								Hastanın Risk Değerlendirmesi: </label>
+						</div>
+
+						<br data-tid="A338687" />
+
+						<div class="row" data-tid="A338688">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px" data-tid="A338689">
+								14 - Hastanın bilinen alerjisi var mı?
+							</label>
+						</div>
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338690">
+							<div class="col-sm-12" data-tid="A338691">
+								<!--	<hvl-checkbox #Validation="" (ValueChange)="onIsPatientClothesReadyChanged($event)"
+									[AllowThreeState]="IsPatientClothesReady?.ThreeState"
+									[BackColor]="IsPatientClothesReady?.BackColor"
+									[Enabled]="IsPatientClothesReady?.Enabled" [Font]="IsPatientClothesReady?.Font"
+									[ForeColor]="IsPatientClothesReady?.ForeColor"
+									[IsTitleLeft]="IsPatientClothesReady?.IsTitleLeft"
+									[Margin]="IsPatientClothesReady?.Margin"
+									[ReadOnly]="IsPatientClothesReady?.ReadOnly"
+									[TabIndex]="IsPatientClothesReady?.TabIndex"
+									[TitleTopPadding]="IsPatientClothesReady?.TitleTopPadding"
+									[Title]="IsPatientClothesReady?.Title"
+									[Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.IsPatientClothesReady"
+									[Visible]="IsPatientClothesReady?.Visible" TitleFontSize="15px" TitleFontWeight="normal">
+								</hvl-checkbox> -->
+
+								<dx-radio-group [items]="radioItems" displayExpr="text" valueExpr="value" [(value)]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.PatientHasAnAllergy" layout="horizontal" itemTemplate="radio" data-tid="A338692">
+									<div class="radio" *dxTemplate="let data of 'radio'" data-tid="A338693">
+										<p style="font-size:small" data-tid="A338694"><b data-tid="A338695">{{data.text}}</b></p>
+									</div>
+								</dx-radio-group>
+							</div>
+						</div>
+
+						<div class="row" style="padding-bottom:3px; padding-top:3px;padding-left:23px;" data-tid="A338696">
+							<div class="col-sm-4" data-tid="A338697">
+								<hvl-text-box #Validation (TextChange)="onPatientAllergyDescriptionChanged($event)" [BackColor]="PatientAllergyDescription?.BackColor" [CharacterCasing]="PatientAllergyDescription?.CharacterCasing" [Enabled]="PatientAllergyDescription?.Enabled" [Font]="PatientAllergyDescription?.Font" [ForeColor]="PatientAllergyDescription?.ForeColor" [height]="PatientAllergyDescription?.Height" [InputFormat]="PatientAllergyDescription?.InputFormat" [InputTurkishCharacter]="PatientAllergyDescription?.InputTurkishCharacter" [IsNonNumeric]="PatientAllergyDescription?.IsNonNumeric" [MultiLine]="PatientAllergyDescription?.Multiline" [ReadOnly]="PatientAllergyDescription?.ReadOnly" [Required]="PatientAllergyDescription?.Required" [TabIndex]="PatientAllergyDescription?.TabIndex" [TextAlign]="PatientAllergyDescription?.TextAlign" [Text]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.PatientAllergyDescription" [Visible]="PatientAllergyDescription?.Visible" PlaceHolder="Var ise açıklaması..." data-tid="A338698">
+								</hvl-text-box>
+							</div>
+						</div>
+
+
+						<br data-tid="A338699" />
+
+						<div class="row" data-tid="A338700">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px" data-tid="A338701">
+								15 - Gerekli görüntüleme cihazları var mı?
+							</label>
+						</div>
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338702">
+							<div class="col-sm-12" data-tid="A338703">
+								<!--	<hvl-checkbox #Validation="" (ValueChange)="onIsPatientClothesReadyChanged($event)"
+											[AllowThreeState]="IsPatientClothesReady?.ThreeState"
+											[BackColor]="IsPatientClothesReady?.BackColor"
+											[Enabled]="IsPatientClothesReady?.Enabled" [Font]="IsPatientClothesReady?.Font"
+											[ForeColor]="IsPatientClothesReady?.ForeColor"
+											[IsTitleLeft]="IsPatientClothesReady?.IsTitleLeft"
+											[Margin]="IsPatientClothesReady?.Margin"
+											[ReadOnly]="IsPatientClothesReady?.ReadOnly"
+											[TabIndex]="IsPatientClothesReady?.TabIndex"
+											[TitleTopPadding]="IsPatientClothesReady?.TitleTopPadding"
+											[Title]="IsPatientClothesReady?.Title"
+											[Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.IsPatientClothesReady"
+											[Visible]="IsPatientClothesReady?.Visible" TitleFontSize="15px" TitleFontWeight="normal">
+										</hvl-checkbox> -->
+
+								<dx-radio-group [items]="radioItems" displayExpr="text" valueExpr="value" [(value)]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.HasImagingDevice" layout="horizontal" itemTemplate="radio" data-tid="A338704">
+									<div class="radio" *dxTemplate="let data of 'radio'" data-tid="A338705">
+										<p style="font-size:small" data-tid="A338706"><b data-tid="A338707">{{data.text}}</b></p>
+									</div>
+								</dx-radio-group>
+							</div>
+						</div>
+
+						<br data-tid="A338708" />
+
+						<div class="row" data-tid="A338709">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px" data-tid="A338710">
+								16 - Hastada 500 ml ya da daha fazla kan kaybı riski var mı?
+							</label>
+						</div>
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338711">
+							<div class="col-sm-12" data-tid="A338712">
+								<!--	<hvl-checkbox #Validation="" (ValueChange)="onIsPatientClothesReadyChanged($event)"
+											[AllowThreeState]="IsPatientClothesReady?.ThreeState"
+											[BackColor]="IsPatientClothesReady?.BackColor"
+											[Enabled]="IsPatientClothesReady?.Enabled" [Font]="IsPatientClothesReady?.Font"
+											[ForeColor]="IsPatientClothesReady?.ForeColor"
+											[IsTitleLeft]="IsPatientClothesReady?.IsTitleLeft"
+											[Margin]="IsPatientClothesReady?.Margin"
+											[ReadOnly]="IsPatientClothesReady?.ReadOnly"
+											[TabIndex]="IsPatientClothesReady?.TabIndex"
+											[TitleTopPadding]="IsPatientClothesReady?.TitleTopPadding"
+											[Title]="IsPatientClothesReady?.Title"
+											[Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.IsPatientClothesReady"
+											[Visible]="IsPatientClothesReady?.Visible" TitleFontSize="15px" TitleFontWeight="normal">
+										</hvl-checkbox> -->
+
+								<dx-radio-group [items]="radioItemsForBloodRisk" displayExpr="text" valueExpr="value" [(value)]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.HasBloodLossRisk" layout="horizontal" itemTemplate="radio" data-tid="A338713">
+									<div class="radio" *dxTemplate="let data of 'radio'" data-tid="A338714">
+										<p style="font-size:small" data-tid="A338715"><b data-tid="A338716">{{data.text}}</b></p>
+									</div>
+								</dx-radio-group>
+							</div>
+						</div>
+						<br data-tid="A338717" />
+						<br data-tid="A338718" />
+
+						<div class="row" data-tid="A338719">
+
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px" data-tid="A338720">
+								Anestezi Doktoru </label>
+						</div>
+						<div class="row" data-tid="A338721">
+							<div class="col-sm-6" data-tid="A338722">
+								<div class="row" data-tid="A338723">
+									<div class="col-sm-12" data-tid="A338724">
+										<hvl-list-box #Validation (SelectedObjectChange)="onAnesthesiologistChanged($event)" [AutoCompleteDialogHeight]="Anesthesiologist?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="Anesthesiologist?.AutoCompleteDialogWidth" [AutoCompleteMode]="Anesthesiologist?.AutoCompleteMode" [BackColor]="Anesthesiologist?.BackColor" [DefinitionName]="Anesthesiologist?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="Anesthesiologist?.Enabled" [Font]="Anesthesiologist?.Font" [ForeColor]="Anesthesiologist?.ForeColor" [ListFilterExpression]="Anesthesiologist?.ListFilterExpression" [MinSearchLength]="Anesthesiologist?.MinSearchLength" [PopupDialogFieldConfig]="Anesthesiologist?.PopupDialogFieldConfig" [PopupDialogGridColumns]="Anesthesiologist?.PopupDialogGridColumns" [PopupDialogHeight]="Anesthesiologist?.PopupDialogHeight" [PopupDialogTitle]="Anesthesiologist?.PopupDialogTitle" [PopupDialogWidth]="Anesthesiologist?.PopupDialogWidth" [ReadOnly]="Anesthesiologist?.ReadOnly" [SearchMode]="Anesthesiologist?.SearchMode" [SearchTimeout]="Anesthesiologist?.SearchTimeout" [SelectedObject]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.Anesthesiologist" [TabIndex]="Anesthesiologist?.TabIndex" [Visible]="Anesthesiologist?.Visible" [width]="Anesthesiologist?.Width" data-tid="A338725">
+										</hvl-list-box>
+									</div>
+								</div>
+								<br data-tid="A338726" />
+								<div class="row" data-tid="A338727">
+									<div class="col-sm-12" data-tid="A338728">
+										<dx-button text="Kaydet" (onClick)="save()" style="float:right;width: 175px; background-color: #dcdbde;border: 1px solid;" data-tid="A338729">
+										</dx-button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</dxi-item>
+
+
+			<dxi-item class="tabpanel-item" title="Ameliyat Kesisinden Önce" data-tid="A338730">
+				<div *ngIf="controlIncision==false" id="A19479" data-tid="A338731">
+					<p class="alert alert-warning" data-tid="A338732">
+						Formu görüntüleyebilmek için önceki formları kaydediniz
+					</p>
+				</div>
+				<div class="row" *ngIf="controlIncision==true" data-tid="A338733">
+					<div class="col-sm-6" data-tid="A338734">
+
+						<br data-tid="A338735" />
+
+						<div class="row" data-tid="A338736">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px" data-tid="A338737">
+								17 - Ekipteki kişiler kendilerini ad, soyad ve görevleri ile tanıttı mı? </label>
+						</div>
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338738">
+							<div class="col-sm-12" data-tid="A338739">
+								<hvl-checkbox #Validation (ValueChange)="onTeamMembersIntroThemselvesChanged($event)" [AllowThreeState]="TeamMembersIntroThemselves?.ThreeState" [BackColor]="TeamMembersIntroThemselves?.BackColor" [Enabled]="TeamMembersIntroThemselves?.Enabled" [Font]="TeamMembersIntroThemselves?.Font" [ForeColor]="TeamMembersIntroThemselves?.ForeColor" [IsTitleLeft]="TeamMembersIntroThemselves?.IsTitleLeft" [Margin]="TeamMembersIntroThemselves?.Margin" [ReadOnly]="TeamMembersIntroThemselves?.ReadOnly" [TabIndex]="TeamMembersIntroThemselves?.TabIndex" [TitleTopPadding]="TeamMembersIntroThemselves?.TitleTopPadding" [Title]="TeamMembersIntroThemselves?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.TeamMembersIntroThemselves" [Visible]="TeamMembersIntroThemselves?.Visible" TitleFontSize="15px" TitleFontWeight="normal" data-tid="A338740">
+								</hvl-checkbox>
+							</div>
+						</div>
+
+
+						<br data-tid="A338741" />
+
+						<div class="row" data-tid="A338742">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px" data-tid="A338743">
+								18 - Ekipten bir kişi sesli olarak hastanın kimliğini, yapılan ameliyatı, ameliyat
+								bölgesini
+								teyit etti mi?
+							</label>
+						</div>
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338744">
+							<div class="col-sm-12" data-tid="A338745">
+								<hvl-checkbox #Validation (ValueChange)="onTeamMemberInformedVerballyChanged($event)" [AllowThreeState]="TeamMemberInformedVerbally?.ThreeState" [BackColor]="TeamMemberInformedVerbally?.BackColor" [Enabled]="TeamMemberInformedVerbally?.Enabled" [Font]="TeamMemberInformedVerbally?.Font" [ForeColor]="TeamMemberInformedVerbally?.ForeColor" [IsTitleLeft]="TeamMemberInformedVerbally?.IsTitleLeft" [Margin]="TeamMemberInformedVerbally?.Margin" [ReadOnly]="TeamMemberInformedVerbally?.ReadOnly" [TabIndex]="TeamMemberInformedVerbally?.TabIndex" [TitleTopPadding]="TeamMemberInformedVerbally?.TitleTopPadding" [Title]="TeamMemberInformedVerbally?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.TeamMemberInformedVerbally" [Visible]="TeamMemberInformedVerbally?.Visible" TitleFontSize="15px" TitleFontWeight="normal" data-tid="A338746">
+								</hvl-checkbox>
+							</div>
+						</div>
+
+						<br data-tid="A338747" />
+
+						<div class="row" data-tid="A338748">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px" data-tid="A338749">
+								19 - Kritik olaylar gözden geçirildi mi? </label>
+						</div>
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338750">
+							<div class="col-sm-12" data-tid="A338751">
+								<hvl-checkbox #Validation (ValueChange)="onReviewedEstimatedSurgeryTimeChanged($event)" [AllowThreeState]="ReviewedEstimatedSurgeryTime?.ThreeState" [BackColor]="ReviewedEstimatedSurgeryTime?.BackColor" [Enabled]="ReviewedEstimatedSurgeryTime?.Enabled" [Font]="ReviewedEstimatedSurgeryTime?.Font" [ForeColor]="ReviewedEstimatedSurgeryTime?.ForeColor" [IsTitleLeft]="ReviewedEstimatedSurgeryTime?.IsTitleLeft" [Margin]="ReviewedEstimatedSurgeryTime?.Margin" [ReadOnly]="ReviewedEstimatedSurgeryTime?.ReadOnly" [TabIndex]="ReviewedEstimatedSurgeryTime?.TabIndex" [TitleTopPadding]="ReviewedEstimatedSurgeryTime?.TitleTopPadding" [Title]="ReviewedEstimatedSurgeryTime?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.ReviewedEstimatedSurgeryTime" [Visible]="ReviewedEstimatedSurgeryTime?.Visible" TitleFontSize="15px" TitleFontWeight="normal" data-tid="A338752">
+								</hvl-checkbox>
+							</div>
+						</div>
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338753">
+
+							<div class="col-sm-12" data-tid="A338754">
+								<hvl-checkbox #Validation (ValueChange)="onReviewedExpectedBloodLossChanged($event)" [AllowThreeState]="ReviewedExpectedBloodLoss?.ThreeState" [BackColor]="ReviewedExpectedBloodLoss?.BackColor" [Enabled]="ReviewedExpectedBloodLoss?.Enabled" [Font]="ReviewedExpectedBloodLoss?.Font" [ForeColor]="ReviewedExpectedBloodLoss?.ForeColor" [IsTitleLeft]="ReviewedExpectedBloodLoss?.IsTitleLeft" [Margin]="ReviewedExpectedBloodLoss?.Margin" [ReadOnly]="ReviewedExpectedBloodLoss?.ReadOnly" [TabIndex]="ReviewedExpectedBloodLoss?.TabIndex" [TitleTopPadding]="ReviewedExpectedBloodLoss?.TitleTopPadding" [Title]="ReviewedExpectedBloodLoss?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.ReviewedExpectedBloodLoss" [Visible]="ReviewedExpectedBloodLoss?.Visible" TitleFontSize="15px" TitleFontWeight="normal" data-tid="A338755">
+								</hvl-checkbox>
+							</div>
+						</div>
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338756">
+
+							<div class="col-sm-12" data-tid="A338757">
+								<hvl-checkbox #Validation (ValueChange)="onReviewedUnexpectedEventsChanged($event)" [AllowThreeState]="ReviewedUnexpectedEvents?.ThreeState" [BackColor]="ReviewedUnexpectedEvents?.BackColor" [Enabled]="ReviewedUnexpectedEvents?.Enabled" [Font]="ReviewedUnexpectedEvents?.Font" [ForeColor]="ReviewedUnexpectedEvents?.ForeColor" [IsTitleLeft]="ReviewedUnexpectedEvents?.IsTitleLeft" [Margin]="ReviewedUnexpectedEvents?.Margin" [ReadOnly]="ReviewedUnexpectedEvents?.ReadOnly" [TabIndex]="ReviewedUnexpectedEvents?.TabIndex" [TitleTopPadding]="ReviewedUnexpectedEvents?.TitleTopPadding" [Title]="ReviewedUnexpectedEvents?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.ReviewedUnexpectedEvents" [Visible]="ReviewedUnexpectedEvents?.Visible" TitleFontSize="15px" TitleFontWeight="normal" data-tid="A338758">
+								</hvl-checkbox>
+							</div>
+						</div>
+
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338759">
+
+							<div class="col-sm-12" data-tid="A338760">
+								<hvl-checkbox #Validation (ValueChange)="onReviewedPossibAnesthesiaRiskChanged($event)" [AllowThreeState]="ReviewedPossibAnesthesiaRisk?.ThreeState" [BackColor]="ReviewedPossibAnesthesiaRisk?.BackColor" [Enabled]="ReviewedPossibAnesthesiaRisk?.Enabled" [Font]="ReviewedPossibAnesthesiaRisk?.Font" [ForeColor]="ReviewedPossibAnesthesiaRisk?.ForeColor" [IsTitleLeft]="ReviewedPossibAnesthesiaRisk?.IsTitleLeft" [Margin]="ReviewedPossibAnesthesiaRisk?.Margin" [ReadOnly]="ReviewedPossibAnesthesiaRisk?.ReadOnly" [TabIndex]="ReviewedPossibAnesthesiaRisk?.TabIndex" [TitleTopPadding]="ReviewedPossibAnesthesiaRisk?.TitleTopPadding" [Title]="ReviewedPossibAnesthesiaRisk?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.ReviewedPossibAnesthesiaRisk" [Visible]="ReviewedPossibAnesthesiaRisk?.Visible" TitleFontSize="15px" TitleFontWeight="normal" data-tid="A338761">
+								</hvl-checkbox>
+							</div>
+						</div>
+
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338762">
+
+							<div class="col-sm-12" data-tid="A338763">
+								<hvl-checkbox #Validation (ValueChange)="onReviewedPatientPositionChanged($event)" [AllowThreeState]="ReviewedPatientPosition?.ThreeState" [BackColor]="ReviewedPatientPosition?.BackColor" [Enabled]="ReviewedPatientPosition?.Enabled" [Font]="ReviewedPatientPosition?.Font" [ForeColor]="ReviewedPatientPosition?.ForeColor" [IsTitleLeft]="ReviewedPatientPosition?.IsTitleLeft" [Margin]="ReviewedPatientPosition?.Margin" [ReadOnly]="ReviewedPatientPosition?.ReadOnly" [TabIndex]="ReviewedPatientPosition?.TabIndex" [TitleTopPadding]="ReviewedPatientPosition?.TitleTopPadding" [Title]="ReviewedPatientPosition?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.ReviewedPatientPosition" [Visible]="ReviewedPatientPosition?.Visible" TitleFontSize="15px" TitleFontWeight="normal" data-tid="A338764">
+								</hvl-checkbox>
+							</div>
+						</div>
+
+						<br data-tid="A338765" />
+
+						<div class="row" data-tid="A338766">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; line-height:16px" data-tid="A338767">
+								20 - Profilaktik antibiyotik sorgulandı mı? </label>
+						</div>
+
+						<div class="row" style="padding-left:23px;" data-tid="A338768">
+							<div class="col-sm-12" data-tid="A338769">
+								<!--<hvl-checkbox #Validation="" (ValueChange)="onPatientConsentCheckedChanged($event)"
+										[AllowThreeState]="PatientConsentChecked?.ThreeState"
+										[BackColor]="PatientConsentChecked?.BackColor"
+										[Enabled]="PatientConsentChecked?.Enabled" [Font]="PatientConsentChecked?.Font"
+										[ForeColor]="PatientConsentChecked?.ForeColor"
+										[IsTitleLeft]="PatientConsentChecked?.IsTitleLeft"
+										[Margin]="PatientConsentChecked?.Margin"
+										[ReadOnly]="PatientConsentChecked?.ReadOnly"
+										[TabIndex]="PatientConsentChecked?.TabIndex"
+										[TitleTopPadding]="PatientConsentChecked?.TitleTopPadding"
+										[Title]="PatientConsentChecked?.Title"
+										[Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.PatientConsentChecked"
+										[Visible]="PatientConsentChecked?.Visible"
+										TitleFontSize="15px" TitleFontWeight="normal">
+									</hvl-checkbox> -->
+
+								<dx-radio-group [items]="radioForProphylacticAntibiotic" displayExpr="text" valueExpr="value" [(value)]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.AppliedProphylacticAntibiotic" layout="horizontal" itemTemplate="radio" data-tid="A338770">
+									<div class="radio" *dxTemplate="let data of 'radio'" data-tid="A338771">
+										<p style="font-size:small" data-tid="A338772"><b data-tid="A338773">{{data.text}}</b></p>
+									</div>
+								</dx-radio-group>
+
+							</div>
+						</div>
+
+						<br data-tid="A338774" />
+
+						<div class="row" data-tid="A338775">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px" data-tid="A338776">
+								21 - Kullanılacak malzemeler hazır mı? </label>
+						</div>
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338777">
+							<div class="col-sm-12" data-tid="A338778">
+								<hvl-checkbox #Validation (ValueChange)="onReadyUsedMaterialsChanged($event)" [AllowThreeState]="ReadyUsedMaterials?.ThreeState" [BackColor]="ReadyUsedMaterials?.BackColor" [Enabled]="ReadyUsedMaterials?.Enabled" [Font]="ReadyUsedMaterials?.Font" [ForeColor]="ReadyUsedMaterials?.ForeColor" [IsTitleLeft]="ReadyUsedMaterials?.IsTitleLeft" [Margin]="ReadyUsedMaterials?.Margin" [ReadOnly]="ReadyUsedMaterials?.ReadOnly" [TabIndex]="ReadyUsedMaterials?.TabIndex" [TitleTopPadding]="ReadyUsedMaterials?.TitleTopPadding" [Title]="ReadyUsedMaterials?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.ReadyUsedMaterials" [Visible]="ReadyUsedMaterials?.Visible" TitleFontSize="15px" TitleFontWeight="normal" data-tid="A338779">
+								</hvl-checkbox>
+							</div>
+						</div>
+
+					</div>
+
+
+					<div class="col-sm-6" style="border-left: 2px solid;height: 400px;" data-tid="A338780">
+						<br data-tid="A338781" />
+						<div class="row" data-tid="A338782">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px" data-tid="A338783">
+								22 - Malzemelerin sterilizasyonu uygun mu? </label>
+						</div>
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338784">
+							<div class="col-sm-12" data-tid="A338785">
+								<hvl-checkbox #Validation (ValueChange)="onSuitableMaterialSterilizationChanged($event)" [AllowThreeState]="SuitableMaterialSterilization?.ThreeState" [BackColor]="SuitableMaterialSterilization?.BackColor" [Enabled]="SuitableMaterialSterilization?.Enabled" [Font]="SuitableMaterialSterilization?.Font" [ForeColor]="SuitableMaterialSterilization?.ForeColor" [IsTitleLeft]="SuitableMaterialSterilization?.IsTitleLeft" [Margin]="SuitableMaterialSterilization?.Margin" [ReadOnly]="SuitableMaterialSterilization?.ReadOnly" [TabIndex]="SuitableMaterialSterilization?.TabIndex" [TitleTopPadding]="SuitableMaterialSterilization?.TitleTopPadding" [Title]="SuitableMaterialSterilization?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.SuitableMaterialSterilization" [Visible]="SuitableMaterialSterilization?.Visible" TitleFontSize="15px" TitleFontWeight="normal" data-tid="A338786">
+								</hvl-checkbox>
+							</div>
+						</div>
+
+						<br data-tid="A338787" />
+
+						<div class="row" data-tid="A338788">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; line-height:16px" data-tid="A338789">
+								23 - Kan şekeri kontrolü gerekli mi? </label>
+						</div>
+
+						<div class="row" style="padding-left:23px;" data-tid="A338790">
+							<div class="col-sm-12" data-tid="A338791">
+								<!--<hvl-checkbox #Validation="" (ValueChange)="onNecessaryBloodSugarControlChanged($event)"
+				[AllowThreeState]="NecessaryBloodSugarControl?.ThreeState"
+				[BackColor]="NecessaryBloodSugarControl?.BackColor" [Enabled]="NecessaryBloodSugarControl?.Enabled"
+				[Font]="NecessaryBloodSugarControl?.Font" [ForeColor]="NecessaryBloodSugarControl?.ForeColor"
+				[IsTitleLeft]="NecessaryBloodSugarControl?.IsTitleLeft" [Margin]="NecessaryBloodSugarControl?.Margin"
+				[ReadOnly]="NecessaryBloodSugarControl?.ReadOnly" [TabIndex]="NecessaryBloodSugarControl?.TabIndex"
+				[TitleTopPadding]="NecessaryBloodSugarControl?.TitleTopPadding"
+				[Title]="NecessaryBloodSugarControl?.Title"
+				[Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.NecessaryBloodSugarControl"
+				[Visible]="NecessaryBloodSugarControl?.Visible"
+										TitleFontSize="15px" TitleFontWeight="normal">
+									</hvl-checkbox> -->
+
+								<dx-radio-group [items]="radioGroupItems" displayExpr="text" valueExpr="value" [(value)]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.NecessaryBloodSugarControl" layout="horizontal" itemTemplate="radio" data-tid="A338792">
+									<div class="radio" *dxTemplate="let data of 'radio'" data-tid="A338793">
+										<p style="font-size:small" data-tid="A338794"><b data-tid="A338795">{{data.text}}</b></p>
+									</div>
+								</dx-radio-group>
+
+							</div>
+						</div>
+
+
+						<br data-tid="A338796" />
+
+						<div class="row" data-tid="A338797">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; line-height:16px" data-tid="A338798">
+								24 - Antikoagülan kullanımı var mı? </label>
+						</div>
+
+						<div class="row" style="padding-left:23px;" data-tid="A338799">
+							<div class="col-sm-12" data-tid="A338800">
+								<!--<hvl-checkbox #Validation="" (ValueChange)="onPatientConsentCheckedChanged($event)"
+										[AllowThreeState]="PatientConsentChecked?.ThreeState"
+										[BackColor]="PatientConsentChecked?.BackColor"
+										[Enabled]="PatientConsentChecked?.Enabled" [Font]="PatientConsentChecked?.Font"
+										[ForeColor]="PatientConsentChecked?.ForeColor"
+										[IsTitleLeft]="PatientConsentChecked?.IsTitleLeft"
+										[Margin]="PatientConsentChecked?.Margin"
+										[ReadOnly]="PatientConsentChecked?.ReadOnly"
+										[TabIndex]="PatientConsentChecked?.TabIndex"
+										[TitleTopPadding]="PatientConsentChecked?.TitleTopPadding"
+										[Title]="PatientConsentChecked?.Title"
+										[Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.PatientConsentChecked"
+										[Visible]="PatientConsentChecked?.Visible"
+										TitleFontSize="15px" TitleFontWeight="normal">
+									</hvl-checkbox> -->
+
+								<dx-radio-group [items]="radioGroupItems" displayExpr="text" valueExpr="value" [(value)]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.HasAnticoagulantUsage" layout="horizontal" itemTemplate="radio" data-tid="A338801">
+									<div class="radio" *dxTemplate="let data of 'radio'" data-tid="A338802">
+										<p style="font-size:small" data-tid="A338803"><b data-tid="A338804">{{data.text}}</b></p>
+									</div>
+								</dx-radio-group>
+
+							</div>
+						</div>
+
+
+
+						<br data-tid="A338805" />
+
+						<div class="row" data-tid="A338806">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; line-height:16px" data-tid="A338807">
+								25 - Derin Ven Trombozu profilaksisi gerekli mi? </label>
+						</div>
+
+						<div class="row" style="padding-left:23px;" data-tid="A338808">
+							<div class="col-sm-12" data-tid="A338809">
+								<!--<hvl-checkbox #Validation="" (ValueChange)="onPatientConsentCheckedChanged($event)"
+										[AllowThreeState]="PatientConsentChecked?.ThreeState"
+										[BackColor]="PatientConsentChecked?.BackColor"
+										[Enabled]="PatientConsentChecked?.Enabled" [Font]="PatientConsentChecked?.Font"
+										[ForeColor]="PatientConsentChecked?.ForeColor"
+										[IsTitleLeft]="PatientConsentChecked?.IsTitleLeft"
+										[Margin]="PatientConsentChecked?.Margin"
+										[ReadOnly]="PatientConsentChecked?.ReadOnly"
+										[TabIndex]="PatientConsentChecked?.TabIndex"
+										[TitleTopPadding]="PatientConsentChecked?.TitleTopPadding"
+										[Title]="PatientConsentChecked?.Title"
+										[Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.PatientConsentChecked"
+										[Visible]="PatientConsentChecked?.Visible"
+										TitleFontSize="15px" TitleFontWeight="normal">
+									</hvl-checkbox> -->
+
+								<dx-radio-group [items]="radioGroupItems" displayExpr="text" valueExpr="value" [(value)]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.NecessaryDeepVeinThrombosis" layout="horizontal" itemTemplate="radio" data-tid="A338810">
+									<div class="radio" *dxTemplate="let data of 'radio'" data-tid="A338811">
+										<p style="font-size:small" data-tid="A338812"><b data-tid="A338813">{{data.text}}</b></p>
+									</div>
+								</dx-radio-group>
+
+							</div>
+						</div>
+
+						<br data-tid="A338814" />
+						<br data-tid="A338815" />
+
+						<div class="row" data-tid="A338816">
+
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px" data-tid="A338817">
+								Ameliyatı Yapan Doktor </label>
+						</div>
+						<div class="row" data-tid="A338818">
+							<div class="col-sm-8" data-tid="A338819">
+								<div class="row" data-tid="A338820">
+									<div class="col-sm-12" data-tid="A338821">
+										<hvl-list-box #Validation (SelectedObjectChange)="onSurgeryDoctorChanged($event)" [AutoCompleteDialogHeight]="SurgeryDoctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="SurgeryDoctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="SurgeryDoctor?.AutoCompleteMode" [BackColor]="SurgeryDoctor?.BackColor" [DefinitionName]="SurgeryDoctor?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="SurgeryDoctor?.Enabled" [Font]="SurgeryDoctor?.Font" [ForeColor]="SurgeryDoctor?.ForeColor" [ListFilterExpression]="SurgeryDoctor?.ListFilterExpression" [MinSearchLength]="SurgeryDoctor?.MinSearchLength" [PopupDialogFieldConfig]="SurgeryDoctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="SurgeryDoctor?.PopupDialogGridColumns" [PopupDialogHeight]="SurgeryDoctor?.PopupDialogHeight" [PopupDialogTitle]="SurgeryDoctor?.PopupDialogTitle" [PopupDialogWidth]="SurgeryDoctor?.PopupDialogWidth" [ReadOnly]="SurgeryDoctor?.ReadOnly" [SearchMode]="SurgeryDoctor?.SearchMode" [SearchTimeout]="SurgeryDoctor?.SearchTimeout" [SelectedObject]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.SurgeryDoctor" [TabIndex]="SurgeryDoctor?.TabIndex" [Visible]="SurgeryDoctor?.Visible" [width]="SurgeryDoctor?.Width" data-tid="A338822">
+										</hvl-list-box>
+									</div>
+								</div>
+								<br data-tid="A338823" />
+								<div class="row" data-tid="A338824">
+									<div class="col-sm-12" data-tid="A338825">
+										<dx-button text="Kaydet" (onClick)="save()" style="float:right;width: 175px; background-color: #dcdbde;border: 1px solid;" data-tid="A338826">
+										</dx-button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</dxi-item>
+
+			<dxi-item class="tabpanel-item" title="Ameliyattan Çıkmadan Önce" data-tid="A338827">
+				<div *ngIf="controlLeaveSurgery==false" id="A19479" data-tid="A338828">
+					<p class="alert alert-warning" data-tid="A338829">
+						Formu görüntüleyebilmek için önceki formları kaydediniz
+					</p>
+				</div>
+				<div class="row" *ngIf="controlLeaveSurgery==true" data-tid="A338830">
+					<div class="col-sm-6" data-tid="A338831">
+
+						<br data-tid="A338832" />
+
+						<div class="row" data-tid="A338833">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px" data-tid="A338834">
+								26 - Gerçekleştirilen ameliyat için sözlü olarak </label>
+						</div>
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338835">
+							<div class="col-sm-12" data-tid="A338836">
+								<hvl-checkbox #Validation (ValueChange)="onConfirmedPatientVerballyChanged($event)" [AllowThreeState]="ConfirmedPatientVerbally?.ThreeState" [BackColor]="ConfirmedPatientVerbally?.BackColor" [Enabled]="ConfirmedPatientVerbally?.Enabled" [Font]="ConfirmedPatientVerbally?.Font" [ForeColor]="ConfirmedPatientVerbally?.ForeColor" [IsTitleLeft]="ConfirmedPatientVerbally?.IsTitleLeft" [Margin]="ConfirmedPatientVerbally?.Margin" [ReadOnly]="ConfirmedPatientVerbally?.ReadOnly" [TabIndex]="ConfirmedPatientVerbally?.TabIndex" [TitleTopPadding]="ConfirmedPatientVerbally?.TitleTopPadding" [Title]="ConfirmedPatientVerbally?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.ConfirmedPatientVerbally" [Visible]="ConfirmedPatientVerbally?.Visible" TitleFontSize="15px" TitleFontWeight="normal" data-tid="A338837">
+								</hvl-checkbox>
+							</div>
+						</div>
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338838">
+
+							<div class="col-sm-12" data-tid="A338839">
+								<hvl-checkbox #Validation (ValueChange)="onConfirmedSurgeryVerballyChanged($event)" [AllowThreeState]="ConfirmedSurgeryVerbally?.ThreeState" [BackColor]="ConfirmedSurgeryVerbally?.BackColor" [Enabled]="ConfirmedSurgeryVerbally?.Enabled" [Font]="ConfirmedSurgeryVerbally?.Font" [ForeColor]="ConfirmedSurgeryVerbally?.ForeColor" [IsTitleLeft]="ConfirmedSurgeryVerbally?.IsTitleLeft" [Margin]="ConfirmedSurgeryVerbally?.Margin" [ReadOnly]="ConfirmedSurgeryVerbally?.ReadOnly" [TabIndex]="ConfirmedSurgeryVerbally?.TabIndex" [TitleTopPadding]="ConfirmedSurgeryVerbally?.TitleTopPadding" [Title]="ConfirmedSurgeryVerbally?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.ConfirmedSurgeryVerbally" [Visible]="ConfirmedSurgeryVerbally?.Visible" TitleFontSize="15px" TitleFontWeight="normal" data-tid="A338840">
+								</hvl-checkbox>
+							</div>
+						</div>
+
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338841">
+
+							<div class="col-sm-12" data-tid="A338842">
+								<hvl-checkbox #Validation (ValueChange)="onConfirmedSurgeryAreaVerballyChanged($event)" [AllowThreeState]="ConfirmedSurgeryAreaVerbally?.ThreeState" [BackColor]="ConfirmedSurgeryAreaVerbally?.BackColor" [Enabled]="ConfirmedSurgeryAreaVerbally?.Enabled" [Font]="ConfirmedSurgeryAreaVerbally?.Font" [ForeColor]="ConfirmedSurgeryAreaVerbally?.ForeColor" [IsTitleLeft]="ConfirmedSurgeryAreaVerbally?.IsTitleLeft" [Margin]="ConfirmedSurgeryAreaVerbally?.Margin" [ReadOnly]="ConfirmedSurgeryAreaVerbally?.ReadOnly" [TabIndex]="ConfirmedSurgeryAreaVerbally?.TabIndex" [TitleTopPadding]="ConfirmedSurgeryAreaVerbally?.TitleTopPadding" [Title]="ConfirmedSurgeryAreaVerbally?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.ConfirmedSurgeryAreaVerbally" [Visible]="ConfirmedSurgeryAreaVerbally?.Visible" TitleFontSize="15px" TitleFontWeight="normal" data-tid="A338843">
+								</hvl-checkbox>
+							</div>
+						</div>
+
+
+						<br data-tid="A338844" />
+
+						<div class="row" data-tid="A338845">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; line-height:16px" data-tid="A338846">
+								27 - Alet, spanç/kompres, iğne sayımları yapıldı mı? </label>
+						</div>
+
+						<div class="row" style="padding-left:23px;" data-tid="A338847">
+							<div class="col-sm-12" data-tid="A338848">
+
+								<dx-radio-group [items]="radioForTool" displayExpr="text" valueExpr="value" [(value)]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.ToolSpongeNeedleCountsDone" layout="horizontal" itemTemplate="radio" data-tid="A338849">
+									<div class="radio" *dxTemplate="let data of 'radio'" data-tid="A338850">
+										<p style="font-size:small" data-tid="A338851"><b data-tid="A338852">{{data.text}}</b></p>
+									</div>
+								</dx-radio-group>
+
+							</div>
+						</div>
+
+						<br data-tid="A338853" />
+
+						<div class="row" data-tid="A338854">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; line-height:16px" data-tid="A338855">
+								28 - Hastadan alınan numune etiketinde </label>
+						</div>
+
+						<div class="row" style="padding-left:23px;" data-tid="A338856">
+							<div class="col-sm-12" data-tid="A338857">
+
+								<dx-radio-group [items]="radioForSampleLabel" displayExpr="text" valueExpr="value" [(value)]="sampleRegion" layout="horizontal" itemTemplate="radio" data-tid="A338858">
+									<div class="radio" *dxTemplate="let data of 'radio'" data-tid="A338859">
+										<p style="font-size:small" data-tid="A338860"><b data-tid="A338861">{{data.text}}</b></p>
+									</div>
+								</dx-radio-group>
+
+							</div>
+						</div>
+
+
+					</div>
+
+					<div class="col-sm-6" style="border-left: 2px solid; height: 450px;" data-tid="A338862">
+
+						<br data-tid="A338863" />
+
+						<div class="row" data-tid="A338864">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; line-height:16px" data-tid="A338865">
+								29 - Ameliyat sonrası kritik gereksinimler gözden geçirildi mi? </label>
+						</div>
+
+						<br data-tid="A338866" />
+						<div class="row" style="padding-bottom:3px; padding-top:3px;padding-left:23px;" data-tid="A338867">
+							<div class="col-sm-3" data-tid="A338868">
+
+								<label class="control-label col-sm-12" style="font-size: 13px; color: black; line-height:16px" data-tid="A338869">
+									Anestezistin Önerileri : </label>
+
+							</div>
+							<div class="col-sm-5" data-tid="A338870">
+								<hvl-text-box #Validation (TextChange)="onAnesthetistSuggestionsChanged($event)" [BackColor]="AnesthetistSuggestions?.BackColor" [CharacterCasing]="AnesthetistSuggestions?.CharacterCasing" [Enabled]="AnesthetistSuggestions?.Enabled" [Font]="AnesthetistSuggestions?.Font" [ForeColor]="AnesthetistSuggestions?.ForeColor" [height]="AnesthetistSuggestions?.Height" [InputFormat]="AnesthetistSuggestions?.InputFormat" [InputTurkishCharacter]="AnesthetistSuggestions?.InputTurkishCharacter" [IsNonNumeric]="AnesthetistSuggestions?.IsNonNumeric" [MultiLine]="AnesthetistSuggestions?.Multiline" [ReadOnly]="AnesthetistSuggestions?.ReadOnly" [Required]="AnesthetistSuggestions?.Required" [TabIndex]="AnesthetistSuggestions?.TabIndex" [TextAlign]="AnesthetistSuggestions?.TextAlign" [Text]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.AnesthetistSuggestions" [Visible]="AnesthetistSuggestions?.Visible" data-tid="A338871">
+								</hvl-text-box>
+							</div>
+						</div>
+
+						<div class="row" style="padding-bottom:3px; padding-top:3px;padding-left:23px;" data-tid="A338872">
+							<div class="col-sm-3" data-tid="A338873">
+
+								<label class="control-label col-sm-12" style="font-size: 13px; color: black; line-height:16px" data-tid="A338874">
+									Cerrahın Önerileri : </label>
+
+							</div>
+							<div class="col-sm-5" data-tid="A338875">
+								<hvl-text-box #Validation (TextChange)="onSurgeonSuggestionsChanged($event)" [BackColor]="SurgeonSuggestions?.BackColor" [CharacterCasing]="SurgeonSuggestions?.CharacterCasing" [Enabled]="SurgeonSuggestions?.Enabled" [Font]="SurgeonSuggestions?.Font" [ForeColor]="SurgeonSuggestions?.ForeColor" [height]="SurgeonSuggestions?.Height" [InputFormat]="SurgeonSuggestions?.InputFormat" [InputTurkishCharacter]="SurgeonSuggestions?.InputTurkishCharacter" [IsNonNumeric]="SurgeonSuggestions?.IsNonNumeric" [MultiLine]="SurgeonSuggestions?.Multiline" [ReadOnly]="SurgeonSuggestions?.ReadOnly" [Required]="SurgeonSuggestions?.Required" [TabIndex]="SurgeonSuggestions?.TabIndex" [TextAlign]="SurgeonSuggestions?.TextAlign" [Text]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.SurgeonSuggestions" [Visible]="SurgeonSuggestions?.Visible" data-tid="A338876">
+								</hvl-text-box>
+							</div>
+						</div>
+
+						<br data-tid="A338877" />
+
+
+						<div class="row" data-tid="A338878">
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px" data-tid="A338879">
+								30 - Hastanın ameliyat sonrası gideceği bölüm teyit edildi mi? </label>
+						</div>
+						<div class="row" style="padding-bottom:3px; padding-top:3px;font-family:'Open Sans', sans-serif !important;font-size:15px; padding-left:23px;" data-tid="A338880">
+							<div class="col-sm-12" data-tid="A338881">
+								<hvl-checkbox #Validation (ValueChange)="onConfirmedAfterSurgeryClinicChanged($event)" [AllowThreeState]="ConfirmedAfterSurgeryClinic?.ThreeState" [BackColor]="ConfirmedAfterSurgeryClinic?.BackColor" [Enabled]="ConfirmedAfterSurgeryClinic?.Enabled" [Font]="ConfirmedAfterSurgeryClinic?.Font" [ForeColor]="ConfirmedAfterSurgeryClinic?.ForeColor" [IsTitleLeft]="ConfirmedAfterSurgeryClinic?.IsTitleLeft" [Margin]="ConfirmedAfterSurgeryClinic?.Margin" [ReadOnly]="ConfirmedAfterSurgeryClinic?.ReadOnly" [TabIndex]="ConfirmedAfterSurgeryClinic?.TabIndex" [TitleTopPadding]="ConfirmedAfterSurgeryClinic?.TitleTopPadding" [Title]="ConfirmedAfterSurgeryClinic?.Title" [Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.ConfirmedAfterSurgeryClinic" [Visible]="ConfirmedAfterSurgeryClinic?.Visible" TitleFontSize="15px" TitleFontWeight="normal" data-tid="A338882">
+								</hvl-checkbox>
+							</div>
+						</div>
+
+						<br data-tid="A338883" />
+						<div class="row" data-tid="A338884">
+
+							<label class="control-label col-sm-12" style="font-size: 16px; color: black; padding-bottom:5px; line-height:16px" data-tid="A338885">
+								Ameliyathane Hemşiresi </label>
+						</div>
+						<div class="row" data-tid="A338886">
+							<div class="col-sm-6" data-tid="A338887">
+								<div class="row" data-tid="A338888">
+									<div class="col-sm-12" data-tid="A338889">
+										<hvl-list-box #Validation (SelectedObjectChange)="onOperatingRoomNurseChanged($event)" [AutoCompleteDialogHeight]="OperatingRoomNurse?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="OperatingRoomNurse?.AutoCompleteDialogWidth" [AutoCompleteMode]="OperatingRoomNurse?.AutoCompleteMode" [BackColor]="OperatingRoomNurse?.BackColor" [DefinitionName]="OperatingRoomNurse?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="OperatingRoomNurse?.Enabled" [Font]="OperatingRoomNurse?.Font" [ForeColor]="OperatingRoomNurse?.ForeColor" [ListFilterExpression]="OperatingRoomNurse?.ListFilterExpression" [MinSearchLength]="OperatingRoomNurse?.MinSearchLength" [PopupDialogFieldConfig]="OperatingRoomNurse?.PopupDialogFieldConfig" [PopupDialogGridColumns]="OperatingRoomNurse?.PopupDialogGridColumns" [PopupDialogHeight]="OperatingRoomNurse?.PopupDialogHeight" [PopupDialogTitle]="OperatingRoomNurse?.PopupDialogTitle" [PopupDialogWidth]="OperatingRoomNurse?.PopupDialogWidth" [ReadOnly]="OperatingRoomNurse?.ReadOnly" [SearchMode]="OperatingRoomNurse?.SearchMode" [SearchTimeout]="OperatingRoomNurse?.SearchTimeout" [SelectedObject]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.OperatingRoomNurse" [TabIndex]="OperatingRoomNurse?.TabIndex" [Visible]="OperatingRoomNurse?.Visible" [width]="OperatingRoomNurse?.Width" data-tid="A338890">
+										</hvl-list-box>
+									</div>
+								</div>
+								<br data-tid="A338891" />
+								<div class="row" data-tid="A338892">
+									<div class="col-sm-12" data-tid="A338893">
+										<dx-button text="Kaydet" (onClick)="save()" style="float:right;width: 175px; background-color: #dcdbde;border: 1px solid;" data-tid="A338894">
+										</dx-button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+
+				<!--	
+				<label class="control-label col-sm-0">
+						28 - Hastadan alınan numune etiketinde </label>
+				<div class="row">
+					<div class="col-sm-1">
+						<hvl-checkbox #Validation="" (ValueChange)="onPatientNameOnSampleLabelChanged($event)"
+							[AllowThreeState]="PatientNameOnSampleLabel?.ThreeState"
+							[BackColor]="PatientNameOnSampleLabel?.BackColor"
+							[Enabled]="PatientNameOnSampleLabel?.Enabled" [Font]="PatientNameOnSampleLabel?.Font"
+							[ForeColor]="PatientNameOnSampleLabel?.ForeColor"
+							[IsTitleLeft]="PatientNameOnSampleLabel?.IsTitleLeft"
+							[Margin]="PatientNameOnSampleLabel?.Margin" [ReadOnly]="PatientNameOnSampleLabel?.ReadOnly"
+							[TabIndex]="PatientNameOnSampleLabel?.TabIndex"
+							[TitleTopPadding]="PatientNameOnSampleLabel?.TitleTopPadding"
+							[Title]="PatientNameOnSampleLabel?.Title"
+							[Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.PatientNameOnSampleLabel"
+							[Visible]="PatientNameOnSampleLabel?.Visible">
+						</hvl-checkbox>
+					</div>
+				</div> 
+			
+			
+								<div class="row">
+				
+						<div class="col-sm-12">
+							<hvl-checkbox #Validation="" (ValueChange)="onSampleRegionOnSampleLabelChanged($event)"
+								[AllowThreeState]="SampleRegionOnSampleLabel?.ThreeState"
+								[BackColor]="SampleRegionOnSampleLabel?.BackColor"
+								[Enabled]="SampleRegionOnSampleLabel?.Enabled" [Font]="SampleRegionOnSampleLabel?.Font"
+								[ForeColor]="SampleRegionOnSampleLabel?.ForeColor"
+								[IsTitleLeft]="SampleRegionOnSampleLabel?.IsTitleLeft"
+								[Margin]="SampleRegionOnSampleLabel?.Margin"
+								[ReadOnly]="SampleRegionOnSampleLabel?.ReadOnly"
+								[TabIndex]="SampleRegionOnSampleLabel?.TabIndex"
+								[TitleTopPadding]="SampleRegionOnSampleLabel?.TitleTopPadding"
+								[Title]="SampleRegionOnSampleLabel?.Title"
+								[Value]="safeSurgeryCheckListFormViewModel._SafeSurgeryCheckList.SampleRegionOnSampleLabel"
+								[Visible]="SampleRegionOnSampleLabel?.Visible">
+							</hvl-checkbox>
+						</div>
+					</div>-->
+			</dxi-item>
+		</dx-tab-panel>
+	</div>
+</div>

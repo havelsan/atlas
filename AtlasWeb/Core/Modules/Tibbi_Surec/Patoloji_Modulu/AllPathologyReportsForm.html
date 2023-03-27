@@ -1,0 +1,72 @@
+﻿<form id="AllPathologyReportsForm" class="form-horizontal" role="form" data-tid="A359003">
+        <div class="col-md-12" data-tid="A359004">
+            <dx-data-grid showColumnLines="true" showRowLines="true" showBorders="true" [height]="300" [dataSource]="_PathologySubepisodes" [masterDetail]="{ enabled: true, template: 'detail',autoExpandAll: true }" [filterRow]="{visible: false}" [headerFilter]="{visible: false}" data-tid="A359005">
+
+                 <dxi-column dataField="SubepisodeOpeningDate" [width]="110" caption="Kabul Tarihi" data-tid="A359006"></dxi-column>
+                 <dxi-column dataField="ProtocolNo" [width]="80" caption="Kabul No" data-tid="A359007"></dxi-column>
+                 <dxi-column dataField="RessectionName" [width]="300" caption="Birim" data-tid="A359008"></dxi-column>
+                 <dxi-column dataField="DoctorName" caption="Doktor" data-tid="A359009"></dxi-column>
+                
+
+                 <dxo-paging [pageSize]="20" data-tid="A359010"></dxo-paging>
+
+            
+                <div *dxTemplate="let pathology of 'detail'" data-tid="A359011">
+                    <div class="internal-grid-container" data-tid="A359012">
+
+                            <div class="col-sm-12" data-tid="A359013">
+                                <dx-data-grid [dataSource]="pathology.data.pathologyInfos" [showBorders]="true" [columnAutoWidth]="true" data-tid="A359014">
+                                     <dxi-column dataField="PathologyProtocolNo" caption="Protokol No" data-tid="A359015"></dxi-column>
+                                     <dxi-column dataField="ApproveDate" caption="Onay Tarihi" data-tid="A359016"></dxi-column>
+                                     <dxi-column dataField="ReportDate" caption="Rapor Tarihi" data-tid="A359017"></dxi-column>
+                                     <dxi-column dataField="CurrentStateName" caption="Durumu" data-tid="A359018"></dxi-column>
+                                     <dxi-column dataField="PatDoctorName" caption="Doktor" data-tid="A359019"></dxi-column>
+                                     <dxi-column caption="Sonuç Raporu" cellTemplate="linkCellTemplateReport" data-tid="A359020"></dxi-column>
+                                     <dxi-column caption="Sonuç Ekranı" cellTemplate="linkCellTemplateResult" data-tid="A359021"></dxi-column>
+                                    
+                                    <div *dxTemplate="let row of 'linkCellTemplateReport'" data-tid="A359022">
+                                        <button *ngIf="row.data.IsReported" class="btn btn-xs btn-default" style="margin-top: -12px;margin-bottom: -10px;margin-left: 17px;height: 16px !important; color:rebeccapurple;" (click)="selectPathologyReport(row)" data-tid="A359023"><i class="fa fa-print" title="Sonuç Raporu" data-tid="A359024"></i></button>
+                                    </div>
+                                    <div *dxTemplate="let row of 'linkCellTemplateResult'" data-tid="A359025">
+                                        <button class="btn btn-xs btn-default" style="margin-top: -12px;margin-bottom: -10px;margin-left: 17px;height: 16px !important; color:rebeccapurple;" (click)="selectPathologyResultView(row)" data-tid="A359026"><i class="fa fa-desktop" title="Sonuç Görüntüleme" data-tid="A359027"></i></button>
+                                    </div>
+
+                                </dx-data-grid>
+                            </div>
+                        
+                    </div>
+                </div>
+            </dx-data-grid>
+            
+            
+            
+            
+            
+            
+            <!-- <dx-data-grid 
+                          showColumnLines="true"
+                          height="90%" 
+                          showRowLines="true" 
+                          showBorders="true" 
+                          [filterRow]="{visible: false}" 
+                          [columns]="PathologyColumns" 
+                          [dataSource]="PatientAllRadiologyTests" 
+                          allowColumnReordering="true" 
+                          allowColumnResizing="true" 
+                          [selection]="{mode: 'single',allowSelectAll: false}"
+                          
+                          >
+
+                <div *dxTemplate="let row of 'linkCellTemplateReport'" id="A24698">
+                    <button *ngIf="row.data.isReportShown" class="btn btn-xs btn-default" style="margin-top: -12px;margin-bottom: -10px;margin-left: 17px;height: 16px !important; color:rebeccapurple;" (click)="selectReport(row)" id="A24699"><i class="fa fa-print" title="Sonuç Raporu" i18n-title="@@M22107" id="A24700"></i></button>
+                </div>
+                <div *dxTemplate="let row of 'linkCellTemplateResult'" id="A24701">
+                    <button *ngIf="row.data.isResultShown" class="btn btn-xs btn-default" style="margin-top: -12px;margin-bottom: -10px;margin-left: 17px;height: 16px !important; color:rebeccapurple;" (click)="selectResultView(row)" id="A24702"><i class="fa fa-desktop" title="Sonuç Görüntüleme" i18n-title="@@M22096" id="A24703"></i></button>
+                </div>
+
+
+            </dx-data-grid> -->
+        </div>
+
+
+</form>

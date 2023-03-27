@@ -1,0 +1,217 @@
+﻿
+<form id="ScheduleForm" class="form-horizontal" role="form" data-tid="A362090"></form>
+<div class="col-sm-3" style="height:100%;padding:0" id="A26251" data-tid="A362091">
+    <div class="panel panel-default" style="border:0; box-shadow:none;height:100%;margin:0;" id="A26252" data-tid="A362092">
+        <div class="col-sm-12 gradientPanel" style="height:4%;" id="A26253" data-tid="A362093">
+            <h4 style="color:#fff; font-size:19px;text-align:center;" id="A26254" data-tid="A362094">Randevu Planlama</h4>
+        </div>
+        <div class="panel-body" style="background-color:#f6f6f6;padding-bottom:0;border: groove;border-width: thin;height:98%" id="A26255" data-tid="A362095">
+            <div style="float:left; width:100%;" id="A26256" data-tid="A362096">
+
+                <div class="row" id="A26257" data-tid="A362097">
+                    <br data-tid="A362098" />
+                    <label class="control-label col-sm-12" id="A26258" data-tid="A362099">Kategori</label>
+                </div>
+                <div class="row" id="A26259" data-tid="A362100">
+                    <div class="col-sm-12" id="A26260" data-tid="A362101">
+                        <dx-select-box [dataSource]="scheduleFormViewModel.AppointmentDefinitionList" displayExpr="AppDefNameDisplayText" searchEnabled="true" [(value)]="scheduleFormViewModel._Schedule.AppointmentDefinition" placeholder="Kategori Seçiniz..." (onValueChanged)="appointmentDefinitionSelectedItemChanged()" i18n-placeholder="@@M17351" id="A26261" data-tid="A362102"></dx-select-box>
+                    </div>
+                </div>
+                <div class="row" id="A26262" data-tid="A362103">
+                    <label class="control-label col-sm-12" id="A26263" data-tid="A362104">Alt Randevu Türü</label>
+                </div>
+                <div class="row" id="A26264" data-tid="A362105">
+                    <div class="col-sm-12" id="A26265" data-tid="A362106">
+                        <dx-select-box [dataSource]="scheduleFormViewModel.AppointmentCarrierList" displayExpr="CarrierName" searchEnabled="true" [(value)]="scheduleFormViewModel.AppointmentCarrier" placeholder="Alt Randevu Türü Seçiniz..." (onValueChanged)="appointmentCarrierSelectedItemChanged($event.value)" i18n-placeholder="@@M10755" id="A26266" data-tid="A362107"></dx-select-box>
+                    </div>
+                </div>
+                <div class="row" id="A26267" data-tid="A362108">
+                    <label class="control-label col-sm-12" [class.hidden]="scheduleFormViewModel.subResourceVisible == false" id="A26268" data-tid="A362109">{{scheduleFormViewModel.SubResourceCaption}}</label>
+                </div>
+                <div class="row" id="A26269" data-tid="A362110">
+                    <div class="col-sm-12" id="A26270" data-tid="A362111">
+                        <dx-select-box [(visible)]="scheduleFormViewModel.subResourceVisible" [dataSource]="scheduleFormViewModel.SubResourceList" displayExpr="Name" searchEnabled="true" [(value)]="scheduleFormViewModel._Schedule.Resource" (onValueChanged)="subResourceSelectedItemChanged($event.value)" id="A26271" data-tid="A362112"></dx-select-box>
+                    </div>
+                </div>
+                <div class="row" id="A26272" data-tid="A362113">
+                    <label class="control-label col-sm-12" id="A26273" data-tid="A362114">{{scheduleFormViewModel.MasterResourceCaption}}</label>
+                </div>
+                <div class="row" id="A26274" data-tid="A362115">
+                    <div class="col-sm-12" id="A26275" data-tid="A362116">
+                        <dx-select-box [dataSource]="scheduleFormViewModel.MasterResourceList" displayExpr="Name" searchEnabled="true" [(value)]="scheduleFormViewModel._Schedule.MasterResource" (onValueChanged)="masterResourceSelectedItemChanged($event.value)" id="A26276" data-tid="A362117"></dx-select-box>
+                    </div>
+                </div>
+
+                <div class="row" id="A26277" data-tid="A362118">
+                    <label class="control-label col-sm-12" id="A26278" data-tid="A362119">Aksiyon Tipi</label>
+                </div>
+                <div class="row" id="A26279" data-tid="A362120">
+                    <div class="col-sm-12" id="A26280" data-tid="A362121">
+                        <dx-select-box [dataSource]="scheduleFormViewModel.MHRSActionList" displayExpr="ActionName" searchEnabled="true" [(value)]="scheduleFormViewModel._Schedule.MHRSActionTypeDefinition" placeholder="Aksiyon Tipi Seçiniz..." (onValueChanged)="MHRSActionTypeDefinitionSelectedItemChanged($event.value)" i18n-placeholder="@@M10641" id="A26281" data-tid="A362122"></dx-select-box>
+                    </div>
+                </div>
+
+                <div class="row" id="A26282" data-tid="A362123">
+                    <label class="control-label col-sm-4" id="A26283" data-tid="A362124">Tarih</label>
+                    <label class="control-label col-sm-4" id="A26284" data-tid="A362125">Başlangıç Saati</label>
+                    <label class="control-label col-sm-4" id="A26285" data-tid="A362126">Bitiş Saati</label>
+                </div>
+                <div class="row" id="A26286" data-tid="A362127">
+                    <div class="col-sm-4" id="A26287" data-tid="A362128">
+                        <dx-date-box [(value)]="scheduleFormViewModel._Schedule.ScheduleDate" displayFormat="dd/MM/yyyy" type="date" (onValueChanged)="onScheduleDateChanged($event)" id="A26288" data-tid="A362129"></dx-date-box>
+                    </div>
+                    <div class="col-sm-4" id="A26289" data-tid="A362130">
+                        <dx-date-box [(value)]="scheduleFormViewModel._Schedule.StartTime" displayFormat="HH:mm" type="time" id="A26290" data-tid="A362131"></dx-date-box>
+                    </div>
+                    <div class="col-sm-4" id="A26291" data-tid="A362132">
+                        <dx-date-box [(value)]="scheduleFormViewModel._Schedule.EndTime" displayFormat="HH:mm" type="time" id="A26292" data-tid="A362133"></dx-date-box>
+                    </div>
+                </div>
+
+                <br id="A26681" data-tid="A362134" />
+                <div *ngIf="scheduleFormViewModel.showScheduleJobRuleGrid" class="row" data-tid="A362135">
+                    <label class="control-label col-sm-12" data-tid="A362136">
+                        Cetvele Özel İş Kuralları
+                    </label>
+                </div>
+                <div *ngIf="scheduleFormViewModel.showScheduleJobRuleGrid" class="row" id="A26684" data-tid="A362137">
+                    <div class="col-sm-12" data-tid="A362138">
+                        <dx-data-grid [dataSource]="scheduleFormViewModel?._Schedule?.ScheduleJobRules" showRowLines="true" showBorders="true" [height]="100" [columns]="scheduleJobRulesColumns" allowColumnReordering="false" allowColumnResizing="false" [selection]="{mode: 'single',allowSelectAll: false}" [editing]="{allowDeleting:true,allowUpdating:true,allowAdding:true, mode: 'cell'}" data-tid="A362139">
+                        </dx-data-grid>
+                    </div>
+                </div>
+
+                <br id="A26293" data-tid="A362140" />
+                <div id="A26294" data-tid="A362141">
+                    <div class="panel panel-default" style="border:thin; box-shadow:none;background-color:inherit;" id="A26295" data-tid="A362142">
+                        <div class="col-sm-12 gradientPanel" style="height: 25px;padding-top: inherit;" id="A26296" data-tid="A362143">
+                            <h4 style="color:#fff; font-size:12px;font-weight:bold; padding-top:0;" id="A26297" data-tid="A362144">Planlama Tipi</h4>
+                        </div>
+                        <div class="panel-body" style="background-color:#f6f6f6;padding-bottom:0;border: groove;border-width: thin;" id="A26298" data-tid="A362145">
+                            <br data-tid="A362146" />
+                            <div style="float:left; width:100%;" id="A26299" data-tid="A362147">
+                                <div class="row" id="A26300" data-tid="A362148">
+                                    <div class="col-md-8" id="A26301" data-tid="A362149">
+                                        <label class="control-label col-sm-3" id="A26302" data-tid="A362150">Süre(dk.)</label>
+                                        <div class="col-sm-3" id="A26303" data-tid="A362151">
+                                            <dx-text-box [(disabled)]="scheduleFormViewModel.txtDurationDisabled" [(value)]="scheduleFormViewModel._Schedule.Duration" id="A26304" data-tid="A362152"></dx-text-box>
+                                        </div>
+                                        <label class="control-label col-sm-3" id="A26305" data-tid="A362153">Sayı</label>
+                                        <div class="col-sm-3" id="A26306" data-tid="A362154">
+                                            <dx-text-box [(disabled)]="scheduleFormViewModel.txtCountLimitDisabled" [(value)]="scheduleFormViewModel._Schedule.CountLimit" id="A26307" data-tid="A362155"></dx-text-box>
+                                        </div>
+                                    </div>
+                                    <label class="control-label col-sm-4" id="A26308" data-tid="A362156">Randevu Türü</label>
+                                </div>
+                                <div class="row" id="A26309" data-tid="A362157">
+                                    <div class="col-md-7 ScheduleRadioCss" id="A26310" data-tid="A362158">
+                                        <hvl-enum-radio-button-group DataTypeName="ScheduleTypeEnum" [(Value)]="scheduleFormViewModel._Schedule.ScheduleType" (ValueChange)="scheduleTypeChanged()" id="A26311" data-tid="A362159"></hvl-enum-radio-button-group>
+                                    </div>
+
+                                    <div class="col-md-5" id="A26312" data-tid="A362160">
+                                        <dx-list [items]="scheduleFormViewModel.AppointmentTypeList" [(selectedItems)]="scheduleFormViewModel.SelectedAppointmentTypeList" (onSelectionChanged)="appointmentTypeSelectedItemChanged($event)" [showSelectionControls]="true" id="A26313" data-tid="A362161">
+                                        </dx-list>
+                                    </div>
+                                </div>
+
+                                <div class="row" id="A26314" data-tid="A362162">
+                                    <label class="control-label col-sm-12" id="A26315" data-tid="A362163">Not</label>
+                                </div>
+                                <div class="row" id="A26316" data-tid="A362164">
+                                    <div class="col-sm-12" id="A26317" data-tid="A362165">
+                                        <dx-text-box [(value)]="scheduleFormViewModel._Schedule.Notes" id="A26318" data-tid="A362166"></dx-text-box>
+                                    </div>
+                                </div>
+                                <br id="A26319" data-tid="A362167" />
+                            </div>
+                            <br id="A26320" data-tid="A362168" />
+                            <div id="A26321" data-tid="A362169">
+                                <dx-button type="default" icon="fa fa-plus" (onClick)="saveScheduleClick()" [(disabled)]="scheduleFormViewModel.ReadOnly" text="Ekle" i18n-text="@@M13543" id="A26322" data-tid="A362170"></dx-button>
+                                <dx-button type="danger" icon="fa fa-times" (onClick)="deleteScheduleClick()" [(disabled)]="scheduleFormViewModel.ReadOnly" text="Sil" i18n-text="@@M27286" id="A26323" data-tid="A362171"></dx-button>
+                                <dx-check-box [(value)]="scheduleFormViewModel._Schedule.SentToMHRS" [width]="120" [(visible)]="scheduleFormViewModel.SentToMHRSVisible" text="MHRS'ye Bildir" (onValueChanged)="sentToMHRSChanged($event)" i18n-text="@@M27474" id="A26324" data-tid="A362172"></dx-check-box>
+                                <dx-button type="success" icon="fa fa-check" (onClick)="confirmScheduleClick()" [(disabled)]="scheduleFormViewModel.ReadOnly" text="Haftalık Kesinleştirme" i18n-text="@@M15064" id="A26325" data-tid="A362173"></dx-button>
+                                <hvl-enum-combobox #Validation (ValueChange)="onCetvelTipiChanged($event)"
+                                    DataTypeName="CetvelTipiEnum" [Value]="scheduleFormViewModel?.cetvelTipi" [(Visible)]="scheduleFormViewModel.SentToMHRSVisible"
+                                    id="A20168" data-tid="A353624"></hvl-enum-combobox>
+                            </div>
+                            <br id="A26326" data-tid="A362174" />
+                        </div>
+                    </div>
+                    <div class="panel panel-default" style="border:0; box-shadow:none;height:35%;margin:0;padding:0;" id="A26327" data-tid="A362175">
+                        <div class="col-sm-12 gradientPanel" style="height: 25px;padding-top: inherit;" id="A26328" data-tid="A362176">
+                            <h4 style="color:#fff; font-size:14px;font-weight:bold;" id="A26329" data-tid="A362177">Yineleme</h4>
+                        </div>
+                        <div class="panel-body" style="background-color:#f6f6f6;padding-bottom:0;border: groove;border-width: thin;height:89%" id="A26330" data-tid="A362178">
+                            <br data-tid="A362179" />
+                            <div style="float:left; width:100%;" id="A26331" data-tid="A362180">
+                                <div class="panel panel-default" style="border:0; box-shadow:none;" id="A26332" data-tid="A362181">
+                                    <div class="col-sm-12 gradientPanel" style="height: 25px;padding-top: inherit;" id="A26333" data-tid="A362182">
+                                        <h4 style="color:#fff; font-size:12px;font-weight:bold;" id="A26334" data-tid="A362183">Yineleme Aralığı</h4>
+                                    </div>
+                                    <div class="panel-body" style="background-color:#f6f6f6;padding-bottom:0;border: groove;border-width: thin;padding:0;" id="A26335" data-tid="A362184">
+                                        <div class="col-sm-6" id="A26336" data-tid="A362185">
+                                            <label class="control-label" id="A26337" data-tid="A362186">Başlangıç</label>
+                                            <dx-date-box [(value)]="scheduleFormViewModel.recurrenceStartDate" displayFormat="dd/MM/yyyy" type="date" id="A26338" data-tid="A362187"></dx-date-box>
+                                            <div class="col-sm-4" style="padding:0;" id="A26339" data-tid="A362188">
+                                                <dx-check-box [(value)]="scheduleFormViewModel.weekendIncluded" [width]="130" text="Haftasonları Dahil" i18n-text="@@M15069" id="A26340" data-tid="A362189"></dx-check-box>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6" style="padding:0" id="A26341" data-tid="A362190">
+                                            <label class="control-label" id="A26342" data-tid="A362191">Bitiş</label>
+                                            <dx-date-box [(value)]="scheduleFormViewModel.recurrenceEndDate" displayFormat="dd/MM/yyyy" type="date" id="A26343" data-tid="A362192"></dx-date-box>
+                                            <div class="col-sm-4" style="padding:0" id="A26344" data-tid="A362193">
+                                                <dx-check-box [(value)]="scheduleFormViewModel.weeklyPlan" [width]="120" text="Haftalık Plan" i18n-text="@@M15065" id="A26345" data-tid="A362194"></dx-check-box>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="A26346" data-tid="A362195">
+                                    <dx-button icon="fa fa-files-o" type="default" (onClick)="copyRecurrenceClick()" [(disabled)]="scheduleFormViewModel.ReadOnly" text="Diğer Günlere Kopyala" i18n-text="@@M12792" id="A26347" data-tid="A362196"></dx-button>
+                                    <dx-button icon="fa fa-times" type="danger" (onClick)="deleteRecurrenceClick()" [(disabled)]="scheduleFormViewModel.ReadOnly" text="Toplu İptal" i18n-text="@@M23559" id="A26348" data-tid="A362197"></dx-button>
+                                </div>
+                                <br id="A26349" data-tid="A362198" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br id="A26350" data-tid="A362199" />
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+<div class="row col-sm-9" style="float:right;height:98%" id="A26351" data-tid="A362200">
+    <dx-scheduler #detailScheduler height="100%" width="100%" [dataSource]="appointmentsData" dateCellTemplate="dateCellTemplate" [showAllDayPanel]="false" [views]="views" currentView="week" [currentDate]="currentDate" [firstDayOfWeek]="1" [startDayHour]="0" [endDayHour]="24" [cellDuration]="60" [crossScrollingEnabled]="true" [(disabled)]="scheduleFormViewModel.ReadOnly" resourceCellTemplate="resourceCellTemplate" appointmentTemplate="appointment-template" appointmentTooltipTemplate="tooltip-template" (onAppointmentUpdating)="onAppointmentUpdating($event)" (onAppointmentClick)="onAppointmentClick($event)" (onCellClick)="onCellClick($event)" (onOptionChanged)="onOptionChanged($event)" (onAppointmentDblClick)="onAppointmentDblClick($event)" (onAppointmentUpdated)="onAppointmentUpdated($event)" (onAppointmentRendered)="onAppointmentRendered($event)" (onAppointmentFormOpening)="onAppointmentFormOpening($event)" id="A26352" data-tid="A362201">
+        <dxo-editing [allowAdding]="scheduleFormViewModel.allowAdding" [allowResizing]="false" [allowDeleting]="scheduleFormViewModel.allowDeleting" [allowDragging]="scheduleFormViewModel.allowDragging" [allowUpdating]="scheduleFormViewModel.allowUpdating" id="A26353" data-tid="A362202"></dxo-editing>
+        <dxi-resource fieldExpr="ownerObjectID" [allowMultiple]="false" [dataSource]="resourcesData" label="{{scheduleFormViewModel.SubResourceCaption}}" style="line-height:20px;font-size: 13px" id="A26354" data-tid="A362203">
+        </dxi-resource>
+        <div *dxTemplate="let data of 'dateCellTemplate'" id="A26355" data-tid="A362204">
+            <div style="font-size: 13px; line-height: 20px" id="A26356" data-tid="A362205">{{['Pzr', 'Pts', 'Sal', 'Çrş', 'Prş', 'Cum', 'Cts'][data.date.getDay()]}}</div>
+            <div style="font-size: 15px; line-height: 15px" id="A26357" data-tid="A362206">{{data.date.getDate()}}</div>
+        </div>
+        <div *dxTemplate="let resource of 'resourceCellTemplate'" id="A26358" data-tid="A362207">
+            <div style="font-size: 13px; line-height: 20px" [style.background-color]="resource.color" id="A26359" data-tid="A362208">{{resource.text}}</div>
+        </div>
+
+        <div *dxTemplate="let givenAppointment of 'appointment-template'" id="A26360" data-tid="A362209">
+            <div style="font-size: 12px; color:#000000;line-height: 20px; white-space: normal; padding-top :5px" id="A26361" data-tid="A362210">{{givenAppointment.appointmentData.text}}</div>
+        </div>
+        <div *dxTemplate="let givenSchedule of 'tooltip-template'" id="A26362" data-tid="A362211">
+            <div id="A26363" data-tid="A362212">
+                {{givenSchedule.appointmentData.text}}
+            </div>
+            <br id="A26364" data-tid="A362213" />
+            <div id="A26365" data-tid="A362214">
+                {{'Planlama Saati: ' +  (givenSchedule.appointmentData.startDate | date:'dd.MM.yyyy HH:mm')}}
+            </div>
+            <br id="A26366" data-tid="A362215" />
+            <dx-button type="danger" icon="fa fa-times" text='Planlamayı Sil' (onClick)='deleteSchedule(givenSchedule.appointmentData)' i18n-text="@@M20392" id="A26367" data-tid="A362216">
+            </dx-button>
+        </div>
+    </dx-scheduler>
+    <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A26368" data-tid="A362217">
+    </dx-load-panel>
+</div>
+

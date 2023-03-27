@@ -1,0 +1,49 @@
+﻿<div style="height:100%" data-tid="A366343">
+    <div class="col-sm-12" data-tid="A366344">
+        <label class="control-label" data-tid="A366345">Tedavi Ünitesi</label>
+        <dx-lookup [dataSource]="updateEquipmentViewModel.TreatmentDiagnosisUnitList" [showPopupTitle]="false" searchEnabled="false" displayExpr="Name" closeOnOutsideClick="true" (onValueChanged)="SessionUnitChanged($event)" placeholder="Tedavi Ünitesini Seçiniz" data-tid="A366346">
+        </dx-lookup>
+    </div>
+    <div class="col-sm-12" data-tid="A366347">
+        <label class="control-label" data-tid="A366348">Cihaz</label>
+        <dx-lookup [dataSource]="updateEquipmentViewModel.TreatmentEquipmentList" [showPopupTitle]="false" searchEnabled="false" displayExpr="Name" closeOnOutsideClick="true" (onValueChanged)="EquipmentChanged($event)" placeholder="Cihaz Seçiniz" data-tid="A366349">
+        </dx-lookup>
+    </div>
+    <div class="col-sm-12" data-tid="A366350">
+        <label class="control-label" data-tid="A366351">Cihazın Durumu</label>
+        <dx-lookup [dataSource]="_equipmentStatusDataSource" [(value)]="updateEquipmentViewModel.SelectedEquipmentStatus" [showPopupTitle]="false" searchEnabled="false" displayExpr="Name" valueExpr="ObjectID" closeOnOutsideClick="true" placeholder="Cihaz Durumunu Seçiniz" data-tid="A366352">
+        </dx-lookup>
+    </div>
+    <label class="control-label col-sm-12" data-tid="A366353">Randevuları Aktar</label>
+    <div class="col-sm-6" data-tid="A366354">
+
+        <dx-number-box [min]="1" [showSpinButtons]="true" [(value)]="updateEquipmentViewModel.Count" data-tid="A366355">
+
+        </dx-number-box>
+    </div>
+    <div class="col-sm-6" data-tid="A366356">
+        <dx-lookup [dataSource]="_countTypeDataSource" [showPopupTitle]="false" [(value)]="updateEquipmentViewModel.CountType" searchEnabled="false" displayExpr="Name" valueExpr="ObjectID" closeOnOutsideClick="true" data-tid="A366357">
+        </dx-lookup>
+    </div>
+    <div class="col-sm-6" data-tid="A366358">
+        <dx-check-box [(value)]="updateEquipmentViewModel.TransferAppointmentsCheck" [width]="150" (onValueChanged)="TransferAppointments($event)" text="Randevuları Aktar" data-tid="A366359"></dx-check-box>
+    </div>
+
+    <div class="col-sm-6" data-tid="A366360">
+        <dx-check-box [(value)]="updateEquipmentViewModel.TransferAllCheck" [width]="150" (onValueChanged)="TransferAll($event)" text="Tamamını Aktar" data-tid="A366361"></dx-check-box>
+    </div>
+
+    <div class="col-sm-12" data-tid="A366362">
+        <label class="control-label" data-tid="A366363">Aktarılacak Cihaz</label>
+        <dx-lookup [dataSource]="updateEquipmentViewModel.NotAppointedEquipmentList" [showPopupTitle]="false" searchEnabled="false" displayExpr="Name" closeOnOutsideClick="true" (onValueChanged)="EquipmentToTransferChanged($event)" placeholder="Aktarılacak Cihazı Seçiniz" data-tid="A366364">
+        </dx-lookup>
+    </div>
+    <div class="col-sm-12" data-tid="A366365">
+        <label class="control-label" data-tid="A366366">Açıklama</label>
+        <dx-text-area [height]="90" [(value)]="updateEquipmentViewModel.Description" data-tid="A366367">
+        </dx-text-area>
+    </div>
+    <div class="col-sm-12" style="margin-top:10px;" data-tid="A366368">
+        <dx-button type="success" class="pull-right" text="Kaydet" (onClick)="updateEquipmentSettings()" data-tid="A366369"></dx-button>
+    </div>
+</div>

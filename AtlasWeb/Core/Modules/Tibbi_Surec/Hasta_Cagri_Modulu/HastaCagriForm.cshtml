@@ -1,0 +1,307 @@
+﻿@model TTObjectClasses.Common.QueueItems
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+          "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Atlas Atlas</title>
+
+    <meta name="author" content="Atlas HBYS" />
+    <style type="text/css">
+        .header {
+            height: 119px;
+            width: 100%;
+        }
+
+        .fltLeft {
+            float: left;
+            display: inline;
+        }
+
+        .fltRight {
+            float: right;
+            display: inline;
+        }
+
+        .header img {
+        }
+
+        .sollogo {
+            width: 15%;
+            text-align: center;
+        }
+
+        .saglogo {
+            width: 15%;
+            text-align: center;
+        }
+
+        .kurum {
+            width: 70%;
+            color: #325770;
+            padding: 10px 0px 0px;
+            text-align: center;
+            font-size: 25px;
+            margin-left: 265px;
+        }
+
+            .kurum span {
+                font-size: 30px;
+                font-weight: bold;
+            }
+
+        .doktor {
+            text-align: center;
+            color: #202020;
+            font-size: 55px;
+            font-weight: bold;
+            padding: 0px 0px;
+            margin: 20px 20px;
+        }
+
+        .aktifhasta {
+            background: #00ACF1;
+            border: 1px solid #00ACF1;
+            color: #ffffff;
+            font-size: 75px;
+            text-align: center;
+            padding: 10px 10px;
+            border-radius: 20px;
+            margin: 10px 10px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px #080808;
+        }
+
+        .aktifoncelik {
+            background: #4276a4;
+            border: 1px solid #4276a4;
+            color: #ffffff;
+            min-height: 65px;
+            font-size: 45px;
+            text-align: center;
+            padding: 10px 10px;
+            border-radius: 20px;
+            margin: 10px 10px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px #080808;
+        }
+
+        .siradakihasta {
+            /* url("siradakicizgi_V2.png") Böyle bir dosya yok A.Ş.: 07.06.2017 */
+            background: no-repeat scroll center bottom transparent;
+            height: 50px;
+            color: #083045;
+            padding: 20px 0px;
+            font-size: 50px;
+            font-weight: bold;
+        }
+
+        .siranumarasi {
+            width: 20%;
+            text-align: left;
+        }
+
+        .hastaadi {
+            width: 80%;
+            text-indent: 50px;
+        }
+
+        .bilgilendirme {
+            border: 3px solid #4276a4;
+            border-radius: 20px;
+            font-size: 40px;
+            height: 46px;
+            font-weight: bold;
+            color: #265370;
+            text-align: left;
+            width: 100% - 15;
+            padding: 0px 10px;
+            Margin: 10px 0px;
+        }
+
+        .saatbox {
+            height: 110px;
+            text-align: center;
+            color: #265370;
+            width: 100% - auto;
+            bottom: 60px;
+            position: absolute;
+            padding: 10px 10px;
+        }
+
+        .saatboxinbox {
+            height: 110px;
+            color: #265370;
+            width: 100% - 100;
+        }
+
+        #saat {
+            border: 5px solid #4276a4;
+            font-size: 75px;
+            height: 100%;
+            font-weight: bold;
+            color: #265370;
+            text-align: center;
+            width: 100% - 5;
+            border-radius: 30px;
+        }
+
+        .altlogo {
+            /*border: 1px solid #b9d393;*/
+            font-size: 20px;
+            height: 57px;
+            font-weight: bold;
+            color: #265370;
+            text-align: center;
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
+        }
+
+            .altlogo img {
+                margin: 5px;
+            }
+    </style>
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function (event) {
+            setInterval(function () {
+                location.reload();
+            }, 5000);
+        });
+
+        function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            // add a zero in front of numbers<10
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('saat').innerHTML = h + ":" + m + ":" + s;
+            t = setTimeout(function () {
+                startTime()
+            }, 500);
+        }
+
+        function checkTime(i) {
+            if (i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+
+    </script>
+</head>
+<body onload="startTime()">
+    <div class="header">
+        <div class="sollogo fltLeft">
+            <img src="~/Content/saglik_logo_V2.png" />
+        </div>
+        <div class="saglogo fltRight">
+            <img src="~/Content/saglik_logo_V2.png" />
+        </div>
+        <div class="kurum">
+            <span> @Model.hospitalName</span>
+        </div>
+    </div>
+    <div class="doktor">
+        @Model.doctorName - @Model.polName
+    </div>
+    @if (Model.patient.Count > 0)
+    {
+        bool hasCalledByDoctor = false;
+        for (int i = 0; i < Model.patient.Count; i++)
+        {
+            if (int.Parse(Model?.patient[i]?.Priority) == -1)
+            {
+                hasCalledByDoctor = true;
+                TTObjectClasses.Common.QueuePatient firstPatientOfQueue = Model?.patient[i];
+                Model.patient.RemoveAt(i);
+                Model.patient.Insert(0, firstPatientOfQueue);
+                break;
+            }
+        }
+        if (hasCalledByDoctor)
+        {
+            if (int.Parse(Model?.patient[0]?.OrderNO) == 0)
+            {
+                <div class="aktifhasta flash"><span style="font-size:35px;float: left;color:red">İçeri Giriniz</span>@Model?.patient[0]?.CallTime - <span>@Model?.patient[0]?.patientName</span><span style="font-size: medium;"></span> <span style="font-size: medium;float: right;color:white;font-style:italic">Randevulu Hasta </span></div>
+            }
+            else
+            {
+                <div class="aktifhasta flash"><span style="color:red;font-size:35px;float:left">İçeri Giriniz </span><span>@Model?.patient[0]?.patientName</span><span style="font-size: medium;"></span><span style="font-size: medium;float: right;">@Model?.patient[0]?.DivertedTime </span></div>
+            }
+        }
+        if (hasCalledByDoctor)
+        {
+            for (int k = 1; k < Model.patient.Count; k++)
+            {
+                if (k < 5)
+                {
+                    if (int.Parse(Model?.patient[k]?.OrderNO) == 0)
+                    {
+                        <div class="aktifoncelik flash">@Model?.patient[k]?.CallTime - <span>@Model?.patient[k]?.patientName</span><span style="font-size: medium;"></span> <span style="font-size: medium;float: right;color:white;font-style:italic">Randevulu Hasta </span></div>
+                    }
+                    else
+                    {
+                        <div class="aktifoncelik flash" style="position: relative;"><span style="font-size: x-large;color:white;font-style:italic;position: absolute;bottom: 0;margin-left: 90px;"> @Model?.patient[k]?.PriorityReason</span>@Model?.patient[k]?.OrderNO - <span>@Model?.patient[k]?.patientName</span><span style="font-size: medium;float: right;"> @Model?.patient[k]?.DivertedTime</span></div>
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (int l = 0; l < Model.patient.Count; l++)
+            {
+                if (l < 5)
+                {
+                    if (int.Parse(Model?.patient[l]?.OrderNO) == 0)
+                    {
+                        <div class="aktifoncelik flash">@Model?.patient[l]?.CallTime - <span>@Model?.patient[l]?.patientName</span><span style="font-size: medium;"></span> <span style="font-size: medium;float: right;color:white;font-style:italic">Randevulu Hasta </span></div>
+                    }
+                    else
+                    {
+                        <div class="aktifoncelik flash" style="position: relative;"><span style="font-size: x-large;color:white;font-style:italic; position: absolute;bottom: 0;margin-left: 90px;"> @Model?.patient[l]?.PriorityReason</span>@Model?.patient[l]?.OrderNO - <span>@Model?.patient[l]?.patientName</span><span style="font-size: medium;float: right;"> @Model?.patient[l]?.DivertedTime</span></div>
+                    }
+                }
+
+            }
+        }
+
+
+    }
+
+
+    <div class="saatbox">
+        <div class="saatboxinbox">
+            <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td width="70%" valign="middle" align="center">
+                        <div style="font-size: 30px;">
+
+                            *** POLİKLİNİK ÖNCELİK SIRASI
+                            *** Acil Vakalar
+                            *** Ağır Özürlü Raporu Bulunan Engelliler
+                            *** Hamileler
+                            *** 65 Yas Üstü Yaşlılar
+                            *** Yedi Yaşından Küçük Çocuklar
+                            *** Harp ve Vazife Şehitlerinin Dul ve Yetimleri ile Malul ve Gaziler
+
+                        </div>
+                    </td>
+                    <td width="30%" valign="middle" align="center">
+                        <div id="saat">00:00:00</div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="altlogo">
+        <div valign="middle">Randevu almak için www.mhrs.gov.tr ve 182 Nolu Telefonu Kullanınız.</br></div>
+    </div>
+</body>
+</html>

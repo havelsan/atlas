@@ -1,0 +1,28 @@
+﻿<div class="col-md-12" style="height:100%;overflow-x:hidden;overflow-y:auto;padding-top: 10px;" data-tid="A331707">
+    <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" showIndicator="true" showPane="true" shading="true" [closeOnOutsideClick]="false" [message]="LoadPanelMessage" data-tid="A331708">
+    </dx-load-panel>
+    <div class="row" data-tid="A331709">
+        <div class="col-sm-6" data-tid="A331710">
+            <label class="control-label" style="border:0; box-shadow:none; color:#08c" data-tid="A331711">Doktor</label>
+            <dx-tag-box [items]="DoctorList" searchEnabled="true" displayExpr="Name" valueExpr="Name" (onSelectionChanged)="onDoctorSelectionChanged($event)" multiline="false" showSelectionControls="true" applyValueMode="useButtons" data-tid="A331712">
+            </dx-tag-box>
+        </div>
+        <div class="col-sm-3 pull-right" data-tid="A331713">
+            <dx-button type="btn btn-info" icon="fa fa-bars" class="pull-right" (onClick)="GetDrugReturnActionList()" text="Sorgula" data-tid="A331714"></dx-button>
+        </div>
+    </div>
+    <div class="row" data-tid="A331715">
+        <div class="col-sm-12" style="margin-top:5px;" data-tid="A331716">
+            <div id="grid" data-tid="A331717">
+                <dx-data-grid #grid id="grid-container" [columns]="FavoriteDrugGridColumns" [dataSource]="favoriteDrugList" style="height:100%;" data-tid="A331718">
+                    <dxo-paging [pageSize]="20" data-tid="A331719"></dxo-paging>
+                    <dxo-filter-row [visible]="true" data-tid="A331720"> </dxo-filter-row>
+                    <dxo-export [enabled]="true" fileName="Favori İlaçlar Raporu" [allowExportSelectedData]="false" data-tid="A331721"></dxo-export>
+                </dx-data-grid>
+            </div>
+        </div>
+        <div class="col-sm-12 pull pull-right" style="width:100%;color: black;padding: 15px;font-size: larger;" data-tid="A331722">
+            Toplam Kayıt Sayısı: {{ TotalNumberOfRows }}
+        </div>
+    </div>
+</div>

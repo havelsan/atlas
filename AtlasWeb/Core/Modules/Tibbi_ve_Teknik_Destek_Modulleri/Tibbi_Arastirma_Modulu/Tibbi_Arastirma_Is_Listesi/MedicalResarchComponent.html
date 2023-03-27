@@ -1,0 +1,159 @@
+﻿<div class="col-sm-12" data-tid="A369848">
+    <div class="row" data-tid="A369849">
+        <div class="col-sm-2" data-tid="A369850">
+            <dx-button icon="check" type="success" [visible]="btnsaveResarch" text="Kaydet" (onClick)="saveResarchClick()" data-tid="A369851">
+            </dx-button>
+            <dx-button icon="check" type="success" [visible]="btncomplatedResarch" text="Araştırmayı Bitir" (onClick)="complatedResarchClick()" data-tid="A369852">
+            </dx-button>
+        </div>
+        <div class="col-sm-2" style="margin-left: -7%;" data-tid="A369853">
+            <dx-button icon="check" type="danger" [visible]="btncancelResarch" text="Araştırmayı İptal Et" (onClick)="cancelResarchClick()" data-tid="A369854">
+            </dx-button>
+        </div>
+
+        <div class="col-sm-2" style="margin-left: -7%;" data-tid="A369855">
+         <!--    <dx-button icon="check" type="success"  [visible]="btnupdateResarch" text="Güncelle" (onClick)="updateResarchClick()">
+            </dx-button> -->
+        </div>
+
+        <div class="col-sm-2" style="padding-left: 7%;margin-left: 47%;" data-tid="A369856">
+            <dx-button icon="revert" type="danger" text="Vazgeç" (onClick)="cancelClick()" data-tid="A369857">
+            </dx-button>
+        </div>
+    </div>
+    <div class="row" data-tid="A369858">
+        <h4 class="logisticLabel" style="margin-left:40%;color:#08c;" id="A6146" data-tid="A369859">{{formName}}</h4>
+    </div>
+<br data-tid="A369860" />
+    <div *ngIf="openTermDef" data-tid="A369861">
+        <div class="row" data-tid="A369862">
+            <div class="col-sm-3" data-tid="A369863">
+                <div data-tid="A369864">Araştırma Kodu</div>
+            </div>
+            <div class="col-sm-6" data-tid="A369865">
+                <div data-tid="A369866">Araştırma Adı</div>
+            </div>
+            <div class="col-sm-3" data-tid="A369867">
+                <div data-tid="A369868">Bağlı Olduğu Dönem</div>
+            </div>
+        </div>
+
+        <div class="row" data-tid="A369869">
+            <div class="col-sm-3" data-tid="A369870">
+                <dx-text-box [(readOnly)]="termReadOnly" [(value)]="model.Code" data-tid="A369871"></dx-text-box>
+            </div>
+            <div class="col-sm-6" data-tid="A369872">
+                <dx-text-box [(readOnly)]="formIsReadOnly" [(value)]="model.Name" data-tid="A369873"></dx-text-box>
+            </div>
+            <div class="col-sm-3" data-tid="A369874">
+                <dx-drop-down-box [(readOnly)]="termReadOnly" [(value)]="selectedMedicalResarchTermDefItem.TermName" displayExpr="TermName" valueExpr="ObjectID" [dataSource] (onOpened)="openMedicalResarchDefDropDown()" data-tid="A369875">
+                    <div *dxTemplate="let data of 'content'" data-tid="A369876">
+                        <dx-data-grid [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" [dataSource]="medicalResarchDefDataSource" (onRowClick)="selectMedicalResarchTermDef($event)" [remoteOperations]="true" [customizeColumns]="null" data-tid="A369877">
+                            <dxo-filter-row [visible]="true" data-tid="A369878"></dxo-filter-row>
+                            <dxo-paging [pageSize]="10" data-tid="A369879"></dxo-paging>
+                            <dxo-selection mode="single" data-tid="A369880"></dxo-selection>
+                            <dxi-column caption="Dönem Kodu" dataField="TermCode" width="100" data-tid="A369881"></dxi-column>
+                            <dxi-column caption="Dönem Adı" dataField="TermName" data-tid="A369882"></dxi-column>
+                        </dx-data-grid>
+                    </div>
+                </dx-drop-down-box>
+            </div>
+        </div>
+        <br data-tid="A369883" />
+        <div class="row" data-tid="A369884">
+            <div class="col-sm-3" data-tid="A369885">
+                <div data-tid="A369886">Başlangıç Tarihi</div>
+            </div>
+            <div class="col-sm-3" data-tid="A369887">
+                <div data-tid="A369888">Bitiş Tarihi</div>
+            </div>
+            <div class="col-sm-2" data-tid="A369889">
+                <div data-tid="A369890">Ayrılan Bütçe</div>
+            </div>
+            <div class="col-sm-2" data-tid="A369891">
+                <div data-tid="A369892">Tahmini Hasta Sayısı</div>
+            </div>
+        </div>
+
+        <div class="row" data-tid="A369893">
+            <div class="col-sm-3" data-tid="A369894">
+                <dx-date-box [(value)]="model.StartDate" [disabled]="true" type="date" style="width: 100%;" data-tid="A369895">
+                </dx-date-box>
+            </div>
+            <div class="col-sm-3" data-tid="A369896">
+                <dx-date-box [(value)]="model.EndDate" [disabled]="true" type="date" style="width: 100%;" data-tid="A369897"></dx-date-box>
+            </div>
+            <div class="col-sm-2" data-tid="A369898">
+                <dx-text-box [(readOnly)]="formIsReadOnly" [(value)]="model.BudgetTotalPrice" data-tid="A369899"></dx-text-box>
+            </div>
+            <div class="col-sm-2" data-tid="A369900">
+                <dx-text-box [(readOnly)]="formIsReadOnly" [(value)]="model.PatientCount" data-tid="A369901"></dx-text-box>
+            </div>
+            <div class="col-sm-2" data-tid="A369902">
+                <dx-button icon="fa fa-address-card-o" [(disabled)]="PatientAdIsReadOnly" text="Hasta Kayıt" type="normal" style="border-color: cornflowerblue;width: 100%;" (onClick)="addPatient()" data-tid="A369903">
+              </dx-button>
+            </div>
+        </div>
+        <br data-tid="A369904" />
+        <div class="row" data-tid="A369905">
+            <div class="col-sm-6" style="height: 200px;" data-tid="A369906">
+                <div data-tid="A369907">Araştırma Doktorları </div>
+                <dx-drop-down-box [(readOnly)]="formIsReadOnly" [(value)]="selectedMedicalResarchDoktorItem.Name" displayExpr="Name" valueExpr="ObjectID" [dataSource] (onOpened)="openMedicalResarchDoctorDropDown()" data-tid="A369908">
+                    <div *dxTemplate="let data of 'content'" data-tid="A369909">
+                        <dx-data-grid [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" [dataSource]="medicalResarchDoctorDataSource" (onOpened)="openMedicalResarchDoctorDropDown()" (onRowClick)="selectMedicalResarchDoctor($event)" [remoteOperations]="true" [customizeColumns]="null" height="100%" style="overflow-y: scroll;" data-tid="A369910">
+                            <dxo-filter-row [visible]="true" data-tid="A369911"></dxo-filter-row>
+                            <dxo-paging [pageSize]="10" data-tid="A369912"></dxo-paging>
+                            <dxo-selection mode="single" data-tid="A369913"></dxo-selection>
+                            <dxi-column caption="Doktor Adı" dataField="Name" width="100%" data-tid="A369914"></dxi-column>
+                        </dx-data-grid>
+                    </div>
+                </dx-drop-down-box>
+
+                <dx-data-grid #medicalResarchDoktorDataSourceGrid [(disabled)]="formIsReadOnly" [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" [dataSource]="medicalResarchDoktorDataSourceList" [remoteOperations]="true" [customizeColumns]="null" [columns]="DoctorColumns" style="height: 100%;block-size: inherit;" data-tid="A369915">
+                    <dxo-filter-row [visible]="true" data-tid="A369916"></dxo-filter-row>
+                    <dxo-paging [pageSize]="6" data-tid="A369917"></dxo-paging>
+                    <div *dxTemplate="let cellData of 'deleteCellTemplate'" data-tid="A369918">
+                        <i class="fa fa fa-trash" style="cursor:pointer" (click)="medicalResarchDoktorDataSourceGrid_CellContentClicked(cellData)" data-tid="A369919"></i>
+                    </div>
+                </dx-data-grid>
+            </div>
+            <div class="col-sm-6" style="height: 200px;" data-tid="A369920">
+                <div data-tid="A369921">Araştırma İşlemleri </div>
+                <dx-drop-down-box [(readOnly)]="formIsReadOnly" [(value)]="selectedMedicalResarchProcedureItem.Name" displayExpr="Name" valueExpr="ObjectID" [dataSource] (onOpened)="openMedicalResarchProcedureDropDown()" data-tid="A369922">
+                    <div *dxTemplate="let data of 'content'" data-tid="A369923">
+                        <dx-data-grid [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" [dataSource]="medicalResarchProcedureDataSource" (onOpened)="openMedicalResarchProcedureDropDown()" (onRowClick)="selectMedicalResarchProcedure($event)" [remoteOperations]="true" [customizeColumns]="null" data-tid="A369924">
+                            <dxo-filter-row [visible]="true" data-tid="A369925"></dxo-filter-row>
+                            <dxo-paging [pageSize]="10" data-tid="A369926"></dxo-paging>
+                            <dxo-selection mode="single" data-tid="A369927"></dxo-selection>
+                            <dxi-column caption="Hizmet Kodu" dataField="Code" data-tid="A369928"></dxi-column>
+                            <dxi-column caption="Hizmet Adı" dataField="Name" data-tid="A369929"></dxi-column>
+                        </dx-data-grid>
+                    </div>
+                </dx-drop-down-box>
+                <dx-data-grid #medicalResarchProcedureDataSourceGrid [(disabled)]="formIsReadOnly" [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" [dataSource]="medicalResarchProcedureDataSourceList" [remoteOperations]="true" [customizeColumns]="null" [columns]="ProcedureColumns" height="100%" style="height: 100%;block-size: inherit;" data-tid="A369930">
+                    <dxo-filter-row [visible]="true" data-tid="A369931"></dxo-filter-row>
+                    <dxo-paging [pageSize]="6" data-tid="A369932"></dxo-paging>
+                    <div *dxTemplate="let cellData of 'deleteCellTemplate'" data-tid="A369933">
+                        <i class="fa fa fa-trash" style="cursor:pointer" (click)="medicalResarchProcedureDataSourceGrid_CellContentClicked(cellData)" data-tid="A369934"></i>
+                    </div>
+                </dx-data-grid>
+            </div>
+        </div>
+        <br data-tid="A369935" />
+        <div class="row" style="padding-top: 40px;" data-tid="A369936">
+            <div class="col-sm-12" data-tid="A369937">
+                <div data-tid="A369938">Açıklama</div>
+            </div>
+        </div>
+
+        <div class="row" data-tid="A369939">
+            <div class="col-sm-12" data-tid="A369940">
+                <dx-text-area [(readOnly)]="formIsReadOnly" [height]="90" [maxLength]="maxLength" [(value)]="model.Desciption" data-tid="A369941"></dx-text-area>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<dx-load-panel shadingColor="rgba(0,0,0,0.4)" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A369942">
+</dx-load-panel>

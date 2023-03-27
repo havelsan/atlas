@@ -1,0 +1,243 @@
+﻿<form id="BedSelectionForm" class="form-horizontal" role="form" data-tid="A367234"></form>
+
+<div class="row" id="A28760" data-tid="A367235">
+    <label class="control-label" [class.col-sm-4]="roomBedVisible" [class.col-sm-10]="!roomBedVisible" id="A28761" data-tid="A367236">
+        Hastanın Yattığı Klinik
+    </label>
+    <label *ngIf="roomBedVisible" class="control-label col-sm-3" id="A28762" data-tid="A367237">
+        Oda Grubu
+    </label>
+    <label *ngIf="roomBedVisible" class="control-label col-sm-2" id="A28763" data-tid="A367238">
+        Oda
+    </label>
+    <label *ngIf="roomBedVisible" class="control-label col-sm-1" id="A28764" data-tid="A367239">
+        Yatak
+    </label>
+</div>
+<div class="row" id="A28765" data-tid="A367240">
+    <div [class.col-sm-4]="roomBedVisible" [class.col-sm-10]="!roomBedVisible" id="A28766" data-tid="A367241">
+        <dx-select-box searchEnabled="true" valueExpr="Wardobjectid" displayExpr="Name" [(value)]="selectedPhysicalClinicObjectId" [items]="physicalStateClinicList" (onValueChanged)="PhysicalStateChanged($event)" id="A28767" data-tid="A367242"></dx-select-box>
+    </div>
+    <label *ngIf="roomBedVisible" class="control-label col-sm-3" id="A28768" data-tid="A367243">
+        <dx-text-box [value]="bedSelectionFormViewModel?.selectedRoomGroup?.Name" [disabled]="true" id="A28769" data-tid="A367244">
+        </dx-text-box>
+    </label>
+    <label *ngIf="roomBedVisible" class="control-label col-sm-2" id="A28770" data-tid="A367245">
+        <dx-text-box [value]="bedSelectionFormViewModel?.selectedRoom?.Name" [disabled]="true" id="A28771" data-tid="A367246">
+        </dx-text-box>
+    </label>
+    <label *ngIf="roomBedVisible" class="control-label col-sm-2" id="A28772" data-tid="A367247">
+        <dx-text-box [value]="bedSelectionFormViewModel?.selectedBed?.Name" [disabled]="true" id="A28773" data-tid="A367248">
+        </dx-text-box>
+    </label>
+    <div [class.col-sm-1]="roomBedVisible" [class.col-sm-2]="!roomBedVisible" style="margin-left: -19px; padding-right: 1px" id="A28774" data-tid="A367249">
+        <dx-button rtlEnabled="true" class="dx-button-oval" icon="glyphicon glyphicon-bed" (onClick)="btnOpenBedSelectionPopup_Click()" id="A28775" data-tid="A367250"></dx-button>
+    </div>
+</div>
+<div class="col-sm-12" id="A28776" data-tid="A367251">
+    <dx-popup class="reportStyle" [showTitle]="true" [(visible)]="showBedSelectionPopup" [closeOnOutsideClick]="true" title="{{selectedPhysicalStateClinic?.Name}}" [fullScreen]="true" id="A28777" data-tid="A367252">
+        <div *dxTemplate="let data of 'content'" id="A28778" data-tid="A367253">
+
+            <div class="row" id="A28779" data-tid="A367254">
+                <div class="col-md-2" id="A28780" data-tid="A367255">
+                    <button type="button" icon="fa fa-bed" (click)="SelectBedAutomatically()" id="A28781" data-tid="A367256">Otomatik Yatak Atama</button>
+                </div>
+            </div>
+            <br data-tid="A367257" />
+            <dx-scroll-view #scrollView id="scrollview" [scrollByContent]="true" [scrollByThumb]="true" [showScrollbar]="always" style="height: calc(100% - 36px);" data-tid="A367258">
+                <div class="row" data-tid="A367259">
+                    <div class="col-md-12" *ngIf="showBedSelectionPopup" id="A28785" style="padding-right: 26px;" data-tid="A367260">
+                        <div class="row" *ngFor="let row of rowList;let k=index;" data-tid="A367261">
+                            <div class="col-md-1" *ngFor="let roomProperties of row.tempArray;let i=index;" id="A28786" data-tid="A367262">
+                                <div class="panel panel-primary" style="border-color:#808080;" id="A28787" data-tid="A367263">
+                                    <div id="A28788" style="text-align:center;" data-tid="A367264">{{roomProperties.RoomName}}</div>
+                                    <div *ngFor="let bedProperties of roomProperties.BedPropertiesList;let j=index;" class="table eyeExTable" [ngStyle]="GetStyleForBackground(bedProperties)" id="A28790" data-tid="A367265">
+                                        <div [class.panel-default]="bedProperties.Selected != true" [class.panel-warning]="bedProperties.Selected == true" id="A28791" [ngStyle]="GetRoomStyle(roomProperties, bedProperties)" data-tid="A367266">
+                                            <label style="border-bottom: black;border-bottom-style: groove;border-bottom-width: 2px;" data-tid="A367267"></label>
+                                            <!--<div class="panel-heading text-center" style="padding:5px 0px;" (click)="SelectBed(bedProperties)" id="A28792">{{bedProperties.BedName}}</div>-->
+                                            <!-- <div class="panel-body text-center" style="padding:5px 2px;" id="A28793"> -->
+                                            <i *ngIf="bedProperties.Selected == true" class="fa fa-bed fa-3x" style="color:#449d44" (click)="SelectBed(bedProperties)" data-toggle="tooltip" data-placement="bottom" [title]="GetHint(bedProperties)" id="A28794" data-tid="A367268"></i>
+                                            <i *ngIf="bedProperties.Selected != true && bedProperties.UsedSatus == 0" class="fa fa-bed fa-3x" [ngStyle]="GetBedStyle(bedProperties)" data-toggle="tooltip" data-placement="bottom" [title]="GetHint(bedProperties)" (click)="SelectBed(bedProperties)" id="A28795" data-tid="A367269"></i>
+                                            <i *ngIf="bedProperties.Selected != true && bedProperties.UsedSatus != 0" class="fa fa-bed fa-3x" [ngStyle]="GetBedStyle(bedProperties)" data-toggle="tooltip" data-placement="bottom" [title]="GetHint(bedProperties)" id="A28796" data-tid="A367270"></i>
+                                            <!--  <h6 style="font-size:10px;" id="A28797">{{bedProperties.PatientName}} {{bedProperties.PatientSurname}}</h6> -->
+                                            <i *ngIf="bedProperties.HasFallingRisk == null ? false: bedProperties.HasFallingRisk" data-toggle="tooltip" data-placement="bottom" title="Düşme Riskli Hasta" style="float:left;padding-right: 13px;height:13px; background-image:url('../../Content/YatanHasta/DusmeRisk.png')" i18n-title="@@M13392" id="A28798" data-tid="A367271"></i>
+                                            <i *ngIf="bedProperties.HasAirborneContactIsolation == null ? false: bedProperties.HasAirborneContactIsolation" data-toggle="tooltip" data-placement="bottom" title="Solunum İzolasyonu" style="float:left;height:13px;padding-right: 13px;background-image:url('../../Content/YatanHasta/SolunumIzolasyon.png')" i18n-title="@@M22030" id="A28799" data-tid="A367272"></i>
+                                            <i *ngIf="bedProperties.HasDropletIsolation == null ? false: bedProperties.HasDropletIsolation" data-toggle="tooltip" data-placement="bottom" title="Damlacık İzolasyonu" style="float:left;height:13px;padding-right: 15px;background-image:url('../../Content/YatanHasta/DamlacikIzolasyon.png')" i18n-title="@@M12487" id="A28800" data-tid="A367273"></i>
+                                            <i *ngIf="bedProperties.HasContactIsolation == null ? false: bedProperties.HasContactIsolation" data-toggle="tooltip" data-placement="bottom" title="Temas İzolasyonu" style="float:left;height:13px;padding-right: 13px;background-image:url('../../Content/YatanHasta/TemasIzolasyon.png')" i18n-title="@@M23155" id="A28801" data-tid="A367274"></i>
+                                            <i *ngIf="bedProperties.HasTightContactIsolation == null ? false: bedProperties.HasTightContactIsolation" data-toggle="tooltip" data-placement="bottom" title="Sıkı Temas İzolasyonu" style="float:left;height:11px;padding-right: 20px;background-image:url('../../Content/YatanHasta/SikiTemasIzolasyon.png')" i18n-title="@@M21800" id="A28802" data-tid="A367275"></i>
+                                            <!--</div>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row" data-tid="A367276">
+                    <div [class.col-md-6]="!sizeControl" [class.col-md-5]="sizeControl" data-tid="A367277">
+                        <label data-tid="A367278"></label>
+                    </div>
+                    <div [class.col-md-2]="!sizeControl" [class.col-md-3]="sizeControl" style="margin-top: -33px;" data-tid="A367279">
+                        <dx-pie-chart id="pie" palette="material" [dataSource]="pieDataSource" [customizePoint]="customizePoint" [size]="{heigth:200,width:200}" data-tid="A367280">
+                            <dxi-series argumentField="arg" valueField="val" id="A32178" data-tid="A367281"></dxi-series>
+                        </dx-pie-chart>
+
+
+                    </div>
+                    <div class="col-md-4" style="margin-top: 70px;" data-tid="A367282">
+                        <div class="row" data-tid="A367283">
+                            <div class="col-md-11 panel panel-primary" style="border-color:#808080; margin-bottom:1px !important; " data-tid="A367284">
+                                <div class="row" data-tid="A367285">
+                                    <div class="col-md-1" data-tid="A367286">
+                                        <i class="fa fa-bed fa-2x" style="color:black" data-tid="A367287"></i>
+                                    </div>
+                                    <div class="col-md-10" data-tid="A367288">
+                                        <label style="font-size: 12px;" data-tid="A367289">
+                                            Yatışa Uygun:
+                                            {{bedSelectionFormViewModel.emptyBeds}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" data-tid="A367290">
+                            <div class="col-md-11 panel panel-primary" style="border-color:#808080; margin-bottom:1px !important; " data-tid="A367291">
+                                <div class="row" data-tid="A367292">
+                                    <div class="col-md-1" data-tid="A367293">
+                                        <i class="fa fa-square fa-2x" style="color: #808080" data-tid="A367294"></i>
+                                    </div>
+                                    <div class="col-md-10" data-tid="A367295">
+                                        <label style="font-size: 12px;" data-tid="A367296">
+                                            Temizlenecek +
+                                            Temizleniyor: {{bedSelectionFormViewModel.cleaningStatusBeds}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" data-tid="A367297">
+
+                            <div class="col-md-11 panel panel-primary" style="border-color:#808080; margin-bottom:1px !important; " data-tid="A367298">
+                                <div class="row" data-tid="A367299">
+                                    <div class="col-md-1" data-tid="A367300">
+                                        <i class="fa fa-bed fa-2x" style="color:#2da0e6" data-tid="A367301"></i>
+                                    </div>
+                                    <div class="col-md-10" data-tid="A367302">
+                                        <label style="font-size: 12px;" data-tid="A367303">
+                                            Dolu Yatak:
+                                            {{bedSelectionFormViewModel.usedBedsMan}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" data-tid="A367304">
+
+                            <div class="col-md-11 panel panel-primary" style="border-color:#808080; margin-bottom:1px !important; " data-tid="A367305">
+                                <div class="row" data-tid="A367306">
+                                    <div class="col-md-1" data-tid="A367307">
+                                        <i class="fa fa-bed fa-2x" style="color:#fd6b85" data-tid="A367308"></i>
+                                    </div>
+                                    <div class="col-md-10" data-tid="A367309">
+                                        <label style="font-size: 12px;" data-tid="A367310">
+                                            Dolu Yatak:
+                                            {{bedSelectionFormViewModel.usedBedsWoman}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" data-tid="A367311">
+
+                            <div class="col-md-11 panel panel-primary" style="border-color:#808080; margin-bottom:1px !important; " data-tid="A367312">
+                                <div class="row" data-tid="A367313">
+                                    <div class="col-md-1" data-tid="A367314">
+                                        <i class="fa fa-square fa-2x" style="color: #f7d06a" data-tid="A367315"></i>
+                                    </div>
+                                    <div class="col-md-10" data-tid="A367316">
+                                        <label style="font-size: 12px;" data-tid="A367317">
+                                            İzole Yatak:
+                                            {{bedSelectionFormViewModel.isolatedBed}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" data-tid="A367318">
+
+                            <div class="col-md-11 panel panel-primary" style="border-color:#808080; margin-bottom:1px !important; " data-tid="A367319">
+                                <div class="row" data-tid="A367320">
+                                    <div class="col-md-1" data-tid="A367321"> <i class="fa fa-bed fa-2x" style="color: #daa6ad" data-tid="A367322"></i> </div>
+                                    <div class="col-md-10" data-tid="A367323">
+                                        <label style="font-size: 12px;" data-tid="A367324">
+                                            Rezerve Yatak:
+                                            {{bedSelectionFormViewModel.reservedToUseWoman}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" data-tid="A367325">
+
+                            <div class="col-md-11 panel panel-primary" style="border-color:#808080; margin-bottom:1px !important; " data-tid="A367326">
+                                <div class="row" data-tid="A367327">
+                                    <div class="col-md-1" data-tid="A367328"> <i class="fa fa-bed fa-2x" style="color: #84bacc" data-tid="A367329"></i> </div>
+                                    <div class="col-md-10" data-tid="A367330">
+                                        <label style="font-size: 12px;" data-tid="A367331">
+                                            Rezerve Yatak:
+                                            {{bedSelectionFormViewModel.reservedToUseMan}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" data-tid="A367332">
+
+                            <div class="col-md-12" *ngIf="showBtnSave" data-tid="A367333">
+                                <div class="row" style="padding-top: 35px;" data-tid="A367334">
+                                    <label style="font-size: 13px;" [innerHtml]="selectedBedInfo" data-tid="A367335"></label>
+
+                                </div>
+                                <br data-tid="A367336" />
+                                <div class="row" data-tid="A367337">
+                                    <div class="col-sm-4" data-tid="A367338">
+                                        <dx-button icon="save" type="default" (click)="btnSave_Click()" text="Tamam" data-tid="A367339">
+                                        </dx-button>
+                                    </div>
+                                    <div class="col-sm-4" data-tid="A367340">
+                                        <dx-button icon="fa fa-undo" type="danger" (click)="onBedCancelForMainScreen()" text="Vazgeç" data-tid="A367341">
+                                        </dx-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </dx-scroll-view>
+
+        </div>
+    </dx-popup>
+
+    <dx-popup width="280" height="150" [(visible)]="showInfoMessage" [closeOnOutsideClick]="false" [showCloseButton]="false" title="Yatak Seçimi Onay" data-tid="A367342">
+        <div *dxTemplate="let data of 'content'" data-tid="A367343">
+            <div class="row" data-tid="A367344">
+                <label class="control-label col-md-12" style="width:100%;color: black;font-size: larger;" data-tid="A367345">
+                    {{infoMessage}}
+                </label>
+            </div>
+            <br data-tid="A367346" />
+            <div class="row" data-tid="A367347">
+                <div class="col-md-6" id="A28780" data-tid="A367348">
+                    <dx-button type="success" class="btn btn-default" text="Onayla" (click)="onBedConfirmation($event)" data-tid="A367349">
+                    </dx-button>
+                </div>
+                <div class="col-md-6" id="A28780" data-tid="A367350">
+                    <dx-button type="danger" class="btn btn-default" text="Vazgeç" (click)="onBedCancel()" data-tid="A367351"></dx-button>
+                </div>
+            </div>
+        </div>
+    </dx-popup>
+</div>

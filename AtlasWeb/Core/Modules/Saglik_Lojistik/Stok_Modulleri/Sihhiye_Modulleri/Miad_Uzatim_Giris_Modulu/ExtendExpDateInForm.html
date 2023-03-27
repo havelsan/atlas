@@ -1,0 +1,110 @@
+﻿
+<div class="container-fluid" data-tid="A334933">
+    <h4 class="logisticLabel" style="margin-left:40%;color:#08c;" id="A8737" data-tid="A334934">{{FormCaption}}</h4>
+    <NeStatePanelComponent [OutgoingTransitions]="extendExpDateInFormViewModel?.OutgoingTransitions" [StateReports]="extendExpDateInFormViewModel?.CurrentStateReports" [ObjectID]="extendExpDateInFormViewModel?._ExtendExpDateIn?.ObjectID" [ObjectDefID]="extendExpDateInFormViewModel?._ExtendExpDateIn?.ObjectDefID" [CurrentStateDefID]="extendExpDateInFormViewModel._ExtendExpDateIn.CurrentStateDefID" [DropStateList]="DropStateList" (onSetState)="stateChange($event)" (onSaveChanges)="onSaveButtonClick($event)" (onCancel)="cancel()" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A334935">
+    </NeStatePanelComponent>
+
+    <form id="ExtendExpDateInForm" class="form-horizontal" role="form" data-tid="A334936"></form>
+    <br id="A8795" data-tid="A334937" />
+    <div class="row" data-tid="A334938">
+        <div class="col-sm-3" id="A8744" data-tid="A334939">
+            <label class="control-label" id="A8745" data-tid="A334940">
+                İşlem No
+            </label>
+            <hvl-text-box #Validation (TextChange)="onStockActionIDChanged($event)" [BackColor]="StockActionID?.BackColor" [CharacterCasing]="StockActionID?.CharacterCasing" [Enabled]="StockActionID?.Enabled" [Font]="StockActionID?.Font" [ForeColor]="StockActionID?.ForeColor" [height]="StockActionID?.Height" [InputFormat]="StockActionID?.InputFormat" [InputTurkishCharacter]="StockActionID?.InputTurkishCharacter" [IsNonNumeric]="StockActionID?.IsNonNumeric" [MultiLine]="StockActionID?.Multiline" [ReadOnly]="StockActionID?.ReadOnly" [Required]="StockActionID?.Required" [TabIndex]="StockActionID?.TabIndex" [TextAlign]="StockActionID?.TextAlign" [Text]="extendExpDateInFormViewModel?._ExtendExpDateIn?.StockActionID" [Visible]="StockActionID?.Visible" id="A8746" data-tid="A334941"></hvl-text-box>
+        </div>
+        <div class="col-sm-3" id="A8747" data-tid="A334942">
+            <label class="control-label" id="A8748" data-tid="A334943">
+                İşlem Tarihi
+            </label>
+            <hvl-date-picker #Validation (ValueChange)="onTransactionDateChanged($event)" [BackColor]="TransactionDate?.BackColor" [CustomFormat]="TransactionDate?.CustomFormat" [Enabled]="TransactionDate?.Enabled" [Font]="TransactionDate?.Font" [ForeColor]="TransactionDate?.ForeColor" [Format]="TransactionDate?.Format" [Max]="TransactionDate?.Max" [Min]="TransactionDate?.Min" [ReadOnly]="TransactionDate?.ReadOnly" [Required]="TransactionDate?.Required" [TabIndex]="TransactionDate?.TabIndex" [Value]="extendExpDateInFormViewModel?._ExtendExpDateIn?.TransactionDate" [Visible]="TransactionDate?.Visible" id="A8749" data-tid="A334944"></hvl-date-picker>
+        </div>
+        <div class="col-sm-3" id="A8750" data-tid="A334945">
+            <label class="control-label" id="A8751" data-tid="A334946">
+                Ana Depo
+            </label>
+            <hvl-list-box #Validation (SelectedObjectChange)="onStoreChanged($event)" [AutoCompleteDialogHeight]="Store?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="Store?.AutoCompleteDialogWidth" [AutoCompleteMode]="Store?.AutoCompleteMode" [BackColor]="Store?.BackColor" [DefinitionName]="Store?.ListDefName" [DisplayExpressionsCache]="extendExpDateInFormViewModel?.ListDefDisplayExpressions" [Enabled]="Store?.Enabled" [Font]="Store?.Font" [ForeColor]="Store?.ForeColor" [ListFilterExpression]="Store?.ListFilterExpression" [MinSearchLength]="Store?.MinSearchLength" [PopupDialogFieldConfig]="Store?.PopupDialogFieldConfig" [PopupDialogGridColumns]="Store?.PopupDialogGridColumns" [PopupDialogHeight]="Store?.PopupDialogHeight" [PopupDialogTitle]="Store?.PopupDialogTitle" [PopupDialogWidth]="Store?.PopupDialogWidth" [ReadOnly]="Store?.ReadOnly" [SearchMode]="Store?.SearchMode" [SearchTimeout]="Store?.SearchTimeout" [SelectedObject]="extendExpDateInFormViewModel?._ExtendExpDateIn?.Store" [TabIndex]="Store?.TabIndex" [Visible]="Store?.Visible" [width]="Store?.Width" id="A8752" data-tid="A334947"></hvl-list-box>
+        </div>
+        <div class="col-sm-3" id="A8764" data-tid="A334948">
+            <label class="control-label" id="A8765" data-tid="A334949">
+                Firma
+            </label>
+            <hvl-list-box #Validation (SelectedObjectChange)="onSupplierChanged($event)" [AutoCompleteDialogHeight]="Supplier?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="Supplier?.AutoCompleteDialogWidth" [AutoCompleteMode]="Supplier?.AutoCompleteMode" [BackColor]="Supplier?.BackColor" [DefinitionName]="Supplier?.ListDefName" [DisplayExpressionsCache]="extendExpDateInFormViewModel?.ListDefDisplayExpressions" [Enabled]="Supplier?.Enabled" [Font]="Supplier?.Font" [ForeColor]="Supplier?.ForeColor" [ListFilterExpression]="Supplier?.ListFilterExpression" [MinSearchLength]="Supplier?.MinSearchLength" [PopupDialogFieldConfig]="Supplier?.PopupDialogFieldConfig" [PopupDialogGridColumns]="Supplier?.PopupDialogGridColumns" [PopupDialogHeight]="Supplier?.PopupDialogHeight" [PopupDialogTitle]="Supplier?.PopupDialogTitle" [PopupDialogWidth]="Supplier?.PopupDialogWidth" [ReadOnly]="Supplier?.ReadOnly" [SearchMode]="Supplier?.SearchMode" [SearchTimeout]="Supplier?.SearchTimeout" [SelectedObject]="extendExpDateInFormViewModel?._ExtendExpDateIn?.Supplier" [TabIndex]="Supplier?.TabIndex" [Visible]="Supplier?.Visible" [width]="Supplier?.Width" id="A8766" data-tid="A334950"></hvl-list-box>
+        </div>
+    </div>
+    <br id="A8795" data-tid="A334951" />
+    <div class="row" data-tid="A334952">
+        <!--<div class="col-sm-3" id="A8755">
+            <label class="control-label "  id="A8756">
+                Giriş Türü
+            </label>
+            <hvl-enum-combobox #Validation (ValueChange)="onMKYS_ETedarikTuruChanged($event)" [BackColor]="MKYS_ETedarikTuru?.BackColor"
+                               [DataTypeName]="MKYS_ETedarikTuru?.DataTypeName" [Enabled]="MKYS_ETedarikTuru?.Enabled" [Font]="MKYS_ETedarikTuru?.Font"
+                               [ForeColor]="MKYS_ETedarikTuru?.ForeColor" [IncludeOnly]="MKYS_ETedarikTuru?.IncludeOnly" [ReadOnly]="MKYS_ETedarikTuru?.ReadOnly"
+                               [ShowClearButton]="MKYS_ETedarikTuru?.ShowClearButton" [SortBy]="MKYS_ETedarikTuru?.SortBy" [TabIndex]="MKYS_ETedarikTuru?.TabIndex"
+                               [Value]="extendExpDateInFormViewModel?._ExtendExpDateIn?.MKYS_ETedarikTuru" [Visible]="MKYS_ETedarikTuru?.Visible"
+                               id="A8757"></hvl-enum-combobox>
+        </div>-->
+        <div class="col-sm-3" id="A8761" data-tid="A334953">
+            <label class="control-label " id="A8762" data-tid="A334954">
+                Bütçe Türü
+            </label>
+            <hvl-list-box #Validation (SelectedObjectChange)="onBudgetTypeDefinitionChanged($event)" [AutoCompleteDialogHeight]="BudgetTypeDefinition?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="BudgetTypeDefinition?.AutoCompleteDialogWidth" [AutoCompleteMode]="BudgetTypeDefinition?.AutoCompleteMode" [BackColor]="BudgetTypeDefinition?.BackColor" [DefinitionName]="BudgetTypeDefinition?.ListDefName" [DisplayExpressionsCache]="extendExpDateInFormViewModel?.ListDefDisplayExpressions" [Enabled]="BudgetTypeDefinition?.Enabled" [Font]="BudgetTypeDefinition?.Font" [ForeColor]="BudgetTypeDefinition?.ForeColor" [ListFilterExpression]="BudgetTypeDefinition?.ListFilterExpression" [MinSearchLength]="BudgetTypeDefinition?.MinSearchLength" [PopupDialogFieldConfig]="BudgetTypeDefinition?.PopupDialogFieldConfig" [PopupDialogGridColumns]="BudgetTypeDefinition?.PopupDialogGridColumns" [PopupDialogHeight]="BudgetTypeDefinition?.PopupDialogHeight" [PopupDialogTitle]="BudgetTypeDefinition?.PopupDialogTitle" [PopupDialogWidth]="BudgetTypeDefinition?.PopupDialogWidth" [ReadOnly]="BudgetTypeDefinition?.ReadOnly" [SearchMode]="BudgetTypeDefinition?.SearchMode" [SearchTimeout]="BudgetTypeDefinition?.SearchTimeout" [SelectedObject]="extendExpDateInFormViewModel?._ExtendExpDateIn?.BudgetTypeDefinition" [TabIndex]="BudgetTypeDefinition?.TabIndex" [Visible]="BudgetTypeDefinition?.Visible" [width]="BudgetTypeDefinition?.Width" id="A8763" data-tid="A334955"></hvl-list-box>
+        </div>
+        <div class="col-sm-2" data-tid="A334956">
+            <label class="control-label" data-tid="A334957">
+                Çıkış İşlem ID
+            </label>
+            <hvl-text-box #Validation (TextChange)="onExtendExpDateOutIDChanged($event)" [BackColor]="ExtendExpDateOutID?.BackColor" [CharacterCasing]="ExtendExpDateOutID?.CharacterCasing" [Enabled]="ExtendExpDateOutID?.Enabled" [Font]="ExtendExpDateOutID?.Font" [ForeColor]="ExtendExpDateOutID?.ForeColor" [height]="ExtendExpDateOutID?.Height" [InputFormat]="ExtendExpDateOutID?.InputFormat" [InputTurkishCharacter]="ExtendExpDateOutID?.InputTurkishCharacter" [IsNonNumeric]="ExtendExpDateOutID?.IsNonNumeric" [MultiLine]="ExtendExpDateOutID?.Multiline" [ReadOnly]="ExtendExpDateOutID?.ReadOnly" [Required]="ExtendExpDateOutID?.Required" [TabIndex]="ExtendExpDateOutID?.TabIndex" [TextAlign]="ExtendExpDateOutID?.TextAlign" [Text]="_ExtendExpDateIn.ExtendExpDateOutID" [Visible]="ExtendExpDateOutID?.Visible" data-tid="A334958">
+            </hvl-text-box>
+        </div>
+        <div class="col-sm-2" data-tid="A334959">
+            <dx-button type="btn btn-default" text="Çıkış dan Getir" (onClick)="getOuts()" data-tid="A334960"></dx-button>
+        </div>
+    </div>
+    <br id="A8795" data-tid="A334961" />
+    <div class="row" id="A8796" data-tid="A334962">
+        <div class="col-sm-3" id="A8797" data-tid="A334963">
+            <label class="control-label" id="A8798" data-tid="A334964">
+                Teslim Alan
+            </label>
+            <hvl-button-textbox (Clicked)="TTTeslimAlanButon_Click()" (TextChange)="onMKYS_TeslimAlanChanged($event)" [(Text)]="MKYS_TeslimAlan.Text" [BackColor]="MKYS_TeslimAlan?.BackColor" [ButtonEnabled]="MKYS_TeslimAlan?.ButtonEnabled" [ButtonOnRight]="MKYS_TeslimAlan?.ButtonOnRight" [ButtonText]="MKYS_TeslimAlan.ButtonText" [ButtonWidth]="MKYS_TeslimAlan?.ButtonWidth" [Enabled]="MKYS_TeslimAlan?.Enabled" [Font]="MKYS_TeslimAlan?.Font" [ForeColor]="MKYS_TeslimAlan?.ForeColor" [Icon]="MKYS_TeslimAlan?.Icon" [placeHolder]="MKYS_TeslimAlan?.placeHolder" [ReadOnly]="MKYS_TeslimAlan?.ReadOnly" [ShowClearButton]="MKYS_TeslimAlan?.ShowClearButton" [TabIndex]="MKYS_TeslimAlan?.TabIndex" [Type]="MKYS_TeslimAlan?.Type" [Visible]="MKYS_TeslimAlan?.Visible" id="A8799" data-tid="A334965"></hvl-button-textbox>
+        </div>
+
+        <div class="col-sm-3" id="A8800" data-tid="A334966">
+            <label class="control-label" id="A8801" data-tid="A334967">
+                Teslim Eden
+            </label>
+            <hvl-button-textbox (Clicked)="TTTeslimEdenButon_Click()" (TextChange)="onMKYS_TeslimEdenChanged($event)" [(Text)]="MKYS_TeslimEden.Text" [BackColor]="MKYS_TeslimEden?.BackColor" [ButtonEnabled]="MKYS_TeslimEden?.ButtonEnabled" [ButtonOnRight]="MKYS_TeslimEden?.ButtonOnRight" [ButtonText]="MKYS_TeslimEden.ButtonText" [ButtonWidth]="MKYS_TeslimEden?.ButtonWidth" [Enabled]="MKYS_TeslimEden?.Enabled" [Font]="MKYS_TeslimEden?.Font" [ForeColor]="MKYS_TeslimEden?.ForeColor" [Icon]="MKYS_TeslimEden?.Icon" [placeHolder]="MKYS_TeslimEden?.placeHolder" [ReadOnly]="MKYS_TeslimEden?.ReadOnly" [ShowClearButton]="MKYS_TeslimEden?.ShowClearButton" [TabIndex]="MKYS_TeslimEden?.TabIndex" [Type]="MKYS_TeslimEden?.Type" [Visible]="MKYS_TeslimEden?.Visible" id="A8802" data-tid="A334968"></hvl-button-textbox>
+        </div>
+    </div>
+    <br id="A8795" data-tid="A334969" />
+    <div class="row" data-tid="A334970">
+        <div class="col-sm-12" data-tid="A334971">
+            <label class="control-label " id="A8806" data-tid="A334972">
+                Açıklama
+            </label>
+            <hvl-text-box #Validation (TextChange)="onDescriptionChanged($event)" [BackColor]="Description?.BackColor" [CharacterCasing]="Description?.CharacterCasing" [Enabled]="Description?.Enabled" [Font]="Description?.Font" [ForeColor]="Description?.ForeColor" [height]="Description?.Height" [InputFormat]="Description?.InputFormat" [InputTurkishCharacter]="Description?.InputTurkishCharacter" [IsNonNumeric]="Description?.IsNonNumeric" [MultiLine]="Description?.Multiline" [ReadOnly]="Description?.ReadOnly" [Required]="Description?.Required" [TabIndex]="Description?.TabIndex" [TextAlign]="Description?.TextAlign" [Text]="_ExtendExpDateIn.Description" [Visible]="Description?.Visible" data-tid="A334973">
+            </hvl-text-box>
+        </div>
+    </div>
+    <br id="A8795" data-tid="A334974" />
+    <div class="row" data-tid="A334975">
+        <dx-tab-panel [selectedIndex]="0" data-tid="A334976">
+            <dxi-item class="tabpanel-item" title="Taşınır Malın" data-tid="A334977">
+                <div class="row" data-tid="A334978">
+                    <div class="col-sm-12" data-tid="A334979">
+                        <div class="col-sm-12" data-tid="A334980">
+                            <!--(onRowUpdating)="materialGridRowUpdating($event)" (onEditingStart)="onEditingStartMaterialGrid($event)"-->
+                            <dx-data-grid #materialGrid showColumnLines="true" showRowLines="true" rowAlternationEnabled="true" showBorders="true" height="500px" [dataSource]="extendExpDateInFormViewModel?._ExtendExpDateIn?.ExtendExpDateInDetails" [columns]="ExtendExpDateInDetailsColumns" [scrolling]="{mode:'infinite'}" selection="{mode: 'single'}" (onRowUpdated)="onMaterialGridRowUpdated($event)" (onRowRemoving)="onMaterialGridRowRemoving($event)" (onRowRemoved)="onMaterialGridRowRemoved($event)" data-tid="A334981">
+                                <dxo-editing mode="cell" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="false" data-tid="A334982">
+                                </dxo-editing>
+                            </dx-data-grid>
+                        </div>
+                    </div>
+                </div>
+            </dxi-item>
+        </dx-tab-panel>
+    </div>
+</div>
+

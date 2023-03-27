@@ -1,0 +1,284 @@
+﻿<dx-tab-panel #tabPanel [height]="850" [selectedIndex]="0" [animationEnabled]="true" data-tid="A372847">
+    <dxi-item class="tabpanel-item" title="Sarf Bildirimleri" data-tid="A372848">
+        <div class="row" style="padding-top: 1%;padding-left: 2%;" data-tid="A372849">
+            <dx-radio-group [items]="priorities" [(value)]="priority" layout="horizontal"
+                (onValueChanged)="onValueChangedCombo($event)" data-tid="A372850"> </dx-radio-group>
+        </div>
+        <div class="row" style="padding-top: 1%;padding-left: 2%;" data-tid="A372851">
+            <div class="col-sm-1" data-tid="A372852">
+                Karekod:
+            </div>
+            <div class="col-sm-9" data-tid="A372853">
+                <dx-text-box placeholder="Karekod..." [(value)]="karekodSarfValue" [(disabled)]="IsDisablePTSReadQRCode"
+                    valueChangeEvent="keyup" (keypress)="DrugBarcode_KeyPress($event)" data-tid="A372854"></dx-text-box>
+            </div>
+        </div>
+        <div class="row" style="padding-top: 1%;padding-left: 2%;" data-tid="A372855">
+            <div class="col-sm-2" style="font-size: 20px;" data-tid="A372856">İlaç Bilgileri</div>
+        </div>
+        <div class="row" style="padding-top: 1%;padding-left: 2%;" data-tid="A372857">
+
+            <div class="col-sm-4" data-tid="A372858">
+                <dx-select-box [(disabled)]="IsDisablePTSUnReadQRCode" [dataSource]="drugsListData"
+                    displayExpr="drugNameBarcode" [searchEnabled]="true" valueExpr="objectID"
+                    (onItemClick)="selectDrug($event)" data-tid="A372859">
+                </dx-select-box>
+            </div>
+            <div class="col-sm-2" data-tid="A372860">
+                <dx-text-box placeholder="Lot No" [(value)]="ITSDrugLotNO" [(disabled)]="IsDisablePTSUnReadQRCode"
+                    data-tid="A372861">
+                </dx-text-box>
+            </div>
+            <div class="col-sm-2" data-tid="A372862">
+                <dx-text-box placeholder="Seri No" [(value)]="ITSDrugSerialNo" [(disabled)]="IsDisablePTSUnReadQRCode"
+                    data-tid="A372863">
+                </dx-text-box>
+            </div>
+            <div class="col-sm-2" data-tid="A372864">
+                <dx-button type="success" icon="fa fa-clone" text="Sarf Et" (onClick)="onSarfEtButonClick()"
+                    style="min-width: 164px;" data-tid="A372865">
+                </dx-button>
+            </div>
+        </div>
+    </dxi-item>
+
+    <dxi-item class="tabpanel-item" title="Sarf Bildirimleri İptal" data-tid="A372866">
+        <div class="row" style="padding-top: 1%;padding-left: 2%;" data-tid="A372867">
+            <dx-radio-group [items]="priorities" [(value)]="priority" layout="horizontal"
+                (onValueChanged)="onValueChangedCombo($event)" data-tid="A372868"> </dx-radio-group>
+        </div>
+        <div class="row" style="padding-top: 1%;padding-left: 2%;" data-tid="A372869">
+            <div class="col-sm-1" data-tid="A372870">
+                Karekod:
+            </div>
+            <div class="col-sm-10" data-tid="A372871">
+                <dx-text-box placeholder="Karekod..." [(value)]="karekodSarfIptalValue" valueChangeEvent="keyup"
+                    (keypress)="DrugBarcodeCancelked_KeyPress($event)" [(disabled)]="IsDisablePTSReadQRCode"
+                    data-tid="A372872">
+                </dx-text-box>
+            </div>
+
+        </div>
+        <div class="row" style="padding-top: 1%;padding-left: 2%;" data-tid="A372873">
+            <div class="col-sm-2" style="font-size: 20px;" data-tid="A372874">İlaç Bilgileri</div>
+        </div>
+        <div class="row" style="padding-top: 1%;padding-left: 2%;" data-tid="A372875">
+
+            <div class="col-sm-3" data-tid="A372876">
+                <dx-select-box [(disabled)]="IsDisablePTSUnReadQRCode" [dataSource]="drugsListData"
+                    displayExpr="drugNameBarcode" [searchEnabled]="true" valueExpr="objectID"
+                    (onItemClick)="selectDrugCancel($event)" data-tid="A372877">
+                </dx-select-box>
+            </div>
+
+            <div class="col-sm-1" data-tid="A372878">
+                <dx-date-box [(value)]="startDate" [(disabled)]="IsDisablePTSUnReadQRCode" type="date"
+                    data-tid="A372879"></dx-date-box>
+            </div>
+            <div class="col-sm-1" data-tid="A372880">
+                <dx-date-box [(value)]="endDate" [(disabled)]="IsDisablePTSUnReadQRCode" type="date" data-tid="A372881">
+                </dx-date-box>
+            </div>
+            <div class="col-sm-2" data-tid="A372882">
+                <dx-text-box placeholder="Lot No" [(value)]="ITSDrugLotNOCancel" [(disabled)]="IsDisablePTSUnReadQRCode"
+                    data-tid="A372883"></dx-text-box>
+            </div>
+            <div class="col-sm-2" data-tid="A372884">
+                <dx-text-box placeholder="Seri No" [(value)]="ITSDrugSerialNoCancel"
+                    [(disabled)]="IsDisablePTSUnReadQRCode" data-tid="A372885"></dx-text-box>
+            </div>
+            <div class="col-sm-1" data-tid="A372886">
+                <dx-button type="success" icon="fa fa-clone" text="Listele" (onClick)="getDrugList()"
+                    style="min-width: 150px;" data-tid="A372887">
+                </dx-button>
+            </div>
+            <div class="col-sm-1" data-tid="A372888">
+                <dx-button type="danger" icon="fa fa-trash-o" text="Sarf İptal" (onClick)="onSarfIptalButonClick()"
+                    style="min-width: 150px;" data-tid="A372889">
+                </dx-button>
+            </div>
+        </div>
+        <div class="row" style="padding-top: 1%;padding-left: 2%;" data-tid="A372890">
+            <dx-data-grid [columns]="SarfIptalDVOListColumn" style="width:93%;height:100%" [dataSource]="SarfIptalDVOs"
+                [filterRow]="{visible: true}" [paging]="{pageSize:20}" [(selectedRowKeys)]="selectedRows"
+                [showBorders]="true" data-tid="A372891">
+                <dxo-selection mode="multiple" data-tid="A372892"> </dxo-selection>
+                <dxo-editing mode="form" [allowUpdating]="false" data-tid="A372893"> </dxo-editing>
+            </dx-data-grid>
+        </div>
+    </dxi-item>
+
+    <dxi-item class="tabpanel-item" title="ITS Sarf Bildirim Güncelleme" data-tid="A372894">
+        <div class="row" style="padding-top: 1%;padding-left: 2%;" data-tid="A372895">
+            <div class="col-sm-2">
+                <dx-date-box [(value)]="listStartDate" type="date"></dx-date-box>
+            </div>
+            <div class="col-sm-2">
+                <dx-date-box [(value)]="listEndDate" type="date"></dx-date-box>
+            </div>
+            <div class="col-sm-4" data-tid="A372858">
+                <dx-select-box [dataSource]="updateDrugsListData" [(value)]="selectedUpdateDrugID"
+                    displayExpr="drugNameBarcode" [searchEnabled]="true" valueExpr="objectID" [showClearButton]="true">
+                </dx-select-box>
+            </div>
+            <div class="col-sm-2">
+                <dx-button text="Listele" (onClick)="onITSSerialNo()" style="min-width: 150px;" data-tid="A372896">
+                </dx-button>
+            </div>
+            <div class="col-sm-2">
+                <dx-button text="Kaydet" (onClick)="saveITSSerialNo()" style="min-width: 150px;" data-tid="A372897">
+                </dx-button>
+            </div>
+
+        </div>
+
+        <div class="row" style="padding-top: 1%;padding-left: 2%;" data-tid="A372898">
+            <dx-data-grid [columns]="ITSNotSerialNoListColumn" style="width:93%;height:100%"
+                [dataSource]="ITSNotSerialNoList" [filterRow]="{visible: true}" [paging]="{pageSize:20}"
+                [(selectedRowKeys)]="selectedITSRows" [showBorders]="true" data-tid="A372899">
+                <dxo-selection mode="multiple" data-tid="A372900"> </dxo-selection>
+                <dxo-editing mode="cell" [allowUpdating]="true" data-tid="A372901"> </dxo-editing>
+            </dx-data-grid>
+        </div>
+    </dxi-item>
+
+    <dxi-item class="tabpanel-item" title="Sarf Bildirimleri Durum Görüntüleme"
+        style="height: 100% !important;overflow-y: scroll;" data-tid="A372902">
+        <div class="row" style="padding-top: 1%;padding-left: 2%;" data-tid="A372903">
+            <div class="col-sm-2" data-tid="A372904">
+                <dx-button type="success" icon="fa fa-clone" text="Tüm Detayları Listele"
+                    (onClick)="getAllITSTransactionDrugList()" style="min-width: 150px;" data-tid="A372905">
+                </dx-button>
+            </div>
+        </div>
+        <div class="row" style="padding-top: 1%;padding-left: 2%;" data-tid="A372906">
+            <dx-data-grid id="gridContainer" [dataSource]="AllItsDVOList" [filterRow]="{visible: true}"
+                [masterDetail]="{ enabled: true, template: 'detail' }" keyExpr="objectID" [showBorders]="true"
+                data-tid="A372907">
+                <dxi-column dataField="drugName" caption="İlaç Adı" data-tid="A372908"></dxi-column>
+                <dxi-column dataField="drugBarcode" caption="Barkodu" data-tid="A372909"></dxi-column>
+                <div *dxTemplate="let item of 'detail'" data-tid="A372910">
+                    <dx-data-grid [dataSource]="item.data.detail" [filterRow]="{visible: true}" [showBorders]="true"
+                        [columnAutoWidth]="true" data-tid="A372911">
+                        <dxi-column dataField="serialNo" data-tid="A372912"></dxi-column>
+                        <dxi-column dataField="lotNO" data-tid="A372913"></dxi-column>
+                        <dxi-column dataField="status" data-tid="A372914"></dxi-column>
+                    </dx-data-grid>
+                </div>
+            </dx-data-grid>
+        </div>
+    </dxi-item>
+
+
+    <dxi-item class="tabpanel-item" title="ITS Toplu Sarf Bildirimi" data-tid="A372915">
+        <div class="row" style="padding-top: 1%;padding-left: 2%;" data-tid="A372916">
+            <dx-radio-group [items]="sendChangeItems" [(value)]="sendChangeItem" layout="horizontal"
+                (onValueChanged)="onValueSendChangedCombo($event)" data-tid="A372917"> </dx-radio-group>
+        </div>
+
+        <div class="row" style="padding-top: 1%;padding-left: 2%;" data-tid="A372918">
+            <div class="col-sm-1" *ngIf="!xmlOpen" data-tid="A372919">
+                Giriş İşlem Numarası :
+            </div>
+            <div class="col-sm-2" *ngIf="!xmlOpen" data-tid="A372920">
+                <dx-text-box placeholder="Giriş İşlem Numarası..." [(value)]="stockActionID" valueChangeEvent="keyup"
+                    (keypress)="StockActionID_KeyPress($event)" data-tid="A372921">
+                </dx-text-box>
+            </div>
+            <div class="col-sm-2" *ngIf="!xmlOpen" data-tid="A372922">
+                <dx-button type="success" icon="fa fa-clone" text="ITS Toplu Sarf Bildir"
+                    [(disabled)]="IsITSSendButonDisable" (onClick)="sendToITSClick()" style="min-width: 150px;"
+                    data-tid="A372923">
+                </dx-button>
+            </div>
+
+            <div class="col-sm-1" *ngIf="xmlOpen" data-tid="A372924">
+                Dosyadan Oku :
+            </div>
+            <div class="col-sm-2" *ngIf="xmlOpen" data-tid="A372925">
+                <input type="file" id="filePicker" (change)="readDocumentItSForPackageClick($event)" accept=".xml"
+                    data-tid="A372926" />
+            </div>
+
+        </div>
+        <div class="row" style="padding-top: 1%;padding-left: 1%;padding-right: 1%;" data-tid="A372927">
+            <dx-data-grid id="gridContainer" [dataSource]="SendItsDVOList" [filterRow]="{visible: true}"
+                [groupPanel]="{visible: true}" [filterRow]="{visible: true}" keyExpr="StockTransactionObjectID"
+                [showBorders]="true" data-tid="A372928">
+                <dxi-column dataField="drugName" caption="İlaç Adı" groupIndex="0" sortOrder="asc" data-tid="A372929">
+                </dxi-column>
+                <dxi-column dataField="drugBarcode" caption="Barkodu" groupIndex="1" data-tid="A372930"></dxi-column>
+                <dxi-column dataField="serialNo" caption="Seri Numarası" data-tid="A372931"></dxi-column>
+                <dxi-column dataField="lotNO" caption="Lot Numarası" data-tid="A372932"></dxi-column>
+                <dxi-column dataField="status" caption="Durumu" data-tid="A372933"></dxi-column>
+                <dxo-filter-row [visible]="true" data-tid="A372934"> </dxo-filter-row>
+                <dxo-grouping #expand [autoExpandAll]="true" data-tid="A372935"></dxo-grouping>
+            </dx-data-grid>
+        </div>
+        <div class="col-sm-12 pull pull-right" style="width:100%;color: black;padding: 15px;font-size: larger;"
+            data-tid="A372936">
+            Toplam Kayıt Sayısı: {{ TotalNumberOfRows }}
+        </div>
+    </dxi-item>
+
+    <dxi-item class="tabpanel-item" title="ITS Giriş Güncelleme" data-tid="A372915">
+        <div class="row" style="padding-top: 1%;padding-left: 2%;" data-tid="A372916">
+            <dx-radio-group [items]="updateTypeItems" [(value)]="updateTypeItem" layout="horizontal"
+                (onValueChanged)="onValueUpdateTypeChangedCombo($event)"> </dx-radio-group>
+        </div>
+        <div class="row" style="padding-top: 1%;padding-left: 2%;">
+            <div class="col-sm-2" *ngIf="actionSelect">
+                <dx-text-box placeholder="Giriş İşlem Numarası..." [(value)]="inStockActionID" valueChangeEvent="keyup"
+                    [(disabled)]="disableUpdateSearch" (onEnterKey)="onEnterKey($event)">
+                </dx-text-box>
+            </div>
+            <div class="col-sm-4" *ngIf="!actionSelect">
+                <dx-select-box placeholder="İlaç Seç" [dataSource]="updateInDrugsListData" [(value)]="selectedInUpdateDrugID"
+                    [(disabled)]="disableUpdateSearch" displayExpr="drugNameBarcode" [searchEnabled]="true"
+                    valueExpr="objectID" [showClearButton]="true">
+                </dx-select-box>
+            </div>
+            <div class="col-sm-2" *ngIf="!actionSelect">
+                <dx-select-box placeholder="Bütçe Tipi Seç" [dataSource]="budgetTypeList" [(value)]="selectedBudgetTypeID"
+                    [(disabled)]="disableUpdateSearch" displayExpr="Name" [searchEnabled]="true" valueExpr="ObjectID"
+                    [showClearButton]="true">
+                </dx-select-box>
+            </div>
+            <div class="col-sm-2" *ngIf="!actionSelect">
+                <dx-button type="success" icon="check" text="Getir" (onClick)="GetOutTrx()"
+                    style="min-width: 150px;">
+                </dx-button>
+            </div>
+        </div>
+        <div class="row" style="padding-top: 1%;padding-left: 2%; height: 300px;">
+            <dx-data-grid [columns]="ITSUpdateOutTrxColumn" style="width:98%;height:100%"
+                [dataSource]="outTRXDataSource" [showBorders]="true">
+            </dx-data-grid>
+        </div>
+        <div class="row" style="padding-top: 1%;padding-left: 2%;">
+            <div class="col-sm-6">
+                <dx-text-box placeholder="Karekod..." [(value)]="qrCodeValue" valueChangeEvent="keyup"
+                    (keypress)="QRCodeAddIn_KeyPress($event)"></dx-text-box>
+            </div>
+        </div>
+        <div class="row" style="padding-top: 1%;padding-left: 2%; height: 300px;">
+            <dx-data-grid [columns]="ITSUpdateInTrxColumn" style="width:98%;height:100%" [dataSource]="inTRXDataSource"
+                [showBorders]="true" (onRowUpdating)="inTRXGridUpdating($event)">
+                <dxo-editing mode="cell" [allowUpdating]="true"> </dxo-editing>
+            </dx-data-grid>
+        </div>
+        <div class="row" style="padding-top: 1%;padding-left: 2%;padding-right: 2%;">
+            <dx-button type="success" icon="fa fa-clone" text="Guncelle" (onClick)="updateToTransaction()"
+                style="min-width: 150px;float: right;">
+            </dx-button>
+        </div>
+    </dxi-item>
+</dx-tab-panel>
+
+
+<div data-tid="A372937">
+    <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true"
+        [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage"
+        data-tid="A372938">
+    </dx-load-panel>
+</div>

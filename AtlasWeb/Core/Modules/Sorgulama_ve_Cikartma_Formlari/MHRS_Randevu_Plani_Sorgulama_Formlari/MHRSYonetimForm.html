@@ -1,0 +1,233 @@
+﻿
+
+<NeStatePanelComponent [OutgoingTransitions]="mHRSYonetimFormViewModel?.OutgoingTransitions" [StateReports]="mHRSYonetimFormViewModel?.CurrentStateReports" [ObjectID]="mHRSYonetimFormViewModel?._MHRSYonetim?.ObjectID" [ObjectDefID]="mHRSYonetimFormViewModel?._MHRSYonetim?.ObjectDefID" [CurrentStateDefID]="mHRSYonetimFormViewModel._MHRSYonetim.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" id="A9303" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A338101">
+</NeStatePanelComponent>
+    <form id="MHRSYonetimForm" class="form-horizontal" role="form" data-tid="A338102">
+        
+    </form>
+    <div class="row" id="A9304" data-tid="A338103">
+        <div class="col-xs-12" id="A9305" data-tid="A338104">
+            <ul class="nav nav-tabs" role="tablist" id="A9306" data-tid="A338105">
+                <li class="active" id="A9307" data-tid="A338106"><a href="#Sorgula" data-toggle="tab" id="A9308" data-tid="A338107">MHRS Randevu Planları Sorgulama</a></li>
+                <li id="A9309" data-tid="A338108"><a href="#Bildir" data-toggle="tab" id="A9310" data-tid="A338109">Klinik - Hekim Bildirimi</a></li>
+                <li id="AY9309" data-tid="AY338108"><a href="#CetvelSorgula" data-toggle="tab" id="AY9310" data-tid="AY338109">Cetvel Sorgula</a></li>
+            </ul>
+            <div class="tab-content" style="background-color:#fff;" id="A9311" data-tid="A338110">
+                <div id="Sorgula" class="tab-pane fade in active" i18n-id="@@M22125" data-tid="A338111">
+                    <br id="A9312" data-tid="A338112" />
+                    <div class="row" id="A9313" data-tid="A338113">
+                        <label class="control-label col-sm-2" id="A9314" data-tid="A338114">
+                            Başlangıç Tarihi
+                        </label>
+                        <label class="control-label col-sm-2" id="A9315" data-tid="A338115">
+                            Bitiş Tarihi
+                        </label>
+                    </div>
+                    <div class="row" id="A9316" data-tid="A338116">
+                        <div class="col-sm-2" id="A9317" data-tid="A338117">
+                            <hvl-date-picker #Validation [(Value)]="mHRSYonetimFormViewModel.BaslangicTarihi" [BackColor]="BaslangicTarihi?.BackColor" [CustomFormat]="BaslangicTarihi?.CustomFormat" [Enabled]="BaslangicTarihi?.Enabled" [Font]="BaslangicTarihi?.Font" [ForeColor]="BaslangicTarihi?.ForeColor" [Format]="BaslangicTarihi?.Format" [Max]="BaslangicTarihi?.Max" [Min]="BaslangicTarihi?.Min" [ReadOnly]="BaslangicTarihi?.ReadOnly" [Required]="BaslangicTarihi?.Required" [TabIndex]="BaslangicTarihi?.TabIndex" [Visible]="BaslangicTarihi?.Visible" id="A9318" data-tid="A338118"></hvl-date-picker>
+                        </div>
+                        <div class="col-sm-2" id="A9319" data-tid="A338119">
+                            <hvl-date-picker #Validation [(Value)]="mHRSYonetimFormViewModel.BitisTarihi" [BackColor]="BitisTarihi?.BackColor" [CustomFormat]="BitisTarihi?.CustomFormat" [Enabled]="BitisTarihi?.Enabled" [Font]="BitisTarihi?.Font" [ForeColor]="BitisTarihi?.ForeColor" [Format]="BitisTarihi?.Format" [Max]="BitisTarihi?.Max" [Min]="BitisTarihi?.Min" [ReadOnly]="BitisTarihi?.ReadOnly" [Required]="BitisTarihi?.Required" [TabIndex]="BitisTarihi?.TabIndex" [Visible]="BitisTarihi?.Visible" id="A9320" data-tid="A338120"></hvl-date-picker>
+                        </div>
+                        <div class="col-sm-1" id="A9321" data-tid="A338121">
+                            <hvl-button (BtnClicked)="btnAllSchedule_Click()" [BackColor]="btnAllSchedule?.BackColor" [Enabled]="btnAllSchedule?.Enabled" [Font]="btnAllSchedule?.Font" [ForeColor]="btnAllSchedule?.ForeColor" [height]="btnAllSchedule?.Height" [ReadOnly]="btnAllSchedule?.ReadOnly" [TabIndex]="btnAllSchedule?.TabIndex" [Text]="btnAllSchedule?.Text" [Visible]="btnAllSchedule?.Visible" id="A9322" data-tid="A338122"></hvl-button>
+                        </div>
+                        <div class="col-sm-2" id="A9323" data-tid="A338123">
+                            <hvl-button (BtnClicked)="btnUncertainedSchedule_Click()" [BackColor]="btnUncertainedSchedule?.BackColor" [Enabled]="btnUncertainedSchedule?.Enabled" [Font]="btnUncertainedSchedule?.Font" [ForeColor]="btnUncertainedSchedule?.ForeColor" [height]="btnUncertainedSchedule?.Height" [ReadOnly]="btnUncertainedSchedule?.ReadOnly" [TabIndex]="btnUncertainedSchedule?.TabIndex" [Text]="btnUncertainedSchedule?.Text" [Visible]="btnUncertainedSchedule?.Visible" id="A9324" data-tid="A338124"></hvl-button>
+                        </div>
+                    </div>
+                    <div class="row" id="A9325" data-tid="A338125">
+                        <br id="A9326" data-tid="A338126" />
+                        <label class="control-label col-sm-6" id="A9327" data-tid="A338127">
+                            Poliklinik
+                        </label>
+                        <label class="control-label col-sm-6" id="A9328" data-tid="A338128">
+                            Doktor
+                        </label>
+                    </div>
+                    <div class="row" id="A9329" data-tid="A338129">
+                        <div class="col-sm-6" id="A9330" data-tid="A338130">
+                            <hvl-list-box #Validation (SelectedObjectChange)="onPoliclinicChanged($event)" [(SelectedObject)]="mHRSYonetimFormViewModel.Policlinic" [AutoCompleteDialogHeight]="lstPoliclinic?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="lstPoliclinic?.AutoCompleteDialogWidth" [AutoCompleteMode]="lstPoliclinic?.AutoCompleteMode" [BackColor]="lstPoliclinic?.BackColor" [DefinitionName]="lstPoliclinic?.ListDefName" [DisplayExpressionsCache]="mHRSYonetimFormViewModel?.ListDefDisplayExpressions" [Enabled]="lstPoliclinic?.Enabled" [Font]="lstPoliclinic?.Font" [ForeColor]="lstPoliclinic?.ForeColor" [ListFilterExpression]="lstPoliclinic?.ListFilterExpression" [MinSearchLength]="lstPoliclinic?.MinSearchLength" [PopupDialogFieldConfig]="lstPoliclinic?.PopupDialogFieldConfig" [PopupDialogGridColumns]="lstPoliclinic?.PopupDialogGridColumns" [PopupDialogHeight]="lstPoliclinic?.PopupDialogHeight" [PopupDialogTitle]="lstPoliclinic?.PopupDialogTitle" [PopupDialogWidth]="lstPoliclinic?.PopupDialogWidth" [ReadOnly]="lstPoliclinic?.ReadOnly" [SearchMode]="lstPoliclinic?.SearchMode" [SearchTimeout]="lstPoliclinic?.SearchTimeout" [TabIndex]="lstPoliclinic?.TabIndex" [Visible]="lstPoliclinic?.Visible" [width]="lstPoliclinic?.Width" id="A9331" data-tid="A338131"></hvl-list-box>
+                        </div>
+                        <div class="col-sm-6" id="A9332" data-tid="A338132">
+                            <hvl-list-box #Validation (SelectedObjectChange)="onDoctorChanged($event)" [(SelectedObject)]="mHRSYonetimFormViewModel.Doctor" [AutoCompleteDialogHeight]="listDoctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="listDoctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="listDoctor?.AutoCompleteMode" [BackColor]="listDoctor?.BackColor" [DefinitionName]="listDoctor?.ListDefName" [DisplayExpressionsCache]="mHRSYonetimFormViewModel?.ListDefDisplayExpressions" [Enabled]="listDoctor?.Enabled" [Font]="listDoctor?.Font" [ForeColor]="listDoctor?.ForeColor" [ListFilterExpression]="listDoctor?.ListFilterExpression" [MinSearchLength]="listDoctor?.MinSearchLength" [PopupDialogFieldConfig]="listDoctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="listDoctor?.PopupDialogGridColumns" [PopupDialogHeight]="listDoctor?.PopupDialogHeight" [PopupDialogTitle]="listDoctor?.PopupDialogTitle" [PopupDialogWidth]="listDoctor?.PopupDialogWidth" [ReadOnly]="listDoctor?.ReadOnly" [SearchMode]="listDoctor?.SearchMode" [SearchTimeout]="listDoctor?.SearchTimeout" [TabIndex]="listDoctor?.TabIndex" [Visible]="listDoctor?.Visible" [width]="listDoctor?.Width" id="A9333" data-tid="A338133"></hvl-list-box>
+                        </div>
+                    </div>
+                    <div class="row" id="A9334" data-tid="A338134">
+                        <br id="A9335" data-tid="A338135" />
+                        <div class="col-sm-12" id="A9336" data-tid="A338136">
+                            <hvl-datagrid [AllowUserToAddRows]="gridSchedule?.AllowUserToAddRows" [AllowUserToDeleteRows]="gridSchedule?.AllowUserToDeleteRows" [Columns]="gridScheduleColumns" [dataSource]="mHRSYonetimFormViewModel?.ScheduleList" [DeleteButtonWidth]="gridSchedule?.DeleteButtonWidth" [DisplayExpressionsCache]="mHRSYonetimFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="gridSchedule?.ShowFilterRow" [FilterColumnName]="gridSchedule?.FilterColumnName" [FilterLabel]="gridSchedule?.FilterLabel" [Filter]="gridSchedule?.Filter" [height]="gridSchedule?.Height" [IsFilterLabelSingleLine]="gridSchedule?.IsFilterLabelSingleLine" [ShowColumnHeaders]="gridSchedule?.ColumnHeadersVisible" [ShowFilterCombo]="gridSchedule?.ShowFilterCombo" [ShowTotalNumberOfRows]="gridSchedule?.ShowTotalNumberOfRows" id="A9337" data-tid="A338137"></hvl-datagrid>
+                        </div>
+                    </div>
+                </div>
+                <div id="Bildir" class="tab-pane fade in" data-tid="A338138">
+                    <div id="A9338" data-tid="A338139">
+                        <br id="A9339" data-tid="A338140" />
+                        <div class="row" id="A9340" data-tid="A338141">
+                            <div class="col-sm-3" id="A9341" data-tid="A338142">
+                                <hvl-button (BtnClicked)="btnSetMHRSClinicCode_Click()" [BackColor]="btnSetMHRSClinicCode?.BackColor" [Enabled]="btnSetMHRSClinicCode?.Enabled" [Font]="btnSetMHRSClinicCode?.Font" [ForeColor]="btnSetMHRSClinicCode?.ForeColor" [height]="btnSetMHRSClinicCode?.Height" [ReadOnly]="btnSetMHRSClinicCode?.ReadOnly" [TabIndex]="btnSetMHRSClinicCode?.TabIndex" [Text]="btnSetMHRSClinicCode?.Text" [Visible]="btnSetMHRSClinicCode?.Visible" id="A9342" data-tid="A338143"></hvl-button>
+                            </div>
+                        </div>
+                        <br id="A9343" data-tid="A338144" />
+                        <div class="row" id="A9344" data-tid="A338145">
+                            <div class="col-sm-12" id="A9345" data-tid="A338146">
+                                <hvl-datagrid [AllowUserToAddRows]="gridMHRSPoliklinic?.AllowUserToAddRows" [AllowUserToDeleteRows]="gridMHRSPoliklinic?.AllowUserToDeleteRows" [Columns]="gridMHRSPoliklinicColumns" [dataSource]="mHRSYonetimFormViewModel?.PoliklinikMHRSKlinikKoduEslestirmeList" [DeleteButtonWidth]="gridMHRSPoliklinic?.DeleteButtonWidth" [DisplayExpressionsCache]="mHRSYonetimFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="gridMHRSPoliklinic?.ShowFilterRow" [FilterColumnName]="gridMHRSPoliklinic?.FilterColumnName" [FilterLabel]="gridMHRSPoliklinic?.FilterLabel" [Filter]="gridMHRSPoliklinic?.Filter" [height]="gridMHRSPoliklinic?.Height" [IsFilterLabelSingleLine]="gridMHRSPoliklinic?.IsFilterLabelSingleLine" [ShowColumnHeaders]="gridMHRSPoliklinic?.ColumnHeadersVisible" [ShowFilterCombo]="gridMHRSPoliklinic?.ShowFilterCombo" [ShowTotalNumberOfRows]="gridMHRSPoliklinic?.ShowTotalNumberOfRows" id="A9346" data-tid="A338147"></hvl-datagrid>
+                            </div>
+                        </div>
+                        <br id="A9347" data-tid="A338148" />
+                        <div class="row" id="A9348" data-tid="A338149">
+                            <div class="col-sm-6" id="A9349" data-tid="A338150">
+                                <hvl-button (BtnClicked)="btnKlinikEkle_Click()" [BackColor]="btnKlinikEkle?.BackColor" [Enabled]="btnKlinikEkle?.Enabled" [Font]="btnKlinikEkle?.Font" [ForeColor]="btnKlinikEkle?.ForeColor" [height]="btnKlinikEkle?.Height" [ReadOnly]="btnKlinikEkle?.ReadOnly" [TabIndex]="btnKlinikEkle?.TabIndex" [Text]="btnKlinikEkle?.Text" [Visible]="btnKlinikEkle?.Visible" id="A9350" data-tid="A338151"></hvl-button>
+                            </div>
+                            <div class="col-sm-6" id="A9351" data-tid="A338152">
+                                <hvl-button (BtnClicked)="btnAltKlinikEkle_Click()" [BackColor]="btnAltKlinikEkle?.BackColor" [Enabled]="btnAltKlinikEkle?.Enabled" [Font]="btnAltKlinikEkle?.Font" [ForeColor]="btnAltKlinikEkle?.ForeColor" [height]="btnAltKlinikEkle?.Height" [ReadOnly]="btnAltKlinikEkle?.ReadOnly" [TabIndex]="btnAltKlinikEkle?.TabIndex" [Text]="btnAltKlinikEkle?.Text" [Visible]="btnAltKlinikEkle?.Visible" id="A9352" data-tid="A338153"></hvl-button>
+                            </div>
+                        </div>
+                        <br id="A9353" data-tid="A338154" />
+                        <div class="row" id="A9354" data-tid="A338155">
+                            <div class="col-sm-6" id="A9355" data-tid="A338156">
+                                <hvl-datagrid [AllowUserToAddRows]="gridMHRSyeEklenenPoliklinikler?.AllowUserToAddRows" [AllowUserToDeleteRows]="gridMHRSyeEklenenPoliklinikler?.AllowUserToDeleteRows" [Columns]="gridMHRSyeEklenenPolikliniklerColumns" [dataSource]="mHRSYonetimFormViewModel?.MHRSKlinikEkleList" [DeleteButtonWidth]="gridMHRSyeEklenenPoliklinikler?.DeleteButtonWidth" [DisplayExpressionsCache]="mHRSYonetimFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="gridMHRSyeEklenenPoliklinikler?.ShowFilterRow" [FilterColumnName]="gridMHRSyeEklenenPoliklinikler?.FilterColumnName" [FilterLabel]="gridMHRSyeEklenenPoliklinikler?.FilterLabel" [Filter]="gridMHRSyeEklenenPoliklinikler?.Filter" [height]="gridMHRSyeEklenenPoliklinikler?.Height" [IsFilterLabelSingleLine]="gridMHRSyeEklenenPoliklinikler?.IsFilterLabelSingleLine" [ShowColumnHeaders]="gridMHRSyeEklenenPoliklinikler?.ColumnHeadersVisible" [ShowFilterCombo]="gridMHRSyeEklenenPoliklinikler?.ShowFilterCombo" [ShowTotalNumberOfRows]="gridMHRSyeEklenenPoliklinikler?.ShowTotalNumberOfRows" id="A9356" data-tid="A338157"></hvl-datagrid>
+                            </div>
+                            <div class="col-sm-6" id="A9357" data-tid="A338158">
+                                <hvl-datagrid [AllowUserToAddRows]="gridMHRSyeEklenenAltPoliklinikler?.AllowUserToAddRows" [AllowUserToDeleteRows]="gridMHRSyeEklenenAltPoliklinikler?.AllowUserToDeleteRows" [Columns]="gridMHRSyeEklenenAltPolikliniklerColumns" [dataSource]="mHRSYonetimFormViewModel?.MHRSAltKlinikEkleList" [DeleteButtonWidth]="gridMHRSyeEklenenAltPoliklinikler?.DeleteButtonWidth" [DisplayExpressionsCache]="mHRSYonetimFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="gridMHRSyeEklenenAltPoliklinikler?.ShowFilterRow" [FilterColumnName]="gridMHRSyeEklenenAltPoliklinikler?.FilterColumnName" [FilterLabel]="gridMHRSyeEklenenAltPoliklinikler?.FilterLabel" [Filter]="gridMHRSyeEklenenAltPoliklinikler?.Filter" [height]="gridMHRSyeEklenenAltPoliklinikler?.Height" [IsFilterLabelSingleLine]="gridMHRSyeEklenenAltPoliklinikler?.IsFilterLabelSingleLine" [ShowColumnHeaders]="gridMHRSyeEklenenAltPoliklinikler?.ColumnHeadersVisible" [ShowFilterCombo]="gridMHRSyeEklenenAltPoliklinikler?.ShowFilterCombo" [ShowTotalNumberOfRows]="gridMHRSyeEklenenAltPoliklinikler?.ShowTotalNumberOfRows" id="A9358" data-tid="A338159"></hvl-datagrid>
+                            </div>
+                        </div>
+                        <br id="A9359" data-tid="A338160" />
+                        <div class="row" id="A9360" data-tid="A338161">
+                            <div class="col-sm-3" id="A9361" data-tid="A338162">
+                                <hvl-button (BtnClicked)="btnHekimEkle_Click()" [BackColor]="btnHekimEkle?.BackColor" [Enabled]="btnHekimEkle?.Enabled" [Font]="btnHekimEkle?.Font" [ForeColor]="btnHekimEkle?.ForeColor" [height]="btnHekimEkle?.Height" [ReadOnly]="btnHekimEkle?.ReadOnly" [TabIndex]="btnHekimEkle?.TabIndex" [Text]="btnHekimEkle?.Text" [Visible]="btnHekimEkle?.Visible" id="A9362" data-tid="A338163"></hvl-button>
+                            </div>
+                        </div>
+                        <br id="A9363" data-tid="A338164" />
+                        <div class="row" id="A9364" data-tid="A338165">
+                            <div class="col-sm-12" id="A9365" data-tid="A338166">
+                                <hvl-datagrid [AllowUserToAddRows]="gridMHRSHekim?.AllowUserToAddRows" [AllowUserToDeleteRows]="gridMHRSHekim?.AllowUserToDeleteRows" [Columns]="gridMHRSHekimColumns" [dataSource]="mHRSYonetimFormViewModel?.DoktorEkleList" [DeleteButtonWidth]="gridMHRSHekim?.DeleteButtonWidth" [DisplayExpressionsCache]="mHRSYonetimFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="gridMHRSHekim?.ShowFilterRow" [FilterColumnName]="gridMHRSHekim?.FilterColumnName" [FilterLabel]="gridMHRSHekim?.FilterLabel" [Filter]="gridMHRSHekim?.Filter" [height]="gridMHRSHekim?.Height" [IsFilterLabelSingleLine]="gridMHRSHekim?.IsFilterLabelSingleLine" [ShowColumnHeaders]="gridMHRSHekim?.ColumnHeadersVisible" [ShowFilterCombo]="gridMHRSHekim?.ShowFilterCombo" [ShowTotalNumberOfRows]="gridMHRSHekim?.ShowTotalNumberOfRows" id="A9366" data-tid="A338167"></hvl-datagrid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="CetvelSorgula" class="tab-pane fade in" data-tid="AY338138">
+                    <div id="AY9338" data-tid="AY338139">
+
+                        <div class="row" style="margin-top:15px;">
+                            <div class="col-sm-2">
+                                <label class="control-label"> Başlangıç Tarihi </label>
+                                <dx-date-box [(value)]="cetvelSorgulaViewModel.StartDate"
+                                             type="date">
+                                </dx-date-box>
+
+
+                            </div>
+                            <div class="col-sm-4" style="margin-top:15px;">
+
+                                <dx-radio-group [dataSource]="_searchType" displayExpr="Name" valueExpr="ObjectID" [value]="0" layout="horizontal" (onValueChanged)="onSearchTypeChanged($event)">
+                                </dx-radio-group>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label class="control-label"> Bitiş Tarihi </label>
+                                <dx-date-box [(value)]="cetvelSorgulaViewModel.EndDate"
+                                             type="date">
+                                </dx-date-box>
+
+
+                            </div>
+
+                            <div class="col-sm-4">
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label class="control-label"> Doktor </label>
+                                        <hvl-list-box #Validation (SelectedObjectChange)="onDoctorChangedCetvelSorgula($event)"
+                                                      [(SelectedObject)]="cetvelSorgulaViewModel.Doctor"
+                                                      [AutoCompleteDialogHeight]="listDoctorCetvelsorgula?.AutoCompleteDialogHeight"
+                                                      [AutoCompleteDialogWidth]="listDoctorCetvelsorgula?.AutoCompleteDialogWidth"
+                                                      [AutoCompleteMode]="listDoctorCetvelsorgula?.AutoCompleteMode"
+                                                      [BackColor]="listDoctorCetvelsorgula?.BackColor"
+                                                      [DefinitionName]="listDoctorCetvelsorgula?.ListDefName"
+                                                      [DisplayExpressionsCache]="mHRSYonetimFormViewModel?.ListDefDisplayExpressions"
+                                                      [Enabled]="listDoctorCetvelsorgula?.Enabled"
+                                                      [Font]="listDoctorCetvelsorgula?.Font"
+                                                      [ForeColor]="listDoctorCetvelsorgula?.ForeColor"
+                                                      [ListFilterExpression]="listDoctorCetvelsorgula?.ListFilterExpression"
+                                                      [MinSearchLength]="listDoctorCetvelsorgula?.MinSearchLength"
+                                                      [PopupDialogFieldConfig]="listDoctorCetvelsorgula?.PopupDialogFieldConfig"
+                                                      [PopupDialogGridColumns]="listDoctorCetvelsorgula?.PopupDialogGridColumns"
+                                                      [PopupDialogHeight]="listDoctorCetvelsorgula?.PopupDialogHeight"
+                                                      [PopupDialogTitle]="listDoctorCetvelsorgula?.PopupDialogTitle"
+                                                      [PopupDialogWidth]="listDoctorCetvelsorgula?.PopupDialogWidth"
+                                                      [ReadOnly]="listDoctorCetvelsorgula?.ReadOnly"
+                                                      [SearchMode]="listDoctorCetvelsorgula?.SearchMode"
+                                                      [SearchTimeout]="listDoctorCetvelsorgula?.SearchTimeout"
+                                                      [TabIndex]="listDoctorCetvelsorgula?.TabIndex"
+                                                      [Visible]="listDoctorCetvelsorgula?.Visible"
+                                                      [width]="listDoctorCetvelsorgula?.Width"></hvl-list-box>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="control-label"> Birim </label>
+                                        <hvl-list-box #Validation (SelectedObjectChange)="onBirimChangedCetvelSorgula($event)"
+                                                      [(SelectedObject)]="cetvelSorgulaViewModel.Birim"
+                                                      [AutoCompleteDialogHeight]="lstPoliclinicCetvelsorgula?.AutoCompleteDialogHeight"
+                                                      [AutoCompleteDialogWidth]="lstPoliclinicCetvelsorgula?.AutoCompleteDialogWidth"
+                                                      [AutoCompleteMode]="lstPoliclinicCetvelsorgula?.AutoCompleteMode"
+                                                      [BackColor]="lstPoliclinicCetvelsorgula?.BackColor"
+                                                      [DefinitionName]="lstPoliclinicCetvelsorgula?.ListDefName"
+                                                      [DisplayExpressionsCache]="mHRSYonetimFormViewModel?.ListDefDisplayExpressions"
+                                                      [Enabled]="lstPoliclinicCetvelsorgula?.Enabled"
+                                                      [Font]="lstPoliclinicCetvelsorgula?.Font"
+                                                      [ForeColor]="lstPoliclinicCetvelsorgula?.ForeColor"
+                                                      [ListFilterExpression]="lstPoliclinicCetvelsorgula?.ListFilterExpression"
+                                                      [MinSearchLength]="lstPoliclinicCetvelsorgula?.MinSearchLength"
+                                                      [PopupDialogFieldConfig]="lstPoliclinicCetvelsorgula?.PopupDialogFieldConfig"
+                                                      [PopupDialogGridColumns]="lstPoliclinicCetvelsorgula?.PopupDialogGridColumns"
+                                                      [PopupDialogHeight]="lstPoliclinicCetvelsorgula?.PopupDialogHeight"
+                                                      [PopupDialogTitle]="lstPoliclinicCetvelsorgula?.PopupDialogTitle"
+                                                      [PopupDialogWidth]="lstPoliclinicCetvelsorgula?.PopupDialogWidth"
+                                                      [ReadOnly]="lstPoliclinicCetvelsorgula?.ReadOnly"
+                                                      [SearchMode]="lstPoliclinicCetvelsorgula?.SearchMode"
+                                                      [SearchTimeout]="lstPoliclinicCetvelsorgula?.SearchTimeout"
+                                                      [TabIndex]="lstPoliclinicCetvelsorgula?.TabIndex"
+                                                      [Visible]="lstPoliclinicCetvelsorgula?.Visible"
+                                                      [width]="lstPoliclinicCetvelsorgula?.Width"></hvl-list-box>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+        
+
+                            <div class="row">
+                                <div class="col-sm-12" data-tid="AY343053">
+                                    <dx-button type="default" icon="fa fa-bars" class="pull-right" text="Sorgula" (onClick)="CetvelSorgula()" data-tid="AY343054"></dx-button>
+
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top:15px;">
+                                <div class="col-sm-12" data-tid="AY343042">
+                                    <dx-data-grid height="600px"
+                                                  [selection]="{mode: 'none'}"
+                                                  [dataSource]="CetvelSorgulamaDataSource"
+                                                  [columns]="CetvelSorgulamaColumns"
+                                                  [filterRow]="{visible: false}"
+                                                  [headerFilter]="{visible: false}"
+                                                  data-tid="AY343043">
+                                        <div *dxTemplate="let row of 'saveScheduleTemplate'" data-tid="AY342990">
+                                            <i *ngIf="row.data.hasSchedule != true" class="fa fa-save" title="Cetvel Kaydet" (click)="SaveSchedule(row.key)" data-tid="AY342930"></i>
+
+                                        </div>
+                                    </dx-data-grid>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+    </div>

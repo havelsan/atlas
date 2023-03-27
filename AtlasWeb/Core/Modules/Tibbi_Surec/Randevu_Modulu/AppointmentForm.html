@@ -1,0 +1,197 @@
+﻿
+<form id="AppointmentForm" class="form-horizontal" role="form" data-tid="A361747"></form>
+<div class="col-sm-3" style="height:100%;padding:0;" id="A25985" data-tid="A361748">
+    <div class="panel panel-default" style="border:0; box-shadow:none;height:100%;margin:0" id="A25986" data-tid="A361749">
+        <div class="col-sm-12 gradientPanel" style="height:4%;" id="A25987" data-tid="A361750">
+            <h4 style="color:#fff; font-size:19px;text-align:center;" id="A25988" data-tid="A361751">Randevu</h4>
+        </div>
+        <div class="panel-body" style="background-color:#f6f6f6;padding-bottom:0;height:98%" id="A25989" data-tid="A361752">
+            <div style="float:left; width:100%;" id="A25990" data-tid="A361753">
+                <div [class.hidden]="appointmentFormViewModel.patientSearchFormVisible == false" id="A25991" data-tid="A361754">
+                    <div class="row" id="A25992" data-tid="A361755">
+                        <div class="col-sm-12" style="padding-top:5px" id="A25993" data-tid="A361756">
+                            <PatientSearchForm Width="100%" (SelectedPatientChanged)="patientChanged($event)" (SearchTextChanged)="SearchTextChanged($event)" id="A25994" data-tid="A361757"></PatientSearchForm>
+                        </div>
+                    </div>
+                    <hr style="height:1px;border-color:#666666;background-color:#666666;color:#666666" size="1px" id="A25995" data-tid="A361758" />
+                </div>
+                <div class="row" id="A25996" data-tid="A361759">
+                    <label class="control-label col-sm-12" id="A25997" data-tid="A361760">Hasta</label>
+                </div>
+                <div class="row" id="A25998" data-tid="A361761">
+                    <div class="col-sm-12" id="A25999" data-tid="A361762">
+                        <dx-text-box [disabled]="txtPatientIsDisabled==true" [(value)]="appointmentFormViewModel.txtPatient" id="A26000" data-tid="A361763"></dx-text-box>
+                    </div>
+                </div>
+                <div class="row" id="A26001" data-tid="A361764">
+                    <label class="control-label col-sm-6" id="A26002" data-tid="A361765">TC Numarası</label>
+                    <label class="control-label col-sm-6" id="A26003" data-tid="A361766">Telefon</label>
+                </div>
+                <div class="row" id="A26004" data-tid="A361767">
+                    <div class="col-sm-5" id="A26005" data-tid="A361768">
+                        <dx-number-box [(value)]="appointmentFormViewModel.TCKNo" (keypress)="keyDownForNumericControl($event)" name="UniqueRefNo" placeholder="Kimlik Numarası" i18n-placeholder="@@M17579" id="A26006" data-tid="A361769"></dx-number-box>
+                    </div>
+                    <div class="col-sm-3" id="A26007" data-tid="A361770">
+                        <hvl-masktext-box #Validation (TextChange)="onMobilePhoneChanged($event)" [BackColor]="MobilePhone?.BackColor" [Enabled]="MobilePhone?.Enabled" [Font]="MobilePhone?.Font" [ForeColor]="MobilePhone?.ForeColor" [InputTurkishCharacter]="MobilePhone?.InputTurkishCharacter" [Mask]="MobilePhone?.Mask" [ReadOnly]="MobilePhone?.ReadOnly" [TabIndex]="MobilePhone?.TabIndex" [TextAlign]="MobilePhone?.TextAlign" [Text]="appointmentFormViewModel?.PhoneNumber" [Visible]="MobilePhone?.Visible" id="A26008" data-tid="A361771"></hvl-masktext-box>
+                    </div>
+                    <div class="col-sm-4" id="A26009" data-tid="A361772">
+                        <hvl-enum-radio-button-group DataTypeName="PhoneTypeEnum" [(Value)]="appointmentFormViewModel.osPhoneType" id="A26010" data-tid="A361773"></hvl-enum-radio-button-group>
+                    </div>
+                </div>
+                <div class="row" id="A26011" data-tid="A361774">
+                    <label class="control-label col-sm-12" id="A26012" data-tid="A361775">Kategori</label>
+                </div>
+                <div class="row" id="A26013" data-tid="A361776">
+                    <div class="col-sm-12" id="A26014" data-tid="A361777">
+                        <dx-select-box [dataSource]="appointmentFormViewModel.AppointmentDefinitionList" displayExpr="AppDefNameDisplayText" searchEnabled="true" [(value)]="appointmentFormViewModel._Appointment.AppointmentDefinition" placeholder="Kategori Seçiniz..." (onValueChanged)="appointmentDefinitionSelectedItemChanged()" i18n-placeholder="@@M17351" id="A26015" data-tid="A361778"></dx-select-box>
+                    </div>
+                </div>
+                <div class="row" id="A26016" data-tid="A361779">
+                    <label class="control-label col-sm-12" id="A26017" data-tid="A361780">Alt Randevu Türü</label>
+                </div>
+                <div class="row" id="A26018" data-tid="A361781">
+                    <div class="col-sm-12" id="A26019" data-tid="A361782">
+                        <dx-select-box [dataSource]="appointmentFormViewModel.AppointmentCarrierList" displayExpr="CarrierName" searchEnabled="true" [(value)]="appointmentFormViewModel._Appointment.AppointmentCarrier" placeholder="Alt Randevu Türü Seçiniz..." (onValueChanged)="appointmentCarrierSelectedItemChanged($event.value)" i18n-placeholder="@@M10755" id="A26020" data-tid="A361783"></dx-select-box>
+                    </div>
+                </div>
+                <div class="row" id="A26021" data-tid="A361784">
+                    <label class="control-label col-md-12" id="A26022" data-tid="A361785">Türü</label>
+                </div>
+                <div class="row" id="A26023" data-tid="A361786">
+                    <div class="col-sm-12" id="A26024" data-tid="A361787">
+                        <dx-select-box [dataSource]="appointmentFormViewModel.AppointmentTypeList" displayExpr="AppointmentTypeDisplayText" searchEnabled="true" [(value)]="appointmentFormViewModel.AppointmentType" placeholder="Alt Randevu Türü Seçiniz..." (onValueChanged)="appointmentTypeSelectedItemChanged($event.value)" i18n-placeholder="@@M10755" id="A26025" data-tid="A361788"></dx-select-box>
+                    </div>
+                </div>
+                <div class="row" id="A26026" data-tid="A361789">
+                    <label class="control-label col-sm-12" id="A26027" data-tid="A361790">{{appointmentFormViewModel.MasterResourceCaption}}</label>
+                </div>
+                <div class="row" id="A26028" data-tid="A361791">
+                    <div class="col-sm-12" id="A26029" data-tid="A361792">
+                        <dx-select-box [dataSource]="appointmentFormViewModel.MasterResourceList" displayExpr="Name" searchEnabled="true" [(value)]="appointmentFormViewModel._Appointment.MasterResource" (onValueChanged)="masterResourceSelectedItemChanged($event.value)" id="A26030" data-tid="A361793"></dx-select-box>
+                    </div>
+                </div>
+                <div class="row" id="A26031" data-tid="A361794">
+                    <label class="control-label col-sm-12" id="A26032" data-tid="A361795">{{appointmentFormViewModel.SubResourceCaption}}</label>
+                </div>
+                <div class="row" id="A26033" data-tid="A361796">
+                    <div class="col-sm-12" id="A26034" data-tid="A361797">
+                        <dx-tag-box [(visible)]="appointmentFormViewModel.subResourceVisible" searchEnabled="true" [dataSource]="appointmentFormViewModel.SubResourceList" [(value)]="appointmentFormViewModel.SelectedSubResourceList" applyValueMode="useButtons" displayExpr="Name" valueExpr="ObjectID" showDataBeforeSearch="true" showSelectionControls="true" multiline="true" (onSelectionChanged)="subResourceSelectedItemsChanged($event)" id="A26035" data-tid="A361798">
+                        </dx-tag-box>
+                    </div>
+                </div>
+                <div class="row" id="A26036" data-tid="A361799">
+                    <label class="control-label col-sm-12" id="A26037" data-tid="A361800">Açıklama</label>
+                </div>
+                <div class="row" id="A26038" data-tid="A361801">
+                    <div class="col-sm-12" id="A26039" data-tid="A361802">
+                        <dx-text-box [(value)]="appointmentFormViewModel._Appointment.Notes" id="A26040" data-tid="A361803"></dx-text-box>
+                    </div>
+                </div>
+                <div class="row" id="A26041" data-tid="A361804">
+                    <label class="control-label col-sm-4" id="A26042" data-tid="A361805">Tarih</label>
+                    <label class="control-label col-sm-4" id="A26043" data-tid="A361806">Başlangıç Saati</label>
+                    <label class="control-label col-sm-4" id="A26044" data-tid="A361807">Bitiş Saati</label>
+                </div>
+                <div class="row" id="A26045" data-tid="A361808">
+                    <div class="col-sm-4" id="A26046" data-tid="A361809">
+                        <dx-date-box [(value)]="appointmentFormViewModel._Appointment.AppDate" displayFormat="dd/MM/yyyy" type="date" (onValueChanged)="onAppDateChanged($event)" id="A26047" data-tid="A361810"></dx-date-box>
+                    </div>
+                    <div class="col-sm-4" id="A26048" data-tid="A361811">
+                        <dx-date-box [(value)]="appointmentFormViewModel._Appointment.StartTime" displayFormat="HH:mm" type="time" (onValueChanged)="onAppStartTimeChanged($event)" id="A26049" data-tid="A361812"></dx-date-box>
+                    </div>
+                    <div class="col-sm-4" id="A26050" data-tid="A361813">
+                        <dx-date-box [(value)]="appointmentFormViewModel._Appointment.EndTime" displayFormat="HH:mm" type="time" id="A26051" data-tid="A361814"></dx-date-box>
+                    </div>
+                </div>
+                <br id="A26052" data-tid="A361815" />
+                <br id="A26053" data-tid="A361816" />
+                <div class="row" style="padding-left:15px;" id="A26054" data-tid="A361817">
+                    <dx-button type="success" text="Saatsiz Randevu" [(visible)]="appointmentFormViewModel.showBreakAppButton" i18n-text="@@M21091" id="A26055" data-tid="A361818"></dx-button>
+                    <dx-button type="success" text="İlk Boş" [(visible)]="appointmentFormViewModel.showFirstAvailableButton" i18n-text="@@M16436" id="A26056" data-tid="A361819"></dx-button>
+                    <dx-button icon="save" type="default" (onClick)="saveClick()" text="Kaydet" [(disabled)]="appointmentFormViewModel.ReadOnly" i18n-text="@@M17386" id="A26057" data-tid="A361820"></dx-button>
+                    <dx-button icon="fa fa-undo" type="danger" (onClick)="cancelClick()" text="Vazgeç" [(disabled)]="appointmentFormViewModel.ReadOnly" i18n-text="@@M24054" id="A26058" data-tid="A361821"></dx-button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<div class="col-sm-9" style="height:98%" id="A26059" data-tid="A361822">
+    <dx-tab-panel id="apptabs" (onSelectionChanged)="selectTab($event)" [selectedIndex]="0" [animationEnabled]="false" style="height:100%!important;padding-top: 6px;" data-tid="A361823">
+        <dxi-item *ngIf="isRandevu" title="Randevu" style="height:100%!important;" [template]="'denemeTemp'" data-tid="A361824">
+            <div data-tid="A361825">
+                <dx-radio-group style="float:right;" [dataSource]="views" [(value)]="currentView" layout="horizontal" displayExpr="text" valueExpr="type" (onOptionChanged)="onRadioOptionChanged($event)" (onValueChanged)="onRadioValueChanged($event)" data-tid="A361826">
+                </dx-radio-group>
+            </div>
+            <dx-data-grid [columns]="AppointmentColumns" [allowColumnReordering]="true" [allowColumnResizing]="true" height="100%" width="100%" [dataSource]="appointmentsData" [ngStyle]="{'padding-top': '25px', 'min-width':'100%' }" (onRowPrepared)="rowPrepared($event)" [filterRow]="{visible: true}" [paging]="{enable: true, pageSize:100}" [selection]="{mode: 'single',allowSelectAll: false}" [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" id="A26140" data-tid="A361827">
+                <dxo-column-chooser [enabled]="false" id="A26141" data-tid="A361828"></dxo-column-chooser>
+                <dxo-column-fixing [enabled]="true" id="A26142" data-tid="A361829"></dxo-column-fixing>
+                <dxo-paging [enabled]="false" data-tid="A361830"></dxo-paging>
+                <div *dxTemplate="let data of 'buttonCellTemplate'" data-tid="A361831">
+                    <dx-button [ngStyle]="{'height':'22px', 'font-size':'5px', 'padding':'0'}" text hint="Randevu Ver" (onClick)="btnGiveAppClick(data)" [visible]="btnGiveAppVisible(data)" data-tid="A361832"><i class="fa fa-calendar-check" style="color:#007ab7;" data-tid="A361833"></i></dx-button>
+                    <dx-button [ngStyle]="{'height':'22px', 'font-size':'5px', 'padding':'0'}" text hint="Güncelle" (onClick)="btnUpdateAppClick(data)" [visible]="btnUpdateAppVisible(data)" data-tid="A361834"><i class="fa fa-edit" style="color:#5cb85c;" data-tid="A361835"></i></dx-button>
+                    <dx-button [ngStyle]="{'height':'22px', 'font-size':'5px', 'padding':'0'}" text hint="İptal Et" (onClick)="btnCancelAppClick(data)" [visible]="btnUpdateAppVisible(data)" data-tid="A361836"><i class="fa fa-trash-o" style="color:#d9534f;" data-tid="A361837"></i></dx-button>
+                </div>
+            </dx-data-grid>
+        </dxi-item>
+        <dxi-item *ngIf="isTakvim" title="Takvim" style="height:100%!important;" [template]="'denemeTemp'" data-tid="A361838">
+            <dx-scheduler #detailScheduler height="100%" width="100%" [dataSource]="appointmentsData" dateCellTemplate="dateCellTemplate" [showAllDayPanel]="false" [views]="views" currentView="week" [currentDate]="currentDate" [firstDayOfWeek]="1" [startDayHour]="0" [endDayHour]="24" [cellDuration]="CellDurationForAppointMent" [crossScrollingEnabled]="true" 
+                          [(disabled)]="appointmentFormViewModel.ReadOnly" resourceCellTemplate="resourceCellTemplate" appointmentTemplate="appointment-template" appointmentTooltipTemplate="tooltip-template" 
+                          (onAppointmentUpdating)="onAppointmentUpdating($event)" (onAppointmentClick)="onAppointmentClick($event)" (onCellClick)="onCellClick($event)" (onCellContextMenu)="onCellContextMenu($event)" 
+                          (onOptionChanged)="onOptionChanged($event)" (onAppointmentDblClick)="onAppointmentDblClick($event)" (onAppointmentUpdated)="onAppointmentUpdated($event)" (onAppointmentRendered)="onAppointmentRendered($event)" 
+                          (onAppointmentFormOpening)="onAppointmentFormOpening($event)" id="A26060" data-tid="A361839">
+                <dxo-editing [allowAdding]="appointmentFormViewModel.allowAdding" [allowResizing]="false" [allowDeleting]="appointmentFormViewModel.allowDeleting" [allowDragging]="appointmentFormViewModel.allowDragging" [allowUpdating]="appointmentFormViewModel.allowUpdating" id="A26061" data-tid="A361840"></dxo-editing>
+                <dxi-resource fieldExpr="masterOwnerObjectID" [allowMultiple]="false" [dataSource]="masterResourcesData" label="{{appointmentFormViewModel.MasterResourceCaption}}" style="line-height:20px;font-size: 13px" id="A26062" data-tid="A361841">
+                </dxi-resource>
+                <dxi-resource fieldExpr="ownerObjectID" [allowMultiple]="false" [dataSource]="resourcesData" label="{{appointmentFormViewModel.SubResourceCaption}}" style="line-height:20px;font-size: 13px" id="A26063" data-tid="A361842">
+                </dxi-resource>
+                <div *dxTemplate="let data of 'dateCellTemplate'" id="A26064" data-tid="A361843">
+                    <div style="font-size: 13px; line-height: 20px" id="A26065" data-tid="A361844">{{['Pzr', 'Pts', 'Sal', 'Çrş', 'Prş', 'Cum', 'Cts'][data.date.getDay()]}}</div>
+                    <div style="font-size: 15px; line-height: 15px" id="A26066" data-tid="A361845">{{data.date.getDate()}}</div>
+                </div>
+                <div *dxTemplate="let resource of 'resourceCellTemplate'" id="A26067" data-tid="A361846">
+                    <div style="font-size: 13px; line-height: 20px" [style.background-color]="resource.color" id="A26068" data-tid="A361847">{{resource.text}}</div>
+                </div>
+                <div *dxTemplate="let givenAppointment of 'appointment-template'" id="A26069" data-tid="A361848">
+                    <div style="font-size: 11px; color:#000000;line-height: 15px; white-space: normal; height:40px;" id="A26070" data-tid="A361849">{{givenAppointment.appointmentData.text}}</div>
+                </div>
+                <div *dxTemplate="let givenAppointment of 'tooltip-template'" id="A26071" data-tid="A361850">
+                    <div *ngIf="givenAppointment.appointmentData.objectDefName == 'APPOINTMENT'" id="A26072" data-tid="A361851">
+                        <div id="A26073" data-tid="A361852">
+                            {{givenAppointment.appointmentData.text}}
+                        </div>
+                        <br id="A26074" data-tid="A361853" />
+                        <div id="A26075" data-tid="A361854">
+                            {{'Randevu Saati: ' +  (givenAppointment.appointmentData.startDate | date:'dd.MM.yyyy HH:mm')}}
+                        </div>
+                        <br id="A26076" data-tid="A361855" />
+                        <div *ngIf="givenAppointment.appointmentData.enabled == true" id="A26077" data-tid="A361856">
+                            <dx-button text='Güncelle' (onClick)='updateGivenAppointments(givenAppointment.appointmentData)' i18n-text="@@M15005" id="A26078" data-tid="A361857">
+                            </dx-button>
+                            <dx-button text='İptal Et' (onClick)='cancelAppointments(givenAppointment.appointmentData)' i18n-text="@@M16552" id="A26079" data-tid="A361858">
+                            </dx-button>
+                        </div>
+                    </div>
+                    <div *ngIf="givenAppointment.appointmentData.objectDefName == 'SCHEDULE'" id="A26080" data-tid="A361859">
+                        <div id="A26081" data-tid="A361860">
+                            {{givenAppointment.appointmentData.text}}
+                        </div>
+                        <div *ngIf="givenAppointment.appointmentData.text != 'ÇALIŞILMAYAN SAAT'" id="A26082" data-tid="A361861">
+                            <div id="A26083" data-tid="A361862">
+                                {{'Randevu Saati: ' +  (givenAppointment.appointmentData.startDate | date:'dd.MM.yyyy HH:mm')}}
+                            </div>
+                            <br id="A26084" data-tid="A361863" />
+                            <dx-button type="default" text='Randevu Ver' (onClick)='giveAppointments(givenAppointment.appointmentData)' i18n-text="@@M20749" id="A26085" data-tid="A361864">
+                            </dx-button>
+                        </div>
+                    </div>
+                </div>
+            </dx-scheduler>
+            <dx-context-menu #cellMenu [dataSource]="cellContextMenuItems" target=".dx-scheduler-date-table-cell" (onItemClick)="onContextMenuItemClick($event)" [width]="200" data-tid="A361865">
+            </dx-context-menu>
+        </dxi-item>
+    </dx-tab-panel>
+</div>
+

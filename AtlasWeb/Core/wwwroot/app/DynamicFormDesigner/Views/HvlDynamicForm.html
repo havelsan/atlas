@@ -1,0 +1,19 @@
+﻿<dx-scroll-view [scrollByContent]="false" data-tid="A370748">
+    <dx-accordion [collapsible]="true" [multiple]="true" [selectedIndex]="-1" *ngIf="ShowGrid && isReady" data-tid="A370749">
+        <dxi-item title="Form Geçmişi" data-tid="A370750">
+            <dynamic-form-history [DynamicFormID]="dynamicForm.ObjectID" [Parameters]="_Parameters" (SubmissionChanged)="SubmissionChanged($event)" data-tid="A370751"></dynamic-form-history>
+        </dxi-item>
+    </dx-accordion>
+
+    <div class="panel panel-default" *ngIf="isReady && reload" data-tid="A370752">
+        <div class="panel-heading" style="font-size: 16px;color:#08c;font-weight: 600;" data-tid="A370753">{{dynamicForm.Name}} Formu
+            <button *ngIf="ShowGrid && !ReadOnly && Mode == 2" (click)="newForm($event)" type="button" class="btn btn-primary" style="float: right;font-size: 8px;" data-tid="A370754"><i aria-hidden="true" class="fa fa-plus" data-tid="A370755"></i></button>
+            <dx-check-box #submissionAction *ngIf="historySelected" text="Kaydı Güncelle" style="float: right;padding-right: 15px;padding-top: 5px;" data-tid="A370756"></dx-check-box>
+
+
+        </div>
+        <div class="panel-body" data-tid="A370757">
+            <formio [submission]="submission" [form]="form" (submit)="onSubmit($event)" [readOnly]="readOnlyHistoryItem" (beforeSubmit)="beforeSubmit($event)" data-tid="A370758"></formio>
+        </div>
+    </div>
+</dx-scroll-view>

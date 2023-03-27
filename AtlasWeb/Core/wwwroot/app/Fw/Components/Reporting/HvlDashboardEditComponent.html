@@ -1,0 +1,34 @@
+﻿<div class="row" data-tid="A370870">
+    <div class="col-xs-2" data-tid="A370871">Dashboard</div>
+    <div class="col-xs-8" data-tid="A370872">
+        <dx-select-box displayExpr="Name" [dataSource]="reports" (onValueChanged)="reportChanged($event)" data-tid="A370873">
+        </dx-select-box>
+    </div>
+    <div class="col-xs-2" data-tid="A370874">
+        <div *ngIf="selectedItem != null" data-tid="A370875">
+            <dx-button *ngIf="selectedItem.Enabled == false" type="success" text="Etkinleştir" (onClick)="enableDisableButtonClicked()" data-tid="A370876"></dx-button>
+            <dx-button *ngIf="selectedItem.Enabled == true" type="danger" text="Devre Dışı Bırak" (onClick)="enableDisableButtonClicked()" data-tid="A370877">
+            </dx-button>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="row" *ngIf="showCreateReport" data-tid="A370878">
+    <div data-tid="A370879">
+        <div class="col-xs-2" data-tid="A370880">Veri Kaynağı Adı</div>
+        <div class="col-xs-10" data-tid="A370881">
+            <dx-text-box #txtReportName data-tid="A370882"></dx-text-box>
+        </div>
+        <div class="col-xs-2" data-tid="A370883">Class Adı (Veri Kaynağı)</div>
+        <div class="col-xs-10" data-tid="A370884">
+            <dx-text-box #txtClassName data-tid="A370885"></dx-text-box>
+        </div>
+        <div class="col-xs-2" data-tid="A370886"></div>
+        <div class="col-xs-10" data-tid="A370887">
+            <dx-button text="Yeni Veri Kaynağı" type="default" (onClick)="saveReport()" data-tid="A370888">
+            </dx-button>
+        </div>
+    </div>
+</div>

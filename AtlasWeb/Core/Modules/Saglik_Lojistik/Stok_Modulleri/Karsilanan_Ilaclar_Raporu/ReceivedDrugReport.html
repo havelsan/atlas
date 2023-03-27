@@ -1,0 +1,96 @@
+﻿<div class="col-md-12" style="height:100%;overflow-x:hidden;overflow-y:auto;padding-top: 1%;" data-tid="A332005">
+   <div class="row" style="padding-left: 1%;" data-tid="A332006">
+      <div class="col-sm-2" data-tid="A332007">
+         <label class="control-label" style="border:0; box-shadow:none; color:#08c" data-tid="A332008">Başlangıç Tarihi
+         </label>
+         <dx-date-box width="100%" type="date" [(value)]="StartDate" [readOnly]="false" data-tid="A332009">
+         </dx-date-box>
+      </div>
+      <div class="col-sm-2" data-tid="A332010">
+         <label class="control-label" style="border:0; box-shadow:none; color:#08c" data-tid="A332011">Bitiş Tarihi</label>
+         <dx-date-box width="100%" type="date" [(value)]="EndDate" [readOnly]="false" data-tid="A332012">
+         </dx-date-box>
+      </div>
+      <div class="col-md-4" data-tid="A332013">
+         <label class="control-label" data-tid="A332014">İlaç Seçiniz</label>
+         <dx-drop-down-box [(value)]="selectedDrugDefItem.Name" displayExpr="Name" valueExpr="ObjectID" [showClearButton]="true" [dataSource] (onOpened)="openDrugDefDropDown()" (onValueChanged)="onClearDrug($event)" data-tid="A332015">
+            <div *dxTemplate="let data of 'content'" data-tid="A332016">
+               <dx-data-grid [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" [dataSource]="drugDefDataSource" (onRowClick)="selectDrugDef($event)" [remoteOperations]="true" [customizeColumns]="null" data-tid="A332017">
+                  <dxo-filter-row [visible]="true" data-tid="A332018"></dxo-filter-row>
+                  <dxo-paging [pageSize]="10" data-tid="A332019"></dxo-paging>
+                  <dxo-selection [selectAllMode]="allMode" [showCheckBoxesMode]="checkBoxesMode" mode="multiple" data-tid="A332020"></dxo-selection>
+                  <dxi-column caption="Barkod" dataField="Barcode" width="100" data-tid="A332021"></dxi-column>
+                  <dxi-column caption="İlaç" dataField="Name" data-tid="A332022"></dxi-column>
+               </dx-data-grid>
+            </div>
+         </dx-drop-down-box>
+      </div>
+      <div class="col-sm-2" data-tid="A332023">
+         <label class="control-label col-sm-5" id="A1582" data-tid="A332024">Özellikli İlaç</label>
+         <div class="col-sm-12" id="A1583" data-tid="A332025">
+            <dx-tag-box [items]="DrugSpecificationEnumDef" [searchEnabled]="true" valueExpr="ordinal" displayExpr="description" (onSelectionChanged)="OzellikChanged($event)" [multiline]="false" showSelectionControls="true" [disabled]="showUnused" data-tid="A332026">
+            </dx-tag-box>
+         </div>
+      </div>
+      <div class="col-sm-2" data-tid="A332027">
+         <label class="control-label" style="border:0; box-shadow:none; " data-tid="A332028">Doktor</label>
+         <dx-tag-box [items]="DoctorList" [searchEnabled]="true" displayExpr="Name" (valueExpr)="Name" (onSelectionChanged)="onDoctorSelectionChanged($event)" [(value)]="SelectedDoctorListItems" [multiline]="false" showSelectionControls="true" data-tid="A332029">
+         </dx-tag-box>
+      </div>
+   </div>
+   <br data-tid="A332030" />
+   <div class="row" style="padding-left: 1%;" data-tid="A332031">
+      <div class="col-sm-2" data-tid="A332032">
+         <label class="control-label" style="border:0; box-shadow:none; color:#08c" data-tid="A332033">Servis</label>
+         <dx-tag-box [items]="MasterResourceList" searchEnabled="true" valueExpr="Name" displayExpr="Name" (onSelectionChanged)="onMasterResourceSelectionChanged($event)" multiline="false" showSelectionControls="true" data-tid="A332034">
+         </dx-tag-box>
+      </div>
+      <div class="col-sm-2" data-tid="A332035">
+         <label class="control-label" style="border:0; box-shadow:none; color:#08c" data-tid="A332036">Etken Madde</label>
+         <dx-button type="btn btn-default" text="Etken Madde" (onClick)="OpenActiveIngredientsMaterialMultiSelectComponent()" style="margin-bottom: 10px;" [disabled]="showUnused" data-tid="A332037"></dx-button>
+      </div>
+
+      <div class="col-sm-2" id="A5668" style="margin-top: 12px;" data-tid="A332038">
+         <dx-button type="btn btn-info" icon="fa fa-bars" class="center-block" (onClick)="GetDrugList()" text="Sorgula" id="A5669" data-tid="A332039"></dx-button>
+      </div>
+
+     
+
+   </div>
+
+   <div class="row" data-tid="A332040">
+      <div class="col-sm-12" style="margin-top:5px;" data-tid="A332041">
+         <div id="grid" data-tid="A332042">
+            <dx-data-grid [columns]="DrugListColumn" [dataSource]="DrugList" [groupPanel]="{visible: true}" [filterRow]="{visible: true}" width="100%" height="560px" showRowLines="true" [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" data-tid="A332043">
+               <dxo-paging [pageSize]="20" data-tid="A332044"></dxo-paging>
+               <dxo-group-panel [visible]="true" data-tid="A332045"></dxo-group-panel>
+               <dxo-filter-row [visible]="true" data-tid="A332046"> </dxo-filter-row>
+               <dxo-grouping #expand [autoExpandAll]="true" data-tid="A332047"></dxo-grouping>
+               <dxo-export [enabled]="true" fileName="Eczaneden Karşılanan İlaçlar Raporu" [allowExportSelectedData]="false" data-tid="A332048"></dxo-export>
+            </dx-data-grid>
+         </div>
+      </div>
+      <div class="col-sm-12 pull pull-right" style="width:100%;color: black;padding: 15px;font-size: larger;" data-tid="A332049">
+         Toplam Kayıt Sayısı: {{ TotalNumberOfRows }}
+      </div>
+   </div>
+
+   <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" showIndicator="true" showPane="true" shading="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A332050">
+   </dx-load-panel>
+
+   <dx-popup width="500px" height="500px" [(visible)]="showActiveIngredientsMaterialMultiSelectForm" [closeOnOutsideClick]="false" title="Malzeme Listesi" data-tid="A332051">
+      <div id="list-api-demo" data-tid="A332052">
+         <div class="margin-bottom-10" data-tid="A332053">
+            <div *dxTemplate="let data of 'content'" data-tid="A332054">
+               <dx-list [dataSource]="ActiveIngredientList" height="400" selectAllMode="allPages" searchExpr="Name" selectionMode="all" showSelectionControls="true" searchMode="contains" nextButtonText="Daha Fazla Göster" [(selectedItems)]="SelectedActiveIngredients" [searchEnabled]="true" pageLoadMode="scrollBottom" keyExpr="ObjectID" data-tid="A332055">
+                  <div *dxTemplate="let data of 'item'" data-tid="A332056">
+                     <div data-tid="A332057">{{data.Name}}</div>
+                  </div>
+               </dx-list>
+               <dx-button type="button" class="btn btn-primary" (onClick)="selectedChangeOnActiveIngredient()" style="margin-left: 200px;background-color: blue;" text="Tamam" data-tid="A332058"></dx-button>
+            </div>
+         </div>
+      </div>
+   </dx-popup>
+
+</div>

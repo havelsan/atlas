@@ -1,0 +1,495 @@
+﻿
+
+<NeStatePanelComponent [OutgoingTransitions]="forensicMedicalReportFormViewModel?.OutgoingTransitions" [CustomButtonVisible]="_isReportCompleted" [CustomButtonCaption]="_buttonCaption" [CustomButtonIcon]="_buttonIcon" [ObjectDefID]="forensicMedicalReportFormViewModel._ForensicMedicalReport.ObjectDefID" [CurrentStateDefID]="forensicMedicalReportFormViewModel._ForensicMedicalReport.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onCustomButtonClick)="printForensicMedicalReport()" (onCancel)="cancel()" (onSaveChanges)="save($event)" data-tid="A348489">
+</NeStatePanelComponent>
+<!--<div class="col-sm-12">
+    <dx-button *ngIf="_isReportCompleted == true" type="btn btn-default" icon="fa fa-print" class="pull-right" text="Yazdır" (onClick)="printForensicMedicalReport()"></dx-button>
+
+</div>-->
+
+
+
+
+<form id="ForensicMedicalReportForm" class="form-horizontal" role="form" data-tid="A348490"></form>
+<div class="row" data-tid="A348491">
+    <div class="col-sm-4" data-tid="A348492">
+        <patient-demographics-form [actionId]="actionIdForDemografic()" data-tid="A348493"></patient-demographics-form>
+    </div>
+
+    <div class="col-sm-4" data-tid="A348494">
+
+        <div class="col-sm-12" data-tid="A348495">
+            <label class="control-label" data-tid="A348496">İstek Tarihi</label>
+            <dx-date-box [disabled]="true" [acceptCustomValue]="false" [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.RequestDate" [showClearButton]="false" pickerType="calendar" type="date" displayFormat="dd/MM/yyyy" style="width:100%" data-tid="A348497"></dx-date-box>
+        </div>
+
+        <div class="col-sm-6" data-tid="A348498">
+            <label class="control-label" data-tid="A348499">Rapor No</label>
+            <dx-text-box [showClearButton]="true" [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.ReportNo" [disabled]="true" data-tid="A348500"></dx-text-box>
+        </div>
+
+        <div class="col-sm-6" data-tid="A348501">
+            <label class="control-label" data-tid="A348502">Protokol No</label>
+            <dx-text-box [showClearButton]="true" [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.ProtocolNo" [disabled]="true" data-tid="A348503"></dx-text-box>
+        </div>
+        <div class="col-sm-6" data-tid="A348504">
+            <label class="control-label" data-tid="A348505"> Evrak Tarihi</label>
+            <dx-date-box [disabled]="_isReadOnly" [acceptCustomValue]="false" [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.DocumentDate" [showClearButton]="true" pickerType="calendar" type="date" displayFormat="dd/MM/yyyy" style="width:100%" data-tid="A348506"></dx-date-box>
+
+        </div>
+        <div class="col-sm-6" data-tid="A348507">
+            <label class="control-label" data-tid="A348508"> Evrak Sayısı</label>
+            <dx-text-box [disabled]="_isReadOnly" [showClearButton]="true" [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.DocumentNumber" data-tid="A348509"></dx-text-box>
+        </div>
+
+    </div>
+
+    <div class="col-sm-4" data-tid="AY348510">
+        <div class="col-sm-12" data-tid="AY348511">
+            <label class="control-label" data-tid="AY348512">
+                Rapor Türü
+            </label>
+            <hvl-enum-combobox #Validation (ValueChange)="onReportTypeChanged($event)" [BackColor]="ReportType?.BackColor" [DataTypeName]="ReportType?.DataTypeName" [Enabled]="ReportType?.Enabled" [Font]="ReportType?.Font" [ForeColor]="ReportType?.ForeColor" [IncludeOnly]="ReportType?.IncludeOnly" [ReadOnly]="ReportType?.ReadOnly" [ShowClearButton]="ReportType?.ShowClearButton" [SortBy]="ReportType?.SortBy" [TabIndex]="ReportType?.TabIndex" [Value]="_ForensicMedicalReport.ReportType" [Visible]="ReportType?.Visible" data-tid="AY348513">
+            </hvl-enum-combobox>
+        </div>
+        <div class="col-sm-12" data-tid="A348511">
+            <label class="control-label" data-tid="A348512">
+                Raporun İstendiği Makam
+            </label>
+            <hvl-enum-combobox #Validation (ValueChange)="onPermissionDepartmentChanged($event)" [BackColor]="PermissionDepartment?.BackColor" [DataTypeName]="PermissionDepartment?.DataTypeName" [Enabled]="PermissionDepartment?.Enabled" [Font]="PermissionDepartment?.Font" [ForeColor]="PermissionDepartment?.ForeColor" [IncludeOnly]="PermissionDepartment?.IncludeOnly" [ReadOnly]="PermissionDepartment?.ReadOnly" [ShowClearButton]="PermissionDepartment?.ShowClearButton" [SortBy]="PermissionDepartment?.SortBy" [TabIndex]="PermissionDepartment?.TabIndex" [Value]="_ForensicMedicalReport.PermissionDepartment" [Visible]="PermissionDepartment?.Visible" data-tid="A348513">
+            </hvl-enum-combobox>
+        </div>
+        <div class="col-sm-12" data-tid="A348514">
+            <label class="control-label" data-tid="A348515">Gönderen Makam</label>
+            <hvl-list-box #Validation (SelectedObjectChange)="onSenderChairChanged($event)" [AutoCompleteDialogHeight]="SenderChair?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="SenderChair?.AutoCompleteDialogWidth" [AutoCompleteMode]="SenderChair?.AutoCompleteMode" [BackColor]="SenderChair?.BackColor" [DefinitionName]="SenderChair?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="SenderChair?.Enabled" [Font]="SenderChair?.Font" [ForeColor]="SenderChair?.ForeColor" [ListFilterExpression]="SenderChair?.ListFilterExpression" [MinSearchLength]="SenderChair?.MinSearchLength" [PopupDialogFieldConfig]="SenderChair?.PopupDialogFieldConfig" [PopupDialogGridColumns]="SenderChair?.PopupDialogGridColumns" [PopupDialogHeight]="SenderChair?.PopupDialogHeight" [PopupDialogTitle]="SenderChair?.PopupDialogTitle" [PopupDialogWidth]="SenderChair?.PopupDialogWidth" [ReadOnly]="SenderChair?.ReadOnly" [SearchMode]="SenderChair?.SearchMode" [SearchTimeout]="SenderChair?.SearchTimeout" [SelectedObject]="_ForensicMedicalReport.SenderChair" [TabIndex]="SenderChair?.TabIndex" [Visible]="SenderChair?.Visible" [width]="SenderChair?.Width" data-tid="A348516">
+            </hvl-list-box>
+        </div>
+        <div class="col-sm-12" data-tid="A348517">
+            <label class="control-label" data-tid="A348518">
+                Sorumlu Kişi
+            </label>
+            <hvl-list-box #Validation (SelectedObjectChange)="onttobjectlistbox1Changed($event)" [AutoCompleteDialogHeight]="ttobjectlistbox1?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ttobjectlistbox1?.AutoCompleteDialogWidth" [AutoCompleteMode]="ttobjectlistbox1?.AutoCompleteMode" [BackColor]="ttobjectlistbox1?.BackColor" [DefinitionName]="ttobjectlistbox1?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="ttobjectlistbox1?.Enabled" [Font]="ttobjectlistbox1?.Font" [ForeColor]="ttobjectlistbox1?.ForeColor" [ListFilterExpression]="ttobjectlistbox1?.ListFilterExpression" [MinSearchLength]="ttobjectlistbox1?.MinSearchLength" [PopupDialogFieldConfig]="ttobjectlistbox1?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ttobjectlistbox1?.PopupDialogGridColumns" [PopupDialogHeight]="ttobjectlistbox1?.PopupDialogHeight" [PopupDialogTitle]="ttobjectlistbox1?.PopupDialogTitle" [PopupDialogWidth]="ttobjectlistbox1?.PopupDialogWidth" [ReadOnly]="ttobjectlistbox1?.ReadOnly" [SearchMode]="ttobjectlistbox1?.SearchMode" [SearchTimeout]="ttobjectlistbox1?.SearchTimeout" [SelectedObject]="_ForensicMedicalReport.ProcedureDoctor" [TabIndex]="ttobjectlistbox1?.TabIndex" [Visible]="ttobjectlistbox1?.Visible" [width]="ttobjectlistbox1?.Width" data-tid="A348519">
+            </hvl-list-box>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="row" data-tid="A348520">
+    <div class="col-sm-4" data-tid="A348521">
+        <label class="control-label " data-tid="A348522">
+            Muayene Sebebi
+        </label>
+        <hvl-enum-combobox #Validation (ValueChange)="onReasonExaminationReportTypeChanged($event)" [BackColor]="ReasonExaminationReportType?.BackColor" [DataTypeName]="ReasonExaminationReportType?.DataTypeName" [Enabled]="ReasonExaminationReportType?.Enabled" [Font]="ReasonExaminationReportType?.Font" [ForeColor]="ReasonExaminationReportType?.ForeColor" [IncludeOnly]="ReasonExaminationReportType?.IncludeOnly" [ReadOnly]="ReasonExaminationReportType?.ReadOnly" [ShowClearButton]="ReasonExaminationReportType?.ShowClearButton" [SortBy]="ReasonExaminationReportType?.SortBy" [TabIndex]="ReasonExaminationReportType?.TabIndex" [Value]="_ForensicMedicalReport.ReasonExaminationReportType" [Visible]="ReasonExaminationReportType?.Visible" data-tid="A348523">
+        </hvl-enum-combobox>
+        <label class="control-label " data-tid="A348524">
+            Muayene Sebebi Açıklama
+        </label>
+        <dx-text-box style="margin-top:10px; " [disabled]="_isReadOnly" [showClearButton]="true" [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.OtherReasonExamination" data-tid="A348525"></dx-text-box>
+
+        <label class="control-label" data-tid="A348526">
+            Eşlik Eden Görevlinin Adı Soyadı
+        </label>
+        <dx-text-box style="margin-top:10px; " [disabled]="_isReadOnly" [showClearButton]="true" [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.AttendantNameSurname" data-tid="A348527"></dx-text-box>
+
+    </div>
+
+    <div class="col-sm-8" data-tid="A348528">
+        <label class="control-label" data-tid="A348529">
+            Muayene Edilenin Tıbbi Kimliği (Geçerli Kimlik Belgesi Olmayanlar İçin Doldurulacak)
+        </label>
+        <dx-text-area [disabled]="_isReadOnly" [height]="115" [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.PatientIdentity" data-tid="A348530"></dx-text-area>
+
+
+
+    </div>
+
+</div>
+
+<dx-tab-panel [selectedIndex]="0" [animationEnabled]="false" [swipeEnabled]="false" data-tid="A348531">
+    <dxi-item class="tabpanel-item" title="Muayene Koşulları" data-tid="A348532">
+        <label class="control-label col-sm-12" style="margin-top:10px" data-tid="A348533">
+            Bu bölümü gözaltı işlemi ve insan hakları ihlali iddiası nedeniyle muayeneye getirilen kişiler için mutlaka doldurunuz.
+        </label>
+        <div class="col-sm-5" data-tid="A348534">
+            <div class="dx-field" style="margin-top:10px;" data-tid="A348535">
+                <div class="dx-field-label" data-tid="A348536">Uygun ortam sağlandı mı?</div>
+                <div class="dx-field-value" data-tid="A348537">
+                    <dx-radio-group [items]="_suitableEnvironment" [value]="_suitableEnvironment[0]" [disabled]="_isReadOnly" layout="horizontal" data-tid="A348538">
+                    </dx-radio-group>
+                </div>
+            </div>
+
+
+            <!--<label class="control-label col-sm-0">
+                Uygun ortam sağlandı mı?
+            </label>-->
+            <!--<div class="col-sm-1">
+                <hvl-checkbox #Validation="" (ValueChange)="onSuitableEnvironment1Changed($event)" [AllowThreeState]="SuitableEnvironment1?.ThreeState" [BackColor]="SuitableEnvironment1?.BackColor" [Enabled]="SuitableEnvironment1?.Enabled" [Font]="SuitableEnvironment1?.Font" [ForeColor]="SuitableEnvironment1?.ForeColor" [IsTitleLeft]="SuitableEnvironment1?.IsTitleLeft" [Margin]="SuitableEnvironment1?.Margin" [ReadOnly]="SuitableEnvironment1?.ReadOnly" [TabIndex]="SuitableEnvironment1?.TabIndex" [TitleTopPadding]="SuitableEnvironment1?.TitleTopPadding" [Title]="SuitableEnvironment1?.Title" [Value]="_ForensicMedicalReport.SuitableEnvironment1" [Visible]="SuitableEnvironment1?.Visible">
+                </hvl-checkbox>
+            </div>
+            <div class="col-sm-1">
+                <hvl-checkbox #Validation="" (ValueChange)="onSuitableEnvironment2Changed($event)" [AllowThreeState]="SuitableEnvironment2?.ThreeState" [BackColor]="SuitableEnvironment2?.BackColor" [Enabled]="SuitableEnvironment2?.Enabled" [Font]="SuitableEnvironment2?.Font" [ForeColor]="SuitableEnvironment2?.ForeColor" [IsTitleLeft]="SuitableEnvironment2?.IsTitleLeft" [Margin]="SuitableEnvironment2?.Margin" [ReadOnly]="SuitableEnvironment2?.ReadOnly" [TabIndex]="SuitableEnvironment2?.TabIndex" [TitleTopPadding]="SuitableEnvironment2?.TitleTopPadding" [Title]="SuitableEnvironment2?.Title" [Value]="_ForensicMedicalReport.SuitableEnvironment2" [Visible]="SuitableEnvironment2?.Visible">
+                </hvl-checkbox>
+            </div>-->
+
+        </div>
+
+        <div class="col-sm-7" data-tid="A348539">
+            <label class="control-label" style="margin-top:10px;" data-tid="A348540">
+                Açıklamalar
+            </label>
+            <dx-text-area [disabled]="_isReadOnly" [height]="50" [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.Explanation1" data-tid="A348541"></dx-text-area>
+
+        </div>
+        <div class="col-sm-12" data-tid="A348542">
+            <div class="row" data-tid="A348543">
+                <div class="col-sm-5" data-tid="A348544">
+                    <div class="dx-field" style="margin-top:10px;" data-tid="A348545">
+                        <div class="dx-field-label" data-tid="A348546">Muayene Sırasında Bulunan Kişiler</div>
+                        <div class="dx-field-value" data-tid="A348547">
+                            <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.PeopleInExamination1" [disabled]="_isReadOnly" [width]="200" text="Tabip ve Muayene Edilen" data-tid="A348548"></dx-check-box>
+                            <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.PeopleInExamination2" [disabled]="_isReadOnly" [width]="200" text="Güvenlik Görevlisi" data-tid="A348549"></dx-check-box>
+                            <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.PeopleInExamination3" [disabled]="_isReadOnly" [width]="200" text="Sağlık Mesleği Mensubu Personel" data-tid="A348550"></dx-check-box>
+                            <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.PeopleInExamination4" [disabled]="_isReadOnly" [width]="200" text="Muayene Edilenin Müdafii" data-tid="A348551"></dx-check-box>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-5" data-tid="A348552">
+            <div class="dx-field" style="margin-top:10px;" data-tid="A348553">
+                <div class="dx-field-label" data-tid="A348554">Muayene Edilenin Giysileri</div>
+                <div class="dx-field-value" data-tid="A348555">
+                    <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.ClothesOfPatient1" [disabled]="_isReadOnly" [width]="200" text="Tamamen çıkartıldı" data-tid="A348556"></dx-check-box>
+                    <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.ClothesOfPatient2" [disabled]="_isReadOnly" [width]="200" text="Kısmen çıkartıldı" data-tid="A348557"></dx-check-box>
+                    <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.ClothesOfPatient3" [disabled]="_isReadOnly" [width]="200" text="Çıkartılmadı" data-tid="A348558"></dx-check-box>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-7" data-tid="A348559">
+            <label class="control-label" style="margin-top:10px;" data-tid="A348560">Açıklamalar</label>
+            <dx-text-area [disabled]="_isReadOnly" [height]="50" [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.Explanation2" data-tid="A348561"></dx-text-area>
+        </div>
+    </dxi-item>
+
+
+    <dxi-item class="tabpanel-item" title="Muayeneye Esas Olayla İlgili Bilgiler" style="height:500px !important;overflow-y:scroll;" data-tid="A348562">
+
+        <label class="control-label col-sm-12" style="margin-top:10px" data-tid="A348563">
+            Bu bölümdeki bilgileri, muayeneye getirilen kişinin ifadelerine göre doldurunuz.
+        </label>
+
+        <div class="col-sm-12" data-tid="A348564">
+            <label class="control-label" style="margin-top:10px" data-tid="A348565">
+                Olayın Öyküsü (Tarih ve saat bilgilerini belirtmeyi unutmayınız)
+            </label>
+            <dx-text-area [disabled]="_isReadOnly" [height]="50" [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.HistoryOfEvent" data-tid="A348566"></dx-text-area>
+
+        </div>
+
+        <div class="col-sm-12" data-tid="A348567">
+            <label class="control-label" style="margin-top:10px" data-tid="A348568">Muayene Edilenin Şikayetleri</label>
+            <hvl-richtextbox (change)="onComplaintEpisodeChanged($event)" [ngModelOptions]="{ standalone: true }" [ngModel]="_ForensicMedicalReport.Episode.Complaint" [ReadOnly]="true" [TemplateGroupName]="ComplaintEpisode?.TemplateGroupName" [Visible]="ComplaintEpisode?.Visible" data-tid="A348569">
+            </hvl-richtextbox>
+        </div>
+
+        <div class="col-sm-12" data-tid="A348570">
+            <label class="control-label" data-tid="A348571">Hastanın Tıbbi Özgeçmişi</label>
+            <hvl-richtextbox (change)="onPatientHistoryEpisodeChanged($event)" [ngModelOptions]="{ standalone: true }" [ngModel]="_ForensicMedicalReport.Episode.PatientHistory" [ReadOnly]="true" [TemplateGroupName]="PatientHistoryEpisode?.TemplateGroupName" [Visible]="PatientHistoryEpisode?.Visible" data-tid="A348572">
+            </hvl-richtextbox>
+        </div>
+
+
+    </dxi-item>
+
+    <dxi-item class="tabpanel-item" title="Muayene Bulguları" data-tid="A348573">
+
+        <label class="control-label col-sm-12" style="margin-top:10px;" data-tid="A348574">
+            Bu bölümde, bütün kısımların doldurulması gerekmemektedir. Olaya, iddiaya, talebe ve muayene bulgulalrına göre gerekli görülenleri yapınız ve ilgili kısmı doldurunuz.
+        </label>
+
+        <div class="col-sm-2" data-tid="A348575">
+            <label class="control-label" style="margin-top:10px;" data-tid="A348576"> Muayeneye Başlandığı Tarih</label>
+            <dx-date-box [disabled]="_isReadOnly" [acceptCustomValue]="false" [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.ExaminationDate" [showClearButton]="false" pickerType="calendar" type="date" displayFormat="dd/MM/yyyy" style="width:100%" data-tid="A348577"></dx-date-box>
+        </div>
+
+        <div class="col-sm-12" data-tid="A348578">
+            <dx-tab-panel [selectedIndex]="0" style="margin-top:10px;margin-bottom:10px;" data-tid="A348579">
+                <dxi-item class="tabpanel-item" title="Lezyon(lar İle İlgili Bulgular)" data-tid="A348580">
+
+                    <label class="control-label col-sm-12" style="margin-top:10px;" data-tid="A348581">
+                        Olaya ve iddiaya göre muayene yaparak, varsa lezyon bulunanan bölgeyi işaretleyiniz ve lezyonun özelliklerini tanımlayınız. Lezyon yoksa saptanmadığını belirtiniz.
+                    </label>
+
+
+
+                    <div class="col-sm-2" style="margin-top:10px;" data-tid="A348582">
+                        <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.HeadNeck" [disabled]="_isReadOnly" text="Baş-Boyun" data-tid="A348583"></dx-check-box>
+
+                    </div>
+                    <div class="col-sm-1" style="margin-top:10px;" data-tid="A348584">
+                        <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.Chest" [disabled]="_isReadOnly" text="Göğüs" data-tid="A348585"></dx-check-box>
+
+                    </div>
+                    <div class="col-sm-1" style="margin-top:10px;" data-tid="A348586">
+                        <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.Abdominal" [disabled]="_isReadOnly" text="Batın" data-tid="A348587"></dx-check-box>
+
+                    </div>
+                    <div class="col-sm-2" style="margin-top:10px;" data-tid="A348588">
+                        <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.Back" [disabled]="_isReadOnly" text="Sırt-Bel" data-tid="A348589"></dx-check-box>
+
+                    </div>
+                    <div class="col-sm-2" style="margin-top:10px;" data-tid="A348590">
+                        <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.UpperExtrimity" [disabled]="_isReadOnly" text="Üst Ekstremite" data-tid="A348591"></dx-check-box>
+
+                    </div>
+                    <div class="col-sm-2" style="margin-top:10px;" data-tid="A348592">
+                        <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.LowerExtremity" [disabled]="_isReadOnly" text="Alt Ekstremite" data-tid="A348593"></dx-check-box>
+
+                    </div>
+                    <div class="col-sm-2" style="margin-top:10px;" data-tid="A348594">
+                        <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.GenitalArea" [disabled]="_isReadOnly" text="Genital Bölge" data-tid="A348595"></dx-check-box>
+                    </div>
+
+                    <div class="col-sm-12" style="margin-top:10px; margin-bottom:10px;" data-tid="A348596">
+                        <dx-text-area [disabled]="_isReadOnly" [height]="50" [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.PropertiesOfLesions" data-tid="A348597"></dx-text-area>
+                    </div>
+
+                </dxi-item>
+
+                <dxi-item class="tabpanel-item" title="Sistem Muayeneleri" data-tid="A348598">
+
+                    <label class="control-label col-sm-12" style="margin-top:10px;" data-tid="A348599">Tespit edilen diğer bulgularla ilgili sistemi işaretleyiniz ve bulguları belirtiniz.</label>
+
+                    <div class="col-sm-2" style="margin-top:10px;" data-tid="A348600">
+                        <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.CentralNervousSystem" [disabled]="_isReadOnly" text="Merkezi Sinir" data-tid="A348601"></dx-check-box>
+
+                    </div>
+                    <div class="col-sm-2" style="margin-top:10px;" data-tid="A348602">
+                        <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.CardiovascularSystem" [disabled]="_isReadOnly" text="Kalp Damar" data-tid="A348603"></dx-check-box>
+
+                    </div>
+                    <div class="col-sm-1" style="margin-top:10px;" data-tid="A348604">
+                        <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.DigestiveSys" [disabled]="_isReadOnly" text="Sindirim" data-tid="A348605"></dx-check-box>
+
+                    </div>
+                    <div class="col-sm-1" style="margin-top:10px;" data-tid="A348606">
+                        <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.RespiratorySys" [disabled]="_isReadOnly" text="Solunum" data-tid="A348607"></dx-check-box>
+
+                    </div>
+                    <div class="col-sm-2" style="margin-top:10px;" data-tid="A348608">
+                        <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.SkeletalSys" [disabled]="_isReadOnly" text="Kas İskelet" data-tid="A348609"></dx-check-box>
+
+                    </div>
+                    <div class="col-sm-2" style="margin-top:10px;" data-tid="A348610">
+                        <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.UrogenitalSys" [disabled]="_isReadOnly" text="Ürogenital" data-tid="A348611"></dx-check-box>
+
+                    </div>
+                    <div class="col-sm-2" style="margin-top:10px;" data-tid="A348612">
+                        <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.SensoryOrgansSys" [disabled]="_isReadOnly" text="Duyu Organları" data-tid="A348613"></dx-check-box>
+                    </div>
+
+                    <div class="col-sm-3" data-tid="A348614">
+                        <label class="control-label" style="margin-top:10px;" data-tid="A348615">Genel Durumu</label>
+                        <hvl-enum-combobox #Validation (ValueChange)="onGeneralConditionOfPatientChanged($event)" [BackColor]="GeneralConditionOfPatient?.BackColor" [DataTypeName]="GeneralConditionOfPatient?.DataTypeName" [Enabled]="GeneralConditionOfPatient?.Enabled" [Font]="GeneralConditionOfPatient?.Font" [ForeColor]="GeneralConditionOfPatient?.ForeColor" [IncludeOnly]="GeneralConditionOfPatient?.IncludeOnly" [ReadOnly]="GeneralConditionOfPatient?.ReadOnly" [ShowClearButton]="GeneralConditionOfPatient?.ShowClearButton" [SortBy]="GeneralConditionOfPatient?.SortBy" [TabIndex]="GeneralConditionOfPatient?.TabIndex" [Value]="_ForensicMedicalReport.GeneralConditionOfPatient" [Visible]="GeneralConditionOfPatient?.Visible" data-tid="A348616">
+                        </hvl-enum-combobox>
+                    </div>
+
+                    <div class="col-sm-3" data-tid="A348617">
+                        <label class="control-label" style="margin-top:10px;" data-tid="A348618">Bilinci</label>
+                        <hvl-enum-combobox #Validation (ValueChange)="onAwarenessChanged($event)" [BackColor]="Awareness?.BackColor" [DataTypeName]="Awareness?.DataTypeName" [Enabled]="Awareness?.Enabled" [Font]="Awareness?.Font" [ForeColor]="Awareness?.ForeColor" [IncludeOnly]="Awareness?.IncludeOnly" [ReadOnly]="Awareness?.ReadOnly" [ShowClearButton]="Awareness?.ShowClearButton" [SortBy]="Awareness?.SortBy" [TabIndex]="Awareness?.TabIndex" [Value]="_ForensicMedicalReport.Awareness" [Visible]="Awareness?.Visible" data-tid="A348619">
+                        </hvl-enum-combobox>
+                    </div>
+
+                    <div class="col-sm-3" data-tid="A348620">
+                        <label class="control-label" style="margin-top:10px;" data-tid="A348621">Tansiyon Arteryel(mmHg)</label>
+                        <dx-text-box [disabled]="_isReadOnly" [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.ArterialBloodPresure" data-tid="A348622"></dx-text-box>
+
+                    </div>
+                    <div class="col-sm-3" data-tid="A348623">
+                        <label class="control-label" style="margin-top:10px;" data-tid="A348624">Nabız(/dk)</label>
+                        <dx-text-box [disabled]="_isReadOnly" [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.Pulse" data-tid="A348625"></dx-text-box>
+
+                    </div>
+
+                    <div class="col-sm-3" data-tid="A348626">
+                        <label class="control-label" data-tid="A348627">Solunum</label>
+                        <hvl-enum-combobox #Validation (ValueChange)="onRespitoryChanged($event)" [BackColor]="Respitory?.BackColor" [DataTypeName]="Respitory?.DataTypeName" [Enabled]="Respitory?.Enabled" [Font]="Respitory?.Font" [ForeColor]="Respitory?.ForeColor" [IncludeOnly]="Respitory?.IncludeOnly" [ReadOnly]="Respitory?.ReadOnly" [ShowClearButton]="Respitory?.ShowClearButton" [SortBy]="Respitory?.SortBy" [TabIndex]="Respitory?.TabIndex" [Value]="_ForensicMedicalReport.Respitory" [Visible]="Respitory?.Visible" data-tid="A348628">
+                        </hvl-enum-combobox>
+                    </div>
+
+                    <div class="col-sm-3" data-tid="A348629">
+                        <label class="control-label" data-tid="A348630">Pupiller</label>
+                        <hvl-enum-combobox #Validation (ValueChange)="onPupilPropertiesChanged($event)" [BackColor]="PupilProperties?.BackColor" [DataTypeName]="PupilProperties?.DataTypeName" [Enabled]="PupilProperties?.Enabled" [Font]="PupilProperties?.Font" [ForeColor]="PupilProperties?.ForeColor" [IncludeOnly]="PupilProperties?.IncludeOnly" [ReadOnly]="PupilProperties?.ReadOnly" [ShowClearButton]="PupilProperties?.ShowClearButton" [SortBy]="PupilProperties?.SortBy" [TabIndex]="PupilProperties?.TabIndex" [Value]="_ForensicMedicalReport.PupilProperties" [Visible]="PupilProperties?.Visible" data-tid="A348631">
+                        </hvl-enum-combobox>
+                    </div>
+
+                    <div class="col-sm-3" data-tid="A348632">
+                        <label class="control-label" data-tid="A348633">Işık Refleksi</label>
+                        <hvl-enum-combobox #Validation (ValueChange)="onLightReflexChanged($event)" [BackColor]="LightReflex?.BackColor" [DataTypeName]="LightReflex?.DataTypeName" [Enabled]="LightReflex?.Enabled" [Font]="LightReflex?.Font" [ForeColor]="LightReflex?.ForeColor" [IncludeOnly]="LightReflex?.IncludeOnly" [ReadOnly]="LightReflex?.ReadOnly" [ShowClearButton]="LightReflex?.ShowClearButton" [SortBy]="LightReflex?.SortBy" [TabIndex]="LightReflex?.TabIndex" [Value]="_ForensicMedicalReport.LightReflex" [Visible]="LightReflex?.Visible" data-tid="A348634">
+                        </hvl-enum-combobox>
+                    </div>
+                    <div class="col-sm-3" data-tid="A348635">
+                        <label class="control-label" data-tid="A348636">Tendon Refleksi</label>
+                        <hvl-enum-combobox #Validation (ValueChange)="onTendonReflexesChanged($event)" [BackColor]="TendonReflexes?.BackColor" [DataTypeName]="TendonReflexes?.DataTypeName" [Enabled]="TendonReflexes?.Enabled" [Font]="TendonReflexes?.Font" [ForeColor]="TendonReflexes?.ForeColor" [IncludeOnly]="TendonReflexes?.IncludeOnly" [ReadOnly]="TendonReflexes?.ReadOnly" [ShowClearButton]="TendonReflexes?.ShowClearButton" [SortBy]="TendonReflexes?.SortBy" [TabIndex]="TendonReflexes?.TabIndex" [Value]="_ForensicMedicalReport.TendonReflexes" [Visible]="TendonReflexes?.Visible" data-tid="A348637">
+                        </hvl-enum-combobox>
+                    </div>
+                    <div class="col-sm-12" style="margin-top:10px;" data-tid="A348638">
+                        <dx-text-area [disabled]="_isReadOnly" [height]="50" [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.SystemFindings" data-tid="A348639"></dx-text-area>
+
+                    </div>
+
+                </dxi-item>
+
+                <dxi-item class="tabpanel-item" title="Psikiyatrik Muayene" data-tid="A348640">
+
+                    <label class="control-label col-sm-12" data-tid="A348641">
+                        Temel psiyatrik değerlendirmeyi/muayeneyi her vaka için yapıp, olayın mahiyetine göre veya herhangi bir psikopatolojik   bulgu saptamanız durumunda ayrıntılı psikiyatrik muayeneye geçiniz veya psikiatri konsültasyonu isteyiniz. Bu durumda, rapora PSİKİATRİK MUAYENE/KONSÜLTASYON RAPORU formu ilave ediniz.
+                    </label>
+                    <div class="col-sm-7" data-tid="A348642">
+                        <div class="dx-field" style="margin-top:10px;" data-tid="A348643">
+                            <div class="dx-field-label" data-tid="A348644">Temel psikiyatrik muayene yapıldı</div>
+                            <div class="dx-field-value" data-tid="A348645">
+                                <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.NoEvidancePsycho" [disabled]="_isReadOnly" [width]="500" text="Belirgin bir psikopatolojik bulgu saptanmadı." data-tid="A348646"></dx-check-box>
+                                <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.PyschiatricExamination" [disabled]="_isReadOnly" [width]="500" text="Ayrıntılı psikiyatrik muayeneye gerek duyuldu." data-tid="A348647"></dx-check-box>
+                                <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.PsychiatricConsultation" [disabled]="_isReadOnly" [width]="500" text="Psikiyatrik konsültasyonu istendi." data-tid="A348648"></dx-check-box>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </dxi-item>
+            </dx-tab-panel>
+        </div>
+    </dxi-item>
+
+    <dxi-item class="tabpanel-item" title="Tetkikler" data-tid="A348649">
+
+        <label class="control-label col-sm-12" style="margin-top:10px;" data-tid="A348650">İstediğiniz Tetkikleri İşaretleyerek sonuçları yazınız.</label>
+
+        <div class="col-sm-2" style="margin-top:10px;" data-tid="A348651">
+            <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.ChkLabProcedures" [disabled]="_isReadOnly" text="Laboratuvar" data-tid="A348652"></dx-check-box>
+
+        </div>
+
+        <div class="col-sm-2" style="margin-top:10px;" data-tid="A348653">
+            <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.ChkDirectGraph" [disabled]="_isReadOnly" text="Direkt Grafi" data-tid="A348654"></dx-check-box>
+
+        </div>
+        <div class="col-sm-2" style="margin-top:10px;" data-tid="A348655">
+            <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.ChkBTMR" [disabled]="_isReadOnly" text="BT/MR" data-tid="A348656"></dx-check-box>
+
+        </div>
+        <div class="col-sm-2" style="margin-top:10px;" data-tid="A348657">
+            <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.ChkUltrasonography" [disabled]="_isReadOnly" text="Ultrasonografi" data-tid="A348658"></dx-check-box>
+
+        </div>
+        <div class="col-sm-2" style="margin-top:10px;" data-tid="A348659">
+            <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.ChkBiopsy" [disabled]="_isReadOnly" text="Biyopsi" data-tid="A348660"></dx-check-box>
+
+        </div>
+        <div class="col-sm-2" style="margin-top:10px;" data-tid="A348661">
+            <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.ChkOther" [disabled]="_isReadOnly" text="Diğer" data-tid="A348662"></dx-check-box>
+
+        </div>
+
+        <div class="col-sm-12" style="margin-top:10px;" data-tid="A348663">
+            <hvl-richtextbox (change)="onrtfProceduresChanged($event)" [ngModelOptions]="{ standalone: true }" [ngModel]="_ForensicMedicalReport.LaboratoryProcedures" [ReadOnly]="rtfProcedures?.ReadOnly" [TemplateGroupName]="rtfProcedures?.TemplateGroupName" [Visible]="rtfProcedures?.Visible" data-tid="A348664">
+            </hvl-richtextbox>
+        </div>
+
+    </dxi-item>
+
+    <dxi-item class="tabpanel-item" title="Eklenen Konsültasyon Raporları ve Tıbbi Belge Örnekleri" data-tid="A348665">
+
+        <label class="control-label col-sm-12" style="margin-top:10px;" data-tid="A348666">
+            Varsa Rapora Eklenen Vücut Diyagramı, Konsültasyon Muayene Raporu,Psikiyatrik Muayene/Konsültasyon Raporu ve diğer tıbbi belge örneklerini belirtiniz.
+        </label>
+
+        <div class="col-sm-6" data-tid="A348667">
+            <div class="col-sm-12" data-tid="A348668">
+                <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.Attaches1" [disabled]="_isReadOnly" text="Vücut Diyagramı" data-tid="A348669"></dx-check-box>
+            </div>
+            <div class="col-sm-8" data-tid="A348670">
+                <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.Attaches2" [disabled]="_isReadOnly" text="Psikiyatrik Muayene/Konsültasyon Raporu" data-tid="A348671"></dx-check-box>
+            </div>
+            <div class="col-sm-4" data-tid="A348672">
+                <dx-text-box [disabled]="_isReadOnly" [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.Attaches2Text" data-tid="A348673"></dx-text-box>
+            </div>
+            <div class="col-sm-8" data-tid="A348674">
+                <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.Attaches3" [disabled]="_isReadOnly" text="Konsültasyon Raporu" data-tid="A348675"></dx-check-box>
+            </div>
+            <div class="col-sm-2" data-tid="A348676">
+                <dx-text-box [disabled]="_isReadOnly" [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.Attaches3Text1" data-tid="A348677"></dx-text-box>
+            </div>
+            <div class="col-sm-2" data-tid="A348678">
+                <dx-text-box [disabled]="_isReadOnly" [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.Attaches3Text2" data-tid="A348679"></dx-text-box>
+            </div>
+
+        </div>
+        <div class="col-sm-6" data-tid="A348680">
+            <div class="col-sm-12" data-tid="A348681">
+                <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.Attaches4" [disabled]="_isReadOnly" text="Diğer(Numaralandırarak Sırayla Belirtiniz.)" data-tid="A348682"></dx-check-box>
+            </div>
+            <div class="col-sm-12" data-tid="A348683">
+                <dx-text-area [disabled]="_isReadOnly" [height]="50" [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.Attaches5" data-tid="A348684"></dx-text-area>
+
+            </div>
+        </div>
+
+    </dxi-item>
+    <dxi-item class="tabpanel-item" title="Sonuç" data-tid="A348685">
+
+        <label class="control-label col-sm-12" style="margin-top:10px;" data-tid="A348686">
+            Bu kısmı, Genelge ve Rehberde belirtilen hususları dikkate alarak doldurunuz. Tıbbi terimleri kısaltma yapmadan tam  olarak yapınız.
+        </label>
+        <label class="control-label col-sm-12" data-tid="A348687">
+            Talep edilmişse veya gerek görülmüşse, kişinin ALKOL MUAYENESİ sonucunu bu kısımda belirtiniz.
+        </label>
+        <div class="col-sm-12" data-tid="A348688">
+
+            <div class="dx-field" style="margin-top:10px;" data-tid="A348689">
+                <div class="dx-field-label" data-tid="A348690">Bir başka sağlık kuruluşuna sevkine</div>
+                <div class="dx-field-value" data-tid="A348691">
+                    <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.CertainReport" text="Kesin Rapor " [disabled]="_CertainReportDisabled" (onValueChanged)="onCertainReportChanged($event)" data-tid="A348692"></dx-check-box>
+                    <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.UncertainReport" text="Durum Bildirir Geçici Rapor " [disabled]="_UncertainReportDisabled" (onValueChanged)="onUncertainReportChanged($event)" data-tid="A348693"></dx-check-box>
+                    <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.NoNeed" text="Gerek Görülmedi " [disabled]="_NoNeedDisabled" (onValueChanged)="onNoNeedChanged($event)" data-tid="A348694"></dx-check-box>
+                    <dx-check-box [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.Need" text="Gerek Görüldü (Gerekçesini aşağıda açıklayınız.) " [disabled]="_NeedDisabled" (onValueChanged)="onNeedChanged($event)" data-tid="A348695"></dx-check-box>
+
+
+                </div>
+            </div>
+
+        </div>
+        <!--<div class="col-sm-12">
+            <dx-text-area [height]="50" [(value)]="forensicMedicalReportFormViewModel._ForensicMedicalReport.ResonOfDispatch"></dx-text-area>
+
+        </div>-->
+        <!--<div class="col-sm-6">
+            <dx-gallery class="form-control">
+            </dx-gallery>
+        </div>-->
+
+        <div class="col-sm-12" data-tid="A348696">
+            <label class="control-label" data-tid="A348697">Sonuç Raporu</label>
+            <hvl-richtextbox (change)="onReportChanged($event)" [ngModel]="_ForensicMedicalReport.Report" [ReadOnly]="_isReadOnly" [TemplateGroupName]="Report?.TemplateGroupName" [Visible]="Report?.Visible" data-tid="A348698">
+            </hvl-richtextbox>
+
+
+
+        </div>
+
+
+
+    </dxi-item>
+</dx-tab-panel>
+
+
+

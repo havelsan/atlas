@@ -1,0 +1,75 @@
+﻿
+<NeStatePanelComponent [ObjectDefID]="patientOnVacationFormViewModel._PatientOnVacation.ObjectDefID" [CurrentStateDefID]="patientOnVacationFormViewModel._PatientOnVacation.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="save($event)" (onCancel)="cancel()" (onCustomButtonClick)="printVacationForm()" [CustomButtonVisible]="true" [CustomButtonCaption]="_buttonCaption" [StatesPanelClass]="statesPanelClass" [FixedCommandsPanelClass]="statesPanelClass" data-tid="A368550">
+</NeStatePanelComponent>
+<div class="container-fluid" data-tid="A368551">
+	<form id="PatientOnVacationForm" class="form-horizontal" role="form" data-tid="A368552">
+	</form>
+	<div class="row" data-tid="A368553">
+		<label class="control-label col-sm-5" data-tid="A368554">
+			İzin Başlangıç Tarihi		</label>
+		<label class="control-label col-sm-4" data-tid="A368555">
+			Onaylayan Doktor		</label>
+	</div>
+	<div class="row" data-tid="A368556">
+		<div class="col-sm-5" data-tid="A368557">
+			<!-- <hvl-date-picker #Validation="" (ValueChange)="onStartDateChanged($event)" [BackColor]="StartDate?.BackColor" [CustomFormat]="StartDate?.CustomFormat" [Enabled]="StartDate?.Enabled" [Font]="StartDate?.Font" [ForeColor]="StartDate?.ForeColor" [Format]="StartDate?.Format" [Max]="StartDate?.Max" [Min]="StartDate?.Min" [ReadOnly]="StartDate?.ReadOnly" [Required]="StartDate?.Required" [TabIndex]="StartDate?.TabIndex" [Value]="_PatientOnVacation.StartDate" [Visible]="StartDate?.Visible" >
+			</hvl-date-picker> -->
+			<dx-date-box width="100%" type="datetime" displayFormat="dd/MM/yyyy HH:mm" [(value)]="_PatientOnVacation.StartDate" id="A9510" data-tid="A368558">
+            </dx-date-box>
+		</div>
+		<div class="col-sm-4" data-tid="A368559">
+			<hvl-list-box #Validation (SelectedObjectChange)="onApproveDoctorChanged($event)" [AutoCompleteDialogHeight]="ApproveDoctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ApproveDoctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="ApproveDoctor?.AutoCompleteMode" [BackColor]="ApproveDoctor?.BackColor" [DefinitionName]="ApproveDoctor?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="ApproveDoctor?.Enabled" [Font]="ApproveDoctor?.Font" [ForeColor]="ApproveDoctor?.ForeColor" [ListFilterExpression]="ApproveDoctor?.ListFilterExpression" [MinSearchLength]="ApproveDoctor?.MinSearchLength" [PopupDialogFieldConfig]="ApproveDoctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ApproveDoctor?.PopupDialogGridColumns" [PopupDialogHeight]="ApproveDoctor?.PopupDialogHeight" [PopupDialogTitle]="ApproveDoctor?.PopupDialogTitle" [PopupDialogWidth]="ApproveDoctor?.PopupDialogWidth" [ReadOnly]="ApproveDoctor?.ReadOnly" [SearchMode]="ApproveDoctor?.SearchMode" [SearchTimeout]="ApproveDoctor?.SearchTimeout" [SelectedObject]="_PatientOnVacation.ApproveDoctor" [TabIndex]="ApproveDoctor?.TabIndex" [Visible]="ApproveDoctor?.Visible" [width]="ApproveDoctor?.Width" data-tid="A368560">
+			</hvl-list-box>
+		</div>
+	</div>
+	<div class="row" data-tid="A368561">
+		<label class="control-label col-sm-5" data-tid="A368562">
+			İzin Bitiş Tarihi		</label>
+		<label class="control-label col-sm-2" data-tid="A368563">
+			Gün Sayısı		</label>
+	</div>
+	<div class="row" data-tid="A368564">
+		<div class="col-sm-5" data-tid="A368565">
+			<!-- <hvl-date-picker #Validation="" (ValueChange)="onEndDateChanged($event)" [BackColor]="EndDate?.BackColor" [CustomFormat]="EndDate?.CustomFormat" [Enabled]="EndDate?.Enabled" [Font]="EndDate?.Font" [ForeColor]="EndDate?.ForeColor" [Format]="EndDate?.Format" [Max]="EndDate?.Max" [Min]="EndDate?.Min" [ReadOnly]="EndDate?.ReadOnly" [Required]="EndDate?.Required" [TabIndex]="EndDate?.TabIndex" [Value]="_PatientOnVacation.EndDate" [Visible]="EndDate?.Visible" >
+			</hvl-date-picker> -->
+			<dx-date-box width="100%" type="datetime" displayFormat="dd/MM/yyyy HH:mm" [(value)]="_PatientOnVacation.EndDate" id="A9510" data-tid="A368566">
+            </dx-date-box>
+		</div>
+		<div class="col-sm-2" data-tid="A368567">
+			<hvl-text-box #Validation (TextChange)="onDayCountChanged($event)" [BackColor]="DayCount?.BackColor" [CharacterCasing]="DayCount?.CharacterCasing" [Enabled]="DayCount?.Enabled" [Font]="DayCount?.Font" [ForeColor]="DayCount?.ForeColor" [height]="DayCount?.Height" [InputFormat]="DayCount?.InputFormat" [InputTurkishCharacter]="DayCount?.InputTurkishCharacter" [IsNonNumeric]="DayCount?.IsNonNumeric" [MultiLine]="DayCount?.Multiline" [ReadOnly]="DayCount?.ReadOnly" [Required]="DayCount?.Required" [TabIndex]="DayCount?.TabIndex" [TextAlign]="DayCount?.TextAlign" [Text]="_PatientOnVacation.DayCount" [Visible]="DayCount?.Visible" data-tid="A368568">
+			</hvl-text-box>
+		</div>
+	</div>
+	<div class="row" data-tid="A368569">
+		<label class="control-label col-sm-8" data-tid="A368570">
+			İzni Geçireceği Adres		</label>
+	</div>
+	<div class="row" data-tid="A368571">
+		<div class="col-sm-8" data-tid="A368572">
+			<hvl-text-box #Validation (TextChange)="onVacationAdressChanged($event)" [BackColor]="VacationAdress?.BackColor" [CharacterCasing]="VacationAdress?.CharacterCasing" [Enabled]="VacationAdress?.Enabled" [Font]="VacationAdress?.Font" [ForeColor]="VacationAdress?.ForeColor" [height]="VacationAdress?.Height" [InputFormat]="VacationAdress?.InputFormat" [InputTurkishCharacter]="VacationAdress?.InputTurkishCharacter" [IsNonNumeric]="VacationAdress?.IsNonNumeric" [MultiLine]="VacationAdress?.Multiline" [ReadOnly]="VacationAdress?.ReadOnly" [Required]="VacationAdress?.Required" [TabIndex]="VacationAdress?.TabIndex" [TextAlign]="VacationAdress?.TextAlign" [Text]="_PatientOnVacation.VacationAdress" [Visible]="VacationAdress?.Visible" data-tid="A368573">
+			</hvl-text-box>
+		</div>
+	</div>
+	<div class="row" data-tid="A368574">
+		<label class="control-label col-sm-5" data-tid="A368575">
+			Yakınının Adı		</label>
+	</div>
+	<div class="row" data-tid="A368576">
+		<div class="col-sm-5" data-tid="A368577">
+			<hvl-text-box #Validation (TextChange)="onRelativesNameChanged($event)" [BackColor]="RelativesName?.BackColor" [CharacterCasing]="RelativesName?.CharacterCasing" [Enabled]="RelativesName?.Enabled" [Font]="RelativesName?.Font" [ForeColor]="RelativesName?.ForeColor" [height]="RelativesName?.Height" [InputFormat]="RelativesName?.InputFormat" [InputTurkishCharacter]="RelativesName?.InputTurkishCharacter" [IsNonNumeric]="RelativesName?.IsNonNumeric" [MultiLine]="RelativesName?.Multiline" [ReadOnly]="RelativesName?.ReadOnly" [Required]="RelativesName?.Required" [TabIndex]="RelativesName?.TabIndex" [TextAlign]="RelativesName?.TextAlign" [Text]="_PatientOnVacation.RelativesName" [Visible]="RelativesName?.Visible" data-tid="A368578">
+			</hvl-text-box>
+		</div>
+	</div>
+	<div class="row" data-tid="A368579">
+		<label class="control-label col-sm-5" data-tid="A368580">
+			Telefon Numarası		</label>
+	</div>
+	<div class="row" data-tid="A368581">
+		<div class="col-sm-5" data-tid="A368582">
+			<hvl-text-box #Validation (TextChange)="onRelativesPhoneNumberChanged($event)" [BackColor]="RelativesPhoneNumber?.BackColor" [CharacterCasing]="RelativesPhoneNumber?.CharacterCasing" [Enabled]="RelativesPhoneNumber?.Enabled" [Font]="RelativesPhoneNumber?.Font" [ForeColor]="RelativesPhoneNumber?.ForeColor" [height]="RelativesPhoneNumber?.Height" [InputFormat]="RelativesPhoneNumber?.InputFormat" [InputTurkishCharacter]="RelativesPhoneNumber?.InputTurkishCharacter" [IsNonNumeric]="RelativesPhoneNumber?.IsNonNumeric" [MultiLine]="RelativesPhoneNumber?.Multiline" [ReadOnly]="RelativesPhoneNumber?.ReadOnly" [Required]="RelativesPhoneNumber?.Required" [TabIndex]="RelativesPhoneNumber?.TabIndex" [TextAlign]="RelativesPhoneNumber?.TextAlign" [Text]="_PatientOnVacation.RelativesPhoneNumber" [Visible]="RelativesPhoneNumber?.Visible" data-tid="A368583">
+			</hvl-text-box>
+		</div>
+	</div>
+</div>
+<!--<pre >
+	{{ _ViewModel | json }}</pre>-->

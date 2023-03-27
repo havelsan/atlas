@@ -1,0 +1,52 @@
+﻿<div class="row" id="A28438" [ngStyle]="accordionContainerHeight" data-tid="A365907">
+    <div class="col-md-12" style="height:100%" data-tid="A365908">
+        <dx-accordion #searchAndListAccordion class="margin-bottom-10" collapsible="true" style="height:100%" id="searchAndListAccordion" (onItemTitleClick)="accordionClick($event)" data-tid="A365909">
+            <dxi-item title="Sorgulama Paneli" i18n-title="@@M22127" id="A28440" style="height:100%" data-tid="A365910">
+                <div class="row" id="A28441" data-tid="A365911">
+                        <div class="col-sm-2" id="A28444" data-tid="A365912">
+                            <label class="control-label" id="A28445" data-tid="A365913">Başlangıç Tarihi</label>
+                            <dx-date-box width="100%" type="date" displayFormat="dd/MM/yyyy" [(value)]="safeSurgeryWorkListViewModel._SearchCriteria.WorkListStartDate" id="A28446" data-tid="A365914">
+                            </dx-date-box>
+                        </div>
+                        <div class="col-sm-2" id="A28447" data-tid="A365915">
+                            <label class="control-label" id="A28448" data-tid="A365916">Bitiş Tarihi</label>
+                            <dx-date-box width="100%" type="date" displayFormat="dd/MM/yyyy" [(value)]="safeSurgeryWorkListViewModel._SearchCriteria.WorkListEndDate" id="A28449" data-tid="A365917">
+                            </dx-date-box>
+                        </div>
+                        <div class="col-sm-3" id="A28455" data-tid="A365918">
+                            <label id="A28456" data-tid="A365919">Hasta Arama</label>
+                            <PatientSearchForm Width="100%" (SelectedPatientChanged)="patientChanged($event)" id="A28457" data-tid="A365920"></PatientSearchForm>
+                        </div>
+                    <div class="col-sm-4" id="A28466" data-tid="A365921">
+                        <label id="A28467" data-tid="A365922">&nbsp;&nbsp;İşlem Durumu</label>
+                        <dx-list #list [dataSource]="ActionStateResources" [height]="121" selectionMode="all" [showSelectionControls]="true" [(selectedItems)]="safeSurgeryWorkListViewModel._SearchCriteria.ActionStatus" style="line-height:6px" id="A28468" data-tid="A365923">
+                            <div *dxTemplate="let data of 'item'" id="A28469" data-tid="A365924">
+                                <div style="float:left; width:90%;" id="A28470" data-tid="A365925">{{data.TypeName}}</div>
+                            </div>
+                        </dx-list>
+                    </div>
+                </div>
+                <div class="row" id="A28471" data-tid="A365926">
+                    <div class="col-sm-6" style="float:right;" id="A28473" data-tid="A365927">
+                        <dx-button type="default" icon="fa fa-bars" class="pull-right" text="Listele" (onClick)="fillList()" i18n-text="@@M27496" id="A19856" data-tid="A365928"></dx-button>
+                    </div>
+                </div>
+
+                <div class="row" style="height:calc(100% - 275px)" data-tid="A365929">
+                    <div class="col-sm-12" style="height:100%" data-tid="A365930">
+                        <dx-data-grid #WorkListGrid height="100%" width="100%" [columns]="WorkListColumns" columnAutoWidth="true" allowColumnReordering="true" allowColumnResizing="true" [dataSource]="safeSurgeryWorkListViewModel.WorkList" (onRowClick)="select($event)" [filterRow]="{visible: true}" [ngStyle]="{'padding-top': '10px', 'min-width':'100%' }" [(selectedRowKeys)]="selectedRowKeysResultList" [selection]="{mode: 'single',allowSelectAll: false, showCheckBoxesMode: 'none'}" [editing]="{mode: 'row' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" data-tid="A365931">
+                            <dxo-scrolling mode="virtual" id="A28478" data-tid="A365932"></dxo-scrolling>
+                        </dx-data-grid>
+
+                    </div>
+                </div>
+            </dxi-item>
+        </dx-accordion>
+        <div id="A28484" data-tid="A365933">
+            <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A28485" data-tid="A365934">
+            </dx-load-panel>
+        </div>
+
+    </div>
+
+</div>

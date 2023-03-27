@@ -1,0 +1,131 @@
+﻿<link href="/Content/DoctorPerformance/DoctorPerformance.css" rel="stylesheet" />
+
+<div class="col-sm-12 remove-padding" style="height:99%!important;width:100%!important" data-tid="A370484">
+    <div class="col-sm-3 remove-padding" style="height:98%!important; " data-tid="A370485">
+        <dx-data-grid [columnAutoWidth]="true" [filterRow]="{visible: true}" [dataSource]="doctorPerformanceRuleOperationViewModel.GILDefinitionList" width="100%" height="100%" [selection]="{mode: 'single'}" (onRowClick)="onRowClickGILDefinitionList($event)" (onRowPrepared)="onRowPreparedGILDefinitionList($event)" [columns]="DPRuleMasterColumns" data-tid="A370486">
+            <dxo-load-panel [enabled]="false" data-tid="A370487"></dxo-load-panel>
+            <dxo-scrolling mode="infinite" data-tid="A370488"></dxo-scrolling>
+            <dxo-sorting mode="none" data-tid="A370489"></dxo-sorting>
+            <dxo-paging [pageSize]="50" data-tid="A370490"></dxo-paging>
+        </dx-data-grid>
+    </div>
+    <div class="col-sm-9" style="height:100%!important; " data-tid="A370491">
+        <div class="col-sm-12 remove-padding" style="height:360px!important;" data-tid="A370492">
+            <div class="col-sm-4 remove-padding" style="height:100%!important;" data-tid="A370493">
+                <b style="height:10px;" data-tid="A370494">Yasaklı / Zorunlu Hizmet</b>
+                <hvl-list-box style="height:30px; display:block;" #listBox (SelectedObjectChange)="procedureSelection_ValueChanged($event)" [(IsOnPopUp)]="IsOnPopUp" [AutoCompleteMode]="ProcedureSelection?.AutoCompleteMode" [BackColor]="ProcedureSelection?.BackColor" [DefinitionName]="ProcedureSelection?.ListDefName" [Enabled]="ProcedureSelection?.Enabled" [Font]="ProcedureSelection?.Font" [ForeColor]="ProcedureSelection?.ForeColor" [ListFilterExpression]="ProcedureSelection?.ListFilterExpression" [MinSearchLength]="ProcedureSelection?.MinSearchLength" [PopupDialogFieldConfig]="ProcedureSelection?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ProcedureSelection?.PopupDialogGridColumns" [PopupDialogHeight]="ProcedureSelection?.PopupDialogHeight" [PopupDialogTitle]="ProcedureSelection?.PopupDialogTitle" [PopupDialogWidth]="ProcedureSelection?.PopupDialogWidth" [ReadOnly]="ProcedureSelection?.ReadOnly" [SearchMode]="ProcedureSelection?.SearchMode" [SearchTimeout]="ProcedureSelection?.SearchTimeout" [SelectedObject]="selectedProcedureByAdding" [TabIndex]="ProcedureSelection?.TabIndex" [Visible]="ProcedureSelection?.Visible" [width]="ProcedureSelection?.Width" data-tid="A370495"></hvl-list-box>
+                <dx-data-grid [columnAutoWidth]="true" [dataSource]="doctorPerformanceRuleOperationViewModel.SelectedRule.ProcedureList" style="height:315px!important;width:100%!important" [columns]="DPRuleProcedureColumns" [editing]="EditingConfig" data-tid="A370496">
+                </dx-data-grid>
+            </div>
+            <div class="col-sm-4 remove-padding" style="height:100%!important;" data-tid="A370497">
+                <b style="height:10px;" data-tid="A370498">Yasaklı / Zorunlu Branş</b>
+                <hvl-list-box style="height:30px; display:block;" #listBox (SelectedObjectChange)="specialitySelection_ValueChanged($event)" [(IsOnPopUp)]="IsOnPopUp" [AutoCompleteMode]="SpecialitySelection?.AutoCompleteMode" [BackColor]="SpecialitySelection?.BackColor" [DefinitionName]="SpecialitySelection?.ListDefName" [Enabled]="SpecialitySelection?.Enabled" [Font]="SpecialitySelection?.Font" [ForeColor]="SpecialitySelection?.ForeColor" [ListFilterExpression]="SpecialitySelection?.ListFilterExpression" [MinSearchLength]="SpecialitySelection?.MinSearchLength" [PopupDialogFieldConfig]="SpecialitySelection?.PopupDialogFieldConfig" [PopupDialogGridColumns]="SpecialitySelection?.PopupDialogGridColumns" [PopupDialogHeight]="SpecialitySelection?.PopupDialogHeight" [PopupDialogTitle]="SpecialitySelection?.PopupDialogTitle" [PopupDialogWidth]="SpecialitySelection?.PopupDialogWidth" [ReadOnly]="SpecialitySelection?.ReadOnly" [SearchMode]="SpecialitySelection?.SearchMode" [SearchTimeout]="SpecialitySelection?.SearchTimeout" [SelectedObject]="selectedSpecialityByAdding" [TabIndex]="SpecialitySelection?.TabIndex" [Visible]="SpecialitySelection?.Visible" [width]="SpecialitySelection?.Width" data-tid="A370499"></hvl-list-box>
+                <dx-data-grid [columnAutoWidth]="true" [dataSource]="doctorPerformanceRuleOperationViewModel.SelectedRule.SpecialityList" style="height:315px!important;width:100%!important" [columns]="DPRuleSpecialtyColumns" [editing]="EditingConfig" data-tid="A370500">
+                </dx-data-grid>
+            </div>
+            <div class="col-sm-4 remove-padding" style="height:100%!important;" data-tid="A370501">
+                <b style="height:10px;" data-tid="A370502">Zorunlu Tanı</b>
+                <hvl-list-box style="height:30px; display:block;" #listBox style="height:30px; display:block;" (SelectedObjectChange)="diagnosisSelection_ValueChanged($event)" [(IsOnPopUp)]="IsOnPopUp" [AutoCompleteMode]="DiagnosisSelection?.AutoCompleteMode" [BackColor]="DiagnosisSelection?.BackColor" [DefinitionName]="DiagnosisSelection?.ListDefName" [Enabled]="DiagnosisSelection?.Enabled" [Font]="DiagnosisSelection?.Font" [ForeColor]="DiagnosisSelection?.ForeColor" [ListFilterExpression]="DiagnosisSelection?.ListFilterExpression" [MinSearchLength]="DiagnosisSelection?.MinSearchLength" [PopupDialogFieldConfig]="DiagnosisSelection?.PopupDialogFieldConfig" [PopupDialogGridColumns]="DiagnosisSelection?.PopupDialogGridColumns" [PopupDialogHeight]="DiagnosisSelection?.PopupDialogHeight" [PopupDialogTitle]="DiagnosisSelection?.PopupDialogTitle" [PopupDialogWidth]="DiagnosisSelection?.PopupDialogWidth" [ReadOnly]="DiagnosisSelection?.ReadOnly" [SearchMode]="DiagnosisSelection?.SearchMode" [SearchTimeout]="DiagnosisSelection?.SearchTimeout" [SelectedObject]="selectedDiagnosisByAdding" [TabIndex]="DiagnosisSelection?.TabIndex" [Visible]="DiagnosisSelection?.Visible" [width]="DiagnosisSelection?.Width" data-tid="A370503"></hvl-list-box>
+                <dx-data-grid [columnAutoWidth]="true" [dataSource]="doctorPerformanceRuleOperationViewModel.SelectedRule.DiagnosisList" style="height:315px!important;width:100%!important" [columns]="DPRuleDiagnosisColumns" [editing]="EditingConfig" data-tid="A370504">
+                </dx-data-grid>
+            </div>
+
+        </div>
+        <div class="col-sm-12 remove-padding" style="height:calc(100% - 360px)" data-tid="A370505">
+            <div class="col-sm-4 remove-padding" style="height:100%!important;" data-tid="A370506">
+                <div class="row" style="padding-top:5px;" data-tid="A370507">
+                    <div class="col-sm-12" data-tid="A370508">
+                        <b data-tid="A370509">Yaş Sınırı</b>
+                    </div>
+                    <div class="col-sm-6" style="padding-right:0!important" data-tid="A370510">
+                        <dx-select-box placeholder="Kriter" [(value)]="doctorPerformanceRuleOperationViewModel.SelectedRule.AgeType" [dataSource]="ageTypeArray" displayExpr="Name" valueExpr="ObjectID" data-tid="A370511"></dx-select-box>
+                    </div>
+                    <div class="col-sm-6" style="padding-left:0!important" data-tid="A370512">
+                        <dx-text-box placeholder="Sınır" [showClearButton]="true" [(value)]="doctorPerformanceRuleOperationViewModel.SelectedRule.Age" data-tid="A370513"></dx-text-box>
+                    </div>
+                </div>
+                <div class="row" data-tid="A370514">
+                    <div class="col-sm-12 " style="padding-top:5px;" data-tid="A370515">
+                        <b data-tid="A370516">Periyot </b>
+                    </div>
+                    <div class="col-sm-4" style="padding-right:0!important" data-tid="A370517">
+                        <dx-select-box placeholder="Kapsam" [(value)]="doctorPerformanceRuleOperationViewModel.SelectedRule.PeriodScope" [dataSource]="periodScopeArray" displayExpr="Name" valueExpr="ObjectID" data-tid="A370518"></dx-select-box>
+                    </div>
+                    <div class="col-sm-2 remove-padding" data-tid="A370519">
+                        <dx-text-box placeholder="Periyot" [(value)]="doctorPerformanceRuleOperationViewModel.SelectedRule.Period" data-tid="A370520"></dx-text-box>
+                    </div>
+                    <div class="col-sm-4 remove-padding" data-tid="A370521">
+                        <dx-select-box placeholder="Süre" [(value)]="doctorPerformanceRuleOperationViewModel.SelectedRule.PeriodTimeType" [dataSource]="periodTimeTypeArray" displayExpr="Name" valueExpr="ObjectID" data-tid="A370522"></dx-select-box>
+                    </div>
+                    <div class="col-sm-2" style="padding-left:0!important" data-tid="A370523">
+                        <dx-text-box placeholder="Adet" [(value)]="doctorPerformanceRuleOperationViewModel.SelectedRule.PeriodAmount" data-tid="A370524"></dx-text-box>
+                    </div>
+                </div>
+                <div class="row" data-tid="A370525">
+                    <div class="col-sm-12 remove-padding" data-tid="A370526">
+                        <div class="col-sm-6" style="padding-top:5px;" data-tid="A370527">
+                            <b data-tid="A370528">Cinsiyet</b>
+                        </div>
+                        <div class="col-sm-6 " style="padding-top:5px;" data-tid="A370529">
+                            <b data-tid="A370530">Tedavi Türü</b>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 remove-padding" data-tid="A370531">
+                        <div class="col-sm-6" data-tid="A370532">
+                            <dx-select-box placeholder="E / K" [(value)]="doctorPerformanceRuleOperationViewModel.SelectedRule.Sex" [dataSource]="sexArray" displayExpr="Name" valueExpr="ObjectID" data-tid="A370533"></dx-select-box>
+                        </div>
+                        <div class="col-sm-6" data-tid="A370534">
+                            <dx-select-box placeholder="A / Y / G" [(value)]="doctorPerformanceRuleOperationViewModel.SelectedRule.TedaviTuru" [dataSource]="tedaviTuruArray" displayExpr="Name" valueExpr="ObjectID" data-tid="A370535"></dx-select-box>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" data-tid="A370536">
+                    <div class="col-sm-12 remove-padding" data-tid="A370537">
+                        <div class="col-sm-6" style="padding-top:5px;" data-tid="A370538">
+                            <b data-tid="A370539">Kesi Hesabı</b>
+                        </div>
+                        <div class="col-sm-6 " style="padding-top:5px;" data-tid="A370540">
+                            <b data-tid="A370541"> XXXXXX</b>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 remove-padding" data-tid="A370542">
+                        <div class="col-sm-6" data-tid="A370543">
+                            <dx-select-box placeholder="E / H" [(value)]="doctorPerformanceRuleOperationViewModel.SelectedRule.Kesi" [dataSource]="kesiArray" displayExpr="Name" valueExpr="ObjectID" data-tid="A370544"></dx-select-box>
+                        </div>
+                        <div class="col-sm-6" data-tid="A370545">
+                            <dx-select-box placeholder="1. / 2. / 3. Basamak" [(value)]="doctorPerformanceRuleOperationViewModel.SelectedRule.Hospital" [dataSource]="hospitalArray" displayExpr="Name" valueExpr="ObjectID" data-tid="A370546"></dx-select-box>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding-bottom:0;padding-top:0;padding-left:20px;padding-right:20px;" data-tid="A370547">
+                    <h5 data-tid="A370548"><b data-tid="A370549">{{doctorPerformanceRuleOperationViewModel.SelectedItem.Code}} &nbsp;&nbsp;
+                            {{doctorPerformanceRuleOperationViewModel.SelectedItem.SurgeryGroup}} </b></h5>
+                </div>
+                <div class="row" style="padding-bottom:0;padding-top:0;padding-left:20px;padding-right:20px;" data-tid="A370550">
+                    <h5 data-tid="A370551"><b data-tid="A370552">{{doctorPerformanceRuleOperationViewModel.SelectedItem.Name}}</b></h5>
+                </div>
+                <div class="col-sm-12" style="position: absolute; bottom:0; padding-bottom:0;padding-top:0;padding-left:20px;padding-right:20px;" data-tid="A370553">
+                    <div class="col-sm-6 remove-padding" data-tid="A370554">
+                        <dx-button type="default" icon="save" style="float: right;" text="Kaydet" (onClick)="btnSaveRuleClicked()" data-tid="A370555"></dx-button>
+                    </div>
+                    <div class="col-sm-6 remove-padding" data-tid="A370556">
+                        <dx-button type="danger" icon="refresh" style="float: left;" [disabled]="!doctorPerformanceRuleOperationViewModel.SelectedItem.HasRule" text="Kuralı Sil" (onClick)="btnDeleteRuleClicked()" data-tid="A370557"></dx-button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5" style="height:100%!important;" data-tid="A370558">
+                <b data-tid="A370559">SQL Script</b>
+                <dx-data-grid [columnAutoWidth]="true" [dataSource]="doctorPerformanceRuleOperationViewModel.SelectedRule.QueryList" style="height:98%!important;width:100%!important" [columns]="DPRuleQueryColumns" [editing]="EditingConfig2" data-tid="A370560">
+                </dx-data-grid>
+            </div>
+            <div class="col-sm-3 remove-padding" style="height:100%!important;" data-tid="A370561">
+                <b data-tid="A370562">Girişimsel İşlem Listesi Açıklaması</b>
+                <dx-text-area style="height:98%!important;width:100%!important" [(value)]="doctorPerformanceRuleOperationViewModel.SelectedItem.Description" disabled="true" data-tid="A370563">
+                </dx-text-area>
+            </div>
+        </div>
+    </div>
+
+    <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A31651" data-tid="A370564">
+    </dx-load-panel>
+</div>

@@ -1,0 +1,20 @@
+﻿
+<link href="/Content/DoctorPerformance/DoctorPerformance.css" rel="stylesheet" />
+
+<div class="col-sm-12" style="height:100%!important;width:100%!important; box-shadow: 1px 1px 9px 2px rgba(0, 0, 0, 0.1);" data-tid="A370436">
+    <div class="col-sm-12" data-tid="A370437"><b data-tid="A370438"><u data-tid="A370439">Yetkiler</u></b></div>
+    <div class="col-sm-5" style="height:100%!important;" data-tid="A370440">
+        <u data-tid="A370441">Yetkili Personel Listesi</u>
+        <dx-data-grid [columnAutoWidth]="true" [dataSource]="doctorPerformancePermissionOperationViewModel.UnitManagerList" style="height:95%!important;width:100%!important" [selection]="{mode: 'single'}" [(selectedRowKeys)]="selectedUnitManager" (onRowClick)="onRowClickUnitManagerList($event)" [columns]="DPUnitManagerListColumns" data-tid="A370442">
+        </dx-data-grid>
+    </div>
+    <div class="col-sm-7" style="height:100%!important;" data-tid="A370443">
+        <u data-tid="A370444">İlişkilendirilen Personel Listesi</u>
+        <dx-data-grid [columnAutoWidth]="true" [dataSource]="doctorPerformancePermissionOperationViewModel.RelatedUserList" [filterRow]="{visible: true}" style="height:90%!important;width:100%!important" [selection]="{mode: 'multiple'}" [(selectedRowKeys)]="selectedRelatedUser" [columns]="DPRelatedUserColumns" data-tid="A370445">
+        </dx-data-grid>
+        <dx-button type="default" style="position:absolute;right:15px;bottom:30px" icon="fa fa-floppy-o" text="Kaydet" (onClick)="btnSavePermissionClick()" data-tid="A370446"></dx-button>
+    </div>
+
+    <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A31651" data-tid="A370447">
+    </dx-load-panel>
+</div>

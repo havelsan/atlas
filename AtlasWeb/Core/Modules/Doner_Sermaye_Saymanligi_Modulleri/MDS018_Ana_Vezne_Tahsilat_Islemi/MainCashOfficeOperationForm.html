@@ -1,0 +1,187 @@
+﻿
+<link href="/Content/CashOffice/MainCashOfficeOperation.css" rel="stylesheet" />
+<NeStatePanelComponent [OutgoingTransitions]="mainCashOfficeOperationFormViewModel?.OutgoingTransitions" [ObjectID]="mainCashOfficeOperationFormViewModel?._MainCashOfficeOperation?.ObjectID" [ObjectDefID]="mainCashOfficeOperationFormViewModel?._MainCashOfficeOperation?.ObjectDefID" [SaveCommandVisible]="false" [CurrentStateDefID]="mainCashOfficeOperationFormViewModel._MainCashOfficeOperation.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()" id="A1929" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A324739">
+    <div class="CustomButton col-sm-5" *ngIf="showCustomButton" style="padding-right:0" data-tid="A324740">
+        <dx-button (onClick)="printReport()" type="default" style="float:right; margin: 0px 5px 0px 0px;" data-tid="A324741"> 
+            <i class="fa fa-file-text-o" style="color:white" data-tid="A324742"></i> Rapor
+        </dx-button>
+    </div>
+</NeStatePanelComponent>
+<div class="col-sm-12" id="A1930" data-tid="A324743">
+    <form id="MainCashOfficeOperationForm" class="form-horizontal" role="form" data-tid="A324744">
+        
+    </form>
+    <div id="topRow" class="row" style="position:relative" data-tid="A324745">
+        <div class="col-sm-4" id="A1931" data-tid="A324746">
+            <hvl-group-box [Text]="ttgroupbox1.Text" id="A1932" data-tid="A324747">
+                <div class="row" id="A1933" data-tid="A324748">
+                    <label class="control-label col-sm-11" id="A1934" data-tid="A324749">
+                        Adı Soyadı/Unvanı
+                    </label>
+                </div>
+                <div class="row" id="A1935" data-tid="A324750">
+                    <div class="col-sm-11" id="A1936" data-tid="A324751">
+                        <hvl-text-box #Validation (TextChange)="onPayeeNameChanged($event)" [BackColor]="PAYEENAME?.BackColor" [CharacterCasing]="PAYEENAME?.CharacterCasing" [Enabled]="PAYEENAME?.Enabled" [Font]="PAYEENAME?.Font" [ForeColor]="PAYEENAME?.ForeColor" [height]="PAYEENAME?.Height" [InputFormat]="PAYEENAME?.InputFormat" [InputTurkishCharacter]="PAYEENAME?.InputTurkishCharacter" [IsNonNumeric]="PAYEENAME?.IsNonNumeric" [MultiLine]="PAYEENAME?.Multiline" [ReadOnly]="PAYEENAME?.ReadOnly" [Required]="PAYEENAME?.Required" [TabIndex]="PAYEENAME?.TabIndex" [TextAlign]="PAYEENAME?.TextAlign" [Text]="mainCashOfficeOperationFormViewModel?._MainCashOfficeOperation?.CashOfficeReceiptDocument?.PayeeName" [Visible]="PAYEENAME?.Visible" id="A1937" data-tid="A324752"></hvl-text-box>
+                    </div>
+                </div>
+                <div class="row" id="A1938" data-tid="A324753">
+                    <label class="control-label col-sm-11" id="A1939" data-tid="A324754">
+                        Telefonu
+                    </label>
+                </div>
+                <div class="row" id="A1940" data-tid="A324755">
+                    <div class="col-sm-11" id="A1941" data-tid="A324756">
+                        <hvl-masktext-box #Validation (TextChange)="onMobilePhoneChanged($event)" [BackColor]="PHONE?.BackColor" [Enabled]="PHONE?.Enabled" [Font]="PHONE?.Font" [ForeColor]="PHONE?.ForeColor" [InputTurkishCharacter]="PHONE?.InputTurkishCharacter" [Mask]="PHONE?.Mask" [ReadOnly]="PHONE?.ReadOnly" [TabIndex]="PHONE?.TabIndex" [TextAlign]="PHONE?.TextAlign" [Text]="mainCashOfficeOperationFormViewModel?._MainCashOfficeOperation?.CashOfficeReceiptDocument?.Phone" [Visible]="PHONE?.Visible" id="A1942" data-tid="A324757"></hvl-masktext-box>
+                    </div>
+                </div>
+                <div class="row" id="A1943" data-tid="A324758">
+                    <label class="control-label col-sm-11" id="A1944" data-tid="A324759">
+                        TC Kimlik No
+                    </label>
+                </div>
+                <div class="row" id="A1945" data-tid="A324760">
+                    <div class="col-sm-11" id="A1946" data-tid="A324761">
+                        <dx-text-box valueChangeEvent="keyup" [readOnly]="txtUniqueRefNoReadOnly" [(value)]="mainCashOfficeOperationFormViewModel._MainCashOfficeOperation.CashOfficeReceiptDocument.PayeeUniqueRefNo" [maxLength]="11" (keypress)="txtUniqueRefNoKeyPress($event)" id="A1947" data-tid="A324762">
+                        </dx-text-box>
+                    </div>
+                </div>
+                <div class="row" id="A1948" data-tid="A324763">
+                    <label class="control-label col-sm-11" id="A1949" data-tid="A324764">
+                        Adresi
+                    </label>
+                </div>
+                <div class="row" id="A1950" data-tid="A324765">
+                    <div class="col-sm-11" id="A1951" data-tid="A324766">
+                        <hvl-text-box #Validation (TextChange)="onPayeeAddressChanged($event)" [BackColor]="PAYEEADDRESS?.BackColor" [CharacterCasing]="PAYEEADDRESS?.CharacterCasing" [Enabled]="PAYEEADDRESS?.Enabled" [Font]="PAYEEADDRESS?.Font" [ForeColor]="PAYEEADDRESS?.ForeColor" [height]="PAYEEADDRESS?.Height" [InputFormat]="PAYEEADDRESS?.InputFormat" [InputTurkishCharacter]="PAYEEADDRESS?.InputTurkishCharacter" [IsNonNumeric]="PAYEEADDRESS?.IsNonNumeric" [MultiLine]="PAYEEADDRESS?.Multiline" [ReadOnly]="PAYEEADDRESS?.ReadOnly" [Required]="PAYEEADDRESS?.Required" [TabIndex]="PAYEEADDRESS?.TabIndex" [TextAlign]="PAYEEADDRESS?.TextAlign" [Text]="mainCashOfficeOperationFormViewModel?._MainCashOfficeOperation?.CashOfficeReceiptDocument?.PayeeAddress" [Visible]="PAYEEADDRESS?.Visible" id="A1952" data-tid="A324767"></hvl-text-box>
+                    </div>
+                </div>
+            </hvl-group-box>
+        </div>
+        <div class="col-sm-8" id="A1953" data-tid="A324768">
+                <div class="row" id="A1954" data-tid="A324769">
+                    <label class="control-label col-sm-6" id="A1955" data-tid="A324770">
+                        Vezne Adı
+                    </label>
+                </div>
+                <div class="row" id="A1956" data-tid="A324771">
+                    <div class="col-sm-6" id="A1957" data-tid="A324772">
+                        <hvl-text-box #Validation (TextChange)="onCashOfficeNameChanged($event)" [BackColor]="CASHOFFICENAME?.BackColor" [CharacterCasing]="CASHOFFICENAME?.CharacterCasing" [Enabled]="CASHOFFICENAME?.Enabled" [Font]="CASHOFFICENAME?.Font" [ForeColor]="CASHOFFICENAME?.ForeColor" [height]="CASHOFFICENAME?.Height" [InputFormat]="CASHOFFICENAME?.InputFormat" [InputTurkishCharacter]="CASHOFFICENAME?.InputTurkishCharacter" [IsNonNumeric]="CASHOFFICENAME?.IsNonNumeric" [MultiLine]="CASHOFFICENAME?.Multiline" [ReadOnly]="CASHOFFICENAME?.ReadOnly" [Required]="CASHOFFICENAME?.Required" [TabIndex]="CASHOFFICENAME?.TabIndex" [TextAlign]="CASHOFFICENAME?.TextAlign" [Text]="mainCashOfficeOperationFormViewModel?._MainCashOfficeOperation?.CashOfficeReceiptDocument?.CashOffice?.Name" [Visible]="CASHOFFICENAME?.Visible" id="A1958" data-tid="A324773"></hvl-text-box>
+                    </div>
+                </div>
+                <div class="row" id="A1959" data-tid="A324774">
+                    <label class="control-label col-sm-6" id="A1960" data-tid="A324775">
+                        Veznedar
+                    </label>
+                </div>
+                <div class="row" id="A1961" data-tid="A324776">
+                    <div class="col-sm-6" id="A1962" data-tid="A324777">
+                        <hvl-text-box #Validation (TextChange)="onCASHIERNAMEChanged($event)" [BackColor]="CASHIERNAME?.BackColor" [CharacterCasing]="CASHIERNAME?.CharacterCasing" [Enabled]="CASHIERNAME?.Enabled" [Font]="CASHIERNAME?.Font" [ForeColor]="CASHIERNAME?.ForeColor" [height]="CASHIERNAME?.Height" [InputFormat]="CASHIERNAME?.InputFormat" [InputTurkishCharacter]="CASHIERNAME?.InputTurkishCharacter" [IsNonNumeric]="CASHIERNAME?.IsNonNumeric" [MultiLine]="CASHIERNAME?.Multiline" [ReadOnly]="CASHIERNAME?.ReadOnly" [Required]="CASHIERNAME?.Required" [TabIndex]="CASHIERNAME?.TabIndex" [TextAlign]="CASHIERNAME?.TextAlign" [Text]="mainCashOfficeOperationFormViewModel?._MainCashOfficeOperation?.CashOfficeReceiptDocument?.ResUser?.Name" [Visible]="CASHIERNAME?.Visible" id="A1963" data-tid="A324778"></hvl-text-box>
+                    </div>
+                </div>
+                <div class="row" id="A1964" data-tid="A324779">
+                    <label class="control-label col-sm-6" id="A1965" data-tid="A324780">
+                        Makbuz Seri No
+                    </label>
+                </div>
+                <div class="row" id="A1966" data-tid="A324781">
+                    <div class="col-sm-6" id="A1967" data-tid="A324782">
+                        <hvl-text-box #Validation (TextChange)="onRECEIPTNOChanged($event)" [BackColor]="RECEIPTNO?.BackColor" [CharacterCasing]="RECEIPTNO?.CharacterCasing" [Enabled]="RECEIPTNO?.Enabled" [Font]="RECEIPTNO?.Font" [ForeColor]="RECEIPTNO?.ForeColor" [height]="RECEIPTNO?.Height" [InputFormat]="RECEIPTNO?.InputFormat" [InputTurkishCharacter]="RECEIPTNO?.InputTurkishCharacter" [IsNonNumeric]="RECEIPTNO?.IsNonNumeric" [MultiLine]="RECEIPTNO?.Multiline" [ReadOnly]="RECEIPTNO?.ReadOnly" [Required]="RECEIPTNO?.Required" [TabIndex]="RECEIPTNO?.TabIndex" [TextAlign]="RECEIPTNO?.TextAlign" [Text]="mainCashOfficeOperationFormViewModel?._MainCashOfficeOperation?.CashOfficeReceiptDocument?.DocumentNo" [Visible]="RECEIPTNO?.Visible" id="A1968" data-tid="A324783"></hvl-text-box>
+                    </div>
+                </div>
+                <div class="row" id="A1969" data-tid="A324784">
+                    <label class="control-label col-sm-6" id="A1970" data-tid="A324785">
+                        Vezne Alındı Tarihi
+                    </label>
+                </div>
+                <div class="row" id="A1971" data-tid="A324786">
+                    <div class="col-sm-6" id="A1972" data-tid="A324787">
+                        <hvl-date-picker #Validation (ValueChange)="onDOCUMENTDATEChanged($event)" [BackColor]="DOCUMENTDATE?.BackColor" [CustomFormat]="DOCUMENTDATE?.CustomFormat" [Enabled]="DOCUMENTDATE?.Enabled" [Font]="DOCUMENTDATE?.Font" [ForeColor]="DOCUMENTDATE?.ForeColor" [Format]="DOCUMENTDATE?.Format" [Max]="DOCUMENTDATE?.Max" [Min]="DOCUMENTDATE?.Min" [ReadOnly]="DOCUMENTDATE?.ReadOnly" [Required]="DOCUMENTDATE?.Required" [TabIndex]="DOCUMENTDATE?.TabIndex" [Value]="mainCashOfficeOperationFormViewModel?._MainCashOfficeOperation?.CashOfficeReceiptDocument?.DocumentDate" [Visible]="DOCUMENTDATE?.Visible" id="A1973" data-tid="A324788"></hvl-date-picker>
+                    </div>
+                </div>
+                <div class="row" id="A1974" data-tid="A324789">
+                    <label class="control-label col-sm-6" id="A1975" data-tid="A324790">
+                        İşlem Türü
+                    </label>
+                </div>
+                <div class="row" id="A1976" data-tid="A324791">
+                    <div class="col-sm-6" id="A1977" data-tid="A324792">
+                        <hvl-list-box #Validation (SelectedObjectChange)="onMONEYRECEIVEDTYPEChanged($event)" [AutoCompleteDialogHeight]="MONEYRECEIVEDTYPE?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="MONEYRECEIVEDTYPE?.AutoCompleteDialogWidth" [AutoCompleteMode]="MONEYRECEIVEDTYPE?.AutoCompleteMode" [BackColor]="MONEYRECEIVEDTYPE?.BackColor" [DefinitionName]="MONEYRECEIVEDTYPE?.ListDefName" [DisplayExpressionsCache]="mainCashOfficeOperationFormViewModel?.ListDefDisplayExpressions" [Enabled]="MONEYRECEIVEDTYPE?.Enabled" [Font]="MONEYRECEIVEDTYPE?.Font" [ForeColor]="MONEYRECEIVEDTYPE?.ForeColor" [ListFilterExpression]="MONEYRECEIVEDTYPE?.ListFilterExpression" [MinSearchLength]="MONEYRECEIVEDTYPE?.MinSearchLength" [PopupDialogFieldConfig]="MONEYRECEIVEDTYPE?.PopupDialogFieldConfig" [PopupDialogGridColumns]="MONEYRECEIVEDTYPE?.PopupDialogGridColumns" [PopupDialogHeight]="MONEYRECEIVEDTYPE?.PopupDialogHeight" [PopupDialogTitle]="MONEYRECEIVEDTYPE?.PopupDialogTitle" [PopupDialogWidth]="MONEYRECEIVEDTYPE?.PopupDialogWidth" [ReadOnly]="MONEYRECEIVEDTYPE?.ReadOnly" [SearchMode]="MONEYRECEIVEDTYPE?.SearchMode" [SearchTimeout]="MONEYRECEIVEDTYPE?.SearchTimeout" [SelectedObject]="mainCashOfficeOperationFormViewModel?._MainCashOfficeOperation?.CashOfficeReceiptDocument?.MoneyReceivedType" [TabIndex]="MONEYRECEIVEDTYPE?.TabIndex" [Visible]="MONEYRECEIVEDTYPE?.Visible" [width]="MONEYRECEIVEDTYPE?.Width" id="A1978" data-tid="A324793"></hvl-list-box>
+                    </div>
+                </div>
+                <div class="row" id="A1979" data-tid="A324794">
+                    <label class="control-label col-sm-3" id="A1980" data-tid="A324795">
+                        Ödeme Türü
+                    </label>
+                </div>
+                <div class="row" id="A1981" data-tid="A324796">
+                    <div class="col-sm-3" id="A1982" data-tid="A324797">
+                        <hvl-enum-combobox #Validation (ValueChange)="oncbxPaymentTypeChanged($event)" [BackColor]="cbxPaymentType?.BackColor" [DataTypeName]="cbxPaymentType?.DataTypeName" [Enabled]="cbxPaymentType?.Enabled" [Font]="cbxPaymentType?.Font" [ForeColor]="cbxPaymentType?.ForeColor" [IncludeOnly]="cbxPaymentType?.IncludeOnly" [ReadOnly]="cbxPaymentType?.ReadOnly" [ShowClearButton]="cbxPaymentType?.ShowClearButton" [SortBy]="cbxPaymentType?.SortBy" [TabIndex]="cbxPaymentType?.TabIndex" [Value]="mainCashOfficeOperationFormViewModel?._MainCashOfficeOperation?.CashOfficeReceiptDocument?.PaymentType" [Visible]="cbxPaymentType?.Visible" id="A1983" data-tid="A324798"></hvl-enum-combobox>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+
+    <div class="row" id="A1984" data-tid="A324799">
+        <label class="control-label col-sm-4" id="A1985" data-tid="A324800">
+            Banka Hesap Numarası
+        </label>
+        <label class="control-label col-sm-2" id="A1986" data-tid="A324801">
+            Dekont No
+        </label>
+        <label class="control-label col-sm-2" id="A1987" data-tid="A324802">
+            Dekont Tarihi
+        </label>
+    </div>
+    <div class="row" id="A1988" data-tid="A324803">
+        <div class="col-sm-4" id="A1989" data-tid="A324804">
+            <hvl-list-box #Validation (SelectedObjectChange)="onBANKACCOUNTChanged($event)" [AutoCompleteDialogHeight]="BANKACCOUNT?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="BANKACCOUNT?.AutoCompleteDialogWidth" [AutoCompleteMode]="BANKACCOUNT?.AutoCompleteMode" [BackColor]="BANKACCOUNT?.BackColor" [DefinitionName]="BANKACCOUNT?.ListDefName" [DisplayExpressionsCache]="mainCashOfficeOperationFormViewModel?.ListDefDisplayExpressions" [Enabled]="BANKACCOUNT?.Enabled" [Font]="BANKACCOUNT?.Font" [ForeColor]="BANKACCOUNT?.ForeColor" [ListFilterExpression]="BANKACCOUNT?.ListFilterExpression" [MinSearchLength]="BANKACCOUNT?.MinSearchLength" [PopupDialogFieldConfig]="BANKACCOUNT?.PopupDialogFieldConfig" [PopupDialogGridColumns]="BANKACCOUNT?.PopupDialogGridColumns" [PopupDialogHeight]="BANKACCOUNT?.PopupDialogHeight" [PopupDialogTitle]="BANKACCOUNT?.PopupDialogTitle" [PopupDialogWidth]="BANKACCOUNT?.PopupDialogWidth" [ReadOnly]="BANKACCOUNT?.ReadOnly" [SearchMode]="BANKACCOUNT?.SearchMode" [SearchTimeout]="BANKACCOUNT?.SearchTimeout" [SelectedObject]="mainCashOfficeOperationFormViewModel?._MainCashOfficeOperation?.CashOfficeReceiptDocument?.BankDecount?.BankAccount" [TabIndex]="BANKACCOUNT?.TabIndex" [Visible]="BANKACCOUNT?.Visible" [width]="BANKACCOUNT?.Width" id="A1990" data-tid="A324805"></hvl-list-box>
+        </div>
+        <div class="col-sm-2" id="A1991" data-tid="A324806">
+            <hvl-text-box #Validation (TextChange)="onBANKDECOUNTNOChanged($event)" [BackColor]="BANKDECOUNTNO?.BackColor" [CharacterCasing]="BANKDECOUNTNO?.CharacterCasing" [Enabled]="BANKDECOUNTNO?.Enabled" [Font]="BANKDECOUNTNO?.Font" [ForeColor]="BANKDECOUNTNO?.ForeColor" [height]="BANKDECOUNTNO?.Height" [InputFormat]="BANKDECOUNTNO?.InputFormat" [InputTurkishCharacter]="BANKDECOUNTNO?.InputTurkishCharacter" [IsNonNumeric]="BANKDECOUNTNO?.IsNonNumeric" [MultiLine]="BANKDECOUNTNO?.Multiline" [ReadOnly]="BANKDECOUNTNO?.ReadOnly" [Required]="BANKDECOUNTNO?.Required" [TabIndex]="BANKDECOUNTNO?.TabIndex" [TextAlign]="BANKDECOUNTNO?.TextAlign" [Text]="mainCashOfficeOperationFormViewModel?._MainCashOfficeOperation?.CashOfficeReceiptDocument?.BankDecount?.DecountNo" [Visible]="BANKDECOUNTNO?.Visible" id="A1992" data-tid="A324807"></hvl-text-box>
+        </div>
+        <div class="col-sm-2" id="A1993" data-tid="A324808">
+            <hvl-date-picker #Validation (ValueChange)="onBANKDECOUNTDATEChanged($event)" [BackColor]="BANKDECOUNTDATE?.BackColor" [CustomFormat]="BANKDECOUNTDATE?.CustomFormat" [Enabled]="BANKDECOUNTDATE?.Enabled" [Font]="BANKDECOUNTDATE?.Font" [ForeColor]="BANKDECOUNTDATE?.ForeColor" [Format]="BANKDECOUNTDATE?.Format" [Max]="BANKDECOUNTDATE?.Max" [Min]="BANKDECOUNTDATE?.Min" [ReadOnly]="BANKDECOUNTDATE?.ReadOnly" [Required]="BANKDECOUNTDATE?.Required" [TabIndex]="BANKDECOUNTDATE?.TabIndex" [Value]="mainCashOfficeOperationFormViewModel?._MainCashOfficeOperation?.CashOfficeReceiptDocument?.BankDecount?.DecountDate" [Visible]="BANKDECOUNTDATE?.Visible" id="A1994" data-tid="A324809"></hvl-date-picker>
+        </div>
+    </div>
+    <div class="row" id="A1995" data-tid="A324810">
+        <label class="control-label col-sm-4" id="A1996" data-tid="A324811">
+            Firma
+        </label>
+        <label class="control-label col-sm-2" id="A1997" data-tid="A324812">
+            İhale Adı
+        </label>
+        <label class="control-label col-sm-2" id="A1998" data-tid="A324813">
+            İhale No
+        </label>
+    </div>
+    <div class="row" id="A1999" data-tid="A324814">
+        <div class="col-sm-4" id="A2000" data-tid="A324815">
+            <hvl-list-box #Validation (SelectedObjectChange)="onSupplierChanged($event)" [AutoCompleteDialogHeight]="SUPPLIER?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="SUPPLIER?.AutoCompleteDialogWidth" [AutoCompleteMode]="SUPPLIER?.AutoCompleteMode" [BackColor]="SUPPLIER?.BackColor" [DefinitionName]="SUPPLIER?.ListDefName" [DisplayExpressionsCache]="mainCashOfficeOperationFormViewModel?.ListDefDisplayExpressions" [Enabled]="SUPPLIER?.Enabled" [Font]="SUPPLIER?.Font" [ForeColor]="SUPPLIER?.ForeColor" [ListFilterExpression]="SUPPLIER?.ListFilterExpression" [MinSearchLength]="SUPPLIER?.MinSearchLength" [PopupDialogFieldConfig]="SUPPLIER?.PopupDialogFieldConfig" [PopupDialogGridColumns]="SUPPLIER?.PopupDialogGridColumns" [PopupDialogHeight]="SUPPLIER?.PopupDialogHeight" [PopupDialogTitle]="SUPPLIER?.PopupDialogTitle" [PopupDialogWidth]="SUPPLIER?.PopupDialogWidth" [ReadOnly]="SUPPLIER?.ReadOnly" [SearchMode]="SUPPLIER?.SearchMode" [SearchTimeout]="SUPPLIER?.SearchTimeout" [SelectedObject]="mainCashOfficeOperationFormViewModel?._MainCashOfficeOperation?.CashOfficeReceiptDocument?.Supplier" [TabIndex]="SUPPLIER?.TabIndex" [Visible]="SUPPLIER?.Visible" [width]="SUPPLIER?.Width" id="A2001" data-tid="A324816"></hvl-list-box>
+        </div>
+        <div class="col-sm-2" id="A2002" data-tid="A324817">
+            <hvl-text-box #Validation (TextChange)="onTenderNameChanged($event)" [BackColor]="TENDERNAME?.BackColor" [CharacterCasing]="TENDERNAME?.CharacterCasing" [Enabled]="TENDERNAME?.Enabled" [Font]="TENDERNAME?.Font" [ForeColor]="TENDERNAME?.ForeColor" [height]="TENDERNAME?.Height" [InputFormat]="TENDERNAME?.InputFormat" [InputTurkishCharacter]="TENDERNAME?.InputTurkishCharacter" [IsNonNumeric]="TENDERNAME?.IsNonNumeric" [MultiLine]="TENDERNAME?.Multiline" [ReadOnly]="TENDERNAME?.ReadOnly" [Required]="TENDERNAME?.Required" [TabIndex]="TENDERNAME?.TabIndex" [TextAlign]="TENDERNAME?.TextAlign" [Text]="mainCashOfficeOperationFormViewModel?._MainCashOfficeOperation?.CashOfficeReceiptDocument?.TenderName" [Visible]="TENDERNAME?.Visible" id="A2003" data-tid="A324818"></hvl-text-box>
+        </div>
+        <div class="col-sm-2" id="A2004" data-tid="A324819">
+            <hvl-text-box #Validation (TextChange)="onTenderNoChanged($event)" [BackColor]="TENDERNO?.BackColor" [CharacterCasing]="TENDERNO?.CharacterCasing" [Enabled]="TENDERNO?.Enabled" [Font]="TENDERNO?.Font" [ForeColor]="TENDERNO?.ForeColor" [height]="TENDERNO?.Height" [InputFormat]="TENDERNO?.InputFormat" [InputTurkishCharacter]="TENDERNO?.InputTurkishCharacter" [IsNonNumeric]="TENDERNO?.IsNonNumeric" [MultiLine]="TENDERNO?.Multiline" [ReadOnly]="TENDERNO?.ReadOnly" [Required]="TENDERNO?.Required" [TabIndex]="TENDERNO?.TabIndex" [TextAlign]="TENDERNO?.TextAlign" [Text]="mainCashOfficeOperationFormViewModel?._MainCashOfficeOperation?.CashOfficeReceiptDocument?.TenderNo" [Visible]="TENDERNO?.Visible" id="A2005" data-tid="A324820"></hvl-text-box>
+        </div>
+    </div>
+    <div class="row" id="A2006" data-tid="A324821">
+        <label class="control-label col-sm-6" id="A2007" data-tid="A324822">
+            Açıklama
+        </label>
+        <label class="control-label col-sm-2" id="A2008" data-tid="A324823">
+            Tahsilat Tutarı
+        </label>
+    </div>
+    <div class="row" id="A2009" data-tid="A324824">
+        <div class="col-sm-6" id="A2010" data-tid="A324825">
+            <hvl-text-box #Validation (TextChange)="onDescriptionChanged($event)" [BackColor]="Description?.BackColor" [CharacterCasing]="Description?.CharacterCasing" [Enabled]="Description?.Enabled" [Font]="Description?.Font" [ForeColor]="Description?.ForeColor" [height]="Description?.Height" [InputFormat]="Description?.InputFormat" [InputTurkishCharacter]="Description?.InputTurkishCharacter" [IsNonNumeric]="Description?.IsNonNumeric" [MultiLine]="Description?.Multiline" [ReadOnly]="Description?.ReadOnly" [Required]="Description?.Required" [TabIndex]="Description?.TabIndex" [TextAlign]="Description?.TextAlign" [Text]="mainCashOfficeOperationFormViewModel?._MainCashOfficeOperation?.Description" [Visible]="Description?.Visible" id="A2011" data-tid="A324826"></hvl-text-box>
+        </div>
+        <div class="col-sm-2" id="A2012" data-tid="A324827">
+            <dx-text-box [(readOnly)]="txtTotalPriceReadOnly" valueChangeEvent="keyup" [(value)]="mainCashOfficeOperationFormViewModel._MainCashOfficeOperation.TotalPrice" (keypress)="totalPriceKeyPress($event)" (onValueChanged)="onTOTALPRICEChanged($event)" id="A2013" data-tid="A324828">
+
+            </dx-text-box>
+        </div>
+    </div>
+</div>

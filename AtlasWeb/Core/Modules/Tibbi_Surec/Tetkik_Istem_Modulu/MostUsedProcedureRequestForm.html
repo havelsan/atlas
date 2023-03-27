@@ -1,0 +1,141 @@
+﻿
+
+<div class="row" id="A27911" data-tid="A364861">
+    <div class="col-xs-12" id="A27912" data-tid="A364862">
+
+        <div id="A27913" data-tid="A364863">
+            <!-- Tab panes -->
+            <div class="tab-content" id="A27914" data-tid="A364864">
+
+                <dx-data-grid #dataGrid *ngIf="Grid1FormDetails.length>0" (onContextMenuPreparing)="onContextMenuPreparing($event)" class="col-sm-4" [showColumnHeaders]="false" [columns]="columns" [editing]="{allowUpdating: false,allowAdding: false,allowDeleting: false, texts:{confirmDeleteMessage:''}}" [paging]="{enable: false, pageSize:1000}" [dataSource]="Grid1FormDetails" id="A27915" data-tid="A364865">
+                    <div *dxTemplate="let cellData of 'columnCellTemplate'" id="A27916" data-tid="A364866">
+                        <div *ngIf="cellData.data.IsWorkingDay==true&&cellData.data.IsPassiveNow==false" class="pull-left" style="width:33%;color:blue;line-height: 10px;" id="A27919" data-tid="A364867">
+                            <hvl-checkbox #Validation Margin="3px" TitleTopPadding="3px" (ValueChange)="procedureRequestOnChange(cellData.data.Id, $event,cellData.data)" [ngStyle]="{ color: 'black' }" [IsTitleLeft]="false" [Title]="cellData.data.Name" [(Value)]="cellData.data.Checked" [(ReadOnly)]="cellData.data.IsReadOnly" id="A27920" data-tid="A364868"></hvl-checkbox>
+                        </div>
+                        <div *ngIf="cellData.data.IsWorkingDay==false||cellData.data.IsPassiveNow==true" class="pull-left" style="width:33%;line-height: 10px;color:#bbafaf;" id="A27921" data-tid="A364869">
+                            <hvl-checkbox #Validation Margin="3px" TitleTopPadding="3px" (ValueChange)="procedureRequestOnChange(cellData.data.Id, $event,cellData.data)" [ngStyle]="{ color: 'black' }" [IsTitleLeft]="false" [Title]="cellData.data.Name" [(Value)]="cellData.data.Checked" [ReadOnly]="true" id="A27922" data-tid="A364870"></hvl-checkbox>
+                        </div>
+                    </div>
+                </dx-data-grid>
+                <dx-data-grid #dataGrid *ngIf="Grid2FormDetails.length>0" (onContextMenuPreparing)="onContextMenuPreparing($event)" class="col-sm-4" [showColumnHeaders]="false" [columns]="columns" [editing]="{allowUpdating: false,allowAdding: false,allowDeleting: false, texts:{confirmDeleteMessage:''}}" [paging]="{enable: false, pageSize:1000}" [dataSource]="Grid2FormDetails" id="A27923" data-tid="A364871">
+                    <div *dxTemplate="let cellData of 'columnCellTemplate'" id="A27924" data-tid="A364872">
+                        <div *ngIf="cellData.data.IsWorkingDay==true&&cellData.data.IsPassiveNow==false" class="pull-left" style="width:33%;color:blue;line-height: 10px;" id="A27927" data-tid="A364873">
+                            <hvl-checkbox #Validation Margin="3px" TitleTopPadding="3px" (ValueChange)="procedureRequestOnChange(cellData.data.Id, $event,cellData.data)" [ngStyle]="{ color: 'black' }" [IsTitleLeft]="false" [Title]="cellData.data.Name" [(Value)]="cellData.data.Checked" [(ReadOnly)]="cellData.data.IsReadOnly" id="A27928" data-tid="A364874"></hvl-checkbox>
+                        </div>
+                        <div *ngIf="cellData.data.IsWorkingDay==false||cellData.data.IsPassiveNow==true" class="pull-left" style="width:33%;line-height: 10px;color:#bbafaf;" id="A27929" data-tid="A364875">
+                            <hvl-checkbox #Validation Margin="3px" TitleTopPadding="3px" (ValueChange)="procedureRequestOnChange(cellData.data.Id, $event,cellData.data)" [ngStyle]="{ color: 'black' }" [IsTitleLeft]="false" [Title]="cellData.data.Name" [(Value)]="cellData.data.Checked" [ReadOnly]="true" id="A27930" data-tid="A364876"></hvl-checkbox>
+                        </div>
+                    </div>
+                </dx-data-grid>
+                <dx-data-grid #dataGrid *ngIf="Grid3FormDetails.length>0" (onContextMenuPreparing)="onContextMenuPreparing($event)" class="col-sm-4" [showColumnHeaders]="false" [columns]="columns" [editing]="{allowUpdating: false,allowAdding: false,allowDeleting: false, texts:{confirmDeleteMessage:''}}" [paging]="{enable: false, pageSize:1000}" [dataSource]="Grid3FormDetails" id="A27931" data-tid="A364877">
+                    <div *dxTemplate="let cellData of 'columnCellTemplate'" id="A27932" data-tid="A364878">
+                        <div *ngIf="cellData.data.IsWorkingDay==true&&cellData.data.IsPassiveNow==false" class="pull-left" style="color:blue;" id="A27935" data-tid="A364879">
+                            <hvl-checkbox #Validation Margin="3px" TitleTopPadding="3px" (ValueChange)="procedureRequestOnChange(cellData.data.Id, $event,cellData.data)" [ngStyle]="{ color: 'black' }" [IsTitleLeft]="false" [Title]="cellData.data.Name" [(Value)]="cellData.data.Checked" [(ReadOnly)]="cellData.data.IsReadOnly" id="A27936" data-tid="A364880"></hvl-checkbox>
+                        </div>
+                        <div *ngIf="cellData.data.IsWorkingDay==false||cellData.data.IsPassiveNow==true" class="pull-left" style="width:33%;color:#bbafaf;" id="A27937" data-tid="A364881">
+                            <hvl-checkbox #Validation Margin="3px" TitleTopPadding="3px" (ValueChange)="procedureRequestOnChange(cellData.data.Id, $event,cellData.data)" [ngStyle]="{ color: 'black' }" [IsTitleLeft]="false" [Title]="cellData.data.Name" [(Value)]="cellData.data.Checked" [ReadOnly]="true" id="A27938" data-tid="A364882"></hvl-checkbox>
+                        </div>
+                    </div>
+                </dx-data-grid>
+            </div>
+        </div>
+
+        <dx-popup #teletipPopup [(visible)]="showTeletipResult" [closeOnOutsideClick]="false" [showCloseButton]="false" [width]="800" height="500" title="İstem Geçmişi" i18n-title="@@M30219" id="A24169" data-tid="A364883">
+            <div *dxTemplate="let data of 'content'" id="A24170" data-tid="A364884">
+                <div class="container-fluid" style="height:100px" data-tid="A364885">
+                    <div class="col-sm-12" id="C23642" style="margin-bottom: 5px;" data-tid="A364886">
+
+                        <dx-data-grid #previousStudiesGrid [dataSource]="PreviousStudies" height="410px" data-tid="A364887">
+                            <dxi-column dataField="InstitutionName" caption="XXXXXX" [width]="300" data-tid="A364888">
+                            </dxi-column>
+                            <dxi-column dataField="AccessionNumber" caption="Erişim Numarası" [width]="100" data-tid="A364889">
+                            </dxi-column>
+                            <dxi-column dataType="date" format="dd.MM.yyyy HH:mm:ss" dataField="PerformedDate" caption="Çekim Tarihi" [width]="150" data-tid="A364890">
+                            </dxi-column>
+                            <dxi-column caption="Görüntü" cellTemplate="buttonCellTemplate1" data-tid="A364891"></dxi-column>
+                            <dxi-column caption="Rapor" cellTemplate="buttonCellTemplate2" data-tid="A364892"></dxi-column>
+
+                            <div *dxTemplate="let cellData of 'buttonCellTemplate1'" id="A27830" style="width: 25px" data-tid="A364893">
+                                <i class="fa fa-television" style="cursor:pointer" (click)="openImaj(cellData)" id="A27831" data-tid="A364894"></i>
+                            </div>
+                            <div *dxTemplate="let cellData of 'buttonCellTemplate2'" id="A27830" style="width: 25px" data-tid="A364895">
+                                <i class="fa fa-file-text-o" style="cursor:pointer" (click)="openReport(cellData)" id="A27831" data-tid="A364896"></i>
+                            </div>
+                            <dxo-editing mode="cell" [allowUpdating]="false" [allowAdding]="false" [allowDeleting]="false" data-tid="A364897">
+                            </dxo-editing>
+                            <dxo-scrolling mode="virtual" data-tid="A364898"></dxo-scrolling>
+                        </dx-data-grid>
+
+                    </div>
+
+                    <div class="btn-group col-sm-12" role="group" style="padding-right: 17px;float: right;margin-top: -10px;" id="A20245" data-tid="A364899">
+
+                        <dx-button class="col-sm-2" #btnEvet type="success" icon="fa fa-television" text="Devam Et" (onClick)="btnEvet_Click()" i18n-text="@@M17210" id="A27992" data-tid="A364900"></dx-button>
+                        <dx-button class="col-sm-2" #btnHayir type="success" icon="fa fa-television" text="Sil" (onClick)="btnHayir_Click()" i18n-text="@@M17210" id="A27992" style="float:right" data-tid="A364901"></dx-button>
+                    </div>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup [(visible)]="showTeletipResultReport" [closeOnOutsideClick]="false" [width]="600" height="700" title="İstem Geçmişi" i18n-title="@@M30219" id="A24169" data-tid="A364902">
+            <div *dxTemplate="let data of 'content'" id="A24170" data-tid="A364903">
+                <hvl-richtextbox [ngModelOptions]="{ standalone: true}" [(ngModel)]="teletipResultReportInfo" ReadOnly="true" [TemplateGroupName]="DescriptionToPreOp?.TemplateGroupName" [Visible]="DescriptionToPreOp?.Visible" [Height]="600" id="A9870" data-tid="A364904"></hvl-richtextbox>
+            </div>
+        </dx-popup>
+
+        <dx-popup [(visible)]="showRepeatReasonPopup" [showCloseButton]="false" [closeOnOutsideClick]="false" [width]="375" height="250" title="Tekrar Tetkik İstem Gerekçesi" i18n-title="@@M30219" id="A24169" data-tid="A364905">
+            <div *dxTemplate="let data of 'content'" id="A24170" data-tid="A364906">
+
+                <div class="row" data-tid="A364907">
+                    <div class="col-sm-12" data-tid="A364908">
+                        <hvl-list-box #Validation (SelectedObjectChange)="onReasonForRepetitionRequestChanged($event)" [AutoCompleteDialogHeight]="ReasonForRepetitionRequest?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ReasonForRepetitionRequest?.AutoCompleteDialogWidth" [AutoCompleteMode]="ReasonForRepetitionRequest?.AutoCompleteMode" [BackColor]="ReasonForRepetitionRequest?.BackColor" [DefinitionName]="ReasonForRepetitionRequest?.ListDefName" [DisplayExpressionsCache]="socialServicesPatientInterviewFormViewModel?.ListDefDisplayExpressions" [Enabled]="true" [Font]="ReasonForRepetitionRequest?.Font" [ForeColor]="ReasonForRepetitionRequest?.ForeColor" [ListFilterExpression]="ReasonForRepetitionRequest?.ListFilterExpression" [MinSearchLength]="ReasonForRepetitionRequest?.MinSearchLength" [PopupDialogFieldConfig]="ReasonForRepetitionRequest?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ReasonForRepetitionRequest?.PopupDialogGridColumns" [PopupDialogHeight]="ReasonForRepetitionRequest?.PopupDialogHeight" [PopupDialogTitle]="ReasonForRepetitionRequest?.PopupDialogTitle" [PopupDialogWidth]="ReasonForRepetitionRequest?.PopupDialogWidth" [ReadOnly]="false" [SearchMode]="ReasonForRepetitionRequest?.SearchMode" [SearchTimeout]="ReasonForRepetitionRequest?.SearchTimeout" [SelectedObject]="lastSelectedDetail?.ReasonForRepetitionRequest" [TabIndex]="ReasonForRepetitionRequest?.TabIndex" [Visible]="ReasonForRepetitionRequest?.Visible" [width]="ReasonForRepetitionRequest?.Width" id="A26737" data-tid="A364909"></hvl-list-box>
+
+                    </div>
+                </div>
+                <div class="row" style="padding-top:5px" data-tid="A364910">
+                    <div class="col-sm-12" style="text-align:right" data-tid="A364911">
+                        <dx-button #btnSaveRepetitionReason type="success" style="margin-right: 8px;" icon="fa fa-save" text="Kaydet" (onClick)="closeRepetitionPopUp()" i18n-text="@@M17210" id="A27992" data-tid="A364912"></dx-button>
+
+                    </div>
+                </div>
+            </div>
+        </dx-popup>
+
+
+        <dx-popup #vitaminDPopup [(visible)]="showVitaminDResult" [closeOnOutsideClick]="true" [showCloseButton]="true" [width]="800" height="500" title="Tetkik Mükerrerlik Sorgulama Sonucu" data-tid="A364913">
+            <div *dxTemplate="let data of 'content'" id="A24170" data-tid="A364914">
+
+                <div class="col-sm-12" style="margin-bottom: 5px;" data-tid="A364915">
+
+                    <dx-data-grid [dataSource]="_tetkikSonucBilgileri" [showBorders]="true" [masterDetail]="{ enabled: true, template: 'detail',autoExpandAll: true  }" height="410px" data-tid="A364916">
+
+                        <dxi-column dataField="XXXXXXAdi" [width]="150" caption="XXXXXX Adı" data-tid="A364917"></dxi-column>
+                        <dxi-column dataField="klinikAdi" [width]="150" caption="Klinik Adı" data-tid="A364918"></dxi-column>
+                        <dxi-column dataField="gerceklesmeZamani" [width]="70" caption="Gerçekleşme Zamanı" data-tid="A364919"></dxi-column>
+                        <dxi-column dataField="tetkikSonucTarihi" [width]="70" caption="Tetkik Sonuç Tarihi" data-tid="A364920"></dxi-column>
+
+                        <div *dxTemplate="let tetkik of 'detail'" data-tid="A364921">
+                            <div class="master-detail-caption" data-tid="A364922">{{"Tetkik Sonuç Detayları"}}</div>
+                            <dx-data-grid [dataSource]="tetkik.data.tetkikSonucDetaylari" [showBorders]="true" [columnAutoWidth]="true" data-tid="A364923">
+                                <dxi-column dataField="loincKodu" caption="Loinc Kodu" data-tid="A364924"></dxi-column>
+                                <dxi-column dataField="tetkikSonucParametreAdi" caption="Parametre Adı" data-tid="A364925"></dxi-column>
+                                <dxi-column dataField="tetkikSonucu" caption="Sonuc" data-tid="A364926"></dxi-column>
+                                <dxi-column dataField="tetkikSonucuBirimi" caption="Birim" data-tid="A364927"></dxi-column>
+                                <dxi-column dataField="tetkikSonucuReferansDegeri" caption="Referans Degeri" data-tid="A364928"></dxi-column>
+                                <dxi-column dataField="tetkikSonucuReferansDegerAraligindaMi" caption="Referans Değer Aralığında Mı?" data-tid="A364929"></dxi-column>
+                            </dx-data-grid>
+                        </div>
+                        <dxo-scrolling mode="virtual" data-tid="A364930"></dxo-scrolling>
+                    </dx-data-grid>
+
+                </div>
+
+            </div>
+
+        </dx-popup>
+
+        <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showTeletipLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelTipMessage" id="A24158" data-tid="A364931">
+        </dx-load-panel>
+    </div>
+</div>
+

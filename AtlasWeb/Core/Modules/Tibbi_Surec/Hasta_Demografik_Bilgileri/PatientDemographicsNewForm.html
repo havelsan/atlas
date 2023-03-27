@@ -1,0 +1,277 @@
+﻿<div class="row" style="font-size:14px; font-weight:600;" data-tid="A346116">
+    <div class="col-md-1 col-sm-2" data-tid="A346117">
+        <photo-capture-webcamjs [Image]="patientDemographicsViewModel?.profilPhotoPath" Width="80" Height="90" CloseButtons="true" id="A19909" data-tid="A346118"></photo-capture-webcamjs>
+        <div *ngIf="isCameraShowing == true" id="A19910" data-tid="A346119">
+            <photo-capture (PhotoCaptured)="photoCaptured($event)" id="A19911" data-tid="A346120">
+            </photo-capture>
+        </div>
+    </div>
+    <div class="col-md-9 col-sm-7" data-tid="A346121">
+        <div class="row" data-tid="A346122">
+            <div class="col-md-12  margin-bottom-10" data-tid="A346123">
+                <span data-toggle="tooltip" data-placement="top" title="Hasta Adı Soyadı" i18n-title="@@M15133" id="A14417" style="color:#08c;  font-weight:800;" data-tid="A346124">{{patientDemographicsViewModel?.name}}&nbsp;{{patientDemographicsViewModel?.surname}}</span>
+                &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+                <span data-toggle="tooltip" data-placement="top" title="Hasta Yaşı" i18n-title="@@M15336" id="A14418" data-tid="A346125">{{patientDemographicsViewModel?.age}}</span>
+                &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+                <span data-toggle="tooltip" data-placement="top" title="Hasta Kimlik Numarası" i18n-title="@@M15262" id="A14420" data-tid="A346126">{{patientDemographicsViewModel?.refNo}}</span>
+                &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+                <span data-toggle="tooltip" data-placement="top" title="Cinsiyet" i18n-title="@@M12265" id="A14419" data-tid="A346127">{{patientDemographicsViewModel?.gender}}</span>
+                &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+                <span data-placement="top" title="Baba Adı" i18n-title="@@M11390" id="A14421" data-tid="A346128">{{patientDemographicsViewModel?.fatherName}}</span>
+            </div>
+            <div class="col-md-12 margin-bottom-10" data-tid="A346129">
+                <span *ngIf="patientDemographicsViewModel?.ShowType==1" data-toggle="tooltip" data-placement="top" title="Poliklinik Protokol No" i18n-title="@@M17024" id="A14434" data-tid="A346130">{{patientDemographicsViewModel?.PoliclinicProtocolNo}}</span>
+                <span *ngIf="patientDemographicsViewModel?.ShowType!=1" data-toggle="tooltip" data-placement="top" title="Klinik Protokol No" i18n-title="@@M17649" id="A14451" data-tid="A346131">{{patientDemographicsViewModel?.ClinicProtocolNo}}</span>
+                <span *ngIf="patientDemographicsViewModel?.ShowType!=1" data-tid="A346132">&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;</span>
+                <span *ngIf="patientDemographicsViewModel?.ShowType!=1" data-toggle="tooltip" data-placement="top" title="Oda" i18n-title="@@M19602" id="A14455" data-tid="A346133">{{patientDemographicsViewModel?.Room}}</span>
+                <span *ngIf="patientDemographicsViewModel?.ShowType!=1" data-tid="A346134">&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;</span>
+                <span *ngIf="patientDemographicsViewModel?.ShowType!=1" data-toggle="tooltip" data-placement="top" title="Yatak" i18n-title="@@M24353" id="A14456" data-tid="A346135">{{patientDemographicsViewModel?.Bed}}</span>
+                <span *ngIf="patientDemographicsViewModel?.PoliclinicProtocolNo!=null" data-tid="A346136">&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;</span>
+                <span data-toggle="tooltip" data-placement="top" title="Arşiv Numarası" i18n-title="@@M15336" id="A14418" data-tid="A346137">{{patientDemographicsViewModel?.archiveNo}}</span>
+                &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+                <span data-toggle="tooltip" data-placement="top" title="Kabul Numarası" i18n-title="@@M17024" id="A14434" data-tid="A346138">{{patientDemographicsViewModel?.SubEpisodeProtocolNo}}</span>
+                &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+                <span data-toggle="tooltip" data-placement="top" title="Kabul Birimi" i18n-title="@@M17016" id="A14427" data-tid="A346139">{{patientDemographicsViewModel?.policlinicName}}</span>
+                &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+                <span data-placement="top" title="Hasta Kabul Tipi" i18n-title="@@M27527" id="A14435" data-tid="A346140">{{patientDemographicsViewModel?.PatientType}}</span>
+                &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+                <span data-toggle="tooltip" data-placement="top" title="Geliş Sebebi" i18n-title="@@M14664" id="A14431" data-tid="A346141">{{patientDemographicsViewModel?.admissionType}}</span>
+            </div>
+            <div class="col-md-12  margin-bottom-10" data-tid="A346142">
+                <span data-toggle="tooltip" data-placement="top" title="Kabul Tarihi" i18n-title="@@M17034" id="A14428" data-tid="A346143">{{patientDemographicsViewModel?.admissionDate}}</span>
+                &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+                <span *ngIf="patientDemographicsViewModel?.ShowType==1" data-toggle="tooltip" data-placement="top" title="Müracaat Zamanı" i18n-title="@@M17034" id="A14428" data-tid="A346144">{{patientDemographicsViewModel?.formattedRequestDate}}</span>
+                <span *ngIf="patientDemographicsViewModel?.formattedRequestDate!=null" data-tid="A346145">&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;</span>
+                <span *ngIf="patientDemographicsViewModel?.ShowType==1" data-toggle="tooltip" data-placement="top" title="Muayene Başlama / Muayene Bitiş" i18n-title="@@M17024" id="A14434" data-tid="A346146">{{patientDemographicsViewModel?.ExaminationProcessAndEndDate}}</span>
+                <span *ngIf="patientDemographicsViewModel?.ShowType==3" data-tid="A346147">&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;</span>
+                <span *ngIf="patientDemographicsViewModel?.ShowType==3" data-toggle="tooltip" data-placement="top" title="Klinik Yatış Tarihi" i18n-title="@@M17661" id="A14437" data-tid="A346148">{{patientDemographicsViewModel?.inpatientClinicDate}}</span>
+                <span *ngIf="patientDemographicsViewModel?.ShowType==3" data-tid="A346149">&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;</span>
+                <span *ngIf="patientDemographicsViewModel?.ShowType==3" data-toggle="tooltip" data-placement="top" title="Klinik Çıkış Tarihi" i18n-title="@@M17627" id="A14438" data-tid="A346150">{{patientDemographicsViewModel?.InpatientClinicDischargeDate}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-3" data-tid="A346151">
+        <div class="row" data-tid="A346152">
+            <div class="col-md-12" data-tid="A346153">
+
+                <a *ngIf="patientDocumentCount>0" href="javascript:void(0)" class="nav-link" (click)="patientDocumentDownload()" id="A14439" data-tid="A346154">
+                    <i style="float:right;margin-right:20px" class="fa fa-folder-open fa-2x" data-toggle="tooltip" data-placement="bottom" title="Hasta Dokümanlarını Görüntüle" i18n-title="@@M15179" id="A14440" data-tid="A346155"></i>
+                </a>
+
+                <a *ngIf="_AddButtonShowable==true" href="javascript:void(0)" class="nav-link" (click)="openMedicalInfo()" id="A14441" data-tid="A346156">
+                    <i style="float:right;margin-right:20px" class="fa fa-plus-circle fa-2x" data-toggle="tooltip" data-placement="bottom" title="Önemli Tıbbi Bilgiler Ekle" i18n-title="@@M20022" id="A14442" data-tid="A346157"></i>
+                </a>
+
+                <div *ngIf="patientDemographicsViewModel?.hasMedicalInformation && IsAllergicAlertShown==false" id="A14443" data-tid="A346158">
+                    <a href="javascript:void(0)" class="nav-link" (click)="openMedicalInfo()" id="A14444" data-tid="A346159">
+                        <i style="color:#e06b6b;float:right;margin-right:20px" class="fa fa-exclamation-triangle fa-2x" data-toggle="tooltip" data-placement="bottom" title="Önemli Tıbbi Bilgiler" i18n-title="@@M20020" id="A14445" data-tid="A346160"></i>
+                    </a>
+                </div>
+
+                <div *ngIf="patientDemographicsViewModel?.hasMedicalInformation && patientDemographicsViewModel?.IsPatientAllergic==true && IsAllergicAlertShown==true" id="A14443" data-tid="A346161">
+                    <a href="javascript:void(0)" class="nav-link" (click)="openMedicalInfo()" id="A14444" data-tid="A346162">
+                        <i style="color:#e06b6b;float:right;margin-right:20px" class="fa fa-exclamation-triangle fa-3x fa-pulse" data-toggle="tooltip" data-placement="bottom" title="Önemli Tıbbi Bilgiler" i18n-title="@@M20020" id="A14445" data-tid="A346163"></i>
+                    </a>
+                </div>
+
+                <div *ngIf="patientDemographicsViewModel?.isPregnant && patientDemographicsViewModel?.isHighRiskPregnant == false" id="A14446" data-tid="A346164">
+                    <i style="color: #956be0; float: right; margin-right: 20px " class="fa fa-gratipay fa-2x" data-toggle="tooltip" data-placement="bottom" title="Hamile" i18n-title="@@M15097" id="A14447" data-tid="A346165">
+                    </i>
+                </div>
+
+                <div *ngIf="patientDemographicsViewModel?.isHighRiskPregnant" id="A14446" style="font-size: xx-small" data-tid="A346166">
+                    <i style="color:#f23454;float:right;margin-right:10px" class="fa fa-gratipay fa-2x" data-toggle="tooltip" data-placement="bottom" title="Hamile" i18n-title="@@M15097" id="A14447" data-tid="A346167">
+                        Yüksek Riskli Hamilelik
+                    </i>
+                </div>
+
+                <div *ngIf="patientDemographicsViewModel?.HasAirborneContactIsolation" id="A14446" data-tid="A346168">
+                    <i data-toggle="tooltip" data-placement="bottom" title="Solunum İzolasyonu" style="float:right;height:18px;padding-right: 20px;margin-right:5px;background-image:url('../../Content/YatanHasta/SolunumIzolasyon.png');background-repeat:no-repeat;background-size:cover;" i18n-title="@@M22030" id="A16539" data-tid="A346169"></i>
+                </div>
+                <div *ngIf="patientDemographicsViewModel?.HasContactIsolation" id="A14446" data-tid="A346170">
+                    <i data-toggle="tooltip" data-placement="bottom" title="Temas İzolasyonu" style="float:right;height:18px;padding-right: 20px;margin-right:5px;background-image:url('../../Content/YatanHasta/TemasIzolasyon.png');background-repeat:no-repeat;background-size:cover;" i18n-title="@@M22030" id="A16539" data-tid="A346171"></i>
+
+                </div>
+                <div *ngIf="patientDemographicsViewModel?.HasDropletIsolation" id="A14446" data-tid="A346172">
+                    <i data-toggle="tooltip" data-placement="bottom" title="Damlacık İzolasyonu" style="float:right;height:18px;padding-right: 20px;margin-right:5px;background-image:url('../../Content/YatanHasta/DamlacikIzolasyon.png');background-repeat:no-repeat;background-size:cover;" i18n-title="@@M22030" id="A16539" data-tid="A346173"></i>
+
+                </div>
+                <div *ngIf="patientDemographicsViewModel?.HasTightContactIsolation" id="A14446" data-tid="A346174">
+                    <i data-toggle="tooltip" data-placement="bottom" title="Sıkı Temas İzolasyonu" style="float:right;height:18px;padding-right: 20px;margin-right:5px;background-image:url('../../Content/YatanHasta/SikiTemasIzolasyon.png');background-repeat:no-repeat;background-size:cover;" i18n-title="@@M22030" id="A16539" data-tid="A346175"></i>
+
+                </div>
+                <div *ngIf="patientDemographicsViewModel?.HasFallingRisk" id="A14446" data-tid="A346176">
+                    <i data-toggle="tooltip" data-placement="bottom" title="Düşme Riskli İzolasyonu" style="float:right;height:18px;padding-right: 20px;margin-right:5px;background-image:url('../../Content/YatanHasta/DusmeRisk.png');background-repeat:no-repeat;background-size:cover;" i18n-title="@@M22030" id="A16539" data-tid="A346177"></i>
+
+                </div>
+
+            </div>
+            <div class="col-md-12" data-tid="A346178">
+                <a class="pull-right" data-toggle="collapse" href="#collapsePatientDetail" data-tid="A346179">Hasta Detayları<i class="fa fa-2x fa-angle-down" data-tid="A346180"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" data-tid="A346181">
+    <div class="panel" style="margin-bottom:0; border:0;" data-tid="A346182">
+        <div id="collapsePatientDetail" class="panel-collapse collapse" data-tid="A346183">
+            <div class="panel-body" data-tid="A346184">
+                <div class="row" data-tid="A346185">
+                    <div class="col-md-6" data-tid="A346186">
+                        <div class="row" id="A14415" data-tid="A346187">
+                            <div *ngIf="patientDemographicsViewModel?.bloodGroup != null" class="col-md-12" data-placement="top" title="Kan Grubu" style="color:darkred" i18n-title="@@M11390" id="A14421" data-tid="A346188">{{patientDemographicsViewModel?.bloodGroup}}</div>
+                            <div class="col-md-12" data-placement="top" title="Kurum" i18n-title="@@M18009" id="A14422" data-tid="A346189">{{patientDemographicsViewModel?.payerName}}</div>
+                            <div class="col-md-6" data-placement="top" title="Hasta Türü" i18n-title="@@M15322" id="A14423" data-tid="A346190">{{patientDemographicsViewModel?.PatientClassGroup}}</div>
+                            <div class="col-md-6" data-placement="top" title="Başvuru Türü" i18n-title="@@M27441" id="A14424" data-tid="A346191">{{patientDemographicsViewModel?.ApplicationReason}}</div>
+                        </div>
+
+                        <div class="row" id="A14426" data-tid="A346192">
+                            <div class="col-md-12" data-placement="top" title="Sorumlu Doktoru" i18n-title="@@M22149" id="A14429" data-tid="A346193">{{patientDemographicsViewModel?.admissionDoctor}}</div>
+                            <div class="col-md-12" data-placement="top" title="Sorumlu Hemşire" i18n-title="@@M22151" id="A14430" data-tid="A346194">{{patientDemographicsViewModel?.responsibleNurse}}</div>
+                            <div class="col-md-5" data-placement="top" title="Çalışma Durumu" i18n-title="@@M12323" id="A14432" data-tid="A346195">{{patientDemographicsViewModel?.MedulaSigortaTuru}}</div>
+                            <div class="col-md-12" data-placement="top" title="Provizyon Numarası" i18n-title="@@M20581" id="A14433" data-tid="A346196">{{patientDemographicsViewModel?.provisionNo}}</div>
+                            <!--<div class="col-md-12" data-placement="top" title="XXXXXX Protokol Numarası" i18n-title="@@M15397">{{patientDemographicsViewModel?.hospitalProtocolNo}}</div>-->
+                            "
+                            <div class="col-md-12" [class.text-danger]="patientDemographicsViewModel?.IsInpatientTypeDischarge==true" data-placement="top" title="Hasta Tipi" *ngIf="patientDemographicsViewModel?.ShowType==3" i18n-title="@@M27422" id="A14436" data-tid="A346197">{{patientDemographicsViewModel?.InpatientType}}</div>
+                            <div class="col-md-12" data-placement="top" title="Yatış Süresi" *ngIf="patientDemographicsViewModel?.ShowType==3" i18n-title="@@M17627" id="A14438" data-tid="A346198">{{patientDemographicsViewModel?.InpatientDay}}</div>
+                        </div>
+                        <div class="row" id="A14449" data-tid="A346199">
+                            <div class="col-md-12" [class.text-danger]="patientDemographicsViewModel?.IsInpatientTypeDischarge==true" data-placement="top" title="Hasta Tipi" i18n-title="@@M27422" id="A14450" data-tid="A346200">{{patientDemographicsViewModel?.InpatientType}}</div>
+                            <div class="col-md-12" data-placement="top" title="Yatış Süresi" i18n-title="@@M17627" id="A14453" data-tid="A346201">{{patientDemographicsViewModel?.InpatientDay}}</div>
+                            <div class="col-md-12" data-placement="top" title="Oda Grup" i18n-title="@@M19609" id="A14454" data-tid="A346202">{{patientDemographicsViewModel?.RoomGroup}}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" data-tid="A346203">
+                        <p data-tid="A346204">Özellikli Tıbbi Bilgiler</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<dx-popup width="425px" height="230px" [(visible)]="showimportantPatientInfo" [closeOnOutsideClick]="false" title="Arşiv Açıklaması" i18n-title="@@M11098" id="A14457" data-tid="A346205">
+    <div *dxTemplate="let data of 'content'" id="A14458" data-tid="A346206">
+        <div class="row" id="A14459" data-tid="A346207">
+            <div class="margin-top-10" id="A14460" data-tid="A346208">
+                <div class="col-md-12" id="A14461" data-tid="A346209">
+                    <div id="importantPatientInfo" class="alert alert-danger" role="alert" data-tid="A346210">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" id="A14462" data-tid="A346211"></span>
+                        <span class="sr-only" id="A14463" data-tid="A346212">Error:</span>
+                        {{this.patientDemographicsViewModel?.importantPatientInfo}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</dx-popup>
+
+<dx-popup title="Hasta Bilgileri" [(visible)]="showPatientDetailsPopup" width="550px" height="580px" i18n-title="@@M15158" id="A14464" data-tid="A346213">
+    <div *dxTemplate="let data of 'content'" id="A14465" data-tid="A346214">
+        <table class="table table-bordered patientHistoryTableStyle" id="A14466" data-tid="A346215">
+            <tbody id="A14467" data-tid="A346216">
+                <tr id="A14468" data-tid="A346217">
+                    <td class="col-md-6 info" id="A14469" data-tid="A346218">
+                        <label id="A14470" data-tid="A346219">Kimlik Numarası :</label>
+                    </td>
+                    <td class="col-md-6" id="A14471" data-tid="A346220">{{patientDetailsViewModel?.PatientIdentifier}}</td>
+                </tr>
+                <tr id="A14472" data-tid="A346221">
+                    <td class="col-md-6 info" id="A14473" data-tid="A346222">
+                        <label id="A14474" data-tid="A346223">Hasta Adı :</label>
+                    </td>
+                    <td class="col-md-6" id="A14475" data-tid="A346224">{{patientDetailsViewModel?.PatientName}}</td>
+                </tr>
+                <tr id="A14476" data-tid="A346225">
+                    <td class="col-md-6 info" id="A14477" data-tid="A346226">
+                        <label id="A14478" data-tid="A346227">Hasta Soyadı :</label>
+                    </td>
+                    <td class="col-md-6" id="A14479" data-tid="A346228">{{patientDetailsViewModel?.PatientSurname}}</td>
+                </tr>
+                <tr id="A14480" data-tid="A346229">
+                    <td class="col-md-6 info" id="A14481" data-tid="A346230">
+                        <label id="A14482" data-tid="A346231">Anne Adı :</label>
+                    </td>
+                    <td class="col-md-6" id="A14483" data-tid="A346232">{{patientDetailsViewModel?.MotherName}}</td>
+                </tr>
+                <tr id="A14484" data-tid="A346233">
+                    <td class="col-md-6 info" id="A14485" data-tid="A346234">
+                        <label id="A14486" data-tid="A346235">Baba Adı :</label>
+                    </td>
+                    <td class="col-md-6" id="A14487" data-tid="A346236">{{patientDetailsViewModel?.FatherName}}</td>
+                </tr>
+                <tr id="A14488" data-tid="A346237">
+                    <td class="col-md-6 info" id="A14489" data-tid="A346238">
+                        <label id="A14490" data-tid="A346239">Hasta Yakını Adı :</label>
+                    </td>
+                    <td class="col-md-6" id="A14491" data-tid="A346240">{{patientDetailsViewModel?.RelativeFullName}}</td>
+                </tr>
+                <tr id="A14492" data-tid="A346241">
+                    <td class="col-md-6 info" id="A14493" data-tid="A346242">
+                        <label id="A14494" data-tid="A346243">Hasta Yakını İletişim :</label>
+                    </td>
+                    <td class="col-md-6" id="A14495" data-tid="A346244">{{patientDetailsViewModel?.RelativeMobilePhone}}</td>
+                </tr>
+                <tr id="A14496" data-tid="A346245">
+                    <td class="col-md-6 info" id="A14497" data-tid="A346246">
+                        <label id="A14498" data-tid="A346247">Doğum Yeri :</label>
+                    </td>
+                    <td class="col-md-6" id="A14499" data-tid="A346248">{{patientDetailsViewModel?.BirthPlace}}</td>
+                </tr>
+                <tr id="A14500" data-tid="A346249">
+                    <td class="col-md-6 info" id="A14501" data-tid="A346250">
+                        <label id="A14502" data-tid="A346251">Doğum Tarihi :</label>
+                    </td>
+                    <td class="col-md-6" id="A14503" data-tid="A346252">{{patientDetailsViewModel?.BirthDate | date:"dd.MM.yyyy"}}</td>
+                </tr>
+                <tr id="A14504" data-tid="A346253">
+                    <td class="col-md-6 info" id="A14505" data-tid="A346254">
+                        <label id="A14506" data-tid="A346255">Cinsiyeti :</label>
+                    </td>
+                    <td class="col-md-6" id="A14507" data-tid="A346256">{{patientDetailsViewModel?.Sex}}</td>
+                </tr>
+                <tr id="A14508" data-tid="A346257">
+                    <td class="col-md-6 info" id="A14509" data-tid="A346258">
+                        <label id="A14510" data-tid="A346259">Uyruk :</label>
+                    </td>
+                    <td class="col-md-6" id="A14511" data-tid="A346260">{{patientDetailsViewModel?.Nationality}}</td>
+                </tr>
+                <tr id="A14512" data-tid="A346261">
+                    <td class="col-md-6 info" id="A14513" data-tid="A346262">
+                        <label id="A14514" data-tid="A346263">Adresi :</label>
+                    </td>
+                    <td class="col-md-6" id="A14515" data-tid="A346264">{{patientDetailsViewModel?.Address}}</td>
+                </tr>
+                <tr id="A14516" data-tid="A346265">
+                    <td class="col-md-6 info" id="A14517" data-tid="A346266">
+                        <label id="A14518" data-tid="A346267">Cep Telefonu :</label>
+                    </td>
+                    <td class="col-md-6" id="A14519" data-tid="A346268">{{patientDetailsViewModel?.MobilePhone}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</dx-popup>
+
+<dx-popup width="425px" height="230px" [(visible)]="showWarning" [closeOnOutsideClick]="false" title="Uyarı!" id="A1445" data-tid="A346269">
+    <div *dxTemplate="let data of 'content'" id="A14465" data-tid="A346270">
+
+        <div class="row" id="allergy1" [hidden]="!drugBool" data-tid="A346271">
+            <div class="col-md-10" id="allergy1" data-tid="A346272">
+                <label style="font-size: 14px;" data-tid="A346273">{{DrugAllergyDetail}}</label>
+            </div>
+            <div class="col-md-1" id="allergy1" data-tid="A346274">
+                <i style="color:#e06b6b;float:right;margin-right:5px;margin-top:-5px;font-size:20px" class="fa fa-exclamation-circle" data-toggle="tooltip" data-placement="bottom" data-tid="A346275"></i>
+            </div>
+        </div>
+        <div class="row" id="allergy2" style="padding-top: 15px;" [hidden]="!foodBool" data-tid="A346276">
+            <div class="col-md-10" id="allergy1" data-tid="A346277">
+                <label style="font-size: 14px;" data-tid="A346278">{{FoodAllergyDetail}}</label>
+            </div>
+            <div class="col-md-1" id="allergy2" data-tid="A346279">
+                <i style="color:#e06b6b;float:right;margin-right:5px;margin-top:-5px;font-size:20px" class="fa fa-exclamation-circle" data-toggle="tooltip" data-placement="bottom" data-tid="A346280"></i>
+            </div>
+        </div>
+    </div>
+
+</dx-popup>

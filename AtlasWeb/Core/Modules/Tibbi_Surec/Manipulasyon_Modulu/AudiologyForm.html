@@ -1,0 +1,54 @@
+﻿
+
+
+<form id="AudiologyForm" class="form-horizontal" role="form" data-tid="A356680"></form>
+
+<div class="col-sm-6" data-tid="A356681">
+
+    <div class="col-sm-12" data-tid="A356682">
+        <label class="control-label" id="AY23997" data-tid="A356683">Odyoloji Tanıları</label>
+        <hvl-list-box #Validation (SelectedObjectChange)="diagnosisSelected($event)" [AutoCompleteDialogHeight]="AudiologyDiagnosisList?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="AudiologyDiagnosisList?.AutoCompleteDialogWidth" [AutoCompleteMode]="AudiologyDiagnosisList?.AutoCompleteMode" [BackColor]="AudiologyDiagnosisList?.BackColor" [DefinitionName]="AudiologyDiagnosisList?.ListDefName" [DisplayExpressionsCache]="audiologyFormViewModel?.ListDefDisplayExpressions" [Enabled]="!_readOnly" [Font]="AudiologyDiagnosisList?.Font" [ForeColor]="MaterialProcedureList?.ForeColor" [ListFilterExpression]="AudiologyDiagnosisList?.ListFilterExpression" [MinSearchLength]="AudiologyDiagnosisList?.MinSearchLength" [PopupDialogFieldConfig]="AudiologyDiagnosisList?.PopupDialogFieldConfig" [PopupDialogGridColumns]="AudiologyDiagnosisList?.PopupDialogGridColumns" [PopupDialogHeight]="AudiologyDiagnosisList?.PopupDialogHeight" [PopupDialogTitle]="AudiologyDiagnosisList?.PopupDialogTitle" [PopupDialogWidth]="AudiologyDiagnosisList?.PopupDialogWidth" [ReadOnly]="AudiologyDiagnosisList?.ReadOnly" [SearchMode]="AudiologyDiagnosisList?.SearchMode" [SearchTimeout]="AudiologyDiagnosisList?.SearchTimeout" [SelectedObject]="audiologyFormViewModel?._selectedDiagnosis" [TabIndex]="AudiologyDiagnosisList?.TabIndex" [Visible]="AudiologyDiagnosisList?.Visible" [width]="AudiologyDiagnosisList?.Width" id="AY23998" data-tid="A356684"></hvl-list-box>
+      
+    </div>
+    <div class="col-sm-12" style="margin-top:10px" data-tid="A356685">
+        <dx-data-grid showColumnLines="true" [paging]="{enable: false, pageSize:1000000}" showRowLines="true" height="150" [columns]="AudiologyDiagnosisColumns" [dataSource]="audiologyFormViewModel.DiagnosisArray" allowColumnReordering="false" allowColumnResizing="false" [selection]="{mode: 'none',allowSelectAll: false}" (onRowRemoving)="onRowDeleted($event, row)" id="AY24004" data-tid="A356686">
+
+            <dxo-editing mode="cell" [allowUpdating]="false" [allowAdding]="false" [allowDeleting]="true" id="AY24005" data-tid="A356687">
+            </dxo-editing>
+
+        </dx-data-grid>
+
+    </div>
+</div>
+
+<div class="col-sm-6" data-tid="A356688">
+    <div class="col-sm-12" data-tid="A356689">
+        <label class="control-label" data-tid="A356690">Odyoloji Tetkik Sonuç Notu</label>
+        <dx-text-area [readOnly]="_readOnly" style="height:85px;" [(value)]="audiologyFormViewModel._AudiologyObject.ResultNote" data-tid="A356691">
+            </dx-text-area>
+
+            <!--<hvl-text-box #Validation="" (TextChange)="onResultNoteChanged($event)" [BackColor]="ResultNote?.BackColor" [CharacterCasing]="ResultNote?.CharacterCasing" [Enabled]="ResultNote?.Enabled" [Font]="ResultNote?.Font" [ForeColor]="ResultNote?.ForeColor" [height]="ResultNote?.Height" [InputFormat]="ResultNote?.InputFormat" [InputTurkishCharacter]="ResultNote?.InputTurkishCharacter" [IsNonNumeric]="ResultNote?.IsNonNumeric" [MultiLine]="ResultNote?.Multiline" [ReadOnly]="ResultNote?.ReadOnly" [Required]="ResultNote?.Required" [TabIndex]="ResultNote?.TabIndex" [TextAlign]="ResultNote?.TextAlign" [Text]="_AudiologyObject.ResultNote" [Visible]="ResultNote?.Visible">
+        </hvl-text-box>-->
+    </div>
+    <div class="col-sm-12" data-tid="A356692">
+        <label class="control-label" data-tid="A356693">Terapi Notu</label>
+        <dx-text-area [readOnly]="_readOnly" style="height:85px;" [(value)]="audiologyFormViewModel._AudiologyObject.TherapyNote" data-tid="A356694">
+        </dx-text-area>
+
+        <!--<hvl-text-box #Validation="" (TextChange)="onTherapyNoteChanged($event)" [BackColor]="TherapyNote?.BackColor" [CharacterCasing]="TherapyNote?.CharacterCasing" [Enabled]="TherapyNote?.Enabled" [Font]="TherapyNote?.Font" [ForeColor]="TherapyNote?.ForeColor" [height]="TherapyNote?.Height" [InputFormat]="TherapyNote?.InputFormat" [InputTurkishCharacter]="TherapyNote?.InputTurkishCharacter" [IsNonNumeric]="TherapyNote?.IsNonNumeric" [MultiLine]="TherapyNote?.Multiline" [ReadOnly]="TherapyNote?.ReadOnly" [Required]="TherapyNote?.Required" [TabIndex]="TherapyNote?.TabIndex" [TextAlign]="TherapyNote?.TextAlign" [Text]="_AudiologyObject.TherapyNote" [Visible]="TherapyNote?.Visible">
+        </hvl-text-box>-->
+    </div>
+</div>
+
+   
+    <div class="col-sm-12" data-tid="A356695">
+        <label class="control-label" data-tid="A356696">
+            Odyoloji Raporu
+        </label>
+        <hvl-richtextbox (change)="onAudiologyReportChanged($event)" [ngModelOptions]="{ standalone: true }" [ngModel]="_AudiologyObject.AudiologyReport" [ReadOnly]="AudiologyReport?.ReadOnly" [TemplateGroupName]="AudiologyReport?.TemplateGroupName" [Visible]="AudiologyReport?.Visible" data-tid="A356697">
+        </hvl-richtextbox>
+    </div>
+
+
+
+

@@ -1,0 +1,116 @@
+﻿
+
+<div class="container-fluid margin-bottom-10" id="A18301" data-tid="A351497">
+    <NeStatePanelComponent [OutgoingTransitions]="nursingPainScaleFormViewModel?.OutgoingTransitions" PrintReportCommandVisible="true" (onPrintReport)="printReport()" [StateReports]="nursingPainScaleFormViewModel?.CurrentStateReports" [ObjectID]="nursingPainScaleFormViewModel?._NursingPainScale?.ObjectID" [ObjectDefID]="nursingPainScaleFormViewModel?._NursingPainScale?.ObjectDefID" [CurrentStateDefID]="nursingPainScaleFormViewModel._NursingPainScale.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()" [SaveCommandVisible]="!nursingPainScaleFormViewModel.ReadOnly" [DropStateList]="DropStateList" id="A18302" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A351498">
+    </NeStatePanelComponent>
+    <form id="NursingPainScaleForm" class="form-horizontal" role="form" data-tid="A351499"></form>
+    <div class="row" id="A18303" data-tid="A351500">
+        <label class="control-label col-sm-4" id="A18304" data-tid="A351501">
+            Uygulama Zamanı
+        </label>
+        <label class="control-label col-sm-4" id="A18305" data-tid="A351502">
+            Ağrıyan Taraf
+        </label>
+        <label class="control-label col-sm-4" id="A18306" data-tid="A351503">
+            Ağrı Detay
+        </label>
+    </div>
+    <div class="row" id="A18307" data-tid="A351504">
+        <div class="col-sm-4" id="A18308" data-tid="A351505">
+            <dx-date-box width="100%" type="datetime" displayFormat="dd/MM/yyyy HH:mm" [(value)]="nursingPainScaleFormViewModel._NursingPainScale.ApplicationDate" [readOnly]="nursingPainScaleFormViewModel.ReadOnly" id="A18309" data-tid="A351506">
+            </dx-date-box>
+        </div>
+        <div class="col-sm-4" id="A18310" data-tid="A351507">
+            <hvl-text-box #Validation (TextChange)="onAchingSideChanged($event)" [BackColor]="AchingSide?.BackColor" [CharacterCasing]="AchingSide?.CharacterCasing" [Enabled]="AchingSide?.Enabled" [Font]="AchingSide?.Font" [ForeColor]="AchingSide?.ForeColor" [height]="AchingSide?.Height" [InputFormat]="AchingSide?.InputFormat" [InputTurkishCharacter]="AchingSide?.InputTurkishCharacter" [IsNonNumeric]="AchingSide?.IsNonNumeric" [MultiLine]="AchingSide?.Multiline" [ReadOnly]="AchingSide?.ReadOnly" [Required]="AchingSide?.Required" [TabIndex]="AchingSide?.TabIndex" [TextAlign]="AchingSide?.TextAlign" [Text]="nursingPainScaleFormViewModel?._NursingPainScale?.AchingSide" [Visible]="AchingSide?.Visible" id="A18311" data-tid="A351508"></hvl-text-box>
+        </div>
+        <div class="col-sm-4" id="A18312" data-tid="A351509">
+            <hvl-text-box #Validation (TextChange)="onPainDetailChanged($event)" [BackColor]="PainDetail?.BackColor" [CharacterCasing]="PainDetail?.CharacterCasing" [Enabled]="PainDetail?.Enabled" [Font]="PainDetail?.Font" [ForeColor]="PainDetail?.ForeColor" [height]="PainDetail?.Height" [InputFormat]="PainDetail?.InputFormat" [InputTurkishCharacter]="PainDetail?.InputTurkishCharacter" [IsNonNumeric]="PainDetail?.IsNonNumeric" [MultiLine]="PainDetail?.Multiline" [ReadOnly]="PainDetail?.ReadOnly" [Required]="PainDetail?.Required" [TabIndex]="PainDetail?.TabIndex" [TextAlign]="PainDetail?.TextAlign" [Text]="nursingPainScaleFormViewModel?._NursingPainScale?.PainDetail" [Visible]="PainDetail?.Visible" id="A18313" data-tid="A351510"></hvl-text-box>
+        </div>
+    </div>
+    <div class="row" id="A18314" data-tid="A351511">
+        <label class="control-label col-sm-4" id="A18315" data-tid="A351512">
+            Ağrının Yeri
+        </label>
+        <label class="control-label col-sm-4" id="A18316" data-tid="A351513">
+            Ne Zamandır Var
+        </label>
+        <label class="control-label col-sm-4" id="A18317" data-tid="A351514">
+            Ağrı Süresi
+        </label>
+    </div>
+    <div class="row" id="A18318" data-tid="A351515">
+        <div class="col-sm-4" id="A18319" data-tid="A351516">
+            <hvl-list-box #Validation (SelectedObjectChange)="onPainPlacesChanged($event)" [AutoCompleteDialogHeight]="PainPlaces?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="PainPlaces?.AutoCompleteDialogWidth" [AutoCompleteMode]="PainPlaces?.AutoCompleteMode" [BackColor]="PainPlaces?.BackColor" [DefinitionName]="PainPlaces?.ListDefName" [DisplayExpressionsCache]="nursingPainScaleFormViewModel?.ListDefDisplayExpressions" [Enabled]="PainPlaces?.Enabled" [Font]="PainPlaces?.Font" [ForeColor]="PainPlaces?.ForeColor" [ListFilterExpression]="PainPlaces?.ListFilterExpression" [MinSearchLength]="PainPlaces?.MinSearchLength" [PopupDialogFieldConfig]="PainPlaces?.PopupDialogFieldConfig" [PopupDialogGridColumns]="PainPlaces?.PopupDialogGridColumns" [PopupDialogHeight]="PainPlaces?.PopupDialogHeight" [PopupDialogTitle]="PainPlaces?.PopupDialogTitle" [PopupDialogWidth]="PainPlaces?.PopupDialogWidth" [ReadOnly]="PainPlaces?.ReadOnly" [SearchMode]="PainPlaces?.SearchMode" [SearchTimeout]="PainPlaces?.SearchTimeout" [SelectedObject]="nursingPainScaleFormViewModel?._NursingPainScale?.PainPlaces" [TabIndex]="PainPlaces?.TabIndex" [Visible]="PainPlaces?.Visible" [width]="PainPlaces?.Width" id="A18320" data-tid="A351517"></hvl-list-box>
+        </div>
+        <div class="col-sm-4" id="A18321" data-tid="A351518">
+            <hvl-text-box #Validation (TextChange)="onPainTimeChanged($event)" [BackColor]="PainTime?.BackColor" [CharacterCasing]="PainTime?.CharacterCasing" [Enabled]="PainTime?.Enabled" [Font]="PainTime?.Font" [ForeColor]="PainTime?.ForeColor" [height]="PainTime?.Height" [InputFormat]="PainTime?.InputFormat" [InputTurkishCharacter]="PainTime?.InputTurkishCharacter" [IsNonNumeric]="PainTime?.IsNonNumeric" [MultiLine]="PainTime?.Multiline" [ReadOnly]="PainTime?.ReadOnly" [Required]="PainTime?.Required" [TabIndex]="PainTime?.TabIndex" [Text]="nursingPainScaleFormViewModel?._NursingPainScale?.PainTime" [Visible]="PainTime?.Visible" id="A18322" data-tid="A351519"></hvl-text-box>
+        </div>
+        <div class="col-sm-4" id="A18323" data-tid="A351520">
+            <hvl-text-box #Validation (TextChange)="onDurationofPainChanged($event)" [BackColor]="DurationofPain?.BackColor" [CharacterCasing]="DurationofPain?.CharacterCasing" [Enabled]="DurationofPain?.Enabled" [Font]="DurationofPain?.Font" [ForeColor]="DurationofPain?.ForeColor" [height]="DurationofPain?.Height" [InputFormat]="DurationofPain?.InputFormat" [InputTurkishCharacter]="DurationofPain?.InputTurkishCharacter" [IsNonNumeric]="DurationofPain?.IsNonNumeric" [MultiLine]="DurationofPain?.Multiline" [ReadOnly]="DurationofPain?.ReadOnly" [Required]="DurationofPain?.Required" [TabIndex]="DurationofPain?.TabIndex" [Text]="nursingPainScaleFormViewModel?._NursingPainScale?.DurationofPain" [Visible]="DurationofPain?.Visible" id="A18324" data-tid="A351521"></hvl-text-box>
+        </div>
+    </div>
+    <div class="row" id="A18325" data-tid="A351522">
+        <label class="control-label col-sm-4" id="A18326" data-tid="A351523">
+            Ağrının Niteliği
+        </label>
+        <label class="control-label col-sm-8" id="A18327" data-tid="A351524">
+            Ağrı Niteliği Açıklama
+        </label>
+    </div>
+    <div class="row" id="A18328" data-tid="A351525">
+
+        <div class="col-sm-4" id="A18329" data-tid="A351526">
+            <hvl-list-box #Validation (SelectedObjectChange)="onPainQualityChanged($event)" [AutoCompleteDialogHeight]="PainQuality?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="PainQuality?.AutoCompleteDialogWidth" [AutoCompleteMode]="PainQuality?.AutoCompleteMode" [BackColor]="PainQuality?.BackColor" [DefinitionName]="PainQuality?.ListDefName" [DisplayExpressionsCache]="nursingPainScaleFormViewModel?.ListDefDisplayExpressions" [Enabled]="PainQuality?.Enabled" [Font]="PainQuality?.Font" [ForeColor]="PainQuality?.ForeColor" [ListFilterExpression]="PainQuality?.ListFilterExpression" [MinSearchLength]="PainQuality?.MinSearchLength" [PopupDialogFieldConfig]="PainQuality?.PopupDialogFieldConfig" [PopupDialogGridColumns]="PainQuality?.PopupDialogGridColumns" [PopupDialogHeight]="PainQuality?.PopupDialogHeight" [PopupDialogTitle]="PainQuality?.PopupDialogTitle" [PopupDialogWidth]="PainQuality?.PopupDialogWidth" [ReadOnly]="PainQuality?.ReadOnly" [SearchMode]="PainQuality?.SearchMode" [SearchTimeout]="PainQuality?.SearchTimeout" [SelectedObject]="nursingPainScaleFormViewModel?._NursingPainScale?.PainQuality" [TabIndex]="PainQuality?.TabIndex" [Visible]="PainQuality?.Visible" [width]="PainQuality?.Width" id="A18330" data-tid="A351527"></hvl-list-box>
+        </div>
+        <div class="col-sm-8" id="A18331" data-tid="A351528">
+            <hvl-text-box #Validation (TextChange)="onPainQualityDescriptionChanged($event)" [BackColor]="PainQualityDescription?.BackColor" [CharacterCasing]="PainQualityDescription?.CharacterCasing" [Enabled]="PainQualityDescription?.Enabled" [Font]="PainQualityDescription?.Font" [ForeColor]="PainQualityDescription?.ForeColor" [height]="PainQualityDescription?.Height" [InputFormat]="PainQualityDescription?.InputFormat" [InputTurkishCharacter]="PainQualityDescription?.InputTurkishCharacter" [IsNonNumeric]="PainQualityDescription?.IsNonNumeric" [MultiLine]="PainQualityDescription?.Multiline" [ReadOnly]="PainQualityDescription?.ReadOnly" [Required]="PainQualityDescription?.Required" [TabIndex]="PainQualityDescription?.TabIndex" [TextAlign]="PainQualityDescription?.TextAlign" [Text]="nursingPainScaleFormViewModel?._NursingPainScale?.PainQualityDescription" [Visible]="PainQualityDescription?.Visible" id="A18332" data-tid="A351529"></hvl-text-box>
+        </div>
+    </div>
+    <div class="row" id="A18333" data-tid="A351530">
+        <label class="control-label col-sm-4" id="A18334" data-tid="A351531">
+            Ağrının Sıklığı
+        </label>
+        <label class="control-label col-sm-4" id="A18335" data-tid="A351532">
+            Ağrının Arttığı Durumlar
+        </label>
+        <label class="control-label col-sm-4" id="A18336" data-tid="A351533">
+            Ağrının Azaldığı Durumlar
+        </label>
+    </div>
+    <div class="row" id="A18337" data-tid="A351534">
+        <div class="col-sm-4" id="A18338" data-tid="A351535">
+            <hvl-list-box #Validation (SelectedObjectChange)="onPainFrequencyChanged($event)" [AutoCompleteDialogHeight]="PainFrequency?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="PainFrequency?.AutoCompleteDialogWidth" [AutoCompleteMode]="PainFrequency?.AutoCompleteMode" [BackColor]="PainFrequency?.BackColor" [DefinitionName]="PainFrequency?.ListDefName" [DisplayExpressionsCache]="nursingPainScaleFormViewModel?.ListDefDisplayExpressions" [Enabled]="PainFrequency?.Enabled" [Font]="PainFrequency?.Font" [ForeColor]="PainFrequency?.ForeColor" [ListFilterExpression]="PainFrequency?.ListFilterExpression" [MinSearchLength]="PainFrequency?.MinSearchLength" [PopupDialogFieldConfig]="PainFrequency?.PopupDialogFieldConfig" [PopupDialogGridColumns]="PainFrequency?.PopupDialogGridColumns" [PopupDialogHeight]="PainFrequency?.PopupDialogHeight" [PopupDialogTitle]="PainFrequency?.PopupDialogTitle" [PopupDialogWidth]="PainFrequency?.PopupDialogWidth" [ReadOnly]="PainFrequency?.ReadOnly" [SearchMode]="PainFrequency?.SearchMode" [SearchTimeout]="PainFrequency?.SearchTimeout" [SelectedObject]="nursingPainScaleFormViewModel?._NursingPainScale?.PainFrequency" [TabIndex]="PainFrequency?.TabIndex" [Visible]="PainFrequency?.Visible" [width]="PainFrequency?.Width" id="A18339" data-tid="A351536"></hvl-list-box>
+        </div>
+        <div class="col-sm-4" id="A18340" data-tid="A351537">
+            <dx-tag-box [items]="PainChangingSituationIncresingDefinitions" displayExpr="Description" [(value)]="nursingPainScaleFormViewModel.SelectedChangingSituationIncreaseList" [(selectedItems)]="nursingPainScaleFormViewModel.SelectedChangingSituationIncreaseList" [readOnly]="nursingPainScaleFormViewModel.ReadOnly" id="A18341" data-tid="A351538">
+            </dx-tag-box>
+        </div>
+        <div class="col-sm-4" id="A18342" data-tid="A351539">
+            <dx-tag-box [items]="PainChangingSituationDecreasingDefinitions" displayExpr="Description" [(value)]="nursingPainScaleFormViewModel.SelectedChangingSituationDecreaseList" [(selectedItems)]="nursingPainScaleFormViewModel.SelectedChangingSituationDecreaseList" [readOnly]="nursingPainScaleFormViewModel.ReadOnly" id="A18343" data-tid="A351540">
+            </dx-tag-box>
+        </div>
+    </div>
+    <div class="row" id="A18344" data-tid="A351541">
+        <label class="control-label col-sm-4" id="A18345" data-tid="A351542">
+            Ağrının Şiddeti
+        </label>
+        <label class="control-label col-sm-4" id="A18346" data-tid="A351543">
+            Hemşirelik Girişimi
+        </label>
+        <label class="control-label col-sm-4" id="A18347" data-tid="A351544">
+            Girişim Sonrası
+        </label>
+    </div>
+    <div class="row" id="A18348" data-tid="A351545">
+        <div class="col-sm-4" id="A18349" data-tid="A351546">
+            <hvl-enum-combobox #Validation (ValueChange)="onPainFaceScaleChanged($event)" [BackColor]="PainFaceScale?.BackColor" [DataTypeName]="PainFaceScale?.DataTypeName" [Enabled]="PainFaceScale?.Enabled" [Font]="PainFaceScale?.Font" [ForeColor]="PainFaceScale?.ForeColor" [IncludeOnly]="PainFaceScale?.IncludeOnly" [ReadOnly]="PainFaceScale?.ReadOnly" [ShowClearButton]="PainFaceScale?.ShowClearButton" [SortBy]="PainFaceScale?.SortBy" [TabIndex]="PainFaceScale?.TabIndex" [Value]="nursingPainScaleFormViewModel?._NursingPainScale?.PainFaceScale" [Visible]="PainFaceScale?.Visible" id="A18350" data-tid="A351547"></hvl-enum-combobox>
+        </div>
+        <div class="col-sm-4" id="A18351" data-tid="A351548">
+            <dx-tag-box [items]="nursingPainScaleFormViewModel.NursingInitiativeDefinitions" displayExpr="Initiative" [(value)]="nursingPainScaleFormViewModel.SelectedNursingInitiatives" [(selectedItems)]="nursingPainScaleFormViewModel.SelectedNursingInitiatives" [readOnly]="nursingPainScaleFormViewModel.ReadOnly" id="A18352" data-tid="A351549">
+            </dx-tag-box>
+        </div>
+        <div class="col-sm-4" id="A18353" data-tid="A351550">
+            <hvl-enum-combobox #Validation (ValueChange)="onPostNursingInitiativeChanged($event)" [BackColor]="PostNursingInitiative?.BackColor" DataTypeName="PostNursingInitiativesEnum" [Enabled]="PostNursingInitiative?.Enabled" [Font]="PostNursingInitiative?.Font" [ForeColor]="PostNursingInitiative?.ForeColor" [IncludeOnly]="PostNursingInitiative?.IncludeOnly" [ReadOnly]="PostNursingInitiative?.ReadOnly" [ShowClearButton]="PostNursingInitiative?.ShowClearButton" [SortBy]="PostNursingInitiative?.SortBy" [TabIndex]="PostNursingInitiative?.TabIndex" [Value]="nursingPainScaleFormViewModel?._NursingPainScale?.PostNursingInitiative" [Visible]="PostNursingInitiative?.Visible" id="A18354" data-tid="A351551"></hvl-enum-combobox>
+        </div>
+    </div>
+</div>

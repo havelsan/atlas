@@ -1,0 +1,1461 @@
+﻿<NeStatePanelComponent [OutgoingTransitions]="inPatientPhysicianApplicationFormViewModel?.OutgoingTransitions" [StateReports]="inPatientPhysicianApplicationFormViewModel?.CurrentStateReports" [ObjectID]="inPatientPhysicianApplicationFormViewModel?._InPatientPhysicianApplication?.ObjectID" [ObjectDefID]="inPatientPhysicianApplicationFormViewModel?._InPatientPhysicianApplication?.ObjectDefID" [CurrentStateDefID]="inPatientPhysicianApplicationFormViewModel._InPatientPhysicianApplication.CurrentStateDefID" [DropStateList]="DropStateList" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" [FixedCommandsVisible]="false" id="A29028" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A367643">
+</NeStatePanelComponent>
+
+<ul class="nav nav-tabs" id="A29029" data-tid="A367644">
+
+    <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [visible]="loadingVisible" [showIndicator]="true" [message]="panelMessage" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" i18n-message="@@M17380" id="A29836" data-tid="A367645">
+    </dx-load-panel>
+
+    <li [ngClass]="ActivePage =='clinicProsess' ? 'active' : ''" id="A29030" data-tid="A367646">
+        <a data-toggle="tab" href="#clinicProsess" id="A29031" (click)="openKlinikBilgi()" data-tid="A367647">
+            <span id="A29032" data-tid="A367648">Klinik Bilgi Girişi</span>
+            <span class="fa fa-neuter" [ngClass]="RecentActiveTab =='clinicProsess' ? 'fa-map-pin' : ''" (click)="TabPanelClick('clinicProsess')" id="A29033" data-tid="A367649"></span>
+        </a>
+    </li>
+    <li [ngClass]="ActivePage =='doktorDirektifleri' ? 'active' : ''" id="A29034" data-tid="A367650">
+        <a data-toggle="tab" href="#doktorDirektifleri" (click)="openDoktor()" id="A29035" data-tid="A367651">
+            <span id="A29036" data-tid="A367652">Doktor Direktifleri</span>
+            <span class="fa fa-neuter" [ngClass]="RecentActiveTab =='doktorDirektifleri' ? 'fa-map-pin' : ''" (click)="TabPanelClick('doktorDirektifleri')" id="A29037" data-tid="A367653"></span>
+        </a>
+    </li>
+    <li [ngClass]="ActivePage =='uzmanlik' ? 'active' : ''" *ngIf="inPatientPhysicianApplicationFormViewModel?.hasSpecialityBasedObject==true" id="A29038" data-tid="A367654">
+        <a data-toggle="tab" href="#uzmanlik" (click)="openUzmanlik()" id="A29039" data-tid="A367655">
+            <span id="A29040" data-tid="A367656">{{inPatientPhysicianApplicationFormViewModel?.procedureSpecialityName}}</span>
+            <span class="fa fa-neuter" [ngClass]="RecentActiveTab =='uzmanlik' ? 'fa-map-pin' : ''" (click)="TabPanelClick('uzmanlik')" id="A29041" data-tid="A367657"></span>
+        </a>
+    </li>
+    <li [ngClass]="ActivePage =='istem' ? 'active' : ''" id="A29042" data-tid="A367658">
+        <a data-toggle="tab" href="#istem" (click)="openIstem()" id="A29043" data-tid="A367659">
+            <span id="A29044" data-tid="A367660">İstem Paneli</span>
+            <span class="fa fa-neuter" [ngClass]="RecentActiveTab =='istem' ? 'fa-map-pin' : ''" (click)="TabPanelClick('istem')" id="A29045" data-tid="A367661"></span>
+        </a>
+    </li>
+    <li [ngClass]="ActivePage =='hemsirelik' ? 'active' : ''" id="A29046" data-tid="A367662">
+        <a data-toggle="tab" href="#hemsirelik" (click)="openHemsirelik()" id="A29047" data-tid="A367663">
+            <span id="A29048" data-tid="A367664">Hemşirelik Değerlendirme</span>
+            <span class="fa fa-neuter" [ngClass]="RecentActiveTab =='hemsirelik' ? 'fa-map-pin' : ''" (click)="TabPanelClick('hemsirelik')" id="A29049" data-tid="A367665"></span>
+        </a>
+    </li>
+    <li [ngClass]="ActivePage =='hastaGecmisi' ? 'active' : ''" id="A29050" data-tid="A367666">
+        <a data-toggle="tab" href="#hastaGecmisi" (click)="openHastaGecmisi()" id="A29051" data-tid="A367667">
+            <span id="A29052" data-tid="A367668">Hasta Geçmişi</span>
+            <span class="fa fa-neuter" [ngClass]="RecentActiveTab =='hastaGecmisi' ? 'fa-map-pin' : ''" (click)="TabPanelClick('hastaGecmisi')" id="A29053" data-tid="A367669"></span>
+        </a>
+    </li>
+    <!--<li *ngIf="inPatientPhysicianApplicationFormViewModel.IsNewBorn == true" [ngClass]="ActivePage =='yenidogan' ? 'active' : ''" id="A29054">
+        <a data-toggle="tab" href="#yenidogan" id="A29055">
+            <span  id="A29056">Yeni Doğan Yoğun Bakım</span>
+            <span class="fa fa-neuter" [ngClass]="RecentActiveTab =='yenidogan' ? 'fa-map-pin' : ''"
+                  (click)="TabPanelClick('yenidogan')" id="A29057"></span>
+        </a>
+    </li>-->
+    <li id="A29058" data-tid="A367670">
+        <div *ngIf="showTaburcuButtons() == true" class="btn-group" role="group" aria-label="..." style="padding-top:7px;" id="A29059" data-tid="A367671">
+            <dx-button class="dx-button-oval" icon="glyphicon glyphicon-education" (onClick)="taburcuSelected()" hint="Taburcu" i18n-hint="@@M22549" id="A29060" data-tid="A367672"></dx-button>
+            <dx-button class="dx-button-oval" icon="glyphicon glyphicon-cloud-download" (onClick)="nakilSelected()" hint="Kurum İçi Sevk" i18n-hint="@@M18069" id="A29061" data-tid="A367673"></dx-button>
+            <dx-button class="dx-button-oval" icon="glyphicon glyphicon-cloud-upload" (onClick)="sevkSelected()" hint="Kurum Dışı Sevk" i18n-hint="@@M18043" id="A29062" data-tid="A367674"></dx-button>
+        </div>
+        <!--<div *ngIf="showDischargePrescriptionButtons() == true" class="btn-group" role="group" aria-label="..." style="padding-top:7px;" id="A29063">
+            <dx-button class="dx-button-oval dx-button-blue" icon="fa fa-pencil" (onClick)="onDrugOrderIntruductionOpen()" hint="Taburcu Reçetesi" i18n-hint="@@M22569" id="A29064"></dx-button>
+        </div>-->
+    </li>
+
+    <div class="pull-right" data-tid="A367675">
+        <dx-button *ngIf="cancelCommandVisible" type="danger" icon="revert" (onClick)="btnInPatientPhysicianApplicationCancel_Click()" i18n-text="@@M24054" id="C29066" data-tid="A367676">
+            <span class="fa fa-reply" data-tid="A367677"></span> Vazgeç
+        </dx-button>
+        <dx-button *ngIf="saveCommandVisible" type="default" icon="save" (onClick)="btnInPatientPhysicianApplicationSave_Click($event)" i18n-text="@@M24054" id="C29066" data-tid="A367678">
+            <span class="glyphicon glyphicon-floppy-disk" data-tid="A367679"></span> Kaydet
+        </dx-button>
+        <dx-button *ngIf="saveAndCloseCommandVisible" type="success" icon="save" (onClick)="btnInPatientPhysicianApplicationSaveAndClose_Click($event)" i18n-text="@@M30113" id="B29066" data-tid="A367680">
+            <span class="glyphicon glyphicon-floppy-disk" data-tid="A367681"></span> Kaydet / Kapat
+        </dx-button>
+        <e-nabiz-button [episodeActionId]="inPatientPhysicianApplicationFormViewModel._InPatientPhysicianApplication?.ObjectID" [patientId]="inPatientPhysicianApplicationFormViewModel._InPatientPhysicianApplication?.Episode?.Patient?.ObjectID" data-tid="A367682"></e-nabiz-button>
+
+    </div>
+
+
+</ul>
+<div id="A29069" data-tid="A367683">
+    <div class="row" id="A29070" data-tid="A367684">
+        <div class="col-sm-12" [class.col-md-6]="hasEmergencyIntervention==false" [class.col-md-4]="hasEmergencyIntervention!=false" id="A29071" data-tid="A367685">
+            <patient-demographics-form [actionId]="inPatientPhysicianApplicationFormViewModel._InPatientPhysicianApplication.ObjectID" id="A29072" data-tid="A367686"></patient-demographics-form>
+        </div>
+        <div class="col-md-2 col-sm-12" *ngIf="hasEmergencyIntervention!=false" id="A29073" data-tid="A367687">
+            <div class="col-md-12" id="A29074" data-tid="A367688">
+                <label class="control-label" id="A29075" data-tid="A367689">Müşahedeye Alınış</label>
+                <hvl-date-picker #Validation (ValueChange)="onInpatientObservationTimeChanged($event)" [BackColor]="InpatientObservationTime?.BackColor" [CustomFormat]="InpatientObservationTime?.CustomFormat" [Enabled]="InpatientObservationTime?.Enabled" [Font]="InpatientObservationTime?.Font" [ForeColor]="InpatientObservationTime?.ForeColor" [Format]="InpatientObservationTime?.Format" [Max]="InpatientObservationTime?.Max" [Min]="InpatientObservationTime?.Min" [ReadOnly]="InpatientObservationTime?.ReadOnly" [Required]="InpatientObservationTime?.Required" [TabIndex]="InpatientObservationTime?.TabIndex" [Value]="inPatientPhysicianApplicationFormViewModel?._InPatientPhysicianApplication?.EmergencyIntervention?.InpatientObservationTime" [Visible]="InpatientObservationTime?.Visible" id="A29076" data-tid="A367690"></hvl-date-picker>
+                <label class="control-label" id="A29077" data-tid="A367691">Müşahede Bitiş</label>
+                <hvl-date-picker #Validation (ValueChange)="onInpatientObservationEndTimeChanged($event)" [BackColor]="InpatientObservationEndTime?.BackColor" [CustomFormat]="InpatientObservationEndTime?.CustomFormat" [Enabled]="InpatientObservationEndTime?.Enabled" [Font]="InpatientObservationEndTime?.Font" [ForeColor]="InpatientObservationEndTime?.ForeColor" [Format]="InpatientObservationEndTime?.Format" [Max]="InpatientObservationEndTime?.Max" [Min]="InpatientObservationEndTime?.Min" [ReadOnly]="InpatientObservationEndTime?.ReadOnly" [Required]="InpatientObservationEndTime?.Required" [TabIndex]="InpatientObservationEndTime?.TabIndex" [Value]="inPatientPhysicianApplicationFormViewModel?._InPatientPhysicianApplication?.EmergencyIntervention?.DischargeTime" [Visible]="InpatientObservationEndTime?.Visible" id="A29078" data-tid="A367692"></hvl-date-picker>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12" id="A29079" data-tid="A367693">
+            <DiagnosisGridForm [GridDiagnosisGridList]="inPatientPhysicianApplicationFormViewModel.GridDiagnosisGridList" [EpisodeAction]="inPatientPhysicianApplicationFormViewModel._InPatientPhysicianApplication" [RemoveDeletedRow]="isContextSaved" [CheckENabiz]="true" [SuggestProcedureByDiagnosis]="inPatientPhysicianApplicationFormViewModel?.physicianSuggestionsIsActive" (openIstem)="openIstem()" (sendENabizViewModel)="setENabizViewModel($event)" id="A29080" data-tid="A367694"></DiagnosisGridForm>
+        </div>
+    </div>
+</div>
+<div #scrollPanel class="col-sm-12" style="padding-left:3px; overflow-y:auto" id="A29081" data-tid="A367695">
+    <div class="row" id="A29082" data-tid="A367696">
+        <div class="col-xs-12" id="A29083" data-tid="A367697">
+            <div class="tab-content" style="background-color:#fff;" id="A29084" data-tid="A367698">
+                <div *ngIf="openKlinikBilgi" id="clinicProsess" [ngClass]="ActivePage =='clinicProsess' ? 'tab-pane fade in active' : 'tab-pane fade'" data-tid="A367699">
+                    <div id="A29085" data-tid="A367700">
+                        <div class="row" id="A29086" data-tid="A367701">
+
+                            <div class="col-md-3" data-tid="A367702">
+                                <div class="row" data-tid="A367703">
+                                    <div class="col-md-12" data-tid="A367704">
+                                        <label class="control-label" data-tid="A367705">Ventilatör Kullanım Durumu</label>
+                                        <hvl-list-box #Validation (SelectedObjectChange)="onVentilatorStatusChanged($event)" [AutoCompleteDialogHeight]="VentilatorStatus?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="VentilatorStatus?.AutoCompleteDialogWidth" [AutoCompleteMode]="VentilatorStatus?.AutoCompleteMode" [BackColor]="VentilatorStatus?.BackColor" [DefinitionName]="VentilatorStatus?.ListDefName" [DisplayExpressionsCache]="VentilatorStatus?.ListDefDisplayExpressions" [Enabled]="VentilatorStatus?.Enabled" [Font]="VentilatorStatus?.Font" [ForeColor]="VentilatorStatus?.ForeColor" [ListFilterExpression]="VentilatorStatus?.ListFilterExpression" [MinSearchLength]="VentilatorStatus?.MinSearchLength" [PopupDialogFieldConfig]="VentilatorStatus?.PopupDialogFieldConfig" [PopupDialogGridColumns]="VentilatorStatus?.PopupDialogGridColumns" [PopupDialogHeight]="VentilatorStatus?.PopupDialogHeight" [PopupDialogTitle]="VentilatorStatus?.PopupDialogTitle" [PopupDialogWidth]="VentilatorStatus?.PopupDialogWidth" [ReadOnly]="VentilatorStatus?.ReadOnly" [SearchMode]="VentilatorStatus?.SearchMode" [SearchTimeout]="VentilatorStatus?.SearchTimeout" [SelectedObject]="_InPatientPhysicianApplication.VentilatorStatus" [TabIndex]="VentilatorStatus?.TabIndex" [Visible]="VentilatorStatus?.Visible" [width]="VentilatorStatus?.Width" data-tid="A367706">
+                                        </hvl-list-box>
+                                    </div>
+                                    <div class="col-md-12" [class.hide]="IsPandemic?.Visible==false" data-tid="A367707">
+                                        <label class="control-label" data-tid="A367708">Pandemi olgusu var mı?</label>
+                                        <hvl-enum-combobox #Validation (ValueChange)="onIsPandemicChanged($event)" [BackColor]="IsPandemic?.BackColor" [DataTypeName]="IsPandemic?.DataTypeName" [Enabled]="IsPandemic?.Enabled" [Font]="IsPandemic?.Font" [ForeColor]="IsPandemic?.ForeColor" [IncludeOnly]="IsPandemic?.IncludeOnly" [ReadOnly]="IsPandemic?.ReadOnly" [ShowClearButton]="IsPandemic?.ShowClearButton" [SortBy]="IsPandemic?.SortBy" [TabIndex]="IsPandemic?.TabIndex" [Value]="_InPatientPhysicianApplication.IsPandemic" [Visible]="IsPandemic?.Visible" data-tid="A367709">
+                                        </hvl-enum-combobox>
+                                        <br data-tid="A367710" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="margin-bottom-10" [class.col-md-7]="inPatientPhysicianApplicationFormViewModel?.IsPhysiotherapyRequestFormUsing == false && inPatientPhysicianApplicationFormViewModel?.HasAuthorityForPhysiotherapyRequest == true" [class.col-md-9]="inPatientPhysicianApplicationFormViewModel?.IsPhysiotherapyRequestFormUsing != false || inPatientPhysicianApplicationFormViewModel?.HasAuthorityForPhysiotherapyRequest != true" id="A29087" data-tid="A367711">
+                                <label class="control-label" id="A29088" data-tid="A367712">Yatırılma Nedeni</label>
+                                <hvl-text-box #Validation (TextChange)="onReasonForInpatientAdmissionChanged($event)" [BackColor]="ReasonForInpatientAdmission?.BackColor" [CharacterCasing]="ReasonForInpatientAdmission?.CharacterCasing" [Enabled]="ReasonForInpatientAdmission?.Enabled" [Font]="ReasonForInpatientAdmission?.Font" [ForeColor]="ReasonForInpatientAdmission?.ForeColor" [height]="ReasonForInpatientAdmission?.Height" [InputFormat]="ReasonForInpatientAdmission?.InputFormat" [InputTurkishCharacter]="ReasonForInpatientAdmission?.InputTurkishCharacter" [IsNonNumeric]="ReasonForInpatientAdmission?.IsNonNumeric" [MultiLine]="ReasonForInpatientAdmission?.Multiline" [ReadOnly]="ReasonForInpatientAdmission?.ReadOnly" [Required]="ReasonForInpatientAdmission?.Required" [TabIndex]="ReasonForInpatientAdmission?.TabIndex" [TextAlign]="ReasonForInpatientAdmission?.TextAlign" [Text]="inPatientPhysicianApplicationFormViewModel?._InPatientPhysicianApplication?.InPatientTreatmentClinicApp?.BaseInpatientAdmission?.ReasonForInpatientAdmission" [Visible]="ReasonForInpatientAdmission?.Visible" id="A29089" data-tid="A367713"></hvl-text-box>
+                            </div>
+                            <div *ngIf="inPatientPhysicianApplicationFormViewModel?.IsPhysiotherapyRequestFormUsing == false && inPatientPhysicianApplicationFormViewModel?.HasAuthorityForPhysiotherapyRequest == true" id="A29090" data-tid="A367714">
+                                <div [class.col-md-2]="inPatientPhysicianApplicationFormViewModel?.IsPhysiotherapyRequestFormUsing == false && inPatientPhysicianApplicationFormViewModel?.HasAuthorityForPhysiotherapyRequest == true" id="A29091" data-tid="A367715">
+                                    <hvl-checkbox #Validation (ValueChange)="onStartPhysiotherapyRequestChanged($event)" [AllowThreeState]="StartPhysiotherapyRequest?.ThreeState" [BackColor]="StartPhysiotherapyRequest?.BackColor" [Enabled]="StartPhysiotherapyRequest?.Enabled" [Font]="StartPhysiotherapyRequest?.Font" [ForeColor]="StartPhysiotherapyRequest?.ForeColor" [IsTitleLeft]="StartPhysiotherapyRequest?.IsTitleLeft" [Margin]="StartPhysiotherapyRequest?.Margin" [ReadOnly]="StartPhysiotherapyRequest?.ReadOnly" [TabIndex]="StartPhysiotherapyRequest?.TabIndex" [TitleTopPadding]="StartPhysiotherapyRequest?.TitleTopPadding" [Title]="StartPhysiotherapyRequest?.Title" [Value]="inPatientPhysicianApplicationFormViewModel?.StartPhysiotherapyRequest" [Visible]="StartPhysiotherapyRequest?.Visible" id="A29092" data-tid="A367716"></hvl-checkbox>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-group" id="A29093" *ngIf="hasEmergencySpecialityBasedObject==true" data-tid="A367717">
+                            <div class="panel panel-default" style="cursor:pointer" id="A29094" data-tid="A367718">
+                                <div class="panel-heading" data-toggle="collapse" href="#anamnez_collapse" id="A29095" data-tid="A367719">
+                                    <h4 class="panel-title" id="A29096" data-tid="A367720">
+                                        <span class="fa fa-neuter" [ngClass]="RecentAcc =='#anamnez_collapse' ? 'fa-map-pin' : ''" style="float:right;" (click)="AccPinClick('#anamnez_collapse')" id="A29097" data-tid="A367721"></span>
+                                        <a data-toggle="collapse" style="font-weight: bold;" href="#anamnez_collapse" id="A29098" data-tid="A367722">Anamnez</a>
+                                    </h4>
+                                </div>
+                                <div id="anamnez_collapse" [ngClass]="RecentAcc =='#anamnez_collapse' ? 'panel-collapse collapse in' : 'panel-collapse collapse'" data-tid="A367723">
+                                    <div class="container-fluid" id="A29099" data-tid="A367724">
+                                        <div class="row" id="A29100" data-tid="A367725">
+                                            <div class="col-sm-6" id="A29101" data-tid="A367726">
+                                                <label class="control-label" id="A29102" data-tid="A367727">Şikayeti</label>
+                                                <hvl-richtextbox (change)="onrtfComplaintChanged($event)" [Height]="&#x27;100px&#x27;" [ngModelOptions]="{ standalone: true}" [ngModel]="inPatientPhysicianApplicationFormViewModel?._InPatientPhysicianApplication?.Complaint" [ReadOnly]="rtfComplaint?.ReadOnly" [TemplateGroupName]="rtfComplaint?.TemplateGroupName" [Visible]="rtfComplaint?.Visible" id="A29103" data-tid="A367728"></hvl-richtextbox>
+                                            </div>
+                                            <div class="col-sm-6" id="A29104" data-tid="A367729">
+                                                <label class="control-label" id="A29105" data-tid="A367730">Özgeçmişi</label>
+                                                <hvl-richtextbox (change)="onrtfHistoryChanged($event)" [Height]="&#x27;100px&#x27;" [ngModelOptions]="{ standalone: true}" [ngModel]="inPatientPhysicianApplicationFormViewModel?._InPatientPhysicianApplication?.PatientHistory" [ReadOnly]="rtfHistory?.ReadOnly" [TemplateGroupName]="rtfHistory?.TemplateGroupName" [Visible]="rtfHistory?.Visible" id="A29106" data-tid="A367731"></hvl-richtextbox>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" id="A29107" data-tid="A367732">
+                                            <div class="col-sm-6" id="A29108" data-tid="A367733">
+                                                <label class="control-label" id="A29109" data-tid="A367734">Fiziki Muayene</label>
+                                                <hvl-richtextbox (change)="onrtfPhysicalExaminationChanged($event)" [Height]="&#x27;100px&#x27;" [ngModelOptions]="{ standalone: true}" [ngModel]="inPatientPhysicianApplicationFormViewModel?._InPatientPhysicianApplication?.PhysicalExamination" [ReadOnly]="rtfPhysicalExamination?.ReadOnly" [TemplateGroupName]="rtfPhysicalExamination?.TemplateGroupName" [Visible]="rtfPhysicalExamination?.Visible" id="A29110" data-tid="A367735"></hvl-richtextbox>
+                                                <br data-tid="A367736" />
+                                            </div>
+                                            <div class="pull-left col-sm-6" *ngFor="let rtf of _InPatientPhysicianApplication?.SubEpisode?.InPatientRtfBySpecialities" id="A29111" data-tid="A367737">
+                                                <label class="control-label" id="A29112" data-tid="A367738">{{rtf.Title}}</label>
+                                                <hvl-richtextbox (change)="onInPatientRtfBySpecialitiesChanged(rtf,$event)" [ngModel]="rtf?.Rtf" [config]="InPatientRtfBySpecialitiesEditorConfig" id="A29113" data-tid="A367739"></hvl-richtextbox>
+                                                <br data-tid="A367740" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel-group" id="A29114" data-tid="A367741">
+                            <div class="panel panel-default" style="cursor:pointer" id="A29115" data-tid="A367742">
+                                <div class="panel-heading" data-toggle="collapse" href="#clinicProgress_collapse" id="A29116" data-tid="A367743">
+                                    <h4 class="panel-title" id="A29117" data-tid="A367744">
+                                        <span class="fa fa-neuter" [ngClass]="RecentAcc =='#clinicProgress_collapse' ? 'fa-map-pin' : ''" style="float:right;" (click)="AccPinClick('#clinicProgress_collapse')" id="A29118" data-tid="A367745"></span>
+                                        <a data-toggle="collapse" style="font-weight: bold;" href="#clinicProgress_collapse" id="A29119" data-tid="A367746">Klinik Seyir</a>
+                                    </h4>
+                                </div>
+                                <div id="clinicProgress_collapse" [ngClass]="RecentAcc =='#clinicProgress_collapse' ? 'panel-collapse collapse in' : 'panel-collapse collapse'" data-tid="A367747">
+                                    <div class="container-fluid" id="A29120" data-tid="A367748">
+                                        <div class="row" id="A29121" data-tid="A367749">
+                                            <div class="col-sm-12" style="margin-top:5px" id="A29122" data-tid="A367750" *ngIf="inPatientPhysicianApplicationFormViewModel.HasCovidDiagnosisOnPatient == false">
+                                                <label class="control-label pull-left" style="margin-top:5px" id="A29123" data-tid="A367751">Klinik Seyir</label>
+                                                <dx-date-box class="pull-right" type="datetime" displayFormat="dd/MM/yyyy HH:mm" [(value)]="inPatientPhysicianApplicationFormViewModel.ProgressDate" [max]="inPatientPhysicianApplicationFormViewModel.ProgressDate" [min]="inPatientPhysicianApplicationFormViewModel._InPatientPhysicianApplication?.InPatientTreatmentClinicApp?.ClinicInpatientDate" id="A29124" data-tid="A367752">
+                                                </dx-date-box>
+                                                <label class="control-label pull-right" style="margin-top:5px" id="A29125" data-tid="A367753">Seyir Tarihi:</label>
+                                            </div>
+
+                                            <div class="col-md-12" id="A29126" data-tid="A367754" *ngIf="inPatientPhysicianApplicationFormViewModel.HasCovidDiagnosisOnPatient == true">
+                                                    <OzellikliBakimIzlemForm [ozellikliIzlemIdContainer]="ozellikliIzlemIdContainer" (SaveCompleteEvent)="RefreshFindingGrid($event)"></OzellikliBakimIzlemForm>
+                                                </div>
+                                            <div class="col-md-12" id="A29126" data-tid="A367754" *ngIf="inPatientPhysicianApplicationFormViewModel.HasCovidDiagnosisOnPatient == false">
+                                                <hvl-richtextbox (change)="onProgressDescriptionChanged($event)" [Height]="&#x27;100px&#x27;" [ngModelOptions]="{ standalone: true}" [ngModel]="inPatientPhysicianApplicationFormViewModel?.ProgressDescription" [ReadOnly]="ProgressDescription?.ReadOnly" [TemplateGroupName]="ProgressDescription?.TemplateGroupName" [Visible]="ProgressDescription?.Visible" id="A29127" data-tid="A367755"></hvl-richtextbox>
+                                            </div>
+                                        </div>
+                                        <div class="row" id="A29128" data-tid="A367756">
+                                            <div class="col-sm-12" id="A29129" data-tid="A367757">
+                                                <br id="A29130" data-tid="A367758" />
+                                                <div data-tid="A367759">
+                                                    <p id="A29134" data-tid="A367760">
+                                                        <b data-tid="A367761"> Klinik Seyir Geçmişi</b>
+                                                        <a href="javascript:void(0)" class="nav-link pull-right" (click)="getInPatientPhysicianProgressesInfoViewModelByDate()" id="A29136" data-tid="A367762">
+                                                            <i style="float:right;margin-right: 5px;width: 10px;" class="glyphicon glyphicon-sort-by-attributes" data-toggle="tooltip" data-placement="bottom" title="Daha Fazla Göster" i18n-title="@@M12456" id="A29137" data-tid="A367763"></i>
+                                                        </a>
+                                                    </p>
+                                                </div>
+
+                                                <dx-data-grid #physicianProgressesGrid id="gridContainer" [dataSource]="inPatientPhysicianApplicationFormViewModel.ProgressesGridList" rowTemplate="rowTemplateName" [filterRow]="{visible: true}" style="height:350px;" data-tid="A367764">
+
+                                                    <dxo-filter-row [visible]="true" id="A29138" data-tid="A367765"></dxo-filter-row>
+
+                                                    <dxo-header-filter [visible]="true" id="A29139" data-tid="A367766"></dxo-header-filter>
+
+                                                    <dxi-column caption="Tarih/Saat" [width]="150" [allowFiltering]="false" [allowSorting]="false" dataField="ProgressDate" dataType="date" sortOrder="desc" i18n-caption="@@M22842" id="A29140" data-tid="A367767"></dxi-column>
+                                                    <!--<dxi-column caption="Ünvan" dataField="ProcedureDoctor?.Qref" i18n-caption="@@M23932" id="A29141"></dxi-column>-->
+                                                    <dxi-column caption="İşlemi Yapan Doktor" [width]="150" class="col-md-2" dataField="ProcedureDoctor.Name" i18n-caption="@@M16928" id="A29142" data-tid="A367768"></dxi-column>
+                                                    <dxi-column caption="Klinik Seyir" class="col-md-8" dataField="ProcedureDoctor.Name" data-tid="A367769"></dxi-column>
+
+
+                                                    <tbody *dxTemplate="let progres of 'rowTemplateName'" id="A29143" data-tid="A367770">
+                                                        <tr class="dx-row main-row {{ progres.dataIndex % 2 == 0 ? 'gridEventBackground' : ''}}" id="A29144" data-tid="A367771">
+                                                            <td id="A29145" style="vertical-align:middle;" data-tid="A367772">{{progres?.data?.ProgressDate | date: "dd.MM.yyyy HH:mm"}}</td>
+
+                                                            <td id="A29147" style="vertical-align:middle;" data-tid="A367773"> {{progres?.data?.ProcedureDoctor?.Qref}}&nbsp;{{progres?.data?.ProcedureDoctor?.Name}} </td>
+
+                                                            <td id="A29151" data-tid="A367774">
+                                                                <div class="editor-label" style="padding: 2px" [innerHTML]="progres?.data?.Description" data-tid="A367775">
+
+                                                                </div>
+                                                            </td>
+
+                                                            <td class="valign-middle" width="35px" data-tid="A367776">
+
+                                                                <dx-button *ngIf="isProgressReadOnly(progres?.data?.ProcedureDoctor) == false" type="default" icon="fa fa-edit" (onClick)='openEditor(progres)' data-tid="A367777">
+                                                                </dx-button>
+                                                            </td>
+                                                            <td class="valign-middle" id="A29148" width="35px" data-tid="A367778">
+                                                                <dx-button icon="fa fa-trash" type="danger" (onClick)="onInPatientPhysicianProgressesRowRemoving(progres?.data)" [visible]="isProgressReadOnly(progres?.data?.ProcedureDoctor) == false" i18n-text="@@M27286" id="A29149" data-tid="A367779"></dx-button>
+                                                            </td>
+                                                            <td class="valign-middle" width="35px" data-tid="A367780">
+
+                                                                <dx-button type="success" icon="fa fa-files-o" (onClick)='copyEditor(progres)' data-tid="A367781">
+                                                                </dx-button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <dxo-scrolling mode="virtual" data-tid="A367782"></dxo-scrolling>
+                                                </dx-data-grid>
+                                                <br data-tid="A367783" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="panel-group" id="A29153" data-tid="A367784">
+                            <div class="panel panel-default" style="cursor:pointer" id="A29154" data-tid="A367785">
+                                <div class="panel-heading" data-toggle="collapse" href="#mostUsed_collapse" id="A29155" data-tid="A367786">
+                                    <h4 class="panel-title" id="A29156" data-tid="A367787">
+                                        <span class="fa fa-neuter" [ngClass]="RecentAcc =='#mostUsed_collapse' ? 'fa-map-pin' : ''" style="float:right;" (click)="AccPinClick('#mostUsed_collapse')" id="A29157" data-tid="A367788"></span>
+                                        <a data-toggle="collapse" style="font-weight: bold;" href="#mostUsed_collapse" id="A29158" data-tid="A367789">Sık Kullanılanlar</a>
+                                    </h4>
+                                </div>
+                                <div id="mostUsed_collapse" [ngClass]="RecentAcc =='#mostUsed_collapse' ? 'panel-collapse collapse in' : 'panel-collapse collapse'" data-tid="A367790">
+                                    <mostused-procedure-request-form [MostUsedRequestedProcedures]="inPatientPhysicianApplicationFormViewModel.UserMostUsedFormDefinitions" [EpisodeAction]="inPatientPhysicianApplicationFormViewModel._InPatientPhysicianApplication" id="A29159" data-tid="A367791"></mostused-procedure-request-form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="openUzmanlikTab" id="uzmanlik" [ngClass]="ActivePage =='uzmanlik' ? 'tab-pane fade in active' : 'tab-pane fade'" data-tid="A367792">
+                    <div *ngIf="openUzmanlikTab" id="A29160" data-tid="A367793">
+                        <div class="row" id="A29161" data-tid="A367794">
+                            <div class="col-xs-12" id="A29162" data-tid="A367795">
+                                <comp-compose [Info]="componentSpecialityBasedObjectInfo" (ComponentCreated)="onSetSpecialityBasedObjectViewModel($event)" id="A29163" data-tid="A367796"></comp-compose>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="openIstemTab" id="istem" [ngClass]="ActivePage =='istem' ? 'tab-pane fade in active' : 'tab-pane fade'" data-tid="A367797">
+                    <div class="col-sm-12" *ngIf="openIstemTab" id="A29164" data-tid="A367798">
+                        <div class="row" id="A29165" data-tid="A367799">
+                            <div class="col-xs-12" id="A29166" data-tid="A367800">
+                                <procedure-request-form [EpisodeAction]="inPatientPhysicianApplicationFormViewModel?._InPatientPhysicianApplication" [ProcedureRequestFormResourceIDs]="inPatientPhysicianApplicationFormViewModel?.ProcedureRequestFormResourceIDs" [MostUsedRequestedProcedures]="inPatientPhysicianApplicationFormViewModel?.UserMostUsedFormDefinitions" [GridDiagnosisGridList]="inPatientPhysicianApplicationFormViewModel?.GridEpisodeDiagnosisGridList" id="A29167" data-tid="A367801"></procedure-request-form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="openHastaGecmisiTab" id="hastaGecmisi" [ngClass]="ActivePage =='hastaGecmisi' ? 'tab-pane fade in active' : 'tab-pane fade'" data-tid="A367802">
+                    <div *ngIf="openHastaGecmisiTab" id="A29168" data-tid="A367803">
+                        <div class="row" id="A29169" data-tid="A367804">
+                            <div class="col-xs-12" id="A29170" data-tid="A367805">
+                                <PatientHistoryForm [patient]="inPatientPhysicianApplicationFormViewModel._InPatientPhysicianApplication.Episode.Patient.ObjectID" id="A29171" data-tid="A367806">Hasta Geçmişi</PatientHistoryForm>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="openDoktorTab" id="doktorDirektifleri" [ngClass]="ActivePage =='doktorDirektifleri' ? 'tab-pane fade in active' : 'tab-pane fade'" data-tid="A367807">
+                    <div *ngIf="openDoktorTab" id="A29172" data-tid="A367808">
+                        <div class="col-sm-12" *ngIf="openDoktorTab" id="A29173" data-tid="A367809">
+                            <div class="btn-group" role="group" aria-label="..." style="float:right;" id="A29059" data-tid="A367810">
+
+                                <atlas-report-popup-component *ngIf="stockSiteNgIf == true" ReportDefName="NursingApplicationOrderInfoReport" ReportName="Hasta Orderları Yazdır" i18n-ReportName="@@M30900" [TTObjectID]="inPatientPhysicianApplicationFormViewModel.NursingApplicationObjectID" id="A29175" data-tid="A367811"></atlas-report-popup-component>
+
+                                <atlas-report-popup-component *ngIf="stockSiteNgIf == false" ReportDefName="NursingApplicationDailyOrderDetailReport" ReportName="Hasta Order Raporu Yazdır" i18n-ReportName="@@M30900" [TTObjectID]="inPatientPhysicianApplicationFormViewModel.NursingApplicationObjectID" id="A17711" data-tid="A367812"></atlas-report-popup-component>
+
+                                <atlas-report-popup-component ReportDefName="NursingApplicationOrderInfoReportBySign" ReportName="Hemşirelik Uygulamaları Planı" i18n-ReportName="@@M30900" [TTObjectID]="inPatientPhysicianApplicationFormViewModel.NursingApplicationObjectID" id="B29175" data-tid="A367813"></atlas-report-popup-component>
+                            </div>
+                        </div>
+                        <div id="A29176" data-tid="A367814">
+                            <div class="row" id="A29177" data-tid="A367815">
+                                <div class="col-xs-12" id="A29178" data-tid="A367816">
+                                    <div class="panel-group" id="A29179" data-tid="A367817">
+                                        <div class="panel panel-default" style="cursor:pointer" id="A29180" data-tid="A367818">
+                                            <div class="panel-heading" data-toggle="collapse" href="#ilac_collapse" id="A29181" data-tid="A367819">
+                                                <h4 class="panel-title" id="A29182" (click)="openIlac()" data-tid="A367820">
+                                                    <span class="fa fa-neuter" [ngClass]="RecentAcc =='#ilac_collapse' ? 'fa-map-pin' : ''" style="float:right;" (click)="AccPinClick('#ilac_collapse')" id="A29183" data-tid="A367821"></span>
+                                                    <a data-toggle="collapse" style="font-weight: bold;" href="#ilac_collapse" id="A29184" data-tid="A367822">İlaç Direktifleri</a>
+                                                </h4>
+                                            </div>
+                                            <div id="ilac_collapse" [ngClass]="RecentAcc =='#ilac_collapse' ? 'panel-collapse collapse in' : 'panel-collapse collapse'" data-tid="A367823">
+                                                <div class="row" *ngIf="ShowNewDrugOrderForm&&openIlacShow" data-tid="A367824">
+                                                    <drug-order-grid-component class="col-sm-12" [MasterResource]="this._InPatientPhysicianApplication.MasterResource" [SecondaryMasterResource]="this._InPatientPhysicianApplication.SecondaryMasterResource" [Episode]="this._InPatientPhysicianApplication.Episode" [SubEpisode]="this._InPatientPhysicianApplication.SubEpisode" [ActiveInPatientPhysicianApp]="this._InPatientPhysicianApplication" data-tid="A367825">
+                                                    </drug-order-grid-component>
+                                                </div>
+                                                <comp-compose *ngIf="!ShowNewDrugOrderForm" [Info]="componentInfo" (DynamicComponentActionExecuted)="drugOrderIntroductionExecuted()" id="A29185" data-tid="A367826"></comp-compose>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div id="A29186" data-tid="A367827">
+                            <div class="row" id="A29187" data-tid="A367828">
+                                <div class="col-xs-12" id="A29188" data-tid="A367829">
+                                    <div class="panel-group" id="A29189" data-tid="A367830">
+                                        <div class="panel panel-default" style="cursor:pointer" id="A29190" data-tid="A367831">
+                                            <div class="panel-heading" data-toggle="collapse" href="#hemsire_collapse" id="A29191" data-tid="A367832">
+                                                <h4 class="panel-title" id="A29192" (click)="openHemsire()" data-tid="A367833">
+                                                    <span class="fa fa-neuter" [ngClass]="RecentAcc =='#hemsire_collapse' ? 'fa-map-pin' : ''" style="float:right;" (click)="AccPinClick('#hemsire_collapse')" id="A29193" data-tid="A367834"></span>
+                                                    <a data-toggle="collapse" style="font-weight: bold;" href="#hemsire_collapse" id="A29194" data-tid="A367835">Hemşire Uygulamaları</a>
+                                                </h4>
+                                            </div>
+                                            <div id="hemsire_collapse" [ngClass]="RecentAcc =='#hemsire_collapse' ? 'panel-collapse collapse in' : 'panel-collapse collapse'" data-tid="A367836">
+                                                <div *ngIf="openHemsireShow" data-tid="A367837">
+                                                    <dx-tab-panel [selectedIndex]="0" (onSelectionChanged)="onTabItemRendered($event)" id="A29195" data-tid="A367838">
+                                                        <dxi-item class="tabpanel-item" title="Aktif" style="height:450px" i18n-title="@@M27317" id="A29196" data-tid="A367839">
+                                                            <div class="list-container col-sm-3" height="200" style="height:325px;" id="A29197" data-tid="A367840">
+                                                                <div class="row" id="A29198" data-tid="A367841">
+                                                                    <div class="col-sm-6" id="A29199" data-tid="A367842">
+                                                                        <button class="btn btn-xs btn-default" (click)="btnAddNursingOrderTemp_Click()" value="Şablon Kaydet" i18n-value="@@M22448" id="A29200" data-tid="A367843">
+                                                                            Şablon Kaydet
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="col-sm-6" id="A29201" data-tid="A367844">
+                                                                        <button class="btn btn-xs btn-default" (click)="btnGetNursingOrderTemp_Click()" value="Şablon Seç" i18n-value="@@M22454" id="A29202" data-tid="A367845">
+                                                                            Şablon Seç
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="dx-searchbar" id="A29203" data-tid="A367846">
+                                                                    <dx-text-box valueChangeEvent="keyup" placeholder="Ara" mode="search" (onValueChanged)="searchNursingOder($event)" i18n-placeholder="@@M27276" id="A29204" data-tid="A367847">
+                                                                    </dx-text-box>
+                                                                </div>
+                                                                <dx-list [dataSource]="nursingOrderSource" maxHeight="150" (onItemClick)="selectNursingOrder($event)" style="border:1px solid grey" id="A29205" data-tid="A367848">
+                                                                    <div *dxTemplate="let data of 'item'" id="A29206" data-tid="A367849">
+                                                                        <div style="float:left; width:90%;" id="A29207" data-tid="A367850">{{data.Name}}</div>
+                                                                    </div>
+                                                                </dx-list>
+                                                            </div>
+                                                            <div class="col-sm-9" height="150" id="A29208" data-tid="A367851">
+                                                                <hvl-datagrid [AllowUserToAddRows]="false" [AllowUserToDeleteRows]="true" [Columns]="NursingOrderGridColumns" [ShowColumnHeaders]="true" (CellContentClicked)="grdOrderClicked($event)" [dataSource]="inPatientPhysicianApplicationFormViewModel._InPatientPhysicianApplication.NursingOrders" [height]="375" [DeleteButtonWidth]="50" [ComfirmRowDeleting]="ComfirmRowDeletingFunc" (CellValueChange)="nodGridCellValueChanged($event)" [DisplayExpressionsCache]="inPatientPhysicianApplicationFormViewModel?.ListDefDisplayExpressions" [CancelByDeleteButton]="true" id="A29209" data-tid="A367852">
+                                                                </hvl-datagrid>
+                                                            </div>
+                                                        </dxi-item>
+                                                        <dxi-item class="tabpanel-item" title="Aktif Direktifler" style="height:450px" i18n-title="@@M10657" id="A29210" data-tid="A367853">
+                                                            <dx-scheduler #nodscheduler [dataSource]="nursingOrderScheduleList" [views]='["timelineWeek", "timelineWorkWeek"]' timeCellTemplate="timeCellTemplate" appointmentTemplate="appointment-template" appointmentTooltipTemplate="tooltip-template" currentView="timelineWeek" [firstDayOfWeek]="1" [startDayHour]="0" [endDayHour]="24" [cellDuration]="1440" [groups]="['priority']" [currentDate]="currentDate" width="100%" [height]="380" id="A29211" data-tid="A367854">
+                                                                <dxo-editing [allowAdding]="false" [allowUpdating]="false" [allowDragging]="false" [allowResizing]="false" [allowDeleting]="false" id="A29212" data-tid="A367855"></dxo-editing>
+
+                                                                <dxi-resource fieldExpr="stateID" [allowMultiple]="true" [dataSource]="nursingOrderScheduleResource" label="Owner" [useColorAsDefault]="true" id="A29213" data-tid="A367856"></dxi-resource>
+                                                                <div *dxTemplate="let data of 'timeCellTemplate'" id="A29214" data-tid="A367857">
+                                                                </div>
+                                                                <div *dxTemplate="let order of 'appointment-template'" id="A29215" data-tid="A367858">
+                                                                    <div style="font-size: 12px;  white-space: normal; height:30px;padding-top :5px" id="A29216" data-tid="A367859">
+                                                                        <div id="A29217" data-tid="A367860">{{order.appointmentData.text}}</div>
+                                                                        <br id="A29218" data-tid="A367861" />
+                                                                        <div style="font-size: 10px;" id="A29219" data-tid="A367862">
+                                                                            {{(order.appointmentData.startDate | date:'dd.MM.yyyy HH:mm') + ' - ' + (order.appointmentData.endDate | date:'dd.MM.yyyy HH:mm')}}
+                                                                        </div>
+                                                                        <br id="A29220" data-tid="A367863" />
+                                                                        <div style="font-size: 10px;" id="A29221" data-tid="A367864">
+                                                                            {{'Sonuç: ' + order.appointmentData.Result}}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div *dxTemplate="let order of 'tooltip-template'" id="A29222" data-tid="A367865">
+                                                                    <div id="A29223" data-tid="A367866">
+                                                                        {{order.appointmentData.text}}
+                                                                    </div>
+                                                                    <div id="A29224" data-tid="A367867">
+                                                                        {{'Başlangıç Saati: ' + (order.appointmentData.startDate | date:'dd.MM.yyyy HH:mm')}}
+                                                                        <br id="A29225" data-tid="A367868" /> {{
+'Bitiş Saati: ' + (order.appointmentData.endDate | date:'dd.MM.yyyy
+                                                                    HH:mm')
+                                                                        }}
+                                                                    </div>
+                                                                    <div style="visibility:hidden" id="A29226" data-tid="A367869">{{order.appointmentData.id}}</div>
+                                                                    <dx-button type="default" text='Order Durdur' icon="glyphicon glyphicon-ban-circle" (onClick)='cancelNursingOrder(order,order.id)' i18n-text="@@M19736" id="A29227" data-tid="A367870">
+                                                                    </dx-button>
+                                                                </div>
+
+                                                                <br id="A29228" data-tid="A367871" />
+                                                            </dx-scheduler>
+                                                        </dxi-item>
+                                                        <dxi-item class="tabpanel-item" title="Aktif Direktif Planlamaları" style="height:450px" i18n-title="@@M10656" id="A29229" data-tid="A367872">
+                                                            <dx-scheduler #noddetailscheduler [height]="375" width="100%" [dataSource]="_nursingOrderScheduleDetail" dateCellTemplate="dateCellTemplate" [showAllDayPanel]="false" [views]="nodScheduleViews" currentView="agenda" [currentDate]="currentDate" [firstDayOfWeek]="1" [startDayHour]="0" [endDayHour]="24" [cellDuration]="15" [crossScrollingEnabled]="true" resourceCellTemplate="resourceCellTemplate" appointmentTemplate="appointment-template" appointmentTooltipTemplate="tooltip-template" (onAppointmentUpdating)="onAppointmentUpdating($event)" (onAppointmentUpdated)="onAppointmentUpdated($event)" (onOptionChanged)="onNursingOrderScheduleDetailOptionChanged($event)" id="A29230" data-tid="A367873">
+                                                                <dxo-editing [allowAdding]="false" [allowResizing]="false" [allowDeleting]="false" [allowUpdating]="false" id="A29231" data-tid="A367874"></dxo-editing>
+
+                                                                <dxi-resource fieldExpr="StateID" [allowMultiple]="true" [dataSource]="nursingOrderDetailScheduleResource" label="Owner" [useColorAsDefault]="false" id="A29232" data-tid="A367875">
+
+                                                                </dxi-resource>
+
+                                                                <div *dxTemplate="let data of 'dateCellTemplate'" id="A29233" data-tid="A367876">
+                                                                    <div style="font-size: 13px; line-height: 20px" id="A29234" data-tid="A367877">{{['Pzr', 'Pts', 'Sal', 'Çrş', 'Prş', 'Cum', 'Cts'][data.date.getDay()]}}</div>
+                                                                    <div style="font-size: 15px; line-height: 15px" id="A29235" data-tid="A367878">{{data.date.getDate()}}</div>
+                                                                </div>
+                                                                <div *dxTemplate="let resource of 'resourceCellTemplate'" id="A29236" data-tid="A367879">
+                                                                    <div style="font-size: 13px; line-height: 20px" id="A29237" data-tid="A367880">{{resource.text}}</div>
+                                                                </div>
+                                                                <div *dxTemplate="let orderDetail of 'appointment-template'" id="A29238" data-tid="A367881">
+                                                                    <div style="font-size: 10px;  white-space: normal; height:50px;padding-top :5px" id="A29239" data-tid="A367882">
+                                                                        <div id="A29240" data-tid="A367883">
+                                                                            {{orderDetail.appointmentData.text + ' - ' + orderDetail.appointmentData.statusName}}
+                                                                        </div>
+                                                                        <div style="line-height: 20px" id="A29241" data-tid="A367884">
+                                                                            {{
+(orderDetail.appointmentData.startDate | date:'HH:mm') + ' - ' + (orderDetail.appointmentData.endDate
+                                                                        | date:'HH:mm')
+                                                                            }}
+                                                                        </div>
+                                                                        <div *ngIf="orderDetail.appointmentData.Result != null" style="font-size: 10px;" id="A29242" data-tid="A367885"> {{'Sonuç: ' + orderDetail?.appointmentData.Result}} </div>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div *dxTemplate="let orderDetail of 'tooltip-template'" id="A29243" data-tid="A367886">
+                                                                    <div id="A29244" data-tid="A367887">
+                                                                        {{orderDetail.appointmentData.text}}
+                                                                    </div>
+                                                                    <div id="A29245" data-tid="A367888">
+                                                                        {{'Uygulama Saati: ' + (orderDetail.appointmentData.startDate | date:'dd.MM.yyyy HH:mm')}}
+                                                                    </div>
+                                                                    <br id="A29246" data-tid="A367889" />
+                                                                </div>
+                                                            </dx-scheduler>
+                                                        </dxi-item>
+                                                    </dx-tab-panel>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="panel-group" id="A29247" data-tid="A367890">
+                                        <div class="panel panel-default" style="cursor:pointer" id="A29248" data-tid="A367891">
+                                            <div class="panel-heading" data-toggle="collapse" href="#diyet_collapse" id="A29249" data-tid="A367892">
+                                                <h4 class="panel-title" id="A29250" (click)="openDiyet()" data-tid="A367893">
+                                                    <span class="fa fa-neuter" [ngClass]="RecentAcc =='#diyet_collapse' ? 'fa-map-pin' : ''" style="float:right;" (click)="AccPinClick('#diyet_collapse')" id="A29251" data-tid="A367894"></span>
+                                                    <a data-toggle="collapse" style="font-weight: bold;" href="#diyet_collapse" id="A29252" data-tid="A367895">Diyet Direktifleri</a>
+                                                </h4>
+                                            </div>
+                                            <div id="diyet_collapse" [ngClass]="RecentAcc =='#diyet_collapse' ? 'panel-collapse collapse in' : 'panel-collapse collapse'" data-tid="A367896">
+                                                <div *ngIf="openDiyetShow" data-tid="A367897">
+                                                    <dx-tab-panel [selectedIndex]="0" (onSelectionChanged)="onTabItemRendered($event)" id="A29253" data-tid="A367898">
+                                                        <dxi-item class="tabpanel-item" title="Diyet Girişi" style="height:450px" i18n-title="@@M13041" id="A29254" data-tid="A367899">
+                                                            <div class="list-container col-sm-3" height="100px" id="A29255" data-tid="A367900">
+                                                                <div class="dx-searchbar" id="A29256" data-tid="A367901">
+                                                                    <dx-text-box valueChangeEvent="keyup" placeholder="Ara" mode="search" (onValueChanged)="searchDietOder($event)" i18n-placeholder="@@M27276" id="A29257" data-tid="A367902">
+                                                                    </dx-text-box>
+                                                                </div>
+                                                                <dx-list [dataSource]="dietOrderSource" (onItemClick)="selectDietOrder($event)" style="height:350px;border:1px solid grey;" id="A29258" data-tid="A367903">
+                                                                    <div *dxTemplate="let data of 'item'" id="A29259" data-tid="A367904">
+                                                                        <div style="float:left; width:90%;" id="A29260" data-tid="A367905">{{data.Name}}</div>
+                                                                    </div>
+                                                                </dx-list>
+                                                            </div>
+                                                            <div class="col-sm-9" (height)="150" id="A29261" data-tid="A367906">
+                                                                <hvl-datagrid [AllowUserToAddRows]="false" [AllowUserToDeleteRows]="true" [Columns]="DietOrdersColumns" [ShowColumnHeaders]="true" (CellContentClicked)="grdDietClicked($event)" (CellValueChange)="dietGridDayChange($event)" [dataSource]="inPatientPhysicianApplicationFormViewModel._InPatientPhysicianApplication.DietOrders" [height]="350" [DeleteButtonWidth]="50" (RowPrepared)="grdDietOrderRowPre($event)" [ComfirmRowDeleting]="ComfirmRowDeletingFunc" [DisplayExpressionsCache]="inPatientPhysicianApplicationFormViewModel?.ListDefDisplayExpressions" [CancelByDeleteButton]="true" id="A29262" data-tid="A367907">
+                                                                </hvl-datagrid>
+                                                            </div>
+                                                        </dxi-item>
+                                                        <dxi-item class="tabpanel-item" title="Verilen Diyetler" style="height:450px" i18n-title="@@M24106" id="A29263" data-tid="A367908">
+                                                            <dx-scheduler #dietscheduler [dataSource]="dietOrderScheduleList" [views]='["timelineWeek", "timelineWorkWeek"]' timeCellTemplate="timeCellTemplate" appointmentTemplate="appointment-template" appointmentTooltipTemplate="tooltip-template" currentView="timelineWeek" [firstDayOfWeek]="1" [startDayHour]="0" [endDayHour]="24" [cellDuration]="1440" [groups]="['priority']" [currentDate]="currentDate" width="100%" [height]="380" id="A29264" data-tid="A367909">
+                                                                <dxo-editing [allowAdding]="false" [allowUpdating]="false" [allowDragging]="false" [allowResizing]="false" [allowDeleting]="false" id="A29265" data-tid="A367910"></dxo-editing>
+
+                                                                <dxi-resource fieldExpr="id" [allowMultiple]="true" [dataSource]="dietOrderScheduleResource" label="Owner" [useColorAsDefault]="false" id="A29266" data-tid="A367911"></dxi-resource>
+                                                                <div *dxTemplate="let data of 'timeCellTemplate'" style="overflow-y:scroll" id="A29267" data-tid="A367912">
+                                                                </div>
+                                                                <div *dxTemplate="let order of 'appointment-template'" id="A29268" data-tid="A367913">
+                                                                    <div style="font-size: 12px;  white-space: normal; height:30px;padding-top :5px" id="A29269" data-tid="A367914">
+                                                                        <div id="A29270" data-tid="A367915">{{order.appointmentData.text}}</div>
+                                                                        <br id="A29271" data-tid="A367916" />
+                                                                        <div style="font-size: 10px;" id="A29272" data-tid="A367917">
+                                                                            {{(order.appointmentData.startDate | date:'dd.MM.yyyy HH:mm') + ' - ' + (order.appointmentData.endDate | date:'dd.MM.yyyy HH:mm')}}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div *dxTemplate="let order of 'tooltip-template'" id="A29273" data-tid="A367918">
+                                                                    <div id="A29274" data-tid="A367919">
+                                                                        {{order.appointmentData.text}}
+                                                                    </div>
+                                                                    <div id="A29275" data-tid="A367920">
+                                                                        {{'Başlangıç Saati: ' + (order.appointmentData.startDate | date:'dd.MM.yyyy HH:mm')}}
+                                                                        <br id="A29276" data-tid="A367921" /> {{
+'Bitiş Saati: ' + (order.appointmentData.endDate | date:'dd.MM.yyyy
+                                                                    HH:mm')
+                                                                        }}
+                                                                    </div>
+                                                                    <dx-button type="default" text='Order Durdur' icon="glyphicon glyphicon-ban-circle" (onClick)='cancelDietOrder(order)' i18n-text="@@M19736" id="A29277" data-tid="A367922">
+                                                                    </dx-button>
+                                                                </div>
+                                                                <br id="A29278" data-tid="A367923" />
+                                                            </dx-scheduler>
+                                                        </dxi-item>
+                                                        <dxi-item class="tabpanel-item" title="Verilen Diyet Detayları" style="height:450px" i18n-title="@@M24105" id="A29279" data-tid="A367924">
+                                                            <dx-scheduler #dietdetailscheduler [height]="375" width="100%" [dataSource]="_dietOrderScheduleDetail" dateCellTemplate="dateCellTemplate" [showAllDayPanel]="true" [views]="nodScheduleViews" currentView="agenda" [currentDate]="currentDate" [firstDayOfWeek]="1" [startDayHour]="0" [endDayHour]="24" [cellDuration]="15" [crossScrollingEnabled]="true" resourceCellTemplate="resourceCellTemplate" appointmentTemplate="appointment-template" appointmentTooltipTemplate="tooltip-template" (onOptionChanged)="onDietScheduleDetailOptionChanged($event)" (onAppointmentUpdating)="onAppointmentUpdating($event)" (onAppointmentUpdated)="onDietAppointmentUpdated($event)" id="A29280" data-tid="A367925">
+                                                                <dxo-editing [allowUpdating]="false" [allowAdding]="false" [allowResizing]="false" [allowDeleting]="false" id="A29281" data-tid="A367926"></dxo-editing>
+                                                                <dxi-resource fieldExpr="StateID" [allowMultiple]="true" [dataSource]="dietOrderDetailScheduleResource" label="Owner" [useColorAsDefault]="false" id="A29282" data-tid="A367927">
+                                                                </dxi-resource>
+                                                                <div *dxTemplate="let data of 'dateCellTemplate'" id="A29283" data-tid="A367928">
+                                                                    <div style="font-size: 13px; line-height: 20px" id="A29284" data-tid="A367929">{{['Pzr', 'Pts', 'Sal', 'Çrş', 'Prş', 'Cum', 'Cts'][data.date.getDay()]}}</div>
+                                                                    <div style="font-size: 15px; line-height: 15px" id="A29285" data-tid="A367930">{{data.date.getDate()}}</div>
+                                                                </div>
+                                                                <div *dxTemplate="let resource of 'resourceCellTemplate'" id="A29286" data-tid="A367931">
+                                                                    <div style="font-size: 13px; line-height: 20px" id="A29287" data-tid="A367932">{{resource.text}}</div>
+                                                                </div>
+                                                                <div *dxTemplate="let orderDetail of 'appointment-template'" id="A29288" data-tid="A367933">
+                                                                    <div style="font-size: 10px;  white-space: normal; height:30px;padding-top :5px" id="A29289" data-tid="A367934">
+                                                                        <div id="A29290" data-tid="A367935">
+                                                                            {{orderDetail.appointmentData.text}}
+                                                                        </div>
+                                                                        <br id="A29291" data-tid="A367936" />
+                                                                        <div id="A29292" data-tid="A367937">
+                                                                            {{orderDetail.appointmentData.statusName}}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div *dxTemplate="let orderDetail of 'tooltip-template'" id="A29293" data-tid="A367938">
+                                                                    <div id="A29294" data-tid="A367939">
+                                                                        {{orderDetail.appointmentData.text}}
+                                                                    </div>
+                                                                    <div id="A29295" data-tid="A367940">
+                                                                        {{'Uygulama Saati: ' + (orderDetail.appointmentData.startDate | date:'dd.MM.yyyy HH:mm')}}
+                                                                    </div>
+                                                                    <br id="A29296" data-tid="A367941" />
+                                                                    <dx-button text='Uygula' i18n-text="@@M23745" id="A29297" data-tid="A367942">
+                                                                    </dx-button>
+                                                                </div>
+                                                            </dx-scheduler>
+                                                        </dxi-item>
+                                                    </dx-tab-panel>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="openHemsirelikTab" id="hemsirelik" [ngClass]="ActivePage =='hemsirelik' ? 'tab-pane fade in active' : 'tab-pane fade'" data-tid="A367943">
+                    <div style="width:100%;" *ngIf="openHemsirelikTab" id="A29298" data-tid="A367944">
+                        <NursingAplicationDoctorForm [_nursingApp]="inPatientPhysicianApplicationFormViewModel._nursingApplication" style="height:100%!important;display:block;" id="A29299" data-tid="A367945"></NursingAplicationDoctorForm>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <dx-tab-panel [selectedIndex]="0" [animationEnabled]="true" style="height:84%!important" (onTitleClick)="innerTabRender($event)" (onItemRendered)="innerTabRender($event)" (onSelectionChanged)="selectTab($event)" id="A29300" data-tid="A367946">
+        <dxi-item class="tabpanel-item" style="height:100%!important;" title="Hizmet ve Tetkik" i18n-title="@@M15930" id="A29301" data-tid="A367947">
+            <div *ngIf="isHizmetTetkik==true" style="height:100%" id="A29302" data-tid="A367948">
+                <requested-procedures-form style="height:100%!important;padding-top: 10px;display:block;" [EpisodeAction]="inPatientPhysicianApplicationFormViewModel._InPatientPhysicianApplication" [GridDiagnosisGridList]="inPatientPhysicianApplicationFormViewModel.GridDiagnosisGridList" [PhysicianSuggestionsIsActive]="true" (OpenRequestTab)="openIstem()" id="A29303" data-tid="A367949"></requested-procedures-form>
+            </div>
+        </dxi-item>
+        <dxi-item class="tabpanel-item" style="height:100%!important; padding: 0 10px !important;" title="Mlz.Sarf" i18n-title="@@M19108" id="A29304" data-tid="A367950">
+            <span id="A29305" data-tid="A367951"></span>
+            <div *ngIf="isMlzSarf==true" style="height:100%" id="A29306" data-tid="A367952">
+                <TreatmentMaterialForm style="height:100%!important;display:block;" [EpisodeAction]="inPatientPhysicianApplicationFormViewModel._InPatientPhysicianApplication" [StoreResourceId]="StoreResourceId()" [TreatmentMaterialGridList]="inPatientPhysicianApplicationFormViewModel._InPatientPhysicianApplication.TreatmentMaterials" [IncludeDrugDefinition]="inPatientPhysicianApplicationFormViewModel?.includeDrugDefinition" id="A29307" data-tid="A367953"></TreatmentMaterialForm>
+            </div>
+        </dxi-item>
+        <dxi-item class="tabpanel-item" style="height:100%!important;" title="Konsültasyon" i18n-title="@@M17742" id="A29308" data-tid="A367954">
+            <br id="A29309" data-tid="A367955" />
+            <div *ngIf="isConsultation==true" style="height:100%" id="A29310" data-tid="A367956">
+                <ConsultationRequestForm style="height:100%!important;display:block;" [EpisodeAction]="inPatientPhysicianApplicationFormViewModel._InPatientPhysicianApplication" [GridList]="inPatientPhysicianApplicationFormViewModel.GrdConsAndPatientInterviewFormGridList" id="A29311" data-tid="A367957"></ConsultationRequestForm>
+            </div>
+        </dxi-item>
+        <dxi-item class="tabpanel-item" style="height:100%!important;" title="Raporlar" i18n-title="@@M20887" id="A29312" data-tid="A367958">
+            <span id="A29313" data-tid="A367959"></span>
+            <div *ngIf="isRaporlar==true" id="A29314" data-tid="A367960">
+                <div class="container-fluid" id="A29315" data-tid="A367961">
+                    <br id="A29316" data-tid="A367962" />
+                    <div class="row" id="A29317" data-tid="A367963">
+                        <label class="control-label col-sm-1" id="A29318" data-tid="A367964">Rapor Türü</label>
+                        <div class="col-sm-3" id="A29319" data-tid="A367965">
+
+                            <dx-lookup [items]="reportTypeList" class="field-customization" displayExpr="description" [value]="selectedReportType" title="Seçiniz" [showPopupTitle]="false" itemTemplate="item" searchEnabled="false" closeOnOutsideClick="true" data-tid="A367966">
+
+                                <div *dxTemplate="let item of 'item'" data-tid="A367967">
+                                    <div class="custom-item" data-tid="A367968">
+                                        <div style="position: relative;" (click)="onSelectedReportOpen(item)" data-tid="A367969">{{item.description }}</div>
+                                    </div>
+                                </div>
+                            </dx-lookup>
+
+                        </div>
+                        <!--<div class="col-sm-1"> <dx-button icon="edit" type="success" text="Rapor Yaz" (onClick)="onSelectedReportOpen()" i18n-text="@@M20879"> </dx-button></div>-->
+                        <div class="col-sm-3" id="A29321" data-tid="A367970">
+                            <dx-check-box (onValueChanged)="onShowAllReports($event)" text="İptal Edilmemiş Raporlar" i18n-text="@@M30208" id="A29322" data-tid="A367971"></dx-check-box>
+                        </div>
+                        <div class="col-sm-2" id="A29323" data-tid="A367972">
+                            <dx-check-box (onValueChanged)="onShowCancelledReports($event)" text="Tüm Raporlar" i18n-text="@@M16546" id="A29324" data-tid="A367973"></dx-check-box>
+                        </div>
+                    </div>
+                    <div class="row" id="A29325" data-tid="A367974">
+                        <div class="col-xs-12" id="A29326" data-tid="A367975">
+                            <hvl-datagrid [AllowUserToDeleteRows]="false" [AllowUserToAddRows]="false" [Columns]="GridPatientReportsColumns" [dataSource]="inPatientPhysicianApplicationFormViewModel.PatientReportInfoList" (CellContentClicked)="GridPatientReports_CellContentClicked($event)" [CancelByDeleteButton]="true" id="A29327" data-tid="A367976">
+
+                            </hvl-datagrid>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </dxi-item>
+        <dxi-item id="sevk" class="tabpanel-item" title="Sevk" i18n-title="@@M21695" data-tid="A367977">
+            <span id="A29328" data-tid="A367978"></span>
+            <div *ngIf="isSevk==true" id="A29329" data-tid="A367979">
+                <div class="col-sm-12" style="margin-left: -15px;" id="A29330" data-tid="A367980">
+                    <atlas-form-editor [QueryParameters]="dispatchQueryParameters" [ComponentInfo]="dispatchComponentInfo" [SaveForm]="saveDispatchComponent" [OpenComponentByAddButton]="true" [HideAddButton]="true" Title="Sevk İşlemleri" (QueryResultLoaded)="dispatchQueryResultLoaded($event)" i18n-Title="@@M27545" id="A29331" data-tid="A367981">
+                    </atlas-form-editor>
+                </div>
+            </div>
+        </dxi-item>
+    </dx-tab-panel>
+    <div class="col-md-2" id="A29332" data-tid="A367982">
+        <div class="col-sm-2" id="A29333" data-tid="A367983">
+            <dx-popup showTitle="false" title="Direktif Şablon Ekleme" [width]="768" [height]="600" [(visible)]="showNursingOrderPopup" i18n-title="@@M12871" id="A29334" data-tid="A367984">
+                <div *dxTemplate="let data of 'content'" id="A29335" data-tid="A367985">
+                    <div class="row" style="margin-top:-10px;" id="A29336" data-tid="A367986">
+                        <label class="control-label col-sm-2" [(hidden)]="fromTemplateGet" id="A29337" data-tid="A367987">
+                            Paket Adı
+                        </label>
+                        <div class="col-sm-5" id="A29338" data-tid="A367988">
+                            <dx-text-box class="col-sm-12" [(value)]="txtNursingOrderTemplateName" [(visible)]="fromTemplateSave" id="A29339" data-tid="A367989">
+                            </dx-text-box>
+                        </div>
+                        <dx-button (onClick)="btnSaveNursingOrderTemplate_Click()" text="Kaydet" [visible]="fromTemplateSave" i18n-text="@@M17386" id="A29340" data-tid="A367990"></dx-button>
+                        <div style="float:right" id="A29341" data-tid="A367991">
+                            <dx-button (onClick)="btnaddTempDetailToGrid_Click($event)" text="Tamam" [visible]="fromTemplateGet" i18n-text="@@M22704" id="A29342" data-tid="A367992"></dx-button>
+                        </div>
+                    </div>
+                    <div class="row" id="A29343" data-tid="A367993">
+                        <div *ngIf="fromTemplateGet" class="list-container col-sm-3" height="100px" id="A29344" data-tid="A367994">
+                            <div class="dx-searchbar" id="A29345" data-tid="A367995">
+                                <dx-text-box valueChangeEvent="keyup" placeholder="Ara" mode="search" (onValueChanged)="searchOderTemplate($event)" i18n-placeholder="@@M27276" id="A29346" data-tid="A367996">
+                                </dx-text-box>
+                            </div>
+                            <dx-list [dataSource]="nursingOrderTempSource" (onItemClick)="btnGetNursingOrderTempDetail_Click($event)" style="height:450px;border:1px solid grey;" id="A29347" data-tid="A367997">
+                                <div *dxTemplate="let data of 'item'" id="A29348" data-tid="A367998">
+                                    <div style="float:left; width:90%;" id="A29349" data-tid="A367999">{{data.Name}}</div>
+                                </div>
+                            </dx-list>
+                        </div>
+                        <div class="col-sm-9" [class.col-sm-9]="fromTemplateGet" [class.col-sm-12]="fromTemplateSave" style="float:right" id="A29350" data-tid="A368000">
+                            <br id="A29351" data-tid="A368001" />
+
+                            <dx-data-grid [columns]="NursingOrderTempGridColumns" allowColumnReordering="true" allowColumnResizing="true" [dataSource]="NOrderTempDetail" [columnAutoWidth]="true" [(selectedRowKeys)]="selectedRowKeysResultList" style="height:450px;" [paging]="{enable: false, pageSize:1000000}" [selection]="{mode: 'multiple',allowSelectAll: true, showCheckBoxesMode: 'always'}" [editing]="{mode: 'row' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" id="A29352" data-tid="A368002">
+                            </dx-data-grid>
+
+                        </div>
+                    </div>
+                </div>
+            </dx-popup>
+        </div>
+    </div>
+
+    <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A31651" data-tid="A368003">
+    </dx-load-panel>
+    <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showEALoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="EALoadPanelMessage" id="A31651" data-tid="A368004">
+    </dx-load-panel>
+</div>
+
+<dx-popup width="600px" height="200px" [(visible)]="showEDurumBildirirComponent" [closeOnOutsideClick]="false" title="E-Durum Bildirir Raporu Yaz" i18n-title="@@M13708" id="A24159" data-tid="A368005">
+    <div *dxTemplate="let data of 'content'" id="A24160" data-tid="A368006">
+        <eDurumBildirirComponent [episodeActionId]="inPatientPhysicianApplicationFormViewModel._InPatientPhysicianApplication?.ObjectID" [patientId]="inPatientPhysicianApplicationFormViewModel._InPatientPhysicianApplication?.Episode?.Patient?.ObjectID" data-tid="A368007">
+
+        </eDurumBildirirComponent>
+
+    </div>
+</dx-popup>
+<dx-popup width="1000px" height="600px" [(visible)]="showERaporSorgulaComponent" [closeOnOutsideClick]="false" title="Hasta Rapor Sorgula" i18n-title="@@M13708" id="A24159" data-tid="A368008">
+    <div *dxTemplate="let data of 'content'" id="A24160" data-tid="A368009">
+        <eRaporSorgulaComponent *ngIf="showERaporSorgulaComponent == true" [episodeActionId]="inPatientPhysicianApplicationFormViewModel._InPatientPhysicianApplication?.ObjectID" [patientId]="inPatientPhysicianApplicationFormViewModel._InPatientPhysicianApplication?.Episode?.Patient?.ObjectID" data-tid="A368010">
+
+        </eRaporSorgulaComponent>
+
+    </div>
+</dx-popup>
+<dx-popup showTitle="false" title="Uyarı!" [(visible)]="ShowFallingAgeWarningPopup" [width]="500" height="200" i18n-title="@@M23738" id="A29353" data-tid="A368011">
+    <div *dxTemplate="let data of 'content'" id="A29354" data-tid="A368012">
+        <div class="row" id="A29355" data-tid="A368013">
+            <label class="control-label col-sm-12" style="font-size: small;" id="A29356" data-tid="A368014">
+                {{fallingAgeWarningMessage}}
+            </label>
+        </div>
+    </div>
+</dx-popup>
+<!--<dx-popup showTitle="false" title="KKDS Düşme Risk Uyarısı!" [(visible)]="ShowFallingRiskPopup" [width]="500" height="285" i18n-title="@@M17611" id="A29357">
+    <div *dxTemplate="let data of 'content'" id="A29358">
+        <div class="row" id="A29359">
+            <label class="control-label col-sm-12"  id="A29360">
+                Hastanın düşme riski mevcuttur. Aşağıda listelenen hemşirelik girişimlerini uyguladınız mı?
+            </label>
+        </div>
+        <br id="A29361" />
+        <div class="row" id="A29362">
+            <hvl-richtextbox [value]="fallingRiskMessage" Height="103px" ReadOnly="true" id="A29363">
+            </hvl-richtextbox>
+        </div>
+        <div class="row" style="text-align:center" id="A29364">
+            <br id="A29365" />
+            <div class="col-sm-6" id="A29366">
+                <dx-button type="success" text="Evet" style="width:60px" (onClick)="okClickFallingRiskBox(true)" i18n-text="@@M14018" id="A29367"></dx-button>
+            </div>
+            <div class="col-sm-6" id="A29368">
+                <dx-button type="success" text="Hayır" style="width:60px" (onClick)="okClickFallingRiskBox(false)" i18n-text="@@M15570" id="A29369"></dx-button>
+            </div>
+        </div>
+    </div>
+</dx-popup>-->
+
+<dx-popup class="reportStyle" [(visible)]="showStatusNotificationReportForm" [closeOnOutsideClick]="false" (OnClosing)="onStatusNotificationReportForm($event)" [fullScreen]="true" title="Durum Bildirir Raporu" i18n-title="@@M13360" id="A29370" data-tid="A368015">
+    <div *dxTemplate="let data of 'content'" id="A29371" data-tid="A368016">
+        <div class="container-fluid" id="A29372" *ngIf="showStatusNotificationReportForm" data-tid="A368017">
+            <dx-scroll-view #scrollView id="scrollview" [scrollByContent]="true" [scrollByThumb]="true" [showScrollbar]="always" data-tid="A368018">
+                <StatusNotificationReportForm (OnClosing)="OnStatusNotificationReportFormClosing($event)" [StatusNotificationRep]="statusNotificationReportObject" [ReportActiveIDsModel]="ReportParamActiveIDsModel" id="A29373" data-tid="A368019"></StatusNotificationReportForm>
+            </dx-scroll-view>
+
+        </div>
+    </div>
+</dx-popup>
+<dx-popup class="reportStyle" [(visible)]="showMedulaTedaviRaporlariForm" [closeOnOutsideClick]="false" (OnClosing)="onMedulaTedaviRaporlariForm($event)" [fullScreen]="true" title="TEDAVİ RAPORU" i18n-title="@@M30218" id="A29374" data-tid="A368020">
+    <div *dxTemplate="let data of 'content'" id="A29375" data-tid="A368021">
+        <div class="container-fluid" id="A29376" *ngIf="showMedulaTedaviRaporlariForm" data-tid="A368022">
+            <dx-scroll-view #scrollView id="scrollview" [scrollByContent]="true" [scrollByThumb]="true" [showScrollbar]="always" data-tid="A368023">
+                <MedulaTedaviRaporlari (OnClosing)="OnMedulaTedaviRaporlariFormClosing($event)" [MedulaTedaviRaporlariRep]="medulaTedaviRaporlariObject" [ReportActiveIDsModel]="ReportParamActiveIDsModel" id="A24170" data-tid="A368024"></MedulaTedaviRaporlari>
+
+            </dx-scroll-view>
+
+        </div>
+    </div>
+</dx-popup>
+<dx-popup class="reportStyle" [(visible)]="showParticipationFreeDrugReportNewForm" [closeOnOutsideClick]="false" (OnClosing)="onParticipationFreeDrugReportNewForm($event)" [fullScreen]="true" title="İLAÇ RAPORU" i18n-title="@@M30219" id="A24169" data-tid="A368025">
+    <div *dxTemplate="let data of 'content'" id="A24170" data-tid="A368026">
+        <div class="container-fluid" style="height:100%" *ngIf="showParticipationFreeDrugReportNewForm" data-tid="A368027">
+            <dx-scroll-view #scrollView id="scrollview" [scrollByContent]="true" [scrollByThumb]="true" [showScrollbar]="always" data-tid="A368028">
+                <ParticipationFreeDrugReportNewForm (OnClosing)="OnParticipationFreeDrugReportNewFormClosing($event)" [ParticipationFreeDrugReportNewFormRep]="ParticipationFreeDrugReportNewFormObject" [ReportActiveIDsModel]="ReportParamActiveIDsModel" data-tid="A368029"></ParticipationFreeDrugReportNewForm>
+            </dx-scroll-view>
+        </div>
+    </div>
+</dx-popup>
+
+<dx-popup showTitle="false" title="Diş Kabul Ekranı" [(visible)]="ShowDentistList" [width]="500" height="200" i18n-title="@@M23738" id="A29353" data-tid="A368030">
+    <div *dxTemplate="let data of 'content'" id="A29371" data-tid="A368031">
+        <label class="control-label col-sm-12" style="margin-bottom: 5px;" id="A23647" data-tid="A368032">Poliklinik Seçimi</label>
+        <div class="col-sm-12" id="B23642" style="margin-bottom: 5px;" data-tid="A368033">
+            <dx-select-box [items]="dentistResourceList" displayExpr="Name" valueExpr="ObjectID" [searchEnabled]="true" [(value)]="_dentistResourceID" (onValueChanged)="getDentist($event)" id="B23643" data-tid="A368034"></dx-select-box>
+        </div>
+        <label class="control-label col-sm-12" id="A23647" style="margin-bottom: 5px;" data-tid="A368035">Doktor Seçimi</label>
+        <div class="col-sm-12" id="C23642" style="margin-bottom: 5px;" data-tid="A368036">
+            <dx-select-box [items]="dentistList" displayExpr="Name" valueExpr="ObjectID" [searchEnabled]="true" [(value)]="_dentistDoctorID" id="C23643" data-tid="A368037"></dx-select-box>
+        </div>
+        <div class="col-sm-12 pull-right" id="C23642" style="margin-bottom: 5px;" data-tid="A368038">
+            <dx-button class="btn btn-round pull-right" type="success" text="Diş Kabul" icon="fa fa-user-plus" (onClick)="disKabul_Al()" hint="Diş Kabulü Al" i18n-hint="@@M22549" id="A29060" data-tid="A368039"></dx-button>
+        </div>
+    </div>
+</dx-popup>
+
+<dx-popup showTitle="false" title="Sağlık Kurulu" [(visible)]="OpenHCAdmission" [width]="500" height="650" (onHiding)="onHCAdmissionPopupHiding($event)" i18n-title="@@M23738" id="A29353" data-tid="A368040">
+
+    <div *dxTemplate="let data of 'content'" id="A29371" data-tid="A368041">
+        <dx-scroll-view #scrollView id="scrollview" [scrollByContent]="true" [scrollByThumb]="true" [showScrollbar]="always" data-tid="A368042">
+            <label class="control-label col-sm-12" style="margin-bottom: 5px;" id="B1" data-tid="A368043">Varolan Kabuller</label>
+            <div class="col-sm-12" id="B2" style="margin-bottom: 5px;" data-tid="A368044">
+                <dx-select-box [items]="shortHcInfo" displayExpr="HCReportName" valueExpr="ObjectID" [searchEnabled]="true" [(value)]="_hcID" (onValueChanged)="HealthCommitte_Changed($event)" id="B23643" data-tid="A368045"></dx-select-box>
+            </div>
+
+            <label class="control-label col-sm-12" style="margin-bottom: 5px;" id="A23647" data-tid="A368046">Rapor Seçimi</label>
+            <div class="col-sm-12" id="B23642" style="margin-bottom: 5px;" data-tid="A368047">
+                <dx-select-box [items]="hCRequestReasonList" displayExpr="ReasonName" valueExpr="ObjectID" [searchEnabled]="true" [(value)]="_hcReasonID" [readOnly]="_hcID != null" (onValueChanged)="HCRequestReason_Changed($event)" id="B23643" data-tid="A368048"></dx-select-box>
+            </div>
+
+            <label class="control-label col-md-12" style="margin-top: 5px;" id="A20236" data-tid="A368049"> Ödeme Türü </label>
+            <div class="col-md-12" id="A20237" data-tid="A368050">
+                <hvl-enum-combobox #Validation [BackColor]="HCModeOfPayment?.BackColor" [DataTypeName]="HCModeOfPayment?.DataTypeName" [Enabled]="HCModeOfPayment?.Enabled" [Font]="HCModeOfPayment?.Font" [ForeColor]="HCModeOfPayment?.ForeColor" [IncludeOnly]="HCModeOfPayment?.IncludeOnly" [ReadOnly]="_hcID != null" [ShowClearButton]="HCModeOfPayment?.ShowClearButton" [SortBy]="HCModeOfPayment?.SortBy" [TabIndex]="HCModeOfPayment?.TabIndex" [(Value)]="_hcModeOfPayment" [Visible]="HCModeOfPayment?.Visible" id="A20238" data-tid="A368051"></hvl-enum-combobox>
+            </div>
+            <div class="row" style="padding-top:3px" *ngIf="!selectedReportIsDisabled && OpenHCAdmission == true" data-tid="A368052">
+                <!--E Durum Bildirir Kurul Entegrasyonu -->
+                <label class="col-md-4" style="padding-left: 45px" data-tid="A368053">
+                    Müracaat Şekli
+                </label>
+                <div class="col-md-8" style="padding: 0px 45px 0px 25px;" data-tid="A368054">
+                    <hvl-enum-combobox #Validation (ValueChange)="onEStatusNotRepComApplicationTypeChanged($event)" [BackColor]="EStatusNotRepCommitteeApplicationType?.BackColor" [DataTypeName]="EStatusNotRepCommitteeApplicationType?.DataTypeName" [Enabled]="EStatusNotRepCommitteeApplicationType?.Enabled" [Font]="EStatusNotRepCommitteeApplicationType?.Font" [ForeColor]="EStatusNotRepCommitteeApplicationType?.ForeColor" [IncludeOnly]="EStatusNotRepCommitteeApplicationType?.IncludeOnly" [ReadOnly]="EStatusNotRepCommitteeApplicationType?.ReadOnly" [ShowClearButton]="EStatusNotRepCommitteeApplicationType?.ShowClearButton" [SortBy]="EStatusNotRepCommitteeApplicationType?.SortBy" [TabIndex]="EStatusNotRepCommitteeApplicationType?.TabIndex" [Value]="_eStatusNotfReportObj?.ApplicationType" [Visible]="EStatusNotRepCommitteeApplicationType?.Visible" id="A20168" data-tid="A368055"></hvl-enum-combobox>
+                </div>
+            </div>
+
+            <div class="row" style="padding-top:3px" *ngIf="selectedReportIsDisabled" data-tid="A368056">
+                <label class="col-md-4" style="padding-left: 45px" data-tid="A368057">
+                    Müracaat Nedeni
+                </label>
+                <div class="col-md-8" style="padding: 0px 45px 0px 25px;" data-tid="A368058">
+                    <hvl-enum-combobox #Validation (ValueChange)="onDisabledReportApplicationReasonChanged($event)" [BackColor]="DisabledReportApplicationReason?.BackColor" [DataTypeName]="DisabledReportApplicationReason?.DataTypeName" [Enabled]="DisabledReportApplicationReason?.Enabled" [Font]="DisabledReportApplicationReason?.Font" [ForeColor]="DisabledReportApplicationReason?.ForeColor" [IncludeOnly]="DisabledReportApplicationReason?.IncludeOnly" [ReadOnly]="DisabledReportApplicationReason?.ReadOnly" [ShowClearButton]="DisabledReportApplicationReason?.ShowClearButton" [SortBy]="DisabledReportApplicationReason?.SortBy" [TabIndex]="DisabledReportApplicationReason?.TabIndex" [Value]="_eDisabledReport?.ApplicationReason" [Visible]="DisabledReportApplicationReason?.Visible" id="A20168" data-tid="A368059"></hvl-enum-combobox>
+                </div>
+            </div>
+
+            <div class="row" style="padding-top:3px" *ngIf="selectedReportIsDisabled && _eDisabledReport?.ApplicationReason != null" data-tid="A368060">
+                <div class="col-md-12" *ngIf="_eDisabledReport?.ApplicationReason == 0" data-tid="A368061">
+                    <div class="row" data-tid="A368062">
+                        <label class="col-md-4" style="padding-left: 45px" data-tid="A368063">
+                            Müracaat Şekli
+                        </label>
+                        <div class="col-md-8" style="padding: 0px 45px 0px 25px;" data-tid="A368064">
+                            <hvl-enum-combobox #Validation (ValueChange)="onDisabledReportApplicationTypeChanged($event)" [BackColor]="DisabledReportApplicationType?.BackColor" [DataTypeName]="DisabledReportApplicationType?.DataTypeName" [Enabled]="DisabledReportApplicationType?.Enabled" [Font]="DisabledReportApplicationType?.Font" [ForeColor]="DisabledReportApplicationType?.ForeColor" [IncludeOnly]="DisabledReportApplicationType?.IncludeOnly" [ReadOnly]="DisabledReportApplicationType?.ReadOnly" [ShowClearButton]="DisabledReportApplicationType?.ShowClearButton" [SortBy]="DisabledReportApplicationType?.SortBy" [TabIndex]="DisabledReportApplicationType?.TabIndex" [Value]="_eDisabledReport?.ApplicationType" [Visible]="DisabledReportApplicationType?.Visible" id="A20168" data-tid="A368065"></hvl-enum-combobox>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12" *ngIf="selectedReportIsDisabled && _eDisabledReport?.ApplicationReason == 1" data-tid="A368066">
+                    <div class="row" data-tid="A368067">
+                        <label class="col-md-4" style="padding-left: 45px" data-tid="A368068">
+                            Müracaat Şekli
+                        </label>
+                        <div class="col-md-8" style="padding: 0px 45px 0px 25px;" data-tid="A368069">
+                            <hvl-enum-combobox #Validation (ValueChange)="onDisabledReportTerrorAccidentInjuryAppTypeChanged($event)" [BackColor]="DisabledReportTerrorAccidentInjuryAppType?.BackColor" [DataTypeName]="DisabledReportTerrorAccidentInjuryAppType?.DataTypeName" [Enabled]="DisabledReportTerrorAccidentInjuryAppType?.Enabled" [Font]="DisabledReportTerrorAccidentInjuryAppType?.Font" [ForeColor]="DisabledReportTerrorAccidentInjuryAppType?.ForeColor" [IncludeOnly]="DisabledReportTerrorAccidentInjuryAppType?.IncludeOnly" [ReadOnly]="DisabledReportTerrorAccidentInjuryAppType?.ReadOnly" [ShowClearButton]="DisabledReportTerrorAccidentInjuryAppType?.ShowClearButton" [SortBy]="DisabledReportTerrorAccidentInjuryAppType?.SortBy" [TabIndex]="DisabledReportTerrorAccidentInjuryAppType?.TabIndex" [Value]="_eDisabledReport?.TerrorAccidentInjuryAppType" [Visible]="DisabledReportTerrorAccidentInjuryAppType?.Visible" id="A20168" data-tid="A368070"></hvl-enum-combobox>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row" style="padding-top:3px" *ngIf=" selectedReportIsDisabled && _eDisabledReport?.ApplicationReason != null" data-tid="A368071">
+                <div class="col-md-12" *ngIf="_eDisabledReport?.ApplicationReason == 0 && _eDisabledReport?.ApplicationType == 1" data-tid="A368072">
+                    <div class="row" data-tid="A368073">
+                        <label class="col-md-4" style="padding-left: 45px" data-tid="A368074">
+                            Müracaat Türü
+                        </label>
+                        <div class="col-md-8" style="padding: 0px 45px 0px 25px;" data-tid="A368075">
+                            <hvl-enum-combobox #Validation (ValueChange)="onDisabledReportPersonalApplicationTypeChanged($event)" [BackColor]="DisabledReportPersonalApplicationType?.BackColor" [DataTypeName]="DisabledReportPersonalApplicationType?.DataTypeName" [Enabled]="DisabledReportPersonalApplicationType?.Enabled" [Font]="DisabledReportPersonalApplicationType?.Font" [ForeColor]="DisabledReportPersonalApplicationType?.ForeColor" [IncludeOnly]="DisabledReportPersonalApplicationType?.IncludeOnly" [ReadOnly]="DisabledReportPersonalApplicationType?.ReadOnly" [ShowClearButton]="DisabledReportPersonalApplicationType?.ShowClearButton" [SortBy]="DisabledReportPersonalApplicationType?.SortBy" [TabIndex]="DisabledReportPersonalApplicationType?.TabIndex" [Value]="_eDisabledReport?.PersonalApplicationType" [Visible]="DisabledReportPersonalApplicationType?.Visible" id="A20168" data-tid="A368076"></hvl-enum-combobox>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12" *ngIf="_eDisabledReport?.ApplicationReason == 0 && _eDisabledReport?.ApplicationType == 0" data-tid="A368077">
+                    <div class="row" data-tid="A368078">
+                        <label class="col-md-4" style="padding-left: 45px" data-tid="A368079">
+                            Müracaat Türü
+                        </label>
+                        <div class="col-md-8" style="padding: 0px 45px 0px 25px;" data-tid="A368080">
+                            <hvl-enum-combobox #Validation (ValueChange)="onDisabledReportCorporateApplicationTypeChanged($event)" [BackColor]="DisabledReportCorporateApplicationType?.BackColor" [DataTypeName]="DisabledReportCorporateApplicationType?.DataTypeName" [Enabled]="DisabledReportCorporateApplicationType?.Enabled" [Font]="DisabledReportCorporateApplicationType?.Font" [ForeColor]="DisabledReportCorporateApplicationType?.ForeColor" [IncludeOnly]="DisabledReportCorporateApplicationType?.IncludeOnly" [ReadOnly]="DisabledReportCorporateApplicationType?.ReadOnly" [ShowClearButton]="DisabledReportCorporateApplicationType?.ShowClearButton" [SortBy]="DisabledReportCorporateApplicationType?.SortBy" [TabIndex]="DisabledReportCorporateApplicationType?.TabIndex" [Value]="_eDisabledReport?.CorporateApplicationType" [Visible]="DisabledReportCorporateApplicationType?.Visible" id="A20168" data-tid="A368081"></hvl-enum-combobox>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12" *ngIf="selectedReportIsDisabled && _eDisabledReport?.ApplicationReason == 1" data-tid="A368082">
+                    <label class="col-md-4" style="padding-left: 45px" data-tid="A368083">
+                        Kaza Yaralanma Nedeni
+                    </label>
+                    <div class="col-md-8" style="padding: 0px 45px 0px 25px;" data-tid="A368084">
+                        <hvl-enum-combobox #Validation (ValueChange)="onDisabledReportTerrorAccidentInjuryAppReasonChanged($event)" [BackColor]="DisabledReportTerrorAccidentInjuryAppReason?.BackColor" [DataTypeName]="DisabledReportTerrorAccidentInjuryAppReason?.DataTypeName" [Enabled]="DisabledReportTerrorAccidentInjuryAppReason?.Enabled" [Font]="DisabledReportTerrorAccidentInjuryAppReason?.Font" [ForeColor]="DisabledReportTerrorAccidentInjuryAppReason?.ForeColor" [IncludeOnly]="DisabledReportTerrorAccidentInjuryAppReason?.IncludeOnly" [ReadOnly]="DisabledReportTerrorAccidentInjuryAppReason?.ReadOnly" [ShowClearButton]="DisabledReportTerrorAccidentInjuryAppReason?.ShowClearButton" [SortBy]="DisabledReportTerrorAccidentInjuryAppReason?.SortBy" [TabIndex]="DisabledReportTerrorAccidentInjuryAppReason?.TabIndex" [Value]="_eDisabledReport?.TerrorAccidentInjuryAppReason" [Visible]="DisabledReportTerrorAccidentInjuryAppReason?.Visible" id="A20168" data-tid="A368085"></hvl-enum-combobox>
+                    </div>
+                </div>
+
+                <div class="row" style="padding-top:3px" *ngIf="selectedReportIsDisabled" data-tid="A368086">
+                    <label class="col-md-4" style="padding-left: 45px" data-tid="A368087">
+                        Başvuru Sebebi
+                    </label>
+                    <div class="col-md-8" style="padding: 0px 45px 0px 25px;" data-tid="A368088">
+                        <hvl-text-box #Validation (TextChange)="onDisabledReportApplicationExplanationChanged($event)" [BackColor]="DisabledReportApplicationExplanation?.BackColor" [CharacterCasing]="DisabledReportApplicationExplanation?.CharacterCasing" [Enabled]="DisabledReportApplicationExplanation?.Enabled" [Font]="DisabledReportApplicationExplanation?.Font" [ForeColor]="DisabledReportApplicationExplanation?.ForeColor" [height]="DisabledReportApplicationExplanation?.Height" [InputFormat]="DisabledReportApplicationExplanation?.InputFormat" [InputTurkishCharacter]="DisabledReportApplicationExplanation?.InputTurkishCharacter" [IsNonNumeric]="DisabledReportApplicationExplanation?.IsNonNumeric" [MultiLine]="DisabledReportApplicationExplanation?.Multiline" [ReadOnly]="DisabledReportApplicationExplanation?.ReadOnly" [Required]="DisabledReportApplicationExplanation?.Required" [TabIndex]="DisabledReportApplicationExplanation?.TabIndex" [TextAlign]="DisabledReportApplicationExplanation?.TextAlign" [Text]="_eDisabledReport?.ApplicationExplanation" [Visible]="DisabledReportApplicationExplanation?.Visible" id="A19923" data-tid="A368089"></hvl-text-box>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12" id="C23642" style="margin-bottom: 5px;" data-tid="A368090">
+                <!--<hvl-datagrid [AllowUserToAddRows]="true" [AllowUserToDeleteRows]="true" [dataSource]="ResourcesToBeReferredList"
+                [DisplayExpressionsCache]="inPatientPhysicianApplicationFormViewModel?.ListDefDisplayExpressions" [ShowColumnHeaders]="true" [ShowTotalNumberOfRows]="true" id="A20242"></hvl-datagrid>-->
+                <!--<dx-data-grid #memberDoctorsGrid [dataSource]="ResourcesToBeReferredList" height="410px">
+                    <dxi-column dataField="ProcedureDoctorToBeReferred.ObjectID" caption="Üye" [width]="200">
+                        <dxo-lookup [dataSource]="inPatientPhysicianApplicationFormViewModel.HCDoctorList" displayExpr="Name" valueExpr="ObjectID">
+                        </dxo-lookup>
+                    </dxi-column>
+                    <dxi-column dataField="Resource.ObjectID" caption="Branş" [width]="200">
+                        <dxo-lookup [dataSource]="inPatientPhysicianApplicationFormViewModel.HCResPoliclinic" displayExpr="Name" valueExpr="ObjectID">
+                        </dxo-lookup>
+                    </dxi-column>
+                    <dxi-column caption="Sil" cellTemplate="buttonCellTemplate"></dxi-column>
+
+                    <div *dxTemplate="let cellData of 'buttonCellTemplate'" id="A27830" style="width: 25px">
+                        <i class="fa fa-minus-circle" style="cursor:pointer" (click)="onInpMemberDoctorRemoving(cellData)" id="A27831"></i>
+                    </div>
+                    <dxo-editing mode="cell" [allowUpdating]="true" [allowAdding]="true" [allowDeleting]="false">
+                    </dxo-editing>
+                    <dxo-scrolling mode="virtual"></dxo-scrolling>
+                </dx-data-grid>-->
+
+                <div class="row" style="margin-bottom:10px" data-tid="A368091">
+                    <div class="col-sm-5" data-tid="A368092">
+                        <dx-select-box [items]="inPatientPhysicianApplicationFormViewModel.HCResPoliclinic" (onSelectionChanged)="onResourcesToBeReferredPoliclinic($event)" placeholder="Poliklinik Seçiniz..." displayExpr="Name" showClearButton="true" searchEnabled="true" (showSelectionControls)="false" [(value)]="tempResourcesToBeReferredPoliclinic" valueExpr="ObjectID" id="A26319" data-tid="A368093"></dx-select-box>
+
+                    </div>
+                    <div class="col-sm-5" data-tid="A368094">
+                        <dx-select-box [items]="inPatientPhysicianApplicationFormViewModel.HCDoctorList" placeholder="Doktor Seçiniz..." displayExpr="Name" showClearButton="true" searchEnabled="true" (onSelectionChanged)="onProcedureDoctorToBeReferred($event)" [readOnly]="tempResourcesToBeReferredPoliclinic == null" (showSelectionControls)="false" [(value)]="tempProcedureDoctorToBeReferred" valueExpr="ObjectID" id="A26319" data-tid="A368095"></dx-select-box>
+                    </div>
+                    <dx-button rtlEnabled="true" type="default" icon="fa fa-plus" (onClick)="btnAddResourcesToBeReferred($event)" i18n-text="@@M23181" id="A20248" data-tid="A368096"></dx-button>
+                </div>
+
+                <dx-data-grid #memberDoctorsGrid [editing]="{ texts:{confirmDeleteMessage:''}}" [dataSource]="ResourcesToBeReferredList" [height]="inpatientHealthCommitteGridHeight" data-tid="A368097">
+                    <dxi-column dataField="Resource.Name" caption="Birim" [width]="auto" data-tid="A368098">
+                        <!--<dxo-lookup [dataSource]="patientAdmissionFormViewModel?.ResourcesToBeReferredPoliclinic"
+                                    displayExpr="Name"
+                                    valueExpr="ObjectID">
+                        </dxo-lookup>-->
+                    </dxi-column>
+                    <dxi-column dataField="ProcedureDoctorToBeReferred.Name" caption="Doktor" [width]="200" data-tid="A368099">
+                        <!--<dxo-lookup [dataSource]="ismail"
+                                    displayExpr="Name"
+                                    valueExpr="ObjectID">
+                        </dxo-lookup>-->
+                    </dxi-column>
+                    <dxi-column caption="Sil" cellTemplate="buttonCellTemplate" data-tid="A368100"></dxi-column>
+
+                    <div *dxTemplate="let cellData of 'buttonCellTemplate'" id="A27830" style="width: 25px" data-tid="A368101">
+                        <i class="fa fa-minus-circle" style="cursor:pointer" (click)="onInpMemberDoctorRemoving(cellData)" id="A27831" data-tid="A368102"></i>
+                    </div>
+                    <dxo-editing mode="cell" [allowUpdating]="false" [allowAdding]="false" [allowDeleting]="false" data-tid="A368103">
+                    </dxo-editing>
+
+                </dx-data-grid>
+
+            </div>
+
+            <div class="col-sm-12 pull-right" id="C23642" style="margin-bottom: 5px;" data-tid="A368104">
+                <dx-button class="btn btn-round pull-left" type="default" text="Temizle" icon="fa fa-refresh" (onClick)="HcKabul_Yeni()" hint="Sağlık Kurulu Kabül" i18n-hint="@@M22549" id="A29060" data-tid="A368105"></dx-button>
+                <dx-button [visible]="_hcID == null" class="btn btn-round pull-right" type="success" text="Sağlık Kurulu Kabul" icon="fa fa-user-plus" (onClick)="HcKabul_Al()" hint="Sağlık Kurulu Kabül" i18n-hint="@@M22549" id="A29060" data-tid="A368106"></dx-button>
+                <dx-button [visible]="_hcID != null" class="btn btn-round pull-right" type="success" text="Güncelle" icon="fa fa-pencil" (onClick)="HcKabul_Guncelle()" hint="Sağlık Kurulu Kabül" i18n-hint="@@M22549" id="A29060" data-tid="A368107"></dx-button>
+            </div>
+        </dx-scroll-view>
+    </div>
+
+</dx-popup>
+
+<dx-popup showTitle="true" title="Epikriz Raporu" width="800" height="300" [(visible)]="epicrisisReportVisible" i18n-title="@@M20887" id="A27670" data-tid="A368108">
+    <div *dxTemplate="let data of 'content'" id="A27671" data-tid="A368109">
+        <div class="row" data-tid="A368110">
+            <label class="control-label col-sm-12" style="margin-bottom: 5px;" id="A23647" data-tid="A368111">Hastanın Yattığı Klinikler</label>
+        </div>
+        <div class="row" data-tid="A368112">
+            <div class="col-sm-4" style="padding-bottom:16px" data-tid="A368113">
+                <hvl-checkbox Title="Tüm Klinikler" [(Value)]="epicrisisReportAllClinicsSelected" (onValueChanged)="selectAllClinics($event)" data-tid="A368114"></hvl-checkbox>
+            </div>
+            <div class="col-sm-7" id="B23642" style="margin-bottom: 5px;" [hidden]="epicrisisReportAllClinicsSelected" data-tid="A368115">
+                <dx-select-box [items]="inPatientPhysicianApplicationFormViewModel.PatientOldInpatients" displayExpr="MasterResource" valueExpr="ObjectID" [searchEnabled]="true" [(value)]="selectedOldInpatient" id="B23643" data-tid="A368116"></dx-select-box>
+            </div>
+        </div>
+        <div class="row" data-tid="A368117">
+            <label class="control-label col-sm-12" style="margin-bottom: 5px;" id="A23647" data-tid="A368118">Doktor</label>
+        </div>
+        <div class="row" data-tid="A368119">
+            <div class="col-sm-11" id="B23642" style="margin-bottom: 5px;" data-tid="A368120">
+                <hvl-list-box #Validation (SelectedObjectChange)="onReportSelectedDoctorComboChanged($event)" [AutoCompleteDialogHeight]="150" [AutoCompleteDialogWidth]="ReportSelectedDoctorCombo?.AutoCompleteDialogWidth" [AutoCompleteMode]="ReportSelectedDoctorCombo?.AutoCompleteMode" [BackColor]="ReportSelectedDoctorCombo?.BackColor" [DefinitionName]="ReportSelectedDoctorCombo?.ListDefName" [DisplayExpressionsCache]="socialServicesPatientInterviewFormViewModel?.ListDefDisplayExpressions" [Enabled]="ReportSelectedDoctorCombo?.Enabled" [Font]="ReportSelectedDoctorCombo?.Font" [ForeColor]="ReportSelectedDoctorCombo?.ForeColor" [ListFilterExpression]="ReportSelectedDoctorCombo?.ListFilterExpression" [MinSearchLength]="ReportSelectedDoctorCombo?.MinSearchLength" [PopupDialogFieldConfig]="ReportSelectedDoctorCombo?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ReportSelectedDoctorCombo?.PopupDialogGridColumns" PopupDialogHeight="500px" [PopupDialogTitle]="ReportSelectedDoctorCombo?.PopupDialogTitle" [PopupDialogWidth]="ReportSelectedDoctorCombo?.PopupDialogWidth" [ReadOnly]="ReportSelectedDoctorCombo?.ReadOnly" [SearchMode]="ReportSelectedDoctorCombo?.SearchMode" [SearchTimeout]="ReportSelectedDoctorCombo?.SearchTimeout" [SelectedObject]="socialServicesPatientInterviewFormViewModel?.ReportSelectedUser" [TabIndex]="ReportSelectedDoctorCombo?.TabIndex" [Visible]="ReportSelectedDoctorCombo?.Visible" [width]="ReportSelectedDoctorCombo?.Width" id="A27676" data-tid="A368121">
+                </hvl-list-box>
+            </div>
+        </div>
+        <br data-tid="A368122" />
+        <br data-tid="A368123" />
+        <br data-tid="A368124" />
+        <br data-tid="A368125" />
+        <br data-tid="A368126" />
+        <br data-tid="A368127" />
+        <br data-tid="A368128" />
+        <br data-tid="A368129" />
+        <div class="row" data-tid="A368130">
+            <div class="col-sm-6" data-tid="A368131"></div>
+            <div class="col-sm-6" style="text-align:right" id="A27690" data-tid="A368132">
+                <dx-button icon="print" type="default" text="Yazdır" (onClick)="printEpicrisisReport()" i18n-text="@@M14084" id="A27691" data-tid="A368133">
+                </dx-button>
+            </div>
+        </div>
+    </div>
+</dx-popup>
+
+
+<dx-popup width="1000px" height="870px" [(visible)]="showProvisionPopup" [closeOnOutsideClick]="true" title="Takip Okuma Sonucu" i18n-title="@@M22665" id="A20355" data-tid="A368134">
+    <div *dxTemplate="let data of 'content'" style="overflow-y:scroll" id="A20356" data-tid="A368135">
+        <div *ngFor="let provision of readProvisionResultArray" class="col-sm-4 remove-padding" style="border: 2px solid #73AD21; border-radius: 10px;" id="A20357" data-tid="A368136">
+            <hr style="margin: 0px 0;" id="A20358" data-tid="A368137" />
+            <font color="red" id="A20359" data-tid="A368138"><b id="A20360" data-tid="A368139"> &nbsp;&nbsp;&nbsp;{{provision.takipNo }}</b></font>
+            <hr style="margin: 0px 0;" id="A20361" data-tid="A368140" />
+            <span id="A20362" data-tid="A368141"><b id="A20363" data-tid="A368142">&nbsp;Takip T.:</b> {{provision.takipTarihi }}</span><br id="A20364" data-tid="A368143" />
+            <span id="A20365" data-tid="A368144"><b id="A20366" data-tid="A368145">&nbsp;Takip No:</b> {{provision.takipNo }}</span><br id="A20367" data-tid="A368146" />
+            <span id="A20368" data-tid="A368147"><b id="A20369" data-tid="A368148">&nbsp;İlk Takip No:</b> {{provision.ilkTakipNo }}</span><br id="A20370" data-tid="A368149" />
+            <span id="A20371" data-tid="A368150"><b id="A20372" data-tid="A368151">&nbsp;Başvuru No:</b> {{provision.hastaBasvuruNo }}</span><br id="A20373" data-tid="A368152" />
+            <span id="A20374" data-tid="A368153"><b id="A20375" data-tid="A368154">&nbsp;Branş Kodu:</b> {{provision.bransKodu }}</span><br id="A20376" data-tid="A368155" />
+            <br id="A20377" data-tid="A368156" />
+            <u id="A20378" data-tid="A368157"> <b id="A20379" data-tid="A368158">Hasta Bilgileri</b> </u><br id="A20380" data-tid="A368159" />
+            <span id="A20381" data-tid="A368160"><b id="A20382" data-tid="A368161">&nbsp;TC:</b> {{provision.hastaBilgileri.tcKimlikNo }}</span><br id="A20383" data-tid="A368162" />
+            <span id="A20384" data-tid="A368163"><b id="A20385" data-tid="A368164">&nbsp;Ad:</b> {{provision.hastaBilgileri.ad }}</span><br id="A20386" data-tid="A368165" />
+            <span id="A20387" data-tid="A368166"><b id="A20388" data-tid="A368167">&nbsp;Soyad:</b> {{provision.hastaBilgileri.soyad }}</span><br id="A20389" data-tid="A368168" />
+            <span id="A20390" data-tid="A368169"><b id="A20391" data-tid="A368170">&nbsp;Cinsiyet:</b> {{provision.hastaBilgileri.cinsiyet }}</span><br id="A20392" data-tid="A368171" />
+            <span id="A20393" data-tid="A368172"><b id="A20394" data-tid="A368173">&nbsp;Doğum T.:</b> {{provision.hastaBilgileri.dogumTarihi }}</span><br id="A20395" data-tid="A368174" />
+            <span id="A20396" data-tid="A368175"><b id="A20397" data-tid="A368176">&nbsp;Sigortalı Turu:</b> {{provision.hastaBilgileri.sigortaliTuru }}</span><br id="A20398" data-tid="A368177" />
+            <span id="A20399" data-tid="A368178"><b id="A20400" data-tid="A368179">&nbsp;Devredilen K.:</b> {{provision.hastaBilgileri.devredilenKurum }}</span><br id="A20401" data-tid="A368180" />
+            <span id="A20402" data-tid="A368181"><b id="A20403" data-tid="A368182">&nbsp;Katilim Pay. Muaf:</b> {{provision.hastaBilgileri.katilimPayindanMuaf }}</span><br id="A20404" data-tid="A368183" />
+            <span id="A20405" data-tid="A368184"><b id="A20406" data-tid="A368185">&nbsp;Kapsam Adı:</b> {{provision.hastaBilgileri.kapsamAdi }}</span><br id="A20407" data-tid="A368186" />
+            <br id="A20408" data-tid="A368187" />
+            <span id="A20409" data-tid="A368188"><b id="A20410" data-tid="A368189">&nbsp;Provizyon Tipi:</b> {{provision.provizyonTipi }}</span><br id="A20411" data-tid="A368190" />
+            <span id="A20412" data-tid="A368191"><b id="A20413" data-tid="A368192">&nbsp;Takip Tipi:</b> {{provision.takipTipi }}</span><br id="A20414" data-tid="A368193" />
+            <span id="A20415" data-tid="A368194"><b id="A20416" data-tid="A368195">&nbsp;Tedavi Tipi:</b> {{provision.tedaviTipi }}</span><br id="A20417" data-tid="A368196" />
+            <span id="A20418" data-tid="A368197"><b id="A20419" data-tid="A368198">&nbsp;Tedavi Türü:</b> {{provision.tedaviTuru }}</span><br id="A20420" data-tid="A368199" />
+            <span id="A20421" data-tid="A368200"><b id="A20422" data-tid="A368201">&nbsp;İstisnai Hal:</b> {{provision.istisnaiHal }}</span><br id="A20423" data-tid="A368202" />
+            <br id="A20424" data-tid="A368203" />
+            <span id="A20425" data-tid="A368204"><b id="A20426" data-tid="A368205">&nbsp;Fatura Teslim No:</b> {{provision.faturaTeslimNo }}</span><br id="A20427" data-tid="A368206" />
+            <span id="A20428" data-tid="A368207"><b id="A20429" data-tid="A368208">&nbsp;Fatura T.:</b> {{provision.faturaTarihi }}</span><br id="A20430" data-tid="A368209" />
+            <span id="A20431" data-tid="A368210"><b id="A20432" data-tid="A368211">&nbsp;Fatura İptal H.:</b>{{provision.fatutaIptalHakki }}</span><br id="A20433" data-tid="A368212" />
+            <span id="A20434" data-tid="A368213"><b id="A20435" data-tid="A368214">&nbsp;Evrak ID:</b> {{provision.evrakID }}</span><br id="A20436" data-tid="A368215" />
+            <span id="A20437" data-tid="A368216"><b id="A20438" data-tid="A368217">&nbsp;Takip Durumu:</b> {{provision.takipDurumu }}</span><br id="A20439" data-tid="A368218" />
+            <br id="A20440" data-tid="A368219" />
+            <span id="A20441" data-tid="A368220"><b id="A20442" data-tid="A368221">&nbsp;Kayit T.:</b> {{provision.kayitTarihi }}</span><br id="A20443" data-tid="A368222" />
+            <span id="A20444" data-tid="A368223"><b id="A20445" data-tid="A368224">&nbsp;Dönor TC:</b> {{provision.donorTCKimlikNo }}</span><br id="A20446" data-tid="A368225" />
+            <span id="A20447" data-tid="A368226"><b id="A20448" data-tid="A368227">&nbsp;Tesis Kodu:</b> {{provision.tesisKodu }}</span><br id="A20449" data-tid="A368228" />
+            <span id="A20450" data-tid="A368229"><b id="A20451" data-tid="A368230">&nbsp;Sevk Durumu:</b> {{provision.sevkDurumu }}</span><br id="A20452" data-tid="A368231" />
+            <span id="A20453" data-tid="A368232"><b id="A20454" data-tid="A368233">&nbsp;YD Çocuk Sira:</b> {{provision.yeniDoganCocukSiraNo }}</span><br id="A20455" data-tid="A368234" />
+            <span id="A20456" data-tid="A368235"><b id="A20457" data-tid="A368236">&nbsp;YD Çocuk Doğum T.:</b> {{provision.yeniDoganDogumTarihi }}</span><br id="A20458" data-tid="A368237" />
+            <span id="A20459" data-tid="A368238"><b id="A20460" data-tid="A368239">&nbsp;Arv Flag:</b> {{provision.arvFlag }}</span><br id="A20461" data-tid="A368240" />
+            <br id="A20462" data-tid="A368241" />
+            <span id="A20463" data-tid="A368242"><b id="A20464" data-tid="A368243">&nbsp;Sonuç Kodu:</b> {{provision.sonucKodu }}</span><br id="A20465" data-tid="A368244" />
+            <span id="A20466" data-tid="A368245"><b id="A20467" data-tid="A368246">&nbsp;Sonuç Mesajı:</b> {{provision.sonucMesaji }}</span>
+        </div>
+    </div>
+</dx-popup>
+
+<dx-popup showTitle="false" title="Boş/Dolu Yatak Listesi" [(visible)]="ShowEmptyBedPopup" [width]="500" height="200" i18n-title="@@M23738" id="A29353" data-tid="A368247">
+    <div *dxTemplate="let data of 'content'" id="A29371" data-tid="A368248">
+        <div class="col-sm-4" style="padding-bottom:16px" data-tid="A368249">
+            <hvl-checkbox Title="Tüm Klinikler" [(Value)]="GetAllClinicForReport" data-tid="A368250"></hvl-checkbox>
+        </div>
+        <label class="control-label col-sm-12" style="margin-bottom: 5px;" id="A23647" data-tid="A368251">
+            Poliklinik
+            Seçimi
+        </label>
+        <div class="col-sm-12" id="B23642" style="margin-bottom: 5px;" data-tid="A368252">
+            <!-- <dx-select-box [items]="ReportClinicList" displayExpr="Name" valueExpr="ObjectID" [searchEnabled]="true" [(value)]="_dentistResourceID"  id="B23643"></dx-select-box> -->
+            <dx-tag-box [items]="ReportClinicList" [(value)]="SelectedClinicList" placeholder="Poliklinik Seçimi" [searchEnabled]="true" [readOnly]="GetAllClinicForReport" [showSelectionControls]="true" displayExpr="Name" valueExpr="ObjectID" [multiline]="false" i18n-placeholder="@@M27304" id="A28453" data-tid="A368253">
+            </dx-tag-box>
+        </div>
+
+        <div class="col-sm-12 pull-right" id="C23642" style="margin-bottom: 5px;" data-tid="A368254">
+            <dx-button class="btn btn-sm btn-primary btn-gradient btn-round pull-right" text="Rapor Yazdır" icon="fa fa-user-plus" (onClick)="openEmptyBedReport()" hint="Rapor Yazdır" i18n-hint="@@M22549" id="A29060" data-tid="A368255"></dx-button>
+        </div>
+    </div>
+</dx-popup>
+
+<dx-popup showTitle="false" title="Filtre Seçim Ekranı" [(visible)]="ShowInpatientListPopup || ShowPatientVacationListPopup" (onHiding)="onGeneralReportPopupHiding($event)" [width]="500" height="300" i18n-title="@@M23738" id="A29353" data-tid="A368256">
+    <div *dxTemplate="let data of 'content'" id="A29371" data-tid="A368257">
+        <div class="col-sm-4" style="padding-bottom:16px" data-tid="A368258">
+            <hvl-checkbox Title="Tüm Klinikler" [(Value)]="GetAllClinicForReport" data-tid="A368259"></hvl-checkbox>
+        </div>
+        <label class="control-label col-sm-12" style="margin-bottom: 5px;" id="A23647" data-tid="A368260">
+            Poliklinik
+            Seçimi
+        </label>
+        <div class="col-sm-12" id="B23642" style="margin-bottom: 5px;" data-tid="A368261">
+            <!-- <dx-select-box [items]="ReportClinicList" displayExpr="Name" valueExpr="ObjectID" [searchEnabled]="true" [(value)]="_dentistResourceID"  id="B23643"></dx-select-box> -->
+            <dx-tag-box [items]="ReportClinicList" [(value)]="SelectedClinicList" placeholder="Poliklinik Seçimi" [searchEnabled]="true" [readOnly]="GetAllClinicForReport" [showSelectionControls]="true" displayExpr="Name" valueExpr="ObjectID" [multiline]="false" i18n-placeholder="@@M27304" id="A28453" data-tid="A368262">
+            </dx-tag-box>
+        </div>
+
+        <div class="col-sm-6" data-tid="A368263">
+            <label class="control-label" style="margin-top: 5px;" id="A20110" data-tid="A368264">Başlangıç Tarihi</label>
+        </div>
+        <div class="col-sm-6" data-tid="A368265">
+            <label class="control-label" style="margin-top: 5px;" id="A20110" data-tid="A368266">Bitiş Tarihi</label>
+        </div>
+
+        <div class="col-sm-6" data-tid="A368267">
+            <dx-date-box width="100%" type="datetime" displayFormat="dd/MM/yyyy HH:mm" [(value)]="generalReportStartDate" id="A9510" data-tid="A368268">
+            </dx-date-box>
+        </div>
+
+        <div class="col-sm-6" data-tid="A368269">
+            <dx-date-box width="100%" type="datetime" displayFormat="dd/MM/yyyy HH:mm" [(value)]="generalReportEndDatee" id="A9510" data-tid="A368270">
+            </dx-date-box>
+        </div>
+
+        <div class="col-sm-12 pull-right" id="C23642" style="margin-bottom: 5px;" data-tid="A368271">
+            <dx-button class="btn btn-sm btn-primary btn-gradient btn-round pull-right" text="Rapor Yazdır" icon="fa fa-user-plus" (onClick)="openGeneralPopupFromPopup()" hint="Rapor Yazdır" i18n-hint="@@M22549" id="A29060" data-tid="A368272"></dx-button>
+        </div>
+    </div>
+</dx-popup>
+
+
+<dx-popup height="600px" [(visible)]="showRichTextBoxPopup" [closeOnOutsideClick]="false" title="Klinik Seyir" i18n-title="@@M20728" data-tid="A368273">
+    <div class="margin-bottom-10" data-tid="A368274">
+        <div *dxTemplate="let data of 'content'" data-tid="A368275">
+
+
+                <div class="col-md-12" id="A29126" data-tid="A367754" *ngIf="isLastSelectedProgressCovid == true">
+                        <OzellikliBakimIzlemForm [ozellikliIzlemIdContainer]="ozellikliIzlemIdContainer" (SaveCompleteEvent)="RefreshFindingGrid($event)"></OzellikliBakimIzlemForm>
+                    </div>
+                    <div class="col-md-12" *ngIf="isLastSelectedProgressCovid == false">
+                            <hvl-richtextbox Height="600px" (change)="dynamicEditorChanged(progres?.data,$event)" [value]="editorValue" [config]="InPatientPhysicianProgressesTableEditorConfig" id="A29152" data-tid="A368276"></hvl-richtextbox>
+
+                    </div>
+
+        </div>
+    </div>
+</dx-popup>
+
+<dx-popup width="700px" height="300px" [(visible)]="dailyApplicationControl" [closeOnOutsideClick]="false" title="Günübirlik Yatış İşlemleri" [showCloseButton]="false" data-tid="A368277">
+    <div class="margin-bottom-10" data-tid="A368278">
+        <div *dxTemplate="let data of 'content'" data-tid="A368279">
+            <div class="row" data-tid="A368280">
+                <label class="control-label col-sm-2" id="A1801" data-tid="A368281">
+                    Özet Epikriz
+                </label>
+            </div>
+            <div class="row" data-tid="A368282">
+                <div class="col-sm-12" id="A28111" data-tid="A368283">
+                    <dx-text-area [(value)]="summaryEpicrisis" width="500px" height="100px" data-tid="A368284"></dx-text-area>
+                </div>
+            </div>
+            <div class="row" data-tid="A368285">
+                <label class="control-label col-sm-2" id="A1801" data-tid="A368286">
+                    Birim Seçimi
+                </label>
+            </div>
+            <div class="row" data-tid="A368287">
+                <div class="col-sm-5" id="A28111" data-tid="A368288">
+                    <dx-select-box [items]="ClinicList" placeholder="Seçiniz" displayExpr="Name" showClearButton="true" searchEnabled="true" (showSelectionControls)="false" [(value)]="birim" valueExpr="ObjectID" id="A26313" data-tid="A368289"></dx-select-box>
+                </div>
+            </div>
+            <div class="row" data-tid="A368290">
+                <label class="control-label col-sm-2" id="A1801" data-tid="A368291">
+                    Yatış Tarihi
+                </label>
+            </div>
+            <div class="row" data-tid="A368292">
+                <div class="col-sm-5" id="A28111" data-tid="A368293">
+                    <dx-date-box width="100%" type="date" [(value)]="InpatientDate" [readOnly]="false" data-tid="A368294"> </dx-date-box>
+                </div>
+            </div>
+
+            <div class="row" style="padding-top: 10px" data-tid="A368295">
+
+                <div class="col-sm-5" style="float: left" data-tid="A368296">
+                    <dx-button text="Kaydet ve Taburcu Et" rtlEnabled="true" icon="save" type="success" (onClick)="DailyOperations()" data-tid="A368297"></dx-button>
+                </div>
+
+                <div class="col-sm-2" data-tid="A368298">
+                    <dx-button text="İptal" icon="clear" type="danger" rtlEnabled="true" (onClick)="onDailyOperationCancel($event)" data-tid="A368299"></dx-button>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+</dx-popup>
+<dx-popup width="1000px" height="660" [(visible)]="showMedulaInpatientOpPopup" [closeOnOutsideClick]="false" title="Yatış-Çıkış İşlemleri" i18n-title="@@M24452" id="A31354" data-tid="A368300">
+    <div *dxTemplate="let data of 'content'" id="A31355" data-tid="A368301">
+        <div class="col-sm-8" id="A31356" data-tid="A368302">
+            <div class="row" id="A31357" data-tid="A368303">
+                <dx-data-grid height="560px" [selection]="{mode: 'none'}" [dataSource]="MedulaInpatientInfo.basvuruYatisBilgileri" [columns]="MedulaInpatientFirstAndLastDateColumns" id="A31358" data-tid="A368304">
+                    <div *dxTemplate="let row of 'buttonDeleteInpatientCellTemplate'" id="A31359" data-tid="A368305">
+                        <!--<dx-button type="danger" (onClick)="deleteYatisCikisKayit(row)" icon="fa fa-times" id="A31360"></dx-button>-->
+                    </div>
+                </dx-data-grid>
+            </div>
+        </div>
+        <div class="col-sm-4" id="A31361" data-tid="A368306">
+            <span id="A31362" data-tid="A368307"><b id="A31363" data-tid="A368308"><u id="A31364" data-tid="A368309">&nbsp;Hasta Yatış Okuma Sonuçları</u></b></span><br id="A31365" data-tid="A368310" />
+            <span id="A31366" data-tid="A368311"><b id="A31367" data-tid="A368312">&nbsp;Tesis Kodu:</b> {{MedulaInpatientInfo.saglikTesisiKodu}}</span><br id="A31368" data-tid="A368313" />
+            <span id="A31369" data-tid="A368314"><b id="A31370" data-tid="A368315">&nbsp;Başvuru No:</b> {{MedulaInpatientInfo.hastaBasvuruNo}}</span><br id="A31371" data-tid="A368316" />
+            <span id="A31372" data-tid="A368317"><b id="A31373" data-tid="A368318">&nbsp;Y.D.Doğum Tar.</b> {{MedulaInpatientInfo.yeniDoganDogumTarihi}}</span><br id="A31374" data-tid="A368319" />
+            <span id="A31375" data-tid="A368320"><b id="A31376" data-tid="A368321">&nbsp;Y.D.Çocuk Sıra:</b> {{MedulaInpatientInfo.yeniDoganCocukSiraNo}}</span><br id="A31377" data-tid="A368322" />
+            <span id="A31378" data-tid="A368323"><b id="A31379" data-tid="A368324">&nbsp;Sonuç Kodu:</b> {{MedulaInpatientInfo.sonucKodu}}</span><br id="A31380" data-tid="A368325" />
+            <span id="A31381" data-tid="A368326"><b id="A31382" data-tid="A368327">&nbsp;Sonuç Mesajı:</b> {{MedulaInpatientInfo.sonucMesaji}}</span><br id="A31383" data-tid="A368328" /><br id="A31384" data-tid="A368329" /><br id="A31385" data-tid="A368330" />
+            <!--<div id="A31386">
+                <span id="A31387"><b id="A31388"><u id="A31389">&nbsp;Yeni Yatış-Çıkış Kayıt</u></b></span><br id="A31390" />
+                <div class="row" id="A31391">
+                    <div class="col-sm-6" id="A31392">
+                        <dx-date-box [(value)]="MedulaInpatientInfo.ClinicDischargeDate" type="date" displayFormat="dd/MM/yyyy" [disabled]="false" id="A31393"> </dx-date-box>
+                    </div>
+                    <div class="col-sm-6" id="A31394">
+                        <dx-button type="success" style="float: right;" icon="fa fa-check" (onClick)="saveNewYatisCikis()" text="Yatış Çıkış Kayıt" i18n-text="@@M24428" id="A31395"></dx-button>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+        <!--<div class="col-sm-12" id="A31396">
+            <div class="row" id="A31397">
+                <dx-button type="danger" style="float: right;" icon="fa fa-times" (onClick)="this.showMedulaInpatientOpPopup = false;" text="Çıkış" i18n-text="@@M12363" id="A31398"></dx-button>
+            </div>
+        </div>-->
+    </div>
+</dx-popup>
+
+
+<dx-popup class="hidePopupHeader" [showTitle]="true" title="LongShortInpatientReasonTitle" [width]="900" [height]="350" [(visible)]="showLongShortInpatientReason" data-tid="A368331">
+    <div *dxTemplate="let data of 'content'" id="A19505" data-tid="A368332">
+        <p class="alert alert-danger" data-tid="A368333">{{LongShortInpatientReasonTitle}}</p>
+        <comp-compose [Info]="systemApiService?.componentInfo" (DynamicComponentActionExecuted)="LongShortInpatientReasonActionExecuted($event)" data-tid="A368334"></comp-compose>
+    </div>
+</dx-popup>
+
+<dx-popup class="hidePopupHeader" [showTitle]="true" title="Tedavi Sonucu" [width]="400" [height]="330" [(visible)]="showTreatmentResult" data-tid="A368335">
+    <div class="row" id="A24055" data-tid="A368336">
+        <div class="col-md-12" id="A24056" data-tid="A368337">
+            <label class="control-label" id="A24057" data-tid="A368338">Tedavi Sonucu</label>
+            <hvl-list-box #Validation (SelectedObjectChange)="onlistBoxTreatmentResultChanged($event)" [AutoCompleteDialogHeight]="listBoxTreatmentResult?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="listBoxTreatmentResult?.AutoCompleteDialogWidth" [AutoCompleteMode]="listBoxTreatmentResult?.AutoCompleteMode" [BackColor]="listBoxTreatmentResult?.BackColor" [DefinitionName]="listBoxTreatmentResult?.ListDefName" [DisplayExpressionsCache]="inPatientPhysicianApplicationFormViewModel?.ListDefDisplayExpressions" [Enabled]="listBoxTreatmentResult?.Enabled" [Font]="listBoxTreatmentResult?.Font" [ForeColor]="listBoxTreatmentResult?.ForeColor" [ListFilterExpression]="listBoxTreatmentResult?.ListFilterExpression" [MinSearchLength]="listBoxTreatmentResult?.MinSearchLength" [PopupDialogFieldConfig]="listBoxTreatmentResult?.PopupDialogFieldConfig" [PopupDialogGridColumns]="listBoxTreatmentResult?.PopupDialogGridColumns" [PopupDialogHeight]="listBoxTreatmentResult?.PopupDialogHeight" [PopupDialogTitle]="listBoxTreatmentResult?.PopupDialogTitle" [PopupDialogWidth]="listBoxTreatmentResult?.PopupDialogWidth" [ReadOnly]="listBoxTreatmentResult?.ReadOnly" [SearchMode]="listBoxTreatmentResult?.SearchMode" [SearchTimeout]="listBoxTreatmentResult?.SearchTimeout" [SelectedObject]="inPatientPhysicianApplicationFormViewModel?.TreatmentResult" [TabIndex]="listBoxTreatmentResult?.TabIndex" [Visible]="listBoxTreatmentResult?.Visible" [width]="listBoxTreatmentResult?.Width" id="A24058" data-tid="A368339"></hvl-list-box>
+        </div>
+    </div>
+    <br data-tid="A368340" />
+    <br data-tid="A368341" />
+
+    <div class="row" id="A24055" data-tid="A368342">
+        <div class="col-md-6" style="text-align:center;" data-tid="A368343">
+            <dx-button type="success" (click)="CreateDischarge()" text="Taburcu Et" data-tid="A368344"></dx-button>
+        </div>
+        <div class="col-md-6" style="text-align:center;" data-tid="A368345">
+            <dx-button type="danger" (click)="CancelDischarge()" text="Vazgeç" data-tid="A368346"></dx-button>
+        </div>
+    </div>
+</dx-popup>
+
+
+
+    <dx-popup showTitle="false" title="Hasta İzin Bilgi Ekranı" [width]="950" [height]="680" [(visible)]="showPopupVacationForm" i18n-title="@@M27695" id="A19974" data-tid="A368347">
+        <div *dxTemplate="let data of 'content'" id="A19975" data-tid="A368348">
+            <div class="margin-bottom-10" *ngIf="showPopupVacationForm" id="A19976" data-tid="A368349">
+                <div class="col-md-12" data-tid="A368350">
+                    <atlas-form-editor [QueryParameters]="vacationQueryParameters" [ComponentInfo]="vacationComponentInfo" [SaveForm]="savecompanionComponent" [OpenComponentByAddButton]="true" Title="Hasta İzin İşlemleri" (QueryResultLoaded)="componentQueryResultLoaded($event)" i18n-Title="@@M27648" id="A29455" data-tid="A368351"></atlas-form-editor>
+                </div>
+            </div>
+        </div>
+    </dx-popup>
+
+
+<dx-popup width="600px" height="250px" [(visible)]="showTedaviTipiPopup" [closeOnOutsideClick]="false" title="Tedavi Tipi Seçimi" data-tid="A368352">
+    <div *dxTemplate="let data of 'content'" id="A24160" data-tid="A368353">
+        <div class="col-md-12" data-tid="A368354">
+            <label class="control-label" data-tid="A368355">Tedavi Tipi</label> <!--(SelectedObjectChange)="ontedaviTipiChanged($event)"-->
+            <hvl-list-box #Validation [AutoCompleteDialogHeight]="tedaviTipi?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="tedaviTipi?.AutoCompleteDialogWidth" [AutoCompleteMode]="tedaviTipi?.AutoCompleteMode" [BackColor]="tedaviTipi?.BackColor" [DefinitionName]="tedaviTipi?.ListDefName" [DisplayExpressionsCache]="inPatientPhysicianApplicationFormViewModel?.ListDefDisplayExpressions" [Enabled]="tedaviTipi?.Enabled" [Font]="tedaviTipi?.Font" [ForeColor]="tedaviTipi?.ForeColor" [ListFilterExpression]="tedaviTipi?.ListFilterExpression" [MinSearchLength]="tedaviTipi?.MinSearchLength" [PopupDialogFieldConfig]="tedaviTipi?.PopupDialogFieldConfig" [PopupDialogGridColumns]="tedaviTipi?.PopupDialogGridColumns" [PopupDialogHeight]="tedaviTipi?.PopupDialogHeight" [PopupDialogTitle]="tedaviTipi?.PopupDialogTitle" [PopupDialogWidth]="tedaviTipi?.PopupDialogWidth" [ReadOnly]="tedaviTipi?.ReadOnly" [SearchMode]="tedaviTipi?.SearchMode" [SearchTimeout]="tedaviTipi?.SearchTimeout" [(SelectedObject)]="TedaviTipiSelectedObject" [TabIndex]="tedaviTipi?.TabIndex" [Visible]="tedaviTipi?.Visible" [width]="tedaviTipi?.Width" id="A19107" data-tid="A368356"></hvl-list-box>
+        </div>
+        <div class="col-md-12" data-tid="A368357">
+            <br data-tid="A368358" /><br data-tid="A368359" /><br data-tid="A368360" /><br data-tid="A368361" /><br data-tid="A368362" /><br data-tid="A368363" /><br data-tid="A368364" /><br data-tid="A368365" />
+            <button type="button" class="btn btn-xs btn-success pull-right" (click)="AcceptTedaviTipi()" data-tid="A368366">Tamam</button>
+            <button type="button" class="btn btn-xs btn-primary pull-right" (click)="CancelTedaviTipi()" data-tid="A368367">Vazgeç</button>
+        </div>
+    </div>
+</dx-popup>
+
+<dx-popup width="600px" height="225px" [(visible)]="openBirthInfoPopUp" [closeOnOutsideClick]="false" title="Doğum Bilgileri" [showCloseButton]="false" data-tid="A368368">
+    <div class="margin-bottom-10" data-tid="A368369">
+        <div *dxTemplate="let data of 'content'" data-tid="A368370">
+
+            <div class="row" data-tid="A368371">
+                <label class="control-label col-sm-6" id="A1801" data-tid="A368372">
+                    Başlangıç Tarihi
+                </label>
+                <label class="control-label col-sm-6" id="A1801" data-tid="A368373">
+                    Bitiş Tarihi
+                </label>
+            </div>
+            <div class="row" data-tid="A368374">
+                <div class="col-sm-6" id="A28111" data-tid="A368375">
+                    <dx-date-box width="100%" type="date" [(value)]="BirthInfoReportStartDate" [readOnly]="false" data-tid="A368376"> </dx-date-box>
+                </div>
+                <div class="col-sm-6" id="A28111" data-tid="A368377">
+                    <dx-date-box width="100%" type="date" [(value)]="BirthInfoReportEndDate" [readOnly]="false" data-tid="A368378"> </dx-date-box>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 10px;" data-tid="A368379">
+                <label class="control-label col-sm-5" id="A1801" data-tid="A368380">
+                    Doğum Yöntemi
+                </label>
+            </div>
+            <div class="row" data-tid="A368381">
+                <div class="col-sm-12" id="A28111" data-tid="A368382">
+                    <dx-tag-box [dataSource]="BirthTypeList" [searchEnabled]="true" displayExpr="Name" valueExpr="ObjectID" [(value)]="SelectedBirthTypes" [multiline]="false" showSelectionControls="false" data-tid="A368383">
+                    </dx-tag-box>
+                </div>
+            </div>
+            <div class="row" style="padding-top: 20px" data-tid="A368384">
+                <div class="col-sm-12" style="text-align: right" data-tid="A368385">
+                    <dx-button type="button" class="btn btn-default" text="Raporu Görüntüle" rtlEnabled="true" (onClick)="OpenHelpMenuServiceFunction()" data-tid="A368386"></dx-button>
+                </div>
+            </div>
+        </div>
+    </div> 
+</dx-popup>
+
+
+<dx-popup width="500px" height="451px" [(visible)]="changeDietPopUp" [closeOnOutsideClick]="false" title="Yeni Diyet Seçimi" [showCloseButton]="false" data-tid="A368387">
+    <div class="margin-bottom-10" data-tid="A368388">
+        <div *dxTemplate="let data of 'content'" data-tid="A368389">
+
+            <div class="row" data-tid="A368390">
+                <label class="control-label col-sm-6" id="A1801" data-tid="A368391">
+                    Diyet Seçimi
+                </label>
+            </div>
+             <div class="row" data-tid="A368392">
+                <div class="dx-searchbar" id="A29256" data-tid="A368393">
+                <dx-text-box valueChangeEvent="keyup" placeholder="Ara" mode="search" (onValueChanged)="searchDietOder($event)" i18n-placeholder="@@M27276" id="A29257" data-tid="A368394">
+                </dx-text-box>
+                </div>
+                <dx-list [dataSource]="dietOrderSource" (onItemClick)="onChangeDietOrder($event)" style="height:350px;border:1px solid grey;" id="A29258" data-tid="A368395">
+                    <div *dxTemplate="let data of 'item'" id="A29259" data-tid="A368396">
+                        <div style="float:left; width:90%;" id="A29260" data-tid="A368397">{{data.Name}}</div>
+                    </div>
+                </dx-list>
+             </div>
+
+        </div>
+    </div>
+</dx-popup>
+
+<dx-popup class="reportStyle" [fullScreen]="true" [(visible)]="showOccupancyRate" [closeOnOutsideClick]="false" i18n-title="@@M13708" id="A24159" data-tid="A368398">
+    <div *dxTemplate="let data of 'content'" id="A24160" data-tid="A368399">
+        <div class="row" style="margin-left: 15px; margin-right: 15px;" data-tid="A368400">
+            <div class="col-sm-12" data-tid="A368401">
+                <SafeSurgeryCheckListForm data-tid="A368402"></SafeSurgeryCheckListForm>
+
+            </div>
+        </div>
+    </div>
+</dx-popup>
+
+<dx-popup class="reportStyle" [fullScreen]="true" [(visible)]="showSurgeryAppointmentForm" [closeOnOutsideClick]="false" i18n-title="@@M13708" id="A24159" data-tid="A368403">
+    <div *dxTemplate="let data of 'content'" id="A24160" data-tid="A368404">
+        <div class="row" style="margin-left: 15px; margin-right: 15px;" data-tid="A368405">
+            <div class="col-sm-12" data-tid="A368406">
+                <SurgeryAppointmentComponentForm *ngIf="activeIdsParam != null" [FormLoadInput]="activeIdsParam" (ClosePopUp)="CloseSurgeryAppointmentPopUp($event)" data-tid="A368407"></SurgeryAppointmentComponentForm>
+
+            </div>
+        </div>
+    </div>
+</dx-popup>
+
+<dx-popup width="1000px" height="600px" [(visible)]="showArchiveRequest" [closeOnOutsideClick]="false" title="Arşiv İstek" [showCloseButton]="true" data-tid="A368408">
+    <div class="margin-bottom-10" data-tid="A368409">
+        <div *dxTemplate="let data of 'content'" data-tid="A368410">
+
+            <div class="row" data-tid="A368411">
+                <div class="col-sm-6" data-tid="A368412">
+                        <label style="font-size: 13px; font-weight: normal !important;" data-tid="A368413">
+                                Ad Soyad: {{this.inPatientPhysicianApplicationFormViewModel._Patient?.Name}}
+                        {{this.inPatientPhysicianApplicationFormViewModel._Patient?.Surname}}
+                    </label>
+                </div>
+                <div class="col-sm-6" id="A28111" data-tid="A368414">
+                    <label style="font-size: 13px; font-weight: normal !important;" data-tid="A368415">
+                        T.C. Kimlik Numarası: {{this.inPatientPhysicianApplicationFormViewModel._Patient?.UniqueRefNo}}
+                    </label>
+
+                </div>
+            </div>
+            <div class="row" data-tid="A368416">
+                <div class="col-sm-6" data-tid="A368417">
+                        <label style="font-size: 13px; font-weight: normal !important;" data-tid="A368418">
+                                Adres: {{this.ArchiveRequest.PatientAddress}}
+
+                    </label>
+                </div>
+
+                <div class="col-sm-6" data-tid="A368419">
+                        <label style="font-size: 13px; font-weight: normal !important;" data-tid="A368420">
+                                Telefon Numarası: {{this.ArchiveRequest.PatientMobilePhone}}
+                    </label>
+                </div>
+            </div>
+            <br data-tid="A368421" />
+            <div class="row" data-tid="A368422">
+                <div class="col-sm-6" data-tid="A368423">
+
+                    <label data-tid="A368424">
+                        İstek Yapılacak Arşiv Kayıtları:
+                    </label>
+                </div>
+            </div>
+            <div class="row" data-tid="A368425">
+                <div class="col-sm-12" data-tid="A368426">
+
+                    <dx-data-grid [columns]="ArchiveGridColumns" [dataSource]="PatientEpisodeFolderList" (onSelectionChanged)="selectionEpisodeFolder($event)" [selection]="{mode: 'multiple',allowSelectAll: true}" [paging]="{enable: true, pageSize:100}" [filterRow]="{visible: true}" style="height:100%" id="A10250" data-tid="A368427">
+                    </dx-data-grid>
+                </div>
+            </div>
+            <br data-tid="A368428" />
+
+            <div class="row" data-tid="A368429">
+                <label class="control-label col-md-12" style="font-size: 13px" data-tid="A368430">
+                    Açıklama
+                </label>
+                <div class="col-md-12" data-tid="A368431">
+                    <dx-text-box placeholder="İstek Açıklaması Giriniz..." [(value)]="this.archiveDescription" i18n-placeholder="@@M18458" id="A1466" data-tid="A368432">
+
+                    </dx-text-box>
+                </div>
+            </div>
+            <div class="col-md-12" style="text-align:right;" data-tid="A368433">
+                <br data-tid="A368434" />
+                <button type="button" class="btn btn-default" (click)="CreateArchiveRequest()" data-tid="A368435">Arşiv İsteği Oluştur</button>
+            </div>
+            <br data-tid="A368436" />
+        </div>
+    </div>
+</dx-popup>
+
+<dx-popup width="500px" height="300px" [(visible)]="showChecklistSelection" [closeOnOutsideClick]="false" i18n-title="@@M13708" id="A24159" data-tid="A368437">
+        <div *dxTemplate="let data of 'content'" id="A24160" data-tid="A368438">
+            <div class="row" style="margin-left: 15px; margin-right: 15px;" data-tid="A368439">
+                <div class="col-sm-12" data-tid="A368440">
+                        <label class="control-label" data-tid="A368441">Açmak istediğiniz Güvenli Cerrahi Kontrol Listesini seçiniz</label>
+                        <br data-tid="A368442" />
+                        <dx-data-grid [dataSource]="safeSurgerydataSource" [columns]="ProceduresGridColumns" (onRowClick)="onSafeSurgeryGridRowClick($event)" data-tid="A368443">
+                        </dx-data-grid>    
+                </div>
+            </div>
+        </div>
+    </dx-popup>
+
+    
+<dx-popup width="400px" height="230px" [(visible)]="ShowCovidProgressWarning" [closeOnOutsideClick]="false" title="Covid İzlem Uyarısı" id="A1445" data-tid="A346098">
+        <div *dxTemplate="let data of 'content'" id="A14465" data-tid="A346099">
+    
+            <div class="row" id="p1" data-tid="A346100">
+                <br data-tid="A346101" />
+                <br data-tid="A346102" />
+                <br data-tid="A346103" />
+                <div class="col-md-10" id="p2" data-tid="A346104">
+                    <label style="font-size: 14px;text-align: center !important;" data-tid="A346105">Bu hasta üzerinde Covid tanısı girilmiştir. Bugünkü izlem verisini klinik seyir alanından lütfen ekleyiniz. </label>
+                </div>
+                <div class="col-md-1" id="p3" data-tid="A346106">
+                    <i style="color:#e06b6b;float:right;margin-right:5px;margin-top:-5px;font-size:20px" class="fa fa-exclamation-circle" data-toggle="tooltip" data-placement="bottom" data-tid="A346107"></i>
+                </div>
+            </div>
+    
+        </div>
+    
+    </dx-popup>

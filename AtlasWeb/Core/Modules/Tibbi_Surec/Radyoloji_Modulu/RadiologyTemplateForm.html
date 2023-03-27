@@ -1,0 +1,97 @@
+﻿<div style="height:100%" data-tid="A360852">
+    <div class="row m-0" data-tid="A360853">
+        <div class="col-md-6" data-tid="A360854">
+            <label class="control-label" data-tid="A360855">Kayıtlı Şablonlar</label>
+            <dx-lookup [dataSource]="radiologyTemplateFormViewModel.TemplateList" [showPopupTitle]="false" searchEnabled="false" displayExpr="Name" closeOnOutsideClick="true" (onValueChanged)="onSelectRadiologyTemplate($event)" data-tid="A360856">
+            </dx-lookup>
+        </div>
+        <div class="col-md-6" data-tid="A360857">
+            <label class="control-label" data-tid="A360858">Şablon Adı</label>
+            <dx-text-box [(value)]="radiologyTemplateInput.TemplateName" data-tid="A360859"></dx-text-box>
+        </div>
+    </div>
+    <div class="row m-0" style="margin-top:10px" data-tid="A360860">
+        <div class="col-md-12" data-tid="A360861">
+            <dx-tab-panel [selectedIndex]="0" [animationEnabled]="true" style="height:330px" deferRendering="false" data-tid="A360862">
+
+                <dxi-item class="tabpanel-item" title="Rapor" style="height:100%!important; overflow-y:auto;" data-tid="A360863">
+                    <div class="row m-0" data-tid="A360864">
+                        <div class="col-md-12" data-tid="A360865">
+
+                            <hvl-richtextbox (change)="onReportChanged($event)" Theme="snow" Height="250px" [ngModelOptions]="{ standalone: true}" [ngModel]="radiologyTemplateInput.Report" [TemplateGroupName]="RADIOLOGY" data-tid="A360866"></hvl-richtextbox>
+                        </div>
+                    </div>
+
+                </dxi-item>
+
+                <dxi-item class="tabpanel-item" title="Bulgular" style="height:100%!important; overflow-y:auto;" data-tid="A360867">
+                    <div class="row m-0" data-tid="A360868">
+                        <div class="col-md-12" data-tid="A360869">
+
+                            <hvl-richtextbox (change)="onResultsChanged($event)" Theme="snow" Height="250px" [ngModelOptions]="{ standalone: true}" [ngModel]="radiologyTemplateInput.Results" data-tid="A360870"></hvl-richtextbox>
+                        </div>
+                    </div>
+
+                </dxi-item>
+                <dxi-item class="tabpanel-item" title="Çekim Tekniği" style="height:100%!important; overflow-y:auto;" data-tid="A360871">
+                    <div class="row m-0" data-tid="A360872">
+                        <div class="col-md-12" data-tid="A360873">
+
+                            <hvl-richtextbox (change)="onRadiographyTechniqueChanged($event)" Theme="snow" Height="250px" [ngModelOptions]="{ standalone: true}" [ngModel]="radiologyTemplateInput.RadiographyTechnique" data-tid="A360874"></hvl-richtextbox>
+                        </div>
+                    </div>
+
+                </dxi-item>
+
+                <dxi-item class="tabpanel-item" title="Karşılaştırma Bilgisi" style="height:100%!important; overflow-y:auto;" data-tid="A360875">
+                    <div class="row m-0" data-tid="A360876">
+                        <div class="col-md-12" data-tid="A360877">
+
+                            <hvl-richtextbox (change)="onComparisonInfoChanged($event)" Theme="snow" Height="250px" [ngModelOptions]="{ standalone: true}" [ngModel]="radiologyTemplateInput.ComparisonInfo" data-tid="A360878"></hvl-richtextbox>
+                        </div>
+                    </div>
+
+                </dxi-item>
+
+            </dx-tab-panel>
+        </div>
+
+    </div>
+
+    <div class="row m-0" style="margin-top:10px" data-tid="A360879">
+        <div class="col-md-6" data-tid="A360880">
+            <label class="control-label" data-tid="A360881">Radyoloji İşlemleri</label>
+            <dx-lookup [dataSource]="radiologyTemplateFormViewModel.RadiologyProcedureList" [showPopupTitle]="false" searchEnabled="false" displayExpr="Name" closeOnOutsideClick="true" (onValueChanged)="onSelectRadiologyProcedure($event)" data-tid="A360882">
+            </dx-lookup>
+
+
+            <dx-data-grid [dataSource]="radiologyTemplateInput.SelectedRadiologyProcedures" height="150px" [showBorders]="true" data-tid="A360883">
+                <dxi-column caption="İlişkili İşlemler" dataField="Name" data-tid="A360884"></dxi-column>
+                <dxo-editing mode="row" [allowUpdating]="false" [allowDeleting]="true" [allowAdding]="false" data-tid="A360885">
+                </dxo-editing>
+            </dx-data-grid>
+
+        </div>
+
+        <div class="col-md-6" data-tid="A360886">
+            <label class="control-label" data-tid="A360887">Radyoloji Doktorları</label>
+            <dx-lookup [dataSource]="radiologyTemplateFormViewModel.RadiologyDoctorList" [showPopupTitle]="false" searchEnabled="false" displayExpr="Name" closeOnOutsideClick="true" (onValueChanged)="onSelectRadiologyDoctor($event)" data-tid="A360888">
+            </dx-lookup>
+
+
+            <dx-data-grid [dataSource]="radiologyTemplateInput.SelectedRadiologyDoctors" height="150px" [showBorders]="true" data-tid="A360889">
+                <dxi-column caption="İlişkili Doktorlar" dataField="Name" data-tid="A360890"></dxi-column>
+                <dxo-editing mode="row" [allowUpdating]="false" [allowDeleting]="true" [allowAdding]="false" data-tid="A360891">
+                </dxo-editing>
+            </dx-data-grid>
+
+        </div>
+    </div>
+    <div class="row m-0" style="margin-top:10px" data-tid="A360892">
+        <div class="col-sm-12" style="float:right;margin-top:10px;" data-tid="A360893">
+            <dx-button width="100px" [disabled]="deleteButtonDisabled" icon="fas fa-ban" class="pull-right" type="danger" hint="Sil" text="Sil" (onClick)="DeleteRadiologyTemplate()" data-tid="A360894"></dx-button>
+            <dx-button width="100px" icon="fa fa-floppy-o" class="pull-right" type="default" hint="Kaydet" text="Kaydet" (onClick)="SaveRadiologyTemplate()" data-tid="A360895"></dx-button>
+            <dx-button width="100px" icon="far fa-file" class="pull-right" type="success" hint="Yeni" text="Yeni" (onClick)="NewTemplate()" data-tid="A360896"></dx-button>
+        </div>
+    </div>
+    </div>

@@ -1,0 +1,468 @@
+﻿<form id="ENabizPackagesForm" class="form-horizontal" role="form" data-tid="A342890"></form>
+<dx-tab-panel [selectedIndex]="0" style="height:100%;" data-tid="A342891">
+    <dxi-item [title]="'Nabız Paket Sorgulama'" style="height:100%; background-color: #f5f5f5" data-tid="A342892">
+        <!--<div class="row" id="A12581">
+            <div class="col-sm-1" id="A12653">
+                <dx-button type="default" text="102" (onClick)="send102Dummy()" id="A12654"> </dx-button>
+            </div>
+            <div class="col-sm-1" id="A12653">
+                <dx-button type="default" text="101" (onClick)="send101Dummy()" id="A12654"> </dx-button>
+            </div>
+            <div class="col-sm-1">
+                <dx-button type="default" text="302" (onClick)="send302Dummy()"> </dx-button>
+            </div>
+            <div class="col-sm-1">
+                <dx-button type="default" text="105" (onClick)="send105Dummy()"> </dx-button>
+            </div>
+            <div class="col-sm-1">
+                <dx-button type="default" text="207" (onClick)="send207Dummy()"> </dx-button>
+            </div>
+            <div class="col-sm-1">
+                <dx-button type="default" text="108" (onClick)="send108Dummy()"> </dx-button>
+            </div>
+            <div class="col-sm-1">
+                <dx-button type="default" text="201" (onClick)="send201Dummy()"> </dx-button>
+            </div>
+            <div class="col-sm-1">
+                <dx-button type="default" text="502" (onClick)="send502Dummy()"> </dx-button>
+            </div>
+            <div class="col-sm-1">
+                <dx-button type="default" text="106" (onClick)="send106Dummy()"> </dx-button>
+            </div>
+            <div class="col-sm-1">
+                <dx-button type="default" text="200" (onClick)="send200Dummy()"> </dx-button>
+            </div>
+            <div class="col-sm-1">
+                <dx-button type="default" text="237" (onClick)="send237Dummy()"> </dx-button>
+            </div>
+            <div class="col-sm-1">
+                <dx-button type="default" text="Hatalıları Gönder" (onClick)="SendNabizPackagesWithErrorCode()"> </dx-button>
+            </div>
+            <div class="col-sm-1">
+                <dx-button type="default" text="SMS Patoloji Doktor" (onClick)="senSmsdoctor()"> </dx-button>
+            </div>
+            <div class="col-sm-1">
+                <dx-button type="default" text="GunSonu Pursaklar" (onClick)="sendPursaklarGuSonu()"> </dx-button>
+            </div>
+            <div class="col-sm-1">
+                <dx-button type="default" text="Olay Afet" (onClick)="sendOlayAfet()"> </dx-button>
+            </div>
+            <div class="col-sm-1">
+                <dx-button type="default" text="262 Hasta Nakil" (onClick)="send262()"> </dx-button>
+            </div>
+            <div class="col-sm-1">
+                <dx-button type="default" text="301" (onClick)="send301()"> </dx-button>
+            </div>
+        </div>-->
+
+        <div class="col-sm-3" data-tid="A342893">
+            <dx-radio-group [dataSource]="_searchType" displayExpr="Name" valueExpr="ObjectID" [value]="0" layout="horizontal" (onValueChanged)="onSearchTypeChanged($event)" data-tid="A342894">
+            </dx-radio-group>
+        </div>
+
+        <div class="col-sm-12" id="A28441" style="height:100px;margin-top:10px;" data-tid="A342895">
+            <div class="col-sm-2" data-tid="A342896">
+                
+                    <div class="col-sm-12" data-tid="A342897">
+                        <label class="control-label" data-tid="A342898">Kabul Tarihi Başlangıç</label>
+                        <dx-date-box [(value)]="eNabizPackagesFormViewModel._NabizSearchCritaria.SubepisodeOpeningDateStart" pickerType="calendar" type="date" displayFormat="dd/MM/yyyy" style="width:100%" [disabled]="_subepisodedateReadOnly" data-tid="A342899"></dx-date-box>
+
+                    </div>
+
+            
+               
+                    <div class="col-sm-12" data-tid="A342900">
+                        <label class="control-label" data-tid="A342901">Kabul Tarihi Bitiş</label>
+                        <dx-date-box [(value)]="eNabizPackagesFormViewModel._NabizSearchCritaria.SubepisodeOpeningDateEnd" pickerType="calendar" type="date" displayFormat="dd/MM/yyyy" style="width:100%" [disabled]="_subepisodedateReadOnly" data-tid="A342902"></dx-date-box>
+
+                    </div>
+              
+
+
+            </div>
+
+            <div class="col-sm-2" id="A28442" data-tid="A342903">
+            
+                    <div class="col-sm-12" id="A28444" data-tid="A342904">
+                        <label class="control-label" data-tid="A342905">Eklenme Tarihi Başlangıç</label>
+                        <dx-date-box [(value)]="eNabizPackagesFormViewModel._NabizSearchCritaria.packageAddingDateStart" pickerType="calendar" type="date" displayFormat="dd/MM/yyyy" style="width:100%" id="A12561" [disabled]="!_subepisodedateReadOnly" data-tid="A342906"></dx-date-box>
+
+                    </div>
+
+            
+                    <div class="col-sm-12" id="A28447" data-tid="A342907">
+                        <label class="control-label" data-tid="A342908">Eklenme Tarihi Bitiş</label>
+                        <dx-date-box [(value)]="eNabizPackagesFormViewModel._NabizSearchCritaria.packageAddingDateEnd" pickerType="calendar" type="date" displayFormat="dd/MM/yyyy" style="width:100%" id="A12564" [disabled]="!_subepisodedateReadOnly" data-tid="A342909"></dx-date-box>
+
+                    </div>
+            
+
+
+            </div>
+
+            <div class="col-sm-2" id="A28442" data-tid="A342910">
+
+                <div class="row" data-tid="A342911">
+                    <div class="col-md-12" data-tid="A342912">
+                        <label class="control-label" data-tid="A342913">Paket Türü</label>
+                        <dx-tag-box [items]="eNabizPackagesFormViewModel.NabizPackageList" applyValueMode="useButtons" [(value)]="eNabizPackagesFormViewModel._NabizSearchCritaria.NabizPackages" [searchEnabled]="true" [showSelectionControls]="true" displayExpr="PackageName" [multiline]="false" data-tid="A342914">
+                        </dx-tag-box>
+
+
+
+                    </div>
+
+                    <div class="col-md-12" data-tid="A342915">
+                        <label class="control-label" data-tid="A342916">Paket Durumu</label>
+                        <dx-select-box [(value)]="eNabizPackagesFormViewModel._NabizSearchCritaria.packageStatus" [dataSource]="packageStatusArray" displayExpr="Name" valueExpr="ObjectID" data-tid="A342917"></dx-select-box>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <div class="row" style="margin-bottom: 5px; " id="A28471" data-tid="A342918">
+            <div class="col-sm-12" style="float:right;" data-tid="A342919">
+                <div class="btn-group" style="float:right" role="group" id="A19851" data-tid="A342920">
+                    <dx-button type="default" icon="fa fa-bars" class="pull-right" text="Listele" (onClick)="getRecords()" data-tid="A342921"></dx-button>
+                    <dx-button icon="fa fa-paper-plane-o" class="pull-right" type="normal" text="Kuyruğa Ekle" (onClick)="AddQueue()" data-tid="A342922"></dx-button>
+                    <dx-button icon="fa fa-paper-plane-o" class="pull-right" type="success" text="Tümünü Gönder" (onClick)="SendSelectedPackages()" data-tid="A342923"></dx-button>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="height:calc(100% - 230px) " id="A12578" data-tid="A342924">
+            <div class="col-sm-12" style="height:100%" data-tid="A342925">
+                <dx-data-grid #nabizpackages showColumnLines="true" showRowLines="true" showBorders="true" [allowColumnResizing]="true" [filterRow]="{visible: true}" height="100%" [dataSource]="eNabizPackagesFormViewModel._NabizResult" [columns]='ENabizPackagesDataGridColumns' [selection]="{mode: 'multiple',showCheckBoxesMode:'always',selectAllMode:'page'}" [(selectedRowKeys)]="selectedENabizPackages" (onRowPrepared)="onRowPreparedPackagesList($event)" id="A12579" data-tid="A342926">
+                    <dxo-export [enabled]="true" fileName="Nabız Paket Sorgulama" [allowExportSelectedData]="false" data-tid="A342927"></dxo-export>
+                    <dxo-paging [pageSize]="32" data-tid="A342928"></dxo-paging>
+                    <div *dxTemplate="let row of 'sendCellTemplate'" id="AY28133" data-tid="A342929">
+                        <i class="fa fa-paper-plane" title="Gönder" (click)="SendToENabiz(row.key)" data-tid="A342930"></i>
+                    </div>
+
+                </dx-data-grid>
+                <!--<dx-popover showEvent="dxhoverstart" hideEvent="dxhoverend" [width]="300" id="A12580" data-tid="A342931">
+                </dx-popover>-->
+
+            </div>
+            <div class="col-sm-12" id="A12582" data-tid="A342932">
+                <label class="control-label" id="A12583" data-tid="A342933">
+                    Görüntülenen Kayıt Sayısı: {{eNabizPackagesFormViewModel._NabizResult?.length}}
+                </label>
+            </div>
+        </div>
+    </dxi-item>
+
+    <dxi-item [title]="'Gün Sonu Sorgulama'" style="height:100%; background-color: #f5f5f5" data-tid="A342934">
+        <div class="col-sm-12" id="A28441" style="height:100px;margin-top:10px;" data-tid="A342935">
+            <div class="col-sm-2" id="A28442" data-tid="A342936">
+                <div class="row" style="margin-bottom: 5px;" data-tid="A342937">
+                    <div class="col-sm-6" data-tid="A342938">
+                        <label class="control-label" data-tid="A342939">Başlangıç Tarihi</label>
+                        <dx-date-box [(value)]="eNabizPackagesFormViewModel._DailyBasedNabizSearchCritaria.StartDate" pickerType="calendar" type="date" displayFormat="dd/MM/yyyy" style="width:100%" id="A12561" data-tid="A342940"></dx-date-box>
+
+                    </div>
+
+                </div>
+                <div class="row" style="margin-bottom: 5px;" data-tid="A342941">
+                    <div class="col-sm-6" data-tid="A342942">
+                        <label class="control-label" data-tid="A342943">Bitiş Tarihi</label>
+                        <dx-date-box [(value)]="eNabizPackagesFormViewModel._DailyBasedNabizSearchCritaria.EndDate" pickerType="calendar" type="date" displayFormat="dd/MM/yyyy" style="width:100%" id="A12564" data-tid="A342944"></dx-date-box>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="row" style="margin-bottom: 5px; " data-tid="A342945">
+            <div class="col-sm-12" style="float:right;" data-tid="A342946">
+                <div class="btn-group" style="float:right" role="group" data-tid="A342947">
+                    <dx-button type="default" icon="fa fa-bars" class="pull-right" text="Listele" (onClick)="guSonuListele()" data-tid="A342948"></dx-button>
+                    <dx-button icon="fa fa-paper-plane-o" class="pull-right" type="success" text="1 Günlük Gönder" (onClick)="SendOneDayToEnabiz()" data-tid="A342949"></dx-button>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="height:calc(100% - 230px) " data-tid="A342950">
+            <div class="col-sm-12" style="height:100%" data-tid="A342951">
+                <dx-data-grid #nabizdailypackages showColumnLines="true" showRowLines="true" showBorders="true" [allowColumnResizing]="true" [filterRow]="{visible: true}" height="100%" [dataSource]="eNabizPackagesFormViewModel._DailyBasedNabizResult" [columns]='DailyBasedNabizGridColumns' [selection]="{mode: 'multiple',showCheckBoxesMode:'always',selectAllMode:'page'}" [(selectedRowKeys)]="selectedDailyENabizPackages" (onRowPrepared)="onRowPreparedDailyBasedNabizList($event)" data-tid="A342952">
+                    <dxo-export [enabled]="true" fileName="Nabız Gün Sonu Sorgulama" [allowExportSelectedData]="false" data-tid="A342953"></dxo-export>
+                    <dxo-paging [pageSize]="32" data-tid="A342954"></dxo-paging>
+
+                    <div *dxTemplate="let row of 'dailysendCellTemplate'" data-tid="A342955">
+                        <i class="fa fa-paper-plane" title="Gönder" (click)="SendDailyBasedPackageToENabiz(row.key)" data-tid="A342956"></i>
+                    </div>
+
+                </dx-data-grid>
+
+
+            </div>
+            <div class="col-sm-12" data-tid="A342957">
+                <label class="control-label" data-tid="A342958">
+                    Görüntülenen Kayıt Sayısı: {{eNabizPackagesFormViewModel._DailyBasedNabizResult?.length}}
+                </label>
+            </div>
+        </div>
+
+    </dxi-item>
+
+    <dxi-item [title]="'Hasta/Kabul Bazlı Sorgulama'" style="height:100%; background-color: #f5f5f5" data-tid="A342959">
+
+        <div class="col-sm-12" style="height:100px;margin-top:10px;" data-tid="A342960">
+            <div class="col-sm-2" data-tid="A342961">
+                <div class="row" style="margin-bottom: 5px;" data-tid="A342962">
+                    <div class="col-sm-6" data-tid="A342963">
+                        <label class="control-label" data-tid="A342964">Başlangıç Tarihi</label>
+                        <dx-date-box [(value)]="eNabizPackagesFormViewModel._SubepisodeBasedNabizSearchCritaria.StartDate" pickerType="calendar" type="date" displayFormat="dd/MM/yyyy" style="width:100%" data-tid="A342965"></dx-date-box>
+                    </div>
+
+                </div>
+                <div class="row" style="margin-bottom: 5px;" data-tid="A342966">
+                    <div class="col-sm-6" data-tid="A342967">
+                        <label class="control-label" data-tid="A342968">Bitiş Tarihi</label>
+                        <dx-date-box [(value)]="eNabizPackagesFormViewModel._SubepisodeBasedNabizSearchCritaria.EndDate" pickerType="calendar" type="date" displayFormat="dd/MM/yyyy" style="width:100%" data-tid="A342969"></dx-date-box>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-sm-4" data-tid="A342970">
+                <div class="col-md-4" data-tid="A342971">
+                    <label class="control-label" data-tid="A342972">Kabul No</label>
+                    <dx-text-box [showClearButton]="true" [(value)]="eNabizPackagesFormViewModel._SubepisodeBasedNabizSearchCritaria.ProtocolNo" (onEnterKey)="onProtocolNoOrSYSTakipNoKeyDownSubepisode($event)" data-tid="A342973"></dx-text-box>
+
+                </div>
+                <div class="col-md-8" data-tid="A342974">
+                    <label data-tid="A342975">Hasta Arama</label>
+                    <PatientSearchForm Width="100%" (SelectedPatientChanged)="onPatientSelectedSubepisode($event)" data-tid="A342976"></PatientSearchForm>
+                </div>
+                <div class="col-md-4" data-tid="A342977">
+                    <label class="control-label" data-tid="A342978">SYS Takip No</label>
+                    <dx-text-box [showClearButton]="true" [(value)]="eNabizPackagesFormViewModel._SubepisodeBasedNabizSearchCritaria.SYSTakipNo" (onEnterKey)="onProtocolNoOrSYSTakipNoKeyDownSubepisode($event)" data-tid="A342979"></dx-text-box>
+
+                </div>
+                <div class="col-md-8" style="padding-top:10px;" data-tid="A342980">
+                    <dx-check-box [(value)]="eNabizPackagesFormViewModel._SubepisodeBasedNabizSearchCritaria.HasSYSNo" [width]="300" text="SYS Takip Numarası olmayan kabuller" data-tid="A342981"></dx-check-box>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom: 5px; " data-tid="A342982">
+            <div class="col-sm-12" style="float:right;" data-tid="A342983">
+                <div class="btn-group" style="float:right" role="group" data-tid="A342984">
+                    <dx-button type="default" icon="fa fa-bars" class="pull-right" text="Listele" (onClick)="getSubepisodes()" data-tid="A342985"></dx-button>
+
+                </div>
+            </div>
+        </div>
+        <div class="row" style="height:calc(100% - 230px) " data-tid="A342986">
+            <div class="col-sm-12" style="height:100%" data-tid="A342987">
+                <dx-data-grid #subepisodes showColumnLines="true" showRowLines="true" showBorders="true" [allowColumnResizing]="true" [filterRow]="{visible: true}" height="100%" [dataSource]="eNabizPackagesFormViewModel._SubepisodeBasedNabizResult" [columns]='SubepisodeBasedNabizGridColumns' (onContextMenuPreparing)="onContextMenuPreparingSubepisodeList($event)" data-tid="A342988">
+
+                    <dxo-paging [pageSize]="32" data-tid="A342989"></dxo-paging>
+                    <div *dxTemplate="let row of 'send101Template'" data-tid="A342990">
+                        <!--<i class="fas fa-question-circle" title="SGK Sorgula" (click)="SGKSorgula_SYSTakipNo(row.key)"></i>-->
+                        <button class="btn btn-default" (click)="Send101(row.key)" data-tid="A342991"><i class="fa fa-paper-plane-o" title="101 Gönder" data-tid="A342992"></i></button>
+
+                    </div>
+                    <!--<div *dxTemplate="let row of 'send402Template'">
+  
+                        <button class="btn btn-default" (click)="Send402(row.key)"><i class="far fa-bookmark" title="SYS Takip No Sorgulama"></i></button>
+
+                    </div>
+
+                    <div *dxTemplate="let row of 'sgkSorgulaTemplate'">
+                     
+                        <button class="btn btn-default" (click)="SGKSorgula_SYSTakipNo(row.key)"><i class="fas fa-question-circle" title="SGK Sorgula"></i></button>
+
+                    </div>-->
+
+                    <div *dxTemplate="let row of 'subepisodeInfoTemplate'" data-tid="A342993">
+                        <!--<i class="fas fa-info-circle" title="Detayı Göster" (click)="ShowSubepisodeInfo(row.key)"></i>-->
+                        <button class="btn btn-default" (click)="ShowSubepisodeInfo(row.key)" data-tid="A342994"><i class="fas fa-info-circle" title="Detayı Göster" data-tid="A342995"></i></button>
+                    </div>
+
+                    <dxo-summary data-tid="A342996">
+                        <dxi-total-item column="OpeningDate" [customizeText]="customizeCountText" summaryType="count" data-tid="A342997">
+                        </dxi-total-item>
+
+                    </dxo-summary>
+
+                </dx-data-grid>
+
+
+            </div>
+
+        </div>
+
+    </dxi-item>
+</dx-tab-panel>
+
+
+
+
+<dx-popup [showTitle]="true" title="Gün Sonu" [width]="300" [height]="200" [(visible)]="popupVisible" i18n-title="@@M27350" id="A12668" data-tid="A342998">
+    <div *dxTemplate="let data of 'content'" id="A12669" data-tid="A342999">
+        <div class="row" style="padding-top:3px" id="A12670" data-tid="A343000">
+            <div class="col-sm-12" id="A12671" data-tid="A343001">
+                <label class="control-label col-sm-12" id="A12672" data-tid="A343002">
+                    Başlangıç Tarihi
+                </label>
+                <div class="col-sm-12" id="A12673" data-tid="A343003">
+                    <dx-date-box [(value)]="endDateStart" [showClearButton]="true" pickerType="calendar" type="date" style="width:100%" id="A12674" data-tid="A343004"></dx-date-box>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="padding-top:5px" id="A12678" data-tid="A343005">
+            <div class="col-sm-12" style="text-align:center" id="A12679" data-tid="A343006">
+                <dx-button icon="fa fa-paper-plane-o" type="default" text="Tamam" (onClick)="sendGunSonuOneDate()" id="A12680" data-tid="A343007">
+                </dx-button>
+            </div>
+        </div>
+
+
+    </div>
+</dx-popup>
+
+<dx-popup [showTitle]="true" title="SYS Takip Numarası Sorgulama" [width]="500" [height]="500" [(visible)]="_402PopUpVisible" data-tid="A343008">
+    <div *dxTemplate="let data of 'content'" data-tid="A343009">
+
+        <div class="col-sm-12" data-tid="A343010">
+
+            <dx-text-area [height]="400" [readOnly]="true" [(value)]="_402Result" data-tid="A343011">
+            </dx-text-area>
+        </div>
+
+
+
+
+
+    </div>
+</dx-popup>
+
+<dx-popup width="1000px" height="500px" [(visible)]="_showSubepisodeInfo" [closeOnOutsideClick]="false" (onHidden)="SubepisodeInfoHidden()" title="Kabul Detayları" data-tid="A343012">
+    <div *dxTemplate="let data of 'content'" id="A23993" data-tid="A343013">
+        <div class="col-sm-9" data-tid="A343014">
+            Kabul No:<b data-tid="A343015">{{_subepisodeInfo.ProtocolNo}} </b> > Hasta Adı Soyadı: <b data-tid="A343016">{{_subepisodeInfo.PatientNameSurname}} </b>
+        </div>
+        <div class="col-sm-3" data-tid="A343017">
+
+            <dx-button icon="fa fa-paper-plane-o" class="pull-right" type="success" hint="Hatalı ve Sırada Olan Paketleri Gönderir" text="Tümünü Gönder" (onClick)="SendPackagesWithErrors()" data-tid="A343018"></dx-button>
+
+        </div>
+        <div class="col-sm-12" data-tid="A343019">
+
+            <br data-tid="A343020" />
+            <dx-data-grid showColumnLines="true" 
+                          [paging]="{enable: false, pageSize:1000000}" 
+                          showRowLines="true"
+                          height="400" 
+                          [columns]="PackagesColumns" 
+                          [dataSource]="_PackagesBySubepisode"
+                          allowColumnReordering="true" 
+                          allowColumnResizing="true" 
+                          [selection]="{mode: 'none',allowSelectAll: false}" 
+                          [filterRow]="{visible: true}" [headerFilter]="{visible: true}"
+                          data-tid="A343021">
+
+                <!--<dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-paging [pageSize]="50"></dxo-paging>-->
+                <!--<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 25, 50, 100]"></dxo-pager>-->
+                <div *dxTemplate="let row of 'sendNabizTemplate'" data-tid="A343022">
+                    <i *ngIf="row.data.Status != 4" class="fa fa-paper-plane" title="Paket Gönder" (click)="SendNabizPackage(row.key)" style="margin-top:-12px;margin-bottom:-12px;" data-tid="A343023"></i>
+
+                </div>
+
+
+            </dx-data-grid>
+        </div>
+
+    </div>
+</dx-popup>
+<dx-popup width="900px" height="350px" [(visible)]="showSGKHizmetSorgulamaPopup" [closeOnOutsideClick]="true" title="Nabız Sorgulama Sonucu(700)" data-tid="A343024">
+    <div *dxTemplate="let data of 'content'" id="A31333" data-tid="A343025">
+        <div class="col-sm-12" data-tid="A343026">
+            <dx-data-grid height="220px" [selection]="{mode: 'none'}" [dataSource]="SGKHizmetSorgulamaResultDataSource" [columns]="SGKHizmetSorgulamaResultColumns" [filterRow]="{visible: true}" [headerFilter]="{visible: true}" data-tid="A343027">
+            </dx-data-grid>
+        </div>
+
+        <div class="row" data-tid="A343028">
+            <dx-button type="danger" style="float: right;" icon="fa fa-times" (onClick)="this.showSGKHizmetSorgulamaPopup = false;" text="Çıkış" data-tid="A343029"></dx-button>
+        </div>
+    </div>
+</dx-popup>
+
+<dx-popup [showTitle]="true" title="SGK Takip Numarası Sorgulama" [width]="400" [height]="100" [(visible)]="_SGKTakipNoPopUpVisible" data-tid="A343030">
+    <div *dxTemplate="let data of 'content'" data-tid="A343031">
+
+        <div class="col-sm-6" data-tid="A343032">
+            <label class="control-label" data-tid="A343033">SGK Takip No</label>
+            <dx-text-box [showClearButton]="true" [(value)]="_SGKTakipNo" (onEnterKey)="onSGKSorgula_SGKTakipNo()" data-tid="A343034"></dx-text-box>
+        </div>
+
+    </div>
+</dx-popup>
+
+<dx-popup [showTitle]="true" title="İşlem Bana Ait Değil Listele" [width]="800" [height]="550" [(visible)]="_IslemBanaAitDegilVisible" data-tid="A343035">
+    <div *dxTemplate="let data of 'content'" data-tid="A343036">
+
+        <div class="col-sm-6" data-tid="A343037">
+            <label class="control-label" data-tid="A343038">Başlangıç Tarihi</label>
+            <dx-date-box [(value)]="_IslemBanaAitDegilDate" pickerType="calendar" type="date" displayFormat="dd/MM/yyyy" style="width:100%" data-tid="A343039"></dx-date-box>
+
+        </div>
+        <div class="col-sm-12" data-tid="A343040">
+            <dx-button type="default" icon="fa fa-bars" class="pull-right" text="Sorgula" (onClick)="IslemBanaAitDegilListele()" data-tid="A343041"></dx-button>
+
+        </div>
+        <div class="col-sm-12" data-tid="A343042">
+            <dx-data-grid height="400px" [selection]="{mode: 'none'}" [dataSource]="IslemBanaAitDegilDataSource" [columns]="IslemBanaAitDegilColumns" [filterRow]="{visible: false}" [headerFilter]="{visible: false}" data-tid="A343043">
+                <dxo-export [enabled]="true" fileName="İşlem Bana Ait Değil Sorgulama Sonucu" [allowExportSelectedData]="false" data-tid="A343044"></dxo-export>
+            </dx-data-grid>
+        </div>
+
+
+    </div>
+</dx-popup>
+
+<dx-popup [showTitle]="true" title="Reçete Bilgileri Sorgula" [width]="800" [height]="550" [(visible)]="_precriptionInfoVisible" data-tid="A343045">
+    <div *dxTemplate="let data of 'content'" data-tid="A343046">
+
+        <div class="col-sm-5" data-tid="A343047">
+            <label class="control-label" data-tid="A343048">Reçete Tarihi</label>
+            <dx-date-box [(value)]="_prescriptionDate" pickerType="calendar" type="date" displayFormat="dd/MM/yyyy" style="width:100%" data-tid="A343049"></dx-date-box>
+
+        </div>
+  
+        <div class="col-sm-2" data-tid="A343050">
+            <label class="control-label" data-tid="A343051">Sayfa Sayısı</label>
+            <dx-number-box [(value)]="_pageNumber" data-tid="A343052"></dx-number-box>
+
+        </div>
+        <div class="col-sm-12" data-tid="A343053">
+            <dx-button type="default" icon="fa fa-bars" class="pull-right" text="Sorgula" (onClick)="GetReceteBilgileriTarih()" data-tid="A343054"></dx-button>
+
+        </div>
+        <div class="col-sm-12" data-tid="A343055">
+            <!--<dx-data-grid height="400px"
+                          [selection]="{mode: 'none'}"
+                          [dataSource]="IslemBanaAitDegilDataSource"
+                          [columns]="IslemBanaAitDegilColumns"
+                          [filterRow]="{visible: false}"
+                          [headerFilter]="{visible: false}">
+                <dxo-export [enabled]="true" fileName="İşlem Bana Ait Değil Sorgulama Sonucu" [allowExportSelectedData]="false"></dxo-export>
+            </dx-data-grid>-->
+        </div>
+
+
+    </div>
+</dx-popup>
+
+
+<dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A343056">
+</dx-load-panel>
+
+

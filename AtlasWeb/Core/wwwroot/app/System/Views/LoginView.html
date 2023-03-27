@@ -1,0 +1,170 @@
+﻿<style id="A32611" data-tid="A375358">
+    body {
+        background: #CDE0B3 url('../../Content/loginimages/bg6.png') no-repeat fixed center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        margin: 0px;
+        overflow: hidden;
+        font-family: arial;
+        color: #fff;
+    }
+
+    h1 {
+        margin: 0;
+    }
+
+    a {
+        color: #0078ff;
+    }
+
+    #center {
+        text-align: center;
+        position: relative;
+        top: 40vh;
+        transform: translatey(-50%);
+    }
+
+    #canvas {
+        width: 100%;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #1a1724;
+    }
+
+    .canvas-wrap {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background: #CDE0B3 url('../../Content/loginimages/bg6.jpg') no-repeat fixed center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        margin: 0px;
+        overflow: hidden;
+        font-family: arial;
+        color: #fff;
+        bottom: 0;
+    }
+
+    div.canvas-content {
+        position: relative;
+        z-index: 2000;
+        color: #fff;
+        text-align: center;
+        padding-top: 30px;
+        height: 100%;
+    }
+
+    .login-page {
+        width: 360px;
+        padding: 8% 0 0;
+        margin: auto;
+    }
+
+    .thumbnail {
+        margin: 0 auto 30px;
+    }
+
+    .form {
+        position: relative;
+        z-index: 1;
+        background: #FFFFFF;
+        max-width: 360px;
+        margin: 0 auto /* 100px*/;
+        padding: 45px;
+        text-align: center;
+        border-radius: 5px;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    }
+
+        .form input {
+            font-family: "Open Sans", sans-serif;
+            outline: 0;
+            background: #e8e8e8;
+            width: 100%;
+            border: 0;
+            margin: 0 0 15px;
+            padding: 15px;
+            box-sizing: border-box;
+            font-size: 14px;
+            color: black;
+        }
+
+        .form button {
+            font-family: "Open Sans", sans-serif;
+            text-transform: normal;
+            outline: 0;
+            background: #4CAF50;
+            width: 100%;
+            border: 0;
+            padding: 15px;
+            color: #FFFFFF;
+            font-size: 14px;
+            -webkit-transition: all 0.3 ease;
+            transition: all 0.3 ease;
+            cursor: pointer;
+        }
+
+            .form button:hover, .form button:active, .form button:focus {
+                background: #43A047;
+            }
+
+    .container {
+        position: relative;
+        z-index: 1;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+
+        .container:before, .container:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+</style>
+<section class="canvas-wrap" style="margin-left: 0;margin-top: -42px;
+margin-right: -58px;" id="A32612" data-tid="A375359">
+    <div class="canvas-content" id="A32613" data-tid="A375360">
+        <div id="center" class="login-page" data-tid="A375361">
+            <div class="form" id="A32614" data-tid="A375362">
+                <div class="thumbnail" id="A32615" data-tid="A375363">
+                    <img src="/Content/loginimages/logo.png" id="A32616" data-tid="A375364" />
+                </div>
+                <form class="login-form" id="A32617" data-tid="A375365">
+                    <div style="padding-bottom: 10px;" data-tid="A375366">
+                        <dx-text-box [(value)]="Model.UserName" style="height:42px" placeholder="Kullanıcı Adı" (keydown)="UserNameChange($event)" valueChangeEvent="keyup" data-tid="A375367">
+                        </dx-text-box>
+                    </div>
+                    <!--<input (ngModelChange)="UserNameChange($event)" type="text" [(ngModel)]="Model.UserName" placeholder="Kullanıcı Adı" [ngModelOptions]="{standalone: true}" i18n-placeholder="@@M17894" id="A32618" />-->
+                    <!--<input type="password" [(ngModel)]="Model.Password" placeholder="Şifre" [ngModelOptions]="{standalone: true}" i18n-placeholder="@@M22480" id="A32619" />-->
+                    <div style="padding-bottom: 10px;" data-tid="A375368">
+                        <dx-text-box [(value)]="Model.Password" style="height:42px" placeholder="Şifre" mode="password" valueChangeEvent="keyup" data-tid="A375369">
+                        </dx-text-box>
+                    </div>
+                    <dx-text-box *ngIf="ShowCaptcha" placeholder="Doğrulama Kodu" [(value)]="CaptchaCode" i18n-placeholder="@@M13095" id="A32620" data-tid="A375370"></dx-text-box>
+                    <div *ngIf="ShowCaptcha" style="height:50px;display:block;position:relative;padding-top:5px;" id="A32621" data-tid="A375371">
+                        <img [src]="CaptchaImage" style="float:left" id="A32622" data-tid="A375372" />
+                        <div style="position:absolute;bottom:12px;right:0" id="A32623" data-tid="A375373">
+                            <dx-button type style="color:#08c;border:none!important" icon="fa fa-refresh" (onClick)="refreshCaptcha()" id="A32624" data-tid="A375374"></dx-button>
+                        </div>
+                    </div>
+                    <button (click)="onLogin()" id="A32625" data-tid="A375375">Giriş</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="canvas" class="gradient" data-tid="A375376"></div>
+
+    <dx-popup [visible]="isChangePassword" closeOnOutsideClick="true" (onHidden)="ChangePasswordClosing()" class="zIndex30000" data-tid="A375377">
+        <div *dxTemplate="let data of 'content'" data-tid="A375378">
+            <hvl-changepassword-view (PasswordChanged)="passwordChanged()" hideLoginTab="false" data-tid="A375379"></hvl-changepassword-view>
+        </div>
+    </dx-popup>
+</section>

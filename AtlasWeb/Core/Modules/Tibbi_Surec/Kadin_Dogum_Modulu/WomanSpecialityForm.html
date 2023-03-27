@@ -1,0 +1,408 @@
+﻿
+
+    <div class="row" id="A19317" data-tid="A352698">
+        <form id="WomanSpecialityForm" class="form-horizontal" role="form" data-tid="A352699">
+
+            <fieldset id="A19319" data-tid="A352700">
+                <!-- Form Name -->
+                <legend style="border-bottom:1px solid #FFAB00;" id="A19320" data-tid="A352701">Kadın Hastalıkları ve Doğum</legend>
+                <div class="row" id="A19321" data-tid="A352702">
+                    <div class="col-md-3 col-sm-6" id="A19322" data-tid="A352703">
+                        <label class="control-label" id="A19323" data-tid="A352704">Hastanın Kan Grubu</label>
+                        <hvl-enum-combobox #Validation (ValueChange)="onWomanBloodGroupChanged($event)" [BackColor]="WomanBloodGroup?.BackColor" [DataTypeName]="WomanBloodGroup?.DataTypeName" [Enabled]="WomanBloodGroup?.Enabled" [Font]="WomanBloodGroup?.Font" [ForeColor]="WomanBloodGroup?.ForeColor" [IncludeOnly]="WomanBloodGroup?.IncludeOnly" [ReadOnly]="WomanBloodGroup?.ReadOnly" [ShowClearButton]="WomanBloodGroup?.ShowClearButton" [SortBy]="WomanBloodGroup?.SortBy" [TabIndex]="WomanBloodGroup?.TabIndex" [Value]="_WomanSpecialityObject?.WomanBloodGroup" [Visible]="WomanBloodGroup?.Visible" data-tid="A352705"></hvl-enum-combobox>
+                    </div>
+                    <div class="col-md-3 col-sm-6" id="A19325" data-tid="A352706">
+                        <br id="A19326" data-tid="A352707" />
+                        <button *ngIf="isPregnancyActive==false" type="button" class="btn btn-primary btn-block" (click)="ShowPregnancyStartModal()" id="A19327" data-tid="A352708">Gebelik Başlat</button>
+                        <button *ngIf="isPregnancyActive==true" type="button" class="btn btn-primary btn-block" (click)="ShowPregnancyResultModal()" id="A19328" data-tid="A352709">Gebelik Sonucu</button>
+                    </div>
+                    <div class="col-md-3 col-sm-6" id="A19329" data-tid="A352710">
+                        <br id="A19330" data-tid="A352711" />
+                        <button type="button" class="btn btn-primary btn-block" (click)="ShowPreviousPregnancyModal()" id="A19331" data-tid="A352712">Geçmiş Gebelik Bilgileri</button>
+                    </div>
+                    <div class="col-md-3 col-sm-6" *ngIf="isPregnancyActive==true" id="A19332" data-tid="A352713">
+                        <img src="/Content/icons/pregnant.png" style="height:42px;" id="A19333" data-tid="A352714" />{{womanSpecialityFormViewModel?.PregnancyWeek}} Haftalık Gebe
+                    </div>
+                </div>
+
+                <div class="row" id="A19334" data-tid="A352715">
+                    <div class="col-md-3 col-sm-6" id="A19335" data-tid="A352716">
+                        <label class="control-label" id="A19336" data-tid="A352717">Eşinin Adı Soyadı</label>
+                        <hvl-text-box #Validation (TextChange)="onHusbandFullNameChanged($event)" [BackColor]="HusbandFullName?.BackColor" [CharacterCasing]="HusbandFullName?.CharacterCasing" [Enabled]="HusbandFullName?.Enabled" [Font]="HusbandFullName?.Font" [ForeColor]="HusbandFullName?.ForeColor" [height]="HusbandFullName?.Height" [InputFormat]="HusbandFullName?.InputFormat" [InputTurkishCharacter]="HusbandFullName?.InputTurkishCharacter" [IsNonNumeric]="HusbandFullName?.IsNonNumeric" [MultiLine]="HusbandFullName?.Multiline" [ReadOnly]="HusbandFullName?.ReadOnly" [Required]="HusbandFullName?.Required" [TabIndex]="HusbandFullName?.TabIndex" [TextAlign]="HusbandFullName?.TextAlign" [Text]="womanSpecialityFormViewModel?._WomanSpecialityObject?.HusbandFullName" [Visible]="HusbandFullName?.Visible" id="A19337" data-tid="A352718"></hvl-text-box>
+                    </div>
+                    <div class="col-md-3 col-sm-6" id="A19338" data-tid="A352719">
+                        <label class="control-label" id="A19339" data-tid="A352720">Akrabalık Durumu</label>
+                        <hvl-enum-combobox #Validation (ValueChange)="onDegreeOfRelationshipChanged($event)" [BackColor]="DegreeOfRelationship?.BackColor" [DataTypeName]="DegreeOfRelationship?.DataTypeName" [Enabled]="DegreeOfRelationship?.Enabled" [Font]="DegreeOfRelationship?.Font" [ForeColor]="DegreeOfRelationship?.ForeColor" [IncludeOnly]="DegreeOfRelationship?.IncludeOnly" [ReadOnly]="DegreeOfRelationship?.ReadOnly" [ShowClearButton]="DegreeOfRelationship?.ShowClearButton" [SortBy]="DegreeOfRelationship?.SortBy" [TabIndex]="DegreeOfRelationship?.TabIndex" [Value]="womanSpecialityFormViewModel?._WomanSpecialityObject?.DegreeOfRelationship" [Visible]="DegreeOfRelationship?.Visible" id="A19340" data-tid="A352721"></hvl-enum-combobox>
+                    </div>
+                    <div class="col-md-3 col-sm-6" id="A19341" data-tid="A352722">
+                        <label class="control-label" id="A19342" data-tid="A352723">Gebelik Sayısı</label>
+                        <hvl-number-box #Validation (ValueChange)="onNumberOfPregnancyChanged($event)" [BackColor]="NumberOfPregnancy?.BackColor" [Enabled]="NumberOfPregnancy?.Enabled" [Font]="NumberOfPregnancy?.Font" [ForeColor]="NumberOfPregnancy?.ForeColor" [ReadOnly]="NumberOfPregnancy?.ReadOnly" [TabIndex]="NumberOfPregnancy?.TabIndex" [Value]="womanSpecialityFormViewModel?._WomanSpecialityObject?.NumberOfPregnancy" [Visible]="NumberOfPregnancy?.Visible" id="A19343" data-tid="A352724"></hvl-number-box>
+                    </div>
+                    <div class="col-md-3 col-sm-6" id="A19344" data-tid="A352725">
+                        <label class="control-label" id="A19345" data-tid="A352726">Parite</label>
+                        <hvl-number-box #Validation (ValueChange)="onParityChanged($event)" [BackColor]="Parity?.BackColor" [Enabled]="Parity?.Enabled" [Font]="Parity?.Font" [ForeColor]="Parity?.ForeColor" [ReadOnly]="Parity?.ReadOnly" [TabIndex]="Parity?.TabIndex" [Value]="womanSpecialityFormViewModel?._WomanSpecialityObject?.Parity" [Visible]="Parity?.Visible" id="A19346" data-tid="A352727"></hvl-number-box>
+                    </div>
+                </div>
+
+                <div class="row" id="A19347" data-tid="A352728">
+                    <div class="col-md-3 col-sm-6" id="A19348" data-tid="A352729">
+                        <label class="control-label" id="A19349" data-tid="A352730">Evlilik Senesi (Örn:2015)</label>
+                        <dx-number-box [value]="womanSpecialityFormViewModel._WomanSpecialityObject.MarriageDate" (onValueChanged)="onMarriageDateChanged($event)" [min]="1000" [max]="9999" placeholder="Evlilik Senesini Giriniz!" i18n-placeholder="@@M14026" id="A19350" data-tid="A352731">
+                        </dx-number-box>
+
+                    </div>
+                    <div class="col-md-3 col-sm-6" id="A19351" data-tid="A352732">
+                        <label class="control-label" id="A19352" data-tid="A352733">Evlilik Süresi</label>
+                        <hvl-text-box #Validation (TextChange)="MarriageDuration.Text=$event;" [BackColor]="MarriageDuration?.BackColor" [CharacterCasing]="MarriageDuration?.CharacterCasing" [Enabled]="MarriageDuration?.Enabled" [Font]="MarriageDuration?.Font" [ForeColor]="MarriageDuration?.ForeColor" [height]="MarriageDuration?.Height" [InputFormat]="MarriageDuration?.InputFormat" [InputTurkishCharacter]="MarriageDuration?.InputTurkishCharacter" [IsNonNumeric]="MarriageDuration?.IsNonNumeric" [MultiLine]="MarriageDuration?.Multiline" [ReadOnly]="MarriageDuration?.ReadOnly" [Required]="MarriageDuration?.Required" [TabIndex]="MarriageDuration?.TabIndex" [TextAlign]="MarriageDuration?.TextAlign" [Text]="MarriageDuration?.Text" [Visible]="MarriageDuration?.Visible" id="A19353" data-tid="A352734"></hvl-text-box>
+                    </div>
+                    <div class="col-md-3 col-sm-6" id="A19354" data-tid="A352735">
+                        <label class="control-label" id="A19355" data-tid="A352736">Yaşayan</label>
+                        <hvl-number-box #Validation (ValueChange)="onLivingBabiesChanged($event)" [BackColor]="LivingBabies?.BackColor" [Enabled]="LivingBabies?.Enabled" [Font]="LivingBabies?.Font" [ForeColor]="LivingBabies?.ForeColor" [ReadOnly]="LivingBabies?.ReadOnly" [TabIndex]="LivingBabies?.TabIndex" [Value]="womanSpecialityFormViewModel?._WomanSpecialityObject?.LivingBabies" [Visible]="LivingBabies?.Visible" id="A19356" data-tid="A352737"></hvl-number-box>
+                    </div>
+                    <div class="col-md-3 col-sm-6" id="A19357" data-tid="A352738">
+                        <label class="control-label" id="A19358" data-tid="A352739">Abortus</label>
+                        <hvl-number-box #Validation (ValueChange)="onAbortionChanged($event)" [BackColor]="Abortion?.BackColor" [Enabled]="Abortion?.Enabled" [Font]="Abortion?.Font" [ForeColor]="Abortion?.ForeColor" [ReadOnly]="Abortion?.ReadOnly" [TabIndex]="Abortion?.TabIndex" [Value]="womanSpecialityFormViewModel?._WomanSpecialityObject?.Abortion" [Visible]="Abortion?.Visible" id="A19359" data-tid="A352740"></hvl-number-box>
+                    </div>
+                </div>
+
+                <div class="row" id="A19360" data-tid="A352741">
+                    <div class="col-md-3 col-sm-6" id="A19361" data-tid="A352742">
+                        <label class="control-label" id="A19362" data-tid="A352743">Eşinin Kan Grubu</label>
+                        <hvl-enum-combobox #Validation (ValueChange)="onHusbandBloodGroupChanged($event)" [BackColor]="HusbandBloodGroup?.BackColor" [DataTypeName]="HusbandBloodGroup?.DataTypeName" [Enabled]="HusbandBloodGroup?.Enabled" [Font]="HusbandBloodGroup?.Font" [ForeColor]="HusbandBloodGroup?.ForeColor" [IncludeOnly]="HusbandBloodGroup?.IncludeOnly" [ReadOnly]="HusbandBloodGroup?.ReadOnly" [ShowClearButton]="HusbandBloodGroup?.ShowClearButton" [SortBy]="HusbandBloodGroup?.SortBy" [TabIndex]="HusbandBloodGroup?.TabIndex" [Value]="womanSpecialityFormViewModel?._WomanSpecialityObject?.HusbandBloodGroup" [Visible]="HusbandBloodGroup?.Visible" id="A19363" data-tid="A352744"></hvl-enum-combobox>
+                    </div>
+                    <div class="col-md-3 col-sm-6" id="A19364" data-tid="A352745">
+                        <label class="control-label" id="A19365" data-tid="A352746">Rh Kan Uyuşmazlığı</label>
+                        <hvl-enum-combobox #Validation (ValueChange)="onRhIncompatibilityChanged($event)" [BackColor]="RhIncompatibility?.BackColor" [DataTypeName]="RhIncompatibility?.DataTypeName" [Enabled]="RhIncompatibility?.Enabled" [Font]="RhIncompatibility?.Font" [ForeColor]="RhIncompatibility?.ForeColor" [IncludeOnly]="RhIncompatibility?.IncludeOnly" [ReadOnly]="RhIncompatibility?.ReadOnly" [ShowClearButton]="RhIncompatibility?.ShowClearButton" [SortBy]="RhIncompatibility?.SortBy" [TabIndex]="RhIncompatibility?.TabIndex" [Value]="womanSpecialityFormViewModel?._WomanSpecialityObject?.RhIncompatibility" [Visible]="RhIncompatibility?.Visible" id="A19366" data-tid="A352747"></hvl-enum-combobox>
+                    </div>
+                    <div class="col-md-3 col-sm-6" id="A19367" data-tid="A352748">
+                        <label class="control-label" id="A19368" data-tid="A352749">D&C</label>
+                        <hvl-number-box #Validation (ValueChange)="onDCChanged($event)" [BackColor]="DC?.BackColor" [Enabled]="DC?.Enabled" [Font]="DC?.Font" [ForeColor]="DC?.ForeColor" [ReadOnly]="DC?.ReadOnly" [TabIndex]="DC?.TabIndex" [Value]="womanSpecialityFormViewModel?._WomanSpecialityObject?.DC" [Visible]="DC?.Visible" id="A19369" data-tid="A352750"></hvl-number-box>
+                    </div>
+                    <div class="col-md-3 col-sm-6" id="A19370" data-tid="A352751">
+                        <label class="control-label" id="A19371" data-tid="A352752"></label>
+                    </div>
+                </div>
+                <br data-tid="A352753" />
+            </fieldset>
+        </form>
+
+        <ul class="nav nav-tabs" id="A24021" data-tid="A352754">
+
+            <li [ngClass]="ActivePage =='gynecology' ? 'active' : ''" id="A24026" data-tid="A352755">
+                <a data-toggle="tab" href="#gynecology" (click)="openGynecology()" id="A24027" data-tid="A352756">
+                    <span id="A24028" data-tid="A352757">Jinekoloji</span>
+                    <span class="fa fa-neuter" [ngClass]="RecentActiveTab =='gynecology' ? 'fa-map-pin' : ''" (click)="TabPanelClick('gynecology')" id="A24029" data-tid="A352758"></span>
+                </a>
+            </li>
+
+            <li [ngClass]="ActivePage =='infertilite' ? 'active' : ''" id="A24026" data-tid="A352759">
+                <a data-toggle="tab" href="#infertilite" (click)="openInfertilite()" id="A24027" data-tid="A352760">
+                    <span id="A24028" data-tid="A352761">İnfertilite</span>
+                    <span class="fa fa-neuter" [ngClass]="RecentActiveTab =='infertilite' ? 'fa-map-pin' : ''" (click)="TabPanelClick('infertilite')" id="A24029" data-tid="A352762"></span>
+                </a>
+            </li>
+            <li [ngClass]="ActivePage =='gebeIzlem' ? 'active' : ''" id="A24030" data-tid="A352763">
+                <a data-toggle="tab" href="#gebeIzlem" (click)="openGebeIzlem(false)" id="A24031" data-tid="A352764">
+                    <span id="A24032" data-tid="A352765">Gebe İzlem</span>
+                    <span class="fa fa-neuter" [ngClass]="RecentActiveTab =='gebeIzlem' ? 'fa-map-pin' : ''" (click)="TabPanelClick('gebeIzlem')" id="A24033" data-tid="A352766"></span>
+                </a>
+            </li>
+
+
+            <li [ngClass]="ActivePage =='gebelikTakvimi' ? 'active' : ''" id="A24034" data-tid="A352767">
+                <a data-toggle="tab" href="#gebelikTakvimi" (click)="openGebelikTakvimi()" id="A24035" data-tid="A352768">
+                    <span id="A24036" data-tid="A352769">Gebelik Takvimi</span>
+                    <span class="fa fa-neuter" [ngClass]="RecentActiveTab =='gebelikTakvimi' ? 'fa-map-pin' : ''" (click)="TabPanelClick('gebelikTakvimi')" id="A24037" data-tid="A352770"></span>
+                </a>
+            </li>
+
+            <li [ngClass]="ActivePage =='lohusaIzlem' ? 'active' : ''" id="A24034" data-tid="A352771">
+                <a data-toggle="tab" href="#lohusaIzlem" (click)="openLohusaIzlem()" id="A24035" data-tid="A352772">
+                    <span id="A24036" data-tid="A352773">Lohusa İzlem</span>
+                    <span class="fa fa-neuter" [ngClass]="RecentActiveTab =='lohusaIzlem' ? 'fa-map-pin' : ''" (click)="TabPanelClick('lohusaIzlem')" id="A24037" data-tid="A352774"></span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="tab-content" style="background-color:#fff;" id="A24074" data-tid="A352775">
+
+            <div id="gynecology" [ngClass]="ActivePage =='gynecology' ? 'tab-pane fade in active' : 'tab-pane fade'" data-tid="A352776">
+                <div *ngIf="openGynecologyTab" id="A24101" data-tid="A352777">
+                    <br data-tid="A352778" />
+                    <div class="row" id="A24102" data-tid="A352779">
+
+                        <div class="col-md-12" data-tid="A352780">
+                            <div class="col-md-3 col-sm-6" id="A19376" data-tid="A352781">
+                                <label class="control-label" id="A19377" data-tid="A352782">Son Jinekolojik Muayene Tarihi</label>
+                                <hvl-date-picker #Validation (ValueChange)="onLastExaminationDateGynecologyChanged($event)" [BackColor]="LastExaminationDateGynecology?.BackColor" [CustomFormat]="LastExaminationDateGynecology?.CustomFormat" [Enabled]="LastExaminationDateGynecology?.Enabled" [Font]="LastExaminationDateGynecology?.Font" [ForeColor]="LastExaminationDateGynecology?.ForeColor" [Format]="LastExaminationDateGynecology?.Format" [Max]="LastExaminationDateGynecology?.Max" [Min]="LastExaminationDateGynecology?.Min" [ReadOnly]="LastExaminationDateGynecology?.ReadOnly" [Required]="LastExaminationDateGynecology?.Required" [TabIndex]="LastExaminationDateGynecology?.TabIndex" [Value]="womanSpecialityFormViewModel?._WomanSpecialityObject?.Gynecology?.LastExaminationDate" [Visible]="LastExaminationDateGynecology?.Visible" id="A19378" data-tid="A352783"></hvl-date-picker>
+                            </div>
+                            <div class="col-md-3 col-sm-6" id="A19379" data-tid="A352784">
+                                <label class="control-label" id="A19380" data-tid="A352785">Son Smear Tarihi</label>
+                                <hvl-date-picker #Validation (ValueChange)="onLastSmearDateGynecologyChanged($event)" [BackColor]="LastSmearDateGynecology?.BackColor" [CustomFormat]="LastSmearDateGynecology?.CustomFormat" [Enabled]="LastSmearDateGynecology?.Enabled" [Font]="LastSmearDateGynecology?.Font" [ForeColor]="LastSmearDateGynecology?.ForeColor" [Format]="LastSmearDateGynecology?.Format" [Max]="LastSmearDateGynecology?.Max" [Min]="LastSmearDateGynecology?.Min" [ReadOnly]="LastSmearDateGynecology?.ReadOnly" [Required]="LastSmearDateGynecology?.Required" [TabIndex]="LastSmearDateGynecology?.TabIndex" [Value]="womanSpecialityFormViewModel?._WomanSpecialityObject?.Gynecology?.LastSmearDate" [Visible]="LastSmearDateGynecology?.Visible" id="A19381" data-tid="A352786"></hvl-date-picker>
+                            </div>
+                            <div class="col-md-3 col-sm-6" id="A19382" data-tid="A352787">
+                                <label class="control-label" id="A19383" data-tid="A352788">Önceki Doğum Kontrol Yöntemi</label>
+                                <hvl-enum-combobox #Validation (ValueChange)="onPreviousBirthControlMethodGynecologyChanged($event)" [BackColor]="PreviousBirthControlMethodGynecology?.BackColor" [DataTypeName]="PreviousBirthControlMethodGynecology?.DataTypeName" [Enabled]="PreviousBirthControlMethodGynecology?.Enabled" [Font]="PreviousBirthControlMethodGynecology?.Font" [ForeColor]="PreviousBirthControlMethodGynecology?.ForeColor" [IncludeOnly]="PreviousBirthControlMethodGynecology?.IncludeOnly" [ReadOnly]="PreviousBirthControlMethodGynecology?.ReadOnly" [ShowClearButton]="PreviousBirthControlMethodGynecology?.ShowClearButton" [SortBy]="PreviousBirthControlMethodGynecology?.SortBy" [TabIndex]="PreviousBirthControlMethodGynecology?.TabIndex" [Value]="womanSpecialityFormViewModel?._WomanSpecialityObject?.Gynecology?.PreviousBirthControlMethod" [Visible]="PreviousBirthControlMethodGynecology?.Visible" id="A19384" data-tid="A352789"></hvl-enum-combobox>
+                            </div>
+                            <div class="col-md-3 col-sm-6" id="A19385" data-tid="A352790">
+                                <label class="control-label" id="A19386" data-tid="A352791">Güncel Doğum Kontrol Yöntemi</label>
+                                <hvl-enum-combobox #Validation (ValueChange)="onCurrentBirthControlMethodGynecologyChanged($event)" [BackColor]="CurrentBirthControlMethodGynecology?.BackColor" [DataTypeName]="CurrentBirthControlMethodGynecology?.DataTypeName" [Enabled]="CurrentBirthControlMethodGynecology?.Enabled" [Font]="CurrentBirthControlMethodGynecology?.Font" [ForeColor]="CurrentBirthControlMethodGynecology?.ForeColor" [IncludeOnly]="CurrentBirthControlMethodGynecology?.IncludeOnly" [ReadOnly]="CurrentBirthControlMethodGynecology?.ReadOnly" [ShowClearButton]="CurrentBirthControlMethodGynecology?.ShowClearButton" [SortBy]="CurrentBirthControlMethodGynecology?.SortBy" [TabIndex]="CurrentBirthControlMethodGynecology?.TabIndex" [Value]="womanSpecialityFormViewModel?._WomanSpecialityObject?.Gynecology?.CurrentBirthControlMethod" [Visible]="CurrentBirthControlMethodGynecology?.Visible" id="A19387" data-tid="A352792"></hvl-enum-combobox>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12" data-tid="A352793">
+                            <div class="col-md-3 col-sm-12" id="A19389" data-tid="A352794">
+                                <label class="control-label" id="A19390" data-tid="A352795">Genital Bölge Anomalisi</label>
+                                <hvl-enum-combobox #Validation (ValueChange)="onGenitalAbnormalitiesGynecologyChanged($event)" [BackColor]="GenitalAbnormalitiesGynecology?.BackColor" [DataTypeName]="GenitalAbnormalitiesGynecology?.DataTypeName" [Enabled]="GenitalAbnormalitiesGynecology?.Enabled" [Font]="GenitalAbnormalitiesGynecology?.Font" [ForeColor]="GenitalAbnormalitiesGynecology?.ForeColor" [IncludeOnly]="GenitalAbnormalitiesGynecology?.IncludeOnly" [ReadOnly]="GenitalAbnormalitiesGynecology?.ReadOnly" [ShowClearButton]="GenitalAbnormalitiesGynecology?.ShowClearButton" [SortBy]="GenitalAbnormalitiesGynecology?.SortBy" [TabIndex]="GenitalAbnormalitiesGynecology?.TabIndex" [Value]="womanSpecialityFormViewModel?._WomanSpecialityObject?.Gynecology?.GenitalAbnormalities" [Visible]="GenitalAbnormalitiesGynecology?.Visible" id="A19391" data-tid="A352796"></hvl-enum-combobox>
+                            </div>
+                            <div class="col-md-9 col-sm-12" id="A19392" data-tid="A352797">
+                                <label class="control-label" id="A19393" data-tid="A352798">Genital Bölge Anomalisi Açıklama</label>
+                                <hvl-text-box #Validation (TextChange)="onGenitalAbnormalitiesInfoGynecologyChanged($event)" [BackColor]="GenitalAbnormalitiesInfoGynecology?.BackColor" [CharacterCasing]="GenitalAbnormalitiesInfoGynecology?.CharacterCasing" [Enabled]="GenitalAbnormalitiesInfoGynecology?.Enabled" [Font]="GenitalAbnormalitiesInfoGynecology?.Font" [ForeColor]="GenitalAbnormalitiesInfoGynecology?.ForeColor" [height]="GenitalAbnormalitiesInfoGynecology?.Height" [InputFormat]="GenitalAbnormalitiesInfoGynecology?.InputFormat" [InputTurkishCharacter]="GenitalAbnormalitiesInfoGynecology?.InputTurkishCharacter" [IsNonNumeric]="GenitalAbnormalitiesInfoGynecology?.IsNonNumeric" [MultiLine]="GenitalAbnormalitiesInfoGynecology?.Multiline" [ReadOnly]="GenitalAbnormalitiesInfoGynecology?.ReadOnly" [Required]="GenitalAbnormalitiesInfoGynecology?.Required" [TabIndex]="GenitalAbnormalitiesInfoGynecology?.TabIndex" [TextAlign]="GenitalAbnormalitiesInfoGynecology?.TextAlign" [Text]="womanSpecialityFormViewModel?._WomanSpecialityObject?.Gynecology?.GenitalAbnormalitiesInfo" [Visible]="GenitalAbnormalitiesInfoGynecology?.Visible" id="A19394" data-tid="A352799"></hvl-text-box>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12" data-tid="A352800">
+                            <div class="col-md-3 col-sm-12" id="A19396" data-tid="A352801">
+                                <label class="control-label" id="A19397" data-tid="A352802">Menstural Siklus Anomalisi</label>
+                                <hvl-enum-combobox #Validation (ValueChange)="onMenstrualCycleAbnormalitiesGynecologyChanged($event)" [BackColor]="MenstrualCycleAbnormalitiesGynecology?.BackColor" [DataTypeName]="MenstrualCycleAbnormalitiesGynecology?.DataTypeName" [Enabled]="MenstrualCycleAbnormalitiesGynecology?.Enabled" [Font]="MenstrualCycleAbnormalitiesGynecology?.Font" [ForeColor]="MenstrualCycleAbnormalitiesGynecology?.ForeColor" [IncludeOnly]="MenstrualCycleAbnormalitiesGynecology?.IncludeOnly" [ReadOnly]="MenstrualCycleAbnormalitiesGynecology?.ReadOnly" [ShowClearButton]="MenstrualCycleAbnormalitiesGynecology?.ShowClearButton" [SortBy]="MenstrualCycleAbnormalitiesGynecology?.SortBy" [TabIndex]="MenstrualCycleAbnormalitiesGynecology?.TabIndex" [Value]="womanSpecialityFormViewModel?._WomanSpecialityObject?.Gynecology?.MenstrualCycleAbnormalities" [Visible]="MenstrualCycleAbnormalitiesGynecology?.Visible" id="A19398" data-tid="A352803"></hvl-enum-combobox>
+                            </div>
+                            <div class="col-md-9 col-sm-12" id="A19399" data-tid="A352804">
+                                <label class="control-label" id="A19400" data-tid="A352805">Menstural Siklus Açıklama</label>
+                                <hvl-text-box #Validation (TextChange)="onMenstrualCycleInformationGynecologyChanged($event)" [BackColor]="MenstrualCycleInformationGynecology?.BackColor" [CharacterCasing]="MenstrualCycleInformationGynecology?.CharacterCasing" [Enabled]="MenstrualCycleInformationGynecology?.Enabled" [Font]="MenstrualCycleInformationGynecology?.Font" [ForeColor]="MenstrualCycleInformationGynecology?.ForeColor" [height]="MenstrualCycleInformationGynecology?.Height" [InputFormat]="MenstrualCycleInformationGynecology?.InputFormat" [InputTurkishCharacter]="MenstrualCycleInformationGynecology?.InputTurkishCharacter" [IsNonNumeric]="MenstrualCycleInformationGynecology?.IsNonNumeric" [MultiLine]="MenstrualCycleInformationGynecology?.Multiline" [ReadOnly]="MenstrualCycleInformationGynecology?.ReadOnly" [Required]="MenstrualCycleInformationGynecology?.Required" [TabIndex]="MenstrualCycleInformationGynecology?.TabIndex" [TextAlign]="MenstrualCycleInformationGynecology?.TextAlign" [Text]="womanSpecialityFormViewModel?._WomanSpecialityObject?.Gynecology?.MenstrualCycleInformation" [Visible]="MenstrualCycleInformationGynecology?.Visible" id="A19401" data-tid="A352806"></hvl-text-box>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12" data-tid="A352807">
+                            <div class="col-md-3 col-sm-12" id="A19403" data-tid="A352808">
+                                <label class="control-label" id="A19404" data-tid="A352809">Üreme Organı Anomalisi</label>
+                                <hvl-list-box #Validation (SelectedObjectChange)="onReproductiveAbnormalityGynecologyChanged($event)" [AutoCompleteDialogHeight]="ReproductiveAbnormalityGynecology?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ReproductiveAbnormalityGynecology?.AutoCompleteDialogWidth" [AutoCompleteMode]="ReproductiveAbnormalityGynecology?.AutoCompleteMode" [BackColor]="ReproductiveAbnormalityGynecology?.BackColor" [DefinitionName]="ReproductiveAbnormalityGynecology?.ListDefName" [DisplayExpressionsCache]="womanSpecialityFormViewModel?.ListDefDisplayExpressions" [Enabled]="ReproductiveAbnormalityGynecology?.Enabled" [Font]="ReproductiveAbnormalityGynecology?.Font" [ForeColor]="ReproductiveAbnormalityGynecology?.ForeColor" [ListFilterExpression]="ReproductiveAbnormalityGynecology?.ListFilterExpression" [MinSearchLength]="ReproductiveAbnormalityGynecology?.MinSearchLength" [PopupDialogFieldConfig]="ReproductiveAbnormalityGynecology?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ReproductiveAbnormalityGynecology?.PopupDialogGridColumns" [PopupDialogHeight]="ReproductiveAbnormalityGynecology?.PopupDialogHeight" [PopupDialogTitle]="ReproductiveAbnormalityGynecology?.PopupDialogTitle" [PopupDialogWidth]="ReproductiveAbnormalityGynecology?.PopupDialogWidth" [ReadOnly]="ReproductiveAbnormalityGynecology?.ReadOnly" [SearchMode]="ReproductiveAbnormalityGynecology?.SearchMode" [SearchTimeout]="ReproductiveAbnormalityGynecology?.SearchTimeout" [SelectedObject]="womanSpecialityFormViewModel?._WomanSpecialityObject?.Gynecology?.ReproductiveAbnormality" [TabIndex]="ReproductiveAbnormalityGynecology?.TabIndex" [Visible]="ReproductiveAbnormalityGynecology?.Visible" [width]="ReproductiveAbnormalityGynecology?.Width" id="A19405" data-tid="A352810"></hvl-list-box>
+                            </div>
+                            <div class="col-md-9 col-sm-12" id="A19406" data-tid="A352811">
+                                <label class="control-label" id="A19407" data-tid="A352812">Üreme Organı Anomalileri Açıklama</label>
+                                <hvl-text-box #Validation (TextChange)="onReproductiveAbnormalitiesInfoGynecologyChanged($event)" [BackColor]="ReproductiveAbnormalitiesInfoGynecology?.BackColor" [CharacterCasing]="ReproductiveAbnormalitiesInfoGynecology?.CharacterCasing" [Enabled]="ReproductiveAbnormalitiesInfoGynecology?.Enabled" [Font]="ReproductiveAbnormalitiesInfoGynecology?.Font" [ForeColor]="ReproductiveAbnormalitiesInfoGynecology?.ForeColor" [height]="ReproductiveAbnormalitiesInfoGynecology?.Height" [InputFormat]="ReproductiveAbnormalitiesInfoGynecology?.InputFormat" [InputTurkishCharacter]="ReproductiveAbnormalitiesInfoGynecology?.InputTurkishCharacter" [IsNonNumeric]="ReproductiveAbnormalitiesInfoGynecology?.IsNonNumeric" [MultiLine]="ReproductiveAbnormalitiesInfoGynecology?.Multiline" [ReadOnly]="ReproductiveAbnormalitiesInfoGynecology?.ReadOnly" [Required]="ReproductiveAbnormalitiesInfoGynecology?.Required" [TabIndex]="ReproductiveAbnormalitiesInfoGynecology?.TabIndex" [TextAlign]="ReproductiveAbnormalitiesInfoGynecology?.TextAlign" [Text]="womanSpecialityFormViewModel?._WomanSpecialityObject?.Gynecology?.ReproductiveAbnormalitiesInfo" [Visible]="ReproductiveAbnormalitiesInfoGynecology?.Visible" id="A19408" data-tid="A352813"></hvl-text-box>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12" id="A19410" data-tid="A352814">
+                            <label class="control-label" id="A19411" data-tid="A352815">Jinekolojik Anamnez</label>
+                            <hvl-text-box #Validation (TextChange)="onGynecologicalHistoryGynecologyChanged($event)" [BackColor]="GynecologicalHistoryGynecology?.BackColor" [CharacterCasing]="GynecologicalHistoryGynecology?.CharacterCasing" [Enabled]="GynecologicalHistoryGynecology?.Enabled" [Font]="GynecologicalHistoryGynecology?.Font" [ForeColor]="GynecologicalHistoryGynecology?.ForeColor" [height]="GynecologicalHistoryGynecology?.Height" [InputFormat]="GynecologicalHistoryGynecology?.InputFormat" [InputTurkishCharacter]="GynecologicalHistoryGynecology?.InputTurkishCharacter" [IsNonNumeric]="GynecologicalHistoryGynecology?.IsNonNumeric" [MultiLine]="GynecologicalHistoryGynecology?.Multiline" [ReadOnly]="GynecologicalHistoryGynecology?.ReadOnly" [Required]="GynecologicalHistoryGynecology?.Required" [TabIndex]="GynecologicalHistoryGynecology?.TabIndex" [TextAlign]="GynecologicalHistoryGynecology?.TextAlign" [Text]="womanSpecialityFormViewModel?._WomanSpecialityObject?.Gynecology?.GynecologicalHistory" [Visible]="GynecologicalHistoryGynecology?.Visible" id="A19412" data-tid="A352816"></hvl-text-box>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12" id="A19414" data-tid="A352817">
+                            <label class="control-label" id="A19415" data-tid="A352818">Genital Bölge Muayene</label>
+                            <hvl-text-box #Validation (TextChange)="onGenitalExaminationGynecologyChanged($event)" [BackColor]="GenitalExaminationGynecology?.BackColor" [CharacterCasing]="GenitalExaminationGynecology?.CharacterCasing" [Enabled]="GenitalExaminationGynecology?.Enabled" [Font]="GenitalExaminationGynecology?.Font" [ForeColor]="GenitalExaminationGynecology?.ForeColor" [height]="GenitalExaminationGynecology?.Height" [InputFormat]="GenitalExaminationGynecology?.InputFormat" [InputTurkishCharacter]="GenitalExaminationGynecology?.InputTurkishCharacter" [IsNonNumeric]="GenitalExaminationGynecology?.IsNonNumeric" [MultiLine]="GenitalExaminationGynecology?.Multiline" [ReadOnly]="GenitalExaminationGynecology?.ReadOnly" [Required]="GenitalExaminationGynecology?.Required" [TabIndex]="GenitalExaminationGynecology?.TabIndex" [TextAlign]="GenitalExaminationGynecology?.TextAlign" [Text]="womanSpecialityFormViewModel?._WomanSpecialityObject?.Gynecology?.GenitalExamination" [Visible]="GenitalExaminationGynecology?.Visible" id="A19416" data-tid="A352819"></hvl-text-box>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12" id="A19418" data-tid="A352820">
+                            <label class="control-label" id="A19419" data-tid="A352821">Pelvik Muayene</label>
+                            <hvl-text-box #Validation (TextChange)="onPelvicExaminationGynecologyChanged($event)" [BackColor]="PelvicExaminationGynecology?.BackColor" [CharacterCasing]="PelvicExaminationGynecology?.CharacterCasing" [Enabled]="PelvicExaminationGynecology?.Enabled" [Font]="PelvicExaminationGynecology?.Font" [ForeColor]="PelvicExaminationGynecology?.ForeColor" [height]="PelvicExaminationGynecology?.Height" [InputFormat]="PelvicExaminationGynecology?.InputFormat" [InputTurkishCharacter]="PelvicExaminationGynecology?.InputTurkishCharacter" [IsNonNumeric]="PelvicExaminationGynecology?.IsNonNumeric" [MultiLine]="PelvicExaminationGynecology?.Multiline" [ReadOnly]="PelvicExaminationGynecology?.ReadOnly" [Required]="PelvicExaminationGynecology?.Required" [TabIndex]="PelvicExaminationGynecology?.TabIndex" [TextAlign]="PelvicExaminationGynecology?.TextAlign" [Text]="womanSpecialityFormViewModel?._WomanSpecialityObject?.Gynecology?.PelvicExamination" [Visible]="PelvicExaminationGynecology?.Visible" id="A19420" data-tid="A352822"></hvl-text-box>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12" id="A19422" data-tid="A352823">
+                            <label class="control-label" id="A19423" data-tid="A352824">Vulva Vagen</label>
+                            <hvl-text-box #Validation (TextChange)="onVulvaVagenGynecologyChanged($event)" [BackColor]="VulvaVagenGynecology?.BackColor" [CharacterCasing]="VulvaVagenGynecology?.CharacterCasing" [Enabled]="VulvaVagenGynecology?.Enabled" [Font]="VulvaVagenGynecology?.Font" [ForeColor]="VulvaVagenGynecology?.ForeColor" [height]="VulvaVagenGynecology?.Height" [InputFormat]="VulvaVagenGynecology?.InputFormat" [InputTurkishCharacter]="VulvaVagenGynecology?.InputTurkishCharacter" [IsNonNumeric]="VulvaVagenGynecology?.IsNonNumeric" [MultiLine]="VulvaVagenGynecology?.Multiline" [ReadOnly]="VulvaVagenGynecology?.ReadOnly" [Required]="VulvaVagenGynecology?.Required" [TabIndex]="VulvaVagenGynecology?.TabIndex" [TextAlign]="VulvaVagenGynecology?.TextAlign" [Text]="womanSpecialityFormViewModel?._WomanSpecialityObject?.Gynecology?.VulvaVagen" [Visible]="VulvaVagenGynecology?.Visible" id="A19424" data-tid="A352825"></hvl-text-box>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12" id="A19426" data-tid="A352826">
+                            <label class="control-label" id="A19427" data-tid="A352827">Serviks</label>
+                            <hvl-text-box #Validation (TextChange)="onCervixGynecologyChanged($event)" [BackColor]="CervixGynecology?.BackColor" [CharacterCasing]="CervixGynecology?.CharacterCasing" [Enabled]="CervixGynecology?.Enabled" [Font]="CervixGynecology?.Font" [ForeColor]="CervixGynecology?.ForeColor" [height]="CervixGynecology?.Height" [InputFormat]="CervixGynecology?.InputFormat" [InputTurkishCharacter]="CervixGynecology?.InputTurkishCharacter" [IsNonNumeric]="CervixGynecology?.IsNonNumeric" [MultiLine]="CervixGynecology?.Multiline" [ReadOnly]="CervixGynecology?.ReadOnly" [Required]="CervixGynecology?.Required" [TabIndex]="CervixGynecology?.TabIndex" [TextAlign]="CervixGynecology?.TextAlign" [Text]="womanSpecialityFormViewModel?._WomanSpecialityObject?.Gynecology?.Cervix" [Visible]="CervixGynecology?.Visible" id="A19428" data-tid="A352828"></hvl-text-box>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12" id="A19430" data-tid="A352829">
+                            <label class="control-label" id="A19431" data-tid="A352830">Uterus</label>
+                            <hvl-text-box #Validation (TextChange)="onUterusGynecologyChanged($event)" [BackColor]="UterusGynecology?.BackColor" [CharacterCasing]="UterusGynecology?.CharacterCasing" [Enabled]="UterusGynecology?.Enabled" [Font]="UterusGynecology?.Font" [ForeColor]="UterusGynecology?.ForeColor" [height]="UterusGynecology?.Height" [InputFormat]="UterusGynecology?.InputFormat" [InputTurkishCharacter]="UterusGynecology?.InputTurkishCharacter" [IsNonNumeric]="UterusGynecology?.IsNonNumeric" [MultiLine]="UterusGynecology?.Multiline" [ReadOnly]="UterusGynecology?.ReadOnly" [Required]="UterusGynecology?.Required" [TabIndex]="UterusGynecology?.TabIndex" [TextAlign]="UterusGynecology?.TextAlign" [Text]="womanSpecialityFormViewModel?._WomanSpecialityObject?.Gynecology?.Uterus" [Visible]="UterusGynecology?.Visible" id="A19432" data-tid="A352831"></hvl-text-box>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12" id="A19434" data-tid="A352832">
+                            <label class="control-label" id="A19435" data-tid="A352833">Bazal Ultrason</label>
+                            <hvl-text-box #Validation (TextChange)="onBasalUltrasoundGynecologyChanged($event)" [BackColor]="BasalUltrasoundGynecology?.BackColor" [CharacterCasing]="BasalUltrasoundGynecology?.CharacterCasing" [Enabled]="BasalUltrasoundGynecology?.Enabled" [Font]="BasalUltrasoundGynecology?.Font" [ForeColor]="BasalUltrasoundGynecology?.ForeColor" [height]="BasalUltrasoundGynecology?.Height" [InputFormat]="BasalUltrasoundGynecology?.InputFormat" [InputTurkishCharacter]="BasalUltrasoundGynecology?.InputTurkishCharacter" [IsNonNumeric]="BasalUltrasoundGynecology?.IsNonNumeric" [MultiLine]="BasalUltrasoundGynecology?.Multiline" [ReadOnly]="BasalUltrasoundGynecology?.ReadOnly" [Required]="BasalUltrasoundGynecology?.Required" [TabIndex]="BasalUltrasoundGynecology?.TabIndex" [TextAlign]="BasalUltrasoundGynecology?.TextAlign" [Text]="womanSpecialityFormViewModel?._WomanSpecialityObject?.Gynecology?.BasalUltrasound" [Visible]="BasalUltrasoundGynecology?.Visible" id="A19436" data-tid="A352834"></hvl-text-box>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12" id="A19438" data-tid="A352835">
+                            <label class="control-label" id="A19439" data-tid="A352836">Tümör Belirleyiciler</label>
+                            <hvl-text-box #Validation (TextChange)="onTumorMarkersGynecologyChanged($event)" [BackColor]="TumorMarkersGynecology?.BackColor" [CharacterCasing]="TumorMarkersGynecology?.CharacterCasing" [Enabled]="TumorMarkersGynecology?.Enabled" [Font]="TumorMarkersGynecology?.Font" [ForeColor]="TumorMarkersGynecology?.ForeColor" [height]="TumorMarkersGynecology?.Height" [InputFormat]="TumorMarkersGynecology?.InputFormat" [InputTurkishCharacter]="TumorMarkersGynecology?.InputTurkishCharacter" [IsNonNumeric]="TumorMarkersGynecology?.IsNonNumeric" [MultiLine]="TumorMarkersGynecology?.Multiline" [ReadOnly]="TumorMarkersGynecology?.ReadOnly" [Required]="TumorMarkersGynecology?.Required" [TabIndex]="TumorMarkersGynecology?.TabIndex" [TextAlign]="TumorMarkersGynecology?.TextAlign" [Text]="womanSpecialityFormViewModel?._WomanSpecialityObject?.Gynecology?.TumorMarkers" [Visible]="TumorMarkersGynecology?.Visible" id="A19440" data-tid="A352837"></hvl-text-box>
+                        </div>
+
+                        <div class="row" data-tid="A352838">
+                            <div class="col-md-12" data-tid="A352839">
+                                <div class="col-md-3 col-sm-12" id="A19442" data-tid="A352840">
+                                    <br id="A19443" data-tid="A352841" />
+                                    <hvl-checkbox #Validation (ValueChange)="onDysuriaGynecologyChanged($event)" [AllowThreeState]="DysuriaGynecology?.ThreeState" [BackColor]="DysuriaGynecology?.BackColor" [Enabled]="DysuriaGynecology?.Enabled" [Font]="DysuriaGynecology?.Font" [ForeColor]="DysuriaGynecology?.ForeColor" [IsTitleLeft]="DysuriaGynecology?.IsTitleLeft" [Margin]="DysuriaGynecology?.Margin" [ReadOnly]="DysuriaGynecology?.ReadOnly" [TabIndex]="DysuriaGynecology?.TabIndex" [TitleTopPadding]="DysuriaGynecology?.TitleTopPadding" [Title]="DysuriaGynecology?.Title" [Value]="womanSpecialityFormViewModel?._WomanSpecialityObject?.Gynecology?.Dysuria" [Visible]="DysuriaGynecology?.Visible" id="A19444" data-tid="A352842"></hvl-checkbox>
+                                </div>
+                                <div class="col-md-9 col-sm-12" id="A19445" data-tid="A352843">
+                                    <label class="control-label" id="A19446" data-tid="A352844">İdrar Yaparken Ağrı/Yanma Açıklama</label>
+                                    <hvl-text-box #Validation (TextChange)="onDysuriaInformationGynecologyChanged($event)" [BackColor]="DysuriaInformationGynecology?.BackColor" [CharacterCasing]="DysuriaInformationGynecology?.CharacterCasing" [Enabled]="DysuriaInformationGynecology?.Enabled" [Font]="DysuriaInformationGynecology?.Font" [ForeColor]="DysuriaInformationGynecology?.ForeColor" [height]="DysuriaInformationGynecology?.Height" [InputFormat]="DysuriaInformationGynecology?.InputFormat" [InputTurkishCharacter]="DysuriaInformationGynecology?.InputTurkishCharacter" [IsNonNumeric]="DysuriaInformationGynecology?.IsNonNumeric" [MultiLine]="DysuriaInformationGynecology?.Multiline" [ReadOnly]="DysuriaInformationGynecology?.ReadOnly" [Required]="DysuriaInformationGynecology?.Required" [TabIndex]="DysuriaInformationGynecology?.TabIndex" [TextAlign]="DysuriaInformationGynecology?.TextAlign" [Text]="womanSpecialityFormViewModel?._WomanSpecialityObject?.Gynecology?.DysuriaInformation" [Visible]="DysuriaInformationGynecology?.Visible" id="A19447" data-tid="A352845"></hvl-text-box>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12" data-tid="A352846">
+                                <div class="col-md-3 col-sm-12" id="A19449" data-tid="A352847">
+                                    <br id="A19450" data-tid="A352848" />
+                                    <hvl-checkbox #Validation (ValueChange)="onDyspareuniaGynecologyChanged($event)" [AllowThreeState]="DyspareuniaGynecology?.ThreeState" [BackColor]="DyspareuniaGynecology?.BackColor" [Enabled]="DyspareuniaGynecology?.Enabled" [Font]="DyspareuniaGynecology?.Font" [ForeColor]="DyspareuniaGynecology?.ForeColor" [IsTitleLeft]="DyspareuniaGynecology?.IsTitleLeft" [Margin]="DyspareuniaGynecology?.Margin" [ReadOnly]="DyspareuniaGynecology?.ReadOnly" [TabIndex]="DyspareuniaGynecology?.TabIndex" [TitleTopPadding]="DyspareuniaGynecology?.TitleTopPadding" [Title]="DyspareuniaGynecology?.Title" [Value]="womanSpecialityFormViewModel?._WomanSpecialityObject?.Gynecology?.Dyspareunia" [Visible]="DyspareuniaGynecology?.Visible" id="A19451" data-tid="A352849"></hvl-checkbox>
+                                </div>
+                                <div class="col-md-9 col-sm-12" id="A19452" data-tid="A352850">
+                                    <label class="control-label" id="A19453" data-tid="A352851">Cinsel İlişki Sırasında Ağrı,Kanama Açıklama</label>
+                                    <hvl-text-box #Validation (TextChange)="onDyspareuniaInformationGynecologyChanged($event)" [BackColor]="DyspareuniaInformationGynecology?.BackColor" [CharacterCasing]="DyspareuniaInformationGynecology?.CharacterCasing" [Enabled]="DyspareuniaInformationGynecology?.Enabled" [Font]="DyspareuniaInformationGynecology?.Font" [ForeColor]="DyspareuniaInformationGynecology?.ForeColor" [height]="DyspareuniaInformationGynecology?.Height" [InputFormat]="DyspareuniaInformationGynecology?.InputFormat" [InputTurkishCharacter]="DyspareuniaInformationGynecology?.InputTurkishCharacter" [IsNonNumeric]="DyspareuniaInformationGynecology?.IsNonNumeric" [MultiLine]="DyspareuniaInformationGynecology?.Multiline" [ReadOnly]="DyspareuniaInformationGynecology?.ReadOnly" [Required]="DyspareuniaInformationGynecology?.Required" [TabIndex]="DyspareuniaInformationGynecology?.TabIndex" [TextAlign]="DyspareuniaInformationGynecology?.TextAlign" [Text]="womanSpecialityFormViewModel?._WomanSpecialityObject?.Gynecology?.DyspareuniaInformation" [Visible]="DyspareuniaInformationGynecology?.Visible" id="A19454" data-tid="A352852"></hvl-text-box>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12" data-tid="A352853">
+                                <div class="col-md-3 col-sm-12" id="A19456" data-tid="A352854">
+                                    <br id="A19457" data-tid="A352855" />
+                                    <hvl-checkbox #Validation (ValueChange)="onHirsutismGynecologyChanged($event)" [AllowThreeState]="HirsutismGynecology?.ThreeState" [BackColor]="HirsutismGynecology?.BackColor" [Enabled]="HirsutismGynecology?.Enabled" [Font]="HirsutismGynecology?.Font" [ForeColor]="HirsutismGynecology?.ForeColor" [IsTitleLeft]="HirsutismGynecology?.IsTitleLeft" [Margin]="HirsutismGynecology?.Margin" [ReadOnly]="HirsutismGynecology?.ReadOnly" [TabIndex]="HirsutismGynecology?.TabIndex" [TitleTopPadding]="HirsutismGynecology?.TitleTopPadding" [Title]="HirsutismGynecology?.Title" [Value]="womanSpecialityFormViewModel?._WomanSpecialityObject?.Gynecology?.Hirsutism" [Visible]="HirsutismGynecology?.Visible" id="A19458" data-tid="A352856"></hvl-checkbox>
+                                </div>
+                                <div class="col-md-9 col-sm-12" id="A19459" data-tid="A352857">
+                                    <label class="control-label" id="A19460" data-tid="A352858">Tüylenme Açıklama</label>
+                                    <hvl-text-box #Validation (TextChange)="onHirsutismInformationGynecologyChanged($event)" [BackColor]="HirsutismInformationGynecology?.BackColor" [CharacterCasing]="HirsutismInformationGynecology?.CharacterCasing" [Enabled]="HirsutismInformationGynecology?.Enabled" [Font]="HirsutismInformationGynecology?.Font" [ForeColor]="HirsutismInformationGynecology?.ForeColor" [height]="HirsutismInformationGynecology?.Height" [InputFormat]="HirsutismInformationGynecology?.InputFormat" [InputTurkishCharacter]="HirsutismInformationGynecology?.InputTurkishCharacter" [IsNonNumeric]="HirsutismInformationGynecology?.IsNonNumeric" [MultiLine]="HirsutismInformationGynecology?.Multiline" [ReadOnly]="HirsutismInformationGynecology?.ReadOnly" [Required]="HirsutismInformationGynecology?.Required" [TabIndex]="HirsutismInformationGynecology?.TabIndex" [TextAlign]="HirsutismInformationGynecology?.TextAlign" [Text]="womanSpecialityFormViewModel?._WomanSpecialityObject?.Gynecology?.HirsutismInformation" [Visible]="HirsutismInformationGynecology?.Visible" id="A19461" data-tid="A352859"></hvl-text-box>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12" data-tid="A352860">
+                                <div class="col-md-3 col-sm-12" id="A19463" data-tid="A352861">
+                                    <br id="A19464" data-tid="A352862" />
+                                    <hvl-checkbox #Validation (ValueChange)="onVaginalDischargeGynecologyChanged($event)" [AllowThreeState]="VaginalDischargeGynecology?.ThreeState" [BackColor]="VaginalDischargeGynecology?.BackColor" [Enabled]="VaginalDischargeGynecology?.Enabled" [Font]="VaginalDischargeGynecology?.Font" [ForeColor]="VaginalDischargeGynecology?.ForeColor" [IsTitleLeft]="VaginalDischargeGynecology?.IsTitleLeft" [Margin]="VaginalDischargeGynecology?.Margin" [ReadOnly]="VaginalDischargeGynecology?.ReadOnly" [TabIndex]="VaginalDischargeGynecology?.TabIndex" [TitleTopPadding]="VaginalDischargeGynecology?.TitleTopPadding" [Title]="VaginalDischargeGynecology?.Title" [Value]="womanSpecialityFormViewModel?._WomanSpecialityObject?.Gynecology?.VaginalDischarge" [Visible]="VaginalDischargeGynecology?.Visible" id="A19465" data-tid="A352863"></hvl-checkbox>
+                                </div>
+                                <div class="col-md-9 col-sm-12" id="A19466" data-tid="A352864">
+                                    <label class="control-label" id="A19467" data-tid="A352865">Vajinal Akıntı Açıklama</label>
+                                    <hvl-text-box #Validation (TextChange)="onVaginalDischargeInformationGynecologyChanged($event)" [BackColor]="VaginalDischargeInformationGynecology?.BackColor" [CharacterCasing]="VaginalDischargeInformationGynecology?.CharacterCasing" [Enabled]="VaginalDischargeInformationGynecology?.Enabled" [Font]="VaginalDischargeInformationGynecology?.Font" [ForeColor]="VaginalDischargeInformationGynecology?.ForeColor" [height]="VaginalDischargeInformationGynecology?.Height" [InputFormat]="VaginalDischargeInformationGynecology?.InputFormat" [InputTurkishCharacter]="VaginalDischargeInformationGynecology?.InputTurkishCharacter" [IsNonNumeric]="VaginalDischargeInformationGynecology?.IsNonNumeric" [MultiLine]="VaginalDischargeInformationGynecology?.Multiline" [ReadOnly]="VaginalDischargeInformationGynecology?.ReadOnly" [Required]="VaginalDischargeInformationGynecology?.Required" [TabIndex]="VaginalDischargeInformationGynecology?.TabIndex" [TextAlign]="VaginalDischargeInformationGynecology?.TextAlign" [Text]="womanSpecialityFormViewModel?._WomanSpecialityObject?.Gynecology?.VaginalDischargeInformation" [Visible]="VaginalDischargeInformationGynecology?.Visible" id="A19468" data-tid="A352866"></hvl-text-box>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="infertilite" [ngClass]="ActivePage =='infertilite' ? 'tab-pane fade in active' : 'tab-pane fade'" data-tid="A352867">
+                <div *ngIf="openInfertiliteTab" id="A24101" data-tid="A352868">
+                    <br data-tid="A352869" />
+                    <div class="row" id="A24102" data-tid="A352870">
+                        <InfertilityPatientInformationForm [patientId]="womanSpecialityFormViewModel?._Patient" (sendViewModelToParent)="setInfertilityPatientInfoViewModel($event)" id="A19472" data-tid="A352871"></InfertilityPatientInformationForm>
+                        <hr id="A19473" data-tid="A352872" />
+                        <InfertilityForm [womanSpecialityObjectInfo]="_womanSpecialityObjectInfo" (sendViewModelToParent)="setInfertilityViewModel($event)" id="A19474" data-tid="A352873"></InfertilityForm>
+                    </div>
+                </div>
+            </div>
+
+            <div id="gebeIzlem" [ngClass]="ActivePage =='gebeIzlem' ? 'tab-pane fade in active' : 'tab-pane fade'" data-tid="A352874">
+                <div *ngIf="openGebeIzlemTab" id="A24101" data-tid="A352875">
+                    <br data-tid="A352876" />
+                    <div class="row" id="A24102" data-tid="A352877">
+                        <div *ngIf="isPregnancyActive==true" id="A19476" data-tid="A352878">
+                            <div *ngIf="isPregnancyNew==false" id="A19477" data-tid="A352879">
+                                <PregnancyFollowForm [womanSpecialityObjectInfo]="_womanSpecialityObjectInfo" (sendViewModelToParent)="setPregnancyFollowViewModel($event)" id="A19478" data-tid="A352880"></PregnancyFollowForm>
+                            </div>
+                        </div>
+                        <div class="col-xs-12" id="A24103" data-tid="A352881">
+                            <div *ngIf="isPregnancyActive==false" id="A19479" data-tid="A352882">
+                                <p class="alert alert-warning" data-tid="A352883">
+                                    Gebe İzlem İşlemleri İçin Gebelik Başlatınız!
+                                </p>
+                            </div>
+                            <div *ngIf="isPregnancyNew==true" id="A19479" data-tid="A352884">
+                                <p class="alert alert-danger" data-tid="A352885">
+                                    Gebe izlem işlemi yapabilmek için gebeliği kaydediniz!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="gebelikTakvimi" [ngClass]="ActivePage =='gebelikTakvimi' ? 'tab-pane fade in active' : 'tab-pane fade'" data-tid="A352886">
+                <div *ngIf="openGebelikTakvimiTab" id="A24101" data-tid="A352887">
+                    <div class="row" id="A24102" data-tid="A352888">
+                        <div *ngIf="isPregnancyActive==true" id="A19481" data-tid="A352889">
+                            <div class="col-sm-12" id="A19483" data-tid="A352890">
+                                <br data-tid="A352891" />
+                                <div class="table-responsive" id="A19484" data-tid="A352892">
+                                    <table class="table table-bordered" id="A19485" data-tid="A352893">
+                                        <thead id="A19486" data-tid="A352894">
+                                            <tr class="info" id="A19487" data-tid="A352895">
+                                                <th id="A19488" data-tid="A352896"><b id="A19489" data-tid="A352897">Açıklama</b></th>
+                                                <th id="A19490" data-tid="A352898"><b id="A19491" data-tid="A352899">Aralık Tipi</b></th>
+                                                <th id="A19492" data-tid="A352900"><b id="A19493" data-tid="A352901">Başlangıç Tarihi</b></th>
+                                                <th id="A19494" data-tid="A352902"><b id="A19495" data-tid="A352903">Bitiş Tarihi</b></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="A19496" data-tid="A352904">
+                                            <tr *ngFor="let calendar of womanSpecialityFormViewModel?.PregnancyCalendarDefList" id="A19497" data-tid="A352905">
+                                                <td id="A19498" data-tid="A352906">{{calendar.PeriodName}}</td>
+                                                <td *ngIf="calendar.FinishDate != null" [class.danger]="womanSpecialityFormViewModel?.PregnancyWeek >= calendar.StartDate && womanSpecialityFormViewModel?.PregnancyWeek < calendar.FinishDate" id="A19499" data-tid="A352907">{{calendar.StartDate}}. - {{calendar.FinishDate}}. Haftalar Arası</td>
+                                                <td *ngIf="calendar.FinishDate == null" id="A19500" data-tid="A352908">{{calendar.StartDate}}. Hafta</td>
+                                                <td id="A19501" data-tid="A352909">{{calendar.CalculatedStartDate | date: "dd/MM/yyyy"}}</td>
+                                                <td id="A19502" data-tid="A352910">{{calendar.CalculatedFinishDate | date: "dd/MM/yyyy"}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-12" *ngIf="isPregnancyActive==false" id="A19503" data-tid="A352911">
+                            <br data-tid="A352912" />
+                            <p class="alert alert-warning" data-tid="A352913">
+                                Gebelik Takvimi İçin Gebelik Başlatınız!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="lohusaIzlem" [ngClass]="ActivePage =='lohusaIzlem' ? 'tab-pane fade in active' : 'tab-pane fade'" data-tid="A352914">
+                <div *ngIf="openLohusaIzlemTab" id="A24101" data-tid="A352915">
+                    <br data-tid="A352916" />
+                    <div class="row" id="A24102" data-tid="A352917">
+                        <div *ngIf="isPregnancyActive==false" data-tid="A352918">
+                            <PostpartumFollowUpForm [womanSpecialityObjectInfo]="_womanSpecialityObjectInfo" (sendViewModelToParent)="setPostpartumFollowViewModel($event)" id="A19480" data-tid="A352919"></PostpartumFollowUpForm>
+                        </div>
+
+                        <div class="col-md-12" data-tid="A352920">
+                            <div *ngIf="isPregnancyActive==true" data-tid="A352921">
+                                <p class="alert alert-warning" data-tid="A352922">
+                                    Lohusa İzlem İçin Gebeliği Sonlandırınız!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <dx-popup class="hidePopupHeader" [showTitle]="true" title="PregnancyStart" [width]="600" [height]="800" [(visible)]="womanSpecialityFormViewModel.showPregnancyStartPopup" id="A19504" data-tid="A352923">
+            <div *dxTemplate="let data of 'content'" id="A19505" data-tid="A352924">
+                <PregnancyStartForm (sendViewModelToParent)="setPregnancyStartViewModel($event)" [GebelikBildirim]="womanSpecialityFormViewModel?._GebelikBildirimViewModel" id="A19506" data-tid="A352925"></PregnancyStartForm>
+
+                <div class="row" id="A19507" data-tid="A352926">
+                    <br id="A19508" data-tid="A352927" />
+                    <div class="col-md-12" style="text-align:right;" id="A19509" data-tid="A352928">
+                        <button type="button" class="btn btn-default" (click)="CancelPregnancyStartModal()" id="A19510" data-tid="A352929">Vazgeç</button>
+                        <button type="button" class="btn btn-primary" (click)="SavePregnancyStart($event)" id="A19511" data-tid="A352930">Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        </dx-popup>
+
+
+        <dx-popup [showTitle]="true" title="Gebelik Sonucu" [width]="800" [(visible)]="showPregnancyResultPopup" id="A19512" data-tid="A352931">
+            <div *dxTemplate="let data of 'content'" id="A19513" data-tid="A352932">
+                <atlas-form-editor [QueryParameters]="pregnancyResultQueryParameters" [ComponentInfo]="pregnancyResultComponentInfo" (QueryResultLoaded)="pregnancyResultQueryResultLoaded($event)" class="PregnancyResultEditorStyle" id="A19514" data-tid="A352933"></atlas-form-editor>
+                <div class="row" id="A19515" data-tid="A352934">
+                    <br id="A19516" data-tid="A352935" />
+                    <div class="col-md-12" style="text-align:right;" id="A19517" data-tid="A352936">
+                        <button type="button" class="btn btn-lg btn-primary" (click)="SavePregnancyResult($event)" id="A19518" data-tid="A352937">Gebeliği Sonlandır</button>
+                    </div>
+                </div>
+
+            </div>
+        </dx-popup>
+
+
+        <dx-popup [showTitle]="true" title="Geçmiş Gebelik Bilgileri" [width]="1600" [(visible)]="showPreviousPregnancyPopup" id="A19519" data-tid="A352938">
+            <div *dxTemplate="let data of 'content'" id="A19520" data-tid="A352939">
+                <atlas-form-editor [QueryParameters]="previousPregnancyQueryParameters" [ComponentInfo]="previousPregnancyComponentInfo" (QueryResultLoaded)="previousPregnancyQueryResultLoaded($event)" id="A19521" data-tid="A352940"></atlas-form-editor>
+            </div>
+        </dx-popup>
+
+
+</div>

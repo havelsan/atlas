@@ -1,0 +1,258 @@
+﻿
+
+<div class="container-fluid" id="A19678" data-tid="A353099">
+    <form id="NewPatientForm" class="form-horizontal" role="form" data-tid="A353100"></form>
+    <div id="patient" data-tid="A353101">
+        <div id="A19679" data-tid="A353102">
+            <div class="row" id="A19680" data-tid="A353103">
+                <div class="col-md-8" id="A19681" data-tid="A353104">
+                    <div class="row" id="A19682" data-tid="A353105">
+                        <div class="margin-top-10" id="A19683" data-tid="A353106">
+                            <PatientAdmissionSearchForm (SelectedPatientChanged)="pChanged($event)" id="A19684" data-tid="A353107"></PatientAdmissionSearchForm>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" id="A19685" data-tid="A353108">
+                    <div class="row" id="A19686" data-tid="A353109">
+                        <div class="col-md-6" id="A19687" data-tid="A353110">
+                            <h5 style="color:#c5c0c0; text-align:left; font-weight: bold; padding-top:5px;" id="A19688" data-tid="A353111">Arşiv No</h5>
+                        </div>
+                        <div class="col-md-6" id="A19689" data-tid="A353112">
+                            <h5 style="color:coral; text-align:left; font-weight: bold; font-size: 16px; padding-top:5px;" id="A19690" data-tid="A353113">{{_Patient.ID}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="A19691" data-tid="A353114">
+                <div class="margin-top-10" id="A19692" data-tid="A353115">
+                    <ul class="nav nav-tabs" id="A19693" data-tid="A353116">
+                        <li class="active" id="A19694" data-tid="A353117"><a data-toggle="tab" href="#pInfo" id="A19695" data-tid="A353118">Hasta Bilgileri</a></li>
+                        <li id="A19696" data-tid="A353119"><a data-toggle="tab" href="#pDetailsInfo" id="A19697" data-tid="A353120">Hasta Detay Bilgileri</a></li>
+                    </ul>
+                    <div class="row" id="A19698" data-tid="A353121">
+                        <div class="col-md-3" id="A19699" data-tid="A353122">
+                            <!--<div *ngIf="ispCameraShowing == false" style="text-align:center;" id="A19700">
+                                <img [src]="imageSource" class="media-object" style="max-width:100px; max-height:120px;" id="A19701" />
+                                <div class="btn" (click)="onpCameraShowingStarted()" style="border:0px; box-shadow:none; text-align:center;" id="A19702"><i class="fa fa-camera-retro" style="color:#08c;" id="A19703"></i></div>
+                            </div>-->
+                            <photo-capture-webcamjs [Image]="newPatientFormViewModel?.PhotoString" Width="100" Height="120" (OnPhotoCaptured)="photoCaptured($event)" id="A19909" data-tid="A353123"></photo-capture-webcamjs>
+                            <div *ngIf="ispCameraShowing == true" id="A19704" data-tid="A353124">
+                                <photo-capture (CapturedPhotoChange)="photoCaptured($event)" id="A19705" data-tid="A353125">
+                                </photo-capture>
+                            </div>
+                        </div>
+                        <div class="col-md-9" style="margin-top:10px;" id="A19706" data-tid="A353126">
+                            <div class="row" id="A19707" data-tid="A353127">
+                                <div class="col-md-6" id="A19708" data-tid="A353128">
+                                    <dx-number-box [disabled]="this.enablepUnicrefNo == false" [value]="newPatientFormViewModel.tempUniqueRefNo" (keypress)="keyDownForNumericControl($event)" (onValueChanged)="onpUniqueRefNoChanged($event)" name="UniqueRefNo" placeholder="Kimlik Numarası" style="padding-bottom:2px; text-align:center;border:0px;border-bottom:1px solid; border-color:lightgray;" i18n-placeholder="@@M17579" id="A19709" data-tid="A353129"></dx-number-box>
+                                </div>
+                                <div *ngIf="this.enablepUndefinedPatient" id="A19710" data-tid="A353130">
+                                    <label class="control-label " id="A19711" data-tid="A353131">Kimlik Bilinmiyor</label>
+                                    <hvl-checkbox #Validation (ValueChange)="onpUnIdentifiedChanged($event)" [AllowThreeState]="pUnIdentified?.ThreeState" [BackColor]="pUnIdentified?.BackColor" [Enabled]="pUnIdentified?.Enabled" [Font]="pUnIdentified?.Font" [ForeColor]="pUnIdentified?.ForeColor" [IsTitleLeft]="pUnIdentified?.IsTitleLeft" [Margin]="pUnIdentified?.Margin" [ReadOnly]="pUnIdentified?.ReadOnly" [TabIndex]="pUnIdentified?.TabIndex" [TitleTopPadding]="pUnIdentified?.TitleTopPadding" [Title]="pUnIdentified?.Title" [Value]="newPatientFormViewModel?._Patient?.UnIdentified" [Visible]="pUnIdentified?.Visible" id="A19712" data-tid="A353132"></hvl-checkbox>
+                                </div>
+                            </div>
+                            <div class="row" id="A19713" data-tid="A353133">
+                                <div class="col-md-6" id="A19714" data-tid="A353134">
+                                    <dx-text-box [disabled]="this.enablepUnicrefNo == false" [value]="newPatientFormViewModel.tempName" (onValueChanged)="onpNameChanged($event)" name="Name" placeholder="Adı" style="padding-bottom:2px; text-align:center; border:0px; border-bottom:1px solid;border-color:lightgray;" i18n-placeholder="@@M10514" id="A19715" data-tid="A353135"></dx-text-box>
+                                </div>
+                            </div>
+                            <div class="row" id="A19716" data-tid="A353136">
+                                <div class="col-md-6" id="A19717" data-tid="A353137">
+                                    <dx-text-box [disabled]="this.enablepUnicrefNo == false" [value]="newPatientFormViewModel.tempSurname" (onValueChanged)="onpSurnameChanged($event)" name="Surname" placeholder="Soyadı" style="padding-bottom:2px;text-align:center; border:0px; border-bottom:1px solid;border-color:lightgray;" i18n-placeholder="@@M22205" id="A19718" data-tid="A353138"></dx-text-box>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content margin-top-10" style="background-color:#fff;" id="A19719" data-tid="A353139">
+                        <div id="pInfo" class="tab-pane fade in active" data-tid="A353140">
+                            <div class="row margin-right-10" id="A19720" data-tid="A353141">
+                                <div class="col-md-12" id="A19721" data-tid="A353142">
+                                    <div id="A19722" data-tid="A353143">
+                                        <div class="row" id="A19723" data-tid="A353144">
+                                            <div class="col-md-3" id="A19724" data-tid="A353145">
+                                                <label class="control-label" id="A19725" data-tid="A353146">Anne Adı</label>
+                                                <hvl-text-box #Validation (TextChange)="onpMotherNameChanged($event)" [BackColor]="pMotherName?.BackColor" [CharacterCasing]="pMotherName?.CharacterCasing" [Enabled]="pMotherName?.Enabled" [Font]="pMotherName?.Font" [ForeColor]="pMotherName?.ForeColor" [height]="pMotherName?.Height" [InputFormat]="pMotherName?.InputFormat" [InputTurkishCharacter]="pMotherName?.InputTurkishCharacter" [IsNonNumeric]="pMotherName?.IsNonNumeric" [MultiLine]="pMotherName?.Multiline" [ReadOnly]="pMotherName?.ReadOnly" [Required]="pMotherName?.Required" [TabIndex]="pMotherName?.TabIndex" [TextAlign]="pMotherName?.TextAlign" [Text]="newPatientFormViewModel?._Patient?.MotherName" [Visible]="pMotherName?.Visible" id="A19726" data-tid="A353147"></hvl-text-box>
+                                            </div>
+                                            <div class="col-md-3" id="A19727" data-tid="A353148">
+                                                <label class="control-label" id="A19728" data-tid="A353149">Baba Adı</label>
+                                                <hvl-text-box #Validation (TextChange)="onpFatherNameChanged($event)" [BackColor]="pFatherName?.BackColor" [CharacterCasing]="pFatherName?.CharacterCasing" [Enabled]="pFatherName?.Enabled" [Font]="pFatherName?.Font" [ForeColor]="pFatherName?.ForeColor" [height]="pFatherName?.Height" [InputFormat]="pFatherName?.InputFormat" [InputTurkishCharacter]="pFatherName?.InputTurkishCharacter" [IsNonNumeric]="pFatherName?.IsNonNumeric" [MultiLine]="pFatherName?.Multiline" [ReadOnly]="pFatherName?.ReadOnly" [Required]="pFatherName?.Required" [TabIndex]="pFatherName?.TabIndex" [TextAlign]="pFatherName?.TextAlign" [Text]="newPatientFormViewModel?._Patient?.FatherName" [Visible]="pFatherName?.Visible" id="A19729" data-tid="A353150"></hvl-text-box>
+                                            </div>
+                                            <div class="col-md-3" id="A19730" data-tid="A353151">
+                                                <label class="control-label" id="A19731" data-tid="A353152">Doğum Yeri</label>
+                                                <div *ngIf="ispNationalityTR() > 0" id="A19732" data-tid="A353153"><hvl-text-box #Validation (TextChange)="onpCityOfBirthChanged($event)" [BackColor]="pCityOfBirth?.BackColor" [CharacterCasing]="pCityOfBirth?.CharacterCasing" [Enabled]="pCityOfBirth?.Enabled" [Font]="pCityOfBirth?.Font" [ForeColor]="pCityOfBirth?.ForeColor" [height]="pCityOfBirth?.Height" [InputFormat]="pCityOfBirth?.InputFormat" [InputTurkishCharacter]="pCityOfBirth?.InputTurkishCharacter" [IsNonNumeric]="pCityOfBirth?.IsNonNumeric" [MultiLine]="pCityOfBirth?.Multiline" [ReadOnly]="pCityOfBirth?.ReadOnly" [Required]="pCityOfBirth?.Required" [TabIndex]="pCityOfBirth?.TabIndex" [TextAlign]="pCityOfBirth?.TextAlign" [Text]="newPatientFormViewModel?._Patient?.BirthPlace" [Visible]="pCityOfBirth?.Visible" id="A19733" data-tid="A353154"></hvl-text-box></div>
+                                                <div *ngIf="ispNationalityNotTR() > 0" id="A19734" data-tid="A353155"><hvl-text-box #Validation (TextChange)="onpOtherBirthPlaceChanged($event)" [BackColor]="pOtherBirthPlace?.BackColor" [CharacterCasing]="pOtherBirthPlace?.CharacterCasing" [Enabled]="pOtherBirthPlace?.Enabled" [Font]="pOtherBirthPlace?.Font" [ForeColor]="pOtherBirthPlace?.ForeColor" [height]="pOtherBirthPlace?.Height" [InputFormat]="pOtherBirthPlace?.InputFormat" [InputTurkishCharacter]="pOtherBirthPlace?.InputTurkishCharacter" [IsNonNumeric]="pOtherBirthPlace?.IsNonNumeric" [MultiLine]="pOtherBirthPlace?.Multiline" [ReadOnly]="pOtherBirthPlace?.ReadOnly" [Required]="pOtherBirthPlace?.Required" [TabIndex]="pOtherBirthPlace?.TabIndex" [TextAlign]="pOtherBirthPlace?.TextAlign" [Text]="newPatientFormViewModel?._Patient?.OtherBirthPlace" [Visible]="pOtherBirthPlace?.Visible" id="A19735" data-tid="A353156"></hvl-text-box></div>
+                                            </div>
+                                            <div class="col-md-3" id="A19736" data-tid="A353157">
+                                                <label class="control-label" id="A19737" data-tid="A353158">Doğum Tarihi</label>
+                                                <hvl-date-picker #Validation (ValueChange)="onpBirthDateChanged($event)" [BackColor]="pBirthDate?.BackColor" [CustomFormat]="pBirthDate?.CustomFormat" [Enabled]="pBirthDate?.Enabled" [Font]="pBirthDate?.Font" [ForeColor]="pBirthDate?.ForeColor" [Format]="pBirthDate?.Format" [Max]="pBirthDate?.Max" [Min]="pBirthDate?.Min" [ReadOnly]="pBirthDate?.ReadOnly" [Required]="pBirthDate?.Required" [TabIndex]="pBirthDate?.TabIndex" [Value]="newPatientFormViewModel?._Patient?.BirthDate" [Visible]="pBirthDate?.Visible" id="A19738" data-tid="A353159"></hvl-date-picker>
+                                            </div>
+                                        </div>
+                                        <div class="row" id="A19739" data-tid="A353160">
+                                            <div class="col-md-3" id="A19740" data-tid="A353161">
+                                                <label class="control-label" id="A19741" data-tid="A353162">Cinsiyet</label>
+                                                <hvl-list-box #Validation (SelectedObjectChange)="onpSexChanged($event)" [AutoCompleteDialogHeight]="pSex?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="pSex?.AutoCompleteDialogWidth" [AutoCompleteMode]="pSex?.AutoCompleteMode" [BackColor]="pSex?.BackColor" [DefinitionName]="pSex?.ListDefName" [DisplayExpressionsCache]="newPatientFormViewModel?.ListDefDisplayExpressions" [Enabled]="pSex?.Enabled" [Font]="pSex?.Font" [ForeColor]="pSex?.ForeColor" [ListFilterExpression]="pSex?.ListFilterExpression" [MinSearchLength]="pSex?.MinSearchLength" [PopupDialogFieldConfig]="pSex?.PopupDialogFieldConfig" [PopupDialogGridColumns]="pSex?.PopupDialogGridColumns" [PopupDialogHeight]="pSex?.PopupDialogHeight" [PopupDialogTitle]="pSex?.PopupDialogTitle" [PopupDialogWidth]="pSex?.PopupDialogWidth" [ReadOnly]="pSex?.ReadOnly" [SearchMode]="pSex?.SearchMode" [SearchTimeout]="pSex?.SearchTimeout" [SelectedObject]="newPatientFormViewModel?._Patient?.Sex" [TabIndex]="pSex?.TabIndex" [Visible]="pSex?.Visible" [width]="pSex?.Width" id="A19742" data-tid="A353163"></hvl-list-box>
+                                            </div>
+                                            <div class="col-md-3" id="A19743" data-tid="A353164">
+                                                <label class="control-label" id="A19744" data-tid="A353165">Uyruk</label>
+                                                <hvl-list-box #Validation (SelectedObjectChange)="onpNationalityChanged($event)" [AutoCompleteDialogHeight]="pNationality?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="pNationality?.AutoCompleteDialogWidth" [AutoCompleteMode]="pNationality?.AutoCompleteMode" [BackColor]="pNationality?.BackColor" [DefinitionName]="pNationality?.ListDefName" [DisplayExpressionsCache]="newPatientFormViewModel?.ListDefDisplayExpressions" [Enabled]="pNationality?.Enabled" [Font]="pNationality?.Font" [ForeColor]="pNationality?.ForeColor" [ListFilterExpression]="pNationality?.ListFilterExpression" [MinSearchLength]="pNationality?.MinSearchLength" [PopupDialogFieldConfig]="pNationality?.PopupDialogFieldConfig" [PopupDialogGridColumns]="pNationality?.PopupDialogGridColumns" [PopupDialogHeight]="pNationality?.PopupDialogHeight" [PopupDialogTitle]="pNationality?.PopupDialogTitle" [PopupDialogWidth]="pNationality?.PopupDialogWidth" [ReadOnly]="pNationality?.ReadOnly" [SearchMode]="pNationality?.SearchMode" [SearchTimeout]="pNationality?.SearchTimeout" [SelectedObject]="newPatientFormViewModel?._Patient?.Nationality" [TabIndex]="pNationality?.TabIndex" [Visible]="pNationality?.Visible" [width]="pNationality?.Width" id="A19745" data-tid="A353166"></hvl-list-box>
+                                            </div>
+                                            <div class="col-md-3" id="A19746" data-tid="A353167">
+                                                <label class="control-label" id="A19747" data-tid="A353168">Cep Telefonu</label>
+                                                <hvl-masktext-box #Validation (TextChange)="onpMobilePhoneChanged($event)" [BackColor]="pMobilePhone?.BackColor" [Enabled]="pMobilePhone?.Enabled" [Font]="pMobilePhone?.Font" [ForeColor]="pMobilePhone?.ForeColor" [InputTurkishCharacter]="pMobilePhone?.InputTurkishCharacter" [Mask]="pMobilePhone?.Mask" [ReadOnly]="pMobilePhone?.ReadOnly" [TabIndex]="pMobilePhone?.TabIndex" [TextAlign]="pMobilePhone?.TextAlign" [Text]="newPatientFormViewModel?.tempMobilePhone" [Visible]="pMobilePhone?.Visible" id="A19748" data-tid="A353169"></hvl-masktext-box>
+                                            </div>
+                                        </div>
+                                        <div class="row" *ngIf="ispNationalityNotTR() > 0" id="A19749" data-tid="A353170">
+                                            <div class="col-md-6" id="A19750" data-tid="A353171">
+                                                <label class="control-label" id="A19751" data-tid="A353172">Yabancı Hasta Türü</label>
+                                                <hvl-list-box #Validation (SelectedObjectChange)="onpSKRSYabanciHastaChanged($event)" [AutoCompleteDialogHeight]="pSKRSYabanciHasta?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="pSKRSYabanciHasta?.AutoCompleteDialogWidth" [AutoCompleteMode]="pSKRSYabanciHasta?.AutoCompleteMode" [BackColor]="pSKRSYabanciHasta?.BackColor" [DefinitionName]="pSKRSYabanciHasta?.ListDefName" [DisplayExpressionsCache]="newPatientFormViewModel?.ListDefDisplayExpressions" [Enabled]="pSKRSYabanciHasta?.Enabled" [Font]="pSKRSYabanciHasta?.Font" [ForeColor]="pSKRSYabanciHasta?.ForeColor" [ListFilterExpression]="pSKRSYabanciHasta?.ListFilterExpression" [MinSearchLength]="pSKRSYabanciHasta?.MinSearchLength" [PopupDialogFieldConfig]="pSKRSYabanciHasta?.PopupDialogFieldConfig" [PopupDialogGridColumns]="pSKRSYabanciHasta?.PopupDialogGridColumns" [PopupDialogHeight]="pSKRSYabanciHasta?.PopupDialogHeight" [PopupDialogTitle]="pSKRSYabanciHasta?.PopupDialogTitle" [PopupDialogWidth]="pSKRSYabanciHasta?.PopupDialogWidth" [ReadOnly]="pSKRSYabanciHasta?.ReadOnly" [SearchMode]="pSKRSYabanciHasta?.SearchMode" [SearchTimeout]="pSKRSYabanciHasta?.SearchTimeout" [SelectedObject]="newPatientFormViewModel?._Patient?.SKRSYabanciHasta" [TabIndex]="pSKRSYabanciHasta?.TabIndex" [Visible]="pSKRSYabanciHasta?.Visible" [width]="pSKRSYabanciHasta?.Width" id="A19752" data-tid="A353173"></hvl-list-box>
+                                            </div>
+                                        </div>
+                                        <div class="row" id="A19753" data-tid="A353174">
+                                            <div class="col-md-12 margin-top-10" id="A19754" data-tid="A353175">
+                                                <label class="control-label" id="A19755" data-tid="A353176">Ev Adresi</label>
+                                                <hvl-text-box #Validation (TextChange)="onpHomeAddressChanged($event)" [BackColor]="pHomeAddress?.BackColor" [CharacterCasing]="pHomeAddress?.CharacterCasing" [Enabled]="pHomeAddress?.Enabled" [Font]="pHomeAddress?.Font" [ForeColor]="pHomeAddress?.ForeColor" [height]="pHomeAddress?.Height" [InputFormat]="pHomeAddress?.InputFormat" [InputTurkishCharacter]="pHomeAddress?.InputTurkishCharacter" [IsNonNumeric]="pHomeAddress?.IsNonNumeric" [MultiLine]="pHomeAddress?.Multiline" [ReadOnly]="pHomeAddress?.ReadOnly" [Required]="pHomeAddress?.Required" [TabIndex]="pHomeAddress?.TabIndex" [TextAlign]="pHomeAddress?.TextAlign" [Text]="newPatientFormViewModel?.tempHomeAddress" [Visible]="pHomeAddress?.Visible" id="A19756" data-tid="A353177"></hvl-text-box>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="hasGizliHastaKabulRole() > 0" id="A19757" data-tid="A353178">
+                                            <div class="row" id="A19758" data-tid="A353179">
+                                                <div class="col-md-3" id="A19759" data-tid="A353180">
+                                                    <label class="control-label" id="A19760" data-tid="A353181">Gizli Hasta</label>
+                                                    <hvl-checkbox #Validation (ValueChange)="onpPrivacyChanged($event)" [AllowThreeState]="pPrivacy?.ThreeState" [BackColor]="pPrivacy?.BackColor" [Enabled]="pPrivacy?.Enabled" [Font]="pPrivacy?.Font" [ForeColor]="pPrivacy?.ForeColor" [IsTitleLeft]="pPrivacy?.IsTitleLeft" [Margin]="pPrivacy?.Margin" [ReadOnly]="pPrivacy?.ReadOnly" [TabIndex]="pPrivacy?.TabIndex" [TitleTopPadding]="pPrivacy?.TitleTopPadding" [Title]="pPrivacy?.Title" [Value]="newPatientFormViewModel?._Patient?.Privacy" [Visible]="pPrivacy?.Visible" id="A19761" data-tid="A353182"></hvl-checkbox>
+                                                </div>
+                                                <div class="col-md-3" *ngIf="isPrivacy() > 0" id="A19762" data-tid="A353183">
+                                                    <label class="control-label" id="A19763" data-tid="A353184">Rumuz Ad</label>
+                                                    <hvl-text-box #Validation (TextChange)="onpPrivacyNameChanged($event)" [BackColor]="pPrivacyName?.BackColor" [CharacterCasing]="pPrivacyName?.CharacterCasing" [Enabled]="pPrivacyName?.Enabled" [Font]="pPrivacyName?.Font" [ForeColor]="pPrivacyName?.ForeColor" [height]="pPrivacyName?.Height" [InputFormat]="pPrivacyName?.InputFormat" [InputTurkishCharacter]="pPrivacyName?.InputTurkishCharacter" [IsNonNumeric]="pPrivacyName?.IsNonNumeric" [MultiLine]="pPrivacyName?.Multiline" [ReadOnly]="pPrivacyName?.ReadOnly" [Required]="pPrivacyName?.Required" [TabIndex]="pPrivacyName?.TabIndex" [TextAlign]="pPrivacyName?.TextAlign" [Text]="newPatientFormViewModel?.tempPrivacyName" [Visible]="pPrivacyName?.Visible" id="A19764" data-tid="A353185"></hvl-text-box>
+                                                </div>
+                                                <div class="col-md-3" *ngIf="isPrivacy() > 0" id="A19765" data-tid="A353186">
+                                                    <label class="control-label" id="A19766" data-tid="A353187">Rumuz Soyad</label>
+                                                    <hvl-text-box #Validation (TextChange)="onpPrivacySurnameChanged($event)" [BackColor]="pPrivacySurname?.BackColor" [CharacterCasing]="pPrivacySurname?.CharacterCasing" [Enabled]="pPrivacySurname?.Enabled" [Font]="pPrivacySurname?.Font" [ForeColor]="pPrivacySurname?.ForeColor" [height]="pPrivacySurname?.Height" [InputFormat]="pPrivacySurname?.InputFormat" [InputTurkishCharacter]="pPrivacySurname?.InputTurkishCharacter" [IsNonNumeric]="pPrivacySurname?.IsNonNumeric" [MultiLine]="pPrivacySurname?.Multiline" [ReadOnly]="pPrivacySurname?.ReadOnly" [Required]="pPrivacySurname?.Required" [TabIndex]="pPrivacySurname?.TabIndex" [TextAlign]="pPrivacySurname?.TextAlign" [Text]="newPatientFormViewModel?.tempPrivacySurname" [Visible]="pPrivacySurname?.Visible" id="A19767" data-tid="A353188"></hvl-text-box>
+                                                </div>
+                                                <div class="col-md-3" *ngIf="isPrivacy() > 0" id="A19765" data-tid="A353189">
+                                                    <label class="control-label" id="A19766" data-tid="A353190">Geçerlilik Tarihi</label>
+                                                    <hvl-date-picker #Validation (ValueChange)="onpPrivacyEndDateChanged($event)" [BackColor]="pPrivacyEndDate?.BackColor" [CustomFormat]="pPrivacyEndDate?.CustomFormat" [Enabled]="pPrivacyEndDate?.Enabled" [Font]="pPrivacyEndDate?.Font" [ForeColor]="pPrivacyEndDate?.ForeColor" [Format]="pPrivacyEndDate?.Format" [Max]="pPrivacyEndDate?.Max" [Min]="pPrivacyEndDate?.Min" [ReadOnly]="pPrivacyEndDate?.ReadOnly" [Required]="pPrivacyEndDate?.Required" [TabIndex]="pPrivacyEndDate?.TabIndex" [Value]="newPatientFormViewModel?._Patient?.PrivacyEndDate" [Visible]="pPrivacyEndDate?.Visible" id="A19738" data-tid="A353191"></hvl-date-picker>
+                                                    <!--<hvl-text-box #Validation (TextChange)="onpPrivacyEndDateChanged($event)" [BackColor]="pPrivacySurname?.BackColor"
+                                                        [CharacterCasing]="pPrivacySurname?.CharacterCasing" [Enabled]="pPrivacySurname?.Enabled" [Font]="pPrivacySurname?.Font"
+                                                        [ForeColor]="pPrivacySurname?.ForeColor" [height]="pPrivacySurname?.Height" [InputFormat]="pPrivacySurname?.InputFormat"
+                                                        [InputTurkishCharacter]="pPrivacySurname?.InputTurkishCharacter" [IsNonNumeric]="pPrivacySurname?.IsNonNumeric"
+                                                        [MultiLine]="pPrivacySurname?.Multiline" [ReadOnly]="pPrivacySurname?.ReadOnly" [Required]="pPrivacySurname?.Required"
+                                                        [TabIndex]="pPrivacySurname?.TabIndex" [TextAlign]="pPrivacySurname?.TextAlign" [Text]="newPatientFormViewModel?.tempPrivacySurname"
+                                                        [Visible]="pPrivacySurname?.Visible" id="A19767"></hvl-text-box>-->
+                                                </div>
+                                            </div>
+                                            <div class="row" *ngIf="isPrivacy() > 0" id="A19768" data-tid="A353192">
+                                                <div class="col-md-12 margin-top-10" id="A19769" data-tid="A353193">
+                                                    <label class="control-label" id="A19770" data-tid="A353194">Gizlilik Nedeni</label>
+                                                    <hvl-text-box #Validation (TextChange)="onpPrivacyReasonChanged($event)" [BackColor]="pPrivacyReason?.BackColor" [CharacterCasing]="pPrivacyReason?.CharacterCasing" [Enabled]="pPrivacyReason?.Enabled" [Font]="pPrivacyReason?.Font" [ForeColor]="pPrivacyReason?.ForeColor" [height]="pPrivacyReason?.Height" [InputFormat]="pPrivacyReason?.InputFormat" [InputTurkishCharacter]="pPrivacyReason?.InputTurkishCharacter" [IsNonNumeric]="pPrivacyReason?.IsNonNumeric" [MultiLine]="pPrivacyReason?.Multiline" [ReadOnly]="pPrivacyReason?.ReadOnly" [Required]="pPrivacyReason?.Required" [TabIndex]="pPrivacyReason?.TabIndex" [TextAlign]="pPrivacyReason?.TextAlign" [Text]="newPatientFormViewModel?._Patient?.PrivacyReason" [Visible]="pPrivacyReason?.Visible" id="A19771" data-tid="A353195"></hvl-text-box>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="pDetailsInfo" class="tab-pane fade in" data-tid="A353196">
+                            <div class="row margin-right-10" id="A19772" data-tid="A353197">
+                                <div class="col-md-12" id="A19773" data-tid="A353198">
+                                    <div class="row" id="A19774" data-tid="A353199">
+
+                                        <div class="col-md-6" id="A19775" data-tid="A353200">
+                                            <label class="control-label" id="A19776" data-tid="A353201">Pasaport No</label>
+                                            <hvl-text-box #Validation (TextChange)="onpPassportNoChanged($event)" [BackColor]="pPassportNo?.BackColor" [CharacterCasing]="pPassportNo?.CharacterCasing" [Enabled]="pPassportNo?.Enabled" [Font]="pPassportNo?.Font" [ForeColor]="pPassportNo?.ForeColor" [height]="pPassportNo?.Height" [InputFormat]="pPassportNo?.InputFormat" [InputTurkishCharacter]="pPassportNo?.InputTurkishCharacter" [IsNonNumeric]="pPassportNo?.IsNonNumeric" [MultiLine]="pPassportNo?.Multiline" [ReadOnly]="pPassportNo?.ReadOnly" [Required]="pPassportNo?.Required" [TabIndex]="pPassportNo?.TabIndex" [TextAlign]="pPassportNo?.TextAlign" [Text]="newPatientFormViewModel?._Patient?.PassportNo" [Visible]="pPassportNo?.Visible" id="A19777" data-tid="A353202"></hvl-text-box>
+                                        </div>
+                                        <div class="col-md-6" id="A19778" data-tid="A353203">
+                                            <label class="control-label" id="A19779" data-tid="A353204">E-Posta</label>
+                                            <hvl-text-box #Validation (TextChange)="onpEMailChanged($event)" [BackColor]="pEMail?.BackColor" [CharacterCasing]="pEMail?.CharacterCasing" [Enabled]="pEMail?.Enabled" [Font]="pEMail?.Font" [ForeColor]="pEMail?.ForeColor" [height]="pEMail?.Height" [InputFormat]="pEMail?.InputFormat" [InputTurkishCharacter]="pEMail?.InputTurkishCharacter" [IsNonNumeric]="pEMail?.IsNonNumeric" [MultiLine]="pEMail?.Multiline" [ReadOnly]="pEMail?.ReadOnly" [Required]="pEMail?.Required" [TabIndex]="pEMail?.TabIndex" [TextAlign]="pEMail?.TextAlign" [Text]="newPatientFormViewModel?._Patient?.EMail" [Visible]="pEMail?.Visible" id="A19780" data-tid="A353205"></hvl-text-box>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="A19781" data-tid="A353206">
+                                        <div class="col-md-3" id="A19782" data-tid="A353207">
+                                            <label class="control-label" id="A19783" data-tid="A353208">Medeni Hal</label>
+                                            <hvl-list-box #Validation (SelectedObjectChange)="onpSKRSMaritalStatusChanged($event)" [AutoCompleteDialogHeight]="pSKRSMaritalStatus?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="pSKRSMaritalStatus?.AutoCompleteDialogWidth" [AutoCompleteMode]="pSKRSMaritalStatus?.AutoCompleteMode" [BackColor]="pSKRSMaritalStatus?.BackColor" [DefinitionName]="pSKRSMaritalStatus?.ListDefName" [DisplayExpressionsCache]="newPatientFormViewModel?.ListDefDisplayExpressions" [Enabled]="pSKRSMaritalStatus?.Enabled" [Font]="pSKRSMaritalStatus?.Font" [ForeColor]="pSKRSMaritalStatus?.ForeColor" [ListFilterExpression]="pSKRSMaritalStatus?.ListFilterExpression" [MinSearchLength]="pSKRSMaritalStatus?.MinSearchLength" [PopupDialogFieldConfig]="pSKRSMaritalStatus?.PopupDialogFieldConfig" [PopupDialogGridColumns]="pSKRSMaritalStatus?.PopupDialogGridColumns" [PopupDialogHeight]="pSKRSMaritalStatus?.PopupDialogHeight" [PopupDialogTitle]="pSKRSMaritalStatus?.PopupDialogTitle" [PopupDialogWidth]="pSKRSMaritalStatus?.PopupDialogWidth" [ReadOnly]="pSKRSMaritalStatus?.ReadOnly" [SearchMode]="pSKRSMaritalStatus?.SearchMode" [SearchTimeout]="pSKRSMaritalStatus?.SearchTimeout" [SelectedObject]="newPatientFormViewModel?._Patient?.SKRSMaritalStatus" [TabIndex]="pSKRSMaritalStatus?.TabIndex" [Visible]="pSKRSMaritalStatus?.Visible" [width]="pSKRSMaritalStatus?.Width" id="A19784" data-tid="A353209"></hvl-list-box>
+                                        </div>
+                                        <div class="col-md-3" id="A19785" data-tid="A353210">
+                                            <label class="control-label" id="A19786" data-tid="A353211">Öğrenim durumu</label>
+                                            <hvl-list-box #Validation (SelectedObjectChange)="onpEducationStatusChanged($event)" [AutoCompleteDialogHeight]="pEducationStatus?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="pEducationStatus?.AutoCompleteDialogWidth" [AutoCompleteMode]="pEducationStatus?.AutoCompleteMode" [BackColor]="pEducationStatus?.BackColor" [DefinitionName]="pEducationStatus?.ListDefName" [DisplayExpressionsCache]="newPatientFormViewModel?.ListDefDisplayExpressions" [Enabled]="pEducationStatus?.Enabled" [Font]="pEducationStatus?.Font" [ForeColor]="pEducationStatus?.ForeColor" [ListFilterExpression]="pEducationStatus?.ListFilterExpression" [MinSearchLength]="pEducationStatus?.MinSearchLength" [PopupDialogFieldConfig]="pEducationStatus?.PopupDialogFieldConfig" [PopupDialogGridColumns]="pEducationStatus?.PopupDialogGridColumns" [PopupDialogHeight]="pEducationStatus?.PopupDialogHeight" [PopupDialogTitle]="pEducationStatus?.PopupDialogTitle" [PopupDialogWidth]="pEducationStatus?.PopupDialogWidth" [ReadOnly]="pEducationStatus?.ReadOnly" [SearchMode]="pEducationStatus?.SearchMode" [SearchTimeout]="pEducationStatus?.SearchTimeout" [SelectedObject]="newPatientFormViewModel?._Patient?.EducationStatus" [TabIndex]="pEducationStatus?.TabIndex" [Visible]="pEducationStatus?.Visible" [width]="pEducationStatus?.Width" id="A19787" data-tid="A353212"></hvl-list-box>
+                                        </div>
+                                        <div class="col-md-6" id="A19788" data-tid="A353213">
+                                            <label class="control-label" id="A19789" data-tid="A353214">Meslek</label>
+                                            <hvl-list-box #Validation (SelectedObjectChange)="onpOccupationChanged($event)" [AutoCompleteDialogHeight]="pOccupation?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="pOccupation?.AutoCompleteDialogWidth" [AutoCompleteMode]="pOccupation?.AutoCompleteMode" [BackColor]="pOccupation?.BackColor" [DefinitionName]="pOccupation?.ListDefName" [DisplayExpressionsCache]="newPatientFormViewModel?.ListDefDisplayExpressions" [Enabled]="pOccupation?.Enabled" [Font]="pOccupation?.Font" [ForeColor]="pOccupation?.ForeColor" [ListFilterExpression]="pOccupation?.ListFilterExpression" [MinSearchLength]="pOccupation?.MinSearchLength" [PopupDialogFieldConfig]="pOccupation?.PopupDialogFieldConfig" [PopupDialogGridColumns]="pOccupation?.PopupDialogGridColumns" [PopupDialogHeight]="pOccupation?.PopupDialogHeight" [PopupDialogTitle]="pOccupation?.PopupDialogTitle" [PopupDialogWidth]="pOccupation?.PopupDialogWidth" [ReadOnly]="pOccupation?.ReadOnly" [SearchMode]="pOccupation?.SearchMode" [SearchTimeout]="pOccupation?.SearchTimeout" [SelectedObject]="newPatientFormViewModel?._Patient?.Occupation" [TabIndex]="pOccupation?.TabIndex" [Visible]="pOccupation?.Visible" [width]="pOccupation?.Width" id="A19790" data-tid="A353215"></hvl-list-box>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" id="A19791" data-tid="A353216">
+
+                                        <div class="col-md-6" id="A19792" data-tid="A353217">
+                                            <label class="control-label" id="A19793" data-tid="A353218">İş Telefonu</label>
+                                            <hvl-masktext-box #Validation (TextChange)="onpBusinessPhoneChanged($event)" [BackColor]="pBusinessPhone?.BackColor" [Enabled]="pBusinessPhone?.Enabled" [Font]="pBusinessPhone?.Font" [ForeColor]="pBusinessPhone?.ForeColor" [InputTurkishCharacter]="pBusinessPhone?.InputTurkishCharacter" [Mask]="pBusinessPhone?.Mask" [ReadOnly]="pBusinessPhone?.ReadOnly" [TabIndex]="pBusinessPhone?.TabIndex" [TextAlign]="pBusinessPhone?.TextAlign" [Text]="newPatientFormViewModel?._Patient?.PatientAddress?.BusinessPhone" [Visible]="pBusinessPhone?.Visible" id="A19794" data-tid="A353219"></hvl-masktext-box>
+                                        </div>
+                                        <div class="col-md-6" id="A19795" data-tid="A353220">
+                                            <label class="control-label" id="A19796" data-tid="A353221">İş Adresi</label>
+                                            <hvl-text-box #Validation (TextChange)="onpBusinessAddressChanged($event)" [BackColor]="pBusinessAddress?.BackColor" [CharacterCasing]="pBusinessAddress?.CharacterCasing" [Enabled]="pBusinessAddress?.Enabled" [Font]="pBusinessAddress?.Font" [ForeColor]="pBusinessAddress?.ForeColor" [height]="pBusinessAddress?.Height" [InputFormat]="pBusinessAddress?.InputFormat" [InputTurkishCharacter]="pBusinessAddress?.InputTurkishCharacter" [IsNonNumeric]="pBusinessAddress?.IsNonNumeric" [MultiLine]="pBusinessAddress?.Multiline" [ReadOnly]="pBusinessAddress?.ReadOnly" [Required]="pBusinessAddress?.Required" [TabIndex]="pBusinessAddress?.TabIndex" [TextAlign]="pBusinessAddress?.TextAlign" [Text]="newPatientFormViewModel?._Patient?.PatientAddress?.BusinessAddress" [Visible]="pBusinessAddress?.Visible" id="A19797" data-tid="A353222"></hvl-text-box>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row" id="A19798" data-tid="A353223">
+                                        <div class="col-md-3" id="A19799" data-tid="A353224">
+                                            <label class="control-label" id="A19800" data-tid="A353225">Kan Grubu</label>
+                                            <hvl-list-box #Validation (SelectedObjectChange)="onpBloodGroupChanged($event)" [AutoCompleteDialogHeight]="pBloodGroup?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="pBloodGroup?.AutoCompleteDialogWidth" [AutoCompleteMode]="pBloodGroup?.AutoCompleteMode" [BackColor]="pBloodGroup?.BackColor" [DefinitionName]="pBloodGroup?.ListDefName" [DisplayExpressionsCache]="newPatientFormViewModel?.ListDefDisplayExpressions" [Enabled]="pBloodGroup?.Enabled" [Font]="pBloodGroup?.Font" [ForeColor]="pBloodGroup?.ForeColor" [ListFilterExpression]="pBloodGroup?.ListFilterExpression" [MinSearchLength]="pBloodGroup?.MinSearchLength" [PopupDialogFieldConfig]="pBloodGroup?.PopupDialogFieldConfig" [PopupDialogGridColumns]="pBloodGroup?.PopupDialogGridColumns" [PopupDialogHeight]="pBloodGroup?.PopupDialogHeight" [PopupDialogTitle]="pBloodGroup?.PopupDialogTitle" [PopupDialogWidth]="pBloodGroup?.PopupDialogWidth" [ReadOnly]="pBloodGroup?.ReadOnly" [SearchMode]="pBloodGroup?.SearchMode" [SearchTimeout]="pBloodGroup?.SearchTimeout" [SelectedObject]="newPatientFormViewModel?._Patient?.BloodGroupType" [TabIndex]="pBloodGroup?.TabIndex" [Visible]="pBloodGroup?.Visible" [width]="pBloodGroup?.Width" id="A19801" data-tid="A353226"></hvl-list-box>
+                                        </div>
+                                        <div class="col-md-3" id="A19802" data-tid="A353227">
+                                            <label class="control-label" id="A19803" data-tid="A353228">Engellilik Durumu</label>
+                                            <hvl-list-box #Validation (SelectedObjectChange)="onpSKRSOzurlulukDurumuChanged($event)" [AutoCompleteDialogHeight]="pSKRSOzurlulukDurumu?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="pSKRSOzurlulukDurumu?.AutoCompleteDialogWidth" [AutoCompleteMode]="pSKRSOzurlulukDurumu?.AutoCompleteMode" [BackColor]="pSKRSOzurlulukDurumu?.BackColor" [DefinitionName]="pSKRSOzurlulukDurumu?.ListDefName" [DisplayExpressionsCache]="newPatientFormViewModel?.ListDefDisplayExpressions" [Enabled]="pSKRSOzurlulukDurumu?.Enabled" [Font]="pSKRSOzurlulukDurumu?.Font" [ForeColor]="pSKRSOzurlulukDurumu?.ForeColor" [ListFilterExpression]="pSKRSOzurlulukDurumu?.ListFilterExpression" [MinSearchLength]="pSKRSOzurlulukDurumu?.MinSearchLength" [PopupDialogFieldConfig]="pSKRSOzurlulukDurumu?.PopupDialogFieldConfig" [PopupDialogGridColumns]="pSKRSOzurlulukDurumu?.PopupDialogGridColumns" [PopupDialogHeight]="pSKRSOzurlulukDurumu?.PopupDialogHeight" [PopupDialogTitle]="pSKRSOzurlulukDurumu?.PopupDialogTitle" [PopupDialogWidth]="pSKRSOzurlulukDurumu?.PopupDialogWidth" [ReadOnly]="pSKRSOzurlulukDurumu?.ReadOnly" [SearchMode]="pSKRSOzurlulukDurumu?.SearchMode" [SearchTimeout]="pSKRSOzurlulukDurumu?.SearchTimeout" [SelectedObject]="newPatientFormViewModel?._Patient?.SKRSOzurlulukDurumu" [TabIndex]="pSKRSOzurlulukDurumu?.TabIndex" [Visible]="pSKRSOzurlulukDurumu?.Visible" [width]="pSKRSOzurlulukDurumu?.Width" id="A19804" data-tid="A353229"></hvl-list-box>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="A19805" data-tid="A353230">
+                                        <div class="col-md-6" id="A19806" data-tid="A353231">
+                                            <label class="control-label" id="A19807" data-tid="A353232">Donör Kimlik No</label>
+                                            <hvl-masktext-box #Validation (TextChange)="onpDonorUniqueRefNoChanged($event)" [BackColor]="pDonorUniqueRefNo?.BackColor" [Enabled]="pDonorUniqueRefNo?.Enabled" [Font]="pDonorUniqueRefNo?.Font" [ForeColor]="pDonorUniqueRefNo?.ForeColor" [InputTurkishCharacter]="pDonorUniqueRefNo?.InputTurkishCharacter" [Mask]="pDonorUniqueRefNo?.Mask" [ReadOnly]="pDonorUniqueRefNo?.ReadOnly" [TabIndex]="pDonorUniqueRefNo?.TabIndex" [TextAlign]="pDonorUniqueRefNo?.TextAlign" [Text]="newPatientFormViewModel?._Patient?.DonorUniqueRefNo" [Visible]="pDonorUniqueRefNo?.Visible" id="A19808" data-tid="A353233"></hvl-masktext-box>
+                                        </div>
+                                        <div class="col-md-3" id="A19809" data-tid="A353234">
+                                            <label class="control-label" id="A19810" data-tid="A353235">Yakınının Adı</label>
+                                            <hvl-text-box #Validation (TextChange)="onpRelativeFullNameChanged($event)" [BackColor]="pRelativeFullName?.BackColor" [CharacterCasing]="pRelativeFullName?.CharacterCasing" [Enabled]="pRelativeFullName?.Enabled" [Font]="pRelativeFullName?.Font" [ForeColor]="pRelativeFullName?.ForeColor" [height]="pRelativeFullName?.Height" [InputFormat]="pRelativeFullName?.InputFormat" [InputTurkishCharacter]="pRelativeFullName?.InputTurkishCharacter" [IsNonNumeric]="pRelativeFullName?.IsNonNumeric" [MultiLine]="pRelativeFullName?.Multiline" [ReadOnly]="pRelativeFullName?.ReadOnly" [Required]="pRelativeFullName?.Required" [TabIndex]="pRelativeFullName?.TabIndex" [TextAlign]="pRelativeFullName?.TextAlign" [Text]="newPatientFormViewModel?._Patient?.PatientAddress?.RelativeFullName" [Visible]="pRelativeFullName?.Visible" id="A19811" data-tid="A353236"></hvl-text-box>
+                                        </div>
+                                        <div class="col-md-3" id="A19812" data-tid="A353237">
+                                            <label class="control-label" id="A19813" data-tid="A353238">Yakının Telefon No</label>
+                                            <hvl-masktext-box #Validation (TextChange)="onpRelativeMobilePhoneChanged($event)" [BackColor]="pRelativeMobilePhone?.BackColor" [Enabled]="pRelativeMobilePhone?.Enabled" [Font]="pRelativeMobilePhone?.Font" [ForeColor]="pRelativeMobilePhone?.ForeColor" [InputTurkishCharacter]="pRelativeMobilePhone?.InputTurkishCharacter" [Mask]="pRelativeMobilePhone?.Mask" [ReadOnly]="pRelativeMobilePhone?.ReadOnly" [TabIndex]="pRelativeMobilePhone?.TabIndex" [TextAlign]="pRelativeMobilePhone?.TextAlign" [Text]="newPatientFormViewModel?._Patient?.PatientAddress?.RelativeMobilePhone" [Visible]="pRelativeMobilePhone?.Visible" id="A19814" data-tid="A353239"></hvl-masktext-box>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="A19815" data-tid="A353240">
+                                        <div class="col-md-6" id="A19816" data-tid="A353241">
+                                            <label class="control-label" id="A19817" data-tid="A353242">Yakının Adresi</label>
+                                            <hvl-text-box #Validation (TextChange)="onpRelativeHomeAddressChanged($event)" [BackColor]="pRelativeHomeAddress?.BackColor" [CharacterCasing]="pRelativeHomeAddress?.CharacterCasing" [Enabled]="pRelativeHomeAddress?.Enabled" [Font]="pRelativeHomeAddress?.Font" [ForeColor]="pRelativeHomeAddress?.ForeColor" [height]="pRelativeHomeAddress?.Height" [InputFormat]="pRelativeHomeAddress?.InputFormat" [InputTurkishCharacter]="pRelativeHomeAddress?.InputTurkishCharacter" [IsNonNumeric]="pRelativeHomeAddress?.IsNonNumeric" [MultiLine]="pRelativeHomeAddress?.Multiline" [ReadOnly]="pRelativeHomeAddress?.ReadOnly" [Required]="pRelativeHomeAddress?.Required" [TabIndex]="pRelativeHomeAddress?.TabIndex" [TextAlign]="pRelativeHomeAddress?.TextAlign" [Text]="newPatientFormViewModel?._Patient?.PatientAddress?.RelativeHomeAddress" [Visible]="pRelativeHomeAddress?.Visible" id="A19818" data-tid="A353243"></hvl-text-box>
+                                        </div>
+                                        <div class="col-md-6" id="A19819" data-tid="A353244">
+                                            <label class="control-label" id="A19820" data-tid="A353245">Arşiv Açıklaması</label>
+                                            <hvl-text-box #Validation (TextChange)="onpImportantPatientInfoChanged($event)" [BackColor]="pImportantPatientInfo?.BackColor" [CharacterCasing]="pImportantPatientInfo?.CharacterCasing" [Enabled]="pImportantPatientInfo?.Enabled" [Font]="pImportantPatientInfo?.Font" [ForeColor]="pImportantPatientInfo?.ForeColor" [height]="pImportantPatientInfo?.Height" [InputFormat]="pImportantPatientInfo?.InputFormat" [InputTurkishCharacter]="pImportantPatientInfo?.InputTurkishCharacter" [IsNonNumeric]="pImportantPatientInfo?.IsNonNumeric" [MultiLine]="pImportantPatientInfo?.Multiline" [ReadOnly]="pImportantPatientInfo?.ReadOnly" [Required]="pImportantPatientInfo?.Required" [TabIndex]="pImportantPatientInfo?.TabIndex" [TextAlign]="pImportantPatientInfo?.TextAlign" [Text]="newPatientFormViewModel?._Patient?.ImportantPatientInfo" [Visible]="pImportantPatientInfo?.Visible" id="A19821" data-tid="A353246"></hvl-text-box>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="A19822" data-tid="A353247">
+                                        <div class="col-md-6" id="A19823" data-tid="A353248">
+                                            <label class="control-label" id="A19824" data-tid="A353249">Hak Sahibi Adı</label>
+                                            <hvl-text-box #Validation (TextChange)="onpBeneficiaryNameChanged($event)" [BackColor]="pBeneficiaryName?.BackColor" [CharacterCasing]="pBeneficiaryName?.CharacterCasing" [Enabled]="pBeneficiaryName?.Enabled" [Font]="pBeneficiaryName?.Font" [ForeColor]="pBeneficiaryName?.ForeColor" [height]="pBeneficiaryName?.Height" [InputFormat]="pBeneficiaryName?.InputFormat" [InputTurkishCharacter]="pBeneficiaryName?.InputTurkishCharacter" [IsNonNumeric]="pBeneficiaryName?.IsNonNumeric" [MultiLine]="pBeneficiaryName?.Multiline" [ReadOnly]="pBeneficiaryName?.ReadOnly" [Required]="pBeneficiaryName?.Required" [TabIndex]="pBeneficiaryName?.TabIndex" [TextAlign]="pBeneficiaryName?.TextAlign" [Text]="newPatientFormViewModel?._Patient?.BeneficiaryName" [Visible]="pBeneficiaryName?.Visible" id="A19825" data-tid="A353250"></hvl-text-box>
+                                        </div>
+                                        <div class="col-md-6" id="A19826" data-tid="A353251">
+                                            <label class="control-label" id="A19827" data-tid="A353252">Hak Sahibi Kimlik No</label>
+                                            <hvl-masktext-box #Validation (TextChange)="onpBeneficiaryUniqueRefNoChanged($event)" [BackColor]="pBeneficiaryUniqueRefNo?.BackColor" [Enabled]="pBeneficiaryUniqueRefNo?.Enabled" [Font]="pBeneficiaryUniqueRefNo?.Font" [ForeColor]="pBeneficiaryUniqueRefNo?.ForeColor" [InputTurkishCharacter]="pBeneficiaryUniqueRefNo?.InputTurkishCharacter" [Mask]="pBeneficiaryUniqueRefNo?.Mask" [ReadOnly]="pBeneficiaryUniqueRefNo?.ReadOnly" [TabIndex]="pBeneficiaryUniqueRefNo?.TabIndex" [TextAlign]="pBeneficiaryUniqueRefNo?.TextAlign" [Text]="newPatientFormViewModel?._Patient?.BeneficiaryUniqueRefNo" [Visible]="pBeneficiaryUniqueRefNo?.Visible" id="A19828" data-tid="A353253"></hvl-masktext-box>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 row right-float" id="A19829" data-tid="A353254">
+            <div class="row" id="A19830" data-tid="A353255">
+                <div class="col-md-6" id="A19831" data-tid="A353256">
+                    <dx-button text="Yeni Arşiv" rtlEnabled="true" class="tabHeaderButton dx-button-active dx-button-semioval dx-button-main" icon="fa fa-pencil-square-o" (onClick)="NewPatientSave_Click()" i18n-text="@@M24525" id="A19832" data-tid="A353257"></dx-button>
+                </div>
+                <div class="col-md-6" id="A19833" data-tid="A353258">
+                    <dx-button text="Kaydet" rtlEnabled="true" class="tabHeaderButton dx-button-active dx-button-semioval dx-button-main" icon="save" (onClick)="PatientSave_Click()" i18n-text="@@M17386" id="A19834" data-tid="A353259"></dx-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

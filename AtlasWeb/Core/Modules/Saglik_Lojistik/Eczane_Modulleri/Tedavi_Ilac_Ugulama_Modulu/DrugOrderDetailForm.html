@@ -1,0 +1,142 @@
+﻿<div class="row" id="A4407" data-tid="A330111">
+    <div *ngIf="CurrentStateIsComplated" class="col-md-2 col-sm-6" id="A4408" data-tid="A330112">
+        <button type="button" class="btn btn-warning" (click)="UndoLastTransition_SelectedDrugOrderDetailAction()" id="A4409" data-tid="A330113">İşlem Geri Al</button>
+    </div>
+    <div [class.col-md-12]="CurrentStateIsComplated==false" [class.col-md-10]="CurrentStateIsComplated==true" id="A4410" data-tid="A330114">
+        <NeStatePanelComponent [OutgoingTransitions]="drugOrderDetailFormViewModel?.OutgoingTransitions" [StateReports]="drugOrderDetailFormViewModel?.CurrentStateReports" [ObjectID]="drugOrderDetailFormViewModel?._DrugOrderDetail?.ObjectID" [ObjectDefID]="drugOrderDetailFormViewModel?._DrugOrderDetail?.ObjectDefID" [CurrentStateDefID]="drugOrderDetailFormViewModel._DrugOrderDetail.CurrentStateDefID" [SaveCommandVisible]="false" [DropStateList]="DropStateList" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()" id="A4411" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A330115">
+        </NeStatePanelComponent>
+    </div>
+</div>
+<div class="container-fluid" id="A4412" data-tid="A330116">
+    <form id="DrugOrderDetailForm" class="form-horizontal" role="form" data-tid="A330117">
+
+    </form>
+    <div class="row" id="A4413" data-tid="A330118">
+        <label class="control-label col-sm-6" id="A4414" data-tid="A330119">
+            Hasta Adı Soyadı
+        </label>
+        <label class="control-label col-sm-3" id="A4415" data-tid="A330120">
+            Uygulama Saati
+        </label>
+        <label class="control-label col-sm-3" id="A4416" data-tid="A330121">
+            İşlem Tarihi
+        </label>
+    </div>
+    <div class="row" id="A4417" data-tid="A330122">
+        <div class="col-sm-6" id="A4418" data-tid="A330123">
+            <dx-text-box [(value)]="patientFullName" id="A4419" data-tid="A330124"></dx-text-box>
+            <!--Html.EmTextBoxFor(t => t._DrugOrderDetail.Episode.Patient.PatientIDandFullName, "ID", "onIDChanged($event)", false, true)-->
+        </div>
+        <div class="col-sm-3" id="A4420" data-tid="A330125">
+            <hvl-date-picker #Validation (ValueChange)="onApplicationDateChanged($event)" [BackColor]="ApplicationDate?.BackColor" [CustomFormat]="ApplicationDate?.CustomFormat" [Enabled]="ApplicationDate?.Enabled" [Font]="ApplicationDate?.Font" [ForeColor]="ApplicationDate?.ForeColor" [Format]="ApplicationDate?.Format" [Max]="ApplicationDate?.Max" [Min]="ApplicationDate?.Min" [ReadOnly]="ApplicationDate?.ReadOnly" [Required]="ApplicationDate?.Required" [TabIndex]="ApplicationDate?.TabIndex" [Value]="drugOrderDetailFormViewModel?._DrugOrderDetail?.OrderPlannedDate" [Visible]="ApplicationDate?.Visible" id="A4421" data-tid="A330126"></hvl-date-picker>
+        </div>
+        <div class="col-sm-3" id="A4422" data-tid="A330127">
+            <hvl-date-picker #Validation (ValueChange)="onActionDateChanged($event)" [BackColor]="ActionDate?.BackColor" [CustomFormat]="ActionDate?.CustomFormat" [Enabled]="ActionDate?.Enabled" [Font]="ActionDate?.Font" [ForeColor]="ActionDate?.ForeColor" [Format]="ActionDate?.Format" [Max]="ActionDate?.Max" [Min]="ActionDate?.Min" [ReadOnly]="ActionDate?.ReadOnly" [Required]="ActionDate?.Required" [TabIndex]="ActionDate?.TabIndex" [Value]="drugOrderDetailFormViewModel?._DrugOrderDetail?.ActionDate" [Visible]="ActionDate?.Visible" id="A4423" data-tid="A330128"></hvl-date-picker>
+        </div>
+    </div>
+    <div class="row" id="A4424" data-tid="A330129">
+        <label class="control-label col-sm-8" id="A4425" data-tid="A330130">
+            İlaç
+        </label>
+        <label class="control-label col-sm-2" id="A4426" data-tid="A330131">
+            Doz Aralığı
+        </label>
+        <label class="control-label col-sm-2" id="A4427" data-tid="A330132">
+            Doz Miktarı
+        </label>
+    </div>
+    <div class="row" id="A4428" data-tid="A330133">
+        <div class="col-sm-8" id="A4429" data-tid="A330134">
+            <hvl-list-box #Validation (SelectedObjectChange)="onMaterialChanged($event)" [AutoCompleteDialogHeight]="Material?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="Material?.AutoCompleteDialogWidth" [AutoCompleteMode]="Material?.AutoCompleteMode" [BackColor]="Material?.BackColor" [DefinitionName]="Material?.ListDefName" [DisplayExpressionsCache]="drugOrderDetailFormViewModel?.ListDefDisplayExpressions" [Enabled]="Material?.Enabled" [Font]="Material?.Font" [ForeColor]="Material?.ForeColor" [ListFilterExpression]="Material?.ListFilterExpression" [MinSearchLength]="Material?.MinSearchLength" [PopupDialogFieldConfig]="Material?.PopupDialogFieldConfig" [PopupDialogGridColumns]="Material?.PopupDialogGridColumns" [PopupDialogHeight]="Material?.PopupDialogHeight" [PopupDialogTitle]="Material?.PopupDialogTitle" [PopupDialogWidth]="Material?.PopupDialogWidth" [ReadOnly]="Material?.ReadOnly" [SearchMode]="Material?.SearchMode" [SearchTimeout]="Material?.SearchTimeout" [SelectedObject]="drugOrderDetailFormViewModel?._DrugOrderDetail?.Material" [TabIndex]="Material?.TabIndex" [Visible]="Material?.Visible" [width]="Material?.Width" id="A4430" data-tid="A330135"></hvl-list-box>
+        </div>
+        <div class="col-sm-2" id="A4431" data-tid="A330136">
+            <hvl-enum-combobox #Validation (ValueChange)="onFrequencyChanged($event)" [BackColor]="Frequency?.BackColor" [DataTypeName]="Frequency?.DataTypeName" [Enabled]="Frequency?.Enabled" [Font]="Frequency?.Font" [ForeColor]="Frequency?.ForeColor" [IncludeOnly]="Frequency?.IncludeOnly" [ReadOnly]="Frequency?.ReadOnly" [ShowClearButton]="Frequency?.ShowClearButton" [SortBy]="Frequency?.SortBy" [TabIndex]="Frequency?.TabIndex" [Value]="drugOrderDetailFormViewModel?._DrugOrderDetail?.Frequency" [Visible]="Frequency?.Visible" id="A4432" data-tid="A330137"></hvl-enum-combobox>
+        </div>
+        <div class="col-sm-2" id="A4433" data-tid="A330138">
+            <hvl-number-box #Validation (ValueChange)="onDoseAmountChanged($event)" [BackColor]="DoseAmount?.BackColor" [Enabled]="DoseAmount?.Enabled" [Font]="DoseAmount?.Font" [ForeColor]="DoseAmount?.ForeColor" [ReadOnly]="DoseAmount?.ReadOnly" [TabIndex]="DoseAmount?.TabIndex" [Value]="drugOrderDetailFormViewModel?._DrugOrderDetail?.DoseAmount" [Visible]="DoseAmount?.Visible" id="A4434" data-tid="A330139"></hvl-number-box>
+        </div>
+    </div>
+    <div class="row" id="A4435" data-tid="A330140">
+        <label class="control-label col-sm-8" id="A4436" data-tid="A330141">
+            Kullanma Açıklaması
+        </label>
+        <label class="control-label col-sm-2" id="A4437" data-tid="A330142">
+            Kalan Doz
+        </label>
+        <label class="control-label col-sm-2" id="A4438" data-tid="A330143">
+            Miktar
+        </label>
+    </div>
+    <div class="row" id="A4439" data-tid="A330144">
+        <div class="col-sm-8" id="A4440" data-tid="A330145">
+            <hvl-text-box #Validation (TextChange)="onUsageNoteChanged($event)" [BackColor]="UsageNote?.BackColor" [CharacterCasing]="UsageNote?.CharacterCasing" [Enabled]="UsageNote?.Enabled" [Font]="UsageNote?.Font" [ForeColor]="UsageNote?.ForeColor" [height]="UsageNote?.Height" [InputFormat]="UsageNote?.InputFormat" [InputTurkishCharacter]="UsageNote?.InputTurkishCharacter" [IsNonNumeric]="UsageNote?.IsNonNumeric" [MultiLine]="UsageNote?.Multiline" [ReadOnly]="UsageNote?.ReadOnly" [Required]="UsageNote?.Required" [TabIndex]="UsageNote?.TabIndex" [TextAlign]="UsageNote?.TextAlign" [Text]="drugOrderDetailFormViewModel?._DrugOrderDetail?.UsageNote" [Visible]="UsageNote?.Visible" id="A4441" data-tid="A330146"></hvl-text-box>
+        </div>
+        <div class="col-sm-2" id="A4442" data-tid="A330147">
+            <hvl-text-box #Validation (TextChange)="RestDose.Text=$event;" [BackColor]="RestDose?.BackColor" [CharacterCasing]="RestDose?.CharacterCasing" [Enabled]="RestDose?.Enabled" [Font]="RestDose?.Font" [ForeColor]="RestDose?.ForeColor" [height]="RestDose?.Height" [InputFormat]="RestDose?.InputFormat" [InputTurkishCharacter]="RestDose?.InputTurkishCharacter" [IsNonNumeric]="RestDose?.IsNonNumeric" [MultiLine]="RestDose?.Multiline" [ReadOnly]="RestDose?.ReadOnly" [Required]="RestDose?.Required" [TabIndex]="RestDose?.TabIndex" [TextAlign]="RestDose?.TextAlign" [Text]="RestDose?.Text" [Visible]="RestDose?.Visible" id="A4443" data-tid="A330148"></hvl-text-box>
+        </div>
+        <div class="col-sm-2" id="A4444" data-tid="A330149">
+            <hvl-number-box #Validation (ValueChange)="onAmountChanged($event)" [BackColor]="Amount?.BackColor" [Enabled]="Amount?.Enabled" [Font]="Amount?.Font" [ForeColor]="Amount?.ForeColor" [ReadOnly]="Amount?.ReadOnly" [TabIndex]="Amount?.TabIndex" [Value]="drugOrderDetailFormViewModel?._DrugOrderDetail?.Amount" [Visible]="Amount?.Visible" id="A4445" data-tid="A330150"></hvl-number-box>
+        </div>
+    </div>
+    <div class="row" id="A4446" data-tid="A330151">
+        <label class="control-label col-sm-6" id="A4447" data-tid="A330152">
+            Kullanım Şekli
+        </label>
+    </div>
+    <div class="col-sm-12" style="padding:0" id="A4446" data-tid="A330153">
+        <hvl-enum-combobox #Validation [BackColor]="DrugUsageType?.BackColor" [DataTypeName]="DrugUsageType?.DataTypeName" [Enabled]="DrugUsageType?.Enabled" [Font]="DrugUsageType?.Font" [ForeColor]="DrugUsageType?.ForeColor" [IncludeOnly]="DrugUsageType?.IncludeOnly" [ReadOnly]="DrugUsageType?.ReadOnly" [ShowClearButton]="DrugUsageType?.ShowClearButton" [SortBy]="DrugUsageType?.SortBy" [TabIndex]="DrugUsageType?.TabIndex" [Value]="drugOrderDetailFormViewModel?.DrugUsageType" [Visible]="DrugUsageType?.Visible" id="A4062" data-tid="A330154"></hvl-enum-combobox>
+    </div>
+    <div class="row" id="A4446" data-tid="A330155">
+        <label class="control-label col-sm-6" id="A4447" data-tid="A330156">
+            Durum
+        </label>
+    </div>
+    <div class="row" id="A4448" data-tid="A330157">
+        <div class="col-sm-10" id="A4449" data-tid="A330158">
+            <hvl-text-box #Validation (TextChange)="onStageChanged($event)" [BackColor]="Stage?.BackColor" [CharacterCasing]="Stage?.CharacterCasing" [Enabled]="Stage?.Enabled" [Font]="Stage?.Font" [ForeColor]="Stage?.ForeColor" [height]="Stage?.Height" [InputFormat]="Stage?.InputFormat" [InputTurkishCharacter]="Stage?.InputTurkishCharacter" [IsNonNumeric]="Stage?.IsNonNumeric" [MultiLine]="Stage?.Multiline" [ReadOnly]="Stage?.ReadOnly" [Required]="Stage?.Required" [TabIndex]="Stage?.TabIndex" [TextAlign]="Stage?.TextAlign" [Text]="drugOrderDetailFormViewModel?._DrugOrderDetail?.Stage" [Visible]="Stage?.Visible" id="A4450" data-tid="A330159"></hvl-text-box>
+        </div>
+        <div *ngIf="showDrugDone" class="col-sm-1" id="A4451" data-tid="A330160">
+            <span id="A4452" data-tid="A330161">İlaç Bitti</span>
+            <hvl-checkbox #Validation (ValueChange)="onttcheckbox1Changed($event)" [AllowThreeState]="ttcheckbox1?.ThreeState" [BackColor]="ttcheckbox1?.BackColor" [Enabled]="ttcheckbox1?.Enabled" [Font]="ttcheckbox1?.Font" [ForeColor]="ttcheckbox1?.ForeColor" [IsTitleLeft]="ttcheckbox1?.IsTitleLeft" [Margin]="ttcheckbox1?.Margin" [ReadOnly]="ttcheckbox1?.ReadOnly" [TabIndex]="ttcheckbox1?.TabIndex" [TitleTopPadding]="ttcheckbox1?.TitleTopPadding" [Title]="ttcheckbox1?.Title" [Value]="drugOrderDetailFormViewModel?._DrugOrderDetail?.DrugDone" [Visible]="ttcheckbox1?.Visible" id="A4453" data-tid="A330162"></hvl-checkbox>
+        </div>
+    </div>
+    <div class="row" id="A4454" data-tid="A330163">
+        <label class="control-label col-sm-11" id="A4455" data-tid="A330164">
+            Uygulama Notu
+        </label>
+    </div>
+    <div class="row" id="A4456" data-tid="A330165">
+        <div class="col-sm-11" id="A4457" data-tid="A330166">
+            <hvl-text-box #Validation (TextChange)="ontttextbox1Changed($event)" [BackColor]="tttextbox1?.BackColor" [CharacterCasing]="tttextbox1?.CharacterCasing" [Enabled]="tttextbox1?.Enabled" [Font]="tttextbox1?.Font" [ForeColor]="tttextbox1?.ForeColor" [height]="tttextbox1?.Height" [InputFormat]="tttextbox1?.InputFormat" [InputTurkishCharacter]="tttextbox1?.InputTurkishCharacter" [IsNonNumeric]="tttextbox1?.IsNonNumeric" [MultiLine]="tttextbox1?.Multiline" [ReadOnly]="tttextbox1?.ReadOnly" [Required]="tttextbox1?.Required" [TabIndex]="tttextbox1?.TabIndex" [TextAlign]="tttextbox1?.TextAlign" [Text]="drugOrderDetailFormViewModel?._DrugOrderDetail?.Note" [Visible]="tttextbox1?.Visible" id="A4458" data-tid="A330167"></hvl-text-box>
+        </div>
+    </div>
+    <div *ngIf="IsCompleted" class="row" id="A4454" data-tid="A330168">
+        <label class="control-label col-sm-6" id="A4455" data-tid="A330169">
+            Uygulama Tarihi
+        </label>
+        <label class="control-label col-sm-6" id="A4455" data-tid="A330170">
+            Uygulayan
+        </label>
+    </div>
+    <div *ngIf="IsCompleted" class="row" id="A4456" data-tid="A330171">
+        <div class="col-sm-6" id="A4457" data-tid="A330172">
+            <dx-date-box [value]="ExecutionDate" type="datetime" [readOnly]="true" data-tid="A330173">
+            </dx-date-box>
+        </div>
+        <div class="col-sm-6" id="A4457" data-tid="A330174">
+            <dx-text-box [value]="ExecutionFullName" [readOnly]="true" data-tid="A330175">
+            </dx-text-box>
+        </div>
+    </div>
+    <div class="row" id="A4454" data-tid="A330176">
+        <label *ngIf="IsWarning" class="control-label col-sm-12" style="margin-top: 10px; color:red;" data-tid="A330177">
+            <p data-tid="A330178">
+                <font color="red" data-tid="A330179">{{this.WarningMessage}}</font>
+            </p>
+        </label>
+    </div>
+
+</div>
+
+<dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A28706" data-tid="A330180">
+</dx-load-panel>

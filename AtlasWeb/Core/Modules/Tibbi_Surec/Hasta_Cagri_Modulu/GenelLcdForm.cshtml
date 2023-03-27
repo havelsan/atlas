@@ -1,0 +1,17 @@
+﻿@model Core.Models.ActionFormViewModel
+@{
+    Layout = null;
+}
+<div class="col-sm-3">
+    <dx-button type="success" (onClick)="OpenMonitor()" text="Seçilenleri Göster"></dx-button>
+</div>
+<div class="col-sm-3">
+    <dx-button type="success" (onClick)="OpenSurgeryMonitor()" text="Ameliyat Ekranını Aç"></dx-button>
+    <dx-button type="success" (onClick)="OpenNewBornMonitor()" text="Bebek Ekranını Aç"></dx-button>
+    <dx-button type="success" (onClick)="OpenEmergencyMonitor()" text="Acil Ekranını Aç"></dx-button>
+</div>
+<div class="col-sm-12">
+    <dx-data-grid [columns]="GridColumns" [dataSource]="dataSource" (onSelectionChanged)="select($event)" [selection]="{mode: 'multiple',allowSelectAll: true}" [paging]="{enable: true, pageSize:100}" [filterRow]="{visible: true}" style="height:97%">
+    </dx-data-grid>
+</div>
+

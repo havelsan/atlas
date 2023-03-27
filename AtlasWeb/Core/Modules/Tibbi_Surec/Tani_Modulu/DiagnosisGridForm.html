@@ -1,0 +1,180 @@
+﻿<form id="DiagnosisGridForm" class="form-horizontal" role="form" data-tid="A364725">
+
+</form>
+
+<div class="row" *ngIf="IsReadOnly != true" id="A27814" data-tid="A364726">
+    <div class="col-sm-9" data-tid="A364727">
+        <div class="dx-fieldset" data-tid="A364728">
+            <div class="dx-field" data-tid="A364729">
+                <div data-tid="A364730">
+                    <dx-select-box #DiagnosisSearchBar [value]="this.diagnosisGridFormViewModel?._selectedDiagnosis" noDataText="En az bir karakter ile arama yapmalısınız!" placeholder="Tanı Arama" [dataSource]="DiagnosisArray" displayExpr="Name" valueExpr="Code" [searchEnabled]="true" (onSelectionChanged)="diagnosisSelection_ValueChanged($event.selectedItem)" (onValueChanged)="LoadAllDiagnosisDefinitions()" data-tid="A364731">
+                        <div *dxTemplate="let data of 'item'" data-tid="A364732">
+                            <div data-tid="A364733">
+                                <div class="col-sm-3" data-tid="A364734"> {{data.Code}} </div>
+                                <div class="col-sm-9" data-tid="A364735"> {{data.Name}} </div>
+                            </div>
+                        </div>
+                    </dx-select-box>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-3" id="A27818" data-tid="A364736">
+        <a name="hizliTani" class="btn marginTop15 btn-block btn-primary" data-toggle="collapse" (click)="diagnosisQuickSelectionCollapse_Click()" href="#diagnosisQuickSelectionDetails" id="A27819" data-tid="A364737"><i class="{{this.diagnosisQuickSelectionDetailIconClassProperties()}}" style="float:right;" id="A27820" data-tid="A364738"></i>Hızlı Tanı</a>
+    </div>
+    <!--<div class="col-sm-2" id="A27818">
+        <a name="riskliGebelik" class="btn marginTop15 btn-block btn-danger" 
+            (click)="diagnosisQuickSelectionCollapse_Click()" 
+            id="B27819"><i class="fas fa-diagnoses"></i>Riskli Gebelik</a>
+    </div>-->
+</div>
+<div #diagnosisGridPanel id="A27821" data-tid="A364739">
+    <div class="row" id="A27822" data-tid="A364740">
+        <div class="col-sm-12" id="A27823" data-tid="A364741">
+            <div style="overflow:auto;max-height :110px;" class="diagnosisGridStyle" id="A27824" data-tid="A364742">
+            </div>
+
+            <dx-data-grid #dataGrid [ngStyle]="{'min-width':'100%' }" class="diognosisGridStyle" (onContextMenuPreparing)="onDiognosisGridContextMenuPreparing($event)" [columns]="columns" [allowColumnReordering]="true" [allowColumnResizing]="true" (onRowPrepared)="rowPrepared($event)" [disabled]="IsReadOnly" [editing]="{allowUpdating: false,allowAdding: false,allowDeleting: false, texts:{confirmDeleteMessage:''}}" [dataSource]="GridDiagnosisGridList" (onRowInserting)="rowInserting($event)" [height]="GridDiagnosis?.Height" id="A27825" data-tid="A364743">
+                <div *dxTemplate="let cellData of 'DiagnosisTypeCellTemplate'" id="A27826" data-tid="A364744">
+                    <hvl-radio-button-group [Items]="preSecDiagnosisRadioItems" SelectedValuePath="Value" [(Value)]="cellData.data.DiagnosisType" id="A27827" data-tid="A364745"></hvl-radio-button-group>
+                </div>
+                <div style="text-align:-webkit-center;margin-top: -2px;" *dxTemplate="let cellData of 'IsMainDiagnoseCellTemplate'" id="A27828" data-tid="A364746">
+                    <hvl-checkbox #checkBox [(Value)]="cellData.data.IsMainDiagnose" (ValueChange)="onMainDiagnoseChanged(cellData, $event)" id="A27829" data-tid="A364747"></hvl-checkbox>
+                </div>
+                <!--<div *dxTemplate="let cellData of 'buttonCellTemplate'" id="A27830">
+                    <i class="fa fa-plus-circle" style="cursor:pointer" (click)="gridDiagnosisGrid_CellContentClicked(cellData)" id="A27831"></i>
+                </div>-->
+                <div *dxTemplate="let cellData of 'deleteCellTemplate'" id="A27832" data-tid="A364748">
+                    <i class="fa fa fa-trash" style="cursor:pointer" (click)="gridDiagnosisGrid_CellContentClicked(cellData)" id="A27833" data-tid="A364749"></i>
+                </div>
+            </dx-data-grid>
+        </div>
+    </div>
+    <hvl-dialog [width]="dialogWidth" [height]="dialogHeight" [left]="dialogLeft" [top]="dialogTop" enableAnimation="true" [opened]="dialogOpened" (onExpanded)="expanded()" (onBlur)="quickDiagnosis_onBlur()" id="A27834" data-tid="A364750">
+        <div class="container-fluid" style="background-color:white; border:2px solid gray;height:100%" id="A27835" data-tid="A364751">
+            <div class="row" id="A27836" data-tid="A364752">
+                <div class="col-xs-4" id="A27837" data-tid="A364753">
+                    <div class="row" id="A27838" data-tid="A364754">
+                        <div class="col-xs-12" id="A27839" data-tid="A364755">
+                            <label class="control-label quickDiagnosisTitleMyStyle" id="A27840" data-tid="A364756">
+                                <b id="A27841" data-tid="A364757">&nbsp;Favori Tanıları</b>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row" id="A27842" data-tid="A364758">
+                        <div class="col-xs-12" id="A27843" data-tid="A364759">
+                            <dx-list class="favoriteDiagnosisListStyle" [dataSource]="diagnosisGridFormViewModel.FavoriteDiagnosisList" (onItemClick)="gridFavoriteDiagnosis_CellContentClicked($event)" height="500px" pageLoadMode="scrollBottom" [menuItems]="gridFavoriteMenuItems" id="A27844" data-tid="A364760">
+                                <div *dxTemplate="let data of 'item'" id="A27845" data-tid="A364761">
+                                    <div data-placement="top" title="{{data.Diagnose.Code}}-{{data.Diagnose.Name}}" [class.myBoldFont]="isGridDiagnosisGridListExists(data.Diagnose.ObjectID)==true" id="A27846" data-tid="A364762">{{data.Diagnose.Code}}-{{data.Diagnose.Name}}</div>
+                                </div>
+                            </dx-list>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4" id="A27847" data-tid="A364763">
+                    <div class="row" id="A27848" data-tid="A364764">
+                        <div class="col-xs-12" id="A27849" data-tid="A364765">
+                            <label class="control-label quickDiagnosisTitleMyStyle" id="A27850" data-tid="A364766">
+                                <b id="A27851" data-tid="A364767">&nbsp;En Çok Kullanılan 20 Tanı</b>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row" id="A27852" data-tid="A364768">
+                        <div class="col-xs-12" id="A27853" data-tid="A364769">
+                            <dx-list [dataSource]="diagnosisGridFormViewModel.Top10DiagnosisDefinitionOfUserList" (onItemClick)="gridTop10DiagnosisDefinitionOfUser_CellContentClicked($event)" height="500px" pageLoadMode="scrollBottom" id="A27854" data-tid="A364770">
+                                <div *dxTemplate="let data of 'item'" id="A27855" data-tid="A364771">
+                                    <div data-placement="top" title="{{data.Diagnosename}}" [class.myBoldFont]="isGridDiagnosisGridListExists(data.Diagnoseobjectid)==true" id="A27856" data-tid="A364772">{{data.Diagnosename}} </div>
+                                </div>
+                            </dx-list>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4" id="A27857" data-tid="A364773">
+                    <div class="row" id="A27858" data-tid="A364774">
+                        <div class="col-xs-12" id="A27859" data-tid="A364775">
+                            <label class="control-label quickDiagnosisTitleMyStyle" id="A27860" data-tid="A364776">
+                                <b id="A27861" data-tid="A364777">&nbsp;Vaka Tanıları</b>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row" id="A27862" data-tid="A364778">
+                        <div class="col-xs-12" id="A27863" data-tid="A364779">
+                            <dx-list [dataSource]="diagnosisGridFormViewModel.EpisodeDiagnosisGridList" (onItemClick)="gridEpisodeDiagnosis_CellContentClicked($event)" height="200px" pageLoadMode="scrollBottom" id="A27864" data-tid="A364780">
+                                <div *dxTemplate="let data of 'item'" id="A27865" data-tid="A364781">
+                                    <div data-placement="top" title="{{data.DiagnoseName}}" [class.myBoldFont]="isGridDiagnosisGridListExists(data.DiagnoseObjectID)==true" id="A27866" data-tid="A364782">{{data.DiagnoseName}}</div>
+                                </div>
+                            </dx-list>
+                        </div>
+                    </div>
+                    <div class="row" id="A27867" data-tid="A364783">
+                        <div class="col-xs-12" id="A27868" data-tid="A364784">
+                            <label class="control-label quickDiagnosisTitleMyStyle" id="A27869" data-tid="A364785">
+                                <b id="A27870" data-tid="A364786">&nbsp;Hastanın Son 10 Tanısı</b>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row" id="A27871" data-tid="A364787">
+                        <div class="col-xs-12" id="A27872" data-tid="A364788">
+                            <dx-list [dataSource]="diagnosisGridFormViewModel.Last10DiagnosisOfPatientList" (onItemClick)="gridLast10DiagnosisOfPatientBySpeciality_CellContentClicked($event)" height="300px" pageLoadMode="scrollBottom" id="A27873" data-tid="A364789">
+                                <div *dxTemplate="let data of 'item'" id="A27874" data-tid="A364790">
+                                    <div data-placement="top" title="{{data.Diagnosename}}" [class.myBoldFont]="isGridDiagnosisGridListExists(data.Diagnoseobjectid)==true" id="A27875" data-tid="A364791">{{data.Diagnosename}}</div>
+                                </div>
+                            </dx-list>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </hvl-dialog>
+
+
+    <dx-popup width="750px" [(visible)]="showENabizPopup" height="760px" style="overflow: auto" [closeOnOutsideClick]="false" [class.bulasiciMSVSStyle]="hasBulasiciMSVS==true" [class.eNabizStyle]="hasBulasiciMSVS==false" [title]="E_Nabiz_Title" i18n-title="@@M13708" id="A27876" data-tid="A364792">
+        <div *dxTemplate="let data of 'content'" id="A27877" data-tid="A364793">
+                <div id="content" data-tid="A364794">
+                    <div class="container-fluid" *ngIf="showENabizPopup" id="A27878" data-tid="A364795">
+                        <enabiz-form [NabizDataSetList]="_nabizDataSetList" [ENabizViewModels]="_eNabizViewModels" [EpisodeActionID]="_episodeAction.ObjectID" (OnClosing)="onEnabizClose($event)" [FromHelpMenu]="false" id="A27879" data-tid="A364796"></enabiz-form>
+                    </div>
+                </div>
+        </div>
+    </dx-popup>
+
+    <dx-popup [(visible)]="showDiagnosisActionSuggestionPopup" height="600px" width="800px" style="overflow:auto" [closeOnOutsideClick]="false" title="Seçtiğiniz Tanı için Aşağıdaki Hizmetler Önerilmektedir." i18n-title="@@M21575" id="A27880" data-tid="A364797">
+        <div *dxTemplate="let data of 'content'" id="A27881" data-tid="A364798">
+            <div class="col-sm-12" *ngIf="showDiagnosisActionSuggestionPopup" id="A27882" data-tid="A364799">
+                <div class="row" style="margin-bottom:2px" id="A27883" data-tid="A364800">
+                    <div style="float: right" id="A27884" data-tid="A364801">
+                        <dx-button icon="save" type="default" style="margin: 0px 5px 0px 0px" text="Seçilenleri İsteme Ekle" (click)="onDiagnosisActionSuggestionClose(true)" i18n-text="@@M27645" id="A27885" data-tid="A364802"></dx-button>
+                    </div>
+                    <div style="float: right" id="A27886" data-tid="A364803">
+                        <dx-button icon="fa fa-undo" type="danger" style="margin: 0px 5px 0px 0px" text="Tümünden Vazgeç" (click)="onDiagnosisActionSuggestionClose(false)" i18n-text="@@M23654" id="A27887" data-tid="A364804"></dx-button>
+                    </div>
+                </div>
+
+                <dx-data-grid [columns]="diagnosisActionSuggestionColumns" [allowColumnReordering]="false" [allowColumnResizing]="true" [editing]="{allowUpdating: false,allowAdding: false,allowDeleting: false, texts:{confirmDeleteMessage:''}}" [dataSource]="_tempDiagnosisActionSuggestionList" id="A27888" data-tid="A364805">
+                    <div *dxTemplate="let cellData of 'CreateProcedureCellTemplate'" id="A27889" data-tid="A364806">
+                        <hvl-checkbox [(Value)]="cellData.data.CreateProcedure" id="A27890" data-tid="A364807"></hvl-checkbox>
+                    </div>
+                </dx-data-grid>
+            </div>
+        </div>
+    </dx-popup>
+
+    <dx-popup width="600px" [(visible)]="showHighRiskyPregnancy" height="300px" style="overflow: auto" (onHiding)="onHighRiskyPregnancyHiding($event)" [closeOnOutsideClick]="false" title="Yüksek Riskli Gebelik Tanıları" i18n-title="@@M13708" id="A27876" data-tid="A364808">
+        <div *dxTemplate="let data of 'content'" id="A27877" data-tid="A364809">
+            <dx-scroll-view style="width: 100%;height:100%;" direction="both" data-tid="A364810">
+                <div id="content" data-tid="A364811">
+                    <div class="container-fluid" *ngIf="showHighRiskyPregnancy" id="A27878" data-tid="A364812">
+                        <dx-data-grid #highRiskGrid [ngStyle]="{'min-width':'100%','min-height':'95%' }" class="diognosisGridStyle" [allowColumnReordering]="true" [allowColumnResizing]="true" (onRowPrepared)="rowPrepared($event)" [editing]="{allowUpdating: false,allowAdding: false,allowDeleting: false, texts:{confirmDeleteMessage:''}}" [dataSource]="diagnosisGridFormViewModel.HighRiskyPregnantDefiniton" (onRowClick)="selectHighRiskDiagnose($event)" [height]="280" id="A27825" data-tid="A364813">
+                    <dxi-column dataField="Code" caption="Kodu" [width]="auto" data-tid="A364814">
+                    </dxi-column>
+                    <dxi-column dataField="Name" caption="Adı" [width]="auto" data-tid="A364815">
+                    </dxi-column>
+                    </dx-data-grid>
+                    </div>
+                </div>
+            </dx-scroll-view>
+        </div>
+    </dx-popup>
+
+</div>

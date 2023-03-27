@@ -1,0 +1,50 @@
+﻿import { Component, EventEmitter, SimpleChanges, OnChanges, Output, Input, ViewChild, KeyValueDiffers, ElementRef, Optional,ChangeDetectorRef } from '@angular/core';
+import { ListBoxConfig } from '../Models/ListBoxConfig';
+import { Util } from './Util';
+import { Http, Response } from '@angular/http';
+import { DxDataGridComponent } from 'devextreme-angular';
+import { HvlTextBox } from './HvlTextBox';
+import { BaseListBox } from './BaseControls/BaseListBox';
+import { DataGridMessageService, Messages } from '../Services/DataGridMessageService';
+import { NeHttpService } from 'Fw/Services/NeHttpService';
+import { ListBoxSearchCriteria } from 'NebulaClient/Visual/Controls/TTAutoCompleteGrid';
+import { ConfigurationCacheService } from 'Fw/Services/ConfigurationCacheService';
+
+@Component({
+    selector: "hvl-grid-list-box",
+    inputs: ['SelectedObject','SelectedValue', 'DefinitionName', 'Enabled', 'Required', 'Columns', 
+        'Value', 'Name', 'width', 'Visible', 'TabIndex', 'BackColor', 'ForeColor', 'ListFilterExpression', 'Font', 'AutoCompleteDialogWidth', 'MinSearchLength', 'SearchTimeout',
+        'PopupDialogFieldConfig', 'PopupDialogGridColumns', 'PopupDialogWidth', 'PopupDialogHeight', 'PopupDialogTitle'],
+    outputs: ['SelectedObjectChange'],
+    template: '<dx-data-grid noDataText="Veri Bulunamadı" [columns]="PopupDialogGridColumns" width="100%" height="100%" [dataSource]="PopupDialogDataSource" [remoteOperations]="{paging:true}"\
+                                 [selection]="{mode: \'single\',allowSelectAll: false}" [pager]="{showInfo: true,visible:true}" [paging]="{enabled:true, pageSize:10}" (onSelectionChanged)="select($event)">\
+                            </dx-data-grid>'
+})
+export class HvlGridListBox extends BaseListBox implements OnChanges  {
+
+    private displayExpressionsCache: Map<string, any>;
+    @Input() set DisplayExpressionsCache(value: Map<string, any>) {
+        this.displayExpressionsCache = value;
+    }
+    get DisplayExpressionsCache(): Map<string, any> {
+        return this.displayExpressionsCache;
+    }
+    
+    constructor(differs: KeyValueDiffers, element: ElementRef, http: NeHttpService, detector: ChangeDetectorRef, configCache: ConfigurationCacheService) {
+        super(differs, element, http, configCache);
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        if ((changes["SelectedObject"] && this.SelectedObject && this.SelectedObject.ObjectID && this.SelectedObject.ObjectID != this.SelectedValue) || 
+            (changes["DefinitionName"] && this.DefinitionName)) {
+            if (this.SelectedObject) {
+                this.SelectedValue = this.SelectedObject.ObjectID;
+                let that = this;
+                this.findByValue(this.displayExpressionsCache).then(t => {
+                    that.SelectedObject = t;
+                });
+            }
+        }
+        super.ngOnChanges(changes);
+    }
+}

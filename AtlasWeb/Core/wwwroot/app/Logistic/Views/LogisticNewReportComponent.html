@@ -1,0 +1,137 @@
+﻿
+<div class="row" id="A32318" style="overflow-y:auto;" data-tid="A373499">
+    <!--AnaDepoSelect-->
+    <div class="row" style="margin-left: 15px !important;margin-right: 0px !important;min-height: 882px;" data-tid="A373500">
+        <div class="{{this.collapseSelectedDivProperties()}}" style="flex:1;" data-tid="A373501">
+            <div class="row" style="height: 100%;" data-tid="A373502">
+                <div class="col-sm-12 gradientPanel" style="height:4%;min-height: 35px;" id="A16463" data-tid="A373503">
+                    <h4 style="color:#fff; font-size:19px;text-align:left;" id="A16464" data-tid="A373504">
+                        <div class="btn collapseBtn" (click)="btnCollapse()" style="padding:0;margin-top:3px;margin-right: 5px;" data-tid="A373505">
+                            <i class="{{this.collapseIconProperties()}}" id="A16466" data-tid="A373506"></i>
+                        </div>
+                        <span id="A16467" data-tid="A373507">Raporlar</span>
+                    </h4>
+                </div>
+                <div class="panel-body" style="background-color:#f6f6f6;padding-bottom:0; height:100%;padding: 0; padding-bottom: 20px;" data-tid="A373508">
+                    <div style="margin-top: 55px;" data-tid="A373509">
+                        <dx-tree-view [items]="tabItems" (onItemClick)="selectItem($event)" [searchEnabled]="true" style="height: 850px;" searchMode="contains" data-tid="A373510">
+                            <div *dxTemplate="let data of 'item'" data-tid="A373511">
+                                <div class="row" data-tid="A373512">
+                                    <div class="col-md-10" data-tid="A373513">{{data.text}}</div>
+                                    <!-- <div class="col-md-2">
+                                        <i (click)="pinItem(data.id)"
+                                            [ngClass]="data.pinned == true ? 'fa fa-neuter fa-map-pin' : 'fa fa-neuter'"></i>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </dx-tree-view>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="{{this.collapseSelectedHiddenDivProperties()}}" style="position:relative;" data-tid="A373514">
+            <div class="MyVerticalText" (click)="btnCollapse()" data-tid="A373515">
+                <i class="{{this.collapseIconProperties()}}" data-tid="A373516"></i>
+                <span id="A16547" data-tid="A373517">&nbsp;&nbsp;&nbsp;&nbsp;Raporlar</span>
+            </div>
+        </div>
+        <div class="{{this.collapsedPanelProperties()}}" data-tid="A373518">
+            <div style="background-color:#fff; height:100%;flex:3" id="A32331" data-tid="A373519">
+                <div class="col-xs-12" id="A32332" style="height:97%;" data-tid="A373520">
+                    <div class="row" style="border-bottom: 2px solid #0088CC;margin-bottom: 2px;" data-tid="A373521">
+                        <div class="col-md-7" data-tid="A373522">
+                            <ul class="nav nav-tabs" style="border-bottom: 0px !important;" data-tid="A373523">
+                                <li *ngFor="let item of tabList" [ngClass]="item.selected == true ? 'active' : ''" data-tid="A373524">
+                                    <a data-toggle="tab" (click)="openTab(item)" [ngClass]="item.selected == true ? 'activeTab' : ''" data-tid="A373525">
+                                        <span data-tid="A373526">{{ item.text }}</span> &nbsp;&nbsp;
+                                        <span *ngIf="item.closable" class="fa fa-close" (click)="tabClose(item)" data-tid="A373527"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div data-tid="A373528">
+                        <!-- Raporlar -->
+                        <div class="row" *ngIf="tabVisibility.GIRISRAPORLARI" [hidden]="tabHidden.GIRISRAPORLARI" data-tid="A373529">
+                            <MovableTransactionInputVoucherForm [SelectedMainStore]="store" data-tid="A373530">
+                            </MovableTransactionInputVoucherForm>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.CIKISRAPORLARI" [hidden]="tabHidden.CIKISRAPORLARI" data-tid="A373531">
+                            <MovableTransactionOutVoucherForm [SelectedMainStore]="store" data-tid="A373532">
+                            </MovableTransactionOutVoucherForm>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.MUADILMALZEMERAPORU" [hidden]="tabHidden.MUADILMALZEMERAPORU" data-tid="A373533">
+                            <equivalent-material-report-form [SelectedStoreObjectID]="store?.ObjectID" data-tid="A373534">
+                            </equivalent-material-report-form>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.SONKULLANMATARIHINEGOREMALZEMERAPORU" [hidden]="tabHidden.SONKULLANMATARIHINEGOREMALZEMERAPORU" data-tid="A373535">
+                            <MaterialReportByExpirationDateForm [StoreObjectId]="store?.ObjectID" data-tid="A373536">
+                            </MaterialReportByExpirationDateForm>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.ECZANEIADERAPORU" [hidden]="tabHidden.ECZANEIADERAPORU" data-tid="A373537">
+                            <DrugReturnReportForm [StoreObjectId]="store?.ObjectID" data-tid="A373538">
+                            </DrugReturnReportForm>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.ILACKULLANIMRAPORU" [hidden]="tabHidden.ILACKULLANIMRAPORU" data-tid="A373539">
+                            <DrugUsageReportForm [StoreObjectId]="store?.ObjectID" data-tid="A373540"></DrugUsageReportForm>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.MUADILMALZEMETUKETIMRAPORU" [hidden]="tabHidden.MUADILMALZEMETUKETIMRAPORU" data-tid="A373541">
+                            <EquivalentMaterialConsumptionForm [StoreObjectId]="store?.ObjectID" data-tid="A373542">
+                            </EquivalentMaterialConsumptionForm>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.IADERAPORUORANSAL" [hidden]="tabHidden.IADERAPORUORANSAL" data-tid="A373543">
+                            <ReturnForm [SelectedMainStore]="store" data-tid="A373544"></ReturnForm>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.KULLANILMAYANMALZEMERAPORU" [hidden]="tabHidden.KULLANILMAYANMALZEMERAPORU" data-tid="A373545">
+                            <UnusedMaterialForm [SelectedMainStore]="store" data-tid="A373546"></UnusedMaterialForm>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.RECETETURUNEGOREILACCIKISI" [hidden]="tabHidden.RECETETURUNEGOREILACCIKISI" data-tid="A373547">
+                            <DrugOutForRecipeTypeForm [SelectedMainStore]="store" data-tid="A373548"></DrugOutForRecipeTypeForm>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.ILACALINANFIRMALARRAPORU" [hidden]="tabHidden.ILACALINANFIRMALARRAPORU" data-tid="A373549">
+                            <DrugPaymentFirm [SelectedMainStore]="store" data-tid="A373550"></DrugPaymentFirm>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.FAVORIILACRAPORU" [hidden]="tabHidden.FAVORIILACRAPORU" data-tid="A373551">
+                            <FavoriteDrugReportForm data-tid="A373552"></FavoriteDrugReportForm>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.ILACATCRAPORU" [hidden]="tabHidden.ILACATCRAPORU" data-tid="A373553">
+                            <DrugAtcReport [SelectedMainStore]="store" data-tid="A373554"></DrugAtcReport>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.ILACDAGILIMRAPORU" [hidden]="tabHidden.ILACDAGILIMRAPORU" data-tid="A373555">
+                            <DrugDistributionReport [SelectedMainStore]="store" data-tid="A373556"></DrugDistributionReport>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.ECZANEDENKARSILANANILACLAR" [hidden]="tabHidden.ECZANEDENKARSILANANILACLAR" data-tid="A373557">
+                            <ReceivedDrugReport [SelectedMainStore]="store" data-tid="A373558"></ReceivedDrugReport>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.ECZANEDEBULUNMAYANILACLARRAPORU" [hidden]="tabHidden.ECZANEDEBULUNMAYANILACLARRAPORU" data-tid="A373559">
+                            <DrugNotExistStockReportForm [StoreObjectId]="store?.ObjectID" data-tid="A373560"></DrugNotExistStockReportForm>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.ILACJENERIKRAPORU" [hidden]="tabHidden.ILACJENERIKRAPORU" data-tid="A373561">
+                            <DrugGenericReport [SelectedMainStore]="store" data-tid="A373562"></DrugGenericReport>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.GUNLUKDOGRULANANILACLARRAPORU" [hidden]="tabHidden.GUNLUKDOGRULANANILACLARRAPORU" data-tid="A373563">
+                            <DailyConfirmDrugReport [SelectedMainStore]="store" data-tid="A373564"></DailyConfirmDrugReport>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.DEPOMEVCUTRAPORU" [hidden]="tabHidden.DEPOMEVCUTRAPORU" data-tid="A373565">
+                            <StoreInheldReport [SelectedMainStore]="store" data-tid="A373566"></StoreInheldReport>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.TOPLAMGIRISRAPORU" [hidden]="tabHidden.TOPLAMGIRISRAPORU" data-tid="A373567">
+                            <StoreInTotalReport [SelectedMainStore]="store" data-tid="A373568"></StoreInTotalReport>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.TOPLAMCIKISRAPORU" [hidden]="tabHidden.TOPLAMCIKISRAPORU" data-tid="A373569">
+                            <StoreOutTotalReport [SelectedMainStore]="store" data-tid="A373570"></StoreOutTotalReport>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.TUKETIMCIKISRAPORU" [hidden]="tabHidden.TUKETIMCIKISRAPORU" data-tid="A373571">
+                            <ConsumedMaterialReport [SelectedMainStore]="store" data-tid="A373572"></ConsumedMaterialReport>
+                        </div>
+                        <div class="row" *ngIf="tabVisibility.COVIDILACRAPORU" [hidden]="tabHidden.COVIDILACRAPORU" data-tid="A373553">
+                            <covid-drug-report-form ></covid-drug-report-form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

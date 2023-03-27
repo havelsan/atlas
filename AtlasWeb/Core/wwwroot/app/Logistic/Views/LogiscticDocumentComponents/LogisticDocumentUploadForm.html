@@ -1,0 +1,32 @@
+﻿<div class id="A14623" data-tid="A374622">
+    <div class id="A14624" data-tid="A374623">
+        <div class="col-sm-3" id="A14625" data-tid="A374624">Dosya Tipi</div>
+        <div class="col-sm-9" id="A14626" data-tid="A374625">
+            <dx-select-box [readOnly]="true" valueExpr="ordinal" displayExpr="description" [(items)]="newDocumentTypes" [value]="SelectedDocumentType" id="A14627" data-tid="A374626">
+            </dx-select-box>
+        </div>
+    </div>
+    <div class id="A14632" data-tid="A374627">
+        <div class="col-sm-8" id="A14633" data-tid="A374628">
+            <input type="file" id="filePicker" (change)="onChange($event)" accept=".png, .jpg, .jpeg, .pdf, .ppt, .pptx, .doc, .docx, .mp3, .mp4, .avi, .wma" data-tid="A374629" />
+        </div>
+        <div class="col-sm-4" id="A14634" data-tid="A374630">
+            <dx-button style="float:right;margin-right: -0px;" icon="fa fa-upload" text="Yükle" type="default" (onClick)="addDocument()" i18n-text="@@M24733" id="A14635" data-tid="A374631"></dx-button>
+        </div>
+    </div>
+
+    <div class="col-sm-12" id="A14636" data-tid="A374632">
+        <dx-data-grid #DocumentColumns [columns]="GridColumns" (onRowRemoving)="deleteDocument($event)" [allowColumnResizing]="true" (onSelectionChanged)="selectionDoc($event)" [dataSource]="docs" [editing]="{allowDeleting:true,mode: 'row',  texts:{confirmDeleteMessage:'Silmek İstediğinizden Emin misiniz?'}}" [paging]="{enable: true, pageSize:10}" [filterRow]="{visible: true}" style="height:300px" id="A14637" [selection]="{mode: 'multiple',allowSelectAll: true}" data-tid="A374633">
+        </dx-data-grid>
+    </div>
+    <div class="col-sm-12" id="A14638" data-tid="A374634">
+        <div class="col-sm-6" id="A14638" data-tid="A374635">
+        </div>
+        <div class="col-sm-3" id="A14638" data-tid="A374636">
+            <dx-button text="Kaydet" style="margin-right: -98px;" rtlEnabled="true" class="tabHeaderButton dx-button-active dx-button-semioval dx-button-blue" icon="save" (onClick)="Upload()" i18n-text="@@M17386" id="A14639" data-tid="A374637"></dx-button>
+        </div>
+        <div class="col-sm-3" id="A14621" data-tid="A374638">
+            <dx-button text="İndir" [disabled]="!anySelectedFiles" style="margin-right: -10px;" rtlEnabled="true" class="tabHeaderButton dx-button-active dx-button-semioval dx-button-blue" icon="fa fa-download" (onClick)="downloadSelectedFiles()" i18n-text="@@M16487" id="A14622" data-tid="A374639"></dx-button>
+        </div>
+    </div>
+</div>

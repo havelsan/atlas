@@ -1,0 +1,178 @@
+﻿
+    <div class="container-fluid" style="padding-left:15px" id="A18061" data-tid="A351833">
+
+        <NeStatePanelComponent [OutgoingTransitions]="nursingWoundedAssesmentFormViewModel?.OutgoingTransitions" [StateReports]="nursingWoundedAssesmentFormViewModel?.CurrentStateReports" [ObjectID]="nursingWoundedAssesmentFormViewModel?._NursingWoundedAssesment?.ObjectID" [ObjectDefID]="nursingWoundedAssesmentFormViewModel._NursingWoundedAssesment.ObjectDefID" [CurrentStateDefID]="nursingWoundedAssesmentFormViewModel._NursingWoundedAssesment.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()" [SaveCommandVisible]="!nursingWoundedAssesmentFormViewModel.ReadOnly" [DropStateList]="DropStateList" id="A18549" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A351834">
+        </NeStatePanelComponent>
+
+        <form id="NursingWoundedAssesmentForm" class="form-horizontal" role="form" data-tid="A351835"></form>
+        <div class="row" data-tid="A351836">
+            <label class="control-label col-sm-3" data-tid="A351837">
+                Uygulama Zamanı
+            </label>
+        </div>
+        <div class="row" data-tid="A351838">
+            <div class="col-sm-3" data-tid="A351839">
+                <hvl-date-picker #Validation (ValueChange)="onApplicationDateChanged($event)" [BackColor]="ApplicationDate?.BackColor" [CustomFormat]="ApplicationDate?.CustomFormat" [Enabled]="ApplicationDate?.Enabled" [Font]="ApplicationDate?.Font" [ForeColor]="ApplicationDate?.ForeColor" [Format]="ApplicationDate?.Format" [Max]="ApplicationDate?.Max" [Min]="ApplicationDate?.Min" [ReadOnly]="ApplicationDate?.ReadOnly" [Required]="ApplicationDate?.Required" [TabIndex]="ApplicationDate?.TabIndex" [Value]="_NursingWoundedAssesment.ApplicationDate" [Visible]="ApplicationDate?.Visible" data-tid="A351840">
+                </hvl-date-picker>
+            </div>
+        </div>
+        <div class="row" data-tid="A351841">
+            <label class="control-label col-sm-3" data-tid="A351842">
+                Yara Türü
+            </label>
+            <label class="control-label col-sm-3" data-tid="A351843">
+                Operasyon Tarihi
+            </label>
+            <label class="control-label col-sm-1" data-tid="A351844">
+                En
+            </label>
+            <label class="control-label col-sm-1" data-tid="A351845">
+                Boy
+            </label>
+            <label class="control-label col-sm-2" data-tid="A351846">
+                Evre
+            </label>            
+            <label class="control-label col-sm-1" data-tid="A351847">
+                Derinlik
+            </label>
+
+        </div>
+        <div class="row" data-tid="A351848">
+            <div class="col-sm-3" data-tid="A351849">
+                <hvl-enum-combobox #Validation (ValueChange)="onWoundedTypeChanged($event)" [BackColor]="WoundedType?.BackColor" [DataTypeName]="WoundedType?.DataTypeName" [Enabled]="WoundedType?.Enabled" [Font]="WoundedType?.Font" [ForeColor]="WoundedType?.ForeColor" [IncludeOnly]="WoundedType?.IncludeOnly" [ReadOnly]="WoundedType?.ReadOnly" [ShowClearButton]="WoundedType?.ShowClearButton" [SortBy]="WoundedType?.SortBy" [TabIndex]="WoundedType?.TabIndex" [Value]="_NursingWoundedAssesment.WoundedType" [Visible]="WoundedType?.Visible" data-tid="A351850">
+                </hvl-enum-combobox>
+            </div>
+            <div class="col-sm-3" data-tid="A351851">
+                <hvl-date-picker #Validation (ValueChange)="onOperationDateChanged($event)" [BackColor]="OperationDate?.BackColor" [CustomFormat]="OperationDate?.CustomFormat" [Enabled]="OperationDate?.Enabled" [Font]="OperationDate?.Font" [ForeColor]="OperationDate?.ForeColor" [Format]="OperationDate?.Format" [Max]="OperationDate?.Max" [Min]="OperationDate?.Min" [ReadOnly]="OperationDate?.ReadOnly" [Required]="OperationDate?.Required" [TabIndex]="OperationDate?.TabIndex" [Value]="_NursingWoundedAssesment.OperationDate" [Visible]="OperationDate?.Visible" data-tid="A351852">
+                </hvl-date-picker>
+            </div>
+            <div class="col-sm-1" data-tid="A351853">
+                <!-- <hvl-masktext-box #Validation (TextChange)="onWidthChanged($event)" [BackColor]="Width?.BackColor"
+                    [Enabled]="Width?.Enabled" [Font]="Width?.Font" [ForeColor]="Width?.ForeColor"
+                    [InputTurkishCharacter]="Width?.InputTurkishCharacter" [Mask]="Width?.Mask"
+                    [ReadOnly]="Width?.ReadOnly" [TabIndex]="Width?.TabIndex" [TextAlign]="Width?.TextAlign"
+                    [Text]="_NursingWoundedAssesment.Width" [Visible]="Width?.Visible"
+                    id="A18292">
+                </hvl-masktext-box> -->
+                <hvl-number-box #Validation (ValueChange)="onWidthChanged($event)" [Value]="_NursingWoundedAssesment?.Width" id="Z18155" data-tid="A351854"></hvl-number-box>
+            </div>
+            <div class="col-sm-1" data-tid="A351855">
+                <!-- <hvl-masktext-box #Validation (TextChange)="onHeightChanged($event)" [BackColor]="Height?.BackColor"
+                    [Enabled]="Height?.Enabled" [Font]="Height?.Font" [ForeColor]="Height?.ForeColor"
+                    [InputTurkishCharacter]="Width?.InputTurkishCharacter" [Mask]="Height?.Mask"
+                    [ReadOnly]="Height?.ReadOnly" [TabIndex]="Height?.TabIndex" [TextAlign]="Height?.TextAlign"
+                    [Text]="_NursingWoundedAssesment.Height" [Visible]="Height?.Visible"
+                    id="D18292">
+                </hvl-masktext-box>                 -->
+                <hvl-number-box #Validation (ValueChange)="onHeightChanged($event)" [Value]="_NursingWoundedAssesment?.Height" id="Z18155" data-tid="A351856"></hvl-number-box>
+            </div>
+            <div class="col-sm-2" data-tid="A351857">
+                <hvl-list-box #Validation (SelectedObjectChange)="onWoundStageChanged($event)" [AutoCompleteDialogHeight]="WoundStage?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="WoundStage?.AutoCompleteDialogWidth" [AutoCompleteMode]="WoundStage?.AutoCompleteMode" [BackColor]="WoundStage?.BackColor" [DefinitionName]="WoundStage?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="WoundStage?.Enabled" [Font]="WoundStage?.Font" [ForeColor]="WoundStage?.ForeColor" [ListFilterExpression]="WoundStage?.ListFilterExpression" [MinSearchLength]="WoundStage?.MinSearchLength" [PopupDialogFieldConfig]="WoundStage?.PopupDialogFieldConfig" [PopupDialogGridColumns]="WoundStage?.PopupDialogGridColumns" [PopupDialogHeight]="WoundStage?.PopupDialogHeight" [PopupDialogTitle]="WoundStage?.PopupDialogTitle" [PopupDialogWidth]="WoundStage?.PopupDialogWidth" [ReadOnly]="WoundStage?.ReadOnly" [SearchMode]="WoundStage?.SearchMode" [SearchTimeout]="WoundStage?.SearchTimeout" [SelectedObject]="_NursingWoundedAssesment.WoundStage" [TabIndex]="WoundStage?.TabIndex" [Visible]="WoundStage?.Visible" [width]="WoundStage?.Width" data-tid="A351858">
+                </hvl-list-box>
+            </div>
+            <div class="col-sm-1" data-tid="A351859">
+                <!-- <hvl-masktext-box #Validation (TextChange)="onDepthChanged($event)" [BackColor]="Depth?.BackColor"
+                [Enabled]="Depth?.Enabled" [Font]="Depth?.Font" [ForeColor]="Depth?.ForeColor"
+                [InputTurkishCharacter]="Width?.InputTurkishCharacter" [Mask]="Depth?.Mask"
+                [ReadOnly]="Depth?.ReadOnly" [TabIndex]="Depth?.TabIndex" [TextAlign]="Depth?.TextAlign"
+                [Text]="_NursingWoundedAssesment.Depth" [Visible]="Depth?.Visible"
+                id="C18292">
+            </hvl-masktext-box>   -->
+            <hvl-number-box #Validation (ValueChange)="onDepthChanged($event)" [Value]="_NursingWoundedAssesment?.Depth" id="Z18155" data-tid="A351860"></hvl-number-box>
+            </div>            
+        </div>
+        <div class="row" data-tid="A351861">
+            <label class="control-label col-sm-6" data-tid="A351862">
+                Yara Resimleri
+            </label>
+            <label class="control-label col-sm-1" data-tid="A351863">
+                Adet
+            </label>
+            <label class="control-label col-sm-1" data-tid="A351864">
+                Oluşma Zamanı
+            </label>
+            <label class="control-label col-sm-2" data-tid="A351865">
+                Lokalizasyon Bilgisi
+            </label>
+            <label class="control-label col-sm-2" data-tid="A351866">
+                Taraf Seçimi
+            </label>
+        </div>
+        <div class="row" data-tid="A351867">
+
+            <div class="col-sm-3" data-tid="A351868">
+
+                <dx-data-grid #gridWoundPhoto showColumnLines="true" showRowLines="true" rowAlternationEnabled="true" showBorders="true" height="200" [remoteOperations]="true" [customizeColumns]="null" [headerFilter]="{visible: true}" (onSelectionChanged)="onGridRowClick($event)" [dataSource]="_NursingWoundedAssesment?.WoundPhotos" [selection]="{mode: 'single'}" data-tid="A351869">
+
+                    <dxo-editing mode="cell" [allowUpdating]="false" [allowDeleting]="false" [allowAdding]="false" data-tid="A351870">
+                    </dxo-editing>
+                    <dxo-filter-row [visible]="true" data-tid="A351871"></dxo-filter-row>
+
+                    <dxi-column caption="Tarih" dataField="PhotoDate" id="A18813" dataType="datetime" format="dd.MM.yyyy HH:mm" data-tid="A351872"></dxi-column>
+                    <dxi-column caption="Büyüt" cellTemplate="bigPhotoCellTemplate" width="50px" data-tid="A351873"></dxi-column>
+                    <dxi-column caption="Sil" cellTemplate="buttonCellTemplate" width="30px" data-tid="A351874"></dxi-column>
+
+                    <div *dxTemplate="let cellData of 'bigPhotoCellTemplate'" id="A27830" style="width: 15px" data-tid="A351875">
+                        <i class="fa fa-search-plus" style="cursor:pointer" (click)="openBigPhoto(cellData)" id="A27831" data-tid="A351876"></i>
+                    </div>
+
+                    <div *dxTemplate="let cellData of 'buttonCellTemplate'" id="A27830" style="width: 15px" data-tid="A351877">
+                        <i class="fa fa-minus-circle" style="cursor:pointer" (click)="onPhotoRemoving(cellData)" id="A27831" data-tid="A351878"></i>
+                    </div>
+
+
+                </dx-data-grid>
+
+                <!--<hvl-datagrid (CellContentClicked)="ismail($event)"
+                      [AllowUserToAddRows]="false"
+                      [AllowUserToDeleteRows]="true"
+                      [Columns]="WoundPhotosColumns" [dataSource]="_NursingWoundedAssesment?.WoundPhotos"
+                      [DeleteButtonWidth]="_NursingWoundedAssesment.WoundPhotos?.DeleteButtonWidth"
+                      [DisplayExpressionsCache]="nursingWoundedAssesmentFormViewModel?.ListDefDisplayExpressions"
+                      [EnableFilter]="_NursingWoundedAssesment.WoundPhotos?.ShowFilterRow"
+                      [FilterColumnName]="_NursingWoundedAssesment.WoundPhotos?.FilterColumnName"
+                      [FilterLabel]="_NursingWoundedAssesment.WoundPhotos?.FilterLabel"
+                      [Filter]="_NursingWoundedAssesment.WoundPhotos?.Filter" [height]="_NursingWoundedAssesment.WoundPhotos?.Height"
+                      [IsFilterLabelSingleLine]="_NursingWoundedAssesment.WoundPhotos?.IsFilterLabelSingleLine"
+                      [ShowColumnHeaders]="_NursingWoundedAssesment.WoundPhotos?.ColumnHeadersVisible"
+                      [ShowFilterCombo]="_NursingWoundedAssesment.WoundPhotos?.ShowFilterCombo"
+                      [ShowTotalNumberOfRows]="_NursingWoundedAssesment.WoundPhotos?.ShowTotalNumberOfRows">
+        </hvl-datagrid>-->
+            </div>
+            <div class="col-md-3" id="A19908" data-tid="A351879">
+                <photo-capture-webcamjs [Image]="nursingWoundedAssesmentFormViewModel?.PhotoString" Width="200" Height="200" (OnPhotoCaptured)="photoCaptured($event)" id="A19909" data-tid="A351880"></photo-capture-webcamjs>
+                <div *ngIf="isCameraShowing == true" id="A19910" data-tid="A351881">
+                    <photo-capture (PhotoCaptured)="photoCaptured($event)" id="A19911" data-tid="A351882">
+                    </photo-capture>
+                </div>
+            </div>
+            <div class="col-sm-1" data-tid="A351883">
+                <hvl-number-box #Validation (ValueChange)="onAmountChanged($event)" [Value]="_NursingWoundedAssesment?.Amount" id="K18155" data-tid="A351884"></hvl-number-box>
+            </div>
+            <div class="col-sm-1" data-tid="A351885">
+                <hvl-enum-combobox #Validation (ValueChange)="onNursingWoundTimeChanged($event)" [BackColor]="NursingWoundTime?.BackColor" [DataTypeName]="NursingWoundTime?.DataTypeName" [Enabled]="NursingWoundTime?.Enabled" [Font]="NursingWoundTime?.Font" [ForeColor]="NursingWoundTime?.ForeColor" [IncludeOnly]="NursingWoundTime?.IncludeOnly" [ReadOnly]="NursingWoundTime?.ReadOnly" [ShowClearButton]="NursingWoundTime?.ShowClearButton" [SortBy]="NursingWoundTime?.SortBy" [TabIndex]="NursingWoundTime?.TabIndex" [Value]="_NursingWoundedAssesment.NursingWoundTime" [Visible]="NursingWoundTime?.Visible" data-tid="A351886">
+                </hvl-enum-combobox>
+            </div>
+            <div class="col-sm-2" data-tid="A351887">
+                <hvl-list-box #Validation (SelectedObjectChange)="onWoundLocalizationChanged($event)" [AutoCompleteDialogHeight]="WoundLocalization?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="WoundLocalization?.AutoCompleteDialogWidth" [AutoCompleteMode]="WoundLocalization?.AutoCompleteMode" [BackColor]="WoundLocalization?.BackColor" [DefinitionName]="WoundLocalization?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="WoundLocalization?.Enabled" [Font]="WoundLocalization?.Font" [ForeColor]="WoundLocalization?.ForeColor" [ListFilterExpression]="WoundLocalization?.ListFilterExpression" [MinSearchLength]="WoundLocalization?.MinSearchLength" [PopupDialogFieldConfig]="WoundLocalization?.PopupDialogFieldConfig" [PopupDialogGridColumns]="WoundLocalization?.PopupDialogGridColumns" [PopupDialogHeight]="WoundLocalization?.PopupDialogHeight" [PopupDialogTitle]="WoundLocalization?.PopupDialogTitle" [PopupDialogWidth]="WoundLocalization?.PopupDialogWidth" [ReadOnly]="WoundLocalization?.ReadOnly" [SearchMode]="WoundLocalization?.SearchMode" [SearchTimeout]="WoundLocalization?.SearchTimeout" [SelectedObject]="_NursingWoundedAssesment.WoundLocalization" [TabIndex]="WoundLocalization?.TabIndex" [Visible]="WoundLocalization?.Visible" [width]="WoundLocalization?.Width" data-tid="A351888">
+                </hvl-list-box>
+            </div>
+            <div class="col-sm-2" data-tid="A351889">
+                <hvl-list-box #Validation (SelectedObjectChange)="onWoundSideChanged($event)" [AutoCompleteDialogHeight]="WoundSide?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="WoundSide?.AutoCompleteDialogWidth" [AutoCompleteMode]="WoundSide?.AutoCompleteMode" [BackColor]="WoundSide?.BackColor" [DefinitionName]="WoundSide?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="WoundSide?.Enabled" [Font]="WoundSide?.Font" [ForeColor]="WoundSide?.ForeColor" [ListFilterExpression]="WoundSide?.ListFilterExpression" [MinSearchLength]="WoundSide?.MinSearchLength" [PopupDialogFieldConfig]="WoundSide?.PopupDialogFieldConfig" [PopupDialogGridColumns]="WoundSide?.PopupDialogGridColumns" [PopupDialogHeight]="WoundSide?.PopupDialogHeight" [PopupDialogTitle]="WoundSide?.PopupDialogTitle" [PopupDialogWidth]="WoundSide?.PopupDialogWidth" [ReadOnly]="WoundSide?.ReadOnly" [SearchMode]="WoundSide?.SearchMode" [SearchTimeout]="WoundSide?.SearchTimeout" [SelectedObject]="_NursingWoundedAssesment.WoundSide" [TabIndex]="WoundSide?.TabIndex" [Visible]="WoundSide?.Visible" [width]="WoundSide?.Width" data-tid="A351890">
+                </hvl-list-box>
+            </div>
+        </div>
+
+        <dx-popup showTitle="false" title="Yara Görüntüsü" class="reportStyle" [fullScreen]="true" i18n-title="@@M16693" [(visible)]="showBigPhoto" *ngIf="showBigPhoto == true" id="A20258" data-tid="A351891">
+            <div *dxTemplate="let data of 'content'" id="A20259" data-tid="A351892">
+                <div class="container-fluid" id="A20261" data-tid="A351893">
+                    
+						<!-- <img #ismail [src]="nursingWoundedAssesmentFormViewModel.PhotoString" id="A30696" /> -->
+                        <photo-capture-webcamjs [Image]="nursingWoundedAssesmentFormViewModel?.PhotoString" ScaleType="%" Width="100" Height="100" (OnPhotoCaptured)="photoCaptured($event)" CloseButtons="true" id="A19909" data-tid="A351894"></photo-capture-webcamjs>
+                   
+                </div>
+            </div>
+        </dx-popup>
+    </div>
+        <!--<pre >
+        {{ _ViewModel | json }}</pre>-->

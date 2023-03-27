@@ -1,0 +1,124 @@
+﻿<!-- BEGIN: Horizontal Menu -->
+<!-- <div mMenuHorOffcanvas id="m_header_menu" class="m-header-menu m-aside-header-menu-mobile m-aside-header-menu-mobile--offcanvas  m-header-menu--skin-light m-header-menu--submenu-skin-light m-aside-header-menu-mobile--skin-dark m-aside-header-menu-mobile--submenu-skin-dark "> -->
+<ul class="m-menu__nav" [ngClass]="classInitService.onClassesUpdated$ | async | mGetObject:'header_menu_nav' | mJoin" data-tid="A375541">
+	<ng-container *ngFor="let item of menuHorService.menuList$ | async" data-tid="A375542">
+		<ng-container *ngIf="item.title" [ngTemplateOutlet]="m_menu" [ngTemplateOutletContext]="{ item: item }" data-tid="A375543">
+		</ng-container>
+	</ng-container>
+</ul>
+<!-- </div> -->
+<!-- END: Horizontal Menu -->
+
+
+<ng-template #m_menu let-item="item" let-parentItem="parentItem" data-tid="A375544">
+	<li attr.aria-haspopup="true" [attr.m-menu-submenu-toggle]="getItemAttrSubmenuToggle(item)" [attr.m-menu-submenu-mode]="getItemAttrSubmenuMode(item)" [attr.m-menu-resize-desktop-breakpoint]="getItemAttrResizeDesktopBreakpoint(item)" [attr.m-menu-link-redirect]="getItemAttrLinkRedirect(item)" class="{{ getItemCssClasses(item) }}" [ngClass]="{'m-menu__item--active' : isMenuItemIsActive(item)}" data-tid="A375545">
+
+		<!-- if item has submenu -->
+		<ng-container *ngIf="item.submenu" data-tid="A375546">
+			<a href="javascript:;" (click)="goto(item)" [ngClass]="{ 'm-menu__toggle': item.root }" class="m-menu__link" data-tid="A375547">
+
+				<ng-container [ngTemplateOutlet]="m_menu_item_inner" [ngTemplateOutletContext]="{ item: item, parentItem: parentItem }" data-tid="A375548"></ng-container>
+
+				<!-- arrow icons -->
+				<i *ngIf="item.submenu && item.root" class="m-menu__hor-arrow la la-angle-down" data-tid="A375549"></i>
+				<i *ngIf="item.submenu && item.root" class="m-menu__ver-arrow la la-angle-right" data-tid="A375550"></i>
+				<!-- else arrow icons -->
+				<i *ngIf="item.submenu && !item.root" class="m-menu__hor-arrow la la-angle-right" data-tid="A375551"></i>
+				<i *ngIf="item.submenu && !item.root" class="m-menu__ver-arrow la la-angle-right" data-tid="A375552"></i>
+			</a>
+		</ng-container>
+
+		<!-- if item hasn't sumbenu -->
+    <ng-container *ngIf="!item.submenu" data-tid="A375553">
+      <a [routerLink]="item.page" (click)="goto(item)" [ngClass]="{ 'm-menu__toggle': item.root }" class="m-menu__link" matTooltipPosition="left" data-tid="A375554">
+        <ng-container [ngTemplateOutlet]="m_menu_item_inner" [ngTemplateOutletContext]="{ item: item, parentItem: parentItem }" data-tid="A375555"></ng-container>
+      </a>
+    </ng-container>
+
+		<!-- if menu item has submenu child then recursively call new menu item component -->
+		<ng-container *ngIf="item.submenu" data-tid="A375556">
+			<div class="m-menu__submenu" [ngClass]="getItemMenuSubmenuClass(item)" [ngStyle]="{ 'width': item.submenu.width }" data-tid="A375557">
+				<span class="m-menu__arrow" [ngClass]="{ 'm-menu__arrow--adjust': item.root }" data-tid="A375558"></span>
+
+				<ul *ngIf="item.submenu.items" class="m-menu__subnav" data-tid="A375559">
+					<ng-container *ngFor="let child of item.submenu.items" data-tid="A375560">
+
+						<!-- m-menu__item--active -->
+
+						<!-- <m-menu-horizontal-item *ngIf="child.title" [item]="child" [parentItem]="item"
+							[routerLinkActive]="linkActiveClass" [routerLinkActiveOptions]="{ exact: true }">
+						</m-menu-horizontal-item>   -->
+
+						<ng-container [ngTemplateOutlet]="m_menu" [ngTemplateOutletContext]="{ item: child, parentItem: item }" data-tid="A375561">
+						</ng-container>
+
+					</ng-container>
+				</ul>
+
+				<div *ngIf="item.submenu.type === 'mega' && item.submenu.columns" class="m-menu__subnav" data-tid="A375562">
+					<ul class="m-menu__content" data-tid="A375563">
+						<ng-container *ngFor="let child of item.submenu.columns" data-tid="A375564">
+							<ng-container [ngTemplateOutlet]="m_menu_column" [ngTemplateOutletContext]="{ item: child }" data-tid="A375565"></ng-container>
+						</ng-container>
+					</ul>
+				</div>
+
+			</div>
+		</ng-container>
+	</li>
+</ng-template>
+
+<!-- item inner -->
+<ng-template #m_menu_item_inner let-item="item" let-parentItem="parentItem" data-tid="A375566">
+	<!-- if menu item has icon -->
+	<i *ngIf="item.icon" class="m-menu__link-icon" [ngClass]="item.icon" data-tid="A375567"></i>
+	<!-- if menu item using bullet -->
+	<i *ngIf="parentItem && parentItem.bullet === 'dot'" class="m-menu__link-bullet m-menu__link-bullet--dot" data-tid="A375568">
+		<span data-tid="A375569"></span>
+	</i>
+	<i *ngIf="parentItem && parentItem.bullet === 'line'" class="m-menu__link-bullet m-menu__link-bullet--line" data-tid="A375570">
+		<span data-tid="A375571"></span>
+	</i>
+
+	<ng-container *ngIf="!item.badge; else m_menu_link_badge" data-tid="A375572">
+		<span class="m-menu__item-here" data-tid="A375573"></span>
+		<!-- menu item title text -->
+		<span class="m-menu__link-text" [translate]="item.translate" data-tid="A375574">
+			{{item.title}}
+		</span>
+	</ng-container>
+
+	<ng-template #m_menu_link_badge data-tid="A375575">
+		<!-- menu item with badge -->
+		<span class="m-menu__link-title" data-tid="A375576">
+			<span class="m-menu__link-wrap" data-tid="A375577">
+				<span class="m-menu__link-text" [translate]="item.translate" data-tid="A375578">{{item.title}}</span>
+				<span class="m-menu__link-badge" data-tid="A375579">
+					<span class="m-badge" [ngClass]="item.badge.type" [translate]="item.badge.translate" data-tid="A375580">{{item.badge.value}}</span>
+				</span>
+			</span>
+		</span>
+	</ng-template>
+</ng-template>
+
+<!-- item column -->
+<ng-template #m_menu_column let-item="item" data-tid="A375581">
+	<li class="m-menu__item" data-tid="A375582">
+		<!-- <li class="m-menu__item"> -->
+		<h3 class="m-menu__heading m-menu__toggle" data-tid="A375583">
+			<span class="m-menu__link-text" [translate]="item.heading.translate" data-tid="A375584">
+				{{item.heading.title}}
+			</span>
+			<i class="m-menu__ver-arrow la la-angle-right" data-tid="A375585"></i>
+		</h3>
+		<ng-container *ngIf="item.items" data-tid="A375586">
+			<ul class="m-menu__inner" data-tid="A375587">
+				<ng-container *ngFor="let child of item.items" data-tid="A375588">
+					<ng-container [ngTemplateOutlet]="m_menu" [ngTemplateOutletContext]="{ item: child, parentItem: item }" data-tid="A375589">
+					</ng-container>
+				</ng-container>
+			</ul>
+		</ng-container>
+		<!-- </li> -->
+	</li>
+</ng-template>

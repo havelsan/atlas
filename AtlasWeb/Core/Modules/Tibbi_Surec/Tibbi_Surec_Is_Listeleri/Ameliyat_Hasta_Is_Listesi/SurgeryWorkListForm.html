@@ -1,0 +1,268 @@
+﻿<div class="row" style="margin-bottom: 10px;" id="A28486" data-tid="A365935">
+    <dx-accordion #searchAndListAccordion class="margin-bottom-10" collapsible="true" id="A28487" data-tid="A365936">
+        <dxi-item title="Ameliyat ve Anestezi Sorgulama Paneli" i18n-title="@@M22127" id="A28488" data-tid="A365937">
+
+            <div class="row" id="A28489" data-tid="A365938">
+
+                <div class="col-sm-4" id="A28525" data-tid="A365939">
+                    <div class="row" style="margin-bottom: 5px;" id="A28491" data-tid="A365940">
+                        <div class="col-sm-6" id="A28492" data-tid="A365941">
+                            <label class="control-label" id="A28493" data-tid="A365942">Başlangıç Tarihi</label>
+                            <dx-date-box width="100%" type="date" displayFormat="dd/MM/yyyy" [(value)]="surgeryWorkListViewModel._SearchCriteria.WorkListStartDate" id="A28494" data-tid="A365943">
+                            </dx-date-box>
+                        </div>
+                        <div class="col-sm-6" id="A28495" data-tid="A365944">
+                            <label class="control-label" id="A28496" data-tid="A365945">Bitiş Tarihi</label>
+                            <dx-date-box width="100%" type="date" displayFormat="dd/MM/yyyy" [(value)]="surgeryWorkListViewModel._SearchCriteria.WorkListEndDate" id="A28497" data-tid="A365946">
+                            </dx-date-box>
+                        </div>
+                    </div>
+                    <div class="row" id="A28498" data-tid="A365947">
+                        <div class="col-md-12" id="A28499" data-tid="A365948">
+                            <label class="control-label" id="A28500" data-tid="A365949">Ameliyathane</label>
+                            <dx-tag-box [(items)]="surgeryWorkListViewModel.SurgeryDepartmentList" [(value)]="surgeryWorkListViewModel._SearchCriteria.SurgeryDepartments" placeholder="Ameliyathane" [searchEnabled]="true" [showSelectionControls]="true" displayExpr="Name" [multiline]="false" i18n-placeholder="@@M27304" id="A28501" data-tid="A365950">
+                            </dx-tag-box>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom: 5px;" id="A28491" data-tid="A365951">
+                        <div class="col-sm-12" id="A28492" data-tid="A365952">
+                            <label class="control-label" data-tid="A365953">Hasta Arama</label>
+                            <PatientSearchForm Width="100%" (SelectedPatientChanged)="patientChanged($event)" id="A28526" data-tid="A365954"></PatientSearchForm>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+                <div class="col-sm-2" id="A28502" data-tid="A365955">
+                    <dx-radio-group [dataSource]="radioGroupEATypeItems" displayExpr="text" valueExpr="value" [(value)]="radioGroupEAType_Value" (onValueChanged)="onradioGroupEAType_ValueChanged($event)" id="A28503" data-tid="A365956">
+                    </dx-radio-group>
+                </div>
+                <div class="col-sm-2" id="A28504" data-tid="A365957">
+                    <div [class.hidden]="surgeryWorkListViewModel._SearchCriteria.Surgery_EA != true" id="A28505" data-tid="A365958">
+                        <div class="options" id="A28506" data-tid="A365959">
+                            <dx-check-box text="İstekte" [(value)]="surgeryWorkListViewModel._SearchCriteria.Request" id="A28507" data-tid="A365960"></dx-check-box>
+                        </div>
+                        <div class="options" id="A28508" data-tid="A365961">
+                            <dx-check-box text="Devam Ediyor" [(value)]="surgeryWorkListViewModel._SearchCriteria.Surgery" id="A28509" data-tid="A365962"></dx-check-box>
+                        </div>
+                        <div class="options" id="A28510" data-tid="A365963">
+                            <dx-check-box text="Ertelendi" [(value)]="surgeryWorkListViewModel._SearchCriteria.Postponed" id="A28511" data-tid="A365964"></dx-check-box>
+                        </div>
+                        <div class="options" id="A28512" data-tid="A365965">
+                            <dx-check-box text="Tamamlandı" [(value)]="surgeryWorkListViewModel._SearchCriteria.Completed" id="A28513" data-tid="A365966"></dx-check-box>
+                        </div>
+                    </div>
+                    <div [class.hidden]="surgeryWorkListViewModel._SearchCriteria.AnesthesiaAndReanimation_EA != true" id="A28514" data-tid="A365967">
+                        <div class="options" id="A28515" data-tid="A365968">
+                            <dx-check-box text="Bekleyen" [(value)]="surgeryWorkListViewModel._SearchCriteria.Waiting" id="A28516" data-tid="A365969"></dx-check-box>
+                        </div>
+                        <div class="options" id="A28517" data-tid="A365970">
+                            <dx-check-box text="Devam Eden" [(value)]="surgeryWorkListViewModel._SearchCriteria.Continue" id="A28518" data-tid="A365971"></dx-check-box>
+                        </div>
+                        <div class="options" id="A28519" data-tid="A365972">
+                            <dx-check-box text="Uyandırma Odasında" [(value)]="surgeryWorkListViewModel._SearchCriteria.Reanimation" id="A28520" data-tid="A365973"></dx-check-box>
+                        </div>
+                        <div class="options" id="A28521" data-tid="A365974">
+                            <dx-check-box text="Tamamlandı" [(value)]="surgeryWorkListViewModel._SearchCriteria.AnesthesiaCompleted" id="A28522" data-tid="A365975"></dx-check-box>
+                        </div>
+                        <div class="options" id="A28523" data-tid="A365976">
+                            <dx-check-box text="İptal Edildi" [(value)]="surgeryWorkListViewModel._SearchCriteria.Rejected" id="A28524" data-tid="A365977"></dx-check-box>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="row" data-tid="A365978">
+                <div class="col-md-2" data-tid="A365979">
+                    <a data-toggle="collapse" (click)="detailSearchCollapse_Click()" href="#searchWithDetails" data-tid="A365980"><i [ngClass]="detailSearchIconClassCollapse =='1' ? 'fa fa-2x fa-angle-down' : 'fa fa-2x fa-angle-up'" style="float:right;" data-tid="A365981"></i>Detaylı Arama</a>
+                </div>
+            </div>
+            <div class="row" data-tid="A365982">
+                <div id="searchWithDetails" class="collapse  col-md-12" data-tid="A365983">
+                    <div class="margin-bottom-10" data-tid="A365984">
+
+                        <div class="col-sm-4" id="A28490" data-tid="A365985">
+                            <div class="row" id="A28491" data-tid="A365986">
+                                <div class="col-sm-6" id="A28492" data-tid="A365987">
+                                    <label class="control-label" id="A28493" data-tid="A365988">Kabul No</label>
+                                    <dx-text-box [showClearButton]="true" [(value)]="surgeryWorkListViewModel._SearchCriteria.SEProtocolNo" (onEnterKey)="onProtocolNoEnterKeyDown($event)" id="A16483" data-tid="A365989"></dx-text-box>
+                                </div>
+                                <div class="col-sm-6" id="A28495" data-tid="A365990">
+                                    <label class="control-label" id="A28496" data-tid="A365991">Arşiv No</label>
+                                    <dx-text-box [showClearButton]="true" [(value)]="surgeryWorkListViewModel._SearchCriteria.PatientNo" (onEnterKey)="onProtocolNoEnterKeyDown($event)" id="A16483" data-tid="A365992"></dx-text-box>
+                                </div>
+                            </div>
+                            <div class="row" id="A28491" data-tid="A365993">
+                                <div class="col-sm-6" id="A28492" data-tid="A365994">
+                                    <label class="control-label" id="A28493" data-tid="A365995">Kabul Başlangıç Tarihi</label>
+                                    <dx-date-box width="100%" type="date" displayFormat="dd/MM/yyyy" [(value)]="surgeryWorkListViewModel._SearchCriteria.AdmissionStartDate" id="A28494" data-tid="A365996">
+                                    </dx-date-box>
+                                </div>
+                                <div class="col-sm-6" id="A28495" data-tid="A365997">
+                                    <label class="control-label" id="A28496" data-tid="A365998">Kabul Bitiş Tarihi</label>
+                                    <dx-date-box width="100%" type="date" displayFormat="dd/MM/yyyy" [(value)]="surgeryWorkListViewModel._SearchCriteria.AdmissionEndDate" id="A28497" data-tid="A365999">
+                                    </dx-date-box>
+                                </div>
+                            </div>
+
+                            <div class="row" id="A20107" data-tid="A366000">
+                                <div class="col-md-12" id="A20108" data-tid="A366001">
+                                    <label class="control-label" id="A20110" data-tid="A366002">Geliş Sebebi</label>
+                                    <dx-tag-box [(items)]="surgeryWorkListViewModel.AdmissionTypeList" [(value)]="surgeryWorkListViewModel._SearchCriteria.AdmissionTypes" placeholder="Geliş Sebebi" [searchEnabled]="true" [showSelectionControls]="true" displayExpr="provizyonTipiAdi" [multiline]="false" i18n-placeholder="@@M27304" id="A28501" data-tid="A366003">
+                                    </dx-tag-box>
+                                </div>
+                            </div>
+
+                            
+                        </div>
+
+                        <div class="col-sm-4" data-tid="A366004">
+
+                            <div class="row" style="margin-bottom: 5px;" id="A28491" data-tid="A366005">
+                                <div class="row" data-tid="A366006">
+                                    <div class="col-sm-6" id="A28492" data-tid="A366007">
+                                        <label class="control-label" id="A28493" data-tid="A366008">Salon</label>
+                                        <dx-tag-box [(items)]="surgeryWorkListViewModel.SurgeryRoomList" [(value)]="surgeryWorkListViewModel._SearchCriteria.SurgeryRooms" placeholder="Salon" [searchEnabled]="true" [showSelectionControls]="true" displayExpr="Name" [multiline]="false" i18n-placeholder="@@M27304" id="A28501" data-tid="A366009">
+                                        </dx-tag-box>
+                                    </div>
+                                    <div class="col-sm-6" id="A28495" data-tid="A366010">
+                                        <label class="control-label" id="A28496" data-tid="A366011">Masa</label>
+                                        <dx-tag-box [(items)]="surgeryWorkListViewModel.SurgeryDeskList" [(value)]="surgeryWorkListViewModel._SearchCriteria.SurgeryDesks" placeholder="Masa" [searchEnabled]="true" [showSelectionControls]="true" displayExpr="Name" [multiline]="false" i18n-placeholder="@@M27304" id="A28501" data-tid="A366012">
+                                        </dx-tag-box>
+                                    </div>
+                                </div>
+                                <div class="row" id="A28498" data-tid="A366013">
+                                    <div class="col-md-12" id="A28499" data-tid="A366014">
+                                        <label class="control-label" id="A28500" data-tid="A366015">Servis</label>
+                                        <dx-tag-box [items]="surgeryWorkListViewModel.ResourceList" [(value)]="surgeryWorkListViewModel._SearchCriteria.Resources" placeholder="Servis" [searchEnabled]="true" [showSelectionControls]="true" displayExpr="Name" [multiline]="false" i18n-placeholder="@@M27304" id="A28501" data-tid="A366016">
+                                        </dx-tag-box>
+                                    </div>
+                                </div>
+
+                                <div class="row" id="A28498" data-tid="A366017">
+                                    <div class="col-md-12" id="A28499" data-tid="A366018">
+                                        <label class="control-label" id="A28500" data-tid="A366019">Yatış Doktoru</label>
+                                        <dx-tag-box [(items)]="surgeryWorkListViewModel.InpatientDoctorList" [(value)]="surgeryWorkListViewModel._SearchCriteria.InpatientDoctors" placeholder="Yatış Doktoru" [searchEnabled]="true" [showSelectionControls]="true" displayExpr="Name" [multiline]="false" i18n-placeholder="@@M27304" id="A28501" data-tid="A366020">
+                                        </dx-tag-box>
+                                    </div>
+                                </div>
+
+                                <div class="row" id="B28458" data-tid="A366021">
+                                    <div class="col-md-12" id="B28459" data-tid="A366022">
+                                        <dx-radio-group [items]="radioGroupOnlyOwnPatientItems" displayExpr="text" valueExpr="value" [(value)]="surgeryWorkListViewModel._SearchCriteria.OnlyOwnPatient" layout="horizontal" id="B28460" data-tid="A366023">
+                                        </dx-radio-group>
+                                    </div>
+                                </div>
+
+                            </div>
+                           
+
+                        </div>
+
+
+                        <div class="col-sm-4" data-tid="A366024">
+                            <div class="row" id="A28498" data-tid="A366025">
+                                <div class="col-md-12" id="A28499" data-tid="A366026">
+                                    <label class="control-label" id="A28500" data-tid="A366027">Operatör</label>
+                                    <dx-tag-box [(items)]="surgeryWorkListViewModel.SurgeryDoctorList" [(value)]="surgeryWorkListViewModel._SearchCriteria.SurgeryDoctors" placeholder="Operatör" [searchEnabled]="true" [showSelectionControls]="true" displayExpr="Name" [multiline]="false" i18n-placeholder="@@M27304" id="A28501" data-tid="A366028">
+                                    </dx-tag-box>
+                                </div>
+                            </div>
+                            <div class="row" id="A28498" data-tid="A366029">
+                                <div class="col-md-12" id="A28499" data-tid="A366030">
+                                    <label class="control-label" id="A28500" data-tid="A366031">Anestezist</label>
+                                    <dx-tag-box [(items)]="surgeryWorkListViewModel.AnesthesiaDoctorList" [(value)]="surgeryWorkListViewModel._SearchCriteria.AnesthesiaDoctors" placeholder="Anestezist" [searchEnabled]="true" [showSelectionControls]="true" displayExpr="Name" [multiline]="false" i18n-placeholder="@@M27304" id="A28501" data-tid="A366032">
+                                    </dx-tag-box>
+                                </div>
+                            </div>
+                            <div class="row" id="A28498" data-tid="A366033">
+                                <div class="col-md-12" id="A28499" data-tid="A366034">
+                                    <label class="control-label" id="A28500" data-tid="A366035">Ameliyat İşlemi</label>
+                                    <dx-tag-box #tagbox [(selectedItems)]="surgeryWorkListViewModel._SearchCriteria.selectedSurgeryProcedures" [showSelectionControls]="false" [searchEnabled]="true" [dataSource]="surgeryProceduresDataSource" valueExpr="Code" displayExpr="Codeandname" placeholder="Ameliyat İşlemi" i18n-placeholder="@@M27304" id="A28501" data-tid="A366036">
+                                    </dx-tag-box>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="row" id="A28537" data-tid="A366037">
+                <div class="col-md-6" data-tid="A366038">
+                    <label class="control-label info-label" id="A28535" data-tid="A366039">Listelenen İşlem Sayısı : {{surgeryWorkListViewModel.WorkList?.length}}<span *ngIf="surgeryWorkListViewModel.maxWorklistItemCount>0" id="A28536" data-tid="A366040"> (Daha fazla kayıt var!)</span> </label>
+                </div>
+                <div class="col-md-6" data-tid="A366041">
+                    <dx-button class="pull-right" type="default" icon="fa fa-bars" text="Listele" (onClick)="btnSearchClicked()" i18n-text="@@M27496" style="margin-right:16px" data-tid="A366042"></dx-button>
+                    <div class="col-md-6 pull-right" data-tid="A366043">
+                        <div class="dropdown pull-right" data-tid="A366044">
+                            <button class="btn btn-alert btn-sm dropdown-toggle" type="button" data-toggle="dropdown" style="min-width:160px" data-tid="A366045">
+                                Ameliyat Durumu
+                                <span class="caret" data-tid="A366046"></span>
+                            </button>
+                            <ul class="dropdown-menu margin-all-0 padding-all-0" data-tid="A366047">
+                                <li *ngFor="let SurgeryStatusDefinitionItem of surgeryWorkListViewModel.SurgeryStatusDefinitionList" data-tid="A366048">
+                                    <a (click)="changeSurgeryStatus(SurgeryStatusDefinitionItem)" id="A13446" data-tid="A366049"><span class="fa fa-check" id="A13447" data-tid="A366050"></span>&nbsp;{{SurgeryStatusDefinitionItem.Name}}</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" id="A28537" data-tid="A366051">
+                <div class="col-sm-12" id="A28538" data-tid="A366052">
+                    <dx-data-grid #WorkListGrid class="ortezProtezWorkListGridComponentClosed" id="WorkListGrid" [columns]="WorkListColumns" [hoverStateEnabled]="true" allowColumnReordering="true" allowColumnResizing="true" [dataSource]="surgeryWorkListViewModel.WorkList" (onRowClick)="select($event)" (onRowPrepared)="onRowPrepared($event)" (onToolbarPreparing)="onToolbarPreparing($event)" [filterRow]="{visible: true}" style="padding-top: 10px;max-width:100%!important;" [(selectedRowKeys)]="selectedRowKeysResultList" [selection]="{mode: 'multiple',allowSelectAll: false, showCheckBoxesMode: 'onClick'}" [editing]="{mode: 'row' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" data-tid="A366053">
+                        <dxo-column-chooser [enabled]="true" id="A28539" data-tid="A366054"></dxo-column-chooser>
+                        <dxo-scrolling mode="virtual" id="A28540" data-tid="A366055"></dxo-scrolling>
+                        <dxo-export [enabled]="true" fileName="Ameliyat ve Anestezi İş Listesi" [allowExportSelectedData]="false" id="A28541" data-tid="A366056"></dxo-export>
+                        <div *dxTemplate="let cellData of 'PriorityCellTemplate'" id="A28542" data-tid="A366057">
+                            <div class="col-md-2" style="float:left;margin-left: -16px;" id="A28543" data-tid="A366058">{{cellData.text}}</div>&nbsp;
+                            <i *ngIf="cellData.data.isPregnant" class="fa fa-gratipay" data-toggle="tooltip" data-placement="bottom" title="Hamile" style="float:right;color:#956be0;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M15097" id="A28544" data-tid="A366059">&nbsp;</i>
+                            <i *ngIf="cellData.data.isEmergency" class="fa fa-ambulance" data-toggle="tooltip" data-placement="bottom" title="Acil!" style="float:right;color:#e40d0d;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M10456" id="A28545" data-tid="A366060">&nbsp;</i>
+                            <i *ngIf="cellData.data.isYoung" class="fa fa-child" data-toggle="tooltip" data-placement="bottom" title="7 Yaş Altı" style="float:right;color:#26c281;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M10377" id="A28546" data-tid="A366061">&nbsp;</i>
+                            <i *ngIf="cellData.data.isOld" class="fa fa-blind" data-toggle="tooltip" data-placement="bottom" title="65 Yaş Üstü" style="float:right;color:#2f353b;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M10366" id="A28547" data-tid="A366062">&nbsp;</i>
+                            <i *ngIf="cellData.data.isVetera" class="fa fa-star-half-o" data-toggle="tooltip" data-placement="bottom" title="Harp ve vazife şehitlerinin dul ve yetimleri ile malül ve gaziler" style="float:right;color:#cec00e;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M27738" id="A28548" data-tid="A366063">&nbsp;</i>
+                            <i *ngIf="cellData.data.isDisabled" class="fa fa-wheelchair" data-toggle="tooltip" data-placement="bottom" title="Engelli" style="float:right;color:#52a5ec;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M13739" id="A28549" data-tid="A366064">&nbsp;</i>
+                            <i *ngIf="cellData.data.hasMedicalInformation" class="fa fa-exclamation-triangle" data-toggle="tooltip" data-placement="bottom" title="Önemli Tıbbi Bilgisi Var" style="float:right;color:#e06b6b;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M13739" id="A16537" data-tid="A366065">&nbsp;</i>
+
+                            <!--Yatana özel-->
+                            <i *ngIf="cellData.data.HasFallingRisk == null ? false : cellData.data.HasFallingRisk" data-toggle="tooltip" data-placement="bottom" title="Düşme Riskli Hasta" style="float:right;padding-right: 13px;height:13px; background-image:url('../../Content/YatanHasta/DusmeRisk.png')" i18n-title="@@M13392" id="A28550" data-tid="A366066"></i>
+                            <i *ngIf="cellData.data.HasAirborneContactIsolation == null ? false: cellData.data.HasAirborneContactIsolation" data-toggle="tooltip" data-placement="bottom" title="Solunum İzolasyonu" style="float:right;height:13px;padding-right: 13px;background-image:url('../../Content/YatanHasta/SolunumIzolasyon.png')" i18n-title="@@M22030" id="A28551" data-tid="A366067"></i>
+                            <i *ngIf="cellData.data.HasDropletIsolation == null ? false: cellData.data.HasDropletIsolation" data-toggle="tooltip" data-placement="bottom" title="Damlacık İzolasyonu" style="float:right;height:13px;padding-right: 15px;background-image:url('../../Content/YatanHasta/DamlacikIzolasyon.png')" i18n-title="@@M12487" id="A28552" data-tid="A366068"></i>
+                            <i *ngIf="cellData.data.HasContactIsolation == null ? false: cellData.data.HasContactIsolation" data-toggle="tooltip" data-placement="bottom" title="Temas İzolasyonu" style="float:right;height:13px;padding-right: 13px;background-image:url('../../Content/YatanHasta/TemasIzolasyon.png')" i18n-title="@@M23155" id="A28553" data-tid="A366069"></i>
+                            <i *ngIf="cellData.data.HasTightContactIsolation == null ? false: cellData.data.HasTightContactIsolation" data-toggle="tooltip" data-placement="bottom" title="Sıkı Temas İzolasyonu" style="float:right;height:11px;padding-right: 19px;background-image:url('../../Content/YatanHasta/SikiTemasIzolasyon.png')" i18n-title="@@M21800" id="A28554" data-tid="A366070"></i>
+                        </div>
+                    </dx-data-grid>
+
+                </div>
+            </div>
+
+
+
+        </dxi-item>
+
+
+
+    </dx-accordion>
+
+
+
+
+
+
+<div class="row" id="A28555" data-tid="A366071">
+    <div class="col-md-12 col-sm-12 col-xs-12" style="height:98%" id="A28556" data-tid="A366072">
+        <comp-compose #dynamicComponent [Info]="systemApiService?.componentInfo" [SaveAndCloseCommandVisible]="true" [CloseWithStateTransition]="true" (ComponentCreated)="dynamicComponentCreated($event)" (DynamicComponentActionExecuted)="dynamicComponentActionExecuted($event)" (DynamicComponentViewModelLoaded)="dynamicComponentViewModelLoaded($event)" (DynamicComponentClosed)="dynamicComponentClosed($event)" id="A28557" data-tid="A366073"></comp-compose>
+    </div>
+</div>
+
+<div id="A28558" data-tid="A366074">
+    <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A28559" data-tid="A366075">
+    </dx-load-panel>
+</div>
+
+</div>

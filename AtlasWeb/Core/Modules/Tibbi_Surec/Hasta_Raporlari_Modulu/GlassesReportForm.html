@@ -1,0 +1,520 @@
+﻿
+
+<div class="row" *ngIf="!glassesReportFormViewModel.ReadOnly" id="A16551" data-tid="A348699">
+    <div class="col-sm-9" id="A16552" data-tid="A348700">
+        <NeStatePanelComponent [OutgoingTransitions]="glassesReportFormViewModel?.OutgoingTransitions" [CancelCommandVisible]="false" [ObjectID]="glassesReportFormViewModel?._GlassesReport?.ObjectID" [ObjectDefID]="glassesReportFormViewModel?._GlassesReport?.ObjectDefID" [CurrentStateDefID]="glassesReportFormViewModel._GlassesReport.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" id="A16553" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A348701">
+        </NeStatePanelComponent>
+    </div>
+    <div class="col-sm-3" id="A16554" data-tid="A348702">
+        <dx-button icon="save" type="default" style="margin: 0px 5px 0px 0px" (onClick)="btnReceteKaydet_Click()" text="Medulaya Gönder/Kaydet" i18n-text="@@M18849" id="A16555" data-tid="A348703"></dx-button>
+    </div>
+</div>
+<div class="container-fluid" id="A16556" data-tid="A348704">
+    <form id="GlassesReportForm" class="form-horizontal" role="form" data-tid="A348705">
+        
+    </form>
+    <div class="row" id="A16557" data-tid="A348706">
+        <div class="col-md-5" id="A16558" data-tid="A348707">
+            <patient-demographics-form [actionId]="glassesReportFormViewModel._GlassesReport.MasterAction" id="A16559" data-tid="A348708"></patient-demographics-form>
+        </div>
+        <div class="col-md-7" id="A16560" data-tid="A348709">
+            <DiagnosisGridReadOnlyForm [EpisodeAction]="glassesReportFormViewModel._GlassesReport.MasterAction" id="A16561" data-tid="A348710"></DiagnosisGridReadOnlyForm>
+        </div>
+    </div>
+    <div class="row" id="A16562" data-tid="A348711">
+        <label class="control-label col-sm-2" id="A16563" data-tid="A348712">
+            Reçete Tarihi
+        </label>
+        <label class="control-label col-sm-3" id="A16564" data-tid="A348713">
+            İşlemi Yapan Doktor
+        </label>
+        <label class="control-label col-sm-4" id="A16565" data-tid="A348714">
+            Reçete Tipi
+        </label>
+
+    </div>
+    <div class="row" id="A16566" data-tid="A348715">
+        <div class="col-sm-2" id="A16567" data-tid="A348716">
+            <hvl-date-picker #Validation (ValueChange)="onReportDateChanged($event)" [BackColor]="ReportDate?.BackColor" [CustomFormat]="ReportDate?.CustomFormat" [Enabled]="ReportDate?.Enabled" [Font]="ReportDate?.Font" [ForeColor]="ReportDate?.ForeColor" [Format]="ReportDate?.Format" [Max]="ReportDate?.Max" [Min]="ReportDate?.Min" [ReadOnly]="ReportDate?.ReadOnly" [Required]="ReportDate?.Required" [TabIndex]="ReportDate?.TabIndex" [Value]="glassesReportFormViewModel?._GlassesReport?.ReportDate" [Visible]="ReportDate?.Visible" id="A16568" data-tid="A348717"></hvl-date-picker>
+        </div>
+        <div class="col-sm-3" id="A16569" data-tid="A348718">
+            <hvl-list-box #Validation (SelectedObjectChange)="onProcedureDoctorChanged($event)" [AutoCompleteDialogHeight]="ProcedureDoctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ProcedureDoctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="ProcedureDoctor?.AutoCompleteMode" [BackColor]="ProcedureDoctor?.BackColor" [DefinitionName]="ProcedureDoctor?.ListDefName" [DisplayExpressionsCache]="glassesReportFormViewModel?.ListDefDisplayExpressions" [Enabled]="ProcedureDoctor?.Enabled" [Font]="ProcedureDoctor?.Font" [ForeColor]="ProcedureDoctor?.ForeColor" [ListFilterExpression]="ProcedureDoctor?.ListFilterExpression" [MinSearchLength]="ProcedureDoctor?.MinSearchLength" [PopupDialogFieldConfig]="ProcedureDoctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ProcedureDoctor?.PopupDialogGridColumns" [PopupDialogHeight]="ProcedureDoctor?.PopupDialogHeight" [PopupDialogTitle]="ProcedureDoctor?.PopupDialogTitle" [PopupDialogWidth]="ProcedureDoctor?.PopupDialogWidth" [ReadOnly]="ProcedureDoctor?.ReadOnly" [SearchMode]="ProcedureDoctor?.SearchMode" [SearchTimeout]="ProcedureDoctor?.SearchTimeout" [SelectedObject]="glassesReportFormViewModel?._GlassesReport?.ProcedureDoctor" [TabIndex]="ProcedureDoctor?.TabIndex" [Visible]="ProcedureDoctor?.Visible" [width]="ProcedureDoctor?.Width" id="A16570" data-tid="A348719"></hvl-list-box>
+        </div>
+        <div class="col-sm-2" id="A16571" data-tid="A348720">
+            <hvl-enum-combobox #Validation (ValueChange)="onPrescriptionTypeChanged($event);PrescriptionType_SelectedIndexChanged();" [BackColor]="PrescriptionType?.BackColor" [DataTypeName]="PrescriptionType?.DataTypeName" [Enabled]="PrescriptionType?.Enabled" [Font]="PrescriptionType?.Font" [ForeColor]="PrescriptionType?.ForeColor" [IncludeOnly]="PrescriptionType?.IncludeOnly" [ReadOnly]="PrescriptionType?.ReadOnly" [ShowClearButton]="PrescriptionType?.ShowClearButton" [SortBy]="PrescriptionType?.SortBy" [TabIndex]="PrescriptionType?.TabIndex" [Value]="glassesReportFormViewModel?._GlassesReport?.PrescriptionType" [Visible]="PrescriptionType?.Visible" id="A16572" data-tid="A348721"></hvl-enum-combobox>
+        </div>
+        <div class="col-sm-2" id="A16573" data-tid="A348722">
+            <hvl-checkbox #Validation (ValueChange)="onTemporaryLensChanged($event)" [AllowThreeState]="TemporaryLens?.ThreeState" [BackColor]="TemporaryLens?.BackColor" [Enabled]="TemporaryLens?.Enabled" [Font]="TemporaryLens?.Font" [ForeColor]="TemporaryLens?.ForeColor" [IsTitleLeft]="TemporaryLens?.IsTitleLeft" [Margin]="TemporaryLens?.Margin" [ReadOnly]="TemporaryLens?.ReadOnly" [TabIndex]="TemporaryLens?.TabIndex" [TitleTopPadding]="TemporaryLens?.TitleTopPadding" [Title]="TemporaryLens?.Title" [Value]="glassesReportFormViewModel?._GlassesReport?.TemporaryLens" [Visible]="TemporaryLens?.Visible" id="A16574" data-tid="A348723"></hvl-checkbox>
+        </div>
+
+    </div>
+    <div class="row" id="A16575" data-tid="A348724">
+        <label class="control-label col-sm-1" id="A16576" data-tid="A348725">
+            E-Reçete Nu.
+        </label>
+        <label class="control-label col-sm-1" id="A16577" data-tid="A348726">
+            Sonuç Kodu
+        </label>
+        <label class="control-label col-sm-4" id="A16578" data-tid="A348727">
+            Son Gönderimin Meduladan Alınan Sonuç Açıklaması
+        </label>
+    </div>
+    <div class="row" id="A16579" data-tid="A348728">
+        <div class="col-sm-1" id="A16580" data-tid="A348729">
+            <hvl-text-box #Validation (TextChange)="onEReceteNoChanged($event)" [BackColor]="EReceteNo?.BackColor" [CharacterCasing]="EReceteNo?.CharacterCasing" [Enabled]="EReceteNo?.Enabled" [Font]="EReceteNo?.Font" [ForeColor]="EReceteNo?.ForeColor" [height]="EReceteNo?.Height" [InputFormat]="EReceteNo?.InputFormat" [InputTurkishCharacter]="EReceteNo?.InputTurkishCharacter" [IsNonNumeric]="EReceteNo?.IsNonNumeric" [MultiLine]="EReceteNo?.Multiline" [ReadOnly]="EReceteNo?.ReadOnly" [Required]="EReceteNo?.Required" [TabIndex]="EReceteNo?.TabIndex" [TextAlign]="EReceteNo?.TextAlign" [Text]="glassesReportFormViewModel?._GlassesReport?.EReceteNo" [Visible]="EReceteNo?.Visible" id="A16581" data-tid="A348730"></hvl-text-box>
+        </div>
+        <div class="col-sm-1" id="A16582" data-tid="A348731">
+            <hvl-text-box #Validation (TextChange)="onSonucKoduChanged($event)" [BackColor]="SonucKodu?.BackColor" [CharacterCasing]="SonucKodu?.CharacterCasing" [Enabled]="SonucKodu?.Enabled" [Font]="SonucKodu?.Font" [ForeColor]="SonucKodu?.ForeColor" [height]="SonucKodu?.Height" [InputFormat]="SonucKodu?.InputFormat" [InputTurkishCharacter]="SonucKodu?.InputTurkishCharacter" [IsNonNumeric]="SonucKodu?.IsNonNumeric" [MultiLine]="SonucKodu?.Multiline" [ReadOnly]="SonucKodu?.ReadOnly" [Required]="SonucKodu?.Required" [TabIndex]="SonucKodu?.TabIndex" [TextAlign]="SonucKodu?.TextAlign" [Text]="glassesReportFormViewModel?._GlassesReport?.SonucKodu" [Visible]="SonucKodu?.Visible" id="A16583" data-tid="A348732"></hvl-text-box>
+        </div>
+        <div class="col-sm-4" id="A16584" data-tid="A348733">
+            <hvl-text-box #Validation (TextChange)="onSonucAciklamasiChanged($event)" [BackColor]="SonucAciklamasi?.BackColor" [CharacterCasing]="SonucAciklamasi?.CharacterCasing" [Enabled]="SonucAciklamasi?.Enabled" [Font]="SonucAciklamasi?.Font" [ForeColor]="SonucAciklamasi?.ForeColor" [height]="SonucAciklamasi?.Height" [InputFormat]="SonucAciklamasi?.InputFormat" [InputTurkishCharacter]="SonucAciklamasi?.InputTurkishCharacter" [IsNonNumeric]="SonucAciklamasi?.IsNonNumeric" [MultiLine]="SonucAciklamasi?.Multiline" [ReadOnly]="SonucAciklamasi?.ReadOnly" [Required]="SonucAciklamasi?.Required" [TabIndex]="SonucAciklamasi?.TabIndex" [TextAlign]="SonucAciklamasi?.TextAlign" [Text]="glassesReportFormViewModel?._GlassesReport?.SonucAciklamasi" [Visible]="SonucAciklamasi?.Visible" id="A16585" data-tid="A348734"></hvl-text-box>
+        </div>
+
+        <div class="col-sm-1" style="text-align:right" *ngIf="glassesReportFormViewModel.ReadOnly && glassesReportFormViewModel._GlassesReport.EReceteNo != null" id="A16586" data-tid="A348735">
+            <dx-button icon="remove" type="default" style="margin: 0px 5px 0px 0px" (onClick)="btnReceteSil_Click()" text="E-Reçete Sil" i18n-text="@@M13828" id="A16587" data-tid="A348736"></dx-button>
+        </div>
+    </div>
+    <div class="row" style="padding-top:10px" [hidden]="glassesReportFormViewModel._GlassesReport?.PrescriptionType == null || glassesReportFormViewModel._GlassesReport?.PrescriptionType != 1" id="A16588" data-tid="A348737">
+        <table class="col-md-6 col-xs-12" border="1" style="margin-bottom:0;border:2px solid #f5f5f5" id="A16589" data-tid="A348738">
+            <thead id="A16590" data-tid="A348739">
+                <tr style="background-color:#f5f5f5" id="A16591" data-tid="A348740">
+                    <td id="A16592" data-tid="A348741"></td>
+                    <td colspan="1" style="text-align:center" id="A16593" data-tid="A348742">
+                        <strong id="A16594" data-tid="A348743">SAĞ</strong>
+                    </td>
+                    <td colspan="1" style="text-align:center" id="A16595" data-tid="A348744">
+                        <strong id="A16596" data-tid="A348745">SOL</strong>
+                    </td>
+                </tr>
+            </thead>
+            <tbody style="margin-bottom:5px" id="A16597" data-tid="A348746">
+                <tr style="text-align:center" id="A16598" data-tid="A348747">
+                    <td id="A16599" data-tid="A348748">
+                        Vitrum
+                    </td>
+                    <td id="A16600" data-tid="A348749">
+                        Teleskopik Gözlük Tipi
+                    </td>
+                    <td id="A16601" data-tid="A348750">
+                        Teleskopik Gözlük Tipi
+                    </td>
+                </tr>
+                <tr id="A16602" data-tid="A348751">
+                    <td id="A16603" data-tid="A348752">
+                        <hvl-checkbox #Validation (ValueChange)="cbxVitrumFar_CheckedChanged($event)" [AllowThreeState]="cbxVitrumFar?.ThreeState" [BackColor]="cbxVitrumFar?.BackColor" [Enabled]="cbxVitrumFar?.Enabled" [Font]="cbxVitrumFar?.Font" [ForeColor]="cbxVitrumFar?.ForeColor" [IsTitleLeft]="cbxVitrumFar?.IsTitleLeft" [Margin]="cbxVitrumFar?.Margin" [ReadOnly]="cbxVitrumFar?.ReadOnly" [TabIndex]="cbxVitrumFar?.TabIndex" [TitleTopPadding]="cbxVitrumFar?.TitleTopPadding" [Title]="cbxVitrumFar?.Title" [Value]="glassesReportFormViewModel?._GlassesReport?.VitrumFar" [Visible]="cbxVitrumFar?.Visible" id="A16604" data-tid="A348753"></hvl-checkbox>
+
+                    </td>
+                    <td id="A16605" data-tid="A348754">
+                        <hvl-enum-combobox #Validation (ValueChange)="onTeleskopikGlassesTypeRightFarChanged($event)" [BackColor]="TeleskopikGlassesTypeRightFar?.BackColor" [DataTypeName]="TeleskopikGlassesTypeRightFar?.DataTypeName" [Enabled]="TeleskopikGlassesTypeRightFar?.Enabled" [Font]="TeleskopikGlassesTypeRightFar?.Font" [ForeColor]="TeleskopikGlassesTypeRightFar?.ForeColor" [IncludeOnly]="TeleskopikGlassesTypeRightFar?.IncludeOnly" [ReadOnly]="TeleskopikGlassesTypeRightFar?.ReadOnly" [ShowClearButton]="TeleskopikGlassesTypeRightFar?.ShowClearButton" [SortBy]="TeleskopikGlassesTypeRightFar?.SortBy" [TabIndex]="TeleskopikGlassesTypeRightFar?.TabIndex" [Value]="glassesReportFormViewModel?._GlassesReport?.TeleskopikGlassesTypeRightFar" [Visible]="TeleskopikGlassesTypeRightFar?.Visible" id="A16606" data-tid="A348755"></hvl-enum-combobox>
+                    </td>
+                    <td id="A16607" data-tid="A348756">
+                        <hvl-enum-combobox #Validation (ValueChange)="onTeleskopikGlassesTypeLeftFarChanged($event)" [BackColor]="TeleskopikGlassesTypeLeftFar?.BackColor" [DataTypeName]="TeleskopikGlassesTypeLeftFar?.DataTypeName" [Enabled]="TeleskopikGlassesTypeLeftFar?.Enabled" [Font]="TeleskopikGlassesTypeLeftFar?.Font" [ForeColor]="TeleskopikGlassesTypeLeftFar?.ForeColor" [IncludeOnly]="TeleskopikGlassesTypeLeftFar?.IncludeOnly" [ReadOnly]="TeleskopikGlassesTypeLeftFar?.ReadOnly" [ShowClearButton]="TeleskopikGlassesTypeLeftFar?.ShowClearButton" [SortBy]="TeleskopikGlassesTypeLeftFar?.SortBy" [TabIndex]="TeleskopikGlassesTypeLeftFar?.TabIndex" [Value]="glassesReportFormViewModel?._GlassesReport?.TeleskopikGlassesTypeLeftFar" [Visible]="TeleskopikGlassesTypeLeftFar?.Visible" id="A16608" data-tid="A348757"></hvl-enum-combobox>
+                    </td>
+                </tr>
+                <tr id="A16609" data-tid="A348758">
+                    <td id="A16610" data-tid="A348759">
+                        <hvl-checkbox #Validation (ValueChange)="cbxVitrumNear_CheckedChanged($event)" [AllowThreeState]="cbxVitrumNear?.ThreeState" [BackColor]="cbxVitrumNear?.BackColor" [Enabled]="cbxVitrumNear?.Enabled" [Font]="cbxVitrumNear?.Font" [ForeColor]="cbxVitrumNear?.ForeColor" [IsTitleLeft]="cbxVitrumNear?.IsTitleLeft" [Margin]="cbxVitrumNear?.Margin" [ReadOnly]="cbxVitrumNear?.ReadOnly" [TabIndex]="cbxVitrumNear?.TabIndex" [TitleTopPadding]="cbxVitrumNear?.TitleTopPadding" [Title]="cbxVitrumNear?.Title" [Value]="glassesReportFormViewModel?._GlassesReport?.VitrumNear" [Visible]="cbxVitrumNear?.Visible" id="A16611" data-tid="A348760"></hvl-checkbox>
+
+                    </td>
+                    <td id="A16612" data-tid="A348761">
+                        <hvl-enum-combobox #Validation (ValueChange)="onTeleskopikGlassesTypeRighNearChanged($event)" [BackColor]="TeleskopikGlassesTypeRighNear?.BackColor" [DataTypeName]="TeleskopikGlassesTypeRighNear?.DataTypeName" [Enabled]="TeleskopikGlassesTypeRighNear?.Enabled" [Font]="TeleskopikGlassesTypeRighNear?.Font" [ForeColor]="TeleskopikGlassesTypeRighNear?.ForeColor" [IncludeOnly]="TeleskopikGlassesTypeRighNear?.IncludeOnly" [ReadOnly]="TeleskopikGlassesTypeRighNear?.ReadOnly" [ShowClearButton]="TeleskopikGlassesTypeRighNear?.ShowClearButton" [SortBy]="TeleskopikGlassesTypeRighNear?.SortBy" [TabIndex]="TeleskopikGlassesTypeRighNear?.TabIndex" [Value]="glassesReportFormViewModel?._GlassesReport?.TeleskopikGlassesTypeRighNear" [Visible]="TeleskopikGlassesTypeRighNear?.Visible" id="A16613" data-tid="A348762"></hvl-enum-combobox>
+                    </td>
+                    <td id="A16614" data-tid="A348763">
+                        <hvl-enum-combobox #Validation (ValueChange)="onTeleskopikGlassesTypeLeftNearChanged($event)" [BackColor]="TeleskopikGlassesTypeLeftNear?.BackColor" [DataTypeName]="TeleskopikGlassesTypeLeftNear?.DataTypeName" [Enabled]="TeleskopikGlassesTypeLeftNear?.Enabled" [Font]="TeleskopikGlassesTypeLeftNear?.Font" [ForeColor]="TeleskopikGlassesTypeLeftNear?.ForeColor" [IncludeOnly]="TeleskopikGlassesTypeLeftNear?.IncludeOnly" [ReadOnly]="TeleskopikGlassesTypeLeftNear?.ReadOnly" [ShowClearButton]="TeleskopikGlassesTypeLeftNear?.ShowClearButton" [SortBy]="TeleskopikGlassesTypeLeftNear?.SortBy" [TabIndex]="TeleskopikGlassesTypeLeftNear?.TabIndex" [Value]="glassesReportFormViewModel?._GlassesReport?.TeleskopikGlassesTypeLeftNear" [Visible]="TeleskopikGlassesTypeLeftNear?.Visible" id="A16615" data-tid="A348764"></hvl-enum-combobox>
+                    </td>
+                </tr>
+                <tr id="A16616" data-tid="A348765">
+                    <td id="A16617" data-tid="A348766">
+                        <hvl-checkbox #Validation (ValueChange)="cbxVitrumCloseReading_CheckedChanged($event)" [AllowThreeState]="cbxVitrumCloseReading?.ThreeState" [BackColor]="cbxVitrumCloseReading?.BackColor" [Enabled]="cbxVitrumCloseReading?.Enabled" [Font]="cbxVitrumCloseReading?.Font" [ForeColor]="cbxVitrumCloseReading?.ForeColor" [IsTitleLeft]="cbxVitrumCloseReading?.IsTitleLeft" [Margin]="cbxVitrumCloseReading?.Margin" [ReadOnly]="cbxVitrumCloseReading?.ReadOnly" [TabIndex]="cbxVitrumCloseReading?.TabIndex" [TitleTopPadding]="cbxVitrumCloseReading?.TitleTopPadding" [Title]="cbxVitrumCloseReading?.Title" [Value]="glassesReportFormViewModel?._GlassesReport?.VitrumCloseReading" [Visible]="cbxVitrumCloseReading?.Visible" id="A16618" data-tid="A348767"></hvl-checkbox>
+                    </td>
+                    <td id="A16619" data-tid="A348768">
+                        <hvl-enum-combobox #Validation (ValueChange)="onTeleskopikGlassesTypeRighReadChanged($event)" [BackColor]="TeleskopikGlassesTypeRighRead?.BackColor" [DataTypeName]="TeleskopikGlassesTypeRighRead?.DataTypeName" [Enabled]="TeleskopikGlassesTypeRighRead?.Enabled" [Font]="TeleskopikGlassesTypeRighRead?.Font" [ForeColor]="TeleskopikGlassesTypeRighRead?.ForeColor" [IncludeOnly]="TeleskopikGlassesTypeRighRead?.IncludeOnly" [ReadOnly]="TeleskopikGlassesTypeRighRead?.ReadOnly" [ShowClearButton]="TeleskopikGlassesTypeRighRead?.ShowClearButton" [SortBy]="TeleskopikGlassesTypeRighRead?.SortBy" [TabIndex]="TeleskopikGlassesTypeRighRead?.TabIndex" [Value]="glassesReportFormViewModel?._GlassesReport?.TeleskopikGlassesTypeRighRead" [Visible]="TeleskopikGlassesTypeRighRead?.Visible" id="A16620" data-tid="A348769"></hvl-enum-combobox>
+                    </td>
+                    <td id="A16621" data-tid="A348770">
+                        <hvl-enum-combobox #Validation (ValueChange)="onTeleskopikGlassesTypeLeftReadChanged($event)" [BackColor]="TeleskopikGlassesTypeLeftRead?.BackColor" [DataTypeName]="TeleskopikGlassesTypeLeftRead?.DataTypeName" [Enabled]="TeleskopikGlassesTypeLeftRead?.Enabled" [Font]="TeleskopikGlassesTypeLeftRead?.Font" [ForeColor]="TeleskopikGlassesTypeLeftRead?.ForeColor" [IncludeOnly]="TeleskopikGlassesTypeLeftRead?.IncludeOnly" [ReadOnly]="TeleskopikGlassesTypeLeftRead?.ReadOnly" [ShowClearButton]="TeleskopikGlassesTypeLeftRead?.ShowClearButton" [SortBy]="TeleskopikGlassesTypeLeftRead?.SortBy" [TabIndex]="TeleskopikGlassesTypeLeftRead?.TabIndex" [Value]="glassesReportFormViewModel?._GlassesReport?.TeleskopikGlassesTypeLeftRead" [Visible]="TeleskopikGlassesTypeLeftRead?.Visible" id="A16622" data-tid="A348771"></hvl-enum-combobox>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row" style="padding-top:10px" [hidden]="glassesReportFormViewModel._GlassesReport?.PrescriptionType == null || glassesReportFormViewModel._GlassesReport?.PrescriptionType == 1" id="A16623" data-tid="A348772">
+        <table class="col-md-12 col-xs-12 col-sm-12" border="1" style="margin-bottom:0;border:2px solid #f5f5f5" id="A16624" data-tid="A348773">
+            <thead id="A16625" data-tid="A348774">
+                <tr style="background-color:#f5f5f5" id="A16626" data-tid="A348775">
+                    <td id="A16627" data-tid="A348776"></td>
+                    <td colspan="7" style="text-align:center" id="A16628" data-tid="A348777">
+                        <strong id="A16629" data-tid="A348778">SAĞ</strong>
+                    </td>
+                    <td colspan="8" style="text-align:center" id="A16630" data-tid="A348779">
+                        <strong id="A16631" data-tid="A348780">SOL</strong>
+                    </td>
+                </tr>
+            </thead>
+            <tbody style="margin-bottom:5px" id="A16632" data-tid="A348781">
+                <tr style="text-align:center" id="A16633" data-tid="A348782">
+                    <td id="A16634" data-tid="A348783">
+                        Vitrum
+                    </td>
+                    <td id="A16635" data-tid="A348784">
+                        SPH.
+                    </td>
+                    <td id="A16636" data-tid="A348785">
+                        CYL.
+                    </td>
+                    <td id="A16637" data-tid="A348786">
+                        AX.
+                    </td>
+                    <td id="A16638" data-tid="A348787">
+                        ÇAP
+                    </td>
+                    <td id="A16639" data-tid="A348788">
+                        Eğim
+                    </td>
+                    <td id="A16640" data-tid="A348789">
+                        SPH.
+                    </td>
+                    <td id="A16641" data-tid="A348790">
+                        CYL.
+                    </td>
+                    <td id="A16642" data-tid="A348791">
+                        AX.
+                    </td>
+                    <td id="A16643" data-tid="A348792">
+                        ÇAP
+                    </td>
+                    <td id="A16644" data-tid="A348793">
+                        Eğim
+                    </td>
+                    <td id="A16645" data-tid="A348794">
+                        Cam Tipi
+                    </td>
+                    <td id="A16646" data-tid="A348795">
+                        Cam Rengi
+                    </td>
+                </tr>
+
+                <tr id="A16647" data-tid="A348796">
+                    <td id="A16648" data-tid="A348797">
+                        <hvl-checkbox #Validation (ValueChange)="cbxVitrumFar_CheckedChanged($event)" [AllowThreeState]="cbxVitrumFar?.ThreeState" [BackColor]="cbxVitrumFar?.BackColor" [Enabled]="cbxVitrumFar?.Enabled" [Font]="cbxVitrumFar?.Font" [ForeColor]="cbxVitrumFar?.ForeColor" [IsTitleLeft]="cbxVitrumFar?.IsTitleLeft" [Margin]="cbxVitrumFar?.Margin" [ReadOnly]="cbxVitrumFar?.ReadOnly" [TabIndex]="cbxVitrumFar?.TabIndex" [TitleTopPadding]="cbxVitrumFar?.TitleTopPadding" [Title]="cbxVitrumFar?.Title" [Value]="glassesReportFormViewModel?._GlassesReport?.VitrumFar" [Visible]="cbxVitrumFar?.Visible" id="A16649" data-tid="A348798"></hvl-checkbox>
+
+                    </td>
+                    <td id="A16650" data-tid="A348799">
+                        <hvl-text-box #Validation (TextChange)="onSphRightFarChanged($event)" [BackColor]="SphRightFar?.BackColor" [CharacterCasing]="SphRightFar?.CharacterCasing" [Enabled]="SphRightFar?.Enabled" [Font]="SphRightFar?.Font" [ForeColor]="SphRightFar?.ForeColor" [height]="SphRightFar?.Height" [InputFormat]="SphRightFar?.InputFormat" [InputTurkishCharacter]="SphRightFar?.InputTurkishCharacter" [IsNonNumeric]="SphRightFar?.IsNonNumeric" [MultiLine]="SphRightFar?.Multiline" [ReadOnly]="SphRightFar?.ReadOnly" [Required]="SphRightFar?.Required" [TabIndex]="SphRightFar?.TabIndex" [TextAlign]="SphRightFar?.TextAlign" [Text]="glassesReportFormViewModel?._GlassesReport?.SphRightFar" [Visible]="SphRightFar?.Visible" id="A16651" data-tid="A348800"></hvl-text-box>
+                    </td>
+                    <td id="A16652" data-tid="A348801">
+                        <hvl-text-box #Validation (TextChange)="onCylRightFarChanged($event)" [BackColor]="CylRightFar?.BackColor" [CharacterCasing]="CylRightFar?.CharacterCasing" [Enabled]="CylRightFar?.Enabled" [Font]="CylRightFar?.Font" [ForeColor]="CylRightFar?.ForeColor" [height]="CylRightFar?.Height" [InputFormat]="CylRightFar?.InputFormat" [InputTurkishCharacter]="CylRightFar?.InputTurkishCharacter" [IsNonNumeric]="CylRightFar?.IsNonNumeric" [MultiLine]="CylRightFar?.Multiline" [ReadOnly]="CylRightFar?.ReadOnly" [Required]="CylRightFar?.Required" [TabIndex]="CylRightFar?.TabIndex" [TextAlign]="CylRightFar?.TextAlign" [Text]="glassesReportFormViewModel?._GlassesReport?.CylRightFar" [Visible]="CylRightFar?.Visible" id="A16653" data-tid="A348802"></hvl-text-box>
+                    </td>
+                    <td id="A16654" data-tid="A348803">
+                        <hvl-text-box #Validation (TextChange)="onAxRightFarChanged($event)" [BackColor]="AxRightFar?.BackColor" [CharacterCasing]="AxRightFar?.CharacterCasing" [Enabled]="AxRightFar?.Enabled" [Font]="AxRightFar?.Font" [ForeColor]="AxRightFar?.ForeColor" [height]="AxRightFar?.Height" [InputFormat]="AxRightFar?.InputFormat" [InputTurkishCharacter]="AxRightFar?.InputTurkishCharacter" [IsNonNumeric]="AxRightFar?.IsNonNumeric" [MultiLine]="AxRightFar?.Multiline" [ReadOnly]="AxRightFar?.ReadOnly" [Required]="AxRightFar?.Required" [TabIndex]="AxRightFar?.TabIndex" [TextAlign]="AxRightFar?.TextAlign" [Text]="glassesReportFormViewModel?._GlassesReport?.AxRightFar" [Visible]="AxRightFar?.Visible" id="A16655" data-tid="A348804"></hvl-text-box>
+                    </td>
+                    <td id="A16656" data-tid="A348805">
+                        <hvl-text-box #Validation (TextChange)="onDiameterRightFarChanged($event)" [BackColor]="DiameterRightFar?.BackColor" [CharacterCasing]="DiameterRightFar?.CharacterCasing" [Enabled]="DiameterRightFar?.Enabled" [Font]="DiameterRightFar?.Font" [ForeColor]="DiameterRightFar?.ForeColor" [height]="DiameterRightFar?.Height" [InputFormat]="DiameterRightFar?.InputFormat" [InputTurkishCharacter]="DiameterRightFar?.InputTurkishCharacter" [IsNonNumeric]="DiameterRightFar?.IsNonNumeric" [MultiLine]="DiameterRightFar?.Multiline" [ReadOnly]="DiameterRightFar?.ReadOnly" [Required]="DiameterRightFar?.Required" [TabIndex]="DiameterRightFar?.TabIndex" [TextAlign]="DiameterRightFar?.TextAlign" [Text]="glassesReportFormViewModel?._GlassesReport?.DiameterRightFar" [Visible]="DiameterRightFar?.Visible" id="A16657" data-tid="A348806"></hvl-text-box>
+                    </td>
+                    <td id="A16658" data-tid="A348807">
+                        <hvl-text-box #Validation (TextChange)="onGradientRightFarChanged($event)" [BackColor]="GradientRightFar?.BackColor" [CharacterCasing]="GradientRightFar?.CharacterCasing" [Enabled]="GradientRightFar?.Enabled" [Font]="GradientRightFar?.Font" [ForeColor]="GradientRightFar?.ForeColor" [height]="GradientRightFar?.Height" [InputFormat]="GradientRightFar?.InputFormat" [InputTurkishCharacter]="GradientRightFar?.InputTurkishCharacter" [IsNonNumeric]="GradientRightFar?.IsNonNumeric" [MultiLine]="GradientRightFar?.Multiline" [ReadOnly]="GradientRightFar?.ReadOnly" [Required]="GradientRightFar?.Required" [TabIndex]="GradientRightFar?.TabIndex" [TextAlign]="GradientRightFar?.TextAlign" [Text]="glassesReportFormViewModel?._GlassesReport?.GradientRightFar" [Visible]="GradientRightFar?.Visible" id="A16659" data-tid="A348808"></hvl-text-box>
+                    </td>
+                    <td id="A16660" data-tid="A348809">
+                        <hvl-text-box #Validation (TextChange)="onSphLeftFarChanged($event)" [BackColor]="SphLeftFar?.BackColor" [CharacterCasing]="SphLeftFar?.CharacterCasing" [Enabled]="SphLeftFar?.Enabled" [Font]="SphLeftFar?.Font" [ForeColor]="SphLeftFar?.ForeColor" [height]="SphLeftFar?.Height" [InputFormat]="SphLeftFar?.InputFormat" [InputTurkishCharacter]="SphLeftFar?.InputTurkishCharacter" [IsNonNumeric]="SphLeftFar?.IsNonNumeric" [MultiLine]="SphLeftFar?.Multiline" [ReadOnly]="SphLeftFar?.ReadOnly" [Required]="SphLeftFar?.Required" [TabIndex]="SphLeftFar?.TabIndex" [TextAlign]="SphLeftFar?.TextAlign" [Text]="glassesReportFormViewModel?._GlassesReport?.SphLeftFar" [Visible]="SphLeftFar?.Visible" id="A16661" data-tid="A348810"></hvl-text-box>
+                    </td>
+                    <td id="A16662" data-tid="A348811">
+                        <hvl-text-box #Validation (TextChange)="onCylLeftFarChanged($event)" [BackColor]="CylLeftFar?.BackColor" [CharacterCasing]="CylLeftFar?.CharacterCasing" [Enabled]="CylLeftFar?.Enabled" [Font]="CylLeftFar?.Font" [ForeColor]="CylLeftFar?.ForeColor" [height]="CylLeftFar?.Height" [InputFormat]="CylLeftFar?.InputFormat" [InputTurkishCharacter]="CylLeftFar?.InputTurkishCharacter" [IsNonNumeric]="CylLeftFar?.IsNonNumeric" [MultiLine]="CylLeftFar?.Multiline" [ReadOnly]="CylLeftFar?.ReadOnly" [Required]="CylLeftFar?.Required" [TabIndex]="CylLeftFar?.TabIndex" [TextAlign]="CylLeftFar?.TextAlign" [Text]="glassesReportFormViewModel?._GlassesReport?.CylLeftFar" [Visible]="CylLeftFar?.Visible" id="A16663" data-tid="A348812"></hvl-text-box>
+                    </td>
+                    <td id="A16664" data-tid="A348813">
+                        <hvl-text-box #Validation (TextChange)="onAxLeftFarChanged($event)" [BackColor]="AxLeftFar?.BackColor" [CharacterCasing]="AxLeftFar?.CharacterCasing" [Enabled]="AxLeftFar?.Enabled" [Font]="AxLeftFar?.Font" [ForeColor]="AxLeftFar?.ForeColor" [height]="AxLeftFar?.Height" [InputFormat]="AxLeftFar?.InputFormat" [InputTurkishCharacter]="AxLeftFar?.InputTurkishCharacter" [IsNonNumeric]="AxLeftFar?.IsNonNumeric" [MultiLine]="AxLeftFar?.Multiline" [ReadOnly]="AxLeftFar?.ReadOnly" [Required]="AxLeftFar?.Required" [TabIndex]="AxLeftFar?.TabIndex" [TextAlign]="AxLeftFar?.TextAlign" [Text]="glassesReportFormViewModel?._GlassesReport?.AxLeftFar" [Visible]="AxLeftFar?.Visible" id="A16665" data-tid="A348814"></hvl-text-box>
+                    </td>
+                    <td id="A16666" data-tid="A348815">
+                        <hvl-text-box #Validation (TextChange)="onDiameterLeftFarChanged($event)" [BackColor]="DiameterLeftFar?.BackColor" [CharacterCasing]="DiameterLeftFar?.CharacterCasing" [Enabled]="DiameterLeftFar?.Enabled" [Font]="DiameterLeftFar?.Font" [ForeColor]="DiameterLeftFar?.ForeColor" [height]="DiameterLeftFar?.Height" [InputFormat]="DiameterLeftFar?.InputFormat" [InputTurkishCharacter]="DiameterLeftFar?.InputTurkishCharacter" [IsNonNumeric]="DiameterLeftFar?.IsNonNumeric" [MultiLine]="DiameterLeftFar?.Multiline" [ReadOnly]="DiameterLeftFar?.ReadOnly" [Required]="DiameterLeftFar?.Required" [TabIndex]="DiameterLeftFar?.TabIndex" [TextAlign]="DiameterLeftFar?.TextAlign" [Text]="glassesReportFormViewModel?._GlassesReport?.DiameterLeftFar" [Visible]="DiameterLeftFar?.Visible" id="A16667" data-tid="A348816"></hvl-text-box>
+                    </td>
+                    <td id="A16668" data-tid="A348817">
+                        <hvl-text-box #Validation (TextChange)="onGradientLeftFarChanged($event)" [BackColor]="GradientLeftFar?.BackColor" [CharacterCasing]="GradientLeftFar?.CharacterCasing" [Enabled]="GradientLeftFar?.Enabled" [Font]="GradientLeftFar?.Font" [ForeColor]="GradientLeftFar?.ForeColor" [height]="GradientLeftFar?.Height" [InputFormat]="GradientLeftFar?.InputFormat" [InputTurkishCharacter]="GradientLeftFar?.InputTurkishCharacter" [IsNonNumeric]="GradientLeftFar?.IsNonNumeric" [MultiLine]="GradientLeftFar?.Multiline" [ReadOnly]="GradientLeftFar?.ReadOnly" [Required]="GradientLeftFar?.Required" [TabIndex]="GradientLeftFar?.TabIndex" [TextAlign]="GradientLeftFar?.TextAlign" [Text]="glassesReportFormViewModel?._GlassesReport?.GradientLeftFar" [Visible]="GradientLeftFar?.Visible" id="A16669" data-tid="A348818"></hvl-text-box>
+                    </td>
+                    <td id="A16670" data-tid="A348819">
+                        <hvl-enum-combobox #Validation (ValueChange)="onGlassLeftTypeFarChanged($event)" [BackColor]="GlassLeftTypeFar?.BackColor" [DataTypeName]="GlassLeftTypeFar?.DataTypeName" [Enabled]="GlassLeftTypeFar?.Enabled" [Font]="GlassLeftTypeFar?.Font" [ForeColor]="GlassLeftTypeFar?.ForeColor" [IncludeOnly]="GlassLeftTypeFar?.IncludeOnly" [ReadOnly]="GlassLeftTypeFar?.ReadOnly" [ShowClearButton]="GlassLeftTypeFar?.ShowClearButton" [SortBy]="GlassLeftTypeFar?.SortBy" [TabIndex]="GlassLeftTypeFar?.TabIndex" [Value]="glassesReportFormViewModel?._GlassesReport?.GlassLeftTypeFar" [Visible]="GlassLeftTypeFar?.Visible" id="A16671" data-tid="A348820"></hvl-enum-combobox>
+                    </td>
+                    <td id="A16672" data-tid="A348821">
+                        <hvl-enum-combobox #Validation (ValueChange)="onGlassColorLeftFarChanged($event)" [BackColor]="GlassColorLeftFar?.BackColor" [DataTypeName]="GlassColorLeftFar?.DataTypeName" [Enabled]="GlassColorLeftFar?.Enabled" [Font]="GlassColorLeftFar?.Font" [ForeColor]="GlassColorLeftFar?.ForeColor" [IncludeOnly]="GlassColorLeftFar?.IncludeOnly" [ReadOnly]="GlassColorLeftFar?.ReadOnly" [ShowClearButton]="GlassColorLeftFar?.ShowClearButton" [SortBy]="GlassColorLeftFar?.SortBy" [TabIndex]="GlassColorLeftFar?.TabIndex" [Value]="glassesReportFormViewModel?._GlassesReport?.GlassColorLeftFar" [Visible]="GlassColorLeftFar?.Visible" id="A16673" data-tid="A348822"></hvl-enum-combobox>
+                    </td>
+                </tr>
+                <tr id="A16674" data-tid="A348823">
+                    <td id="A16675" data-tid="A348824">
+                        <hvl-checkbox #Validation (ValueChange)="cbxVitrumNear_CheckedChanged($event)" [AllowThreeState]="cbxVitrumNear?.ThreeState" [BackColor]="cbxVitrumNear?.BackColor" [Enabled]="cbxVitrumNear?.Enabled" [Font]="cbxVitrumNear?.Font" [ForeColor]="cbxVitrumNear?.ForeColor" [IsTitleLeft]="cbxVitrumNear?.IsTitleLeft" [Margin]="cbxVitrumNear?.Margin" [ReadOnly]="cbxVitrumNear?.ReadOnly" [TabIndex]="cbxVitrumNear?.TabIndex" [TitleTopPadding]="cbxVitrumNear?.TitleTopPadding" [Title]="cbxVitrumNear?.Title" [Value]="glassesReportFormViewModel?._GlassesReport?.VitrumNear" [Visible]="cbxVitrumNear?.Visible" id="A16676" data-tid="A348825"></hvl-checkbox>
+
+                    </td>
+                    <td id="A16677" data-tid="A348826">
+                        <hvl-text-box #Validation (TextChange)="onSphRightNearChanged($event)" [BackColor]="SphRightNear?.BackColor" [CharacterCasing]="SphRightNear?.CharacterCasing" [Enabled]="SphRightNear?.Enabled" [Font]="SphRightNear?.Font" [ForeColor]="SphRightNear?.ForeColor" [height]="SphRightNear?.Height" [InputFormat]="SphRightNear?.InputFormat" [InputTurkishCharacter]="SphRightNear?.InputTurkishCharacter" [IsNonNumeric]="SphRightNear?.IsNonNumeric" [MultiLine]="SphRightNear?.Multiline" [ReadOnly]="SphRightNear?.ReadOnly" [Required]="SphRightNear?.Required" [TabIndex]="SphRightNear?.TabIndex" [TextAlign]="SphRightNear?.TextAlign" [Text]="glassesReportFormViewModel?._GlassesReport?.SphRightNear" [Visible]="SphRightNear?.Visible" id="A16678" data-tid="A348827"></hvl-text-box>
+                    </td>
+                    <td id="A16679" data-tid="A348828">
+                        <hvl-text-box #Validation (TextChange)="onCylRightNearChanged($event)" [BackColor]="CylRightNear?.BackColor" [CharacterCasing]="CylRightNear?.CharacterCasing" [Enabled]="CylRightNear?.Enabled" [Font]="CylRightNear?.Font" [ForeColor]="CylRightNear?.ForeColor" [height]="CylRightNear?.Height" [InputFormat]="CylRightNear?.InputFormat" [InputTurkishCharacter]="CylRightNear?.InputTurkishCharacter" [IsNonNumeric]="CylRightNear?.IsNonNumeric" [MultiLine]="CylRightNear?.Multiline" [ReadOnly]="CylRightNear?.ReadOnly" [Required]="CylRightNear?.Required" [TabIndex]="CylRightNear?.TabIndex" [TextAlign]="CylRightNear?.TextAlign" [Text]="glassesReportFormViewModel?._GlassesReport?.CylRightNear" [Visible]="CylRightNear?.Visible" id="A16680" data-tid="A348829"></hvl-text-box>
+                    </td>
+                    <td id="A16681" data-tid="A348830">
+                        <hvl-text-box #Validation (TextChange)="onAxRightNearChanged($event)" [BackColor]="AxRightNear?.BackColor" [CharacterCasing]="AxRightNear?.CharacterCasing" [Enabled]="AxRightNear?.Enabled" [Font]="AxRightNear?.Font" [ForeColor]="AxRightNear?.ForeColor" [height]="AxRightNear?.Height" [InputFormat]="AxRightNear?.InputFormat" [InputTurkishCharacter]="AxRightNear?.InputTurkishCharacter" [IsNonNumeric]="AxRightNear?.IsNonNumeric" [MultiLine]="AxRightNear?.Multiline" [ReadOnly]="AxRightNear?.ReadOnly" [Required]="AxRightNear?.Required" [TabIndex]="AxRightNear?.TabIndex" [TextAlign]="AxRightNear?.TextAlign" [Text]="glassesReportFormViewModel?._GlassesReport?.AxRightNear" [Visible]="AxRightNear?.Visible" id="A16682" data-tid="A348831"></hvl-text-box>
+                    </td>
+                    <td id="A16683" data-tid="A348832">
+                        <hvl-text-box #Validation (TextChange)="onDiameterRightNearChanged($event)" [BackColor]="DiameterRightNear?.BackColor" [CharacterCasing]="DiameterRightNear?.CharacterCasing" [Enabled]="DiameterRightNear?.Enabled" [Font]="DiameterRightNear?.Font" [ForeColor]="DiameterRightNear?.ForeColor" [height]="DiameterRightNear?.Height" [InputFormat]="DiameterRightNear?.InputFormat" [InputTurkishCharacter]="DiameterRightNear?.InputTurkishCharacter" [IsNonNumeric]="DiameterRightNear?.IsNonNumeric" [MultiLine]="DiameterRightNear?.Multiline" [ReadOnly]="DiameterRightNear?.ReadOnly" [Required]="DiameterRightNear?.Required" [TabIndex]="DiameterRightNear?.TabIndex" [TextAlign]="DiameterRightNear?.TextAlign" [Text]="glassesReportFormViewModel?._GlassesReport?.DiameterRightNear" [Visible]="DiameterRightNear?.Visible" id="A16684" data-tid="A348833"></hvl-text-box>
+                    </td>
+                    <td id="A16685" data-tid="A348834">
+                        <hvl-text-box #Validation (TextChange)="onGradientRightNearChanged($event)" [BackColor]="GradientRightNear?.BackColor" [CharacterCasing]="GradientRightNear?.CharacterCasing" [Enabled]="GradientRightNear?.Enabled" [Font]="GradientRightNear?.Font" [ForeColor]="GradientRightNear?.ForeColor" [height]="GradientRightNear?.Height" [InputFormat]="GradientRightNear?.InputFormat" [InputTurkishCharacter]="GradientRightNear?.InputTurkishCharacter" [IsNonNumeric]="GradientRightNear?.IsNonNumeric" [MultiLine]="GradientRightNear?.Multiline" [ReadOnly]="GradientRightNear?.ReadOnly" [Required]="GradientRightNear?.Required" [TabIndex]="GradientRightNear?.TabIndex" [TextAlign]="GradientRightNear?.TextAlign" [Text]="glassesReportFormViewModel?._GlassesReport?.GradientRightNear" [Visible]="GradientRightNear?.Visible" id="A16686" data-tid="A348835"></hvl-text-box>
+                    </td>
+                    <td id="A16687" data-tid="A348836">
+                        <hvl-text-box #Validation (TextChange)="onSphLeftNearChanged($event)" [BackColor]="SphLeftNear?.BackColor" [CharacterCasing]="SphLeftNear?.CharacterCasing" [Enabled]="SphLeftNear?.Enabled" [Font]="SphLeftNear?.Font" [ForeColor]="SphLeftNear?.ForeColor" [height]="SphLeftNear?.Height" [InputFormat]="SphLeftNear?.InputFormat" [InputTurkishCharacter]="SphLeftNear?.InputTurkishCharacter" [IsNonNumeric]="SphLeftNear?.IsNonNumeric" [MultiLine]="SphLeftNear?.Multiline" [ReadOnly]="SphLeftNear?.ReadOnly" [Required]="SphLeftNear?.Required" [TabIndex]="SphLeftNear?.TabIndex" [TextAlign]="SphLeftNear?.TextAlign" [Text]="glassesReportFormViewModel?._GlassesReport?.SphLeftNear" [Visible]="SphLeftNear?.Visible" id="A16688" data-tid="A348837"></hvl-text-box>
+                    </td>
+                    <td id="A16689" data-tid="A348838">
+                        <hvl-text-box #Validation (TextChange)="onCylLeftNearChanged($event)" [BackColor]="CylLeftNear?.BackColor" [CharacterCasing]="CylLeftNear?.CharacterCasing" [Enabled]="CylLeftNear?.Enabled" [Font]="CylLeftNear?.Font" [ForeColor]="CylLeftNear?.ForeColor" [height]="CylLeftNear?.Height" [InputFormat]="CylLeftNear?.InputFormat" [InputTurkishCharacter]="CylLeftNear?.InputTurkishCharacter" [IsNonNumeric]="CylLeftNear?.IsNonNumeric" [MultiLine]="CylLeftNear?.Multiline" [ReadOnly]="CylLeftNear?.ReadOnly" [Required]="CylLeftNear?.Required" [TabIndex]="CylLeftNear?.TabIndex" [TextAlign]="CylLeftNear?.TextAlign" [Text]="glassesReportFormViewModel?._GlassesReport?.CylLeftNear" [Visible]="CylLeftNear?.Visible" id="A16690" data-tid="A348839"></hvl-text-box>
+                    </td>
+                    <td id="A16691" data-tid="A348840">
+                        <hvl-text-box #Validation (TextChange)="onAxLeftNearChanged($event)" [BackColor]="AxLeftNear?.BackColor" [CharacterCasing]="AxLeftNear?.CharacterCasing" [Enabled]="AxLeftNear?.Enabled" [Font]="AxLeftNear?.Font" [ForeColor]="AxLeftNear?.ForeColor" [height]="AxLeftNear?.Height" [InputFormat]="AxLeftNear?.InputFormat" [InputTurkishCharacter]="AxLeftNear?.InputTurkishCharacter" [IsNonNumeric]="AxLeftNear?.IsNonNumeric" [MultiLine]="AxLeftNear?.Multiline" [ReadOnly]="AxLeftNear?.ReadOnly" [Required]="AxLeftNear?.Required" [TabIndex]="AxLeftNear?.TabIndex" [TextAlign]="AxLeftNear?.TextAlign" [Text]="glassesReportFormViewModel?._GlassesReport?.AxLeftNear" [Visible]="AxLeftNear?.Visible" id="A16692" data-tid="A348841"></hvl-text-box>
+                    </td>
+                    <td id="A16693" data-tid="A348842">
+                        <hvl-text-box #Validation (TextChange)="onDiameterLeftNearChanged($event)" [BackColor]="DiameterLeftNear?.BackColor" [CharacterCasing]="DiameterLeftNear?.CharacterCasing" [Enabled]="DiameterLeftNear?.Enabled" [Font]="DiameterLeftNear?.Font" [ForeColor]="DiameterLeftNear?.ForeColor" [height]="DiameterLeftNear?.Height" [InputFormat]="DiameterLeftNear?.InputFormat" [InputTurkishCharacter]="DiameterLeftNear?.InputTurkishCharacter" [IsNonNumeric]="DiameterLeftNear?.IsNonNumeric" [MultiLine]="DiameterLeftNear?.Multiline" [ReadOnly]="DiameterLeftNear?.ReadOnly" [Required]="DiameterLeftNear?.Required" [TabIndex]="DiameterLeftNear?.TabIndex" [TextAlign]="DiameterLeftNear?.TextAlign" [Text]="glassesReportFormViewModel?._GlassesReport?.DiameterLeftNear" [Visible]="DiameterLeftNear?.Visible" id="A16694" data-tid="A348843"></hvl-text-box>
+                    </td>
+                    <td id="A16695" data-tid="A348844">
+                        <hvl-text-box #Validation (TextChange)="onGradientLeftNearChanged($event)" [BackColor]="GradientLeftNear?.BackColor" [CharacterCasing]="GradientLeftNear?.CharacterCasing" [Enabled]="GradientLeftNear?.Enabled" [Font]="GradientLeftNear?.Font" [ForeColor]="GradientLeftNear?.ForeColor" [height]="GradientLeftNear?.Height" [InputFormat]="GradientLeftNear?.InputFormat" [InputTurkishCharacter]="GradientLeftNear?.InputTurkishCharacter" [IsNonNumeric]="GradientLeftNear?.IsNonNumeric" [MultiLine]="GradientLeftNear?.Multiline" [ReadOnly]="GradientLeftNear?.ReadOnly" [Required]="GradientLeftNear?.Required" [TabIndex]="GradientLeftNear?.TabIndex" [TextAlign]="GradientLeftNear?.TextAlign" [Text]="glassesReportFormViewModel?._GlassesReport?.GradientLeftNear" [Visible]="GradientLeftNear?.Visible" id="A16696" data-tid="A348845"></hvl-text-box>
+                    </td>
+                    <td id="A16697" data-tid="A348846">
+                        <hvl-enum-combobox #Validation (ValueChange)="onGlassLeftTypeNearChanged($event)" [BackColor]="GlassLeftTypeNear?.BackColor" [DataTypeName]="GlassLeftTypeNear?.DataTypeName" [Enabled]="GlassLeftTypeNear?.Enabled" [Font]="GlassLeftTypeNear?.Font" [ForeColor]="GlassLeftTypeNear?.ForeColor" [IncludeOnly]="GlassLeftTypeNear?.IncludeOnly" [ReadOnly]="GlassLeftTypeNear?.ReadOnly" [ShowClearButton]="GlassLeftTypeNear?.ShowClearButton" [SortBy]="GlassLeftTypeNear?.SortBy" [TabIndex]="GlassLeftTypeNear?.TabIndex" [Value]="glassesReportFormViewModel?._GlassesReport?.GlassLeftTypeNear" [Visible]="GlassLeftTypeNear?.Visible" id="A16698" data-tid="A348847"></hvl-enum-combobox>
+                    </td>
+                    <td id="A16699" data-tid="A348848">
+                        <hvl-enum-combobox #Validation (ValueChange)="onGlassColorLeftNearChanged($event)" [BackColor]="GlassColorLeftNear?.BackColor" [DataTypeName]="GlassColorLeftNear?.DataTypeName" [Enabled]="GlassColorLeftNear?.Enabled" [Font]="GlassColorLeftNear?.Font" [ForeColor]="GlassColorLeftNear?.ForeColor" [IncludeOnly]="GlassColorLeftNear?.IncludeOnly" [ReadOnly]="GlassColorLeftNear?.ReadOnly" [ShowClearButton]="GlassColorLeftNear?.ShowClearButton" [SortBy]="GlassColorLeftNear?.SortBy" [TabIndex]="GlassColorLeftNear?.TabIndex" [Value]="glassesReportFormViewModel?._GlassesReport?.GlassColorLeftNear" [Visible]="GlassColorLeftNear?.Visible" id="A16700" data-tid="A348849"></hvl-enum-combobox>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+    <div class="row" style="padding-top:10px" id="A16701" data-tid="A348850">
+        <div class="col-sm-11" id="A16702" data-tid="A348851">
+            <div class="col-sm-12" style="margin-left: -14px;padding-left: 0px;" id="A16703" data-tid="A348852">
+                <dx-data-grid id="gridContainer" [dataSource]="MedulaOldGlassesReports" [(selectedRowKeys)]="selectedOldGlassesReport" (onRowClick)="grdOldGlassesReportClick($event)" data-tid="A348853">
+                    <dxo-selection mode="single" id="A16704" data-tid="A348854"></dxo-selection>
+                    <dxi-column dataField="eReceteNo" caption="Reçete No" i18n-caption="@@M20953" id="A16705" data-tid="A348855"></dxi-column>
+                    <dxi-column dataField="takipNo" caption="Takip No" i18n-caption="@@M22659" id="A16706" data-tid="A348856"></dxi-column>
+                    <dxi-column dataField="receteTarihi" caption="Reçete Tarihi" i18n-caption="@@M20959" id="A16707" data-tid="A348857"></dxi-column>
+                    <dxi-column dataField="doktorTcKimlikNo" caption="Doktor" i18n-caption="@@M27330" id="A16708" data-tid="A348858"></dxi-column>
+                    <dxi-column dataField="receteTipi" caption="Reçete Tipi" i18n-caption="@@M20960" id="A16709" data-tid="A348859"></dxi-column>
+                </dx-data-grid>
+            </div>
+        </div>
+        <div class="col-sm-1" id="A16710" data-tid="A348860">
+            <div class="row" id="A16711" data-tid="A348861">
+                <dx-button icon="search" type="success" text=" Listele" (onClick)="searchClick()" id="A16712" data-tid="A348862">
+                </dx-button>
+            </div>
+            <div class="row" style="padding-top:5px" id="A16713" data-tid="A348863">
+                <dx-button icon="close" type="danger" text="İptal Et" (onClick)="deleteClick()" i18n-text="@@M16552" id="A16714" data-tid="A348864">
+                </dx-button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<dx-popup width="450px" height="500px" [(visible)]="showMedulaResultPopupVisible" [closeOnOutsideClick]="true" title="Medula Mesajı" i18n-title="@@M27483" id="A16715" data-tid="A348865">
+    <div *dxTemplate="let data of 'content'" id="A16716" data-tid="A348866">
+        <label id="A16717" data-tid="A348867">
+            {{medulaReceteMessage}}
+        </label>
+    </div>
+</dx-popup>
+
+<dx-popup width="750px" height="300px" [(visible)]="selectedOldGlassesReportInfoPopupVisible" [closeOnOutsideClick]="true" title="Medula Mesajı" i18n-title="@@M27483" id="A16718" data-tid="A348868">
+    <div *dxTemplate="let data of 'content'" id="A16719" data-tid="A348869">
+        <div class="row" *ngIf="oldGlassesReportType==1" id="A16720" data-tid="A348870">
+            <div class="col-sm-12" id="A16721" data-tid="A348871">
+                <table class="table table-bordered" id="A16722" data-tid="A348872">
+                    <tr id="A16723" data-tid="A348873">
+                        <th colspan="8" id="A16724" data-tid="A348874">
+                            Gözlük Tipi : {{selectedOldInfo?.gozlukTuru1}}
+                        </th>
+                    </tr>
+                    <tr style="text-align:center" id="A16725" data-tid="A348875">
+                        <th colspan="3" style="text-align:center" id="A16726" data-tid="A348876">SAĞ</th>
+                        <th colspan="3" style="text-align:center" id="A16727" data-tid="A348877">SOL</th>
+                        <th style="border-right:hidden" id="A16728" data-tid="A348878"></th>
+                        <th id="A16729" data-tid="A348879"></th>
+                    </tr>
+                    <tr style="text-align:center" id="A16730" data-tid="A348880">
+                        <td id="A16731" data-tid="A348881">SPH</td>
+                        <td id="A16732" data-tid="A348882">CYL</td>
+                        <td id="A16733" data-tid="A348883">AX.</td>
+                        <td id="A16734" data-tid="A348884">SPH</td>
+                        <td id="A16735" data-tid="A348885">CYL</td>
+                        <td id="A16736" data-tid="A348886">AX.</td>
+                        <td id="A16737" data-tid="A348887">Cam Tipi</td>
+                        <td id="A16738" data-tid="A348888">Cam Rengi</td>
+                    </tr>
+                    <tr style="text-align:center" id="A16739" data-tid="A348889">
+                        <td id="A16740" data-tid="A348890">{{selectedOldInfo?.sagSferik1}}</td>
+                        <td id="A16741" data-tid="A348891">{{selectedOldInfo?.sagSilendirik1}}</td>
+                        <td id="A16742" data-tid="A348892">{{selectedOldInfo?.sagAks1}}</td>
+                        <td id="A16743" data-tid="A348893">{{selectedOldInfo?.solSferik1}}</td>
+                        <td id="A16744" data-tid="A348894">{{selectedOldInfo?.solSilendirik1}}</td>
+                        <td id="A16745" data-tid="A348895">{{selectedOldInfo?.solAks1}}</td>
+                        <td id="A16746" data-tid="A348896">{{selectedOldInfo?.camTipi1}}</td>
+                        <td id="A16747" data-tid="A348897">{{selectedOldInfo?.camRengi1}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row" *ngIf="oldGlassesReportType==2" id="A16748" data-tid="A348898">
+            <div class="col-sm-12" id="A16749" data-tid="A348899">
+                <table class="table table-bordered" id="A16750" data-tid="A348900">
+                    <tr id="A16751" data-tid="A348901">
+                        <th colspan="10" id="A16752" data-tid="A348902">
+                            Gözlük Tipi : Keratakonuslens
+                        </th>
+                    </tr>
+                    <tr style="text-align:center" id="A16753" data-tid="A348903">
+                        <th colspan="5" style="text-align:center" id="A16754" data-tid="A348904">SAĞ</th>
+                        <th colspan="5" style="text-align:center" id="A16755" data-tid="A348905">SOL</th>
+                    </tr>
+                    <tr style="text-align:center" id="A16756" data-tid="A348906">
+                        <td id="A16757" data-tid="A348907">SPH</td>
+                        <td id="A16758" data-tid="A348908">CYL</td>
+                        <td id="A16759" data-tid="A348909">AX.</td>
+                        <td id="A16760" data-tid="A348910">ÇAP</td>
+                        <td id="A16761" data-tid="A348911">EĞİM</td>
+                        <td id="A16762" data-tid="A348912">SPH</td>
+                        <td id="A16763" data-tid="A348913">CYL</td>
+                        <td id="A16764" data-tid="A348914">AX.</td>
+                        <td id="A16765" data-tid="A348915">ÇAP</td>
+                        <td id="A16766" data-tid="A348916">EĞİM</td>
+                    </tr>
+                    <tr style="text-align:center" id="A16767" data-tid="A348917">
+                        <td id="A16768" data-tid="A348918">{{selectedOldInfo?.keratakonusSagCamSferik}}</td>
+                        <td id="A16769" data-tid="A348919">{{selectedOldInfo?.keratakonusSagCamSilendirik}}</td>
+                        <td id="A16770" data-tid="A348920">{{selectedOldInfo?.keratakonusSagCamAks}}</td>
+                        <td id="A16771" data-tid="A348921">{{selectedOldInfo?.keratakonusSagCamCap}}</td>
+                        <td id="A16772" data-tid="A348922">{{selectedOldInfo?.keratakonusSagCamEgim}}</td>
+                        <td id="A16773" data-tid="A348923">{{selectedOldInfo?.keratakonusSolCamSferik}}</td>
+                        <td id="A16774" data-tid="A348924">{{selectedOldInfo?.keratakonusSolCamSilendirik}}</td>
+                        <td id="A16775" data-tid="A348925">{{selectedOldInfo?.keratakonusSolCamAks}}</td>
+                        <td id="A16776" data-tid="A348926">{{selectedOldInfo?.keratakonusSolCamCap}}</td>
+                        <td id="A16777" data-tid="A348927">{{selectedOldInfo?.keratakonusSolCamEgim}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row" *ngIf="oldGlassesReportType==3" id="A16778" data-tid="A348928">
+            <div class="col-sm-12" id="A16779" data-tid="A348929">
+                <table class="table table-bordered" id="A16780" data-tid="A348930">
+                    <tr id="A16781" data-tid="A348931">
+                        <th colspan="10" id="A16782" data-tid="A348932">
+                            Gözlük Tipi : Lens
+                        </th>
+                    </tr>
+                    <tr style="text-align:center" id="A16783" data-tid="A348933">
+                        <th colspan="5" style="text-align:center" id="A16784" data-tid="A348934">SAĞ</th>
+                        <th colspan="5" style="text-align:center" id="A16785" data-tid="A348935">SOL</th>
+                    </tr>
+                    <tr style="text-align:center" id="A16786" data-tid="A348936">
+                        <td id="A16787" data-tid="A348937">SPH</td>
+                        <td id="A16788" data-tid="A348938">CYL</td>
+                        <td id="A16789" data-tid="A348939">AX.</td>
+                        <td id="A16790" data-tid="A348940">ÇAP</td>
+                        <td id="A16791" data-tid="A348941">EĞİM</td>
+                        <td id="A16792" data-tid="A348942">SPH</td>
+                        <td id="A16793" data-tid="A348943">CYL</td>
+                        <td id="A16794" data-tid="A348944">AX.</td>
+                        <td id="A16795" data-tid="A348945">ÇAP</td>
+                        <td id="A16796" data-tid="A348946">EĞİM</td>
+                    </tr>
+                    <tr style="text-align:center" id="A16797" data-tid="A348947">
+                        <td id="A16798" data-tid="A348948">{{selectedOldInfo?.lensSagCamSferik}}</td>
+                        <td id="A16799" data-tid="A348949">{{selectedOldInfo?.lensSagCamSilendirik}}</td>
+                        <td id="A16800" data-tid="A348950">{{selectedOldInfo?.lensSagCamAks}}</td>
+                        <td id="A16801" data-tid="A348951">{{selectedOldInfo?.lensSagCamCap}}</td>
+                        <td id="A16802" data-tid="A348952">{{selectedOldInfo?.lensSagCamEgim}}</td>
+                        <td id="A16803" data-tid="A348953">{{selectedOldInfo?.lensSolCamSferik}}</td>
+                        <td id="A16804" data-tid="A348954">{{selectedOldInfo?.lensSolCamSilendirik}}</td>
+                        <td id="A16805" data-tid="A348955">{{selectedOldInfo?.lensSolCamAks}}</td>
+                        <td id="A16806" data-tid="A348956">{{selectedOldInfo?.lensSolCamCap}}</td>
+                        <td id="A16807" data-tid="A348957">{{selectedOldInfo?.lensSolCamEgim}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row" *ngIf="oldGlassesReportType==4" id="A16808" data-tid="A348958">
+            <div class="col-sm-12" id="A16809" data-tid="A348959">
+
+            </div>
+        </div>
+    </div>
+</dx-popup>
+<dx-popup width="750px" height="500px" [(visible)]="selectedOldGlassesReportInfoPopupVisibleTwoGlasses" [closeOnOutsideClick]="true" title="Medula Mesajı" i18n-title="@@M27483" id="A16810" data-tid="A348960">
+    <div *dxTemplate="let data of 'content'" id="A16811" data-tid="A348961">
+        <div class="row" id="A16812" data-tid="A348962">
+            <div class="col-sm-12" id="A16813" data-tid="A348963">
+                <table class="table table-bordered" id="A16814" data-tid="A348964">
+                    <tr id="A16815" data-tid="A348965">
+                        <th colspan="8" id="A16816" data-tid="A348966">
+                            Gözlük Tipi : {{selectedOldInfo?.gozlukTuru1}}
+                        </th>
+                    </tr>
+                    <tr style="text-align:center" id="A16817" data-tid="A348967">
+                        <th colspan="3" style="text-align:center" id="A16818" data-tid="A348968">SAĞ</th>
+                        <th colspan="3" style="text-align:center" id="A16819" data-tid="A348969">SOL</th>
+                        <th style="border-right:hidden" id="A16820" data-tid="A348970"></th>
+                        <th id="A16821" data-tid="A348971"></th>
+                    </tr>
+                    <tr style="text-align:center" id="A16822" data-tid="A348972">
+                        <td id="A16823" data-tid="A348973">SPH</td>
+                        <td id="A16824" data-tid="A348974">CYL</td>
+                        <td id="A16825" data-tid="A348975">AX.</td>
+                        <td id="A16826" data-tid="A348976">SPH</td>
+                        <td id="A16827" data-tid="A348977">CYL</td>
+                        <td id="A16828" data-tid="A348978">AX.</td>
+                        <td id="A16829" data-tid="A348979">Cam Tipi</td>
+                        <td id="A16830" data-tid="A348980">Cam Rengi</td>
+                    </tr>
+                    <tr style="text-align:center" id="A16831" data-tid="A348981">
+                        <td id="A16832" data-tid="A348982">{{selectedOldInfo?.sagSferik1}}</td>
+                        <td id="A16833" data-tid="A348983">{{selectedOldInfo?.sagSilendirik1}}</td>
+                        <td id="A16834" data-tid="A348984">{{selectedOldInfo?.sagAks1}}</td>
+                        <td id="A16835" data-tid="A348985">{{selectedOldInfo?.solSferik1}}</td>
+                        <td id="A16836" data-tid="A348986">{{selectedOldInfo?.solSilendirik1}}</td>
+                        <td id="A16837" data-tid="A348987">{{selectedOldInfo?.solAks1}}</td>
+                        <td id="A16838" data-tid="A348988">{{selectedOldInfo?.camTipi1}}</td>
+                        <td id="A16839" data-tid="A348989">{{selectedOldInfo?.camRengi1}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row" id="A16840" data-tid="A348990">
+            <div class="col-sm-12" id="A16841" data-tid="A348991">
+                <table class="table table-bordered" id="A16842" data-tid="A348992">
+                    <tr id="A16843" data-tid="A348993">
+                        <th colspan="8" id="A16844" data-tid="A348994">
+                            Gözlük Tipi : {{selectedOldInfo?.gozlukTuru2}}
+                        </th>
+                    </tr>
+                    <tr style="text-align:center" id="A16845" data-tid="A348995">
+                        <th colspan="3" style="text-align:center" id="A16846" data-tid="A348996">SAĞ</th>
+                        <th colspan="3" style="text-align:center" id="A16847" data-tid="A348997">SOL</th>
+                        <th id="A16848" data-tid="A348998"></th>
+                        <th id="A16849" data-tid="A348999"></th>
+                    </tr>
+                    <tr style="text-align:center" id="A16850" data-tid="A349000">
+                        <td id="A16851" data-tid="A349001">SPH</td>
+                        <td id="A16852" data-tid="A349002">CYL</td>
+                        <td id="A16853" data-tid="A349003">AX.</td>
+                        <td id="A16854" data-tid="A349004">SPH</td>
+                        <td id="A16855" data-tid="A349005">CYL</td>
+                        <td id="A16856" data-tid="A349006">AX.</td>
+                        <td id="A16857" data-tid="A349007">Cam Tipi</td>
+                        <td id="A16858" data-tid="A349008">Cam Rengi</td>
+                    </tr>
+                    <tr style="text-align:center" id="A16859" data-tid="A349009">
+                        <td id="A16860" data-tid="A349010">{{selectedOldInfo?.sagSferik2}}</td>
+                        <td id="A16861" data-tid="A349011">{{selectedOldInfo?.sagSilendirik2}}</td>
+                        <td id="A16862" data-tid="A349012">{{selectedOldInfo?.sagAks2}}</td>
+                        <td id="A16863" data-tid="A349013">{{selectedOldInfo?.solSferik2}}</td>
+                        <td id="A16864" data-tid="A349014">{{selectedOldInfo?.solSilendirik2}}</td>
+                        <td id="A16865" data-tid="A349015">{{selectedOldInfo?.solAks2}}</td>
+                        <td id="A16866" data-tid="A349016">{{selectedOldInfo?.camTipi2}}</td>
+                        <td id="A16867" data-tid="A349017">{{selectedOldInfo?.camRengi2}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        </div>
+    </dx-popup>

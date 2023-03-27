@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+
+
+<div class="container-fluid" id="A11728" data-tid="A342016">
+    <div class="row" id="A11729" data-tid="A342017">
+        <div class="col-sm-3" id="A11730" data-tid="A342018">
+            <label class="control-label" id="A11731" data-tid="A342019">Başlangıç Tarihi</label>
+            <dx-date-box [(value)]="evdeSaglikBasvuruSorgulaSilViewModel.StartDate" type="datetime" displayFormat="dd/MM/yyyy" style="width:100%" id="A11732" data-tid="A342020"> </dx-date-box>
+        </div>
+    </div>
+    <div class="row" id="A11733" data-tid="A342021">
+        <div class="col-sm-3" id="A11734" data-tid="A342022">
+            <label class="control-label" id="A11735" data-tid="A342023">Bitiş Tarihi</label>
+            <dx-date-box [(value)]="evdeSaglikBasvuruSorgulaSilViewModel.EndDate" type="datetime" displayFormat="dd/MM/yyyy" style="width:100%" id="A11736" data-tid="A342024"> </dx-date-box>
+        </div>
+        <div class="col-sm-9 margin-top-10 right-float" id="A11737" data-tid="A342025">
+            <dx-button (onClick)="getHomeCarePatients()" text="Listele" i18n-text="@@M27337" id="A11738" data-tid="A342026"></dx-button>
+        </div>
+       
+    </div>
+
+        <div class="row" id="A11739" data-tid="A342027">
+            <div class="col-sm-12" id="A11740" data-tid="A342028">
+                <dx-data-grid [selection]="{mode: 'single'}" showColumnLines="true" showRowLines="true" showBorders="true" [dataSource]="homeCarePatientsResult" [columns]="HomeCarePatientListColumns" (onRowPrepared)="onRowPreparedPatientList($event)" [editing]="{allowUpdating: false, mode: 'cell'}" [height]="250" id="A11741" data-tid="A342029">
+
+
+                   
+
+                        <div *dxTemplate="let row of 'linkCellTemplateGetApplication'" id="A11742" data-tid="A342030">
+
+                    <button *ngIf="row.data.IsSaved" class="btn btn-xs btn-default" style="margin-top: -15px;margin-bottom: -10px;margin-left: 17px;height: 16px !important;" (click)="getApplication(row)" id="A11743" data-tid="A342031"><i class="fa fa-refresh" title="Başvuru Sorgula" i18n-title="@@M27515" id="A11744" data-tid="A342032"></i></button>
+            </div>
+            <div *dxTemplate="let row of 'linkCellTemplateDeleteApplication'" id="A11745" data-tid="A342033">
+                <button *ngIf="row.data.IsSaved" class="btn btn-xs btn-default" style="margin-top: -15px;margin-bottom: -10px;margin-left: 17px;height: 16px !important;" (click)="deleteApplication(row)" id="A11746" data-tid="A342034"><i class="fa fa-trash" title="Başvuru Sil" i18n-title="@@M27454" id="A11747" data-tid="A342035"></i></button>
+            </div>
+            <div *dxTemplate="let row of 'linkCellTemplateSaveApplication'" id="A11748" data-tid="A342036">
+                <button *ngIf="row.data.IsDeleted == false && row.data.IsNew" class="btn btn-xs btn-default" style="margin-top: -15px;margin-bottom: -10px;margin-left: 17px;height: 16px !important;" (click)="saveApplication(row)" id="A11749" data-tid="A342037"><i class="fa fa-floppy-o" title="Başvuru Kaydet" i18n-title="@@M27478" id="A11750" data-tid="A342038"></i></button>
+            </div>
+
+</dx-data-grid>
+            </div>
+        </div>
+    </div>

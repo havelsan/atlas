@@ -1,0 +1,983 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Infragistics4.Win.UltraWinGrid.WordWriter.v14.2</name>
+    </assembly>
+    <members>
+        <member name="M:Infragistics.Shared.LocalizedCategoryAttribute.GetLocalizedString(System.String)">
+            <summary>
+            Returns the localized category name
+            </summary>
+            <param name="value">Name of the category to retreive</param>
+            <returns>The localized string value</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.GridExportCache.DocumentBandInfo.GetItemsInLogicalRow(System.Int32)">
+            <summary>
+            Returns only the headers that have a presence on a particular logical row in order from left to right. 
+            </summary>
+            <param name="logicalRow"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infragistics.Shared.UltraLicenseAttribute.GetLicensedWithProducts">
+            <summary>
+            Return the list of products that this control can be licensed with
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.WordWriter.HeaderTypes">
+            <summary>
+            An enumerator for different header types used in header export related events.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.WordWriter.HeaderTypes.BandHeader">
+            <summary>
+            Indicates that the header being exported is a band header.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.WordWriter.HeaderTypes.GroupHeader">
+            <summary>
+            Indicates that the header being exported is a group header.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.WordWriter.HeaderTypes.ColumnHeader">
+            <summary>
+            Indicates that the header being exported is a column header.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.WordWriter.AutoSize">
+            <summary>
+            Options for automatically sizing the columns and rows of the grid before exporting.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.WordWriter.AutoSize.None">
+            <summary>
+            No automatic sizing will be performed on either columns or rows.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.WordWriter.AutoSize.SizeColumnsToContent">
+            <summary>
+            Size the columns to their contents before exporting.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.WordWriter.CheckBoxExportStyle">
+            <summary>
+            Options for determining how CheckBox cells in the grid are exported to MS Word.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.WordWriter.CheckBoxExportStyle.Image">
+            <summary>
+            CheckBoxes in the grid will be exported as simple checkbox images.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.WordWriter.CheckBoxExportStyle.Text">
+            <summary>
+            CheckBoxes in the grid will be exported as a text representation of the cell's value.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.WordWriter.ExportStartedEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.ExportStarted"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.ExportStartedEventArgs.#ctor(Infragistics.Win.UltraWinGrid.UltraGridLayout,Infragistics.Win.UltraWinGrid.RowsCollection,Infragistics.Documents.Word.WordDocumentWriter)">
+            <summary>
+            Creates a new ExportStartedEventArgs instance.
+            </summary>
+            <param name="layout">A cloned <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridLayout"/> of the grid being exported.</param>
+            <param name="rows">The root <see cref="T:Infragistics.Win.UltraWinGrid.RowsCollection"/> of the grid being exported.</param>
+            <param name="wordDocumentWriter"> The <see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.ExportStartedEventArgs.WordDocumentWriter"/> class which is being used to write the grid to the destination.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.ExportStartedEventArgs.Layout">
+            <summary>
+            A cloned <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridLayout"/> of the grid being exported.
+            </summary>
+            <remarks>
+            <para class="body">Since this layout is a clone of the grid layout, it can be safely modified to affect the export without affecting the on-screen grid.</para>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.ExportStartedEventArgs.Rows">
+            <summary>
+            The root <see cref="T:Infragistics.Win.UltraWinGrid.RowsCollection"/> of the grid being exported.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.ExportStartedEventArgs.WordDocumentWriter">
+            <summary>
+            Returns a reference to the <see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.ExportStartedEventArgs.WordDocumentWriter"/> which is writing the grid into the destination.
+            </summary>
+            <remarks>
+            The WordDocumentWriter can be used to export additional data to the Word Document before the grid table.
+            It can also be used to add content to the headers and footers of the document. See the <see cref="M:Infragistics.Documents.Word.WordDocumentWriter.AddSectionHeaderFooter(Infragistics.Documents.Word.SectionHeaderFooterParts,Infragistics.Documents.Word.SectionProperties)"/> method for more details on headers and footers.
+            </remarks>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.WordWriter.WordWriterInitializeRowEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.InitializeRow"/> event.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.WordWriterInitializeRowEventArgs.Row">
+            <summary>
+            The grid row being initialized.
+            </summary>
+            <remarks>
+            <para class="body">This row is not the same as the row in the On-screen grid. It is a new row that belongs to the export layout. As such, properties of the row can safely be modified and will affect the export, but will not affect the on-screen grid.</para>
+            <para class="note"><b>Note:</b> The Value property of a cell is not stored by the row. It is stored by the underlying data source. So setting the Value of a cell in this row will affect the same data source as the on-screen grid.</para>
+            <para class="note"><b>Note:</b> Since this row is part of the export layout, it will not share state information (such as the selected or expanded state) with the on-screen row. To get a reference to the corresponding on-screen grid row, use the <see cref="M:Infragistics.Win.UltraWinGrid.UltraGrid.GetRowFromPrintRow(Infragistics.Win.UltraWinGrid.UltraGridRow)"/> method of the grid.</para>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.WordWriterInitializeRowEventArgs.SkipRow">
+            <summary>
+            Specifies whether to skip the current row.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.WordWriterInitializeRowEventArgs.SkipDescendants">
+            <summary>
+            Specifies whether to skip the descendats of the current row.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.WordWriterInitializeRowEventArgs.SkipSiblings">
+            <summary>
+            Specifies whether to skip sibling rows of the current row.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.WordWriterInitializeRowEventArgs.TerminateExport">
+            <summary>
+            Specifies whether to terminate the export process. If the export is terminated, the current row will not be processed.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.WordWriter.ExportEndingEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.ExportEnding"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.ExportEndingEventArgs.#ctor(System.Boolean,Infragistics.Documents.Word.WordDocumentWriter)">
+            <summary>
+            Creates a new <see cref="T:Infragistics.Win.UltraWinGrid.WordWriter.ExportEndingEventArgs"/> instance.
+            </summary>
+            <param name="cancelled">True if exporting process was cancelled.</param>
+            <param name="wordDocumentWriter"> The <see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.ExportEndingEventArgs.WordDocumentWriter"/> class which is being used to write the grid to the destination.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.ExportEndingEventArgs.Canceled">
+            <summary>
+            True if the exporting process was cancelled.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.ExportEndingEventArgs.WordDocumentWriter">
+            <summary>
+            Returns a reference to the <see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.ExportEndingEventArgs.WordDocumentWriter"/> which is writing the grid into the destination.
+            </summary>
+            <remarks>
+            The WordDocumentWriter can be used to export additional data to the Word Document after the grid table.
+            It can also be used to add content to the headers and footers of the document. See the <see cref="M:Infragistics.Documents.Word.WordDocumentWriter.AddSectionHeaderFooter(Infragistics.Documents.Word.SectionHeaderFooterParts,Infragistics.Documents.Word.SectionProperties)"/> method for more details on headers and footers.
+            </remarks>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.WordWriter.ExportEndedEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.ExportEnded"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.ExportEndedEventArgs.#ctor(System.Boolean)">
+            <summary>
+            Creates a new <see cref="T:Infragistics.Win.UltraWinGrid.WordWriter.ExportEndedEventArgs"/> instance.
+            </summary>
+            <param name="cancelled">True if exporting process was cancelled.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.ExportEndedEventArgs.Canceled">
+            <summary>
+            True if the exporting process was cancelled.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.WordWriter.TableCellExportingEventArgs">
+            <summary>
+            Base class for event arguments for events that fire before writing a Table Cell to a Microsoft Word document.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.TableCellExportingEventArgs.#ctor(Infragistics.Win.UltraWinGrid.WordWriter.WordTableCellSettings)">
+            <summary>
+            Creates a new <see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.TableCellExportingEventArgs.WordTableCellSettings"/> instance.
+            </summary>
+            <param name="wordTableCellSettings">An object which allows getting or setting the properties of the table cell in the resuling Word document.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.TableCellExportingEventArgs.GetInitialExportValue">
+            <summary>
+            Returns the initial value of the dat to be written to the table cell.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.TableCellExportingEventArgs.ExportValue">
+            <summary>
+            Returns or sets the value that will be exported to the report. 
+            </summary>
+            <remarks>
+            <p class="body">This property allows you to change the value being exported without affecting the on-screen grid or the data source.</p>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.TableCellExportingEventArgs.WordTableCellSettings">
+            <summary>
+            Returns or sets properties of the table cell in the Word document such as BackColor, Font, and VerticalAlignment;
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.WordWriter.CellExportingEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.CellExporting"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.CellExportingEventArgs.#ctor(Infragistics.Win.UltraWinGrid.UltraGridRow,Infragistics.Win.UltraWinGrid.UltraGridColumn,Infragistics.Win.UltraWinGrid.WordWriter.WordTableCellSettings)">
+            <summary>
+            Creates a new <see cref="T:Infragistics.Win.UltraWinGrid.WordWriter.CellExportingEventArgs"/> instance.
+            </summary>
+            <param name="gridRow">The <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridRow"/> containing the cell.</param>
+            <param name="gridColumn">The associated <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridColumn"/> containing the cell.</param>
+            <param name="wordTableCellSettings">An object which allows getting or setting the properties of the table cell in the resuling Word document.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.CellExportingEventArgs.GridRow">
+            <summary>
+            Returns the <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridRow"/> containing the cell.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.CellExportingEventArgs.GridColumn">
+            <summary>
+            Returns the <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridColumn"/> which contains the cell being exported.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.CellExportingEventArgs.CellValue">
+            <summary>
+            Returns the grid cell value.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.WordWriter.HeaderCellExportingEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.HeaderCellExporting"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.HeaderCellExportingEventArgs.#ctor(Infragistics.Win.UltraWinGrid.HeaderBase,Infragistics.Win.UltraWinGrid.WordWriter.HeaderTypes,Infragistics.Win.UltraWinGrid.WordWriter.WordTableCellSettings)">
+            <summary>
+            Creates a new <see cref="T:Infragistics.Win.UltraWinGrid.WordWriter.HeaderCellExportingEventArgs"/> instance.
+            </summary>
+            <param name="gridHeader">The <see cref="T:Infragistics.Win.UltraWinGrid.HeaderBase"/> being exported.</param>
+            <param name="headerType">The type of header is being exported: a band header, group, or column header.</param>
+            <param name="wordTableCellSettings">An object which allows getting or setting the properties of the table cell in the resuling Word document.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.HeaderCellExportingEventArgs.GridHeader">
+            <summary>
+            Returns the <see cref="T:Infragistics.Win.UltraWinGrid.HeaderBase"/> being exported.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.HeaderCellExportingEventArgs.HeaderType">
+            <summary>
+            Indicates what type of header is being exported: a band header, group, or column header.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.WordWriter.HeaderRowExportingEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.HeaderRowExporting"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.HeaderRowExportingEventArgs.#ctor(Infragistics.Win.UltraWinGrid.UltraGridBand)">
+            <summary>
+            Creates a new <see cref="T:Infragistics.Win.UltraWinGrid.WordWriter.HeaderRowExportingEventArgs"/> instance.
+            </summary>
+            <param name="band">The <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridBand"/> whose headers are being exported.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.HeaderRowExportingEventArgs.Band">
+            <summary>
+            The <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridBand"/> whose headers are being exported.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.WordWriter.SummaryCellExportingEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.SummaryCellExporting"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.SummaryCellExportingEventArgs.#ctor(Infragistics.Win.UltraWinGrid.SummaryValue,System.Int32,Infragistics.Win.UltraWinGrid.WordWriter.WordTableCellSettings)">
+            <summary>
+            Creates a new <see cref="T:Infragistics.Win.UltraWinGrid.WordWriter.SummaryCellExportingEventArgs"/> instance.
+            </summary>
+            <param name="summaryValue">The <see cref="T:Infragistics.Win.UltraWinGrid.SummaryValue"/> being exported.</param>
+            <param name="summaryLevel">The level of the Summary. Summaries are exporting into multiple rows (levels). The summary level indicates on which level this summary is displayed.</param>
+            <param name="wordTableCellSettings">An object which allows getting or setting the properties of the table cell in the resuling Word document.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.SummaryCellExportingEventArgs.SummaryValue">
+            <summary>
+            Returns the <see cref="T:Infragistics.Win.UltraWinGrid.SummaryValue"/> being exported.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.SummaryCellExportingEventArgs.SummaryLevel">
+            <summary>
+            Returns the level of the Summary. Summaries are exporting into multiple rows (levels). The summary level indicates on which level this summary is displayed.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.WordWriter.SummaryRowExportingEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.SummaryRowExporting"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.SummaryRowExportingEventArgs.#ctor(Infragistics.Win.UltraWinGrid.UltraGridSummaryRow)">
+            <summary>
+            Creates a new <see cref="T:Infragistics.Win.UltraWinGrid.WordWriter.SummaryRowExportingEventArgs"/> instance.
+            </summary>
+            <param name="gridSummaryRow">The UltraGridSummaryRow representing the summaries to be exported.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.SummaryRowExportingEventArgs.GridSummaryRow">
+            <summary>
+            The UltraGridSummaryRow representing the summaries to be exported.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.WordWriter.RowExportingEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.RowExporting"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.RowExportingEventArgs.#ctor(Infragistics.Win.UltraWinGrid.UltraGridRow)">
+            <summary>
+            Creates a new <see cref="T:Infragistics.Win.UltraWinGrid.WordWriter.RowExportingEventArgs"/> instance.
+            </summary>
+            <param name="gridRow">The grid row being exported.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.RowExportingEventArgs.GridRow">
+            <summary>
+            The grid row being exported.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.WordWriter.WordTableCellSettings">
+            <summary>
+            An object which gets or sets properties that apply to a cell of a table in a Word document for the purposes 
+            of exporting.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.WordTableCellSettings.BackColor">
+            <summary>
+            Gets / returns the background color of the cell.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.WordTableCellSettings.Font">
+            <summary>
+            The font which will be used to export the text of the cell. May be null if the cell contains
+            no text or has more than one font, such as in the case of a FormattedText cell. 
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.WordTableCellSettings.ParagraphAlignment">
+            <summary>
+            Gets / returns the horizontal alignment of the contents of the cell. 
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.WordTableCellSettings.VerticalAlignment">
+            <summary>
+            Gets / returns the vertical alignment of the contents of the cell. 
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.GraphicsCache.CreateCheckboxBitmap(System.Windows.Forms.CheckState)">
+            <summary>
+            Renders a simple checkbox into a <see cref="T:System.Drawing.Bitmap"/>.
+            </summary>        
+            <param name="checkState">The <see cref="T:System.Windows.Forms.CheckState"/> of the checkbox.</param>
+            <remarks>
+            This method will create a bitmap of a CheckBox in the specified state. 
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.GraphicsCache.Dispose">
+            <summary>
+            Cleans up (disposes) the cached resources 
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.WordWriter.PropertyIds">
+            <summary>
+               Values that uniquely identify each control property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.WordWriter.PropertyIds.AutoSize">
+            <summary>
+            The <see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.AutoSize"/> property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.WordWriter.PropertyIds.TableLayout">
+            <summary>
+            The <see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.WordTableSettings.Layout"/> property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.WordWriter.PropertyIds.PreferredWidth">
+            <summary>
+            The <see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.WordTableSettings.PreferredWidth"/> property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.WordWriter.PropertyIds.PreferredWidthAsPercentage">
+            <summary>
+            The <see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.WordTableSettings.PreferredWidthAsPercentage"/> property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.WordWriter.PropertyIds.WordTableSettings">
+            <summary>
+            The <see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.WordTableSettings"/> property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.WordWriter.PropertyIds.CheckBoxExportStyle">
+            <summary>
+            The <see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.CheckBoxExportStyle"/> property.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.WordWriter.Resources">
+            <summary>
+            Exposes a <see cref="T:Infragistics.Shared.ResourceCustomizer"/> instance for this assembly. 
+            </summary>
+            <seealso cref="P:Infragistics.Win.UltraWinGrid.WordWriter.Resources.Customizer"/> 
+            <seealso cref="T:Infragistics.Shared.ResourceCustomizer"/> 
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.Resources.GetString(System.String,System.Object[])">
+            <summary>
+            Returns the resource string using the specified name and default culture.
+            </summary>
+            <param name="name">Name of the string resource to return.</param>
+            <param name="args">Arguments supplied to the string.Format method when formatting the string.</param>
+            <returns>The resource string using the specified resource name and default culture.</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.Resources.GetString(System.String)">
+            <summary>
+            Returns the resource string using the specified resource name and default culture. The string is then formatted using the arguments specified.
+            </summary>
+            <param name="name">Name of the string resource to return.</param>
+            <returns>The resource string using the specified resource name and default culture.</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.Resources.GetObject(System.String)">
+            <summary>
+            Returns the resource object using the specified name.
+            </summary>
+            <param name="name">Name of the resource item.</param>
+            <returns>An object containing the specified resource.</returns>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.Resources.Customizer">
+            <summary>
+            Returns the <see cref="T:Infragistics.Shared.ResourceCustomizer"/> for this assembly.
+            </summary>
+            <seealso cref="T:Infragistics.Shared.ResourceCustomizer"/> 
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridExporterHelper">
+            <summary>
+            UltraGridExporterHelper implements <see cref="T:Infragistics.Win.UltraWinGrid.IUltraGridExporter"/> and serves 
+            as communication between grid and <see cref="T:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter"/>. 
+            Class is internal so user can't create helper and call 
+            <see cref="M:Infragistics.Win.UltraWinGrid.UltraGrid.Export(Infragistics.Win.UltraWinGrid.IUltraGridExporter)"/> method on the grid directly.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter">
+            <summary>
+            UltraGridWordWriter component provides Microsoft Word exporting functionality to UltraGrid.
+            </summary>	
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.ReportRelevantPropFlags">
+            <summary>
+            Relevant appearance properties used in reports. All other 
+            properties are ignored in exporting process.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.#ctor">
+            <summary>
+            UltraGridWordWriter constructor.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            Creates a new <see cref="T:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter"/> instance.
+            </summary>    
+            <param name="container">The <see cref="T:System.ComponentModel.IContainer"/> implementor which will contain the component.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources used by the System.ComponentModel.Component and optionally releases the managed resources.
+            </summary>
+            <param name="disposing">True to release both managed and unmanaged resources; False to release only unmanaged resources.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.GetCellExportValue(Infragistics.Win.UltraWinGrid.UltraGridRow,Infragistics.Win.UltraWinGrid.UltraGridColumn,Infragistics.Win.UltraWinGrid.WordWriter.CellExportingEventArgs)">
+            <summary>
+            Get the value of a cell to export.
+            </summary>
+            <param name="gridRow"></param>
+            <param name="gridColumn"></param>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.PrepareLayoutBeforeExportStarted(Infragistics.Win.UltraWinGrid.UltraGridLayout)">
+            <summary>
+            Prepares the layout for exporting by modifying any properties that don't make sense in an export, such as ExclusiveColScrollRegions or a Horizontal ViewStyle.
+            This method fires before the ExportStarted event, so changes made here can be overriden by the programmer.
+            </summary>
+            <param name="exportLayout"></param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.PrepareLayoutAfterExportStarted(Infragistics.Win.UltraWinGrid.UltraGridLayout)">
+            <summary>
+            Prepares the layout for exporting by modifying any properties that don't make sense in an export, such as ExclusiveColScrollRegions or a Horizontal ViewStyle.
+            This method is called After the ExportStarted event fires, so changes made in BeforeExport
+            will be overriden here. 
+            </summary>
+            <param name="exportLayout"></param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.Export(Infragistics.Win.UltraWinGrid.UltraGrid,System.String)">
+            <summary>
+            Creates a new Word document with the specified file name and exports the specified UltraWinGrid into it.
+            </summary>
+            <param name="grid">Grid to export.</param>
+            <param name="fileName">Name and path of resulting word file.</param>        
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.Export(Infragistics.Win.UltraWinGrid.UltraGrid,System.IO.Stream)">
+            <summary>
+            Exports the specified UltraWinGrid as a Word document into the specified stream.
+            </summary>
+            <param name="grid">Grid to export.</param>
+            <param name="stream">The stream into which the grid will be exported.</param>     
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.Export(Infragistics.Win.UltraWinGrid.UltraGrid,Infragistics.Documents.Word.WordDocumentWriter)">
+            <summary>
+            Exports the passed in ultragrid to the specified WordDocumentWriter at the current position
+            // of the stream.
+            </summary>
+            <param name="grid">Grid to export.</param>
+            <param name="wordDocumentWriter">Destination <see cref="T:Infragistics.Documents.Word.WordDocumentWriter"/>.</param>        
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.ExportAsync(Infragistics.Win.UltraWinGrid.UltraGrid,System.String)">
+            <summary>
+            Creates a new Word document with the specified file name and exports the specified UltraWinGrid into it.
+            </summary>
+            <param name="grid">Grid to export.</param>
+            <param name="fileName">Name and path of resulting word file.</param>  
+            <remarks>
+            <para class="body">
+            The ExportAsync method exports the UltraWinGrid to Word asynchronously, unlike the Export method which is synchronous. This is acheived using timers and is not a multi-threaded operation. You should not attempt to access the exporter Workbook, Worksheet, or file until the operation export is complete. You can determine when the process has ending by trapping the <see cref="!:EndExport"/> event.
+            During the asynchronous export process, the UltraWinGrid will disable the user's ability to add, remove, delete, edit, filter, sort, or otherwise modify the state of the data during the export process. 
+            It is strongly advised that you make sure that the grid's DataSource is not modified during the asynchronous export process.
+            If the data is modifed during the asynchonous export process, the modified data may or may not be exported in it's new state, or (more likely) the export process may be terminated entirely. 
+            Also note that you may not perform more than one export operation at a time on the same UltraWinGrid or using the same UltraGridWordWriter, either synchronously or asynchronous. Attempting to do so will result in an <see cref="T:System.InvalidOperationException"/>.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.ExportAsync(Infragistics.Win.UltraWinGrid.UltraGrid,System.IO.Stream)">
+            <summary>
+            Exports the specified UltraWinGrid as a Word document into the specified stream.
+            </summary>
+            <param name="grid">Grid to export.</param>
+            <param name="stream">The stream into which the grid will be exported.</param>  
+            <remarks>
+            <para class="body">
+            The ExportAsync method exports the UltraWinGrid to Word asynchronously, unlike the Export method which is synchronous. This is acheived using timers and is not a multi-threaded operation. You should not attempt to access the exporter Workbook, Worksheet, or file until the operation export is complete. You can determine when the process has ending by trapping the <see cref="!:EndExport"/> event.
+            During the asynchronous export process, the UltraWinGrid will disable the user's ability to add, remove, delete, edit, filter, sort, or otherwise modify the state of the data during the export process. 
+            It is strongly advised that you make sure that the grid's DataSource is not modified during the asynchronous export process.
+            If the data is modifed during the asynchonous export process, the modified data may or may not be exported in it's new state, or (more likely) the export process may be terminated entirely. 
+            Also note that you may not perform more than one export operation at a time on the same UltraWinGrid or using the same UltraGridWordWriter, either synchronously or asynchronous. Attempting to do so will result in an <see cref="T:System.InvalidOperationException"/>.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.ExportAsync(Infragistics.Win.UltraWinGrid.UltraGrid,Infragistics.Documents.Word.WordDocumentWriter)">
+            <summary>
+            Exports the passed in ultragrid to the specified WordDocumentWriter at the current position
+            // of the stream.
+            </summary>
+            <param name="grid">Grid to export.</param>
+            <param name="wordDocumentWriter">Destination <see cref="T:Infragistics.Documents.Word.WordDocumentWriter"/>.</param>        
+            <remarks>
+            <para class="body">
+            The ExportAsync method exports the UltraWinGrid to Word asynchronously, unlike the Export method which is synchronous. This is acheived using timers and is not a multi-threaded operation. You should not attempt to access the exporter Workbook, Worksheet, or file until the operation export is complete. You can determine when the process has ending by trapping the <see cref="!:EndExport"/> event.
+            During the asynchronous export process, the UltraWinGrid will disable the user's ability to add, remove, delete, edit, filter, sort, or otherwise modify the state of the data during the export process. 
+            It is strongly advised that you make sure that the grid's DataSource is not modified during the asynchronous export process.
+            If the data is modifed during the asynchonous export process, the modified data may or may not be exported in it's new state, or (more likely) the export process may be terminated entirely. 
+            Also note that you may not perform more than one export operation at a time on the same UltraWinGrid or using the same UltraGridWordWriter, either synchronously or asynchronous. Attempting to do so will result in an <see cref="T:System.InvalidOperationException"/>.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.OnExportStarted(Infragistics.Win.UltraWinGrid.WordWriter.ExportStartedEventArgs)">
+            <summary>
+            Used to invoke the <see cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.ExportStarted"/> event.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.OnInitializeRow(Infragistics.Win.UltraWinGrid.WordWriter.WordWriterInitializeRowEventArgs)">
+            <summary>
+            Called when a row is initialized.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.OnExportEnding(Infragistics.Win.UltraWinGrid.WordWriter.ExportEndingEventArgs)">
+            <summary>
+            Used to invoke the <see cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.ExportEnding"/> event.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.OnExportEnded(Infragistics.Win.UltraWinGrid.WordWriter.ExportEndedEventArgs)">
+            <summary>
+            Used to invoke the <see cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.ExportEnded"/> event.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.OnHeaderRowExporting(Infragistics.Win.UltraWinGrid.WordWriter.HeaderRowExportingEventArgs)">
+            <summary>
+            Called before a header row is exported to a report.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.OnRowExporting(Infragistics.Win.UltraWinGrid.WordWriter.RowExportingEventArgs)">
+            <summary>
+            Called before a grid row is exported to a report.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.OnSummaryRowExporting(Infragistics.Win.UltraWinGrid.WordWriter.SummaryRowExportingEventArgs)">
+            <summary>
+            Called before a summary row is exported to a report.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.OnCellExporting(Infragistics.Win.UltraWinGrid.WordWriter.CellExportingEventArgs)">
+            <summary>
+            Called before a grid cell is exported to a report.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.OnHeaderCellExporting(Infragistics.Win.UltraWinGrid.WordWriter.HeaderCellExportingEventArgs)">
+            <summary>
+            Called before a header cell is exported to a report.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.OnSummaryCellExporting(Infragistics.Win.UltraWinGrid.WordWriter.SummaryCellExportingEventArgs)">
+            <summary>
+            Called before a summary cell is exported to a report.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.AutoSize">
+            <summary>
+            Returns or sets whether columns will be automatically sized to fit their contents before exporting.
+            </summary>
+            <remarks>
+            <para class="note"><b>Note:</b> columns with <see cref="P:Infragistics.Win.UltraWinGrid.UltraGridColumn.CellMultiLine"/> set to True will not be autosized horizontally. This is to prevent columns for memo or other extremely large fields from becoming too wide. If you want to autosize a multiline column, you should do so in the <see cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.ExportStarted"/> event by calling the <see cref="M:Infragistics.Win.UltraWinGrid.UltraGridColumn.PerformAutoResize(Infragistics.Win.UltraWinGrid.PerformAutoSizeType)"/> method on the column.</para>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.CheckBoxExportStyle">
+            <summary>
+            Returns or sets the style with which check box cells in the grid are exported to Excel.
+            </summary>
+            <remarks>
+            <para class= "body">By default, check box cells in the grid are exporting using an image of a simple (unthemed) checkbox.</para>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.WordTableSettings">
+            <summary>
+            Returns or sets properties that affect the Word Table into which the grid will be exported.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.SubObjectPropChangeHandler">
+            <summary>
+            Returns the event handler that notifies OnSubObjectPropChanged
+            </summary>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.ExportStarted">
+            <summary>
+            Occurs before the export begins.
+            </summary>
+            <remarks>
+            <p class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.ExportStartedEventArgs.Layout"/> is a cloned <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridLayout"/> of the grid being exported. Since the layout is cloned, you can safely modify the layout for exporting without affecting the on-screen grid.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.ExportStartedEventArgs.Rows"/> is the root <see cref="T:Infragistics.Win.UltraWinGrid.RowsCollection"/> of the grid being exported.</p>
+            <p class="body">This event is fired before all other events when the <see cref="M:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.Export(Infragistics.Win.UltraWinGrid.UltraGrid,System.String)"/> method is called. You can use it to do any preprocessing before exporting process starts. For example, you can set properties on the cloned layout.</p>
+            </remarks>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.ExportEnding"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.ExportEnded"/>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.InitializeRow">
+            <summary>
+            Occurs when a row is initialized.
+            </summary>
+            <remarks>
+            <p class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.WordWriterInitializeRowEventArgs.Row"/> argument returns the grid row which is being initialized. Note that this row exists in the cloned export layout, so any changes made to this row will affect the export without affecting the on-screen grid. This row may not have the same state information (such as the Selected or Expanded state) as the actual grid row in the on-screen grid. To get the on-screen row associated with this row, use the <see cref="M:Infragistics.Win.UltraWinGrid.UltraGrid.GetRowFromPrintRow(Infragistics.Win.UltraWinGrid.UltraGridRow)"/> method.</p>
+            <p class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.WordWriterInitializeRowEventArgs.SkipRow"/> argument specifies whether to skip the current row. This argument doesn't affect exporting of descendant rows.</p>
+            <p class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.WordWriterInitializeRowEventArgs.SkipDescendants"/> argument specifies whether to skip the descendats of the current row.</p>
+            <p class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.WordWriterInitializeRowEventArgs.SkipSiblings"/> argument specifies whether to skip sibling rows of the current row.</p>
+            <p class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.WordWriterInitializeRowEventArgs.TerminateExport"/> argument specifies whether to terminate the export process. Current row will not be processed.</p>        
+            <p class="body">This event is fired for every grid row which is being exported, and before <see cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.RowExporting"/> is fired. Use this event to set grid row specific properties and to control exporting process.</p>
+            </remarks>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.ExportEnding">
+            <summary>
+            Occurs before the export process has ended, but before the Word document is finalized.
+            </summary>
+            <remarks>
+            <p class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.ExportEndingEventArgs.Canceled"/> argument is True if the exporting process was cancelled.</p>
+            <p class="body">The ExportEnding event is invoked when the export process has completed to give the developer 
+            one final opportunity to manipulate the Word Document being generated. This is particularly important when using an 
+            overload of the Export method that takes a filename as the file will be saved after the ExportEnding is complete 
+            but before the <see cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.ExportEnded"/> so it will not be possible to make changes to the document after the 
+            ExportEnding event has fired. Also, since the file will not have been created until after the ExportEnding event
+            fires, the file cannot be accessed until the ExportingEnded event.</p>
+            </remarks>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.ExportStarted"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.ExportEnded"/>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.ExportEnded">
+            <summary>
+            Occurs after the export process has completed.
+            </summary>
+            <remarks>
+            <p class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.ExportEndedEventArgs.Canceled"/> argument is True if the exporting process was cancelled.</p>
+            <p class="body">The ExportEnded event is raised after the export process has been completed. If an overload of 
+            the Export method that accepts a filename was used, then the file would be available at this point since the file 
+            is saved after the <see cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.ExportEnding"/> event has been completed but before the ExportEnded.</p>
+            </remarks>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.ExportStarted"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.ExportEnding"/>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.HeaderRowExporting">
+            <summary>
+            Occurs before a header row is exported to a report.
+            </summary>
+            <remarks>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.HeaderRowExportingEventArgs.Band"/> returns the <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridBand"/> associated with the headers being exported.</p>
+            <p class="body">This event is fired before a set of headers is exported to the report. The header includes the band header (if any), the group headers (if groups and levels are used), and the column headers. Use the Cancel argument to cancel the exporting of the entire set of headers.</p>
+            <p class="body">Using these event arguments, it is possible to override the exporting of a header and provide custom exported data. Typically, this would be done by setting Cancel to True, and adding conent to the appropriate header container. If IsFixedHeader is True, content should be added to the FixedHeaderContainer, otherwise, content should be added to the HeaderContainer.</p>
+            </remarks>        
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.RowExporting"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.SummaryRowExporting"/>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.RowExporting">
+            <summary>
+            Occurs before a grid row is exported to a report.
+            </summary>
+            <remarks>        
+            <p class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.RowExportingEventArgs.GridRow"/> argument returns the grid row which is being exported. Note that this row exists in the cloned export layout, so any changes made to this row will affect the export without affecting the on-screen grid. This row may not have the same state information (such as the Selected or Expanded state) as the actual grid row in the on-screen grid. To get the on-screen row associated with this row, use the <see cref="M:Infragistics.Win.UltraWinGrid.UltraGrid.GetRowFromPrintRow(Infragistics.Win.UltraWinGrid.UltraGridRow)"/> method.</p>
+            <p class="body">This event is fired before each row is exported. This includes the row, it's cells, it's RowPreviewArea, and may also include column header if using RowLayout mode with column headers that are displayed with the cells. Use the Cancel argument to cancel the default exporting of this row.</p>
+            <p class="body">This event fires only for normal data rows or GroupBy rows. It does not fire for header or summary rows. For header rows, use <see cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.HeaderRowExporting"/>. For summary rows, use <see cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.SummaryRowExporting"/>.</p>
+            <p class="body">Using these event arguments, it is possible to override the exporting of a row and provide a custom export. Typically, this would be done by setting Cancel to True, adding a row to the reportTable, and then populating that row with the desired contents.</p>
+            </remarks>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.HeaderRowExporting"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.SummaryRowExporting"/>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.SummaryRowExporting">
+            <summary>
+            Occurs before summary row is exported to a report.
+            </summary>
+            <remarks>        
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.SummaryRowExportingEventArgs.GridSummaryRow"/> returns the <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridSummaryRow"/> being exported.</p>
+            <p class="body">This event is fired before a summary row is exported to a report. A summary row includes the SummaryFooterCaption and all summary values. Use the Cancel argument to cancel row exporting.</p>
+            <p class="body">Using these event arguments, it is possible to override the exporting of a summary row and provide a custom export. Typically, this would be done by setting Cancel to True, adding a row to the reportTable, and then populating that row with the desired contents.</p>
+            </remarks>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.HeaderRowExporting"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.RowExporting"/>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.CellExporting">
+            <summary>
+            Occurs before a grid cell is exported to a report.
+            </summary>
+            <remarks>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.CellExportingEventArgs.GridRow"/> returns the <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridRow"/> containing the cell.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.CellExportingEventArgs.GridColumn"/> returns the associated <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridColumn"/>.</p>
+            <p class="body">This event fires for data cells only. It will not fire for header or summary cells. For header cells, use <see cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.HeaderCellExporting"/>. For summary cells, use <see cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.SummaryCellExporting"/>. </p>
+            <p class="body">Use the Cancel argument to cancel the exporting of a cell.</p>
+            <p class="body">Using these event arguments, it is possible to override the exporting of a cell and provide a custom export. Typically, this would be done by setting Cancel to True, and then adding content to the ReportCell.</p>
+            </remarks>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.HeaderCellExporting"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.SummaryCellExporting"/>        
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.HeaderCellExporting">
+            <summary>
+            Occurs before a header cell is exported to a report.
+            </summary>
+            <remarks>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.HeaderCellExportingEventArgs.GridHeader"/> returns the <see cref="T:Infragistics.Win.UltraWinGrid.HeaderBase"/> being exported.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.HeaderCellExportingEventArgs.HeaderType"/> indicates what type of header is being exported: a band header, group, or column header.</p>
+            <p class="body">Use the <see cref="P:System.ComponentModel.CancelEventArgs.Cancel"/> argument to cancel the exporting of the header cell.</p>
+            <p class="body">Using these event arguments, it is possible to override the exporting of a header cell and provide a custom export. Typically, this would be done by setting Cancel to True, and then adding content to the ColumnHeaderContainer, GroupHeaderContainer, or BandHeaderContainer (depending on the HeaderType).</p>
+            </remarks>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.CellExporting"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.SummaryCellExporting"/> 
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.SummaryCellExporting">
+            <summary>
+            Occurs before a summary cell is exported to a report.
+            </summary>
+            <remarks>        
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.SummaryCellExportingEventArgs.SummaryValue"/> returns the <see cref="T:Infragistics.Win.UltraWinGrid.SummaryValue"/> being exported.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.WordWriter.SummaryCellExportingEventArgs.SummaryLevel"/> returns the level of the Summary. Summaries are exporting into multiple rows (levels). The summary level indicates on which level this summary is displayed.</p>
+            <p class="body">Use the <see cref="P:System.ComponentModel.CancelEventArgs.Cancel"/> argument to cancel the exporting of a summary cell.</p>
+            <p class="body">Using these event arguments, it is possible to override the exporting of a summary cell and provide a custom export. Typically, this would be done by setting Cancel to True, and then adding content to the ReportCell.</p>
+            </remarks>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.CellExporting"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.HeaderCellExporting"/> 
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.About">
+            <summary>
+            Displays the About dialog for the control.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.UltraGridWordWriter.Infragistics#Shared#IUltraLicensedComponent#License">
+            <summary>
+            Return the license we cached inside the constructor
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.WordWriter.Utilities">
+            <summary>
+            A class containing static helper methods.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.Utilities.PixelsToPoints(System.Int32,System.Boolean)">
+            <summary>
+             Converts pixels to points using the screen DPI.
+            </summary>
+            <param name="pixels">An integer indicating a measurement in pixels.</param>        
+            <param name="horizontal">Indicates whether the measurement is horizontal or vertical. This is neccessary to account for screen DPI.</param>
+            <returns>The value converted to Points.</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.Utilities.PointsToPixels(System.Single,System.Boolean)">
+            <summary>
+             Converts points to pixels using the screen DPI.
+            </summary>
+            <param name="points">A float indicating a measurement in points.</param>
+            <param name="horizontal">Indicates whether the measurement is horizontal or vertical. This is neccessary to account for screen DPI.</param>
+            <returns>The value converted to pixels.</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.Utilities.InchesToPoints(System.Single)">
+            <summary>
+            Converts a length measured in inches into its corresponding measurement in points (a unit often used when printing).”
+            </summary>
+            <param name="inches">A float indicating a measurement in inches.</param>
+            <returns>A float indicates the value in points.</returns>
+            <remarks>
+            <p class="body">This is typically used for printer calcuations where there are 72 points per inch.</p>
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.Utilities.PointsToInches(System.Single)">
+            <summary>
+            Converts a length measured in points (a unit often used when printing) into its corresponding measurement in inches.
+            </summary>
+            <param name="points">A float indicating a value in points.</param>
+            <returns>The value in inches.</returns>
+            <remarks>
+            <p class="body">This is typically used for printer calcuations where there are 72 points per inch.</p>
+            </remarks>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.WordWriter.WordTableSettings">
+            <summary>
+            Class which exposes properties to determine the look and behavior of the MS Word table into which the UltraWinGrid will be exported.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.WordTableSettings.#ctor">
+            <summary>
+            Creates a new <see cref="T:Infragistics.Win.UltraWinGrid.WordWriter.WordTableSettings"/> instance.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.WordTableSettings.ShouldSerializeLayout">
+            <summary>
+            Returns True if the value is not the default.
+            </summary>
+            <returns>True if the value is not the default.</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.WordTableSettings.ResetLayout">
+            <summary>
+            Resets the property back to its default value.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.WordTableSettings.ShouldSerializePreferredWidth">
+            <summary>
+            Returns True if the value is not the default.
+            </summary>
+            <returns>True if the value is not the default.</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.WordTableSettings.ResetPreferredWidth">
+            <summary>
+            Resets the property back to its default value.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.WordTableSettings.ShouldSerializePreferredWidthAsPercentage">
+            <summary>
+            Returns True if the value is not the default.
+            </summary>
+            <returns>True if the value is not the default.</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.WordTableSettings.ResetPreferredWidthAsPercentage">
+            <summary>
+            Resets the property back to its default value.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.WordTableSettings.ShouldSerialize">
+            <summary>
+            Determines whether any properties of the object differ from their default values.
+            </summary>
+            <returns>
+            True if any property values differ from their default and the object should be serialized; False otherwise.
+            </returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.WordWriter.WordTableSettings.Reset">
+            <summary>
+            Resets the settings of the object to their default values.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.WordTableSettings.Layout">
+            <summary>
+            Returns or sets a value which determines the layout
+            algorithm that is used to determine the size and position
+            of cells in the associated table.
+            </summary>
+            <remarks>
+            <p class="body">
+            By default, the table layout is Fixed, which means that the preferred widths of the table items are 
+            used to generate the final sizing of the table.
+            </p>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.WordTableSettings.PreferredWidth">
+            <summary>
+            Returns or sets the preferred width of the associated table, expressed
+            as an explicit linear quantity.
+            </summary>
+            <remarks>
+            <p class="body">
+            This property is only applicable when the
+            <see cref="P:Infragistics.Documents.Word.TableProperties.Layout">Layout</see>
+            property is set to 'Fixed'.
+            </p>
+            <p class="body">
+            The PreferredWidth property provides a way to explicitly define the width
+            of the associated table. The value is considered preferred because a consumer
+            may elect to override this value based on the current table layout algorithm.
+            </p>
+            <p class="body">
+            The unit of measurement used to express the property value is defined by the
+            <see cref="P:Infragistics.Documents.Word.WordDocumentWriter.Unit">Unit</see>
+            property of the associated
+            <see cref="T:Infragistics.Documents.Word.WordDocumentWriter">WordDocumentWriter</see>.
+            </p>
+            <p class="body">
+            The PreferredWidth property and the
+            <see cref="P:Infragistics.Documents.Word.TableProperties.PreferredWidthAsPercentage">PreferredWidthAsPercentage</see>
+            properties are mutually exclusive, and the PreferredWidth property takes precedence,
+            so in the case where both properties are explicitly set, the PreferredWidthAsPercentage
+            property is not applicable.
+            </p>
+            </remarks>
+            <seealso cref="P:Infragistics.Win.UltraWinGrid.WordWriter.WordTableSettings.PreferredWidthAsPercentage">PreferredWidthAsPercentage</seealso>
+            <seealso cref="P:Infragistics.Win.UltraWinGrid.WordWriter.WordTableSettings.Layout">Layout</seealso>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.WordWriter.WordTableSettings.PreferredWidthAsPercentage">
+            <summary>
+            Returns or sets the preferred width of the associated table,
+            expressed as a percentage of the width of the containing element.
+            </summary>
+            <remarks>
+            <p class="body">
+            This property is only applicable when the
+            <see cref="P:Infragistics.Documents.Word.TableProperties.Layout">Layout</see>
+            property is set to 'Fixed'.
+            </p>
+            <p class="body">
+            This value is considered preferred because a consumer may elect to
+            override this value based on the current table layout algorithm.
+            </p>
+            <p class="body">
+            The valid range for this property's value is a number between .02 and 100.
+            Note that the unit of measure is <b>not</b> defined by the associated
+            document writer's unit of measure.
+            </p>
+            <p class="body">
+            The PreferredWidthAsPercentage property and the
+            <see cref="P:Infragistics.Documents.Word.TableProperties.PreferredWidth">PreferredWidth</see>
+            properties are mutually exclusive, and the PreferredWidth property takes precedence,
+            so in the case where both properties are explicitly set, the PreferredWidth property
+            takes precedence, and this property is not applicable.
+            </p>
+            </remarks>
+            <seealso cref="P:Infragistics.Win.UltraWinGrid.WordWriter.WordTableSettings.PreferredWidth">PreferredWidth</seealso>
+            <seealso cref="P:Infragistics.Win.UltraWinGrid.WordWriter.WordTableSettings.Layout">Layout</seealso>
+        </member>
+    </members>
+</doc>

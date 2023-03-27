@@ -1,0 +1,86 @@
+﻿
+
+<div class="container-fluid" id="A18042" data-tid="A351199">
+    <NeStatePanelComponent [OutgoingTransitions]="nursingFunctionalDailyLifeActivityNewFormViewModel?.OutgoingTransitions" [PrintReportCommandVisible]="true" (onPrintReport)="printReportGetDate()" [StateReports]="nursingFunctionalDailyLifeActivityNewFormViewModel?.CurrentStateReports" [ObjectID]="nursingFunctionalDailyLifeActivityNewFormViewModel?._NursingDailyLifeActivity?.ObjectID" [ObjectDefID]="nursingFunctionalDailyLifeActivityNewFormViewModel?._NursingDailyLifeActivity?.ObjectDefID" [CurrentStateDefID]="nursingFunctionalDailyLifeActivityNewFormViewModel._NursingDailyLifeActivity.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()" [SaveCommandVisible]="!nursingFunctionalDailyLifeActivityNewFormViewModel.ReadOnly" [DropStateList]="DropStateList" id="A18043" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A351200">
+    </NeStatePanelComponent>
+    <form id="NursingFunctionalDailyLifeActivityNewForm" class="form-horizontal" role="form" data-tid="A351201"></form>
+    <div class="row" id="A18044" data-tid="A351202">
+        <label class="control-label col-sm-3" id="A18045" data-tid="A351203">
+            Uygulama Zamanı
+        </label>
+        <label class="control-label col-sm-8" style="display:none" id="A18046" data-tid="A351204">
+            Genl Not
+        </label>
+    </div>
+    <div class="row margin-bottom-5" id="A18047" data-tid="A351205">
+        <div class="col-sm-3" id="A18048" data-tid="A351206">
+            <dx-date-box width="100%" type="datetime" displayFormat="dd/MM/yyyy HH:mm" [(value)]="nursingFunctionalDailyLifeActivityNewFormViewModel._NursingDailyLifeActivity.ApplicationDate" [readOnly]="nursingFunctionalDailyLifeActivityNewFormViewModel.ReadOnly" id="A18049" data-tid="A351207">
+            </dx-date-box>
+        </div>
+    </div>
+    <div class="row" style="display:none" id="A18050" data-tid="A351208">
+        <div class="col-sm-8" id="A18051" data-tid="A351209">
+            <hvl-text-box #Validation (TextChange)="ontttextbox1Changed($event)" [BackColor]="tttextbox1?.BackColor" [CharacterCasing]="tttextbox1?.CharacterCasing" [Enabled]="tttextbox1?.Enabled" [Font]="tttextbox1?.Font" [ForeColor]="tttextbox1?.ForeColor" [height]="tttextbox1?.Height" [InputFormat]="tttextbox1?.InputFormat" [InputTurkishCharacter]="tttextbox1?.InputTurkishCharacter" [IsNonNumeric]="tttextbox1?.IsNonNumeric" [MultiLine]="tttextbox1?.Multiline" [ReadOnly]="tttextbox1?.ReadOnly" [Required]="tttextbox1?.Required" [TabIndex]="tttextbox1?.TabIndex" [TextAlign]="tttextbox1?.TextAlign" [Text]="nursingFunctionalDailyLifeActivityNewFormViewModel?._NursingDailyLifeActivity?.Note" [Visible]="tttextbox1?.Visible" id="A18052" data-tid="A351210"></hvl-text-box>
+        </div>
+    </div>
+    <div class="row margin-bottom-10" style="border:none" id="A18053" data-tid="A351211">
+        <div class="col-sm-12" style="border:none" id="A18054" data-tid="A351212">
+
+            <dx-data-grid [showColumnLines]="false" (showRowLines)="false" [showBorders]="false" [dataSource]="nursingFunctionalDailyLifeActivityNewFormViewModel?._NursingDailyLifeActivity?.NursingFunctionalDailyLifeActivities" [columns]="FunctionalDailyLifeActivityListColumns" [filterRow]="{visible: false}" [disabled]="nursingFunctionalDailyLifeActivityNewFormViewModel.ReadOnly" [editing]="{allowUpdating: true, mode: 'cell'}" [headerFilter]="{visible: false}" (onSelectionChanged)="onSelectionChangedDailyLifeList($event)" id="A18055" data-tid="A351213">
+                <dxo-paging [pageSize]="50" id="A18056" data-tid="A351214"></dxo-paging>
+                <div *dxTemplate="let row of 'explanationTemplate'" id="A18057" data-tid="A351215">
+                    <dx-text-box height="18px" style="margin-top: -4px;margin-bottom: -5px;padding-top:0px" [value]="row.text" [readOnly]="nursingFunctionalDailyLifeActivityNewFormViewModel.ReadOnly" id="A18058" data-tid="A351216"></dx-text-box>
+                </div>
+                <div align="center" *dxTemplate="let cellData of 'chkTemplate'" id="A18059" data-tid="A351217">
+                    <hvl-checkbox [Value]="getCellData(cellData)" (ValueChange)="setCellData(cellData,$event)" [ReadOnly]="nursingFunctionalDailyLifeActivityNewFormViewModel.ReadOnly" id="A18060" data-tid="A351218">
+                    </hvl-checkbox>
+                </div>
+            </dx-data-grid>
+        </div>
+    </div>
+</div>
+<dx-popup showTitle="false" title="Lütfen Rapor İçin Tarih Aralığı Seçiniz." [(visible)]="ShowGetPrintDatesPopUp" [width]="700" height="250" id="A17844" data-tid="A351219">
+    <div *dxTemplate="let data of 'content'" data-tid="A351220">
+
+        <div class="row" style="text-align:center" id="A17848" data-tid="A351221">
+
+            <div class="col-sm-6" id="A17850" data-tid="A351222">
+                <div class="row" id="A17846" data-tid="A351223">
+                    <label class="control-label col-sm-12" style="font-size: small;" id="A17847" data-tid="A351224">
+                        Başlangıç Tarihi
+                    </label>
+                </div>
+                <div class="row" id="A17846" data-tid="A351225">
+                    <div class="col-sm-8" id="A17850" data-tid="A351226">
+                        <dx-date-box width="100%" type="datetime" displayFormat="dd/MM/yyyy" [(value)]="startDate" [readOnly]="false" id="A18049" data-tid="A351227">
+                        </dx-date-box>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6" id="A17850" data-tid="A351228">
+                <div class="row" id="A17846" data-tid="A351229">
+                    <label class="control-label col-sm-12" style="font-size: small;" id="A17847" data-tid="A351230">
+                        Bitiş Tarihi
+                    </label>
+                </div>
+                <div class="row" id="A17846" data-tid="A351231">
+                    <div class="col-sm-8" id="A17850" data-tid="A351232">
+                        <dx-date-box width="100%" type="datetime" displayFormat="dd/MM/yyyy" [(value)]="endDate" [readOnly]="false" id="A18049" data-tid="A351233">
+                        </dx-date-box>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+        <br data-tid="A351234" />
+        <br data-tid="A351235" />
+        <br data-tid="A351236" />
+        <div class="row" style="text-align:center" data-tid="A351237">
+            <div class="col-sm-5" style="float: left" data-tid="A351238">
+                <dx-button type="default" text="Tamam" style="width:60px" (onClick)="printDateOkClick()" data-tid="A351239"></dx-button>
+            </div>
+            <div class="col-sm-5" style="float: right" data-tid="A351240">
+                <dx-button type="danger" text="İptal" style="width:60px" (onClick)="printDateCancelClick()" data-tid="A351241"></dx-button>
+            </div>
+        </div>
+    </div>
+</dx-popup>

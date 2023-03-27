@@ -1,0 +1,70 @@
+﻿
+<div class="row" *ngIf="psychologicExaminationFormViewModel.isAuthorized" id="A24408" data-tid="A359957">
+    <div class="col-sm-12" id="A24409" data-tid="A359958">
+        <NeStatePanelComponent [OutgoingTransitions]="psychologicExaminationFormViewModel?.OutgoingTransitions" [StateReports]="psychologicExaminationFormViewModel?.CurrentStateReports" [CancelCommandVisible]="false" [ObjectID]="psychologicExaminationFormViewModel?._PsychologicExamination?.ObjectID" [ObjectDefID]="psychologicExaminationFormViewModel?._PsychologicExamination?.ObjectDefID" [CurrentStateDefID]="psychologicExaminationFormViewModel._PsychologicExamination.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" id="A24410" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A359959">
+        </NeStatePanelComponent>
+    </div>
+   
+</div>
+
+<div class="container-fluid" id="A24411" data-tid="A359960">
+    <form id="PsychologicExaminationForm" class="form-horizontal" role="form" data-tid="A359961">
+        
+        <div class="row" id="A24412" data-tid="A359962">
+            <div class="col-sm-4" id="A24413" data-tid="A359963">
+                <div class="row" id="A24414" data-tid="A359964">
+                    <div class="col-sm-12" id="A24415" data-tid="A359965">
+                        <patient-demographics-form [actionId]="psychologicExaminationFormViewModel._PsychologicExamination.ObjectID" id="A24416" data-tid="A359966"></patient-demographics-form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4" id="A24417" data-tid="A359967">
+                <div class="row" style="padding-bottom:7px" id="A24418" data-tid="A359968">
+                    <label class="col-sm-4" id="A24419" data-tid="A359969">
+                        İşlem Tarihi
+                    </label>
+                    <div class="col-sm-8" id="A24420" data-tid="A359970">
+                        <dx-text-box [(value)]="psychologicExaminationFormViewModel.RequestDate" [readOnly]="true" style="border-color:#a9a9a9" id="A24421" data-tid="A359971"></dx-text-box>
+                    </div>
+                </div>
+                <div class="row" style="padding-bottom:7px" id="A24422" data-tid="A359972">
+                    <label class="col-sm-4" id="A24423" data-tid="A359973">
+                        İşlem
+                    </label>
+                    <div class="col-sm-8" id="A24424" data-tid="A359974">
+                        <dx-text-box [(value)]="psychologicExaminationFormViewModel.AppliedTest" [readOnly]="true" style="border-color:#a9a9a9" id="A24425" data-tid="A359975"></dx-text-box>
+                    </div>
+                </div>
+                <div class="row" style="padding-bottom:7px" id="A24426" data-tid="A359976">
+                    <label class="col-sm-4" id="A24427" data-tid="A359977">
+                        İşlemi İsteyen Kullanıcı
+                    </label>
+                    <div class="col-sm-8" id="A24428" data-tid="A359978">
+                        <dx-text-box [(value)]="psychologicExaminationFormViewModel.RequestByDoctorName" [readOnly]="true" style="border-color:#a9a9a9" id="A24429" data-tid="A359979"></dx-text-box>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-4" id="A24430" data-tid="A359980">
+                <div class="row" id="A24431" data-tid="A359981">
+                    <label class="col-sm-12" id="A24432" data-tid="A359982">
+                        Doktor Açıklaması
+                    </label>
+                </div>
+                <div class="row" id="A24433" data-tid="A359983">
+                    <div class="col-sm-12" id="A24434" data-tid="A359984">
+                        <dx-text-area [(value)]="psychologicExaminationFormViewModel.DoctorStatement" [readOnly]="true" [height]="120" style="border-color:#a9a9a9" id="A24435" data-tid="A359985"></dx-text-area>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="A24436" data-tid="A359986">
+            <div class="col-sm-12" id="A24437" data-tid="A359987">
+                <PsychologyBasedObjectForm [objectId]="psychologicExaminationFormViewModel.PsychologyBasedObjectId" (sendMyViewModel)="setSpecialityBasedObjectViewModel($event)" id="A24438" data-tid="A359988"></PsychologyBasedObjectForm>
+            </div>
+        </div>
+        <div class="row" id="A24439" data-tid="A359989">
+            
+        </div>
+    </form>
+</div>

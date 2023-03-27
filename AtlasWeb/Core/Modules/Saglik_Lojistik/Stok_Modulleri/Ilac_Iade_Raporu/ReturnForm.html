@@ -1,0 +1,91 @@
+﻿<div class="col-md-12" style="height:100%;overflow-x:hidden;overflow-y:auto;" data-tid="A331901">
+    <div class="row" style="height:96%;" data-tid="A331902">
+        <p data-tid="A331903"></p>
+        <br data-tid="A331904" />
+        <div class="col-sm-12" data-tid="A331905">
+            <div class="col-sm-2" data-tid="A331906">
+                <label class="control-label" data-tid="A331907">Başlangıç Tarihi</label>
+                <dx-date-box width="100%" type="date" [(value)]="ReturnFormViewModel.StartDate" [disabled]="showUnused" data-tid="A331908">
+                </dx-date-box>
+            </div>
+            <div class="col-sm-5" data-tid="A331909">
+                <!--<label class="control-label" style="border:0; box-shadow:none; ">Çıkış Yapılan Depo</label>
+                <dx-select-box [(items)]="OutStoreList" [(value)]="selectedOutStore" placeholder="Birim"
+                               [searchEnabled]="true" [showSelectionControls]="true" displayExpr="Name" showClearButton="true"
+                               id="A28501">
+                </dx-select-box>-->
+            </div>
+            <!--<div class="col-sm-3">
+                <label class="control-label col-sm-5"  id="A1582">Özellikli İlaç</label>
+                <div class="col-sm-12" id="A1583">
+                    <dx-tag-box [items]="DrugSpecificationEnumDef" [searchEnabled]="true" valueExpr="ordinal"
+                                displayExpr="description" (onSelectionChanged)="OzellikChanged($event)" [multiline]="false"
+                                showSelectionControls="true" [disabled]="showUnused">
+                    </dx-tag-box>
+                </div>
+            </div>-->
+            <div class="col-sm-1" data-tid="A331910">
+                <br id="A6174" data-tid="A331911" />
+                <dx-button type="btn btn-default" text="İlaç / Malzeme Adı" (onClick)="OpenMaterialMultiSelectComponent()" style="margin-bottom: 10px; min-width:128px;" [disabled]="showUnused" data-tid="A331912">
+                </dx-button>
+            </div>
+        </div>
+        <div class="col-sm-12" data-tid="A331913">
+            <div class="col-sm-2" data-tid="A331914">
+                <label class="control-label" data-tid="A331915">Bitiş Tarihi</label>
+                <dx-date-box width="100%" type="date" [(value)]="ReturnFormViewModel.EndDate" [disabled]="showUnused" data-tid="A331916">
+                </dx-date-box>
+            </div>
+            <div class="col-sm-5" data-tid="A331917">
+                <label class="control-label" style="border:0; box-shadow:none; " data-tid="A331918">Doktor</label>
+                <dx-select-box [items]="DoctorList" [searchEnabled]="true" displayExpr="Name" (valueExpr)="Name" [(value)]="SelectedDoctor" showSelectionControls="true" showClearButton="true" [disabled]="showUnused" data-tid="A331919">
+                </dx-select-box>
+            </div>
+            <!--<div class="col-sm-3">
+            <dx-check-box [(value)]="getEHU" text="EHU Onayı Olan İlaçlar"
+                (onValueChanged)="onSelectionChanged($event)" i18n-text="@@M21798" id="A4024"
+                style="margin-top: 20px;margin-left: 15px;"></dx-check-box>
+            </div>-->
+            <div class="col-sm-1" data-tid="A331920">
+                <br id="A6174" data-tid="A331921" />
+                <dx-button type="btn btn-default" text="Yazdır" (onClick)="prepareDocument_Click()" style="margin-bottom: 10px; min-width:128px;" [disabled]="showUnused" data-tid="A331922">
+                </dx-button>
+            </div>
+            <div class="col-sm-1" style="margin-top:12px;" data-tid="A331923">
+                <dx-button type="btn btn-info" icon="fa fa-bars" class="center-block" (onClick)="GetOutVoucherList()" text="Sorgula" style="min-width:128px;" data-tid="A331924"></dx-button>
+            </div>
+        </div>
+        <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A28706" data-tid="A331925">
+        </dx-load-panel>
+        <div class="col-md-12" style="margin-top:15px;" id data-tid="A331926">
+            <label class="control-label" data-tid="A331927">Malzeme Detayları</label>
+            <div id="gridVoucherLevelOne" data-tid="A331928">
+                <dx-data-grid #grid id="grid-container" [dataSource]="this.StockTrancationInList" data-tid="A331929">
+                    <dxo-selection mode="single" data-tid="A331930"></dxo-selection>
+                    <dxo-paging [pageSize]="25" data-tid="A331931"></dxo-paging>
+                    <dxo-filter-row [visible]="true" id data-tid="A331932"> </dxo-filter-row>
+                    <dxi-column dataField="MaterialName" caption="İlcaç/ Malzeme Adı" data-tid="A331933"></dxi-column>
+                    <dxi-column dataField="Amount" caption="Çıkış Miktarı" [width]="150" alignment="center" data-tid="A331934"></dxi-column>
+                    <dxi-column dataField="ReturnAmount" caption="İade Miktarı" [width]="150" alignment="center" data-tid="A331935"></dxi-column>
+                    <dxi-column dataField="Rate" caption="Oranı %" [width]="150" [format]="{ type: 'fixedPoint', precision: 2 }" alignment="center" data-tid="A331936">
+                    </dxi-column>
+                    <dxo-summary data-tid="A331937">
+                        <dxi-total-item column="OutAmount" summaryType="sum" data-tid="A331938">
+                        </dxi-total-item>
+                        <dxi-total-item column="ReturnAmount" summaryType="sum" data-tid="A331939">
+                        </dxi-total-item>
+                        <dxi-total-item column="Amount" summaryType="sum" data-tid="A331940"></dxi-total-item>
+                    </dxo-summary>
+                </dx-data-grid>
+            </div>
+        </div>
+        <dx-popup width="1400px" height="800px" style="position: inherit;" [(visible)]="showMaterialMultiSelectForm" [closeOnOutsideClick]="false" title="Malzeme Listesi" i18n-title="@@M20728" data-tid="A331941">
+    <div class="margin-bottom-10" data-tid="A331942">
+      <div *dxTemplate="let data of 'content'" data-tid="A331943">
+          <MaterialMultiSelectForm (SelectedMaterialsChanged)="MaterialsSelected($event)" (SelectedMaterialsClear)="MaterialsCleared()" [FilterByStockCard]="true" [ShowMuadilMedicineFilter]="true" FilterByStockInheld="false" [StoreObjectId]="storeListFiltred" [CanZeroMaterialSelect]="true" data-tid="A331944">
+          </MaterialMultiSelectForm>
+      </div>
+    </div>
+    </dx-popup>
+    </div>
+</div>

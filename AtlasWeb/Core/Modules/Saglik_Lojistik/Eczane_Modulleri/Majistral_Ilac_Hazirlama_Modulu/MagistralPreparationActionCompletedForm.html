@@ -1,0 +1,143 @@
+﻿
+<div class="container-fluid" id="A4256" data-tid="A329958">
+    <h4 class="logisticLabel" style="margin-left:40%;color:#08c;" id="A4257" data-tid="A329959">{{FormCaption}}</h4>
+    <NeStatePanelComponent [OutgoingTransitions]="magistralPreparationActionCompletedFormViewModel?.OutgoingTransitions" [StateReports]="magistralPreparationActionCompletedFormViewModel?.CurrentStateReports" [ObjectID]="magistralPreparationActionCompletedFormViewModel?._MagistralPreparationAction?.ObjectID" [ObjectDefID]="magistralPreparationActionCompletedFormViewModel?._MagistralPreparationAction?.ObjectDefID" [CurrentStateDefID]="magistralPreparationActionCompletedFormViewModel._MagistralPreparationAction.CurrentStateDefID" [DropStateList]="DropStateList" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" id="A4258" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A329960">
+    </NeStatePanelComponent>
+
+    <form id="MagistralPreparationActionCompletedForm" class="form-horizontal" role="form" data-tid="A329961">
+        
+    </form>
+    <br id="A4259" data-tid="A329962" />
+    <div class="row" id="A4260" data-tid="A329963">
+        <div class="col-sm-3" id="A4261" data-tid="A329964">
+            <label class="control-label" id="A4262" data-tid="A329965">
+                İşlem No
+            </label>
+            <hvl-text-box #Validation (TextChange)="onStockActionIDChanged($event)" [BackColor]="StockActionID?.BackColor" [CharacterCasing]="StockActionID?.CharacterCasing" [Enabled]="StockActionID?.Enabled" [Font]="StockActionID?.Font" [ForeColor]="StockActionID?.ForeColor" [height]="StockActionID?.Height" [InputFormat]="StockActionID?.InputFormat" [InputTurkishCharacter]="StockActionID?.InputTurkishCharacter" [IsNonNumeric]="StockActionID?.IsNonNumeric" [MultiLine]="StockActionID?.Multiline" [ReadOnly]="StockActionID?.ReadOnly" [Required]="StockActionID?.Required" [TabIndex]="StockActionID?.TabIndex" [TextAlign]="StockActionID?.TextAlign" [Text]="magistralPreparationActionCompletedFormViewModel?._MagistralPreparationAction?.StockActionID" [Visible]="StockActionID?.Visible" id="A4263" data-tid="A329966"></hvl-text-box>
+        </div>
+        <div class="col-sm-3" id="A4264" data-tid="A329967">
+            <label class="control-label" id="A4265" data-tid="A329968">
+                İşlem Tarihi
+            </label>
+            <hvl-date-picker #Validation (ValueChange)="onActionDateChanged($event)" [BackColor]="ActionDate?.BackColor" [CustomFormat]="ActionDate?.CustomFormat" [Enabled]="ActionDate?.Enabled" [Font]="ActionDate?.Font" [ForeColor]="ActionDate?.ForeColor" [Format]="ActionDate?.Format" [Max]="ActionDate?.Max" [Min]="ActionDate?.Min" [ReadOnly]="ActionDate?.ReadOnly" [Required]="ActionDate?.Required" [TabIndex]="ActionDate?.TabIndex" [Value]="magistralPreparationActionCompletedFormViewModel?._MagistralPreparationAction?.ActionDate" [Visible]="ActionDate?.Visible" id="A4266" data-tid="A329969"></hvl-date-picker>
+        </div>
+        <div class="col-sm-3" id="A4267" data-tid="A329970">
+            <label class="control-label" id="A4268" data-tid="A329971">
+                Ana Depo
+            </label>
+            <hvl-list-box #Validation (SelectedObjectChange)="onDestinationStoreChanged($event)" [AutoCompleteDialogHeight]="DestinationStore?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="DestinationStore?.AutoCompleteDialogWidth" [AutoCompleteMode]="DestinationStore?.AutoCompleteMode" [BackColor]="DestinationStore?.BackColor" [DefinitionName]="DestinationStore?.ListDefName" [DisplayExpressionsCache]="magistralPreparationActionCompletedFormViewModel?.ListDefDisplayExpressions" [Enabled]="DestinationStore?.Enabled" [Font]="DestinationStore?.Font" [ForeColor]="DestinationStore?.ForeColor" [ListFilterExpression]="DestinationStore?.ListFilterExpression" [MinSearchLength]="DestinationStore?.MinSearchLength" [PopupDialogFieldConfig]="DestinationStore?.PopupDialogFieldConfig" [PopupDialogGridColumns]="DestinationStore?.PopupDialogGridColumns" [PopupDialogHeight]="DestinationStore?.PopupDialogHeight" [PopupDialogTitle]="DestinationStore?.PopupDialogTitle" [PopupDialogWidth]="DestinationStore?.PopupDialogWidth" [ReadOnly]="DestinationStore?.ReadOnly" [SearchMode]="DestinationStore?.SearchMode" [SearchTimeout]="DestinationStore?.SearchTimeout" [SelectedObject]="magistralPreparationActionCompletedFormViewModel?._MagistralPreparationAction?.Store" [TabIndex]="DestinationStore?.TabIndex" [Visible]="DestinationStore?.Visible" [width]="DestinationStore?.Width" id="A4269" data-tid="A329972"></hvl-list-box>
+        </div>
+        <div class="col-sm-3" id="A4270" data-tid="A329973">
+            <label class="control-label" id="A4271" data-tid="A329974">
+                Majistral Üretim Fiyatı
+            </label>
+            <hvl-number-box #Validation (ValueChange)="onMagistralPriceChanged($event)" [BackColor]="MagistralPrice?.BackColor" [Enabled]="MagistralPrice?.Enabled" [Font]="MagistralPrice?.Font" [ForeColor]="MagistralPrice?.ForeColor" [ReadOnly]="MagistralPrice?.ReadOnly" [TabIndex]="MagistralPrice?.TabIndex" [Value]="magistralPreparationActionCompletedFormViewModel?._MagistralPreparationAction?.MagistralPrice" [Visible]="MagistralPrice?.Visible" id="A4272" data-tid="A329975"></hvl-number-box>
+        </div>
+    </div>
+    <br id="A4273" data-tid="A329976" />
+    <div class="row" id="A4274" data-tid="A329977">
+        <div class="col-sm-3" id="A4275" data-tid="A329978">
+            <label class="control-label" id="A4276" data-tid="A329979">
+                Preparat Türü
+            </label>
+            <hvl-listdef-combobox #Validation (SelectedObjectChange)="onMagistralPreparationTypeChanged($event)" [BackColor]="MagistralPreparationType?.BackColor" [DefinitionName]="MagistralPreparationType?.ListDefName" [Enabled]="MagistralPreparationType?.Enabled" [Font]="MagistralPreparationType?.Font" [ForeColor]="MagistralPreparationType?.ForeColor" [ReadOnly]="MagistralPreparationType?.ReadOnly" [SearchingMode]="MagistralPreparationType?.SearchMode" [SelectedObject]="magistralPreparationActionCompletedFormViewModel?._MagistralPreparationAction?.MagistralPreparationType" [TabIndex]="MagistralPreparationType?.TabIndex" [Visible]="MagistralPreparationType?.Visible" id="A4277" data-tid="A329980"></hvl-listdef-combobox>
+        </div>
+        <div class="col-sm-3" id="A4278" data-tid="A329981">
+            <label class="control-label" id="A4279" data-tid="A329982">
+                Preparat Alt Türü
+            </label>
+            <hvl-listdef-combobox #Validation (SelectedObjectChange)="onMagistralPreparationSubTypeChanged($event)" [BackColor]="MagistralPreparationSubType?.BackColor" [DefinitionName]="MagistralPreparationSubType?.ListDefName" [Enabled]="MagistralPreparationSubType?.Enabled" [Font]="MagistralPreparationSubType?.Font" [ForeColor]="MagistralPreparationSubType?.ForeColor" [ReadOnly]="MagistralPreparationSubType?.ReadOnly" [SearchingMode]="MagistralPreparationSubType?.SearchMode" [SelectedObject]="magistralPreparationActionCompletedFormViewModel?._MagistralPreparationAction?.MagistralPreparationSubType" [TabIndex]="MagistralPreparationSubType?.TabIndex" [Visible]="MagistralPreparationSubType?.Visible" id="A4280" data-tid="A329983"></hvl-listdef-combobox>
+        </div>
+        <div class="col-sm-3" id="A4281" data-tid="A329984">
+            <label class="control-label" id="A4282" data-tid="A329985">
+                Ambalaj
+            </label>
+            <hvl-listdef-combobox #Validation (SelectedObjectChange)="onMagistralPackagingTypeChanged($event)" [BackColor]="MagistralPackagingType?.BackColor" [DefinitionName]="MagistralPackagingType?.ListDefName" [Enabled]="MagistralPackagingType?.Enabled" [Font]="MagistralPackagingType?.Font" [ForeColor]="MagistralPackagingType?.ForeColor" [ReadOnly]="MagistralPackagingType?.ReadOnly" [SearchingMode]="MagistralPackagingType?.SearchMode" [SelectedObject]="magistralPreparationActionCompletedFormViewModel?._MagistralPreparationAction?.MagistralPackagingType" [TabIndex]="MagistralPackagingType?.TabIndex" [Visible]="MagistralPackagingType?.Visible" id="A4283" data-tid="A329986"></hvl-listdef-combobox>
+        </div>
+        <div class="col-sm-3" id="A4284" data-tid="A329987">
+            <label class="control-label" id="A4285" data-tid="A329988">
+                Boyut
+            </label>
+            <hvl-listdef-combobox #Validation (SelectedObjectChange)="onMagistralPackagingSubTypeChanged($event)" [BackColor]="MagistralPackagingSubType?.BackColor" [DefinitionName]="MagistralPackagingSubType?.ListDefName" [Enabled]="MagistralPackagingSubType?.Enabled" [Font]="MagistralPackagingSubType?.Font" [ForeColor]="MagistralPackagingSubType?.ForeColor" [ReadOnly]="MagistralPackagingSubType?.ReadOnly" [SearchingMode]="MagistralPackagingSubType?.SearchMode" [SelectedObject]="magistralPreparationActionCompletedFormViewModel?._MagistralPreparationAction?.MagistralPackagingSubType" [TabIndex]="MagistralPackagingSubType?.TabIndex" [Visible]="MagistralPackagingSubType?.Visible" id="A4286" data-tid="A329989"></hvl-listdef-combobox>
+        </div>
+    </div>
+    <br id="A4287" data-tid="A329990" />
+    <div class="row" id="A4288" data-tid="A329991">
+        <div class="col-sm-3" id="A4289" data-tid="A329992">
+            <br id="A4290" data-tid="A329993" />
+            <hvl-checkbox #Validation (ValueChange)="onSterilizationChanged($event)" [AllowThreeState]="Sterilization?.ThreeState" [BackColor]="Sterilization?.BackColor" [Enabled]="Sterilization?.Enabled" [Font]="Sterilization?.Font" [ForeColor]="Sterilization?.ForeColor" [IsTitleLeft]="Sterilization?.IsTitleLeft" [Margin]="Sterilization?.Margin" [ReadOnly]="Sterilization?.ReadOnly" [TabIndex]="Sterilization?.TabIndex" [TitleTopPadding]="Sterilization?.TitleTopPadding" [Title]="Sterilization?.Title" [Value]="magistralPreparationActionCompletedFormViewModel?._MagistralPreparationAction?.Sterilization" [Visible]="Sterilization?.Visible" id="A4291" data-tid="A329994"></hvl-checkbox>
+        </div>
+        <div class="col-sm-3" id="A4292" data-tid="A329995">
+            <br id="A4293" data-tid="A329996" />
+            <hvl-checkbox #Validation (ValueChange)="onNightShiftChanged($event)" [AllowThreeState]="NightShift?.ThreeState" [BackColor]="NightShift?.BackColor" [Enabled]="NightShift?.Enabled" [Font]="NightShift?.Font" [ForeColor]="NightShift?.ForeColor" [IsTitleLeft]="NightShift?.IsTitleLeft" [Margin]="NightShift?.Margin" [ReadOnly]="NightShift?.ReadOnly" [TabIndex]="NightShift?.TabIndex" [TitleTopPadding]="NightShift?.TitleTopPadding" [Title]="NightShift?.Title" [Value]="magistralPreparationActionCompletedFormViewModel?._MagistralPreparationAction?.NightShift" [Visible]="NightShift?.Visible" id="A4294" data-tid="A329997"></hvl-checkbox>
+        </div>
+        <div class="col-sm-3" id="A4295" data-tid="A329998">
+            <label class="control-label" id="A4296" data-tid="A329999">
+                Üretim Miktarı
+            </label>
+            <hvl-number-box #Validation (ValueChange)="onMagistralAmountChanged($event)" [BackColor]="MagistralAmount?.BackColor" [Enabled]="MagistralAmount?.Enabled" [Font]="MagistralAmount?.Font" [ForeColor]="MagistralAmount?.ForeColor" [ReadOnly]="MagistralAmount?.ReadOnly" [TabIndex]="MagistralAmount?.TabIndex" [Value]="magistralPreparationActionCompletedFormViewModel?._MagistralPreparationAction?.MagistralAmount" [Visible]="MagistralAmount?.Visible" id="A4297" data-tid="A330000"></hvl-number-box>
+        </div>
+        <div class="col-sm-3" id="A4298" data-tid="A330001">
+            <br id="A4299" data-tid="A330002" />
+            <hvl-button (BtnClicked)="cmdCalculateAmount_Click()" [BackColor]="cmdCalculateAmount?.BackColor" [Enabled]="cmdCalculateAmount?.Enabled" [Font]="cmdCalculateAmount?.Font" [ForeColor]="cmdCalculateAmount?.ForeColor" [height]="cmdCalculateAmount?.Height" [ReadOnly]="cmdCalculateAmount?.ReadOnly" [TabIndex]="cmdCalculateAmount?.TabIndex" [Text]="cmdCalculateAmount?.Text" [Visible]="cmdCalculateAmount?.Visible" id="A4300" data-tid="A330003"></hvl-button>
+        </div>
+    </div>
+    <br id="A4301" data-tid="A330004" />
+    <div class="row" id="A4302" data-tid="A330005">
+        <div class="col-sm-12" id="A4303" data-tid="A330006">
+            <label class="control-label" id="A4304" data-tid="A330007">
+                Açıklama
+            </label>
+            <hvl-text-box #Validation (TextChange)="onDescriptionChanged($event)" [BackColor]="Description?.BackColor" [CharacterCasing]="Description?.CharacterCasing" [Enabled]="Description?.Enabled" [Font]="Description?.Font" [ForeColor]="Description?.ForeColor" [height]="Description?.Height" [InputFormat]="Description?.InputFormat" [InputTurkishCharacter]="Description?.InputTurkishCharacter" [IsNonNumeric]="Description?.IsNonNumeric" [MultiLine]="Description?.Multiline" [ReadOnly]="Description?.ReadOnly" [Required]="Description?.Required" [TabIndex]="Description?.TabIndex" [TextAlign]="Description?.TextAlign" [Text]="magistralPreparationActionCompletedFormViewModel?._MagistralPreparationAction?.Description" [Visible]="Description?.Visible" id="A4305" data-tid="A330008"></hvl-text-box>
+        </div>
+    </div>
+
+
+
+
+    <br id="A4306" data-tid="A330009" />
+    <div class="row" id="A4307" data-tid="A330010">
+        <dx-tab-panel [selectedIndex]="0" id="A4308" data-tid="A330011">
+            <dxi-item class="tabpanel-item" title="Kullanılan İlaçlar" i18n-title="@@M17936" id="A4309" data-tid="A330012">
+                <div class="row" id="A4310" data-tid="A330013">
+                    <div class="col-sm-12" id="A4311" data-tid="A330014">
+                        <hvl-datagrid (CellValueChange)="MagistralPreparationUsedDrugs_CellValueChangedEmitted($event)" [AllowUserToAddRows]="MagistralPreparationUsedDrugs?.AllowUserToAddRows" [AllowUserToDeleteRows]="MagistralPreparationUsedDrugs?.AllowUserToDeleteRows" [Columns]="MagistralPreparationUsedDrugsColumns" [dataSource]="magistralPreparationActionCompletedFormViewModel?._MagistralPreparationAction?.MagistralPreparationUsedDrugs" [DeleteButtonWidth]="MagistralPreparationUsedDrugs?.DeleteButtonWidth" [DisplayExpressionsCache]="magistralPreparationActionCompletedFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="MagistralPreparationUsedDrugs?.ShowFilterRow" [FilterColumnName]="MagistralPreparationUsedDrugs?.FilterColumnName" [FilterLabel]="MagistralPreparationUsedDrugs?.FilterLabel" [Filter]="MagistralPreparationUsedDrugs?.Filter" [height]="MagistralPreparationUsedDrugs?.Height" [IsFilterLabelSingleLine]="MagistralPreparationUsedDrugs?.IsFilterLabelSingleLine" [ShowColumnHeaders]="MagistralPreparationUsedDrugs?.ColumnHeadersVisible" [ShowFilterCombo]="MagistralPreparationUsedDrugs?.ShowFilterCombo" [ShowTotalNumberOfRows]="MagistralPreparationUsedDrugs?.ShowTotalNumberOfRows" id="A4312" data-tid="A330015"></hvl-datagrid>
+                    </div>
+                </div>
+            </dxi-item>
+            <dxi-item class="tabpanel-item" title="Kullanılan Hammaddeler" i18n-title="@@M17933" id="A4313" data-tid="A330016">
+                <div class="row" id="A4314" data-tid="A330017">
+                    <div class="col-sm-12" id="A4315" data-tid="A330018">
+                        <hvl-datagrid (CellValueChange)="MagistralPreparationUsedChemicals_CellValueChangedEmitted($event)" [AllowUserToAddRows]="MagistralPreparationUsedChemicals?.AllowUserToAddRows" [AllowUserToDeleteRows]="MagistralPreparationUsedChemicals?.AllowUserToDeleteRows" [Columns]="MagistralPreparationUsedChemicalsColumns" [dataSource]="magistralPreparationActionCompletedFormViewModel?._MagistralPreparationAction?.MagistralPreparationUsedChemicals" [DeleteButtonWidth]="MagistralPreparationUsedChemicals?.DeleteButtonWidth" [DisplayExpressionsCache]="magistralPreparationActionCompletedFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="MagistralPreparationUsedChemicals?.ShowFilterRow" [FilterColumnName]="MagistralPreparationUsedChemicals?.FilterColumnName" [FilterLabel]="MagistralPreparationUsedChemicals?.FilterLabel" [Filter]="MagistralPreparationUsedChemicals?.Filter" [height]="MagistralPreparationUsedChemicals?.Height" [IsFilterLabelSingleLine]="MagistralPreparationUsedChemicals?.IsFilterLabelSingleLine" [ShowColumnHeaders]="MagistralPreparationUsedChemicals?.ColumnHeadersVisible" [ShowFilterCombo]="MagistralPreparationUsedChemicals?.ShowFilterCombo" [ShowTotalNumberOfRows]="MagistralPreparationUsedChemicals?.ShowTotalNumberOfRows" id="A4316" data-tid="A330019"></hvl-datagrid>
+                    </div>
+                </div>
+            </dxi-item>
+            <dxi-item class="tabpanel-item" title="Kullanılan Sarf Malzemeler" i18n-title="@@M17947" id="A4317" data-tid="A330020">
+                <div class="row" id="A4318" data-tid="A330021">
+                    <div class="col-sm-12" id="A4319" data-tid="A330022">
+                        <hvl-datagrid (CellValueChange)="MagistralPreparationUsedMaterials_CellValueChangedEmitted($event)" [AllowUserToAddRows]="MagistralPreparationUsedMaterials?.AllowUserToAddRows" [AllowUserToDeleteRows]="MagistralPreparationUsedMaterials?.AllowUserToDeleteRows" [Columns]="MagistralPreparationUsedMaterialsColumns" [dataSource]="magistralPreparationActionCompletedFormViewModel?._MagistralPreparationAction?.MagistralPreparationUsedMaterials" [DeleteButtonWidth]="MagistralPreparationUsedMaterials?.DeleteButtonWidth" [DisplayExpressionsCache]="magistralPreparationActionCompletedFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="MagistralPreparationUsedMaterials?.ShowFilterRow" [FilterColumnName]="MagistralPreparationUsedMaterials?.FilterColumnName" [FilterLabel]="MagistralPreparationUsedMaterials?.FilterLabel" [Filter]="MagistralPreparationUsedMaterials?.Filter" [height]="MagistralPreparationUsedMaterials?.Height" [IsFilterLabelSingleLine]="MagistralPreparationUsedMaterials?.IsFilterLabelSingleLine" [ShowColumnHeaders]="MagistralPreparationUsedMaterials?.ColumnHeadersVisible" [ShowFilterCombo]="MagistralPreparationUsedMaterials?.ShowFilterCombo" [ShowTotalNumberOfRows]="MagistralPreparationUsedMaterials?.ShowTotalNumberOfRows" id="A4320" data-tid="A330023"></hvl-datagrid>
+                    </div>
+                </div>
+            </dxi-item>
+        </dx-tab-panel>
+    </div>
+    <br id="A4321" data-tid="A330024" />
+    <div class="row" id="A4322" data-tid="A330025">
+        <dx-tab-panel [selectedIndex]="0" id="A4323" data-tid="A330026">
+            <dxi-item class="tabpanel-item" title="Üretilen Majistral" i18n-title="@@M23950" id="A4324" data-tid="A330027">
+                <div class="row" id="A4325" data-tid="A330028">
+                    <div class="col-sm-12" id="A4326" data-tid="A330029">
+                        <hvl-datagrid (CellValueChange)="MagistralPreparationDetails_CellValueChangedEmitted($event)" [AllowUserToAddRows]="MagistralPreparationDetails?.AllowUserToAddRows" [AllowUserToDeleteRows]="MagistralPreparationDetails?.AllowUserToDeleteRows" [Columns]="MagistralPreparationDetailsColumns" [dataSource]="magistralPreparationActionCompletedFormViewModel?._MagistralPreparationAction?.MagistralPreparationDetails" [DeleteButtonWidth]="MagistralPreparationDetails?.DeleteButtonWidth" [DisplayExpressionsCache]="magistralPreparationActionCompletedFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="MagistralPreparationDetails?.ShowFilterRow" [FilterColumnName]="MagistralPreparationDetails?.FilterColumnName" [FilterLabel]="MagistralPreparationDetails?.FilterLabel" [Filter]="MagistralPreparationDetails?.Filter" [height]="MagistralPreparationDetails?.Height" [IsFilterLabelSingleLine]="MagistralPreparationDetails?.IsFilterLabelSingleLine" [ShowColumnHeaders]="MagistralPreparationDetails?.ColumnHeadersVisible" [ShowFilterCombo]="MagistralPreparationDetails?.ShowFilterCombo" [ShowTotalNumberOfRows]="MagistralPreparationDetails?.ShowTotalNumberOfRows" id="A4327" data-tid="A330030"></hvl-datagrid>
+                    </div>
+                </div>
+            </dxi-item>
+            <dxi-item class="tabpanel-item" title="Kullanılan Malzeme" i18n-title="@@M17939" id="A4328" data-tid="A330031">
+                <div class="row" id="A4329" data-tid="A330032">
+                    <div class="col-sm-12" id="A4330" data-tid="A330033">
+                        <hvl-datagrid [AllowUserToAddRows]="StockActionDetails?.AllowUserToAddRows" [AllowUserToDeleteRows]="StockActionDetails?.AllowUserToDeleteRows" [Columns]="StockActionDetailsColumns" [dataSource]="magistralPreparationActionCompletedFormViewModel?._MagistralPreparationAction?.MagistralPreparationUsedDetails" [DeleteButtonWidth]="StockActionDetails?.DeleteButtonWidth" [DisplayExpressionsCache]="magistralPreparationActionCompletedFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="StockActionDetails?.ShowFilterRow" [FilterColumnName]="StockActionDetails?.FilterColumnName" [FilterLabel]="StockActionDetails?.FilterLabel" [Filter]="StockActionDetails?.Filter" [height]="StockActionDetails?.Height" [IsFilterLabelSingleLine]="StockActionDetails?.IsFilterLabelSingleLine" [ShowColumnHeaders]="StockActionDetails?.ColumnHeadersVisible" [ShowFilterCombo]="StockActionDetails?.ShowFilterCombo" [ShowTotalNumberOfRows]="StockActionDetails?.ShowTotalNumberOfRows" id="A4331" data-tid="A330034"></hvl-datagrid>
+                    </div>
+                </div>
+            </dxi-item>
+        </dx-tab-panel>
+    </div>
+</div>

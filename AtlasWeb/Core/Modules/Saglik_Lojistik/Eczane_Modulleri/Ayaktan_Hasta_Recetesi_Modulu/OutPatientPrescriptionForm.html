@@ -1,0 +1,84 @@
+﻿
+
+<NeStatePanelComponent [OutgoingTransitions]="outPatientPrescriptionFormViewModel?.OutgoingTransitions" [StateReports]="outPatientPrescriptionFormViewModel?.CurrentStateReports" [ObjectID]="outPatientPrescriptionFormViewModel?._OutPatientPrescription?.ObjectID" [ObjectDefID]="outPatientPrescriptionFormViewModel?._OutPatientPrescription?.ObjectDefID" [CurrentStateDefID]="outPatientPrescriptionFormViewModel._OutPatientPrescription.CurrentStateDefID" [DropStateList]="DropStateList" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" id="A3219" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A328474">
+</NeStatePanelComponent>
+
+    <form id="OutPatientPrescriptionForm" class="form-horizontal" role="form" data-tid="A328475">
+        
+        <div class="container-fluid" id="A3220" data-tid="A328476">
+            <div class="row" id="A3221" data-tid="A328477">
+                <div class="col-md-4 col-sm-12" id="A3222" data-tid="A328478">
+                    <patient-demographics-form [actionId]="outPatientPrescriptionFormViewModel._OutPatientPrescription.ObjectID" id="A3223" data-tid="A328479"></patient-demographics-form>
+                </div>
+                <div class="col-md-2 col-sm-12" id="A3224" data-tid="A328480">
+                    <div class="row" id="A3225" data-tid="A328481">
+                        <div class="col-md-12" id="A3226" data-tid="A328482">
+                            <label class="control-label" id="A3227" data-tid="A328483">Klinik Protokol No</label>
+                        </div>
+                    </div>
+                    <div class="row" id="A3228" data-tid="A328484">
+                        <div class="col-md-12" id="A3229" data-tid="A328485">
+                            <label class="control-label" id="A3230" data-tid="A328486">Hastanın Tedavi Gördüğü Klinik</label>
+                        </div>
+                    </div>
+                    <div class="row" id="A3231" data-tid="A328487">
+                        <div class="col-md-6" id="A3232" data-tid="A328488">
+                            <label class="control-label" id="A3233" data-tid="A328489">Oda</label>
+                        </div>
+                        <div class="col-md-6" id="A3234" data-tid="A328490">
+                            <label class="control-label" id="A3235" data-tid="A328491">Yatak</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12" id="A3236" data-tid="A328492">
+                    <DiagnosisGridReadOnlyForm [EpisodeAction]="outPatientPrescriptionFormViewModel._OutPatientPrescription" id="A3237" data-tid="A328493"></DiagnosisGridReadOnlyForm>
+
+                </div>
+            </div>
+            <br id="A3238" data-tid="A328494" />
+            <div class="row" id="A3239" data-tid="A328495">
+                <div class="col-sm-2" id="A3240" data-tid="A328496">
+                    <label class="control-label" id="A3241" data-tid="A328497">
+                        İşlem No
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onIDChanged($event)" [BackColor]="ID?.BackColor" [CharacterCasing]="ID?.CharacterCasing" [Enabled]="ID?.Enabled" [Font]="ID?.Font" [ForeColor]="ID?.ForeColor" [height]="ID?.Height" [InputFormat]="ID?.InputFormat" [InputTurkishCharacter]="ID?.InputTurkishCharacter" [IsNonNumeric]="ID?.IsNonNumeric" [MultiLine]="ID?.Multiline" [ReadOnly]="ID?.ReadOnly" [Required]="ID?.Required" [TabIndex]="ID?.TabIndex" [TextAlign]="ID?.TextAlign" [Text]="outPatientPrescriptionFormViewModel?._OutPatientPrescription?.ID" [Visible]="ID?.Visible" id="A3242" data-tid="A328498"></hvl-text-box>
+                </div>
+                <div class="col-sm-2" id="A3243" data-tid="A328499">
+                    <label class="control-label" id="A3244" data-tid="A328500">
+                        İşlem Tarihi
+                    </label>
+                    <hvl-date-picker #Validation (ValueChange)="onttdatetimepicker1Changed($event)" [BackColor]="ttdatetimepicker1?.BackColor" [CustomFormat]="ttdatetimepicker1?.CustomFormat" [Enabled]="ttdatetimepicker1?.Enabled" [Font]="ttdatetimepicker1?.Font" [ForeColor]="ttdatetimepicker1?.ForeColor" [Format]="ttdatetimepicker1?.Format" [Max]="ttdatetimepicker1?.Max" [Min]="ttdatetimepicker1?.Min" [ReadOnly]="ttdatetimepicker1?.ReadOnly" [Required]="ttdatetimepicker1?.Required" [TabIndex]="ttdatetimepicker1?.TabIndex" [Value]="outPatientPrescriptionFormViewModel?._OutPatientPrescription?.ActionDate" [Visible]="ttdatetimepicker1?.Visible" id="A3245" data-tid="A328501"></hvl-date-picker>
+                </div>
+                <div class="col-sm-3" id="A3246" data-tid="A328502">
+                    <label class="control-label" id="A3247" data-tid="A328503">
+                        Reçete Türü
+                    </label>
+                    <hvl-enum-combobox #Validation (ValueChange)="onPrescriptionTypeChanged($event)" [BackColor]="PrescriptionType?.BackColor" [DataTypeName]="PrescriptionType?.DataTypeName" [Enabled]="PrescriptionType?.Enabled" [Font]="PrescriptionType?.Font" [ForeColor]="PrescriptionType?.ForeColor" [IncludeOnly]="PrescriptionType?.IncludeOnly" [ReadOnly]="PrescriptionType?.ReadOnly" [ShowClearButton]="PrescriptionType?.ShowClearButton" [SortBy]="PrescriptionType?.SortBy" [TabIndex]="PrescriptionType?.TabIndex" [Value]="outPatientPrescriptionFormViewModel?._OutPatientPrescription?.PrescriptionType" [Visible]="PrescriptionType?.Visible" id="A3248" data-tid="A328504"></hvl-enum-combobox>
+                </div>
+                <div class="col-sm-3" id="A3249" data-tid="A328505">
+                    <label class="control-label" id="A3250" data-tid="A328506">
+                        E Reçete No
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onEReceteNoChanged($event)" [BackColor]="EReceteNo?.BackColor" [CharacterCasing]="EReceteNo?.CharacterCasing" [Enabled]="EReceteNo?.Enabled" [Font]="EReceteNo?.Font" [ForeColor]="EReceteNo?.ForeColor" [height]="EReceteNo?.Height" [InputFormat]="EReceteNo?.InputFormat" [InputTurkishCharacter]="EReceteNo?.InputTurkishCharacter" [IsNonNumeric]="EReceteNo?.IsNonNumeric" [MultiLine]="EReceteNo?.Multiline" [ReadOnly]="EReceteNo?.ReadOnly" [Required]="EReceteNo?.Required" [TabIndex]="EReceteNo?.TabIndex" [TextAlign]="EReceteNo?.TextAlign" [Text]="outPatientPrescriptionFormViewModel?._OutPatientPrescription?.EReceteNo" [Visible]="EReceteNo?.Visible" id="A3251" data-tid="A328507"></hvl-text-box>
+                </div>
+                <div class="col-sm-2" id="A3252" data-tid="A328508">
+                    <label class="control-label" id="A3253" data-tid="A328509">
+                        Makbuz No
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="onReceiptNOChanged($event)" [BackColor]="ReceiptNO?.BackColor" [CharacterCasing]="ReceiptNO?.CharacterCasing" [Enabled]="ReceiptNO?.Enabled" [Font]="ReceiptNO?.Font" [ForeColor]="ReceiptNO?.ForeColor" [height]="ReceiptNO?.Height" [InputFormat]="ReceiptNO?.InputFormat" [InputTurkishCharacter]="ReceiptNO?.InputTurkishCharacter" [IsNonNumeric]="ReceiptNO?.IsNonNumeric" [MultiLine]="ReceiptNO?.Multiline" [ReadOnly]="ReceiptNO?.ReadOnly" [Required]="ReceiptNO?.Required" [TabIndex]="ReceiptNO?.TabIndex" [TextAlign]="ReceiptNO?.TextAlign" [Text]="outPatientPrescriptionFormViewModel?._OutPatientPrescription?.ReceiptNO" [Visible]="ReceiptNO?.Visible" id="A3254" data-tid="A328510"></hvl-text-box>
+                </div>
+            </div>
+            <br id="A3255" data-tid="A328511" />
+            <div class="row" id="A3256" data-tid="A328512">
+                <dx-tab-panel [selectedIndex]="0" id="A3257" data-tid="A328513">
+                    <dxi-item class="tabpanel-item" title="İlaçlar" i18n-title="@@M16389" id="A3258" data-tid="A328514">
+                        <div class="row" id="A3259" data-tid="A328515">
+                            <div class="col-sm-12" id="A3260" data-tid="A328516">
+                                <hvl-datagrid [AllowUserToAddRows]="OutPatientDrugOrders?.AllowUserToAddRows" [AllowUserToDeleteRows]="OutPatientDrugOrders?.AllowUserToDeleteRows" [Columns]="OutPatientDrugOrdersColumns" [dataSource]="outPatientPrescriptionFormViewModel?._OutPatientPrescription?.OutPatientDrugOrders" [DeleteButtonWidth]="OutPatientDrugOrders?.DeleteButtonWidth" [DisplayExpressionsCache]="outPatientPrescriptionFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="OutPatientDrugOrders?.ShowFilterRow" [FilterColumnName]="OutPatientDrugOrders?.FilterColumnName" [FilterLabel]="OutPatientDrugOrders?.FilterLabel" [Filter]="OutPatientDrugOrders?.Filter" [height]="OutPatientDrugOrders?.Height" [IsFilterLabelSingleLine]="OutPatientDrugOrders?.IsFilterLabelSingleLine" [ShowColumnHeaders]="OutPatientDrugOrders?.ColumnHeadersVisible" [ShowFilterCombo]="OutPatientDrugOrders?.ShowFilterCombo" [ShowTotalNumberOfRows]="OutPatientDrugOrders?.ShowTotalNumberOfRows" id="A3261" data-tid="A328517"></hvl-datagrid>
+                            </div>
+                        </div>
+                    </dxi-item>
+                </dx-tab-panel>
+            </div>
+        </div>
+  </form>

@@ -1,0 +1,340 @@
+﻿<h4 class="logisticLabel" style="margin-left:40%;color:#08c;" id="A3777" data-tid="A329153">{{FormCaption}}</h4>
+<NeStatePanelComponent [OutgoingTransitions]="kScheduleCompletedFormViewModel?.OutgoingTransitions"
+    [StateReports]="kScheduleCompletedFormViewModel?.CurrentStateReports"
+    [ObjectID]="kScheduleCompletedFormViewModel?._KSchedule?.ObjectID"
+    [ObjectDefID]="kScheduleCompletedFormViewModel?._KSchedule?.ObjectDefID"
+    [CurrentStateDefID]="kScheduleCompletedFormViewModel._KSchedule.CurrentStateDefID" [DropStateList]="DropStateList"
+    (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()" id="A3778"
+    [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition"
+    data-tid="A329154">
+</NeStatePanelComponent>
+
+<form id="KScheduleCompletedForm" class="form-horizontal" role="form" data-tid="A329155">
+
+    <div class="container-fluid" id="A3779" data-tid="A329156">
+        <br id="A3780" data-tid="A329157" />
+        <div class="row" id="A3781" data-tid="A329158">
+            <div class="col-md-4 col-sm-12" id="A3782" data-tid="A329159">
+                <patient-demographics-form
+                    [actionId]="kScheduleCompletedFormViewModel._KSchedule.InPatientPhysicianApplication" id="A3783"
+                    data-tid="A329160"></patient-demographics-form>
+            </div>
+            <div class="col-md-2 col-sm-12" *ngIf="hasPhysicianApplication" id="A3784" data-tid="A329161">
+                <div class="row" id="A3785" data-tid="A329162">
+                    <div class="col-md-12" id="A3786" data-tid="A329163">
+                        <label class="control-label" id="A3787" data-tid="A329164">Klinik Protokol No</label>
+                        <dx-text-box [readOnly]="true" [hoverStateEnabled]="false" [(value)]="clinicProtocolNo"
+                            id="A3788" data-tid="A329165"></dx-text-box>
+                    </div>
+                </div>
+                <div class="row" id="A3789" data-tid="A329166">
+                    <div class="col-md-6" id="A3790" data-tid="A329167">
+                        <label class="control-label" id="A3791" data-tid="A329168">Oda</label>
+                        <dx-text-box [readOnly]="true" [hoverStateEnabled]="false" [(value)]="clinicRoom" id="A3792"
+                            data-tid="A329169"></dx-text-box>
+                    </div>
+                    <div class="col-md-6" id="A3793" data-tid="A329170">
+                        <label class="control-label" id="A3794" data-tid="A329171">Yatak</label>
+                        <dx-text-box [readOnly]="true" [hoverStateEnabled]="false" [(value)]="clinicBed" id="A3795"
+                            data-tid="A329172"></dx-text-box>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12" id="A3796" data-tid="A329173">
+                <DiagnosisGridReadOnlyForm
+                    [EpisodeAction]="kScheduleCompletedFormViewModel._KSchedule.InPatientPhysicianApplication"
+                    id="A3797" data-tid="A329174"></DiagnosisGridReadOnlyForm>
+            </div>
+        </div>
+        <br id="A3798" data-tid="A329175" />
+        <div class="row" id="A3799" data-tid="A329176">
+            <div class="col-sm-3" id="A3800" data-tid="A329177">
+                <label class="control-label " id="A3801" data-tid="A329178">
+                    İşlem No
+                </label>
+                <hvl-text-box #Validation (TextChange)="onStockActionIDChanged($event)"
+                    [BackColor]="StockActionID?.BackColor" [CharacterCasing]="StockActionID?.CharacterCasing"
+                    [Enabled]="StockActionID?.Enabled" [Font]="StockActionID?.Font"
+                    [ForeColor]="StockActionID?.ForeColor" [height]="StockActionID?.Height"
+                    [InputFormat]="StockActionID?.InputFormat"
+                    [InputTurkishCharacter]="StockActionID?.InputTurkishCharacter"
+                    [IsNonNumeric]="StockActionID?.IsNonNumeric" [MultiLine]="StockActionID?.Multiline"
+                    [ReadOnly]="StockActionID?.ReadOnly" [Required]="StockActionID?.Required"
+                    [TabIndex]="StockActionID?.TabIndex" [TextAlign]="StockActionID?.TextAlign"
+                    [Text]="kScheduleCompletedFormViewModel?._KSchedule?.StockActionID"
+                    [Visible]="StockActionID?.Visible" id="A3802" data-tid="A329179"></hvl-text-box>
+            </div>
+            <div class="col-sm-3" id="A3803" data-tid="A329180">
+                <label class="control-label " id="A3804" data-tid="A329181">
+                    İşlem Tarihi
+                </label>
+                <hvl-date-picker #Validation (ValueChange)="onTransactionDateChanged($event)"
+                    [BackColor]="TransactionDate?.BackColor" [CustomFormat]="TransactionDate?.CustomFormat"
+                    [Enabled]="TransactionDate?.Enabled" [Font]="TransactionDate?.Font"
+                    [ForeColor]="TransactionDate?.ForeColor" [Format]="TransactionDate?.Format"
+                    [Max]="TransactionDate?.Max" [Min]="TransactionDate?.Min" [ReadOnly]="TransactionDate?.ReadOnly"
+                    [Required]="TransactionDate?.Required" [TabIndex]="TransactionDate?.TabIndex"
+                    [Value]="kScheduleCompletedFormViewModel?._KSchedule?.TransactionDate"
+                    [Visible]="TransactionDate?.Visible" id="A3805" data-tid="A329182"></hvl-date-picker>
+            </div>
+            <div class="col-sm-3" id="A3806" data-tid="A329183">
+                <label class="control-label " id="A3807" data-tid="A329184">
+                    İstek Yapılan Depo
+                </label>
+                <hvl-list-box #Validation (SelectedObjectChange)="onStoreChanged($event)"
+                    [AutoCompleteDialogHeight]="Store?.AutoCompleteDialogHeight"
+                    [AutoCompleteDialogWidth]="Store?.AutoCompleteDialogWidth"
+                    [AutoCompleteMode]="Store?.AutoCompleteMode" [BackColor]="Store?.BackColor"
+                    [DefinitionName]="Store?.ListDefName"
+                    [DisplayExpressionsCache]="kScheduleCompletedFormViewModel?.ListDefDisplayExpressions"
+                    [Enabled]="Store?.Enabled" [Font]="Store?.Font" [ForeColor]="Store?.ForeColor"
+                    [ListFilterExpression]="Store?.ListFilterExpression" [MinSearchLength]="Store?.MinSearchLength"
+                    [PopupDialogFieldConfig]="Store?.PopupDialogFieldConfig"
+                    [PopupDialogGridColumns]="Store?.PopupDialogGridColumns"
+                    [PopupDialogHeight]="Store?.PopupDialogHeight" [PopupDialogTitle]="Store?.PopupDialogTitle"
+                    [PopupDialogWidth]="Store?.PopupDialogWidth" [ReadOnly]="Store?.ReadOnly"
+                    [SearchMode]="Store?.SearchMode" [SearchTimeout]="Store?.SearchTimeout"
+                    [SelectedObject]="kScheduleCompletedFormViewModel?._KSchedule?.Store" [TabIndex]="Store?.TabIndex"
+                    [Visible]="Store?.Visible" [width]="Store?.Width" id="A3808" data-tid="A329185"></hvl-list-box>
+            </div>
+            <div class="col-sm-3" id="A3809" data-tid="A329186">
+                <label class="control-label " id="A3810" data-tid="A329187">
+                    İstek Yapan Depo
+                </label>
+                <hvl-list-box #Validation (SelectedObjectChange)="onDestinationStoreChanged($event)"
+                    [AutoCompleteDialogHeight]="DestinationStore?.AutoCompleteDialogHeight"
+                    [AutoCompleteDialogWidth]="DestinationStore?.AutoCompleteDialogWidth"
+                    [AutoCompleteMode]="DestinationStore?.AutoCompleteMode" [BackColor]="DestinationStore?.BackColor"
+                    [DefinitionName]="DestinationStore?.ListDefName"
+                    [DisplayExpressionsCache]="kScheduleCompletedFormViewModel?.ListDefDisplayExpressions"
+                    [Enabled]="DestinationStore?.Enabled" [Font]="DestinationStore?.Font"
+                    [ForeColor]="DestinationStore?.ForeColor"
+                    [ListFilterExpression]="DestinationStore?.ListFilterExpression"
+                    [MinSearchLength]="DestinationStore?.MinSearchLength"
+                    [PopupDialogFieldConfig]="DestinationStore?.PopupDialogFieldConfig"
+                    [PopupDialogGridColumns]="DestinationStore?.PopupDialogGridColumns"
+                    [PopupDialogHeight]="DestinationStore?.PopupDialogHeight"
+                    [PopupDialogTitle]="DestinationStore?.PopupDialogTitle"
+                    [PopupDialogWidth]="DestinationStore?.PopupDialogWidth" [ReadOnly]="DestinationStore?.ReadOnly"
+                    [SearchMode]="DestinationStore?.SearchMode" [SearchTimeout]="DestinationStore?.SearchTimeout"
+                    [SelectedObject]="kScheduleCompletedFormViewModel?._KSchedule?.DestinationStore"
+                    [TabIndex]="DestinationStore?.TabIndex" [Visible]="DestinationStore?.Visible"
+                    [width]="DestinationStore?.Width" id="A3811" data-tid="A329188"></hvl-list-box>
+            </div>
+        </div>
+        <br id="A3812" data-tid="A329189" />
+        <div class="row" id="A3813" data-tid="A329190">
+            <div class="col-sm-3" id="A3814" data-tid="A329191">
+                <label class="control-label " id="A3815" data-tid="A329192">
+                    Başlangıç Tarihi
+                </label>
+                <hvl-date-picker #Validation (ValueChange)="onStartDateChanged($event)"
+                    [BackColor]="StartDate?.BackColor" [CustomFormat]="StartDate?.CustomFormat"
+                    [Enabled]="StartDate?.Enabled" [Font]="StartDate?.Font" [ForeColor]="StartDate?.ForeColor"
+                    [Format]="StartDate?.Format" [Max]="StartDate?.Max" [Min]="StartDate?.Min"
+                    [ReadOnly]="StartDate?.ReadOnly" [Required]="StartDate?.Required" [TabIndex]="StartDate?.TabIndex"
+                    [Value]="kScheduleCompletedFormViewModel?._KSchedule?.StartDate" [Visible]="StartDate?.Visible"
+                    id="A3816" data-tid="A329193"></hvl-date-picker>
+            </div>
+            <div class="col-sm-3" id="A3817" data-tid="A329194">
+                <label class="control-label " id="A3818" data-tid="A329195">
+                    Bitiş Tarihi
+                </label>
+                <hvl-date-picker #Validation (ValueChange)="onEndDateChanged($event)" [BackColor]="EndDate?.BackColor"
+                    [CustomFormat]="EndDate?.CustomFormat" [Enabled]="EndDate?.Enabled" [Font]="EndDate?.Font"
+                    [ForeColor]="EndDate?.ForeColor" [Format]="EndDate?.Format" [Max]="EndDate?.Max"
+                    [Min]="EndDate?.Min" [ReadOnly]="EndDate?.ReadOnly" [Required]="EndDate?.Required"
+                    [TabIndex]="EndDate?.TabIndex" [Value]="kScheduleCompletedFormViewModel?._KSchedule?.EndDate"
+                    [Visible]="EndDate?.Visible" id="A3819" data-tid="A329196"></hvl-date-picker>
+            </div>
+            <div class="col-sm-3" id="A3820" data-tid="A329197">
+                <label class="control-label " id="A3821" data-tid="A329198">
+                    İstek Yapan Personel
+                </label>
+                <hvl-text-box #Validation [(Text)]="kScheduleCompletedFormViewModel._KSchedule.MKYS_TeslimAlan"
+                    [BackColor]="MKYS_TeslimAlan?.BackColor" [CharacterCasing]="MKYS_TeslimAlan?.CharacterCasing"
+                    [Enabled]="MKYS_TeslimAlan?.Enabled" [Font]="MKYS_TeslimAlan?.Font"
+                    [ForeColor]="MKYS_TeslimAlan?.ForeColor" [height]="MKYS_TeslimAlan?.Height"
+                    [InputFormat]="MKYS_TeslimAlan?.InputFormat"
+                    [InputTurkishCharacter]="MKYS_TeslimAlan?.InputTurkishCharacter"
+                    [IsNonNumeric]="MKYS_TeslimAlan?.IsNonNumeric" [MultiLine]="MKYS_TeslimAlan?.Multiline"
+                    [ReadOnly]="MKYS_TeslimAlan?.ReadOnly" [Required]="MKYS_TeslimAlan?.Required"
+                    [TabIndex]="MKYS_TeslimAlan?.TabIndex" [TextAlign]="MKYS_TeslimAlan?.TextAlign"
+                    [Visible]="MKYS_TeslimAlan?.Visible" id="A3822" data-tid="A329199"></hvl-text-box>
+            </div>
+            <div class="col-sm-2" id="A3823" data-tid="A329200">
+                <br id="A3824" data-tid="A329201" />
+                <dx-button type="default" icon="fa fa-barcode" text="Barkodu Bas" (onClick)="btnPrintlBarcode()"
+                    i18n-text="@@M27416" id="A3825" data-tid="A329202"></dx-button>
+            </div>
+
+
+
+        </div>
+        <br id="A3826" data-tid="A329203" />
+        <div class="row" id="A3827" data-tid="A329204">
+            <div class="col-sm-12" id="A3828" data-tid="A329205">
+                <label class="control-label " id="A3829" data-tid="A329206">
+                    Açıklama
+                </label>
+                <hvl-text-box #Validation (TextChange)="onDescriptionChanged($event)"
+                    [BackColor]="Description?.BackColor" [CharacterCasing]="Description?.CharacterCasing"
+                    [Enabled]="Description?.Enabled" [Font]="Description?.Font" [ForeColor]="Description?.ForeColor"
+                    [height]="Description?.Height" [InputFormat]="Description?.InputFormat"
+                    [InputTurkishCharacter]="Description?.InputTurkishCharacter"
+                    [IsNonNumeric]="Description?.IsNonNumeric" [MultiLine]="Description?.Multiline"
+                    [ReadOnly]="Description?.ReadOnly" [Required]="Description?.Required"
+                    [TabIndex]="Description?.TabIndex" [TextAlign]="Description?.TextAlign"
+                    [Text]="kScheduleCompletedFormViewModel?._KSchedule?.Description" [Visible]="Description?.Visible"
+                    id="A3830" data-tid="A329207"></hvl-text-box>
+            </div>
+        </div>
+        <br id="A3831" data-tid="A329208" />
+        <div class="row" id="A3832" data-tid="A329209">
+            <dx-tab-panel [selectedIndex]="0" id="A3833" (onSelectionChanged)="tabSelectionPatient($event)"
+                data-tid="A329210">
+                <dxi-item class="tabpanel-item" title="İstenen İlaçlar" i18n-title="@@M16709" id="A3742"
+                    data-tid="A329211">
+                    <div class="row" id="A3743" style="height:418px" data-tid="A329212">
+                        <div class="col-sm-12" id="A3744" data-tid="A329213">
+                            <div id="grid" data-tid="A329214">
+                                <dx-data-grid #materialGrid id="grid-container" [columns]="MaterialGridColumns"
+                                    [dataSource]="kScheduleCompletedFormViewModel?.KScheduleMaterialRowViewModelList"
+                                    keyExpr="RowObjectId" height="100%" data-tid="A329215">
+
+                                    <div *dxTemplate="let row of 'detailCellTemplate'" style="padding-bottom: 1px;"
+                                        data-tid="A329216">
+                                        <i class="fa fa-barcode" style="cursor:pointer" (click)="getDetail(row)"
+                                            data-tid="A329217"></i>
+                                    </div>
+
+                                    <div *dxTemplate="let row of 'buttonCellTemplateDetail'"
+                                        style="padding-bottom: 1px;" data-tid="A329218">
+                                        <dx-button type="default" text="Detaylar" (onClick)="btnDetail(row)"
+                                            data-tid="A329219">
+                                        </dx-button>
+                                    </div>
+
+                                    <div *dxTemplate="let row of 'buttonCellTemplateEqual'" style="padding-bottom: 1px;"
+                                        data-tid="A329220">
+                                        <dx-button type="default" text="Eşdeğer" (onClick)="btnEqualDrug(row)"
+                                            data-tid="A329221">
+                                        </dx-button>
+                                    </div>
+
+                                    <dxo-paging [pageSize]="20" data-tid="A329222"></dxo-paging>
+                                    <dxo-filter-row [visible]="true" id="A5698" data-tid="A329223"> </dxo-filter-row>
+                                    <dxo-editing mode="cell" [allowUpdating]="true" [allowDeleting]="false"
+                                        [allowAdding]="false" data-tid="A329224"></dxo-editing>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </dxi-item>
+                <!--                 <dxi-item class="tabpanel-item" title="İstenen İlaçlar" i18n-title="@@M16709" id="A3834">
+                    <div class="row" style="height:600px" id="A3835">
+                        <div class="col-sm-12" id="A3836">
+                            <hvl-datagrid (CellValueChange)="StockActionOutDetails_CellValueChangedEmitted($event)" 
+                                          [AllowUserToAddRows]="StockActionOutDetails?.AllowUserToAddRows" 
+                                          [AllowUserToDeleteRows]="StockActionOutDetails?.AllowUserToDeleteRows" 
+                                          [Columns]="StockActionOutDetailsColumns" 
+                                          [dataSource]="kScheduleCompletedFormViewModel?.KScheduleMaterialRowViewModelList" 
+                                          [DeleteButtonWidth]="StockActionOutDetails?.DeleteButtonWidth" 
+                                          [DisplayExpressionsCache]="kScheduleCompletedFormViewModel?.ListDefDisplayExpressions" 
+                                          [EnableFilter]="StockActionOutDetails?.ShowFilterRow" 
+                                          [FilterColumnName]="StockActionOutDetails?.FilterColumnName" 
+                                          [FilterLabel]="StockActionOutDetails?.FilterLabel" 
+                                          [Filter]="StockActionOutDetails?.Filter" 
+                                          [height]="StockActionOutDetails?.Height" 
+                                          [IsFilterLabelSingleLine]="StockActionOutDetails?.IsFilterLabelSingleLine" 
+                                          [ShowColumnHeaders]="StockActionOutDetails?.ColumnHeadersVisible" 
+                                          [ShowFilterCombo]="StockActionOutDetails?.ShowFilterCombo" 
+                                          [ShowTotalNumberOfRows]="StockActionOutDetails?.ShowTotalNumberOfRows" id="A3837"></hvl-datagrid>
+                        </div>
+                    </div>
+                </dxi-item> -->
+                <!--<dxi-item class="tabpanel-item" title="Hasta Yanında Getirdiği İlaçlar" i18n-title="@@M27671" id="A3838">
+                    <div class="row" style="height:600px" id="A3839">
+                        <div class="col-sm-12" id="A3840">
+                       	<hvl-datagrid (CellValueChange)="KSchedulePatienOwnDrugs_CellValueChangedEmitted($event)" [AllowUserToAddRows]="KSchedulePatienOwnDrugs?.AllowUserToAddRows" [AllowUserToDeleteRows]="KSchedulePatienOwnDrugs?.AllowUserToDeleteRows" [Columns]="KSchedulePatienOwnDrugsColumns" [dataSource]="kScheduleCompletedFormViewModel?._KSchedule?.KSchedulePatienOwnDrugs" [DeleteButtonWidth]="KSchedulePatienOwnDrugs?.DeleteButtonWidth" [DisplayExpressionsCache]="kScheduleCompletedFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="KSchedulePatienOwnDrugs?.ShowFilterRow" [FilterColumnName]="KSchedulePatienOwnDrugs?.FilterColumnName" [FilterLabel]="KSchedulePatienOwnDrugs?.FilterLabel" [Filter]="KSchedulePatienOwnDrugs?.Filter" [height]="KSchedulePatienOwnDrugs?.Height" [IsFilterLabelSingleLine]="KSchedulePatienOwnDrugs?.IsFilterLabelSingleLine" [ShowColumnHeaders]="KSchedulePatienOwnDrugs?.ColumnHeadersVisible" [ShowFilterCombo]="KSchedulePatienOwnDrugs?.ShowFilterCombo" [ShowTotalNumberOfRows]="KSchedulePatienOwnDrugs?.ShowTotalNumberOfRows" id="A3841"></hvl-datagrid>
+                        </div>
+                    </div>
+                </dxi-item>-->
+
+                <dxi-item class="tabpanel-item" title="Bu Gelişe Ait İlaçlar" data-tid="A329225">
+                    <div class="row" id="A3751" style="height:600px" data-tid="A329226">
+                        <dx-data-grid [columns]="inpatientHasDrugListColumn" [dataSource]="InpatientHasDrugList"
+                            [filterRow]="{visible: true}" width="100%" height="100%" showRowLines="true"
+                            style="padding-left: 1%;"
+                            [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:false}"
+                            data-tid="A329227">
+                            <dxo-paging [pageSize]="20" data-tid="A329228"></dxo-paging>
+                        </dx-data-grid>
+                    </div>
+                </dxi-item>
+
+                <dxi-item class="tabpanel-item" title="İlaç Tedavi Profili" i18n-title="@@M16366" id="A3842"
+                    data-tid="A329229">
+                    <div class="row" style="height:418px" id="A3843" data-tid="A329230">
+                        <div class="col-sm-12" id="A3844" data-tid="A329231">
+                            <dx-data-grid id="gridContainer" [dataSource]="tempDrugOrders"
+                                (onToolbarPreparing)="onToolbarPreparing($event)" data-tid="A329232">
+                                <dxo-grouping [autoExpandAll]="expanded" id="A3845" data-tid="A329233"></dxo-grouping>
+                                <dxo-column-chooser [enabled]="true" id="A3846" data-tid="A329234"></dxo-column-chooser>
+                                <dxo-load-panel [enabled]="true" id="A3847" data-tid="A329235"></dxo-load-panel>
+                                <dxi-column dataField="OrderType" [groupIndex]="0" caption="Order Şekli"
+                                    i18n-caption="@@M19738" id="A3848" data-tid="A329236"></dxi-column>
+                                <dxi-column dataField="OrderDate" caption="Tarih" sortOrder="asc"
+                                    i18n-caption="@@M27302" id="A3849" data-tid="A329237"></dxi-column>
+                                <dxi-column dataField="DrugName" caption="İlaç" i18n-caption="@@M16287" id="A3850"
+                                    data-tid="A329238"></dxi-column>
+                                <dxi-column dataField="Frequency" caption="Doz Aralığı" i18n-caption="@@M13285"
+                                    id="A3851" data-tid="A329239"></dxi-column>
+                                <dxi-column dataField="DoseAmount" caption="Doz Miktarı" i18n-caption="@@M13294"
+                                    id="A3852" data-tid="A329240"></dxi-column>
+                                <dxi-column dataField="Day" caption="Gün" i18n-caption="@@M14998" id="A3853"
+                                    data-tid="A329241"></dxi-column>
+                                <dxi-column dataField="UsageNote" caption="Kullanım Açıklaması" i18n-caption="@@M17961"
+                                    id="A3854" data-tid="A329242"></dxi-column>
+                                <dxo-summary id="A3855" data-tid="A329243">
+                                    <dxi-group-item column="OrderDate" summaryType="count" displayFormat="{0} adet"
+                                        id="A3856" data-tid="A329244">
+                                    </dxi-group-item>
+                                </dxo-summary>
+                                <div *dxTemplate="let data of 'totalGroupCount'" id="A3857" data-tid="A329245">
+                                    <div class="informer" id="A3858" data-tid="A329246">
+                                        <h2 class="count" style="margin-top: 0px;" id="A3859" data-tid="A329247">
+                                            {{totalCount}}</h2>
+                                        <span class="name" id="A3860" data-tid="A329248">Adet Grup</span>
+                                    </div>
+                                </div>
+                            </dx-data-grid>
+                        </div>
+                    </div>
+                </dxi-item>
+                <dxi-item class="tabpanel-item" title="Daha Önce Karşılanan İlaçlar" i18n-title="@@M27737" id="A3861"
+                    data-tid="A329249">
+                    <div class="row" style="height:418px" id="A3862" data-tid="A329250">
+                        <div class="col-sm-12" id="A3863" data-tid="A329251">
+                            <dx-data-grid id="gridContainer" [dataSource]="completedKScheduleMaterial"
+                                data-tid="A329252">
+                                <dxi-column dataField="StockActionID" caption="İşlem No" i18n-caption="@@M16866"
+                                    id="A3864" data-tid="A329253"></dxi-column>
+                                <dxi-column dataField="KScheduleMaterialRowType" caption="Tipi" i18n-caption="@@M27302"
+                                    data-tid="A329254"></dxi-column>
+                                <dxi-column dataField="TransactionDate" caption="Tarih" dataType="date"
+                                    i18n-caption="@@M27302" id="A3865" data-tid="A329255"></dxi-column>
+                                <dxi-column dataField="Barcode" caption="Barkod" i18n-caption="@@M27321" id="A3866"
+                                    data-tid="A329256"></dxi-column>
+                                <dxi-column dataField="Name" caption="İlaç" i18n-caption="@@M16287" id="A3867"
+                                    data-tid="A329257"></dxi-column>
+                                <dxi-column dataField="Amount" caption="Miktar" i18n-caption="@@M19030" id="A3868"
+                                    data-tid="A329258"></dxi-column>
+                            </dx-data-grid>
+                        </div>
+                    </div>
+                </dxi-item>
+            </dx-tab-panel>
+        </div>
+    </div>
+</form>

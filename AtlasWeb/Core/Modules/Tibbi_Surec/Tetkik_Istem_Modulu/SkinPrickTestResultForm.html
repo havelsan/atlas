@@ -1,0 +1,42 @@
+﻿
+<NeStatePanelComponent [ObjectDefID]="skinPrickTestResultFormViewModel._SkinPrickTestResult.ObjectDefID" [CurrentStateDefID]="skinPrickTestResultFormViewModel._SkinPrickTestResult.CurrentStateDefID" [StatesPanelClass]="statesPanelClass" [FixedCommandsPanelClass]="statesPanelClass" (onSetState)="setState($event)" (onSaveChanges)="save($event)" (onCancel)="cancel()" data-tid="A365331">
+</NeStatePanelComponent>
+<form id="SkinPrickTestResultForm" class="form-horizontal" role="form" data-tid="A365332"></form>
+
+<!--<div class="col-sm-6">
+    <label class="control-label">
+        Hasta Ad� Soyad�
+    </label>
+    <dx-text-box [value]="baseAdditionalInfoFormViewModel.patientName" [readOnly]="true"></dx-text-box>
+</div>
+
+<div class="col-sm-6">
+    <label class="control-label">
+        Ekleyen Kullan�c�
+    </label>
+    <dx-text-box [value]="baseAdditionalInfoFormViewModel.resUserName" [readOnly]="true"></dx-text-box>
+</div>-->
+<div class="col-sm-12" data-tid="A365333">
+    <dx-data-grid #subepisodes showColumnLines="true" showRowLines="true" showBorders="true" [allowColumnResizing]="true" [filterRow]="{visible: false}" height="400px" [dataSource]="skinPrickTestResultFormViewModel._SkinPrickList" [columns]='SkinPrickTestColumns' data-tid="A365334">
+        <dxo-editing mode="cell" data-tid="A365335">
+        </dxo-editing>
+        <div align="center" *dxTemplate="let row of 'NegativeChkTemplate'" data-tid="A365336">
+            <dx-check-box [(value)]="row.data.Negative" (onValueChanged)="onNegativeValueChanged(row.data,$event)" data-tid="A365337"></dx-check-box>
+
+        </div>
+        <div align="center" *dxTemplate="let row of 'PositiveChkTemplate'" data-tid="A365338">
+            <dx-check-box [(value)]="row.data.Positive" (onValueChanged)="onPositiveValueChanged(row.data,$event)" data-tid="A365339"></dx-check-box>
+
+        </div>
+        <div align="center" *dxTemplate="let row of 'DescriptionTemplate'" data-tid="A365340">
+            <dx-text-box [(value)]="row.data.Description" data-tid="A365341">
+            </dx-text-box>
+
+        </div>
+    </dx-data-grid>
+</div>
+    <!--<div class="col-sm-12">
+        <hvl-datagrid (CellValueChange)="SkinPrickTestDetail" [AllowUserToAddRows]="_SkinPrickTestResult.SkinPrickTestDetail?.AllowUserToAddRows" [AllowUserToDeleteRows]="_SkinPrickTestResult.SkinPrickTestDetail?.AllowUserToDeleteRows" [Columns]="_SkinPrickTestResult.SkinPrickTestDetailColumns" [dataSource]="dummyModel?.dataMember" [DeleteButtonWidth]="_SkinPrickTestResult.SkinPrickTestDetail?.DeleteButtonWidth" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [EnableFilter]="_SkinPrickTestResult.SkinPrickTestDetail?.ShowFilterRow" [FilterColumnName]="_SkinPrickTestResult.SkinPrickTestDetail?.FilterColumnName" [FilterLabel]="_SkinPrickTestResult.SkinPrickTestDetail?.FilterLabel" [Filter]="_SkinPrickTestResult.SkinPrickTestDetail?.Filter" [height]="_SkinPrickTestResult.SkinPrickTestDetail?.Height" [IsFilterLabelSingleLine]="_SkinPrickTestResult.SkinPrickTestDetail?.IsFilterLabelSingleLine" [ShowColumnHeaders]="_SkinPrickTestResult.SkinPrickTestDetail?.ColumnHeadersVisible" [ShowFilterCombo]="_SkinPrickTestResult.SkinPrickTestDetail?.ShowFilterCombo" [ShowTotalNumberOfRows]="_SkinPrickTestResult.SkinPrickTestDetail?.ShowTotalNumberOfRows">
+        </hvl-datagrid>
+    </div>-->
+

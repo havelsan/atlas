@@ -1,0 +1,103 @@
+﻿
+
+
+<form id="OldSurgeryForm" class="form-horizontal" role="form" data-tid="A346848">
+    
+    <fieldset style="border-bottom:1px solid #FFAB00;" id="A15061" data-tid="A346849">Ameliyathane</fieldset>
+
+    <div class="row" id="A15062" data-tid="A346850">
+        <div class="col-md-6" id="A15063" data-tid="A346851">
+            <div class="row" id="A15064" data-tid="A346852">
+                <div class="col-md-12" id="A15065" data-tid="A346853">
+                    <label class="col-md-6" id="A15066" data-tid="A346854">Kabul Numarası</label>
+                    <div class="col-md-6" id="A15067" data-tid="A346855">{{oldSurgeryFormViewModel?.AdmissionNumber}}</div>
+                </div>
+                <div class="col-md-12" id="A15068" data-tid="A346856">
+                    <label class="col-md-6" id="A15069" data-tid="A346857">Ameliyat Tarihi</label>
+                    <div class="col-md-6" id="A15070" data-tid="A346858">{{oldSurgeryFormViewModel?.SurgeryDate | date:"dd.MM.yyyy HH:mm"}}</div>
+                </div>
+                <div class="col-md-12" id="A15071" data-tid="A346859">
+                    <label class="col-md-6" id="A15072" data-tid="A346860">Ameliyat Kodu</label>
+                    <div class="col-md-6" id="A15073" data-tid="A346861">{{oldSurgeryFormViewModel?.ProtocoNo}}</div>
+                </div>
+                <div class="col-md-12" id="A15074" data-tid="A346862">
+                    <label class="col-md-6" id="A15075" data-tid="A346863">Sorumlu Cerrah</label>
+                    <div class="col-md-6" id="A15076" data-tid="A346864">{{oldSurgeryFormViewModel?.ProcedureDoctor}}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6" id="A15077" data-tid="A346865">
+            <div class="row" id="A15078" data-tid="A346866">
+                <div class="col-md-12" id="A15079" data-tid="A346867">
+                    <label class="col-md-6" id="A15080" data-tid="A346868">Anestezi Protokol No</label>
+                    <div class="col-md-6" id="A15081" data-tid="A346869">{{oldSurgeryFormViewModel?.AnesthesiaProtocolNo}}</div>
+                </div>
+                <div class="col-md-12" id="A15082" data-tid="A346870">
+                    <label class="col-md-6" id="A15083" data-tid="A346871">Anestezi Tekniği</label>
+                    <div class="col-md-6" id="A15084" data-tid="A346872">{{oldSurgeryFormViewModel?.AnesthesiaTechnique}}</div>
+                </div>
+                <div class="col-md-12" id="A15085" data-tid="A346873">
+                    <label class="col-md-6" id="A15086" data-tid="A346874">Anestezi Notu</label>
+                    <div class="col-md-6" id="A15087" data-tid="A346875">{{oldSurgeryFormViewModel?.AnesthesiaNote}}</div>
+                </div>
+                <div class="col-md-12" id="A15088" data-tid="A346876">
+                    <label class="col-md-6" id="A15089" data-tid="A346877">Anestezi Sorumlu Uzman</label>
+                    <div class="col-md-6" id="A15090" data-tid="A346878">{{oldSurgeryFormViewModel?.AnesthesiaProcedureDoctor}}</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row" id="A15091" data-tid="A346879">
+        <div class="col-md-12" *ngIf="oldSurgeryFormViewModel?.AnesthesiaReport != null" id="A15092" data-tid="A346880">
+            <label class="col-md-3" id="A15093" data-tid="A346881">Anestezi Raporu</label>
+            <div class="col-md-9" [innerHTML]="oldSurgeryFormViewModel?.AnesthesiaReport" id="A15094" data-tid="A346882">
+            </div>
+        </div>
+        <div class="col-md-12" id="A15095" data-tid="A346883">
+            <label class="col-md-3" id="A15096" data-tid="A346884">Ameliyat Notu</label>
+            <div class="col-md-9" [innerHTML]="oldSurgeryFormViewModel?.SurgeryReport" id="A15097" data-tid="A346885">
+            </div>
+        </div>
+        <div class="col-md-12" id="A15098" data-tid="A346886">
+            <label id="A15099" data-tid="A346887">Cerrahi Ekip</label>
+        </div>
+        <div class="col-md-12" id="A15100" data-tid="A346888">
+            <dx-data-grid id="gridContainer" [dataSource]="oldSurgeryFormViewModel.SurgeryPersonnels" data-tid="A346889">
+                <dxo-paging [pageSize]="10" id="A15101" data-tid="A346890"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true" id="A15102" data-tid="A346891">
+                </dxo-pager>
+                <dxo-filter-row [visible]="true" id="A15103" data-tid="A346892"></dxo-filter-row>
+                <dxo-header-filter [visible]="true" id="A15104" data-tid="A346893"></dxo-header-filter>
+
+                <dxi-column dataField="Personnel" caption="Personel" width="auto" i18n-caption="@@M27375" id="A15105" data-tid="A346894"></dxi-column>
+                <dxi-column dataField="Role" caption="Görevi" width="auto" i18n-caption="@@M27329" id="A15106" data-tid="A346895"></dxi-column>
+            </dx-data-grid>
+        </div>
+    </div>
+    <br id="A15107" data-tid="A346896" />
+    <div class="panel panel-default" *ngFor="let mainSurgery of oldSurgeryFormViewModel.MainSurgeryProcedures" id="A15108" data-tid="A346897">
+        <div class="panel-heading" id="A15109" data-tid="A346898">Ameliyat</div>
+        <div class="panel-body" id="A15110" data-tid="A346899">
+            <div class="col-md-12" id="A15111" data-tid="A346900">
+                <label class="col-md-3" id="A15112" data-tid="A346901">Ameliyat Adı</label>
+                <div class="col-md-9" id="A15113" data-tid="A346902">{{mainSurgery.SurgeryName}}</div>
+            </div>
+            <div class="col-md-12" id="A15114" data-tid="A346903">
+                <label class="col-md-3" id="A15115" data-tid="A346904">Ameliyat Birimi</label>
+                <div class="col-md-9" id="A15116" data-tid="A346905">{{mainSurgery.ProcedureSpeciality}}</div>
+            </div>
+            <div class="col-md-12" id="A15117" data-tid="A346906">
+                <label class="col-md-3" id="A15118" data-tid="A346907">Kesi Bilgisi</label>
+                <div class="col-md-9" id="A15119" data-tid="A346908">{{mainSurgery.IncisionType}}</div>
+            </div>
+            <div class="col-md-12" id="A15120" data-tid="A346909">
+                <label class="col-md-3" id="A15121" data-tid="A346910">Kesi Tarafı</label>
+                <div class="col-md-9" id="A15122" data-tid="A346911">{{mainSurgery.Position}}</div>
+            </div>
+        </div>
+    </div>
+
+</form>
+

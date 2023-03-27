@@ -1,0 +1,47 @@
+﻿<div style="height: 100%;width: 99%;" data-tid="A374744">
+    <div class="row" style="height: 100%;" data-tid="A374745">
+        <div class="col-sm-7 gradientPanel" id="A16463" data-tid="A374746">
+            <h4 style="color:#fff; font-size:19px;text-align:left;padding-left:1%;" id="A16464" data-tid="A374747">
+                <span id="A16467" data-tid="A374748">Ölçü Birimi Tanımları</span>
+            </h4>
+        </div>
+        <div class="panel-body" style="background-color:#f6f6f6;padding-bottom:0; height:100%;padding: 0" data-tid="A374749">
+            <div class="col-md-7" style="height: calc(100% - 127px);" data-tid="A374750">
+                <dx-data-grid [dataSource]="distDefinitionSource" style="height: 650px;" [columns]="distDefinitionDataColumn" [filterRow]="{visible: true}" [paging]="{pageSize:28}" [showBorders]="true" data-tid="A374751">
+                </dx-data-grid>
+            </div>
+            <br data-tid="A374752" />
+            <div class="col-md-7" style="max-height: 111px;" data-tid="A374753">
+                <div class="row" data-tid="A374754">
+                    <div class="col-sm-6" data-tid="A374755">
+                        <dx-button type="btn btn-info" icon="fa fa-bars" style="float: left;padding: 2px;margin-left: 10px;" stylingMode="contained" text="Listele" type="success" (onClick)="listDistributionDefinition()" data-tid="A374756">
+                        </dx-button>
+                    </div>
+                    <div class="col-sm-6" style="float: right;" data-tid="A374757">
+                        <dx-button icon="fas fa-plus" style="float: right;padding: 2px;margin-right: 10px;" stylingMode="contained" text="MKYS Güncelle" type="default" (onClick)="updateMKYS()" data-tid="A374758">
+                        </dx-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<dx-popup width="1200px" height="600px" [(visible)]="mkysUpdatePopupVisible" [closeOnOutsideClick]="false" title="MKYS'den Güncellenecekler" data-tid="A374759">
+    <div class="row" data-tid="A374760">
+        <div class="col-sm-12" data-tid="A374761">
+            <dx-data-grid [dataSource]="myksUpdateList" style="height: 500px;" [columns]="mkysUpdateListDataColumn" [filterRow]="{visible: true}" [paging]="{pageSize:20}" [showBorders]="true" data-tid="A374762">
+            </dx-data-grid>
+        </div>
+    </div>
+    <br data-tid="A374763" />
+    <div class="row" data-tid="A374764">
+        <dx-button type="danger" class="btn btn-default" (onClick)="closePopupCancel()" style="margin-right: 20px;margin-left: 16px;" text="Vazgeç" id data-tid="A374765"></dx-button>
+
+        <dx-button class="btn btn-default" type="success" (onClick)="closePopupOK()" style="margin-right: 20px;float: right;" text="Güncelle" id data-tid="A374766"></dx-button>
+
+    </div>
+</dx-popup>
+
+<dx-load-panel shadingColor="rgba(0,0,0,0.4)" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A374767">
+</dx-load-panel>

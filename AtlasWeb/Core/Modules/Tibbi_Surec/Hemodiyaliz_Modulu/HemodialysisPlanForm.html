@@ -1,0 +1,148 @@
+﻿<div class="col-md-12" data-tid="A350289">
+
+    <NeStatePanelComponent [ObjectDefID]="hemodialysisPlanFormViewModel._HemodialysisOrder.ObjectDefID" [CurrentStateDefID]="hemodialysisPlanFormViewModel._HemodialysisOrder.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="save($event)" data-tid="A350290">
+    </NeStatePanelComponent>
+
+    <form id="HemodialysisPlanForm" class="form-horizontal" role="form" data-tid="A350291"></form>
+    <div class="row" data-tid="A350292">
+        <div class="col-md-12" data-tid="A350293">
+            <patient-demographics-form [actionId]="hemodialysisPlanFormViewModel._HemodialysisOrder?.HemodialysisRequest?.ObjectID" [ShowFromResource]="true" id="A13368" data-tid="A350294"></patient-demographics-form>
+        </div>
+    </div>
+
+    <div class="row" data-tid="A350295">
+        <div class="col-md-12" data-tid="A350296">
+            <label class="control-label " data-tid="A350297">Seans Birimi</label>
+            <hvl-list-box #Validation (SelectedObjectChange)="onTreatmentDiagnosisUnitChanged($event)" [AutoCompleteDialogHeight]="TreatmentDiagnosisUnit?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="TreatmentDiagnosisUnit?.AutoCompleteDialogWidth" [AutoCompleteMode]="TreatmentDiagnosisUnit?.AutoCompleteMode" [BackColor]="TreatmentDiagnosisUnit?.BackColor" [DefinitionName]="TreatmentDiagnosisUnit?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="TreatmentDiagnosisUnit?.Enabled" [Font]="TreatmentDiagnosisUnit?.Font" [ForeColor]="TreatmentDiagnosisUnit?.ForeColor" [ListFilterExpression]="TreatmentDiagnosisUnit?.ListFilterExpression" [MinSearchLength]="TreatmentDiagnosisUnit?.MinSearchLength" [PopupDialogFieldConfig]="TreatmentDiagnosisUnit?.PopupDialogFieldConfig" [PopupDialogGridColumns]="TreatmentDiagnosisUnit?.PopupDialogGridColumns" [PopupDialogHeight]="TreatmentDiagnosisUnit?.PopupDialogHeight" [PopupDialogTitle]="TreatmentDiagnosisUnit?.PopupDialogTitle" [PopupDialogWidth]="TreatmentDiagnosisUnit?.PopupDialogWidth" [ReadOnly]="TreatmentDiagnosisUnit?.ReadOnly" [SearchMode]="TreatmentDiagnosisUnit?.SearchMode" [SearchTimeout]="TreatmentDiagnosisUnit?.SearchTimeout" [SelectedObject]="_HemodialysisOrder.TreatmentDiagnosisUnit" [TabIndex]="TreatmentDiagnosisUnit?.TabIndex" [Visible]="TreatmentDiagnosisUnit?.Visible" [width]="TreatmentDiagnosisUnit?.Width" data-tid="A350298">
+            </hvl-list-box>
+        </div>
+        <div class="col-md-12" data-tid="A350299">
+            <label class="control-label" data-tid="A350300">Başlangıç Tarihi</label>
+            <hvl-date-picker #Validation (ValueChange)="onTreatmentStartDateTimeChanged($event)" [BackColor]="TreatmentStartDateTime?.BackColor" [CustomFormat]="TreatmentStartDateTime?.CustomFormat" [Enabled]="TreatmentStartDateTime?.Enabled" [Font]="TreatmentStartDateTime?.Font" [ForeColor]="TreatmentStartDateTime?.ForeColor" [Format]="TreatmentStartDateTime?.Format" [Max]="TreatmentStartDateTime?.Max" [Min]="TreatmentStartDateTime?.Min" [ReadOnly]="TreatmentStartDateTime?.ReadOnly" [Required]="TreatmentStartDateTime?.Required" [TabIndex]="TreatmentStartDateTime?.TabIndex" [Value]="_HemodialysisOrder.TreatmentStartDateTime" [Visible]="TreatmentStartDateTime?.Visible" data-tid="A350301">
+            </hvl-date-picker>
+        </div>
+        <div class="col-md-12" data-tid="A350302">
+            <label class="control-label" data-tid="A350303">Diyalize Girme Sıklığı</label>
+            <hvl-list-box #Validation (SelectedObjectChange)="onDialysisFrequencyChanged($event)" [AutoCompleteDialogHeight]="DialysisFrequency?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="DialysisFrequency?.AutoCompleteDialogWidth" [AutoCompleteMode]="DialysisFrequency?.AutoCompleteMode" [BackColor]="DialysisFrequency?.BackColor" [DefinitionName]="DialysisFrequency?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="DialysisFrequency?.Enabled" [Font]="DialysisFrequency?.Font" [ForeColor]="DialysisFrequency?.ForeColor" [ListFilterExpression]="DialysisFrequency?.ListFilterExpression" [MinSearchLength]="DialysisFrequency?.MinSearchLength" [PopupDialogFieldConfig]="DialysisFrequency?.PopupDialogFieldConfig" [PopupDialogGridColumns]="DialysisFrequency?.PopupDialogGridColumns" [PopupDialogHeight]="DialysisFrequency?.PopupDialogHeight" [PopupDialogTitle]="DialysisFrequency?.PopupDialogTitle" [PopupDialogWidth]="DialysisFrequency?.PopupDialogWidth" [ReadOnly]="DialysisFrequency?.ReadOnly" [SearchMode]="DialysisFrequency?.SearchMode" [SearchTimeout]="DialysisFrequency?.SearchTimeout" [SelectedObject]="_HemodialysisOrder.DialysisFrequency" [TabIndex]="DialysisFrequency?.TabIndex" [Visible]="DialysisFrequency?.Visible" [width]="DialysisFrequency?.Width" data-tid="A350304">
+            </hvl-list-box>
+        </div>
+
+        <div class="col-md-6" data-tid="A350305">
+            <label class="control-label" data-tid="A350306">Seans Gün Aralığı</label>
+            <hvl-text-box #Validation (TextChange)="onSessionDayRangeChanged($event)" [BackColor]="SessionDayRange?.BackColor" [CharacterCasing]="SessionDayRange?.CharacterCasing" [Enabled]="SessionDayRange?.Enabled" [Font]="SessionDayRange?.Font" [ForeColor]="SessionDayRange?.ForeColor" [height]="SessionDayRange?.Height" [InputFormat]="SessionDayRange?.InputFormat" [InputTurkishCharacter]="SessionDayRange?.InputTurkishCharacter" [IsNonNumeric]="SessionDayRange?.IsNonNumeric" [MultiLine]="SessionDayRange?.Multiline" [ReadOnly]="SessionDayRange?.ReadOnly" [Required]="SessionDayRange?.Required" [TabIndex]="SessionDayRange?.TabIndex" [TextAlign]="SessionDayRange?.TextAlign" [Text]="_HemodialysisOrder.SessionDayRange" [Visible]="SessionDayRange?.Visible" data-tid="A350307">
+            </hvl-text-box>
+        </div>
+        <div class="col-md-6" data-tid="A350308">
+            <label class="control-label" data-tid="A350309">Seans Gün Aralığı Tipi</label>
+            <hvl-enum-combobox #Validation (ValueChange)="onSessionDayRangeTypeChanged($event)" [BackColor]="SessionDayRangeType?.BackColor" [DataTypeName]="SessionDayRangeType?.DataTypeName" [Enabled]="SessionDayRangeType?.Enabled" [Font]="SessionDayRangeType?.Font" [ForeColor]="SessionDayRangeType?.ForeColor" [IncludeOnly]="SessionDayRangeType?.IncludeOnly" [ReadOnly]="SessionDayRangeType?.ReadOnly" [ShowClearButton]="SessionDayRangeType?.ShowClearButton" [SortBy]="SessionDayRangeType?.SortBy" [TabIndex]="SessionDayRangeType?.TabIndex" [Value]="_HemodialysisOrder.SessionDayRangeType" [Visible]="SessionDayRangeType?.Visible" data-tid="A350310">
+            </hvl-enum-combobox>
+        </div>
+
+        <div class="col-md-12" data-tid="A350311">
+            <label class="control-label" data-tid="A350312">Seans Sayısı</label>
+            <hvl-text-box #Validation (TextChange)="onSessionCountChanged($event)" [BackColor]="SessionCount?.BackColor" [CharacterCasing]="SessionCount?.CharacterCasing" [Enabled]="SessionCount?.Enabled" [Font]="SessionCount?.Font" [ForeColor]="SessionCount?.ForeColor" [height]="SessionCount?.Height" [InputFormat]="SessionCount?.InputFormat" [InputTurkishCharacter]="SessionCount?.InputTurkishCharacter" [IsNonNumeric]="SessionCount?.IsNonNumeric" [MultiLine]="SessionCount?.Multiline" [ReadOnly]="SessionCount?.ReadOnly" [Required]="SessionCount?.Required" [TabIndex]="SessionCount?.TabIndex" [TextAlign]="SessionCount?.TextAlign" [Text]="_HemodialysisOrder.SessionCount" [Visible]="SessionCount?.Visible" data-tid="A350313">
+            </hvl-text-box>
+        </div>
+
+        <div class="col-md-12" data-tid="A350314">
+            <label class="control-label" data-tid="A350315">İşlem</label>
+            <hvl-list-box #Validation (SelectedObjectChange)="onPackageProcedureChanged($event)" [AutoCompleteDialogHeight]="PackageProcedure?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="PackageProcedure?.AutoCompleteDialogWidth" [AutoCompleteMode]="PackageProcedure?.AutoCompleteMode" [BackColor]="PackageProcedure?.BackColor" [DefinitionName]="PackageProcedure?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="PackageProcedure?.Enabled" [Font]="PackageProcedure?.Font" [ForeColor]="PackageProcedure?.ForeColor" [ListFilterExpression]="PackageProcedure?.ListFilterExpression" [MinSearchLength]="PackageProcedure?.MinSearchLength" [PopupDialogFieldConfig]="PackageProcedure?.PopupDialogFieldConfig" [PopupDialogGridColumns]="PackageProcedure?.PopupDialogGridColumns" [PopupDialogHeight]="PackageProcedure?.PopupDialogHeight" [PopupDialogTitle]="PackageProcedure?.PopupDialogTitle" [PopupDialogWidth]="PackageProcedure?.PopupDialogWidth" [ReadOnly]="PackageProcedure?.ReadOnly" [SearchMode]="PackageProcedure?.SearchMode" [SearchTimeout]="PackageProcedure?.SearchTimeout" [SelectedObject]="_HemodialysisOrder.PackageProcedure" [TabIndex]="PackageProcedure?.TabIndex" [Visible]="PackageProcedure?.Visible" [width]="PackageProcedure?.Width" data-tid="A350316">
+            </hvl-list-box>
+        </div>
+        <div class="col-md-12" data-tid="A350317">
+            <label class="control-label" data-tid="A350318">Tedavi Cihazı</label>
+            <hvl-list-box #Validation (SelectedObjectChange)="onTreatmentEquipmentChanged($event)" [AutoCompleteDialogHeight]="TreatmentEquipment?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="TreatmentEquipment?.AutoCompleteDialogWidth" [AutoCompleteMode]="TreatmentEquipment?.AutoCompleteMode" [BackColor]="TreatmentEquipment?.BackColor" [DefinitionName]="TreatmentEquipment?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="TreatmentEquipment?.Enabled" [Font]="TreatmentEquipment?.Font" [ForeColor]="TreatmentEquipment?.ForeColor" [ListFilterExpression]="TreatmentEquipment?.ListFilterExpression" [MinSearchLength]="TreatmentEquipment?.MinSearchLength" [PopupDialogFieldConfig]="TreatmentEquipment?.PopupDialogFieldConfig" [PopupDialogGridColumns]="TreatmentEquipment?.PopupDialogGridColumns" [PopupDialogHeight]="TreatmentEquipment?.PopupDialogHeight" [PopupDialogTitle]="TreatmentEquipment?.PopupDialogTitle" [PopupDialogWidth]="TreatmentEquipment?.PopupDialogWidth" [ReadOnly]="TreatmentEquipment?.ReadOnly" [SearchMode]="TreatmentEquipment?.SearchMode" [SearchTimeout]="TreatmentEquipment?.SearchTimeout" [SelectedObject]="_HemodialysisOrder.TreatmentEquipment" [TabIndex]="TreatmentEquipment?.TabIndex" [Visible]="TreatmentEquipment?.Visible" [width]="TreatmentEquipment?.Width" data-tid="A350319">
+            </hvl-list-box>
+        </div>
+    </div>
+
+    <div class="row" data-tid="A350320">
+        <div class="col-md-4" data-tid="A350321">
+            <label class="control-label" data-tid="A350322">Süre</label>
+            <hvl-text-box #Validation (TextChange)="onDurationChanged($event)" [BackColor]="Duration?.BackColor" [CharacterCasing]="Duration?.CharacterCasing" [Enabled]="Duration?.Enabled" [Font]="Duration?.Font" [ForeColor]="Duration?.ForeColor" [height]="Duration?.Height" [InputFormat]="Duration?.InputFormat" [InputTurkishCharacter]="Duration?.InputTurkishCharacter" [IsNonNumeric]="Duration?.IsNonNumeric" [MultiLine]="Duration?.Multiline" [ReadOnly]="Duration?.ReadOnly" [Required]="Duration?.Required" [TabIndex]="Duration?.TabIndex" [TextAlign]="Duration?.TextAlign" [Text]="_HemodialysisOrder.Duration" [Visible]="Duration?.Visible" data-tid="A350323">
+            </hvl-text-box>
+        </div>
+        <div class="col-md-3" data-tid="A350324">
+            <br data-tid="A350325" />
+            <hvl-checkbox #Validation (ValueChange)="onIsWeekendIncludeChanged($event)" [AllowThreeState]="IsWeekendInclude?.ThreeState" [BackColor]="IsWeekendInclude?.BackColor" [Enabled]="IsWeekendInclude?.Enabled" [Font]="IsWeekendInclude?.Font" [ForeColor]="IsWeekendInclude?.ForeColor" [IsTitleLeft]="IsWeekendInclude?.IsTitleLeft" [Margin]="IsWeekendInclude?.Margin" [ReadOnly]="IsWeekendInclude?.ReadOnly" [TabIndex]="IsWeekendInclude?.TabIndex" [TitleTopPadding]="IsWeekendInclude?.TitleTopPadding" [Title]="IsWeekendInclude?.Title" [Value]="_HemodialysisOrder.IsWeekendInclude" [Visible]="IsWeekendInclude?.Visible" data-tid="A350326">
+            </hvl-checkbox>
+        </div>
+        <div class="col-md-3" data-tid="A350327">
+            <br data-tid="A350328" />
+            <hvl-checkbox #Validation (ValueChange)="onEmergencyChanged($event)" [AllowThreeState]="Emergency?.ThreeState" [BackColor]="Emergency?.BackColor" [Enabled]="Emergency?.Enabled" [Font]="Emergency?.Font" [ForeColor]="Emergency?.ForeColor" [IsTitleLeft]="Emergency?.IsTitleLeft" [Margin]="Emergency?.Margin" [ReadOnly]="Emergency?.ReadOnly" [TabIndex]="Emergency?.TabIndex" [TitleTopPadding]="Emergency?.TitleTopPadding" [Title]="Emergency?.Title" [Value]="_HemodialysisOrder.Emergency" [Visible]="Emergency?.Visible" data-tid="A350329">
+            </hvl-checkbox>
+        </div>
+        <div class="col-md-2" data-tid="A350330">
+            <br data-tid="A350331" />
+            <button type="button" class="btn btn-primary btn-block btn-sm" (click)="ShowReports()" data-tid="A350332">Rapor Seç</button>
+        </div>
+    </div>
+
+    <div class="row" data-tid="A350333">
+        <div class="col-md-12" data-tid="A350334">
+            <label class="control-label" data-tid="A350335">Açıklama</label>
+            <hvl-text-box #Validation (TextChange)="onInformationChanged($event)" [BackColor]="Information?.BackColor" [CharacterCasing]="Information?.CharacterCasing" [Enabled]="Information?.Enabled" [Font]="Information?.Font" [ForeColor]="Information?.ForeColor" [height]="Information?.Height" [InputFormat]="Information?.InputFormat" [InputTurkishCharacter]="Information?.InputTurkishCharacter" [IsNonNumeric]="Information?.IsNonNumeric" [MultiLine]="Information?.Multiline" [ReadOnly]="Information?.ReadOnly" [Required]="Information?.Required" [TabIndex]="Information?.TabIndex" [TextAlign]="Information?.TextAlign" [Text]="_HemodialysisOrder.Information" [Visible]="Information?.Visible" data-tid="A350336">
+            </hvl-text-box>
+        </div>
+    </div>
+</div>
+
+<dx-popup class="hidePopupHeader" [showTitle]="true" [width]="1200" [height]="800" [(visible)]="showHemodialysisReportPopup" id="A13316" data-tid="A350337">
+    <div *dxTemplate="let data of 'content'" id="A13317" data-tid="A350338">
+        <div class="row" id="A13318" data-tid="A350339">
+            <div class="col-md-12" id="A13319" data-tid="A350340">
+                <h4 class="bottomOrangeBorder" id="A13320" data-tid="A350341">Raporlar</h4><br id="A13321" data-tid="A350342" />
+            </div>
+        </div>
+        <div class="row" id="A13322" data-tid="A350343">
+            <div class="col-md-12" id="A13323" data-tid="A350344">
+                <div id="grid" data-tid="A350345">
+                    <dx-data-grid #grid id="grid-container" [dataSource]="hemodialysisPlanFormViewModel.ReportList" [(selectedRowKeys)]="selectedRows" (onSelectionChanged)="selectionReportChanged($event)" [filterRow]="{visible: true}" [paging]="{enable: true, pageSize:100}" [selection]="{mode: 'single',allowSelectAll: false}" data-tid="A350346">
+
+                        <dxo-selection mode="single" id="A13324" data-tid="A350347">
+                        </dxo-selection>
+                        <dxo-paging [pageSize]="20" id="A13325" data-tid="A350348"></dxo-paging>
+                        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true" id="A13326" data-tid="A350349">
+                        </dxo-pager>
+                        <dxo-filter-row [visible]="true" [applyFilter]="auto" id="A13327" data-tid="A350350"></dxo-filter-row>
+
+                        <dxi-column dataField="ReportNo" caption="Rapor No" [width]="auto" i18n-caption="@@M20821" id="A13328" data-tid="A350351"></dxi-column>
+                        <dxi-column dataField="ReportDate" caption="Rapor Tarihi" [width]="auto" dataType="date" i18n-caption="@@M20864" id="A13329" data-tid="A350352"></dxi-column>
+                        <dxi-column dataField="ReportStartDate" caption="Rapor Başlangıç Tarihi" [width]="auto" dataType="date" i18n-caption="@@M20773" id="A13330" data-tid="A350353"></dxi-column>
+                        <dxi-column dataField="ReportEndDate" caption="Rapor Bitiş Tarihi" [width]="auto" dataType="date" i18n-caption="@@M20788" id="A13331" data-tid="A350354"></dxi-column>
+                        <dxi-column dataField="ReportType" caption="Rapor Türü" [width]="auto" i18n-caption="@@M20869" id="A13333" data-tid="A350355"></dxi-column>
+                        <dxi-column dataField="ReportInfo" caption="Rapor Bilgisi" [width]="auto" i18n-caption="@@M20778" id="A13334" data-tid="A350356"></dxi-column>
+                        <dxi-column dataField="ReportTime" caption="Rapor Süresi" [width]="auto" i18n-caption="@@M20850" id="A13335" data-tid="A350357"></dxi-column>
+                        <dxi-column dataField="TreatmentType" caption="Tedavi Türü" [width]="auto" i18n-caption="@@M23037" id="A13336" data-tid="A350358"></dxi-column>
+                        <dxi-column dataField="DiagnosisGroup" caption="Tanı Grubu" [width]="auto" i18n-caption="@@M22755" id="A13337" data-tid="A350359"></dxi-column>
+                    </dx-data-grid>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="hemodialysisPlanFormViewModel.ReportList==null" id="A13338" data-tid="A350360">
+            <h4 class="danger" id="A13339" data-tid="A350361">{{hemodialysisPlanFormViewModel.Message}}</h4>
+        </div>
+
+        <div class="row" id="A13340" data-tid="A350362">
+            <br id="A13341" data-tid="A350363" />
+            <div class="col-md-12" style="text-align:right;" id="A13342" data-tid="A350364">
+                <button type="button" class="btn btn-default" (click)="CancelHemodialysisReport()" id="A13343" data-tid="A350365">Vazgeç</button>
+                <button type="button" class="btn btn-primary" (click)="SaveHemodialysisReport($event)" id="A13344" data-tid="A350366">Seç</button>
+
+
+
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+</dx-popup>
+
+<dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A13357" data-tid="A350367">
+</dx-load-panel>
+
+<!--<pre>
+    {{ _ViewModel | json }}</pre>-->

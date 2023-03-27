@@ -1,0 +1,58 @@
+﻿<div class="col-md-12" style="height:100%;overflow-x:hidden;overflow-y:auto;padding-top: 1%;" data-tid="A331815">
+   <div class="row" style="height:100%;" data-tid="A331816">
+      <div class="col-sm-2" data-tid="A331817">
+         <label class="control-label" data-tid="A331818">Başlangıç Tarihi</label>
+         <dx-date-box width="100%" type="date" [(value)]="StartDate" data-tid="A331819">
+         </dx-date-box>
+      </div>
+      <div class="col-sm-2" data-tid="A331820">
+         <label class="control-label" data-tid="A331821">Bitiş Tarihi</label>
+         <dx-date-box width="100%" type="date" [(value)]="EndDate" data-tid="A331822">
+         </dx-date-box>
+      </div>
+      <div class="col-sm-2" data-tid="A331823">
+         <br id="A6174" data-tid="A331824" />
+         <dx-button type="btn btn-default" text="İlaç / Malzeme Adı" (onClick)="OpenMaterialMultiSelectComponent()" style="margin-bottom: 10px; min-width:128px;" [disabled]="showUnused" data-tid="A331825">
+         </dx-button>
+      </div>
+      <div class="col-sm-4" id="A8654" data-tid="A331826">
+         <label class="control-label" id="A8655" data-tid="A331827">
+            Firma
+         </label>
+         <hvl-list-box #Validation (SelectedObjectChange)="onSupplierChanged($event)" [AutoCompleteDialogHeight]="Supplier?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="Supplier?.AutoCompleteDialogWidth" [AutoCompleteMode]="Supplier?.AutoCompleteMode" [BackColor]="Supplier?.BackColor" [DefinitionName]="Supplier?.ListDefName" [Enabled]="Supplier?.Enabled" [Font]="Supplier?.Font" [ForeColor]="Supplier?.ForeColor" [ListFilterExpression]="Supplier?.ListFilterExpression" [MinSearchLength]="Supplier?.MinSearchLength" [PopupDialogFieldConfig]="Supplier?.PopupDialogFieldConfig" [PopupDialogGridColumns]="Supplier?.PopupDialogGridColumns" [PopupDialogHeight]="Supplier?.PopupDialogHeight" [PopupDialogTitle]="Supplier?.PopupDialogTitle" [PopupDialogWidth]="Supplier?.PopupDialogWidth" [ReadOnly]="Supplier?.ReadOnly" [SearchMode]="Supplier?.SearchMode" [SearchTimeout]="Supplier?.SearchTimeout" [TabIndex]="Supplier?.TabIndex" [Visible]="Supplier?.Visible" [width]="Supplier?.Width" id="A8656" data-tid="A331828">
+         </hvl-list-box>
+      </div>
+      <div class="col-sm-2" id="A5668" style="margin-top: 12px;" data-tid="A331829">
+         <dx-button type="btn btn-info" icon="fa fa-bars" class="center-block" (onClick)="GetWithFilter()" text="Sorgula" id="A5669" data-tid="A331830"></dx-button>
+     </div>
+   </div>
+
+   <div class="row" data-tid="A331831">
+      <div class="col-sm-12" style="margin-top:5px;" data-tid="A331832">
+         <div id="grid" data-tid="A331833">
+            <dx-data-grid #grid id="grid-container" [columns]="DrugPaymentFirmGridColumns" [dataSource]="drugPaymentFirmList" style="height:600px" data-tid="A331834">
+               <dxo-paging [pageSize]="20" data-tid="A331835"></dxo-paging>
+               <dxo-filter-row [visible]="true" data-tid="A331836"> </dxo-filter-row>
+               <dxo-export [enabled]="true" fileName="İlaç Alınan Firmalar Raporu" [allowExportSelectedData]="false" data-tid="A331837">
+               </dxo-export>
+            </dx-data-grid>
+         </div>
+      </div>
+      <div class="col-sm-12 pull pull-right" style="width:100%;color: black;padding: 15px;font-size: larger;" data-tid="A331838">
+         Toplam Kayıt Sayısı: {{ TotalNumberOfRows }}
+      </div>
+   </div>
+
+   <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" showIndicator="true" showPane="true" shading="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A331839">
+   </dx-load-panel>
+
+</div>
+
+<dx-popup width="1400px" height="800px" style="position: inherit;" [(visible)]="showMaterialMultiSelectForm" [closeOnOutsideClick]="false" title="Malzeme Listesi" i18n-title="@@M20728" data-tid="A331840">
+   <div class="margin-bottom-10" data-tid="A331841">
+      <div *dxTemplate="let data of 'content'" data-tid="A331842">
+         <MaterialMultiSelectForm (SelectedMaterialsChanged)="MaterialsSelected($event)" (SelectedMaterialsClear)="MaterialsCleared()" [FilterByStockCard]="true" [ShowMuadilMedicineFilter]="true" FilterByStockInheld="false" [StoreObjectId]="_StoreObjectId" [CanZeroMaterialSelect]="true" data-tid="A331843">
+         </MaterialMultiSelectForm>
+      </div>
+   </div>
+</dx-popup>

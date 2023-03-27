@@ -1,0 +1,546 @@
+﻿<form id="UserMessageBoxForm" class="form-horizontal" role="form" data-tid="A323383">
+
+</form>
+<dx-popup showTitle="false" title="Yeni Mesaj" [width]="1200" [height]="500" [(visible)]="showPopup" (onHidden)="popupHidden()" i18n-title="@@M24579" id="A1125" data-tid="A323384">
+    <div *dxTemplate="let data of 'content'" id="A1126" data-tid="A323385">
+        <div class="margin-bottom-10" id="A1127" data-tid="A323386">
+            <UserMessageSendingForm (OnClosing)="showPopup=false" id="A1128" data-tid="A323387"></UserMessageSendingForm>
+        </div>
+    </div>
+</dx-popup>
+
+<dx-tab-panel style="height:100%" [selectedIndex]="0" [animationEnabled]="true" [swipeEnabled]="false" id="A1129" data-tid="A323388">
+    <dxi-item class="tabpanel-item" title="Mesajlaşma" i18n-title="@@M18926" id="A1130" data-tid="A323389">
+        <div class="row" id="A1131" data-tid="A323390">
+            <div class="col-md-2" id="A1132" data-tid="A323391">
+                <ul class="nav nav-pills nav-stacked" id="A1133" data-tid="A323392">
+                    <li [class.active]="currentBox =='newMessage'" id="A1134" data-tid="A323393"><a style="cursor:pointer" (click)="btnNewMessage_Click()" id="A1135" data-tid="A323394"><i class="fa fa-envelope-o" id="A1136" data-tid="A323395"></i> Yeni Mesaj </a></li>
+                    <li [class.active]="currentBox=='inbox'" id="A1134" data-tid="A323396"><a style="cursor:pointer" (click)="btnInbox_Click()" id="A1135" data-tid="A323397"><i class="fa fa-inbox" id="A1136" data-tid="A323398"></i>   Gelen Kutusu </a></li>
+                    <li [class.active]="currentBox=='sent'" id="A1137" data-tid="A323399"><a style="cursor:pointer" (click)="btnSendMessage_Click()" id="A1138" data-tid="A323400"><i class="fa fa-paper-plane" id="A1139" data-tid="A323401"></i>   Giden Kutusu</a></li>
+                    <li [class.active]="currentBox=='draft'" id="A1140" data-tid="A323402"><a style="cursor:pointer" (click)="btnDraftMessage_Click()" id="A1141" data-tid="A323403"><i class="fa fa-envelope" id="A1142" data-tid="A323404"></i>   Taslaklar</a></li>
+                    <li [class.active]="currentBox=='deleted'" id="A1143" data-tid="A323405"><a style="cursor:pointer" (click)="btnDeletedMessage_Click()" id="A1144" data-tid="A323406"><i class="fa fa-recycle" id="A1145" data-tid="A323407"></i>   Silinen Mesajlar</a></li>
+                </ul>
+            </div>
+            <div class="list-container col-sm-3" style="height:900px;overflow-y:auto" id="A1146" data-tid="A323408">
+                <div class="dx-searchbar" id="A1147" data-tid="A323409">
+                    <dx-text-box valueChangeEvent="keyup" placeholder="Ara" mode="search" (onValueChanged)="txtChange($event)" i18n-placeholder="@@M27276" id="A1148" data-tid="A323410">
+                    </dx-text-box>
+                </div>
+                <dx-accordion #messageAcc [collapsible]="true" [multiple]="true" id="A1149" data-tid="A323411">
+                    <dxi-item title="Bugün" i18n-title="@@M12100" id="A1150" data-tid="A323412">
+                        <dx-list [dataSource]="inboxToday" (onItemClick)="selectedChange($event)" id="A1151" data-tid="A323413">
+                            <div *dxTemplate="let data of 'item'" id="A1152" data-tid="A323414">
+                                <div *ngIf="data.Durumu==0" class="row" id="A1153" data-tid="A323415">
+                                    <div class="col-sm-12" id="A1154" data-tid="A323416">
+                                        <b style="float:left" id="A1155" data-tid="A323417">{{data.Gonderenadi}}</b>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1156" data-tid="A323418">
+                                        <p id="A1157" data-tid="A323419">{{data.Baslik}}</p>
+                                    </div>
+                                    <div class="col-sm-6" id="A1158" data-tid="A323420">
+                                        <p style="float: right;margin-right: -66px;  margin-top: -15px;" id="A1159" data-tid="A323421">{{(data.Tarih| date:'HH:mm')}}</p>
+                                    </div>
+                                    <div class="col-sm-2" id="A1160" data-tid="A323422">
+                                        <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center;margin-top: 3px;" id="A1161" data-tid="A323423"><i class="fa fa-trash-o" style="color:#08c;margin-top:-14px; " id="A1162" data-tid="A323424"></i></div>
+
+                                    </div>
+                                </div>
+                                <div *ngIf="data.Durumu==1&&currentBox=='inbox'" class="row" style="background-color:#d2d5d8" id="A1163" data-tid="A323425">
+                                    <div class="col-sm-12" id="A1164" data-tid="A323426">
+                                        <b style="float:left" id="A1165" data-tid="A323427">{{data.Gonderenadi}}</b>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1166" data-tid="A323428">
+                                        <p id="A1167" data-tid="A323429">{{data.Baslik}}</p>
+                                    </div>
+                                    <div class="col-sm-6" id="A1168" data-tid="A323430">
+                                        <p style="float: right;margin-right: -66px;  margin-top: -15px;" id="A1169" data-tid="A323431">{{(data.Tarih| date:'HH:mm')}}</p>
+                                    </div>
+                                    <div class="col-sm-2" id="A1170" data-tid="A323432">
+
+                                        <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center;margin-top: 3px;" id="A1171" data-tid="A323433"><i class="fa fa-trash-o" style="color:#08c;margin-top:-14px; " id="A1172" data-tid="A323434"></i></div>
+
+                                    </div>
+                                </div>
+                                <div *ngIf="data.Durumu==1&&currentBox!='inbox'" class="row" id="A1173" data-tid="A323435">
+                                    <div class="col-sm-12" id="A1174" data-tid="A323436">
+                                        <b style="float:left" id="A1175" data-tid="A323437">{{data.Gonderenadi}}</b>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1176" data-tid="A323438">
+                                        <p id="A1177" data-tid="A323439">{{data.Baslik}}</p>
+                                    </div>
+                                    <div class="col-sm-6" id="A1178" data-tid="A323440">
+                                        <p style="float: right;margin-right: -66px;  margin-top: -15px;" id="A1179" data-tid="A323441">{{(data.Tarih| date:'HH:mm')}}</p>
+                                    </div>
+                                    <div class="col-sm-2" id="A1180" data-tid="A323442">
+
+                                        <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center;margin-top: 3px;" id="A1181" data-tid="A323443"><i class="fa fa-trash-o" style="color:#08c;margin-top:-14px; " id="A1182" data-tid="A323444"></i></div>
+
+                                    </div>
+                                </div>
+                                <div *ngIf="data.Durumu==4" class="row" id="A1183" data-tid="A323445">
+                                    <div class="col-sm-12" id="A1184" data-tid="A323446">
+                                        <b style="float:left" id="A1185" data-tid="A323447">{{data.Kimeadi}}</b>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1186" data-tid="A323448">
+                                        <p id="A1187" data-tid="A323449">{{data.Baslik}}</p>
+                                    </div>
+                                    <div class="col-sm-6" id="A1188" data-tid="A323450">
+                                        <p style="float: right;margin-right: -66px;  margin-top: -15px;" id="A1189" data-tid="A323451">{{(data.Tarih| date:'HH:mm')}}</p>
+                                    </div>
+                                    <div class="col-sm-2" id="A1190" data-tid="A323452">
+
+                                        <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center;margin-top: 3px;" id="A1191" data-tid="A323453"><i class="fa fa-trash-o" style="color:#08c;margin-top:-14px;" id="A1192" data-tid="A323454"></i></div>
+
+                                    </div>
+                                </div>
+                                <div *ngIf="data.Durumu==3" class="row" id="A1193" data-tid="A323455">
+                                    <div class="col-sm-12" id="A1194" data-tid="A323456">
+                                        <b style="float:left" id="A1195" data-tid="A323457">{{data.Kimeadi}}</b>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1196" data-tid="A323458">
+                                        <p id="A1197" data-tid="A323459">{{data.Baslik}}</p>
+                                    </div>
+                                    <div class="col-sm-6" id="A1198" data-tid="A323460">
+                                        <p style="float: right;margin-right: -66px;  margin-top: -15px;" id="A1199" data-tid="A323461">{{(data.Tarih| date:'HH:mm')}}</p>
+                                    </div>
+                                    <div class="col-sm-2" id="A1200" data-tid="A323462">
+
+                                        <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center;margin-top: 3px;" id="A1201" data-tid="A323463"><i class="fa fa-trash-o" style="color:#08c;margin-top:-14px;" id="A1202" data-tid="A323464"></i></div>
+
+                                    </div>
+                                </div>
+                                <div *ngIf="data.Durumu==2" class="row" id="A1203" data-tid="A323465">
+                                    <div class="col-sm-12" id="A1204" data-tid="A323466">
+                                        <b style="float:left" id="A1205" data-tid="A323467">{{data.Gonderenadi}}</b>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1206" data-tid="A323468">
+                                        <p id="A1207" data-tid="A323469">{{data.Baslik}}</p>
+                                    </div>
+                                    <div class="col-sm-6" id="A1208" data-tid="A323470">
+                                        <p style="float: right;margin-right: -66px;  margin-top: -15px;" id="A1209" data-tid="A323471">{{(data.Tarih| date:'HH:mm')}}</p>
+                                    </div>
+                                    <div class="col-sm-2" id="A1210" data-tid="A323472">
+
+                                        <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center;margin-top: 3px;" id="A1211" data-tid="A323473"><i class="fa fa-trash-o" style="color:#08c;margin-top:-14px;" id="A1212" data-tid="A323474"></i></div>
+
+                                    </div>
+                                </div>
+                                <div *ngIf="data.Durumu==5" class="row" id="A1213" data-tid="A323475">
+                                    <div class="col-sm-12" id="A1214" data-tid="A323476">
+                                        <b style="float:left" id="A1215" data-tid="A323477">{{data.Gonderenadi}}</b>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1216" data-tid="A323478">
+                                        <p id="A1217" data-tid="A323479">{{data.Baslik}}</p>
+                                    </div>
+                                    <div class="col-sm-6" id="A1218" data-tid="A323480">
+                                        <p style="float: right;margin-right: -66px;  margin-top: -15px;" id="A1219" data-tid="A323481">{{(data.Tarih| date:'HH:mm')}}</p>
+                                    </div>
+                                    <div class="col-sm-2" id="A1220" data-tid="A323482">
+
+                                        <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center;margin-top: 3px;" id="A1221" data-tid="A323483"><i class="fa fa-trash-o" style="color:#08c;margin-top:-14px;" id="A1222" data-tid="A323484"></i></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </dx-list>
+                    </dxi-item>
+                    <dxi-item title="Dün" i18n-title="@@M13387" id="A1223" data-tid="A323485">
+                        <dx-list [dataSource]="inboxYesterday" (onItemClick)="selectedChange($event)" id="A1224" data-tid="A323486">
+                            <div *dxTemplate="let data of 'item'" id="A1225" data-tid="A323487">
+                                <div *ngIf="data.Durumu==0" class="row" id="A1226" data-tid="A323488">
+                                    <div class="col-sm-12" id="A1227" data-tid="A323489">
+                                        <b style="float:left" id="A1228" data-tid="A323490">{{data.Gonderenadi}}</b>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1229" data-tid="A323491">
+                                        <p id="A1230" data-tid="A323492">{{data.Baslik}}</p>
+                                    </div>
+                                    <div class="col-sm-6" id="A1231" data-tid="A323493">
+                                        <p style="float: right;margin-right: -66px;  margin-top: -15px;" id="A1232" data-tid="A323494">{{(data.Tarih| date:'HH:mm')}}</p>
+                                    </div>
+                                    <div class="col-sm-2" id="A1233" data-tid="A323495">
+                                        <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center;margin-top: 3px;" id="A1234" data-tid="A323496"><i class="fa fa-trash-o" style="color:#08c;margin-top:-14px; " id="A1235" data-tid="A323497"></i></div>
+
+                                    </div>
+                                </div>
+                                <div *ngIf="data.Durumu==1" class="row" style="background-color:#d2d5d8" id="A1236" data-tid="A323498">
+                                    <div class="col-sm-12" id="A1237" data-tid="A323499">
+                                        <b style="float:left" id="A1238" data-tid="A323500">{{data.Gonderenadi}}</b>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1239" data-tid="A323501">
+                                        <p id="A1240" data-tid="A323502">{{data.Baslik}}</p>
+                                    </div>
+                                    <div class="col-sm-6" id="A1241" data-tid="A323503">
+                                        <p style="float: right;margin-right: -66px;  margin-top: -15px;" id="A1242" data-tid="A323504">{{(data.Tarih| date:'HH:mm')}}</p>
+                                    </div>
+                                    <div class="col-sm-2" id="A1243" data-tid="A323505">
+
+                                        <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center;margin-top: 3px;" id="A1244" data-tid="A323506"><i class="fa fa-trash-o" style="color:#08c;margin-top:-14px; " id="A1245" data-tid="A323507"></i></div>
+
+                                    </div>
+                                </div>
+                                <div *ngIf="data.Durumu==4&&currentBox!='inbox'" class="row" id="A1246" data-tid="A323508">
+                                    <div class="col-sm-12" id="A1247" data-tid="A323509">
+                                        <b style="float:left" id="A1248" data-tid="A323510">{{data.Gonderenadi}}</b>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1249" data-tid="A323511">
+                                        <p id="A1250" data-tid="A323512">{{data.Baslik}}</p>
+                                    </div>
+                                    <div class="col-sm-6" id="A1251" data-tid="A323513">
+                                        <p style="float: right;margin-right: -66px;  margin-top: -15px;" id="A1252" data-tid="A323514">{{(data.Tarih| date:'HH:mm')}}</p>
+                                    </div>
+                                    <div class="col-sm-2" id="A1253" data-tid="A323515">
+
+                                        <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center;margin-top: 3px;" id="A1254" data-tid="A323516"><i class="fa fa-trash-o" style="color:#08c;margin-top:-14px; " id="A1255" data-tid="A323517"></i></div>
+
+                                    </div>
+                                </div>
+                                <div *ngIf="data.Durumu==4&&currentBox=='inbox'" class="row" style="background-color:#d2d5d8" id="A1256" data-tid="A323518">
+                                    <div class="col-sm-12" id="A1257" data-tid="A323519">
+                                        <b style="float:left" id="A1258" data-tid="A323520">{{data.Gonderenadi}}</b>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1259" data-tid="A323521">
+                                        <p id="A1260" data-tid="A323522">{{data.Baslik}}</p>
+                                    </div>
+                                    <div class="col-sm-6" id="A1261" data-tid="A323523">
+                                        <p style="float: right;margin-right: -66px;  margin-top: -15px;" id="A1262" data-tid="A323524">{{(data.Tarih| date:'HH:mm')}}</p>
+                                    </div>
+                                    <div class="col-sm-2" id="A1263" data-tid="A323525">
+
+                                        <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center;margin-top: 3px;" id="A1264" data-tid="A323526"><i class="fa fa-trash-o" style="color:#08c;margin-top:-14px;" id="A1265" data-tid="A323527"></i></div>
+
+                                    </div>
+                                </div>
+                                <div *ngIf="data.Durumu==3" class="row" id="A1266" data-tid="A323528">
+                                    <div class="col-sm-12" id="A1267" data-tid="A323529">
+                                        <b style="float:left" id="A1268" data-tid="A323530">{{data.Gonderenadi}}</b>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1269" data-tid="A323531">
+                                        <p id="A1270" data-tid="A323532">{{data.Baslik}}</p>
+                                    </div>
+                                    <div class="col-sm-6" id="A1271" data-tid="A323533">
+                                        <p style="float: right;margin-right: -66px;  margin-top: -15px;" id="A1272" data-tid="A323534">{{(data.Tarih| date:'HH:mm')}}</p>
+                                    </div>
+                                    <div class="col-sm-2" id="A1273" data-tid="A323535">
+
+                                        <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center;margin-top: 3px;" id="A1274" data-tid="A323536"><i class="fa fa-trash-o" style="color:#08c;margin-top:-14px;" id="A1275" data-tid="A323537"></i></div>
+
+                                    </div>
+                                </div>
+                                <div *ngIf="data.Durumu==2" class="row" id="A1276" data-tid="A323538">
+                                    <div class="col-sm-12" id="A1277" data-tid="A323539">
+                                        <b style="float:left" id="A1278" data-tid="A323540">{{data.Gonderenadi}}</b>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1279" data-tid="A323541">
+                                        <p id="A1280" data-tid="A323542">{{data.Baslik}}</p>
+                                    </div>
+                                    <div class="col-sm-6" id="A1281" data-tid="A323543">
+                                        <p style="float: right;margin-right: -66px;  margin-top: -15px;" id="A1282" data-tid="A323544">{{(data.Tarih| date:'HH:mm')}}</p>
+                                    </div>
+                                    <div class="col-sm-2" id="A1283" data-tid="A323545">
+
+                                        <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center;margin-top: 3px;" id="A1284" data-tid="A323546"><i class="fa fa-trash-o" style="color:#08c;margin-top:-14px;" id="A1285" data-tid="A323547"></i></div>
+
+                                    </div>
+                                </div>
+                                <div *ngIf="data.Durumu==5" class="row" id="A1286" data-tid="A323548">
+                                    <div class="col-sm-12" id="A1287" data-tid="A323549">
+                                        <b style="float:left" id="A1288" data-tid="A323550">{{data.Gonderenadi}}</b>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1289" data-tid="A323551">
+                                        <p id="A1290" data-tid="A323552">{{data.Baslik}}</p>
+                                    </div>
+                                    <div class="col-sm-6" id="A1291" data-tid="A323553">
+                                        <p style="float: right;margin-right: -66px;  margin-top: -15px;" id="A1292" data-tid="A323554">{{(data.Tarih| date:'HH:mm')}}</p>
+                                    </div>
+                                    <div class="col-sm-2" id="A1293" data-tid="A323555">
+
+                                        <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center;margin-top: 3px;" id="A1294" data-tid="A323556"><i class="fa fa-trash-o" style="color:#08c;margin-top:-14px;" id="A1295" data-tid="A323557"></i></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </dx-list>
+                    </dxi-item>
+                    <dxi-item title="Bu Hafta" i18n-title="@@M12075" id="A1296" data-tid="A323558">
+                        <dx-list [dataSource]="inboxThisWeek" (onItemClick)="selectedChange($event)" id="A1297" data-tid="A323559">
+                            <div *dxTemplate="let data of 'item'" id="A1298" data-tid="A323560">
+                                <div *ngIf="data.Durumu==0" class="row" id="A1299" data-tid="A323561">
+                                    <div class="col-sm-12" id="A1300" data-tid="A323562">
+                                        <b style="float:left" id="A1301" data-tid="A323563">{{data.Gonderenadi}}</b>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1302" data-tid="A323564">
+                                        <p id="A1303" data-tid="A323565">{{data.Baslik}}</p>
+                                    </div>
+                                    <div class="col-sm-6" id="A1304" data-tid="A323566">
+                                        <p style="float: right;margin-right: -66px;  margin-top: -15px;" id="A1305" data-tid="A323567">{{(data.Tarih| date:'dd.MM.yyyy')}}</p>
+                                    </div>
+                                    <div class="col-sm-2" id="A1306" data-tid="A323568">
+                                        <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center;margin-top: 3px;" id="A1307" data-tid="A323569"><i class="fa fa-trash-o" style="color:#08c;margin-top:-14px; " id="A1308" data-tid="A323570"></i></div>
+
+                                    </div>
+                                </div>
+                                <div *ngIf="data.Durumu==1" class="row" style="background-color:#d2d5d8" id="A1309" data-tid="A323571">
+                                    <div class="col-sm-12" id="A1310" data-tid="A323572">
+                                        <b style="float:left" id="A1311" data-tid="A323573">{{data.Gonderenadi}}</b>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1312" data-tid="A323574">
+                                        <p id="A1313" data-tid="A323575">{{data.Baslik}}</p>
+                                    </div>
+                                    <div class="col-sm-6" id="A1314" data-tid="A323576">
+                                        <p style="float: right;margin-right: -66px;  margin-top: -15px;" id="A1315" data-tid="A323577">{{(data.Tarih| date:'dd.MM.yyyy')}}</p>
+                                    </div>
+                                    <div class="col-sm-2" id="A1316" data-tid="A323578">
+
+                                        <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center;margin-top: 3px;" id="A1317" data-tid="A323579"><i class="fa fa-trash-o" style="color:#08c;margin-top:-14px; " id="A1318" data-tid="A323580"></i></div>
+
+                                    </div>
+                                </div>
+                                <div *ngIf="data.Durumu==4" class="row" id="A1319" data-tid="A323581">
+                                    <div class="col-sm-12" id="A1320" data-tid="A323582">
+                                        <b style="float:left" id="A1321" data-tid="A323583">{{data.Gonderenadi}}</b>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1322" data-tid="A323584">
+                                        <p id="A1323" data-tid="A323585">{{data.Baslik}}</p>
+                                    </div>
+                                    <div class="col-sm-6" id="A1324" data-tid="A323586">
+                                        <p style="float: right;margin-right: -66px;  margin-top: -15px;" id="A1325" data-tid="A323587">{{(data.Tarih| date:'dd.MM.yyyy')}}</p>
+                                    </div>
+                                    <div class="col-sm-2" id="A1326" data-tid="A323588">
+
+                                        <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center;margin-top: 3px;" id="A1327" data-tid="A323589"><i class="fa fa-trash-o" style="color:#08c;margin-top:-14px; " id="A1328" data-tid="A323590"></i></div>
+
+                                    </div>
+                                </div>
+                                <div *ngIf="data.Durumu==4&&currentBox=='inbox'" class="row" style="background-color:#d2d5d8" id="A1329" data-tid="A323591">
+                                    <div class="col-sm-12" id="A1330" data-tid="A323592">
+                                        <b style="float:left" id="A1331" data-tid="A323593">{{data.Gonderenadi}}</b>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1332" data-tid="A323594">
+                                        <p id="A1333" data-tid="A323595">{{data.Baslik}}</p>
+                                    </div>
+                                    <div class="col-sm-6" id="A1334" data-tid="A323596">
+                                        <p style="float: right;margin-right: -66px;  margin-top: -15px;" id="A1335" data-tid="A323597">{{(data.Tarih| date:'dd.MM.yyyy')}}</p>
+                                    </div>
+                                    <div class="col-sm-2" id="A1336" data-tid="A323598">
+
+                                        <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center;margin-top: 3px;" id="A1337" data-tid="A323599"><i class="fa fa-trash-o" style="color:#08c;margin-top:-14px;" id="A1338" data-tid="A323600"></i></div>
+
+                                    </div>
+                                </div>
+                                <div *ngIf="data.Durumu==3" class="row" id="A1339" data-tid="A323601">
+                                    <div class="col-sm-12" id="A1340" data-tid="A323602">
+                                        <b style="float:left" id="A1341" data-tid="A323603">{{data.Gonderenadi}}</b>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1342" data-tid="A323604">
+                                        <p id="A1343" data-tid="A323605">{{data.Baslik}}</p>
+                                    </div>
+                                    <div class="col-sm-6" id="A1344" data-tid="A323606">
+                                        <p style="float: right;margin-right: -66px;  margin-top: -15px;" id="A1345" data-tid="A323607">{{(data.Tarih| date:'dd.MM.yyyy')}}</p>
+                                    </div>
+                                    <div class="col-sm-2" id="A1346" data-tid="A323608">
+
+                                        <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center;margin-top: 3px;" id="A1347" data-tid="A323609"><i class="fa fa-trash-o" style="color:#08c;margin-top:-14px;" id="A1348" data-tid="A323610"></i></div>
+
+                                    </div>
+                                </div>
+                                <div *ngIf="data.Durumu==2" class="row" id="A1349" data-tid="A323611">
+                                    <div class="col-sm-12" id="A1350" data-tid="A323612">
+                                        <b style="float:left" id="A1351" data-tid="A323613">{{data.Gonderenadi}}</b>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1352" data-tid="A323614">
+                                        <p id="A1353" data-tid="A323615">{{data.Baslik}}</p>
+                                    </div>
+                                    <div class="col-sm-6" id="A1354" data-tid="A323616">
+                                        <p style="float: right;margin-right: -66px;  margin-top: -15px;" id="A1355" data-tid="A323617">{{(data.Tarih| date:'dd.MM.yyyy')}}</p>
+                                    </div>
+                                    <div class="col-sm-2" id="A1356" data-tid="A323618">
+
+                                        <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center;margin-top: 3px;" id="A1357" data-tid="A323619"><i class="fa fa-trash-o" style="color:#08c;margin-top:-14px;" id="A1358" data-tid="A323620"></i></div>
+
+                                    </div>
+                                </div>
+                                <div *ngIf="data.Durumu==5" class="row" id="A1359" data-tid="A323621">
+                                    <div class="col-sm-12" id="A1360" data-tid="A323622">
+                                        <b style="float:left" id="A1361" data-tid="A323623">{{data.Gonderenadi}}</b>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1362" data-tid="A323624">
+                                        <p id="A1363" data-tid="A323625">{{data.Baslik}}</p>
+                                    </div>
+                                    <div class="col-sm-6" id="A1364" data-tid="A323626">
+                                        <p style="float: right;margin-right: -66px;  margin-top: -15px;" id="A1365" data-tid="A323627">{{(data.Tarih| date:'HH:mm')}}</p>
+                                    </div>
+                                    <div class="col-sm-2" id="A1366" data-tid="A323628">
+
+                                        <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center;margin-top: 3px;" id="A1367" data-tid="A323629"><i class="fa fa-trash-o" style="color:#08c;margin-top:-14px;" id="A1368" data-tid="A323630"></i></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </dx-list>
+                    </dxi-item>
+
+                    <dxi-item title="Daha Eski" i18n-title="@@M12455" id="A1369" data-tid="A323631">
+                        <dx-list [dataSource]="inboxOlder" (onItemClick)="selectedChange($event)" id="A1370" data-tid="A323632">
+                            <div *dxTemplate="let data of 'item'" id="A1371" data-tid="A323633">
+                                <div *ngIf="data.Durumu==0" class="row" id="A1372" data-tid="A323634">
+                                    <div class="col-sm-12" id="A1373" data-tid="A323635">
+                                        <b style="float:left" id="A1374" data-tid="A323636">{{data.Gonderenadi}}</b>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1375" data-tid="A323637">
+                                        <p id="A1376" style="margin-top: 7px;" data-tid="A323638">{{data.Baslik}}</p>
+                                    </div>
+                                    <div class="col-sm-6" id="A1377" data-tid="A323639">
+                                        <p style="float: right;margin-right: -66px; margin-top: -15px;" id="A1378" data-tid="A323640">{{(data.Tarih| date:'dd.MM.yyyy')}}</p>
+                                    </div>
+                                    <div class="col-sm-2" id="A1379" data-tid="A323641">
+                                        <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center;margin-top: 3px;" id="A1380" data-tid="A323642"><i class="fa fa-trash-o" style="color:#08c;margin-top:-14px; " id="A1381" data-tid="A323643"></i></div>
+
+                                    </div>
+                                </div>
+                                <div *ngIf="data.Durumu==1" class="row" style="background-color:#d2d5d8" id="A1382" data-tid="A323644">
+                                    <div class="col-sm-12" data-tid="A323645">
+                                        <div class="col-sm-4" style=" padding-top: 15px;padding-left: 2px;" id="A1383" data-tid="A323646">
+                                            <b style="float:left" id="A1384" data-tid="A323647">{{data.Gonderenadi}}</b>
+                                        </div>
+                                        <div class="col-sm-2" id="A1387" data-tid="A323648">
+                                            <p style="float: right;margin-right: -192px;padding-top: 14px;" id="A1388" data-tid="A323649">{{(data.Tarih| date:'dd.MM.yyyy')}}</p>
+                                        </div>
+                                        <div class="col-sm-2" id="A1389" data-tid="A323650">
+                                                <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center; padding-top: 38px;" id="A1390" data-tid="A323651"><i class="fa fa-trash-o" style="color:#08c;margin-top: -1px;margin-right: -269px; " id="A1391" data-tid="A323652"></i></div>
+                                            </div>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1385" data-tid="A323653">
+                                        <p id="A1386" data-tid="A323654">{{data.Baslik}}</p>
+                                    </div>
+
+
+                                </div>
+                                <div *ngIf="data.Durumu==4&&currentBox!='inbox'" class="row" id="A1392" data-tid="A323655">
+                                    <div class="col-sm-12" id="A1393" data-tid="A323656">
+                                        <b style="float:left" id="A1394" data-tid="A323657">{{data.Gonderenadi}}</b>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1395" data-tid="A323658">
+                                        <p id="A1396" style="margin-top: 7px;" data-tid="A323659">{{data.Baslik}}</p>
+                                    </div>
+                                    <div class="col-sm-6" id="A1397" data-tid="A323660">
+                                        <p style="float: right;margin-right: -66px; margin-top: -15px;" id="A1398" data-tid="A323661">{{(data.Tarih| date:'dd.MM.yyyy')}}</p>
+                                    </div>
+                                    <div class="col-sm-2" id="A1399" data-tid="A323662">
+
+                                        <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center;margin-top: 3px;" id="A1400" data-tid="A323663"><i class="fa fa-trash-o" style="color:#08c;margin-top:-14px; " id="A1401" data-tid="A323664"></i></div>
+
+                                    </div>
+                                </div>
+                                <div *ngIf="data.Durumu==4&&currentBox=='inbox'" class="row" style="background-color:#d2d5d8" id="A1402" data-tid="A323665">
+                                    <div class="col-sm-12" id="A1403" data-tid="A323666">
+                                        <b style="float:left" id="A1404" data-tid="A323667">{{data.Gonderenadi}}</b>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1405" data-tid="A323668">
+                                        <p id="A1406" data-tid="A323669">{{data.Baslik}}</p>
+                                    </div>
+                                    <div class="col-sm-6" id="A1407" data-tid="A323670">
+                                        <p style="float: right;margin-right: -66px;  margin-top: -15px;" id="A1408" data-tid="A323671">{{(data.Tarih| date:'dd.MM.yyyy')}}</p>
+                                    </div>
+                                    <div class="col-sm-2" id="A1409" data-tid="A323672">
+
+                                        <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center;margin-top: 3px;" id="A1410" data-tid="A323673"><i class="fa fa-trash-o" style="color:#08c;margin-top:-14px;" id="A1411" data-tid="A323674"></i></div>
+
+                                    </div>
+                                </div>
+                                <div *ngIf="data.Durumu==3" class="row" id="A1412" data-tid="A323675">
+                                    <div class="col-sm-12" id="A1413" data-tid="A323676">
+                                        <b style="float:left" id="A1414" data-tid="A323677">{{data.Gonderenadi}}</b>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1415" data-tid="A323678">
+                                        <p id="A1416" data-tid="A323679">{{data.Baslik}}</p>
+                                    </div>
+                                    <div class="col-sm-6" id="A1417" data-tid="A323680">
+                                        <p style="float: right;margin-right: -66px; margin-top: -15px;" id="A1418" data-tid="A323681">{{(data.Tarih| date:'dd.MM.yyyy')}}</p>
+                                    </div>
+                                    <div class="col-sm-2" id="A1419" data-tid="A323682">
+
+                                        <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center;margin-top: 3px;" id="A1420" data-tid="A323683"><i class="fa fa-trash-o" style="color:#08c;margin-top:-14px;" id="A1421" data-tid="A323684"></i></div>
+
+                                    </div>
+                                </div>
+                                <div *ngIf="data.Durumu==2" class="row" id="A1422" data-tid="A323685">
+                                    <div class="col-sm-12" id="A1423" data-tid="A323686">
+                                        <b style="float:left" id="A1424" data-tid="A323687">{{data.Gonderenadi}}</b>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1425" data-tid="A323688">
+                                        <p id="A1426" data-tid="A323689">{{data.Baslik}}</p>
+                                    </div>
+                                    <div class="col-sm-6" id="A1427" data-tid="A323690">
+                                        <p style="float: right;margin-right: -66px;  margin-top: -15px;" id="A1428" data-tid="A323691">{{(data.Tarih| date:'dd.MM.yyyy')}}</p>
+                                    </div>
+                                    <div class="col-sm-2" id="A1429" data-tid="A323692">
+
+                                        <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center;margin-top: 3px;" id="A1430" data-tid="A323693"><i class="fa fa-trash-o" style="color:#08c;margin-top:-14px;" id="A1431" data-tid="A323694"></i></div>
+
+                                    </div>
+                                </div>
+                                <div *ngIf="data.Durumu==5" class="row" id="A1432" data-tid="A323695">
+                                    <div class="col-sm-12" id="A1433" data-tid="A323696">
+                                        <b style="float:left" id="A1434" data-tid="A323697">{{data.Gonderenadi}}</b>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1435" data-tid="A323698">
+                                        <p id="A1436" data-tid="A323699">{{data.Baslik}}</p>
+                                    </div>
+                                    <div class="col-sm-6" id="A1437" data-tid="A323700">
+                                        <p style="float: right;margin-right: -66px;  margin-top: -15px;" id="A1438" data-tid="A323701">{{(data.Tarih| date:'HH:mm')}}</p>
+                                    </div>
+                                    <div class="col-sm-2" id="A1439" data-tid="A323702">
+
+                                        <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center;margin-top: 3px;" id="A1440" data-tid="A323703"><i class="fa fa-trash-o" style="color:#08c;margin-top:-14px;" id="A1441" data-tid="A323704"></i></div>
+
+                                    </div>
+                                </div>
+                                <div *ngIf="data.Durumu==null" class="row" id="A1442" data-tid="A323705">
+                                    <div class="col-sm-12" id="A1443" data-tid="A323706">
+                                        <b style="float:left" id="A1444" data-tid="A323707">{{data.Gonderenadi}}</b>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-top:20px" id="A1445" data-tid="A323708">
+                                        <p id="A1446" data-tid="A323709">{{data.Baslik}}</p>
+                                    </div>
+                                    <div class="col-sm-6" id="A1447" data-tid="A323710">
+                                        <p style="float: right;margin-right: -66px;  margin-top: -15px;" id="A1448" data-tid="A323711">{{(data.Tarih| date:'dd.MM.yyyy')}}</p>
+                                    </div>
+                                    <div class="col-sm-2" id="A1449" data-tid="A323712">
+
+                                        <div class="btn" (click)="DeleteSelectedMessage(data)" style="border:0px; box-shadow:none; text-align:center;margin-top: 3px;" id="A1450" data-tid="A323713"><i class="fa fa-trash-o" style="color:#08c;margin-top:-14px;" id="A1451" data-tid="A323714"></i></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </dx-list>
+                    </dxi-item>
+                </dx-accordion>
+            </div>
+
+          <div class="list-container col-sm-7" id="A1452" data-tid="A323715">
+             <!--     <div class="btn" (click)="btnNewMessage_Click()" style="border:0px; box-shadow:none; text-align:center;" id="A1453"><i class="fa fa-newspaper-o"  id="A1454">Yeni Mesaj</i></div>-->
+                <br id="A1455" data-tid="A323716" />
+                <br id="A1456" data-tid="A323717" />
+                <div id="systemapi-container" class="col-sm-12" style="height:100%" data-tid="A323718">
+                    <comp-compose [Info]="systemApiService?.componentInfo" id="A1457" data-tid="A323719"></comp-compose>
+                </div>
+            </div>
+        </div>
+    </dxi-item>
+    <dxi-item class="tabpanel-item" title="SMS-Email" i18n-title="@@M27368" id="A1458" data-tid="A323720">
+        <div class="row" id="A1459" data-tid="A323721">
+            <div class="col-sm-1" id="A1460" data-tid="A323722">
+                <label id="A1461" data-tid="A323723">SMS</label>
+                <dx-check-box [(value)]="SMS" id="A1462" data-tid="A323724"></dx-check-box>
+            </div>
+            <div class="col-sm-1" id="A1463" data-tid="A323725">
+                <label id="A1464" data-tid="A323726">E-Mail</label>
+                <dx-check-box (onValueChanged)="mailchanged($event)" [(value)]="Email" id="A1465" data-tid="A323727"></dx-check-box>
+            </div>
+        </div>
+        <dx-text-box placeholder="Mail yada Numara giriniz..." [(value)]="emailnumber" i18n-placeholder="@@M18458" id="A1466" data-tid="A323728"></dx-text-box>
+        <dx-text-box [visible]="subjectvisible" placeholder="Başlık Giriniz." [(value)]="subject" i18n-placeholder="@@M11647" id="A1467" data-tid="A323729"></dx-text-box>
+        <dx-text-area placeholder="Mesaj Giriniz..." [(value)]="message" i18n-placeholder="@@M18912" id="A1468" data-tid="A323730"></dx-text-area>
+        <dx-button type="btn btn-default" (onClick)="send()" text="Gönder" i18n-text="@@M14849" id="A1469" data-tid="A323731"></dx-button>
+    </dxi-item>
+</dx-tab-panel>

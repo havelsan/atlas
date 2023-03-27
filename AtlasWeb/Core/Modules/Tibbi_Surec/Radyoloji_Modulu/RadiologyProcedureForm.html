@@ -1,0 +1,63 @@
+﻿
+
+
+
+    <NeStatePanelComponent [OutgoingTransitions]="radiologyProcedureFormViewModel?.OutgoingTransitions" [StateReports]="radiologyProcedureFormViewModel?.CurrentStateReports" [ObjectID]="radiologyProcedureFormViewModel?._Radiology?.ObjectID" [ObjectDefID]="radiologyProcedureFormViewModel?._Radiology?.ObjectDefID" [CurrentStateDefID]="radiologyProcedureFormViewModel._Radiology.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" id="A24950" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A360552">
+    </NeStatePanelComponent>
+	<form id="RadiologyProcedureForm" class="form-horizontal" role="form" data-tid="A360553">
+	</form>
+
+    <div class="row" id="A24951" data-tid="A360554">
+        <div class="col-md-6" id="A24952" data-tid="A360555">
+            <patient-demographics-form [actionId]="radiologyProcedureFormViewModel._Radiology.ObjectID" id="A24953" data-tid="A360556"></patient-demographics-form>
+        </div>
+        <div class="col-md-6" id="A24954" data-tid="A360557">
+            <DiagnosisGridReadOnlyForm [EpisodeAction]="radiologyProcedureFormViewModel._Radiology" id="A24955" data-tid="A360558"></DiagnosisGridReadOnlyForm>
+        </div>
+
+    </div>
+
+	<div class="row" id="A24956" data-tid="A360559">
+        <div class="col-md-3" id="A24957" data-tid="A360560">
+            <label class="control-label" id="A24958" data-tid="A360561">İşlem Zamanı</label>
+            <hvl-date-picker #Validation (ValueChange)="onActionDateChanged($event)" [BackColor]="ActionDate?.BackColor" [CustomFormat]="ActionDate?.CustomFormat" [Enabled]="ActionDate?.Enabled" [Font]="ActionDate?.Font" [ForeColor]="ActionDate?.ForeColor" [Format]="ActionDate?.Format" [Max]="ActionDate?.Max" [Min]="ActionDate?.Min" [ReadOnly]="ActionDate?.ReadOnly" [Required]="ActionDate?.Required" [TabIndex]="ActionDate?.TabIndex" [Value]="radiologyProcedureFormViewModel?._Radiology?.ActionDate" [Visible]="ActionDate?.Visible" id="A24959" data-tid="A360562"></hvl-date-picker>
+        </div>
+
+        <div class="col-md-3" id="A24960" data-tid="A360563">
+            <label class="control-label" id="A24961" data-tid="A360564">İstek Yapan Tabip</label>
+            <hvl-list-box #Validation (SelectedObjectChange)="onttobjectlistbox1Changed($event)" [AutoCompleteDialogHeight]="ttobjectlistbox1?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ttobjectlistbox1?.AutoCompleteDialogWidth" [AutoCompleteMode]="ttobjectlistbox1?.AutoCompleteMode" [BackColor]="ttobjectlistbox1?.BackColor" [DefinitionName]="ttobjectlistbox1?.ListDefName" [DisplayExpressionsCache]="radiologyProcedureFormViewModel?.ListDefDisplayExpressions" [Enabled]="ttobjectlistbox1?.Enabled" [Font]="ttobjectlistbox1?.Font" [ForeColor]="ttobjectlistbox1?.ForeColor" [ListFilterExpression]="ttobjectlistbox1?.ListFilterExpression" [MinSearchLength]="ttobjectlistbox1?.MinSearchLength" [PopupDialogFieldConfig]="ttobjectlistbox1?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ttobjectlistbox1?.PopupDialogGridColumns" [PopupDialogHeight]="ttobjectlistbox1?.PopupDialogHeight" [PopupDialogTitle]="ttobjectlistbox1?.PopupDialogTitle" [PopupDialogWidth]="ttobjectlistbox1?.PopupDialogWidth" [ReadOnly]="ttobjectlistbox1?.ReadOnly" [SearchMode]="ttobjectlistbox1?.SearchMode" [SearchTimeout]="ttobjectlistbox1?.SearchTimeout" [SelectedObject]="radiologyProcedureFormViewModel?._Radiology?.RequestDoctor" [TabIndex]="ttobjectlistbox1?.TabIndex" [Visible]="ttobjectlistbox1?.Visible" [width]="ttobjectlistbox1?.Width" id="A24962" data-tid="A360565"></hvl-list-box>
+        </div>
+    </div>
+
+	<div class="row" id="A24963" data-tid="A360566">
+        <div class="col-md-6" id="A24964" data-tid="A360567">
+            <label class="control-label" id="A24965" data-tid="A360568">Kısa Anamnez ve Klinik Bulgular</label>
+            <hvl-text-box #Validation (TextChange)="ontttextbox1Changed($event)" [BackColor]="tttextbox1?.BackColor" [CharacterCasing]="tttextbox1?.CharacterCasing" [Enabled]="tttextbox1?.Enabled" [Font]="tttextbox1?.Font" [ForeColor]="tttextbox1?.ForeColor" [height]="tttextbox1?.Height" [InputFormat]="tttextbox1?.InputFormat" [InputTurkishCharacter]="tttextbox1?.InputTurkishCharacter" [IsNonNumeric]="tttextbox1?.IsNonNumeric" [MultiLine]="tttextbox1?.Multiline" [ReadOnly]="tttextbox1?.ReadOnly" [Required]="tttextbox1?.Required" [TabIndex]="tttextbox1?.TabIndex" [TextAlign]="tttextbox1?.TextAlign" [Text]="radiologyProcedureFormViewModel?._Radiology?.PreDiagnosis" [Visible]="tttextbox1?.Visible" id="A24966" data-tid="A360569"></hvl-text-box>
+        </div>
+
+        <div class="col-md-6" id="A24967" data-tid="A360570">
+            <label class="control-label" id="A24968" data-tid="A360571">Açıklamalar</label>
+            <hvl-text-box #Validation (TextChange)="ontttextbox2Changed($event)" [BackColor]="tttextbox2?.BackColor" [CharacterCasing]="tttextbox2?.CharacterCasing" [Enabled]="tttextbox2?.Enabled" [Font]="tttextbox2?.Font" [ForeColor]="tttextbox2?.ForeColor" [height]="tttextbox2?.Height" [InputFormat]="tttextbox2?.InputFormat" [InputTurkishCharacter]="tttextbox2?.InputTurkishCharacter" [IsNonNumeric]="tttextbox2?.IsNonNumeric" [MultiLine]="tttextbox2?.Multiline" [ReadOnly]="tttextbox2?.ReadOnly" [Required]="tttextbox2?.Required" [TabIndex]="tttextbox2?.TabIndex" [TextAlign]="tttextbox2?.TextAlign" [Text]="radiologyProcedureFormViewModel?._Radiology?.Description" [Visible]="tttextbox2?.Visible" id="A24969" data-tid="A360572"></hvl-text-box>
+        </div>
+    </div>
+	<div class="row" id="A24970" data-tid="A360573">
+		<div class="col-md-2" id="A24971" data-tid="A360574">
+			<hvl-checkbox #Validation (ValueChange)="onAllCheckChanged($event)" [AllowThreeState]="AllCheck?.ThreeState" [BackColor]="AllCheck?.BackColor" [Enabled]="AllCheck?.Enabled" [Font]="AllCheck?.Font" [ForeColor]="AllCheck?.ForeColor" [IsTitleLeft]="AllCheck?.IsTitleLeft" [Margin]="AllCheck?.Margin" [ReadOnly]="AllCheck?.ReadOnly" [TabIndex]="AllCheck?.TabIndex" [TitleTopPadding]="AllCheck?.TitleTopPadding" [Title]="AllCheck?.Title" [Value]="radiologyProcedureFormViewModel?._Radiology?.AllCheck" [Visible]="AllCheck?.Visible" id="A24972" data-tid="A360575"></hvl-checkbox>		</div>
+	</div>
+	<div class="row" id="A24973" data-tid="A360576">
+		<dx-tab-panel [selectedIndex]="0" id="A24974" data-tid="A360577">
+			<dxi-item class="tabpanel-item" title="Tetkik" i18n-title="@@M23295" id="A24975" data-tid="A360578">
+				<div class="row" id="A24976" data-tid="A360579">
+					<div class="col-md-12" id="A24977" data-tid="A360580">
+						<hvl-datagrid [AllowUserToAddRows]="GridRadiologyTests?.AllowUserToAddRows" [AllowUserToDeleteRows]="GridRadiologyTests?.AllowUserToDeleteRows" [Columns]="GridRadiologyTestsColumns" [dataSource]="radiologyProcedureFormViewModel?._Radiology?.RadiologyTests" [DeleteButtonWidth]="GridRadiologyTests?.DeleteButtonWidth" [DisplayExpressionsCache]="radiologyProcedureFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="GridRadiologyTests?.ShowFilterRow" [FilterColumnName]="GridRadiologyTests?.FilterColumnName" [FilterLabel]="GridRadiologyTests?.FilterLabel" [Filter]="GridRadiologyTests?.Filter" [height]="GridRadiologyTests?.Height" [IsFilterLabelSingleLine]="GridRadiologyTests?.IsFilterLabelSingleLine" [ShowColumnHeaders]="GridRadiologyTests?.ColumnHeadersVisible" [ShowFilterCombo]="GridRadiologyTests?.ShowFilterCombo" [ShowTotalNumberOfRows]="GridRadiologyTests?.ShowTotalNumberOfRows" id="A24978" data-tid="A360581"></hvl-datagrid>					</div>
+				</div>
+			</dxi-item>
+			<dxi-item class="tabpanel-item" title="Sarf" i18n-title="@@M21309" id="A24979" data-tid="A360582">
+				<div class="row" id="A24980" data-tid="A360583">
+					<div class="col-md-12" id="A24981" data-tid="A360584">
+						<hvl-datagrid (CellValueChange)="GridMaterial_CellValueChangedEmitted($event)" [AllowUserToAddRows]="GridMaterial?.AllowUserToAddRows" [AllowUserToDeleteRows]="GridMaterial?.AllowUserToDeleteRows" [Columns]="GridMaterialColumns" [dataSource]="radiologyProcedureFormViewModel?._Radiology?.TreatmentMaterials" [DeleteButtonWidth]="GridMaterial?.DeleteButtonWidth" [DisplayExpressionsCache]="radiologyProcedureFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="GridMaterial?.ShowFilterRow" [FilterColumnName]="GridMaterial?.FilterColumnName" [FilterLabel]="GridMaterial?.FilterLabel" [Filter]="GridMaterial?.Filter" [height]="GridMaterial?.Height" [IsFilterLabelSingleLine]="GridMaterial?.IsFilterLabelSingleLine" [ShowColumnHeaders]="GridMaterial?.ColumnHeadersVisible" [ShowFilterCombo]="GridMaterial?.ShowFilterCombo" [ShowTotalNumberOfRows]="GridMaterial?.ShowTotalNumberOfRows" id="A24982" data-tid="A360585"></hvl-datagrid>					</div>
+				</div>
+			</dxi-item>
+		</dx-tab-panel>
+	</div>
+

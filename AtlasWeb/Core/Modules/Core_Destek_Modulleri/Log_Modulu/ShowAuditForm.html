@@ -1,0 +1,15 @@
+﻿<dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#showaudit' }" [visible]="loadingVisible" [showIndicator]="true" message="Yükleniyor..." [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" i18n-message="@@M24737" id="A1603" data-tid="A323864">
+</dx-load-panel>
+<div id="showaudit" class="row" data-tid="A323865">
+    <div class="col-sm-6" id="A1604" data-tid="A323866">
+        <dx-select-box [dataSource]="ViewModel.auditObjectList" displayExpr="objectName" valueExpr="objectID" [value]="ViewModel?.auditObjectList[0]?.objectID" (onValueChanged)="selectObject($event)" id="A1605" data-tid="A323867"></dx-select-box>
+    </div>
+    <div class="col-sm-12" style="height:50%" id="A1606" data-tid="A323868">
+        <dx-data-grid [columns]="AuditColumns" [dataSource]="ViewModel.LogDataSource" (onSelectionChanged)="selectLog($event)" [selection]="{mode: 'single',allowSelectAll: false}" allowColumnReordering="true" allowColumnResizing="true" [paging]="{enable: true, pageSize:60}" [groupPanel]="{visible: true}" [filterRow]="{visible: true}" style="height : 250px" id="A1607" data-tid="A323869">
+        </dx-data-grid>
+    </div>
+    <div class="col-sm-12" style="height:50%" id="A1608" data-tid="A323870">
+        <dx-data-grid [columns]="AuditDetailsColumns" [dataSource]="ViewModel.LogDataSourceDetails" [selection]="{mode: 'single',allowSelectAll: false}" allowColumnReordering="true" allowColumnResizing="true" [paging]="{enable: true, pageSize:60}" [groupPanel]="{visible: true}" [filterRow]="{visible: true}" style="height : 250px" id="A1609" data-tid="A323871">
+        </dx-data-grid>
+    </div>
+</div>

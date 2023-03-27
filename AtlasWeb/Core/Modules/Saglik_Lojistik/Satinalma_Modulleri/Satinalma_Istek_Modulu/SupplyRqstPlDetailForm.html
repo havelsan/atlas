@@ -1,0 +1,129 @@
+﻿
+<div class="container-fluid" id="A5326" data-tid="A331250">
+    <NeStatePanelComponent [OutgoingTransitions]="supplyRqstPlDetailFormViewModel?.OutgoingTransitions" [StateReports]="supplyRqstPlDetailFormViewModel?.CurrentStateReports" [ObjectID]="supplyRqstPlDetailFormViewModel?._SupplyRequestPoolDetail?.ObjectID" [ObjectDefID]="supplyRqstPlDetailFormViewModel?._SupplyRequestPoolDetail?.ObjectDefID" [CurrentStateDefID]="supplyRqstPlDetailFormViewModel._SupplyRequestPoolDetail.CurrentStateDefID" [DropStateList]="DropStateList" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()" id="A5327" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A331251">
+    </NeStatePanelComponent>
+    <form id="SupplyRqstPlDetailForm" class="form-horizontal" role="form" data-tid="A331252">
+        
+    </form>
+
+    <br id="A5328" data-tid="A331253" />
+    <div class="row" id="A5329" data-tid="A331254">
+        <div class="col-sm-2" id="A5330" data-tid="A331255">
+            <label id="A5331" data-tid="A331256">Malzeme : </label>
+        </div>
+        <div class="col-sm-9" id="A5332" data-tid="A331257">
+            <label style="color: maroon;" id="A5333" data-tid="A331258">{{MaterialName}}</label>
+        </div>
+    </div>
+    <div class="row" id="A5334" data-tid="A331259">
+        <div class="col-sm-2" id="A5335" data-tid="A331260">
+            <label id="A5336" data-tid="A331261">Malzeme Kodu : </label>
+        </div>
+        <div class="col-sm-9" id="A5337" data-tid="A331262">
+            <label style="color: maroon;" id="A5338" data-tid="A331263">{{MaterialCode}}</label>
+        </div>
+    </div>
+    <div class="row" id="A5339" data-tid="A331264">
+        <div class="col-sm-2" id="A5340" data-tid="A331265">
+            <label id="A5341" data-tid="A331266">Barkod : </label>
+        </div>
+        <div class="col-sm-9" id="A5342" data-tid="A331267">
+            <label style="color: maroon;" id="A5343" data-tid="A331268">{{BarcodeName}}</label>
+        </div>
+    </div>
+    <div class="row" id="A5344" data-tid="A331269">
+        <div class="col-sm-2" id="A5345" data-tid="A331270">
+            <label id="A5346" data-tid="A331271">Ölçü Birimi : </label>
+        </div>
+        <div class="col-sm-9" id="A5347" data-tid="A331272">
+            <label style="color: maroon;" id="A5348" data-tid="A331273">{{DistributionTypeName}}</label>
+        </div>
+    </div>
+    <br id="A5349" data-tid="A331274" />
+    <div class="row" id="A5350" data-tid="A331275">
+        <div class="col-sm-3" id="A5351" data-tid="A331276">
+            <label class="control-label" id="A5352" data-tid="A331277">
+                Toplam Talep Miktarı :
+            </label>
+            <dx-text-box [(value)]="supplyRqstPlDetailFormViewModel._SupplyRequestPoolDetail.TotalRequestAmount" [readOnly]="true" id="A5353" data-tid="A331278"></dx-text-box>
+        </div>
+        <div class="col-sm-3" id="A5354" data-tid="A331279">
+            <label class="control-label" id="A5355" data-tid="A331280">
+                İstenecek Miktar
+            </label>
+            <dx-text-box [(value)]="supplyRqstPlDetailFormViewModel._SupplyRequestPoolDetail.Amount" [readOnly]="true" id="A5356" data-tid="A331281"></dx-text-box>
+        </div>
+        <div class="col-sm-3" id="A5357" data-tid="A331282">
+            <label class="control-label" id="A5358" data-tid="A331283">
+                Satınalma Miktarı
+            </label>
+            <dx-text-box [(value)]="supplyRqstPlDetailFormViewModel._SupplyRequestPoolDetail.PurchaseAmount" [readOnly]="true" id="A5359" data-tid="A331284"></dx-text-box>
+        </div>
+        <div class="col-sm-3" id="A5360" data-tid="A331285">
+            <label class="control-label" id="A5361" data-tid="A331286">
+                I.F. ile Temin Miktarı
+            </label>
+            <dx-text-box [(value)]="supplyRqstPlDetailFormViewModel._SupplyRequestPoolDetail.ExcessAmount" (onValueChanged)="onExcessAmount()" valueChangeEvent="keyup" id="A5362" data-tid="A331287"></dx-text-box>  
+        </div>
+
+    </div>
+    <br id="A5363" data-tid="A331288" />
+    <dx-tab-panel id="A5364" data-tid="A331289">
+        <dxi-item class="tabpanel-item" title="İstek Detayları" i18n-title="@@M16616" id="A5365" data-tid="A331290">
+            <div class="col-sm-12" id="A5366" data-tid="A331291">
+                <hvl-datagrid [AllowUserToAddRows]="SupplyRequestDetails?.AllowUserToAddRows" [AllowUserToDeleteRows]="SupplyRequestDetails?.AllowUserToDeleteRows" [Columns]="SupplyRequestDetailsColumns" [dataSource]="supplyRqstPlDetailFormViewModel?._SupplyRequestPoolDetail?.SupplyRequestDetails" [DeleteButtonWidth]="SupplyRequestDetails?.DeleteButtonWidth" [DisplayExpressionsCache]="supplyRqstPlDetailFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="SupplyRequestDetails?.ShowFilterRow" [FilterColumnName]="SupplyRequestDetails?.FilterColumnName" [FilterLabel]="SupplyRequestDetails?.FilterLabel" [Filter]="SupplyRequestDetails?.Filter" [height]="SupplyRequestDetails?.Height" [IsFilterLabelSingleLine]="SupplyRequestDetails?.IsFilterLabelSingleLine" [ShowColumnHeaders]="SupplyRequestDetails?.ColumnHeadersVisible" [ShowFilterCombo]="SupplyRequestDetails?.ShowFilterCombo" [ShowTotalNumberOfRows]="SupplyRequestDetails?.ShowTotalNumberOfRows" id="A5367" data-tid="A331292"></hvl-datagrid>
+            </div>
+        </dxi-item>
+        <dxi-item class="tabpanel-item" title="Sorgulama" i18n-title="@@M22126" id="A5368" data-tid="A331293">
+            <br id="A5369" data-tid="A331294" />
+            <div class="row" id="A5370" data-tid="A331295">
+                <div class="col-sm-3" id="A5371" data-tid="A331296">
+                    <label class="control-label" id="A5372" data-tid="A331297">
+                        Şehir Adı
+                    </label>
+                    <hvl-list-box #Validation (SelectedObjectChange)="CityListBox.SelectedObject=$event;" [AutoCompleteDialogHeight]="CityListBox?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="CityListBox?.AutoCompleteDialogWidth" [AutoCompleteMode]="CityListBox?.AutoCompleteMode" [BackColor]="CityListBox?.BackColor" [DefinitionName]="CityListBox?.ListDefName" [Enabled]="CityListBox?.Enabled" [Font]="CityListBox?.Font" [ForeColor]="CityListBox?.ForeColor" [ListFilterExpression]="CityListBox?.ListFilterExpression" [MinSearchLength]="CityListBox?.MinSearchLength" [PopupDialogFieldConfig]="CityListBox?.PopupDialogFieldConfig" [PopupDialogGridColumns]="CityListBox?.PopupDialogGridColumns" [PopupDialogHeight]="CityListBox?.PopupDialogHeight" [PopupDialogTitle]="CityListBox?.PopupDialogTitle" [PopupDialogWidth]="CityListBox?.PopupDialogWidth" [ReadOnly]="CityListBox?.ReadOnly" [SearchMode]="CityListBox?.SearchMode" [SearchTimeout]="CityListBox?.SearchTimeout" [SelectedObject]="CityListBox?.SelectedObject" [TabIndex]="CityListBox?.TabIndex" [Visible]="CityListBox?.Visible" [width]="CityListBox?.Width" id="A5373" data-tid="A331298"></hvl-list-box>
+                </div>
+                <div class="col-sm-5" id="A5374" data-tid="A331299">
+                    <label class="control-label " id="A5375" data-tid="A331300">
+                        Birim Adı
+                    </label>
+                    <hvl-text-box #Validation (TextChange)="birimTextBox.Text=$event;" [BackColor]="birimTextBox?.BackColor" [CharacterCasing]="birimTextBox?.CharacterCasing" [Enabled]="birimTextBox?.Enabled" [Font]="birimTextBox?.Font" [ForeColor]="birimTextBox?.ForeColor" [height]="birimTextBox?.Height" [InputFormat]="birimTextBox?.InputFormat" [InputTurkishCharacter]="birimTextBox?.InputTurkishCharacter" [IsNonNumeric]="birimTextBox?.IsNonNumeric" [MultiLine]="birimTextBox?.Multiline" [ReadOnly]="birimTextBox?.ReadOnly" [Required]="birimTextBox?.Required" [TabIndex]="birimTextBox?.TabIndex" [TextAlign]="birimTextBox?.TextAlign" [Text]="birimTextBox?.Text" [Visible]="birimTextBox?.Visible" id="A5376" data-tid="A331301"></hvl-text-box>
+                </div>
+                <div class="col-sm-2" id="A5377" data-tid="A331302">
+                    <br id="A5378" data-tid="A331303" />
+                    <dx-button (onClick)="btnMkysExcessQuery_Click()" id="A5379" data-tid="A331304">
+                        <div *dxTemplate="let data of 'content'" id="A5380" data-tid="A331305">
+                            <dx-load-indicator class='button-indicator' [visible]="loadIndicatorVisible" id="A5381" data-tid="A331306">
+                            </dx-load-indicator>
+                            <span class='dx-button-text' id="A5382" data-tid="A331307">MKYS'de Sorgula</span>
+                        </div>
+                    </dx-button>
+                </div>
+                <div class="col-sm-2" id="A5383" data-tid="A331308">
+                    <br id="A5384" data-tid="A331309" />
+                    <dx-button (onClick)="btnHospitalExcessQuery_Click()" id="A5385" data-tid="A331310">
+                        <div *dxTemplate="let data of 'content'" id="A5386" data-tid="A331311">
+                            <dx-load-indicator class='button-indicator' [visible]="loadIndicatorVisible" id="A5387" data-tid="A331312">
+                            </dx-load-indicator>
+                            <span class='dx-button-text' id="A5388" data-tid="A331313">XXXXXX'de Sorgula</span>
+                        </div>
+                    </dx-button>
+                </div>
+            </div>
+            <br id="A5389" data-tid="A331314" />
+            <div class="row" id="A5390" data-tid="A331315">
+                <div class="col-sm-12" id="A5391" data-tid="A331316">
+                    <dx-data-grid id="gridContainer" [dataSource]="dataSoruce" data-tid="A331317">
+                        <dxo-paging [pageSize]="10" id="A5392" data-tid="A331318"></dxo-paging>
+                        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10]" [showInfo]="true" id="A5393" data-tid="A331319">
+                        </dxo-pager>
+
+
+                    </dx-data-grid>
+                </div>
+            </div>
+
+        </dxi-item>
+    </dx-tab-panel>
+
+</div>

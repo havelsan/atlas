@@ -1,0 +1,38 @@
+﻿
+
+<div class="container-fluid" id="A17619" data-tid="A350559">
+    <NeStatePanelComponent [OutgoingTransitions]="baseNursingSystemInterrogationFormViewModel?.OutgoingTransitions" [StateReports]="baseNursingSystemInterrogationFormViewModel?.CurrentStateReports" [ObjectID]="baseNursingSystemInterrogationFormViewModel?._BaseNursingSystemInterrogation?.ObjectID" [ObjectDefID]="baseNursingSystemInterrogationFormViewModel?._BaseNursingSystemInterrogation?.ObjectDefID" [CurrentStateDefID]="baseNursingSystemInterrogationFormViewModel._BaseNursingSystemInterrogation.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()" [SaveCommandVisible]="!baseNursingSystemInterrogationFormViewModel.ReadOnly" [DropStateList]="DropStateList" id="A17620" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A350560">
+    </NeStatePanelComponent>
+	<form id="BaseNursingSystemInterrogationForm" class="form-horizontal" role="form" data-tid="A350561">
+		
+	</form>
+
+    <div class="row margin-bottom-5" style="margin-left: 15px;" id="A17621" data-tid="A350562">
+        <div class="pull-left" style="margin-left:15px" id="A17622" data-tid="A350563">
+            <label class="control-label" style="width:100px" id="A17623" data-tid="A350564">Uygulama Zamanı		</label>
+        </div>
+        <div class="pull-left" id="A17624" data-tid="A350565">
+            <div class="col-sm-12" id="A17625" data-tid="A350566">
+                <dx-date-box width="161px" type="datetime" displayFormat="dd/MM/yyyy HH:mm" [(value)]="baseNursingSystemInterrogationFormViewModel._BaseNursingSystemInterrogation.ApplicationDate" [readOnly]="baseNursingSystemInterrogationFormViewModel.ReadOnly" id="A17626" data-tid="A350567">
+                </dx-date-box>
+            </div>
+        </div>
+    </div>
+
+	<div class="row" id="A17627" data-tid="A350568">
+		<div class="col-sm-12" style="padding-left: 0px !important;" id="A17628" data-tid="A350569">
+            <div class="col-sm-3 pull-left " style="padding-left: 0px !important;padding-right: 0px !important;" *ngFor="let detail of baseNursingSystemInterrogationFormViewModel?.SystemInterrogationDefinitionViewList" id="A17629" data-tid="A350570">
+                
+                    <hvl-group-box class="col-sm-12" style="margin-bottom:10px;" [Text]="detail.GroupName" id="A17630" data-tid="A350571">
+                        <div style="height:193px;max-height: 194px !important; overflow-y: auto;" id="A17631" data-tid="A350572">
+                            <div class="col-sm-12 pull-left" style="padding-right: 0px !important;" *ngFor="let list of detail.SystemInterrogationDefinitionList" id="A17632" data-tid="A350573">
+                                <label class="control-label col-sm-9 pull-left" style="margin-left: -30px;" id="A17633" data-tid="A350574">{{list.Name}}</label>
+                                <hvl-checkbox #Validation class="col-sm-3 pull-left" Margin="3px" TitleTopPadding="3px" [IsTitleLeft]="true" [Value]="isValueExists(list.ObjectID)" (ValueChange)="onCheckValueChanged($event,list)" [ReadOnly]="baseNursingSystemInterrogationFormViewModel.ReadOnly" id="A17634" data-tid="A350575"></hvl-checkbox>
+                            </div>
+                        </div>
+                    </hvl-group-box>
+            </div>
+            
+        </div>
+	</div>
+</div>

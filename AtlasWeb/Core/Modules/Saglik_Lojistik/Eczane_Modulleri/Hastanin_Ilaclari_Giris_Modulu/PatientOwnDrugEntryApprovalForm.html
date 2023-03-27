@@ -1,0 +1,81 @@
+﻿<h4 class="logisticLabel" style="margin-left:40%;color:#08c;" id="A3946" data-tid="A329338">
+
+
+    {{FormCaption}}</h4>
+<br id="A3947" data-tid="A329339" />
+<br id="A3948" data-tid="A329340" />
+<NeStatePanelComponent [ObjectDefID]="patientOwnDrugEntryApprovalFormViewModel._PatientOwnDrugEntry.ObjectDefID" [CurrentStateDefID]="patientOwnDrugEntryApprovalFormViewModel._PatientOwnDrugEntry.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" id="A3949" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A329341">
+</NeStatePanelComponent>
+<div class="container-fluid" id="A3950" data-tid="A329342">
+    <form id="PatientOwnDrugEntryApprovalForm" class="form-horizontal" role="form" data-tid="A329343">
+
+    </form>
+    <div class="row" id="A3951" data-tid="A329344">
+        <div class="col-md-4 col-sm-12" id="A3952" data-tid="A329345">
+            <patient-demographics-form [actionId]="patientOwnDrugEntryApprovalFormViewModel._PatientOwnDrugEntry.ObjectID" id="A3953" data-tid="A329346"></patient-demographics-form>
+        </div>
+        <div class="col-md-2 col-sm-12" id="A3954" data-tid="A329347">
+            <div class="row" id="A3955" data-tid="A329348">
+                <div class="col-md-12" id="A3956" data-tid="A329349">
+                    <label class="control-label" id="A3957" data-tid="A329350">Klinik Protokol No</label>
+                </div>
+            </div>
+            <div class="row" id="A3958" data-tid="A329351">
+                <div class="col-md-12" id="A3959" data-tid="A329352">
+                    <label class="control-label" id="A3960" data-tid="A329353">Hastanın Tedavi Gördüğü Klinik</label>
+                </div>
+            </div>
+            <div class="row" id="A3961" data-tid="A329354">
+                <div class="col-md-6" id="A3962" data-tid="A329355">
+                    <label class="control-label" id="A3963" data-tid="A329356">Oda</label>
+                </div>
+                <div class="col-md-6" id="A3964" data-tid="A329357">
+                    <label class="control-label" id="A3965" data-tid="A329358">Yatak</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12" id="A3966" data-tid="A329359">
+            <DiagnosisGridReadOnlyForm [EpisodeAction]="patientOwnDrugEntryApprovalFormViewModel._PatientOwnDrugEntry" id="A3967" data-tid="A329360"></DiagnosisGridReadOnlyForm>
+
+        </div>
+    </div>
+    <div class="row" id="A3968" data-tid="A329361">
+        <label class="control-label col-sm-2" id="A3969" data-tid="A329362">
+            İşlem Nu.
+        </label>
+        <label class="control-label col-sm-4" id="A3970" data-tid="A329363">
+            İşlem Tarihi
+        </label>
+    </div>
+    <div class="row" id="A3971" data-tid="A329364">
+        <div class="col-sm-2" id="A3972" data-tid="A329365">
+            <hvl-text-box #Validation (TextChange)="onIDChanged($event)" [BackColor]="ID?.BackColor" [CharacterCasing]="ID?.CharacterCasing" [Enabled]="ID?.Enabled" [Font]="ID?.Font" [ForeColor]="ID?.ForeColor" [height]="ID?.Height" [InputFormat]="ID?.InputFormat" [InputTurkishCharacter]="ID?.InputTurkishCharacter" [IsNonNumeric]="ID?.IsNonNumeric" [MultiLine]="ID?.Multiline" [ReadOnly]="ID?.ReadOnly" [Required]="ID?.Required" [TabIndex]="ID?.TabIndex" [TextAlign]="ID?.TextAlign" [Text]="patientOwnDrugEntryApprovalFormViewModel?._PatientOwnDrugEntry?.ID" [Visible]="ID?.Visible" id="A3973" data-tid="A329366"></hvl-text-box>
+        </div>
+        <div class="col-sm-4" id="A3974" data-tid="A329367">
+            <hvl-date-picker #Validation (ValueChange)="onActionDateChanged($event)" [BackColor]="ActionDate?.BackColor" [CustomFormat]="ActionDate?.CustomFormat" [Enabled]="ActionDate?.Enabled" [Font]="ActionDate?.Font" [ForeColor]="ActionDate?.ForeColor" [Format]="ActionDate?.Format" [Max]="ActionDate?.Max" [Min]="ActionDate?.Min" [ReadOnly]="ActionDate?.ReadOnly" [Required]="ActionDate?.Required" [TabIndex]="ActionDate?.TabIndex" [Value]="patientOwnDrugEntryApprovalFormViewModel?._PatientOwnDrugEntry?.ActionDate" [Visible]="ActionDate?.Visible" id="A3975" data-tid="A329368"></hvl-date-picker>
+        </div>
+        <div class="col-sm-3" id="A3976" data-tid="A329369">
+            <dx-button type="default" icon="fa fa-barcode" (onClick)="btnMaterialBarcode()" text="Barkod Oluştur" i18n-text="@@M11538" id="A3977" data-tid="A329370"></dx-button>
+        </div>
+    </div>
+    <div class="row" id="A3978" data-tid="A329371">
+        <div class="col-sm-12" id="A3979" data-tid="A329372">
+            
+            <!-- (onRowRemoving)="onMaterialRowRemoving($event)" (onRowUpdating)="materialGridRowUpdating($event)" (onEditingStart)="onEditingStartMaterialGrid($event)" -->
+
+            <!-- <hvl-datagrid (CellValueChange)="PatientOwnDrugEntryDetails_CellValueChangedEmitted($event)" [AllowUserToAddRows]="PatientOwnDrugEntryDetails?.AllowUserToAddRows"
+                [AllowUserToDeleteRows]="PatientOwnDrugEntryDetails?.AllowUserToDeleteRows" [Columns]="PatientOwnDrugEntryDetailsColumns"
+                [dataSource]="patientOwnDrugEntryApprovalFormViewModel?._PatientOwnDrugEntry?.PatientOwnDrugEntryDetails" [DeleteButtonWidth]="PatientOwnDrugEntryDetails?.DeleteButtonWidth"
+                [DisplayExpressionsCache]="patientOwnDrugEntryApprovalFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="PatientOwnDrugEntryDetails?.ShowFilterRow"
+                [FilterColumnName]="PatientOwnDrugEntryDetails?.FilterColumnName" [FilterLabel]="PatientOwnDrugEntryDetails?.FilterLabel"
+                [Filter]="PatientOwnDrugEntryDetails?.Filter" [height]="PatientOwnDrugEntryDetails?.Height" [IsFilterLabelSingleLine]="PatientOwnDrugEntryDetails?.IsFilterLabelSingleLine"
+                [ShowColumnHeaders]="PatientOwnDrugEntryDetails?.ColumnHeadersVisible" [ShowFilterCombo]="PatientOwnDrugEntryDetails?.ShowFilterCombo"
+                [ShowTotalNumberOfRows]="PatientOwnDrugEntryDetails?.ShowTotalNumberOfRows" id="A3980"></hvl-datagrid> -->
+            <dx-data-grid showColumnLines="true" showRowLines="true" rowAlternationEnabled="true" showBorders="true" [selection]="{mode: 'single'}" height="100%" [columns]="PatientOwnDrugEntryColumns" [dataSource]="patientOwnDrugEntryApprovalFormViewModel?._PatientOwnDrugEntry?.PatientOwnDrugEntryDetails" data-tid="A329373">
+                <dxo-editing mode="cell" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="false" data-tid="A329374">
+                </dxo-editing>
+
+            </dx-data-grid>
+        </div>
+    </div>
+</div>

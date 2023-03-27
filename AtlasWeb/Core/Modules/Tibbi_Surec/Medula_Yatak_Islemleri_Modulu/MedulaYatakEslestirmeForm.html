@@ -1,0 +1,86 @@
+﻿<div class="row" data-tid="A356933">
+
+    <div class="col-xs-6" style="padding-top:8px;text-align:right" id="A17494" data-tid="A356934">
+        <dx-button type="success" style="margin-right:3px" (click)="RefreshScreen()" id="A17495" data-tid="A356935"><span class="fa fa-refresh" id="A17496" data-tid="A356936"></span>Güncelle</dx-button>
+        <dx-button type="success" style="margin-right:3px" (click)="matchBedWithMedulaBed()" id="A17497" data-tid="A356937"><span class="fa fa-exchange" id="A17498" data-tid="A356938"></span>Eşleştir</dx-button>
+    </div>
+</div>
+<div class="row" data-tid="A356939">
+    <div class="col-sm-4" data-tid="A356940">
+        <div class="row" data-tid="A356941">
+            <label class="col-sm-12" data-tid="A356942">
+                Medula Yatak Bilgileri
+            </label>
+        </div>
+        <div class="row" data-tid="A356943">
+            <div class="col-sm-12" data-tid="A356944">
+                <dx-data-grid showColumnLines="true" showRowLines="true" showBorders="true" [allowColumnResizing]="true" height="95%" [selectedRowKeys]="SelectedMedulaBeds" [selection]="{ mode: 'single' }" (onSelectionChanged)="selectMedulaBed($event)" [filterRow]="{visible: true}" [dataSource]="medulaYatakEslestirmeViewModel.UnMatchedMedulaBedList" [columns]='UnMatchedMedulaBedGridColumns' id="A12579" data-tid="A356945">
+                    <!--<div *dxTemplate="let cellData of 'deleteCellTemplate'" id="A27832">
+                        <i class="fa fa fa-trash" style="cursor:pointer"
+                            (click)="prosthesisGrid_CellContentClicked(cellData)"></i>
+                    </div>
+                    (onRowClick)="grdCashOfficeWorkListClick($event) (onContextMenuPreparing)="onGrdWorkListContextPreparing($event)"-->
+                </dx-data-grid>
+            </div>
+        </div>
+        <div class="row" id="A28707" data-tid="A356946">
+            <label class="col-sm-12 control-label" id="A28709" data-tid="A356947">
+                Eşleştirilmemiş Medula Yatak Sayısı: {{medulaYatakEslestirmeViewModel.UnMatchedMedulaBedList?.length}}
+            </label>
+        </div>
+    </div>
+    <div class="col-sm-4" data-tid="A356948">
+        <div class="row" data-tid="A356949">
+            <label class="col-sm-12" data-tid="A356950">
+                XXXXXX Yatak Listesi
+            </label>
+        </div>
+        <div class="row" data-tid="A356951">
+            <div class="col-sm-12" data-tid="A356952">
+                <dx-data-grid showColumnLines="true" showRowLines="true" showBorders="true" [allowColumnResizing]="true" height="95%" [dataSource]="medulaYatakEslestirmeViewModel.UnMatchedBedList" [selection]="{ mode: 'single' }" (onSelectionChanged)="selectBed($event)" [filterRow]="{visible: true}" [columns]='UnMatchedBedGridColumns' [selectedRowKeys]="SelectedBeds" id="A12579" data-tid="A356953">
+                    <div *dxTemplate="let cellData of 'bedLevelCellTemplate'" id="A27832" data-tid="A356954">
+                        {{cellData.data.BedLevel}}. Seviye
+                    </div>
+                    <!--<div *dxTemplate="let cellData of 'deleteCellTemplate'" id="A27832">
+                        <i class="fa fa fa-trash" style="cursor:pointer"
+                            (click)="prosthesisGrid_CellContentClicked(cellData)"></i>
+                    </div>
+                    (onRowClick)="grdCashOfficeWorkListClick($event) (onContextMenuPreparing)="onGrdWorkListContextPreparing($event)"-->
+                </dx-data-grid>
+            </div>
+        </div>
+        <div class="row" id="A28707" data-tid="A356955">
+            <label class="col-sm-12 control-label" id="A28709" data-tid="A356956">
+                Eşleştirilmemiş Yatak Sayısı: {{medulaYatakEslestirmeViewModel.UnMatchedBedList?.length}}
+            </label>
+        </div>
+    </div>
+    <div class="col-sm-4" data-tid="A356957">
+        <div class="row" data-tid="A356958">
+            <label class="col-sm-12" data-tid="A356959">
+                Eşleştirilmiş Yatak Bilgileri
+            </label>
+        </div>
+        <div class="row" data-tid="A356960">
+            <div class="col-sm-12" data-tid="A356961">
+                <dx-data-grid #matchedBedsGrid showColumnLines="true" showRowLines="true" showBorders="true" [allowColumnResizing]="true" height="95%" [editing]="{allowDeleting:false, texts:{confirmDeleteMessage:''}}" [dataSource]="medulaYatakEslestirmeViewModel.MatchedBedList" [columns]='MatchedBedGridColumns' [filterRow]="{visible: true}" id="A12579" data-tid="A356962">
+                    <div *dxTemplate="let cellData of 'bedLevelCellTemplate'" id="A27832" data-tid="A356963">
+                        {{cellData.data.BedLevel}}. Seviye
+                    </div>
+                    <div *dxTemplate="let cellData of 'deleteCellTemplate'" id="A27832" data-tid="A356964">
+                        <i class="fa fa fa-trash" style="cursor:pointer" (click)="deleteRelation(cellData)" data-tid="A356965"></i>
+                    </div>
+                    <!--(onRowClick)="grdCashOfficeWorkListClick($event) (onContextMenuPreparing)="onGrdWorkListContextPreparing($event)"-->
+                </dx-data-grid>
+            </div>
+        </div>
+        <div class="row" id="A28707" data-tid="A356966">
+            <label class="col-sm-12 control-label" id="A28709" data-tid="A356967">
+                Eşleştirilmiş Yatak Sayısı: {{medulaYatakEslestirmeViewModel.MatchedBedList?.length}}
+            </label>
+        </div>
+    </div>
+</div>
+
+<dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A31651" data-tid="A356968">
+</dx-load-panel>

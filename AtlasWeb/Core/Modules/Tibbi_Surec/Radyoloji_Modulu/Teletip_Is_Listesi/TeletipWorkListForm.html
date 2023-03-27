@@ -1,0 +1,62 @@
+﻿<div class="row" style="margin-bottom: 10px;" id="A23626" data-tid="A361717">
+    <div class="col-md-12" id="A23627" data-tid="A361718">
+        <dx-accordion #searchAccordion class="margin-bottom-10" collapsible="true" id="A23628" data-tid="A361719">
+            <dxi-item title="Sorgulama Paneli" i18n-title="@@M22127" id="A23629" data-tid="A361720">
+                <div class="row" id="A23630" data-tid="A361721">
+                    <div class="container-fluid col-sm-12" style="float: left;" id="A23631" data-tid="A361722">
+                        <div class="row" style="margin-bottom: 5px;" id="A23632" data-tid="A361723">
+                            <label class="control-label col-sm-2" id="A23633" data-tid="A361724">Kimlik Numarası</label>
+                            <label class="control-label col-sm-2" id="A23634" data-tid="A361725">Accession No</label>
+                            <label class="control-label col-sm-2" id="A11615" data-tid="A361726">Başlangıç Tarihi</label>
+                            <label class="control-label col-sm-2" id="A11618" data-tid="A361727">Bitiş Tarihi</label>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 5px;" id="A23637" data-tid="A361728">
+
+                            <div class="col-sm-2" id="A23638" data-tid="A361729">
+                                <dx-text-box [showClearButton]="true" [(value)]="teletipWorkListViewModel._teletipWorkListSearchCriteria.uniqueRefNo" id="A16483" data-tid="A361730"></dx-text-box>
+                            </div>
+
+                            <div class="col-sm-2" id="A23640" data-tid="A361731">
+                                <dx-text-box [showClearButton]="true" [(value)]="teletipWorkListViewModel._teletipWorkListSearchCriteria.accessionno" id="BY16483" data-tid="A361732"></dx-text-box>
+                            </div>
+                            <div class="col-sm-2" id="A11616" data-tid="A361733">
+                                <dx-date-box width="100%" type="date" displayFormat="dd/MM/yyyy" [(value)]="teletipWorkListViewModel._teletipWorkListSearchCriteria.workListStartDate" id="A11617" data-tid="A361734">
+                                </dx-date-box>
+                            </div>
+                            <div class="col-sm-2" id="A11619" data-tid="A361735">
+                                <dx-date-box width="100%" type="date" displayFormat="dd/MM/yyyy" [(value)]="teletipWorkListViewModel._teletipWorkListSearchCriteria.workListEndDate" id="A11620" data-tid="A361736">
+                                </dx-date-box>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-12" data-tid="A361737">
+                            <div class="pull-right" id="A23660" data-tid="A361738">
+                                <dx-button type="default" class="dx-icon pull-right" icon="fa fa-bars" text="Listele" (onClick)="btnSearchClicked()" i18n-text="@@M27337" id="A23662" data-tid="A361739"></dx-button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </dxi-item>
+        </dx-accordion>
+    </div>
+
+</div>
+
+<div class="col-sm-12 remove-padding" id="A23666" data-tid="A361740">
+    <dx-data-grid id="ortezProtezWorkListGrid" [class.ortezProtezWorkListGridComponentOpen]="isComponentOpened==true" [class.ortezProtezWorkListGridComponentClosed]="isComponentOpened==false" #ortezProtezWorkListGrid [columns]="WorkListColumns" allowColumnReordering="true" allowColumnResizing="true" [dataSource]="teletipWorkListViewModel.teletipActionList" (onRowClick)="select($event)" (onRowPrepared)="onRowPrepared($event)" [filterRow]="{visible: true}" style="padding-top: 10px;" [(selectedRowKeys)]="selectedRowKeysResultList" [selection]="{mode: 'none',allowSelectAll: false, showCheckBoxesMode: 'none'}" [editing]="{mode: 'cell' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" data-tid="A361741">
+
+        <dxo-scrolling mode="virtual" id="A23667" data-tid="A361742"></dxo-scrolling>
+        <dxo-export [enabled]="true" fileName="Teletıp Sorgu Listesi" [allowExportSelectedData]="false" id="A23668" data-tid="A361743"></dxo-export>
+    </dx-data-grid>
+
+    <div class="col-sm-12" style="margin-top: 20px;font-weight: bold;" id="A23669" data-tid="A361744">
+        <span id="A23670" data-tid="A361745">Toplam İşlem Sayısı:{{teletipWorkListViewModel.teletipActionList.length}}</span>
+    </div>
+
+    <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A23671" data-tid="A361746">
+    </dx-load-panel>
+</div>

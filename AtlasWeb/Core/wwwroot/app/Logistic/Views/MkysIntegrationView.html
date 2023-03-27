@@ -1,0 +1,284 @@
+﻿<br id="A32347" data-tid="A373939" />
+<div class="container-fluid" id="A32348" data-tid="A373940">
+    <div class="row" id="A32349" style="height: 100%;" data-tid="A373941">
+        <!-- #region MKYS Gönderilemeyen İşlemler -->
+        <dx-tab-panel [selectedIndex]="0" [animationEnabled]="true" id="A32350" style="height: 100%;" data-tid="A373942">
+            <dxi-item *ngIf="hasRoleSendToMkys" class="tabpanel-item" title="MKYS Gönderilemeyen İşlemler" i18n-title="@@M27758" id="A32351" data-tid="A373943">
+                <br id="A32352" data-tid="A373944" />
+                <!-- #region Mkys'ye gitmeyen işlem sorgu -->
+                <div class="row" id="A32353" style="margin-left: 3px;" data-tid="A373945">
+                    <div class="m--padding-top-7 fltLeft" id="A32354" data-tid="A373946">
+                        <label class="control-label " id="A32355" data-tid="A373947">
+                            Açık Hesap Dönemi:
+                        </label>
+                    </div>
+                    <div class="col-sm-2" id="A32356" data-tid="A373948">
+                        <dx-text-box [readOnly]="true" [hoverStateEnabled]="false" [(value)]="valueForEditableTextArea" id="A32357" data-tid="A373949"></dx-text-box>
+                    </div>
+                    <!-- <div class="col-sm-1 m--padding-top-7" id="A32358">
+                        <dx-check-box [(value)]="isWithOutCancelled" [width]="100" text="İptaller Hariç"></dx-check-box>
+                    </div> -->
+                    <div class="col-sm-1" id="A32358" data-tid="A373950">
+                        <dx-button type="success" text="İşlemleri Getir" (onClick)="GetNotSentToMkys()" i18n-text="@@M16955" id="A32359" style="min-width: 128px;" data-tid="A373951"></dx-button>
+                    </div>
+
+                    <div class="col-sm-1" id="A32360" data-tid="A373952">
+                        <dx-button type="default" text="MKYS Gönder" icon="fa fa-envelope-o" (onClick)="SentToMkys()" [(disabled)]="sendMKYSButton" i18n-text="@@M27445" id="A32361" style="min-width: 128px;" data-tid="A373953">
+                        </dx-button>
+                    </div>
+                </div>
+                <!-- #endregion -->
+                <br id="A32362" data-tid="A373954" />
+                <!-- #region Mkys'ye gitmeyen işlem grid -->
+                <div class="row" id="A32363" data-tid="A373955">
+                    <div class="col-sm-12" id="A32364" data-tid="A373956">
+                        <dx-data-grid [columns]="DocumentRecordLogGrid" [dataSource]="DocRecordLog" [filterRow]="{visible: true}" [paging]="{pageSize:Model?.WorkListCount}" [selection]="{mode: 'multiple',allowSelectAll: true}" [(selectedRowKeys)]="seletectDocRecordLog" (onSelectionChanged)="selectionChangedHandler($event)" [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" id="A32365" style="height: 700px;" data-tid="A373957">
+                            <div style="height:16px;margin-top:-7px" *dxTemplate="let cellData of 'enumCmbTemplate'" id="A32366" data-tid="A373958">
+                                <hvl-enum-combobox [(Value)]="cellData.data[cellData.column.dataField]" DataTypeName="DocumentTransactionTypeEnum" ReadOnly="true" data-tid="A373959"></hvl-enum-combobox>
+                            </div>
+                            <div style="height:16px;margin-top:-7px" *dxTemplate="let cellData of 'enumMKYSCmbTemplate'" id="A32366" data-tid="A373960">
+                                <hvl-enum-combobox [(Value)]="cellData.data[cellData.column.dataField]" DataTypeName="MKYSControlEnum" ReadOnly="true" data-tid="A373961"></hvl-enum-combobox>
+                            </div>
+                            <div style="height:16px;margin-top:-7px" *dxTemplate="let cellData of 'enumBudgetTypeCmbTemplate'" id="A32366" data-tid="A373962">
+                                <hvl-enum-combobox [(Value)]="cellData.data[cellData.column.dataField]" DataTypeName="MKYS_EButceTurEnum" ReadOnly="true" data-tid="A373963"></hvl-enum-combobox>
+                            </div>
+                        </dx-data-grid>
+                    </div>
+                </div>
+                <!-- #endregion -->
+            </dxi-item>
+            <!-- #endregion -->
+            <!-- #region MKYS Karşılaştırma İşlemleri -->
+            <dxi-item *ngIf="hasRoleCompareToMkys" class="tabpanel-item" title="MKYS Karşılaştırma İşlemleri" i18n-title="@@M27759" id="A32368" data-tid="A373964">
+                <br id="A32369" data-tid="A373965" />
+                <!-- #region Mkys karşılaştırma sorgu -->
+                <div class="row" id="A32370" data-tid="A373966">
+                    <div class="col-sm-3" id="A32371" data-tid="A373967">
+                        <div class="dx-field" id="A32372" data-tid="A373968">
+                            <div class="dx-field-label" id="A32373" data-tid="A373969">Başlangıç Günü</div>
+                            <div class="dx-field-value" id="A32374" data-tid="A373970">
+                                <dx-date-box [(value)]="startDate" [(disabled)]="checkBoxValue" type="date" id="A32375" data-tid="A373971">
+                                </dx-date-box>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2" id="A32385" data-tid="A373972">
+                        <div class="dx-field" id="A32386" data-tid="A373973">
+                            <div class="dx-field-value" id="A32387" data-tid="A373974">
+                                <dx-check-box [(value)]="checkBoxValue" [width]="280" (onValueChanged)="onValueChanged($event)" text="İşlem Numarası İle" i18n-text="@@M16871" id="A32388" data-tid="A373975"></dx-check-box>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2" id="A32389" data-tid="A373976">
+                        <dx-text-box [hoverStateEnabled]="false" [(value)]="stockActionID" [(readOnly)]="stockActionIDdisable" id="A32391" data-tid="A373977">
+                        </dx-text-box>
+                    </div>
+                </div>
+                <br id="A32376" data-tid="A373978" />
+                <div class="row" id="A32377" data-tid="A373979">
+                    <div class="col-sm-3" id="A32378" data-tid="A373980">
+                        <div class="dx-field" id="A32379" data-tid="A373981">
+                            <div class="dx-field-label" id="A32380" data-tid="A373982">Bitiş Günü</div>
+                            <div class="dx-field-value" id="A32381" data-tid="A373983">
+                                <dx-date-box [(value)]="endDate" [(disabled)]="checkBoxValue" type="date" id="A32382" data-tid="A373984">
+                                </dx-date-box>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2" id="A32395" data-tid="A373985">
+                        <div class="dx-field" id="A32397" data-tid="A373986">
+                            <div class="dx-field-value" id="A32398" data-tid="A373987">
+                                <dx-check-box [(value)]="checkBoxValueFailed" [width]="280" (onValueChanged)="onValueChangedFailed($event)" text="Hatalı Olanları Göster " id="A32399" data-tid="A373988"></dx-check-box>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3" id="A32392" data-tid="A373989">
+                        <dx-button type="success" icon="check" text="MKYS ile Karşılaştır" (onClick)="CompareWithMkys()" [(disabled)]="CompareWithMkysButton" i18n-text="@@M27586" id="A32394" data-tid="A373990">
+                        </dx-button>
+                    </div>
+                </div>
+
+                <!-- #endregion -->
+                <br id="A32400" data-tid="A373991" />
+                <!-- #region Mkys karşılaştırma grid -->
+                <dx-data-grid id="gridContainer" [dataSource]="dataStockActionSource" [masterDetail]="{ enabled: true, template: 'detail' }" (onRowPrepared)="onRowPrepared($event)" style="height: 700px;" data-tid="A373992">
+
+                    <dxi-column dataField="StockActionID" [width]="180" caption="İşlem Numarası" i18n-caption="@@M16870" id="A32401" data-tid="A373993"></dxi-column>
+                    <dxi-column dataField="StockActionName" caption="İşlem Adı" i18n-caption="@@M16821" id="A32402" data-tid="A373994">
+                    </dxi-column>
+                    <dxi-column dataField="StockActionTransactionDate" caption="İşlem Tarihi" i18n-caption="@@M16886" id="A32403" data-tid="A373995"></dxi-column>
+
+
+                    <div *dxTemplate="let dataStockActionSource of 'detail'" id="A32404" data-tid="A373996">
+                        <div class="internal-grid-container" id="A32405" data-tid="A373997">
+                            <dx-data-grid id="gridContainer" [dataSource]="dataStockActionSource.data.StockActionDetailViews" [masterDetail]="{ enabled: true, template: 'detail' }" data-tid="A373998">
+
+                                <dxi-column dataField="Material" [width]="300" caption="Malzeme" i18n-caption="@@M18545" id="A32406" data-tid="A373999"></dxi-column>
+                                <dxi-column dataField="MalzemeKayitID" caption="Malzeme Kayıt ID" i18n-caption="@@M18585" id="A32407" data-tid="A374000"></dxi-column>
+                                <dxi-column dataField="AyniyatMakbuzID" caption="Ayniyat Numarası" i18n-caption="@@M27576" id="A32408" data-tid="A374001"></dxi-column>
+                                <dxi-column dataField="StokHareketID" [width]="170" caption="Stock Hareket ID" id="A32409" data-tid="A374002"></dxi-column>
+
+                                <div *dxTemplate="let stockActionDetailView of 'detail'" id="A32410" data-tid="A374003">
+                                    <div class="internal-grid-container" id="A32411" data-tid="A374004">
+                                        <dx-data-grid class="internal-grid" [dataSource]="stockActionDetailView.data.CompareTaskItems" [showBorders]="true" [columnAutoWidth]="true" id="A32412" data-tid="A374005">
+                                            <dxi-column dataField="Subject" caption="Karşılaştırma Alanı" i18n-caption="@@M17321" id="A32413" data-tid="A374006"></dxi-column>
+                                            <dxi-column dataField="MkysValue" caption="Mkys Değeri " id="A32414" data-tid="A374007">
+                                            </dxi-column>
+                                            <dxi-column dataField="MyValue" caption="Atlas Değeri " id="A32415" data-tid="A374008">
+                                            </dxi-column>
+                                            <dxi-column dataType="boolean" caption="Karşılaştırma Sonucu" dataField="Result" i18n-caption="@@M17322" id="A32416" data-tid="A374009"></dxi-column>
+                                        </dx-data-grid>
+                                    </div>
+                                </div>
+                            </dx-data-grid>
+                        </div>
+                    </div>
+                </dx-data-grid>
+                <!-- #endregion -->
+            </dxi-item>
+            <!-- #endregion -->
+            <!-- #region MKYS Kurumlardan Gelen Belgeler -->
+            <dxi-item *ngIf="hasRoleMkysDocumentsFromInstitutions" class="tabpanel-item" title=" MKYS Kurumlardan Gelen Belgeler" id="A32417" data-tid="A374010">
+                <br id="A32418" data-tid="A374011" />
+                <div class="row" id="A32419" data-tid="A374012">
+                    <div class="m--padding-top-7 fltLeft" id="A32354" style="margin-left:20px;" data-tid="A374013">
+                        <label class="control-label " id="A32422" data-tid="A374014">
+                            Başlangıç Tarihi:
+                        </label>
+                    </div>
+                    <div class="col-sm-2" id="A32420" data-tid="A374015">
+                        <dx-date-box [(value)]="startDate" type="date" id="A32424" style="width: 80%;" data-tid="A374016">
+                        </dx-date-box>
+                    </div>
+                    <div class="m--padding-top-7 fltLeft" id="A32354" data-tid="A374017">
+                        <label class="control-label " id="A32427" data-tid="A374018">
+                            Bitiş Tarihi:
+                        </label>
+                    </div>
+                    <div class="col-sm-2" id="A32425" data-tid="A374019">
+                        <dx-date-box [(value)]="endDate" type="date" id="A32429" style="width: 80%;" data-tid="A374020">
+                        </dx-date-box>
+                    </div>
+                    <div class="col-sm-2" id="A32430" data-tid="A374021">
+                        <dx-button id="button" type="btn btn-default" icon="fa fa-download" [height]="25" (onClick)="GetMkysTif($event)" data-tid="A374022">
+                            <div *dxTemplate="let data of 'content'" id="A32431" style="min-width: 200px;" data-tid="A374023">
+                                <dx-load-indicator class='button-indicator' [visible]="loadIndicatorVisible" id="A32432" data-tid="A374024">
+                                </dx-load-indicator>
+                                <span class='dx-button-text' id="A32433" data-tid="A374025">{{buttonText}}</span>
+                            </div>
+                        </dx-button>
+                    </div>
+                    <div class="col-sm-2" id="A32434" data-tid="A374026">
+                        <dx-button type="success" icon="fa fa-clone" text="Taşınır Mal Giriş İşlemi Başlat" (onClick)="selectedGridItem()" [(disabled)]="CreateButtonDisabled" i18n-text="@@M27679" id="A32435" style="min-width: 200px;" data-tid="A374027">
+                        </dx-button>
+                    </div>
+                </div>
+                <br id="A32436" data-tid="A374028" />
+                <br id="A32437" data-tid="A374029" />
+                <dx-data-grid id="gridContainerTIF" style="height: 700px;" [dataSource]="receivedDataSourceFromMkys" [masterDetail]="{ enabled: true, template: 'detail' }" (onRowPrepared)="onRowPrepared($event)" (onSelectionChanged)="DataSourceSelectionChanged($event)" [(selectedRowKeys)]="selectedTempItems" data-tid="A374030">
+                    <dxo-selection [selectAllMode]="allPages" [showCheckBoxesMode]="onClick" mode="multiple" id="A32438" data-tid="A374031"></dxo-selection>
+                    <dxi-column dataField="gonderenBirimAdi" caption="Gönderen Birim Adı" i18n-caption="@@M14854" id="A32439" data-tid="A374032"></dxi-column>
+                    <dxi-column dataField="gonderenBirimID" caption="Gönderen Birim ID" i18n-caption="@@M14855" id="A32440" data-tid="A374033"></dxi-column>
+                    <dxi-column dataField="gonderenDepoAdi" caption="Gönderen Depo Adı" i18n-caption="@@M14860" id="A32441" data-tid="A374034"></dxi-column>
+                    <dxi-column dataField="birimDepoID" caption="Birim Depo ID" i18n-caption="@@M11852" id="A32442" data-tid="A374035">
+                    </dxi-column>
+                    <dxi-column dataField="gonderenButceTuruAdi" caption="Gönderen Bütce Türü" i18n-caption="@@M14858" id="A32443" data-tid="A374036"></dxi-column>
+                    <dxi-column dataField="hareketTuru" caption="Hareket Türü" i18n-caption="@@M15113" id="A32444" data-tid="A374037">
+                    </dxi-column>
+                    <dxi-column dataField="cikisBelgeNo" caption="Çıkış Belge No" i18n-caption="@@M12366" id="A32445" data-tid="A374038">
+                    </dxi-column>
+                    <dxi-column dataField="cikisBelgeTarihi" caption="Çıkış Belge Tarihi" i18n-caption="@@M12367" id="A32446" data-tid="A374039"></dxi-column>
+                    <dxi-column dataField="islemKayitNo" [width]="180" caption="İşlem Kayıt No" i18n-caption="@@M16858" id="A32447" data-tid="A374040"></dxi-column>
+
+                    <div *dxTemplate="let receivedDataSourceFromMkys of 'detail'" id="A32448" data-tid="A374041">
+                        <div class="internal-grid-container" id="A32449" data-tid="A374042">
+                            <dx-data-grid class="internal-grid" [dataSource]="receivedDataSourceFromMkys.data.details" id="A32450" data-tid="A374043">
+                            </dx-data-grid>
+                        </div>
+                    </div>
+                </dx-data-grid>
+
+            </dxi-item>
+            <!-- #endregion -->
+            <!-- #region MKYS Yıl Sonu Devir -->
+
+
+            <dxi-item *ngIf="hasRoleMkysEndOfYearCensus" class="tabpanel-item" title=" MKYS Yıl Sonu Devir " id="A32451" data-tid="A374044">
+                <br id="A32452" data-tid="A374045" />
+                <div class="row" id="A32453" style="margin-left: 3px;" data-tid="A374046">
+                    <div class="m--padding-top-7 fltLeft" id="A32354" data-tid="A374047">
+                        <label class="control-label " id="A32355" data-tid="A374048">
+                            Depo :
+                        </label>
+                    </div>
+                    <div class="col-sm-2" id="A32454" data-tid="A374049">
+                        <dx-text-box [readOnly]="true" [hoverStateEnabled]="false" [(value)]="valueForStore" id="A32456" data-tid="A374050"></dx-text-box>
+                    </div>
+                    <div class="m--padding-top-7 fltLeft" id="A32354" data-tid="A374051">
+                        <label class="control-label " id="A32355" data-tid="A374052">
+                            Yıl :
+                        </label>
+                    </div>
+                    <div class="col-sm-2" id="A32457" data-tid="A374053">
+                        <dx-number-box [min]="1900" [max]="2040" [hoverStateEnabled]="false" [(value)]="valueForYear" id="A32459" data-tid="A374054"></dx-number-box>
+                    </div>
+                    <div class="col-sm-2" id="A32460" data-tid="A374055">
+                        <dx-button type="success" icon="fa fa-clone" text="Yıl Sonu Devir Getir" (onClick)="btnGetYilSonuDevirClick()" [(disabled)]="MKYSDevirGetirBtn" i18n-text="@@M27595" id="A32461" style="min-width: 164px;" data-tid="A374056">
+                        </dx-button>
+                    </div>
+
+                    <div class="col-sm-2" id="A32462" data-tid="A374057">
+                        <dx-button type="success" icon="fa fa-clone" text="Atlas Devir Oluştur " (onClick)="btnStockCensusForAtlasClick()" [(disabled)]="MKYSDevirGetirYapBtn" id="A32463" style="min-width: 164px;" data-tid="A374058">
+                        </dx-button>
+                    </div>
+                </div>
+                <br id="A32464" data-tid="A374059" />
+                <div class="row" id="A32465" data-tid="A374060">
+                    <div class="col-sm-12" id="A32466" data-tid="A374061">
+                        <dx-data-grid id="gridContainerTIF" style="height: 700px;" [dataSource]="dataSoruceEndOfYearGetMkys" [masterDetail]="{ enabled: true, template: 'detail' }" keyExpr="malzemeKayitID" data-tid="A374062">
+
+                            <dxi-column dataField="malzemeKayitID" caption="Malzeme Kayıt ID" i18n-caption="@@M18585" id="A32467" data-tid="A374063"></dxi-column>
+                            <dxi-column dataField="malzemeAdi" id="A32468" data-tid="A374064"></dxi-column>
+                            <dxi-column dataField="malzemeKodu" id="A32469" data-tid="A374065"></dxi-column>
+                            <dxi-column dataField="miktar" id="A32470" data-tid="A374066"></dxi-column>
+                            <dxi-column dataField="atlasMiktar" id="A32471" data-tid="A374067"></dxi-column>
+                            <dxi-column dataField="hata" id="A32472" data-tid="A374068"></dxi-column>
+                            <div *dxTemplate="let employee of 'detail'" id="A32473" data-tid="A374069">
+                                <dx-data-grid [dataSource]="employee.data.stokHaraketYilSonuItems" [showBorders]="true" [columnAutoWidth]="true" id="A32474" data-tid="A374070">
+                                    <dxi-column dataField="stokHareketID" id="A32475" data-tid="A374071"></dxi-column>
+                                    <dxi-column dataField="butceTuruID" id="A32476" data-tid="A374072"></dxi-column>
+                                    <dxi-column dataField="vergiliBirimFiyat" id="A32477" data-tid="A374073"></dxi-column>
+                                    <dxi-column dataField="sonKullanmaTarihi" id="A32478" data-tid="A374074"></dxi-column>
+                                    <dxi-column dataField="girisStokHareketID" id="A32479" data-tid="A374075"></dxi-column>
+                                    <dxi-column dataField="depodakiMiktar" id="A32480" data-tid="A374076"></dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </dx-data-grid>
+                    </div>
+                </div>
+            </dxi-item>
+            <!-- #endregion -->
+         <!--    <div *dxTemplate="let item of 'DefinitionsTabTemplate'" class="tabpanel-item" style="height:100%!important;" data-tid="A374077">
+                <its-component data-tid="A374078"></its-component>
+            </div>
+
+            <dxi-item *ngIf="hasRoleSendToMkys" class="tabpanel-item" title=" ITS Sarf " id="A32451" [template]="'DefinitionsTabTemplate'" style="height: 100%;" data-tid="A374079">
+            </dxi-item> -->
+
+        </dx-tab-panel>
+    </div>
+</div>
+
+<dx-popup [width]="400" [height]="300" [showTitle]="true" title="Uyarı Mesajı" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="popupVisible" i18n-title="@@M23737" id="A32482" data-tid="A374080">
+    <div *dxTemplate="let data of 'content'" id="A32483" data-tid="A374081">
+        <p id="A32484" data-tid="A374082">
+
+            <span id="A32485" data-tid="A374083">{{exceptionCreateMessage}}</span>
+        </p>
+    </div>
+</dx-popup>
+
+
+
+<dx-load-panel shadingColor="rgba(0,0,0,0.4)" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A374084">
+</dx-load-panel>

@@ -1,0 +1,51 @@
+﻿<div class="row" id="A32453" style="margin-left: 3px;" data-tid="A375172">
+        <div class="m--padding-top-7 fltLeft" id="A32354" data-tid="A375173">
+            <label class="control-label " id="A32355" data-tid="A375174">
+                Depo :
+            </label>
+        </div>
+        <div class="col-sm-2" id="A32454" data-tid="A375175">
+            <dx-text-box [readOnly]="true" [hoverStateEnabled]="false" [(value)]="valueForStore" id="A32456" data-tid="A375176"></dx-text-box>
+        </div>
+        <div class="m--padding-top-7 fltLeft" id="A32354" data-tid="A375177">
+            <label class="control-label " id="A32355" data-tid="A375178">
+                Yıl :
+            </label>
+        </div>
+        <div class="col-sm-2" id="A32457" data-tid="A375179">
+            <dx-number-box [min]="1900" [max]="2040" [hoverStateEnabled]="false" [(value)]="valueForYear" id="A32459" data-tid="A375180"></dx-number-box>
+        </div>
+        <div class="col-sm-2" id="A32460" data-tid="A375181">
+            <dx-button type="success" icon="fa fa-clone" text="Yıl Sonu Devir Getir" (onClick)="btnGetYilSonuDevirClick()" [(disabled)]="MKYSDevirGetirBtn" i18n-text="@@M27595" id="A32461" style="min-width: 164px;" data-tid="A375182">
+            </dx-button>
+        </div>
+
+        <div class="col-sm-2" id="A32462" data-tid="A375183">
+            <dx-button type="success" icon="fa fa-clone" text="Atlas Devir Oluştur " (onClick)="btnStockCensusForAtlasClick()" [(disabled)]="MKYSDevirGetirYapBtn" id="A32463" style="min-width: 164px;" data-tid="A375184">
+            </dx-button>
+        </div>
+    </div>
+    <br id="A32464" data-tid="A375185" />
+    <div class="row" id="A32465" data-tid="A375186">
+        <div class="col-sm-12" id="A32466" data-tid="A375187">
+            <dx-data-grid id="gridContainerTIF" [dataSource]="dataSoruceEndOfYearGetMkys" [masterDetail]="{ enabled: true, template: 'detail' }" keyExpr="malzemeKayitID" data-tid="A375188">
+
+                <dxi-column dataField="malzemeKayitID" caption="Malzeme Kayıt ID" i18n-caption="@@M18585" id="A32467" data-tid="A375189"></dxi-column>
+                <dxi-column dataField="malzemeAdi" id="A32468" data-tid="A375190"></dxi-column>
+                <dxi-column dataField="malzemeKodu" id="A32469" data-tid="A375191"></dxi-column>
+                <dxi-column dataField="miktar" id="A32470" data-tid="A375192"></dxi-column>
+                <dxi-column dataField="atlasMiktar" id="A32471" data-tid="A375193"></dxi-column>
+                <dxi-column dataField="hata" id="A32472" data-tid="A375194"></dxi-column>
+                <div *dxTemplate="let employee of 'detail'" id="A32473" data-tid="A375195">
+                    <dx-data-grid [dataSource]="employee.data.stokHaraketYilSonuItems" [showBorders]="true" [columnAutoWidth]="true" id="A32474" data-tid="A375196">
+                        <dxi-column dataField="stokHareketID" id="A32475" data-tid="A375197"></dxi-column>
+                        <dxi-column dataField="butceTuruID" id="A32476" data-tid="A375198"></dxi-column>
+                        <dxi-column dataField="vergiliBirimFiyat" id="A32477" data-tid="A375199"></dxi-column>
+                        <dxi-column dataField="sonKullanmaTarihi" id="A32478" data-tid="A375200"></dxi-column>
+                        <dxi-column dataField="girisStokHareketID" id="A32479" data-tid="A375201"></dxi-column>
+                        <dxi-column dataField="depodakiMiktar" id="A32480" data-tid="A375202"></dxi-column>
+                    </dx-data-grid>
+                </div>
+            </dx-data-grid>
+        </div>
+    </div>

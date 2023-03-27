@@ -1,0 +1,373 @@
+﻿
+
+
+
+<form id="ConsultationDoctorExaminationFormNew" class="form-horizontal" role="form" data-tid="A355749"></form>
+<dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [visible]="loadingVisible" [showIndicator]="true" [message]="panelMessage" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" i18n-message="@@M17380" id="A19836" data-tid="A355750">
+    </dx-load-panel>
+    
+<div class="col-sm-12" style="height:100%" id="A20819" data-tid="A355751">
+    <div class="row" id="A20820" data-tid="A355752">
+        <div class id="A20821" data-tid="A355753">
+            <div class="row" data-tid="A355754">
+                <div class="col-sm-11" data-tid="A355755">
+                    <NeStatePanelComponent [OutgoingTransitions]="consultationDoctorExaminationFormNewViewModel?.OutgoingTransitions" [StateReports]="consultationDoctorExaminationFormNewViewModel?.CurrentStateReports" [ObjectID]="consultationDoctorExaminationFormNewViewModel?._Consultation?.ObjectID" [ObjectDefID]="consultationDoctorExaminationFormNewViewModel?._Consultation?.ObjectDefID" [CurrentStateDefID]="consultationDoctorExaminationFormNewViewModel._Consultation.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()" [DropStateList]="DropStateList" [SaveCommandVisible]="saveCommandVisible" [CancelCommandVisible]="cancelCommandVisible" id="A20822" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A355756">
+                    </NeStatePanelComponent>
+                </div>
+                <div class="col-sm-1" style="margin-left:-26px" data-tid="A355757">
+                    <e-nabiz-button [episodeActionId]="consultationDoctorExaminationFormNewViewModel._Consultation?.ObjectID" [patientId]="consultationDoctorExaminationFormNewViewModel._Consultation?.Episode?.Patient?.ObjectID" data-tid="A355758"></e-nabiz-button>
+                </div>
+
+            </div>
+            
+            <ul class="nav nav-tabs" id="A20823" data-tid="A355759">
+                <li [ngClass]="ActivePage =='muayene' ? 'active' : ''" id="A20824" data-tid="A355760">
+                    <a data-toggle="tab" href="#muayene" id="A20825" data-tid="A355761">
+                        <span id="A20826" data-tid="A355762">Konsültasyon</span>
+                        <span class="fa fa-neuter" [ngClass]="RecentActiveTab =='muayene' ? 'fa-map-pin' : ''" (click)="TabPanelClick('muayene')" id="A20827" data-tid="A355763"></span>
+                    </a>
+                </li>
+                <li [ngClass]="ActivePage =='uzmanlik' ? 'active' : ''" *ngIf="consultationDoctorExaminationFormNewViewModel?.hasSpecialityBasedObject==true" id="A20828" data-tid="A355764">
+                    <a data-toggle="tab" href="#uzmanlik" (click)="openUzmanlik()" id="A20829" data-tid="A355765">
+                        <span id="A20830" data-tid="A355766">{{consultationDoctorExaminationFormNewViewModel?.procedureSpecialityName}}</span>
+                        <span class="fa fa-neuter" [ngClass]="RecentActiveTab =='uzmanlik' ? 'fa-map-pin' : ''" (click)="TabPanelClick('uzmanlik')" id="A20831" data-tid="A355767"></span>
+                    </a>
+                </li>
+                <li [ngClass]="ActivePage =='istem' ? 'active' : ''" id="A20832" data-tid="A355768">
+                    <a data-toggle="tab" href="#istem" (click)="openIstem()" id="A20833" data-tid="A355769">
+                        <span id="A20834" data-tid="A355770">İstem Paneli</span>
+                        <span class="fa fa-neuter" [ngClass]="RecentActiveTab =='istem' ? 'fa-map-pin' : ''" (click)="TabPanelClick('istem')" id="A20835" data-tid="A355771"></span>
+                    </a>
+                </li>
+                <li [ngClass]="ActivePage =='hastaGecmisi' ? 'active' : ''" id="A20836" data-tid="A355772">
+                    <a data-toggle="tab" href="#hastaGecmisi" (click)="openHastaGecmisi()" id="A20837" data-tid="A355773">
+                        <span id="A20838" data-tid="A355774">Hasta Geçmişi</span>
+                        <span class="fa fa-neuter" [ngClass]="RecentActiveTab =='hastaGecmisi' ? 'fa-map-pin' : ''" (click)="TabPanelClick('hastaGecmisi')" id="A20839" data-tid="A355775"></span>
+                    </a>
+                </li>
+                <!--<div class="col-sm-1" style="float:right;">
+            <dx-button text="Reçete" rtlEnabled="true" style="margin-top:-5px;" class="tabHeaderButton dx-button-active dx-button-semioval" type="danger" icon="fa fa-keyboard-o"
+                       (onClick)="colorPresClick()">
+            </dx-button>
+        </div>-->
+            </ul>
+            <div class id="A20840" data-tid="A355776">
+                <div class="row" id="A20841" data-tid="A355777">
+                    <div class="col-md-4 col-sm-12" id="A20842" data-tid="A355778">
+                        <patient-demographics-form [actionId]="consultationDoctorExaminationFormNewViewModel._EpisodeActionObjectId" id="A20843" data-tid="A355779"></patient-demographics-form>
+                    </div>
+                    <div class="col-md-2 col-sm-12" id="A20844" data-tid="A355780">
+                        <div class="row" id="A20845" data-tid="A355781">
+                            <div class="col-md-12" id="A20846" data-tid="A355782">
+                                <label class="control-label" id="A20847" data-tid="A355783">İstek Yapan</label>
+                                <hvl-list-box #Validation (SelectedObjectChange)="onRequestedDoctorChanged($event)" [AutoCompleteDialogHeight]="RequestedDoctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="RequestedDoctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="RequestedDoctor?.AutoCompleteMode" [BackColor]="RequestedDoctor?.BackColor" [DefinitionName]="RequestedDoctor?.ListDefName" [DisplayExpressionsCache]="consultationDoctorExaminationFormNewViewModel?.ListDefDisplayExpressions" [Enabled]="RequestedDoctor?.Enabled" [Font]="RequestedDoctor?.Font" [ForeColor]="RequestedDoctor?.ForeColor" [ListFilterExpression]="RequestedDoctor?.ListFilterExpression" [MinSearchLength]="RequestedDoctor?.MinSearchLength" [PopupDialogFieldConfig]="RequestedDoctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="RequestedDoctor?.PopupDialogGridColumns" [PopupDialogHeight]="RequestedDoctor?.PopupDialogHeight" [PopupDialogTitle]="RequestedDoctor?.PopupDialogTitle" [PopupDialogWidth]="RequestedDoctor?.PopupDialogWidth" [ReadOnly]="RequestedDoctor?.ReadOnly" [SearchMode]="RequestedDoctor?.SearchMode" [SearchTimeout]="RequestedDoctor?.SearchTimeout" [SelectedObject]="consultationDoctorExaminationFormNewViewModel?._Consultation?.RequesterDoctor" [TabIndex]="RequestedDoctor?.TabIndex" [Visible]="RequestedDoctor?.Visible" [width]="RequestedDoctor?.Width" id="A20848" data-tid="A355784"></hvl-list-box>
+                            </div>
+                        </div>
+                        <div class="row" id="A20849" data-tid="A355785">
+                            <div class="col-md-12" id="A20850" data-tid="A355786">
+                                <label class="control-label" id="A20851" data-tid="A355787">Konsültasyonun Yapıldığı Birim</label>
+                                <hvl-list-box #Validation (SelectedObjectChange)="onMasterResourceChanged($event)" [AutoCompleteDialogHeight]="MasterResource?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="MasterResource?.AutoCompleteDialogWidth" [AutoCompleteMode]="MasterResource?.AutoCompleteMode" [BackColor]="MasterResource?.BackColor" [DefinitionName]="MasterResource?.ListDefName" [DisplayExpressionsCache]="consultationDoctorExaminationFormNewViewModel?.ListDefDisplayExpressions" [Enabled]="MasterResource?.Enabled" [Font]="MasterResource?.Font" [ForeColor]="MasterResource?.ForeColor" [ListFilterExpression]="MasterResource?.ListFilterExpression" [MinSearchLength]="MasterResource?.MinSearchLength" [PopupDialogFieldConfig]="MasterResource?.PopupDialogFieldConfig" [PopupDialogGridColumns]="MasterResource?.PopupDialogGridColumns" [PopupDialogHeight]="MasterResource?.PopupDialogHeight" [PopupDialogTitle]="MasterResource?.PopupDialogTitle" [PopupDialogWidth]="MasterResource?.PopupDialogWidth" [ReadOnly]="MasterResource?.ReadOnly" [SearchMode]="MasterResource?.SearchMode" [SearchTimeout]="MasterResource?.SearchTimeout" [SelectedObject]="consultationDoctorExaminationFormNewViewModel?._Consultation?.MasterResource" [TabIndex]="MasterResource?.TabIndex" [Visible]="MasterResource?.Visible" [width]="MasterResource?.Width" id="A20852" data-tid="A355788"></hvl-list-box>
+                            </div>
+                        </div>
+                        <div class="row" id="A20853" data-tid="A355789">
+                            <div class="col-md-12" id="A20854" data-tid="A355790">
+                                <label class="control-label" id="A20855" data-tid="A355791"> Konsültasyonu Yapan</label>
+                                <hvl-list-box #Validation (SelectedObjectChange)="onProceduerDoctorChanged($event)" [AutoCompleteDialogHeight]="ProceduerDoctor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ProceduerDoctor?.AutoCompleteDialogWidth" [AutoCompleteMode]="ProceduerDoctor?.AutoCompleteMode" [BackColor]="ProceduerDoctor?.BackColor" [DefinitionName]="ProceduerDoctor?.ListDefName" [DisplayExpressionsCache]="consultationDoctorExaminationFormNewViewModel?.ListDefDisplayExpressions" [Enabled]="ProceduerDoctor?.Enabled" [Font]="ProceduerDoctor?.Font" [ForeColor]="ProceduerDoctor?.ForeColor" [ListFilterExpression]="ProceduerDoctor?.ListFilterExpression" [MinSearchLength]="ProceduerDoctor?.MinSearchLength" [PopupDialogFieldConfig]="ProceduerDoctor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ProceduerDoctor?.PopupDialogGridColumns" [PopupDialogHeight]="ProceduerDoctor?.PopupDialogHeight" [PopupDialogTitle]="ProceduerDoctor?.PopupDialogTitle" [PopupDialogWidth]="ProceduerDoctor?.PopupDialogWidth" [ReadOnly]="ProceduerDoctor?.ReadOnly" [SearchMode]="ProceduerDoctor?.SearchMode" [SearchTimeout]="ProceduerDoctor?.SearchTimeout" [SelectedObject]="consultationDoctorExaminationFormNewViewModel?._Consultation?.ProcedureDoctor" [TabIndex]="ProceduerDoctor?.TabIndex" [Visible]="ProceduerDoctor?.Visible" [width]="ProceduerDoctor?.Width" id="A20856" data-tid="A355792"></hvl-list-box>
+                            </div>
+
+                        </div>
+                        <div class="row" id="A20857" data-tid="A355793">
+                            <label class="control-label col-md-12" id="A20858" data-tid="A355794"> Oda / Yatak</label>
+                            <div class="col-md-12" style="margin-top:-3px;" data-placement="top" title="Oda / Yatak" i18n-title="@@M19602" id="A20859" data-tid="A355795">{{consultationDoctorExaminationFormNewViewModel?.BedRoomInfo}}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12" id="A20860" data-tid="A355796">
+                        <DiagnosisGridForm [GridDiagnosisGridList]="consultationDoctorExaminationFormNewViewModel.GridEpisodeDiagnosisGridList" [EpisodeAction]="consultationDoctorExaminationFormNewViewModel._Consultation" [ProcedureDoctor]="consultationDoctorExaminationFormNewViewModel._Consultation.ProcedureDoctor" [RemoveDeletedRow]="isContextSaved" [CheckENabiz]="true" (sendENabizViewModel)="setENabizViewModel($event)" id="A20861" data-tid="A355797"></DiagnosisGridForm>
+                    </div>
+                </div>
+            </div>
+
+                <dx-scroll-view [showScrollbar]="always" data-tid="A355798">
+                    <div #scrollPanel class="col-sm-12" style="padding-left:3px; " id="A20862" data-tid="A355799">
+    
+     
+
+
+                <div class="tab-content" style="background-color:#fff;" id="A20863" data-tid="A355800">
+                    <div id="muayene" [ngClass]="ActivePage =='muayene' ? 'tab-pane fade in active' : 'tab-pane fade'" data-tid="A355801">
+                        <div class id="A20864" data-tid="A355802">
+                            <div class="row" id="A20865" data-tid="A355803">
+                                <div class="col-md-2" id="A20866" data-tid="A355804">
+                                    <div class="row" id="A20867" data-tid="A355805">
+                                        <div class="col-sm-6" id="A20868" data-tid="A355806">
+                                            <label class="control-label" id="A20869" data-tid="A355807">Acil</label>
+                                            <hvl-checkbox #Validation (ValueChange)="onchkEmergencyChanged($event)" [AllowThreeState]="chkEmergency?.ThreeState" [BackColor]="chkEmergency?.BackColor" [Enabled]="chkEmergency?.Enabled" [Font]="chkEmergency?.Font" [ForeColor]="chkEmergency?.ForeColor" [IsTitleLeft]="chkEmergency?.IsTitleLeft" [Margin]="chkEmergency?.Margin" [ReadOnly]="chkEmergency?.ReadOnly" [TabIndex]="chkEmergency?.TabIndex" [TitleTopPadding]="chkEmergency?.TitleTopPadding" [Title]="chkEmergency?.Title" [Value]="consultationDoctorExaminationFormNewViewModel?._Consultation?.Emergency" [Visible]="chkEmergency?.Visible" id="A20870" data-tid="A355808"></hvl-checkbox>
+                                        </div>
+                                        <div class="col-sm-6" id="A20871" data-tid="A355809">
+                                            <label class="control-label" id="A20872" data-tid="A355810">Yatağında</label>
+                                            <hvl-checkbox #Validation (ValueChange)="onInPatientBedChanged($event)" [AllowThreeState]="InPatientBed?.ThreeState" [BackColor]="InPatientBed?.BackColor" [Enabled]="InPatientBed?.Enabled" [Font]="InPatientBed?.Font" [ForeColor]="InPatientBed?.ForeColor" [IsTitleLeft]="InPatientBed?.IsTitleLeft" [Margin]="InPatientBed?.Margin" [ReadOnly]="InPatientBed?.ReadOnly" [TabIndex]="InPatientBed?.TabIndex" [TitleTopPadding]="InPatientBed?.TitleTopPadding" [Title]="InPatientBed?.Title" [Value]="consultationDoctorExaminationFormNewViewModel?._Consultation?.InPatientBed" [Visible]="InPatientBed?.Visible" id="A20873" data-tid="A355811"></hvl-checkbox>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2" id="A20874" data-tid="A355812">
+                                    <label class="control-label" id="A20875" data-tid="A355813">Konsültasyon Başlangıç Tarihi</label>
+                                    <hvl-date-picker #Validation (ValueChange)="onProcessDateChanged($event)" [(Value)]="consultationDoctorExaminationFormNewViewModel._Consultation.ProcessDate" [BackColor]="ProcessDate?.BackColor" [CustomFormat]="ProcessDate?.CustomFormat" [Enabled]="ProcessDate?.Enabled" [Font]="ProcessDate?.Font" [ForeColor]="ProcessDate?.ForeColor" [Format]="ProcessDate?.Format" [Max]="ProcessDate?.Max" [Min]="ProcessDate?.Min" [ReadOnly]="ProcessDate?.ReadOnly" [Required]="ProcessDate?.Required" [TabIndex]="ProcessDate?.TabIndex" [Visible]="ProcessDate?.Visible" id="A20876" data-tid="A355814"></hvl-date-picker>
+                                </div>
+                                <div class="col-md-2" id="A20877" data-tid="A355815">
+                                    <label class="control-label" id="A20878" data-tid="A355816">Konsültasyon Bitiş Tarihi</label>
+                                    <hvl-date-picker #Validation (ValueChange)="ondtpProcessEndDateChanged($event)" [(Value)]="consultationDoctorExaminationFormNewViewModel._Consultation.ProcessEndDate" [BackColor]="dtpProcessEndDate?.BackColor" [CustomFormat]="dtpProcessEndDate?.CustomFormat" [Enabled]="dtpProcessEndDate?.Enabled" [Font]="dtpProcessEndDate?.Font" [ForeColor]="dtpProcessEndDate?.ForeColor" [Format]="dtpProcessEndDate?.Format" [Max]="dtpProcessEndDate?.Max" [Min]="dtpProcessEndDate?.Min" [ReadOnly]="dtpProcessEndDate?.ReadOnly" [Required]="dtpProcessEndDate?.Required" [TabIndex]="dtpProcessEndDate?.TabIndex" [Visible]="dtpProcessEndDate?.Visible" id="A20879" data-tid="A355817"></hvl-date-picker>
+                                </div>
+                            </div>
+                            <div class="row" id="A20880" data-tid="A355818">
+                                <div class="col-sm-6" id="A20881" data-tid="A355819">
+                                    <label class="control-label" id="A20882" data-tid="A355820">Konsültasyon İstem Sebebi</label>
+                                    <hvl-richtextbox (change)="onrtfRequestDescriptionChanged($event)" [ngModelOptions]="{ standalone: true}" [ngModel]="consultationDoctorExaminationFormNewViewModel?._Consultation?.RequestDescription" [ReadOnly]="rtfRequestDescription?.ReadOnly" [TemplateGroupName]="rtfRequestDescription?.TemplateGroupName" [Visible]="rtfRequestDescription?.Visible" id="A20883" data-tid="A355821"></hvl-richtextbox>
+                                </div>
+                                <div class="col-sm-6" id="A20884" data-tid="A355822">
+                                    <label class="control-label" id="A20885" data-tid="A355823">Konsültasyon Sonuç ve Önerileri</label>
+                                    <hvl-richtextbox (change)="onrtfConsultationResultAndOffersChanged($event)" [ngModelOptions]="{ standalone: true}" [ngModel]="consultationDoctorExaminationFormNewViewModel?._Consultation?.ConsultationResultAndOffers" [ReadOnly]="rtfConsultationResultAndOffers?.ReadOnly" [TemplateGroupName]="rtfConsultationResultAndOffers?.TemplateGroupName" [Visible]="rtfConsultationResultAndOffers?.Visible" id="A20886" data-tid="A355824"></hvl-richtextbox>
+                                </div>
+                            </div>
+
+                            <div class="row" id="A20887" data-tid="A355825">
+                                <div class="col-xs-12" id="A20888" data-tid="A355826">
+                                    <div class="panel-group" id="A20889" data-tid="A355827">
+                                        <div class="panel panel-default" style="cursor:pointer" id="A20890" data-tid="A355828">
+                                            <div class="panel-heading" data-toggle="collapse" href="#anamnesis_collapse" id="A20891" data-tid="A355829">
+                                                <h4 class="panel-title" id="A20892" data-tid="A355830">
+                                                    <a data-toggle="collapse" style="font-weight: bold;" href="#anamnesis_collapse" id="A20893" data-tid="A355831">Anamnez</a>
+                                                </h4>
+                                            </div>
+                                            <div id="anamnesis_collapse" class="panel-collapse collapse" data-tid="A355832">
+                                                <div class="row" style="padding-bottom: 20px" id="A20894" data-tid="A355833">
+                                                    <div class="col-md-4" id="A20895" data-tid="A355834">
+                                                        <label class="control-label" id="A20896" data-tid="A355835">Şikayeti</label>
+                                                        <hvl-richtextbox (change)="onrtfComplaintChanged($event)" [Height]="&#x27;150px&#x27;" [ngModelOptions]="{ standalone: true}" [ngModel]="consultationDoctorExaminationFormNewViewModel?._Consultation?.Complaint" [ReadOnly]="rtfComplaint?.ReadOnly" [TemplateGroupName]="rtfComplaint?.TemplateGroupName" [Visible]="rtfComplaint?.Visible" id="A20897" data-tid="A355836"></hvl-richtextbox>
+                                                    </div>
+                                                    <div class="col-md-4" id="A20898" data-tid="A355837">
+                                                        <label class="control-label" id="A20899" data-tid="A355838">Özgeçmişi</label>
+                                                        <hvl-richtextbox (change)="onrtfHistoryChanged($event)" [Height]="&#x27;150px&#x27;" [ngModelOptions]="{ standalone: true}" [ngModel]="consultationDoctorExaminationFormNewViewModel?._Consultation?.PatientHistory" [ReadOnly]="rtfHistory?.ReadOnly" [TemplateGroupName]="rtfHistory?.TemplateGroupName" [Visible]="rtfHistory?.Visible" id="A20900" data-tid="A355839"></hvl-richtextbox>
+                                                    </div>
+                                                    <div class="col-md-4" id="A20901" data-tid="A355840">
+                                                        <label class="control-label" id="A20902" data-tid="A355841">Fiziki Muayene</label>
+                                                        <hvl-richtextbox (change)="onrtfPhysicalExaminationChanged($event)" [Height]="&#x27;150px&#x27;" [ngModelOptions]="{ standalone: true}" [ngModel]="consultationDoctorExaminationFormNewViewModel?._Consultation?.PhysicalExamination" [ReadOnly]="rtfPhysicalExamination?.ReadOnly" [TemplateGroupName]="rtfPhysicalExamination?.TemplateGroupName" [Visible]="rtfPhysicalExamination?.Visible" id="A20903" data-tid="A355842"></hvl-richtextbox>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" id="A20904" data-tid="A355843">
+                                <div class="col-xs-12" id="A20905" data-tid="A355844">
+                                    <div class="panel-group" id="A20906" data-tid="A355845">
+                                        <div class="panel panel-default" style="cursor:pointer" id="A20907" data-tid="A355846">
+                                            <div class="panel-heading" data-toggle="collapse" href="#mostUsed_collapse" id="A20908" data-tid="A355847">
+                                                <h4 class="panel-title" id="A20909" data-tid="A355848">
+                                                    <a data-toggle="collapse" style="font-weight: bold;" href="#mostUsed_collapse" id="A20910" data-tid="A355849">Sık Kullanılanlar</a>
+                                                </h4>
+                                            </div>
+                                            <div id="mostUsed_collapse" class="panel-collapse collapse" data-tid="A355850">
+                                                <mostused-procedure-request-form [MostUsedRequestedProcedures]="consultationDoctorExaminationFormNewViewModel.UserMostUsedFormDefinitions" [EpisodeAction]="consultationDoctorExaminationFormNewViewModel._Consultation" id="A20911" data-tid="A355851"></mostused-procedure-request-form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="uzmanlik" [ngClass]="ActivePage =='uzmanlik' ? 'tab-pane fade in active' : 'tab-pane fade'" *ngIf="consultationDoctorExaminationFormNewViewModel?.hasSpecialityBasedObject==true" data-tid="A355852">
+                        <div class="container-fluid" *ngIf="openUzmanlikTab" id="A20912" data-tid="A355853">
+                            <div class="row" id="A20913" data-tid="A355854">
+                                <div class="col-xs-12" id="A20914" data-tid="A355855">
+                                    <comp-compose [Info]="componentSpecialityBasedObjectInfo" (ComponentCreated)="onSetSpecialityBasedObjectViewModel($event)" id="A20915" data-tid="A355856"></comp-compose>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="istem" [ngClass]="ActivePage =='istem' ? 'tab-pane fade in active' : 'tab-pane fade'" data-tid="A355857">
+                        <div class *ngIf="openIstemTab" id="A20916" data-tid="A355858">
+                            <div class="row" id="A20917" data-tid="A355859">
+                                <div class="col-xs-12" id="A20918" data-tid="A355860">
+                                    <procedure-request-form [ProcedureRequestFormResourceIDs]="consultationDoctorExaminationFormNewViewModel.ProcedureRequestFormResourceIDs" [MostUsedRequestedProcedures]="consultationDoctorExaminationFormNewViewModel.UserMostUsedFormDefinitions" [EpisodeAction]="consultationDoctorExaminationFormNewViewModel._Consultation" [GridDiagnosisGridList]="consultationDoctorExaminationFormNewViewModel.GridEpisodeDiagnosisGridList" id="A20919" data-tid="A355861"></procedure-request-form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="hastaGecmisi" [ngClass]="ActivePage =='hastaGecmisi' ? 'tab-pane fade in active' : 'tab-pane fade'" data-tid="A355862">
+                        <div class *ngIf="openHastaGecmisiTab" id="A20920" data-tid="A355863">
+                            <div class="row" id="A20921" data-tid="A355864">
+                                <div class="col-xs-12" id="A20922" data-tid="A355865">
+                                    <PatientHistoryForm [patient]="consultationDoctorExaminationFormNewViewModel._Consultation?.Episode?.Patient?.ObjectID" id="A20923" data-tid="A355866">Hasta Geçmişi</PatientHistoryForm>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <dx-tab-panel [selectedIndex]="0" [animationEnabled]="true" style="height:100%!important" id="A20924" data-tid="A355867">
+                    <dxi-item class="tabpanel-item" style="height:100%!important;" title="Hizmet ve Tetkik" i18n-title="@@M15930" id="A20925" data-tid="A355868">
+                        <requested-procedures-form style="height:100%!important;padding-top: 10px;display:block;" (OnPackageSelected)="SelectedPackageChange($event)" [EpisodeAction]="consultationDoctorExaminationFormNewViewModel._Consultation" [GridDiagnosisGridList]="consultationDoctorExaminationFormNewViewModel.GridEpisodeDiagnosisGridList" (OpenRequestTab)="openIstem()" id="A20926" data-tid="A355869"></requested-procedures-form>
+                    </dxi-item>
+
+                    <dxi-item class="tabpanel-item" title="Mlz.Sarf" i18n-title="@@M19108" id="A20927" data-tid="A355870">
+                        <div class="container-fluid" id="A20928" data-tid="A355871">
+                            <TreatmentMaterialForm [EpisodeAction]="consultationDoctorExaminationFormNewViewModel._Consultation" [StoreResourceId]="consultationDoctorExaminationFormNewViewModel._Consultation.MasterResource.ObjectID" [TreatmentMaterialGridList]="consultationDoctorExaminationFormNewViewModel._Consultation.ConsultationTreatmentMaterials" [IsReadOnly]="ReadOnly" id="A20929" data-tid="A355872"></TreatmentMaterialForm>
+                        </div>
+                    </dxi-item>
+
+                    <dxi-item [visible]="enablePrescriptionTab" class="tabpanel-item" title="Reçete" i18n-title="@@M20924" id="A20930" data-tid="A355873">
+                        <div class="container-fluid" style="padding:0" id="A20931" data-tid="A355874">
+                            <br id="A20932" data-tid="A355875" />
+                            <div class="row" id="A20933" data-tid="A355876">
+                                <div class="col-xs-12" id="A20934" data-tid="A355877">
+                                    <dx-button icon="edit" type="success" text="Reçete Yaz" (onClick)="onDrugOrderIntruductionOpen($event)" i18n-text="@@M20965" id="A20935" data-tid="A355878">
+                                    </dx-button>
+                                </div>
+                            </div>
+                            <br id="A20936" data-tid="A355879" />
+                            <div class="row" id="A20937" data-tid="A355880">
+                                <div class="col-xs-12" id="A20938" data-tid="A355881">
+                                    <hvl-datagrid [AllowUserToAddRows]="PrescriptionGrid?.AllowUserToAddRows" [AllowUserToDeleteRows]="PrescriptionGrid?.AllowUserToDeleteRows" [Columns]="PrescriptionGridColumns" [dataSource]="PrescriptionList" (CellContentClicked)="PrescriptionGrid_CellContentClicked($event)" id="A20939" data-tid="A355882">
+
+                                    </hvl-datagrid>
+                                </div>
+                            </div>
+                        </div>
+                    </dxi-item>
+                    <dxi-item class="tabpanel-item" title="Raporlar" i18n-title="@@M20887" id="A20940" data-tid="A355883">
+                        <div class="container-fluid" id="A20941" data-tid="A355884">
+                            <br id="A20942" data-tid="A355885" />
+                            <div class="row" id="A20943" data-tid="A355886">
+                                <label class="control-label col-sm-1" id="A20944" data-tid="A355887">Rapor Türü</label>
+                                <div class="col-sm-3" id="A20945" data-tid="A355888"> 
+                                        <dx-lookup [items]="reportTypeList" class="field-customization" displayExpr="description" [value]="selectedReportType" title="Seçiniz" [showPopupTitle]="false" itemTemplate="item" [searchEnabled]="false" closeOnOutsideClick="true" data-tid="A355889">
+ 
+                                 <div *dxTemplate="let item of 'item'" data-tid="A355890">
+                                     <div class="custom-item" data-tid="A355891">
+                                         <div style="position: relative;" (click)="onSelectedReportOpen(item)" data-tid="A355892">{{item.description }}</div>
+                                     </div>
+                                 </div>
+                             </dx-lookup>                                </div>
+                                <!--<div class="col-sm-1"> <dx-button icon="edit" type="success" text="Rapor Yaz" (onClick)="onSelectedReportOpen()" i18n-text="@@M20879"> </dx-button></div>-->
+                                <div class="col-sm-3" id="A20947" data-tid="A355893"> <dx-check-box (onValueChanged)="onShowAllReports($event)" text="İptal Edilmemiş Raporlar" i18n-text="@@M30208" id="A20948" data-tid="A355894"></dx-check-box></div>
+                                <div class="col-sm-2" id="A20949" data-tid="A355895"> <dx-check-box (onValueChanged)="onShowCancelledReports($event)" text="Tüm Raporlar" i18n-text="@@M16546" id="A20950" data-tid="A355896"></dx-check-box></div>
+                            </div>
+                            <div class="row" id="A20951" data-tid="A355897">
+                                <div class="col-xs-12" id="A20952" data-tid="A355898">
+                                    <hvl-datagrid [AllowUserToDeleteRows]="false" [AllowUserToAddRows]="false" [Columns]="GridPatientReportsColumns" [dataSource]="consultationDoctorExaminationFormNewViewModel.PatientReportInfoList" (CellContentClicked)="GridPatientReports_CellContentClicked($event)" id="A20953" data-tid="A355899">
+
+                                    </hvl-datagrid>
+                                </div>
+                            </div>
+                        </div>
+                    </dxi-item>
+                </dx-tab-panel>
+
+
+
+
+            </div>
+        </dx-scroll-view>
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</div>
+<dx-popup width="600px" height="200px" [(visible)]="showEDurumBildirirComponent" [closeOnOutsideClick]="false" title="E-Durum Bildirir Raporu Yaz" i18n-title="@@M13708" id="A24159" data-tid="A355900">
+        <div *dxTemplate="let data of 'content'" id="A24160" data-tid="A355901">
+            <eDurumBildirirComponent [episodeActionId]="consultationDoctorExaminationFormNewViewModel._Consultation?.ObjectID" [patientId]="consultationDoctorExaminationFormNewViewModel._Consultation?.Episode?.Patient?.ObjectID" data-tid="A355902">
+
+            </eDurumBildirirComponent>
+
+        </div>
+    </dx-popup>
+<dx-popup class="reportStyle" [(visible)]="showStatusNotificationReportForm" [closeOnOutsideClick]="false" (OnClosing)="onStatusNotificationReportForm($event)" [fullScreen]="true" title="Durum Bildirir Raporu" i18n-title="@@M13360" id="A20954" data-tid="A355903">
+    <div *dxTemplate="let data of 'content'" id="A20955" data-tid="A355904">
+        <div class="container-fluid" id="A20956" data-tid="A355905">
+                <dx-scroll-view #scrollView id="scrollview" [scrollByContent]="true" [scrollByThumb]="true" [showScrollbar]="always" data-tid="A355906">
+                <StatusNotificationReportForm (OnClosing)="OnStatusNotificationReportFormClosing($event)" [StatusNotificationRep]="statusNotificationReportObject" [ReportActiveIDsModel]="ReportParamActiveIDsModel" id="A20957" data-tid="A355907"></StatusNotificationReportForm>
+            </dx-scroll-view>
+        </div>
+    </div>
+</dx-popup>
+
+<dx-popup class="reportStyle" [(visible)]="showMedulaTedaviRaporlariForm" [closeOnOutsideClick]="false" (OnClosing)="onMedulaTedaviRaporlariForm($event)" [fullScreen]="true" title="TEDAVİ RAPORU" i18n-title="@@M30218" id="A20958" data-tid="A355908">
+    <div *dxTemplate="let data of 'content'" id="A20959" data-tid="A355909">
+        <div class="container-fluid" id="A20960" data-tid="A355910">
+                <dx-scroll-view #scrollView id="scrollview" [scrollByContent]="true" [scrollByThumb]="true" [showScrollbar]="always" data-tid="A355911">
+                <MedulaTedaviRaporlari (OnClosing)="OnMedulaTedaviRaporlariFormClosing($event)" [MedulaTedaviRaporlariRep]="medulaTedaviRaporlariObject" [ReportActiveIDsModel]="ReportParamActiveIDsModel" id="A24170" data-tid="A355912"></MedulaTedaviRaporlari>
+
+    </dx-scroll-view>
+        </div>
+    </div>
+</dx-popup>
+<dx-popup class="reportStyle" [(visible)]="showParticipationFreeDrugReportNewForm" [closeOnOutsideClick]="false" (OnClosing)="onParticipationFreeDrugReportNewForm($event)" [fullScreen]="true" title="İLAÇ RAPORU" i18n-title="@@M30219" id="A24169" data-tid="A355913">
+    <div *dxTemplate="let data of 'content'" id="A24170" data-tid="A355914">
+        <div class="container-fluid" style="height:100%" data-tid="A355915">
+            <dx-scroll-view #scrollView id="scrollview" [scrollByContent]="true" [scrollByThumb]="true" [showScrollbar]="always" data-tid="A355916">
+                <ParticipationFreeDrugReportNewForm (OnClosing)="OnParticipationFreeDrugReportNewFormClosing($event)" [ParticipationFreeDrugReportNewFormRep]="ParticipationFreeDrugReportNewFormObject" [ReportActiveIDsModel]="ReportParamActiveIDsModel" data-tid="A355917"></ParticipationFreeDrugReportNewForm>
+                </dx-scroll-view>
+        </div>
+    </div>
+</dx-popup>
+
+<dx-popup width="700px" height="300px" [(visible)]="dailyApplicationControl" [closeOnOutsideClick]="false" title="Günübirlik Yatış İşlemleri" [showCloseButton]="false" data-tid="A355918">
+        <div class="margin-bottom-10" data-tid="A355919">
+            <div *dxTemplate="let data of 'content'" data-tid="A355920">
+                <div class="row" data-tid="A355921">
+                    <label class="control-label col-sm-2" id="A1801" data-tid="A355922">
+                        Özet Epikriz
+                    </label>
+                </div>
+                <div class="row" data-tid="A355923">
+                    <div class="col-sm-12" id="A28111" data-tid="A355924">
+                    <dx-text-area [(value)]="summaryEpicrisis" width="500px" height="100px" data-tid="A355925"></dx-text-area>
+                    </div>
+                </div>
+                <div class="row" data-tid="A355926">
+                    <label class="control-label col-sm-2" id="A1801" data-tid="A355927">
+                        Birim Seçimi
+                    </label>
+                </div>
+                <div class="row" data-tid="A355928">
+                    <div class="col-sm-5" id="A28111" data-tid="A355929">
+                        <dx-select-box [items]="ClinicList" placeholder="Seçiniz" displayExpr="Name" showClearButton="true" searchEnabled="true" (showSelectionControls)="false" [(value)]="birim" valueExpr="ObjectID" id="A26313" data-tid="A355930"></dx-select-box>
+                    </div>
+                </div>
+                <div class="row" data-tid="A355931">
+                        <label class="control-label col-sm-2" id="A1801" data-tid="A355932">
+                           Yatış Tarihi
+                        </label>
+                    </div>
+                <div class="row" data-tid="A355933">
+                        <div class="col-sm-5" id="A28111" data-tid="A355934">
+                        <dx-date-box width="100%" type="date" [(value)]="InpatientDate" [readOnly]="false" data-tid="A355935"> </dx-date-box>       
+                        </div>         
+                </div>
+                    <div class="row" style="padding-top: 10px" data-tid="A355936">
+
+                    <div class="col-sm-5" style="float: left" data-tid="A355937">
+                        <dx-button text="Kaydet ve Taburcu Et" rtlEnabled="true" icon="save" type="success" (onClick)="DailyOperations()" data-tid="A355938"></dx-button>
+                    </div>
+
+                    <div class="col-sm-2" data-tid="A355939">
+                        <dx-button text="İptal" icon="clear" type="danger" rtlEnabled="true" (onClick)="onDailyOperationCancel($event)" data-tid="A355940"></dx-button>
+                    </div>
+                </div>
+                
+
+                
+
+            </div>
+        </div>
+    </dx-popup> 

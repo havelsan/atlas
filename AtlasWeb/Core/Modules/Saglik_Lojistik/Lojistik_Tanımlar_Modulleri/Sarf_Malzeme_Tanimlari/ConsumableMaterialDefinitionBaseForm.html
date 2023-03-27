@@ -1,0 +1,80 @@
+﻿<div class style="display: flex;height: 100%;" data-tid="A330478">
+    <div class="{{this.collapseSelectedDivProperties()}}" id="A16462" data-tid="A330479">
+        <div class="row" style="height: 100%;" data-tid="A330480">
+            <div class="col-sm-12 gradientPanel" style="height:3%;" id="A16463" data-tid="A330481">
+                <h4 style="color:#fff;font-size: 17px;text-align:left;margin-top: 0%;" id="A16464" data-tid="A330482">
+                    <div class="btn collapseBtn" (click)="btnCollapse()" style="padding:0;margin-top:3px;margin-right: 5px;" id="A16465" data-tid="A330483">
+                        <i class="{{this.collapseIconProperties()}}" id="A16466" data-tid="A330484"></i>
+                    </div>
+                    <span id="A16467" data-tid="A330485">Sarf Malzeme Listesi</span>
+                </h4>
+            </div>
+            <div class="panel-body" style="background-color:#f6f6f6;padding-bottom:0; height:100%;padding: 0" id="A16468" data-tid="A330486">
+                <div class="col-md-12" style="padding: 2px;height: calc(100% - 225px);" id="A10249" data-tid="A330487">
+                    <dx-data-grid #dataGrid class="unsetMaxWidth" [columns]="GridColumns" [dataSource]="ViewModel.GridDataSource" (onSelectionChanged)="selectionMaterial($event)" [selectedRowKeys]="selectedRows" [selection]="{mode: 'single',allowSelectAll: false}" [paging]="{pageSize: 50, enable: true}" [groupPanel]="{visible: false}" [filterRow]="{visible: true}" width="100%" height="650px" id="A102501" data-tid="A330488">
+                        <!-- <dxo-scrolling mode="virtual"></dxo-scrolling> -->
+                        <div *dxTemplate="let cellData of 'LabelCellTemplate'" id="A16530" data-tid="A330489">
+                            <span *ngIf="cellData.data.IsActive==1" data-tid="A330490">Aktif</span>
+                            <span *ngIf="cellData.data.IsActive==0" data-tid="A330491">Pasif</span>
+                            <span *ngIf="cellData.data.IsActive==-1" data-tid="A330492">Tümü</span>
+                        </div>
+                    </dx-data-grid>
+                </div>
+                <div class="col-md-12" style="padding: 2px;height: 225px;" data-tid="A330493">
+                    <div class="row" data-tid="A330494">
+                        <div class="col-md-6" data-tid="A330495">
+                            <label class="control-label" data-tid="A330496">Durumu</label>
+                            <dx-select-box searchEnabled="true" [(value)]="QueryModel.IsActive" [items]="Items" (onSelectionChanged)="selectIsActive($event)" placeholder="Yeri Seçiniz..." displayExpr="Name" valueExpr="Value" data-tid="A330497"></dx-select-box>
+                        </div>
+
+                        <div class="col-md-6" data-tid="A330498">
+                            <label class="control-label" data-tid="A330499">Stok Mevcudu</label>
+                            <dx-select-box searchEnabled="true" [(value)]="QueryModel.IsInheld" [items]="StockItems" (onSelectionChanged)="selectStockInheld($event)" placeholder="Yeri Seçiniz..." displayExpr="Name" valueExpr="Value" data-tid="A330500"></dx-select-box>
+                        </div>
+                    </div>
+
+                    <div class="row" data-tid="A330501">
+                        <div class="col-md-6" data-tid="A330502">
+                            <label class="control-label" data-tid="A330503">D. Belgesinde Gizlenenler</label>
+                            <dx-select-box searchEnabled="true" [(value)]="QueryModel.ShowZeroDistributionInfo" (onSelectionChanged)="selectZeroDistribution($event)" [items]="OrderItems" placeholder="Yeri Seçiniz..." displayExpr="Name" valueExpr="Value" data-tid="A330504">
+                            </dx-select-box>
+                        </div>
+
+                        <div class="col-md-6" data-tid="A330505">
+                            <label class="control-label" data-tid="A330506">Hareket Durumu</label>
+                            <dx-select-box searchEnabled="true" [(value)]="QueryModel.ActionStatus" [items]="OrderItems" (onSelectionChanged)="selectOrderItems($event)" placeholder="Yeri Seçiniz..." displayExpr="Name" valueExpr="Value" data-tid="A330507"></dx-select-box>
+                        </div>
+                    </div>
+
+                    <div class="row" data-tid="A330508">
+                        <div class="col-md-6" data-tid="A330509">
+                            <dx-button type="btn btn-info" icon="plus" (onClick)="newConsumableMaterialAdd()" text="Yeni Malzeme Ekle" i18n-text="@@M27337" id="A10230" data-tid="A330510"></dx-button>    
+                        </div>
+                        <div class="col-md-6" data-tid="A330511">
+                                <dx-button type="btn btn-info" icon="fa fa-bars" (onClick)="getConsumableMaterialList()" style="float: right;" text="Listele" i18n-text="@@M27337" id="A10230" data-tid="A330512"></dx-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="{{this.collapseSelectedHiddenDivProperties()}}" style="position:relative;" id="A16544" data-tid="A330513">
+        <div class="MyVerticalText" (click)="btnCollapse()" id="A16545" data-tid="A330514">
+            <i class="{{this.collapseIconProperties()}}" id="A16546" data-tid="A330515"></i>
+            <span id="A16547" data-tid="A330516">&nbsp;&nbsp;&nbsp;&nbsp;Sarf Malzeme Listesi</span>
+        </div>
+    </div>
+
+    <div style="flex:2;overflow-y: auto;overflow-x: hidden;margin-left: -0.7%;margin-right: -0.9%;" data-tid="A330517">
+        <div class="{{this.collapsedPanelProperties()}}" style="height:100%!important" data-tid="A330518">
+            <comp-compose [Info]="componentInfo" (ComponentCreated)="onComponentCreated($event)" (DynamicComponentActionExecuted)="dynamicComponentActionExecuted($event)" [DestroyComponentOnSave]='false' data-tid="A330519"></comp-compose>
+        </div>
+    </div>
+
+
+</div>
+
+
+<dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A28706" data-tid="A330520">
+</dx-load-panel>

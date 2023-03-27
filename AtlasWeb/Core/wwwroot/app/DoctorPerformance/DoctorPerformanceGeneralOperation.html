@@ -1,0 +1,53 @@
+﻿
+<link href="/Content/DoctorPerformance/DoctorPerformance.css" rel="stylesheet" />
+
+<div class="col-sm-12 remove-padding" style="height:100%!important;width:100%!important" data-tid="A370384">
+    <div class="col-sm-8 " style="height:100%!important; " data-tid="A370385">
+        <div style="height:40%!important;" data-tid="A370386">
+            <dx-chart #salesChart style="height:100%!important;" title="Genel Değerlendirme" data-tid="A370387">
+                <dxo-common-series-settings type="bar" data-tid="A370388"></dxo-common-series-settings>
+                <dxo-size [height]="320" data-tid="A370389"></dxo-size>
+                <dxo-adaptive-layout [width]="450" data-tid="A370390"></dxo-adaptive-layout>
+                <dxo-tooltip [enabled]="true" [customizeTooltip]="customizeTooltip" data-tid="A370391"></dxo-tooltip>
+            </dx-chart>
+        </div>
+        <div style="height:60%!important;" data-tid="A370392">
+            <dx-pivot-grid #pivotgrid [allowSortingBySummary]="true" [allowFiltering]="true" [showBorders]="true" [showColumnGrandTotals]="false" [showRowGrandTotals]="false" [showRowTotals]="false" [showColumnTotals]="false" [height]="510" [dataSource]="pivotGridDataSource" data-tid="A370393">
+                <dxo-field-chooser [enabled]="true" data-tid="A370394"></dxo-field-chooser>
+                <dxo-scrolling mode="virtual" data-tid="A370395"></dxo-scrolling>
+            </dx-pivot-grid>
+        </div>
+        </div>
+    <div class="col-sm-4 " style="height:100%!important; " data-tid="A370396">
+        <div style="text-align:center" data-tid="A370397"> <b data-tid="A370398"><u data-tid="A370399">En Çok Puan Alan 7</u></b></div>
+        <b data-tid="A370400"><u data-tid="A370401">Dönemler:</u></b> 
+        <DPTermSelectComponent [(value)]="selectedTerm" (valueChange)="termValueChanged($event)" data-tid="A370402"></DPTermSelectComponent>
+        <div style="height:31%!important; " data-tid="A370403">
+            <dx-chart #bransChart [ngStyle]="ngStyleForBarCharts()" title="Branş" [dataSource]="bransDataSource" data-tid="A370426">
+                <dxi-series argumentField="ColumnName" valueField="Value" type="bar" color="#4287f5"> </dxi-series>
+                <dxo-export [enabled]="true" data-tid="A370434"></dxo-export>
+                <dxo-legend [visible]="false" verticalAlignment="top" horizontalAlignment="center" itemTextPosition="right" data-tid="A370422">
+                </dxo-legend>
+                <dxo-tooltip [enabled]="true" location="edge" [customizeTooltip]="customizeTooltip2" data-tid="A370435"> </dxo-tooltip>
+            </dx-chart>
+        </div>
+        <div style="height:31%!important; " data-tid="A370414">
+            <dx-chart #doktorChart [ngStyle]="ngStyleForBarCharts()" title="Doktor" [dataSource]="doktorDataSource" data-tid="A370426">
+                <dxi-series argumentField="ColumnName" valueField="Value" type="bar" color="#fcd303"> </dxi-series>
+                <dxo-export [enabled]="true" data-tid="A370434"></dxo-export>
+                <dxo-legend [visible]="false" verticalAlignment="top" horizontalAlignment="center" itemTextPosition="right" data-tid="A370422">
+                </dxo-legend>
+                <dxo-tooltip [enabled]="true" location="edge" [customizeTooltip]="customizeTooltip2" data-tid="A370435"> </dxo-tooltip>
+            </dx-chart>
+        </div>
+        <div style="height:31%!important; " data-tid="A370425">
+            <dx-chart #hizmetChart [ngStyle]="ngStyleForBarCharts()" title="Hizmet" [dataSource]="hizmetDataSource" data-tid="A370426">
+                <dxi-series argumentField="ColumnName" valueField="Value" type="bar" color="#ffaa66"> </dxi-series>
+                <dxo-export [enabled]="true" data-tid="A370434"></dxo-export>
+                <dxo-legend [visible]="false" verticalAlignment="top" horizontalAlignment="center" itemTextPosition="right" data-tid="A370422">
+                </dxo-legend>
+                <dxo-tooltip [enabled]="true" location="edge" [customizeTooltip]="customizeTooltip2" data-tid="A370435"> </dxo-tooltip>
+            </dx-chart>
+        </div>
+    </div>
+</div>

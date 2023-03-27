@@ -1,0 +1,191 @@
+﻿<div class="row" [ngStyle]="accordionContainerHeight" data-tid="A366519">
+    <div class="col-md-12" style="height:100%" data-tid="A366520">
+        <dx-accordion #searchAndListAccordion class="margin-bottom-10" collapsible="true" style="height:100%" id="searchAndListAccordion" (onItemTitleClick)="accordionClick($event)" data-tid="A366521">
+            <dxi-item title="Sorgulama Paneli" style="height:100%" data-tid="A366522">
+                <div class="row" style="height:200px" data-tid="A366523">
+                    <div class="col-sm-4" data-tid="A366524">
+                        <div class="row" style="margin-bottom: 5px;" data-tid="A366525">
+                            <div class="col-sm-6" data-tid="A366526">
+                                <label class="control-label" data-tid="A366527">Başlangıç Tarihi</label>
+                                <dx-date-box width="100%" type="date" displayFormat="dd/MM/yyyy" [(value)]="pathologyWorkListViewModel._SearchCriteria.WorkListStartDate" data-tid="A366528">
+                                </dx-date-box>
+                            </div>
+                            <div class="col-sm-6" data-tid="A366529">
+                                <label class="control-label" data-tid="A366530">Bitiş Tarihi</label>
+                                <dx-date-box width="100%" type="date" displayFormat="dd/MM/yyyy" [(value)]="pathologyWorkListViewModel._SearchCriteria.WorkListEndDate" data-tid="A366531">
+                                </dx-date-box>
+                            </div>
+                        </div>
+
+                        <div class="row" data-tid="A366532">
+                            <div class="col-md-12" data-tid="A366533">
+                                <label class="control-label" data-tid="A366534">İstek Yapan Birim</label>
+                                <dx-tag-box [items]="pathologyWorkListViewModel.ResourceList" [(value)]="pathologyWorkListViewModel._SearchCriteria.Resources" placeholder="Birim" [searchEnabled]="true" [showSelectionControls]="true" displayExpr="Name" [multiline]="false" data-tid="A366535">
+                                </dx-tag-box>
+                            </div>
+                        </div>
+                        <div class="row" data-tid="A366536">
+                            <div class="col-md-4" data-tid="A366537">
+                                <label class="control-label" data-tid="A366538">Kabul No</label>
+                                <dx-text-box [showClearButton]="true" [(value)]="pathologyWorkListViewModel._SearchCriteria.ProtocolNo" (onEnterKey)="onProtocolNoEnterKeyDown($event)" data-tid="A366539"></dx-text-box>
+
+                            </div>
+                            <div class="col-md-8" data-tid="A366540">
+                                <label data-tid="A366541">Hasta Arama</label>
+                                <PatientSearchForm Width="100%" (SelectedPatientChanged)="patientChanged($event)" data-tid="A366542"></PatientSearchForm>
+                            </div>
+                        </div>
+
+                        <div class="row" data-tid="A366543">
+                            <div class="col-md-12" data-tid="A366544">
+                                <dx-radio-group [items]="radioGroupPatientTypeItems" displayExpr="text" valueExpr="value" [(value)]="pathologyWorkListViewModel._SearchCriteria.PatientType" layout="horizontal" data-tid="A366545">
+                                </dx-radio-group>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2" data-tid="A366546">
+                        <div class="row" data-tid="A366547">
+                            <div class="col-md-12" data-tid="A366548">
+                                <dx-radio-group [dataSource]="radioGroupEATypeItems" displayExpr="text" valueExpr="value" [(value)]="radioGroupEAType_Value" (onValueChanged)="onradioGroupEAType_ValueChanged($event)" data-tid="A366549">
+                                </dx-radio-group>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-2" data-tid="A366550">
+                        <div [class.hidden]="pathologyWorkListViewModel._SearchCriteria.pathology_EA != true" data-tid="A366551">
+                            <div class="options" data-tid="A366552">
+                                <dx-check-box text="İşlemde" [(value)]="pathologyWorkListViewModel._SearchCriteria.procedure" data-tid="A366553"></dx-check-box>
+                            </div>
+                            <div class="options" data-tid="A366554">
+                                <dx-check-box text="Onay Bekliyor" [(value)]="pathologyWorkListViewModel._SearchCriteria.senttoapprovement" data-tid="A366555"></dx-check-box>
+                            </div>
+                            <div class="options" data-tid="A366556">
+                                <dx-check-box text="Onaylı" [(value)]="pathologyWorkListViewModel._SearchCriteria.approvement" data-tid="A366557"></dx-check-box>
+                            </div>
+                            <div class="options" data-tid="A366558">
+                                <dx-check-box text="Tamamlandı" [(value)]="pathologyWorkListViewModel._SearchCriteria.report" data-tid="A366559"></dx-check-box>
+                            </div>
+                            <div class="options" data-tid="A366560">
+                                <dx-check-box text="İptal Edildi" [(value)]="pathologyWorkListViewModel._SearchCriteria.cancel" data-tid="A366561"></dx-check-box>
+                            </div>
+                        </div>
+                        <div [class.hidden]="pathologyWorkListViewModel._SearchCriteria.pathologyRequest_EA != true" data-tid="A366562">
+                            <div class="options" data-tid="A366563">
+                                <dx-check-box text="İstek Kabul" [(value)]="pathologyWorkListViewModel._SearchCriteria.accept" data-tid="A366564"></dx-check-box>
+                            </div>
+                            <div class="options" data-tid="A366565">
+                                <dx-check-box text="İşlemde" [(value)]="pathologyWorkListViewModel._SearchCriteria.request_procedure" data-tid="A366566"></dx-check-box>
+                            </div>
+                            <div class="options" data-tid="A366567">
+                                <dx-check-box text="İptal Edildi" [(value)]="pathologyWorkListViewModel._SearchCriteria.request_cancel" data-tid="A366568"></dx-check-box>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <!--<div class="col-sm-4">
+                        <span class="pull-right">
+                            <br />
+                            <dx-button icon="save" type="default" text="Kaydet" (onClick)="btnSpecialPanelKaydet_Click()" i18n-text="@@M17386" id="A16474"></dx-button>
+                            &nbsp;
+                            <dx-button icon="fa fa-times" type="danger" text="Sil" (onClick)="btnSpecialPanelSil_Click()" i18n-text="@@M27286" id="A16476"></dx-button>
+                        </span>
+                        <span class="pull-right"> &nbsp; &nbsp;</span>
+                        <span class="pull-right">
+                            <label class="control-label">Özel Paneller</label>
+                            <dx-autocomplete [(value)]="Model.LastSelectedSpecialPanelCaption" (onFocusIn)="openSpecialList()" minSearchLength="0" (onSelectionChanged)="loadSpecialCriteria($event.selectedItem)" [dataSource]="Model.SpecialPanelListItems" placeholder="Özel Paneller..." valueExpr="Caption" i18n-placeholder="@@M20102" id="A16472">
+                            </dx-autocomplete>
+                        </span>
+
+                    </div>-->
+                </div>
+
+                <div class="row" data-tid="A366569">
+                    <div class="col-md-2" data-tid="A366570">
+                        <a data-toggle="collapse" (click)="detailSearchCollapse_Click()" href="#searchWithDetails" data-tid="A366571"><i [ngClass]="detailSearchIconClassCollapse =='1' ? 'fa fa-2x fa-angle-down' : 'fa fa-2x fa-angle-up'" style="float:right;" data-tid="A366572"></i>Detaylı Arama</a>
+                    </div>
+                </div>
+                <div class="row" data-tid="A366573">
+                    <div id="searchWithDetails" class="collapse  col-md-12" data-tid="A366574">
+                        <div class="margin-bottom-10" data-tid="A366575">
+                            <div class="row" data-tid="A366576">
+                                <div class="col-md-4" data-tid="A366577">
+                                    <label class="control-label" data-tid="A366578">Protokol No</label>
+                                    <dx-text-box [showClearButton]="true" [(value)]="pathologyWorkListViewModel._SearchCriteria.MaterialProtocolNo" data-tid="A366579"></dx-text-box>
+
+                                </div>
+                                <div class="col-md-4" data-tid="A366580">
+                                    <label class="control-label" data-tid="A366581">Morfoloji Kodu</label>
+                                    <dx-tag-box [items]="pathologyWorkListViewModel.MorphologyList" [(value)]="pathologyWorkListViewModel._SearchCriteria.Morphologies" placeholder="Morfoloji Kodu" [searchEnabled]="true" [showSelectionControls]="true" displayExpr="Name" [multiline]="false" data-tid="A366582">
+                                     </dx-tag-box>
+                                </div>
+                            </div>
+                            <div class="row" data-tid="A366583">
+                                <div class="col-md-4" data-tid="A366584">
+                                    <label class="control-label" data-tid="A366585">Makroskopi</label>
+                                    <dx-text-box [showClearButton]="true" [(value)]="pathologyWorkListViewModel._SearchCriteria.Macroskopi" data-tid="A366586"></dx-text-box>
+
+                                </div>
+                                <div class="col-md-4" data-tid="A366587">
+                                    <label class="control-label" data-tid="A366588">Tanı</label>
+                                    <dx-text-box [showClearButton]="true" [(value)]="pathologyWorkListViewModel._SearchCriteria.PathologyDiagnosis" data-tid="A366589"></dx-text-box>
+
+                                </div>
+
+                            </div>
+                            <div class="row" data-tid="A366590">
+                                <div class="col-md-4" data-tid="A366591">
+                                    <label class="control-label" data-tid="A366592">Mikroskopi</label>
+                                    <dx-text-box [showClearButton]="true" [(value)]="pathologyWorkListViewModel._SearchCriteria.Microskopi" data-tid="A366593"></dx-text-box>
+
+                                </div>
+                             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 5px; " id="A28471" data-tid="A366594">
+                    <div class="col-sm-6" style="float:right;" id="A28473" data-tid="A366595">
+                        <dx-button type="default" icon="fa fa-bars" class="pull-right" text="Listele" (onClick)="btnSearchClicked()" i18n-text="@@M27496" data-tid="A366596"></dx-button>
+
+                    </div>
+                </div>
+
+                <div class="row" style="height:calc(100% - 275px)" data-tid="A366597">
+                    <div class="col-sm-12" style="height:100%" data-tid="A366598">
+                        <dx-data-grid #WorkListGrid height="100%" width="100%" [columns]="WorkListColumns" columnAutoWidth="true" allowColumnReordering="true" allowColumnResizing="true" [dataSource]="pathologyWorkListViewModel.WorkList" (onRowClick)="select($event)" (onRowPrepared)="onRowPreparedWorkList($event)" [filterRow]="{visible: true}" [ngStyle]="{'padding-top': '10px', 'min-width':'100%' }" [(selectedRowKeys)]="selectedRowKeysResultList" [selection]="{mode: 'single',allowSelectAll: false, showCheckBoxesMode: 'none'}" [editing]="{mode: 'row' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" data-tid="A366599">
+                            <dxo-scrolling mode="virtual" data-tid="A366600"></dxo-scrolling>
+                            <dxo-export [enabled]="true" fileName="Patoloji Modülü İş Listesi" [allowExportSelectedData]="false" data-tid="A366601"></dxo-export>
+                            <dxo-column-chooser [enabled]="true" data-tid="A366602"></dxo-column-chooser>
+                            <dxo-summary data-tid="A366603">
+                                <dxi-total-item column="RequestDate" [customizeText]="customizeCountText" summaryType="count" data-tid="A366604">
+                                </dxi-total-item>
+
+                            </dxo-summary>
+                        </dx-data-grid>
+
+                    </div>
+                </div>
+
+
+            </dxi-item>
+        </dx-accordion>
+
+        <div class="row" style="height:98%" [ngStyle]="composeComponentRowContainerVisible" data-tid="A366605">
+            <div class="col-md-12 col-sm-12 col-xs-12" data-tid="A366606">
+                <comp-compose #dynamicComponent [Info]="systemApiService?.componentInfo" [SaveAndCloseCommandVisible]="true" [CloseWithStateTransition]="true" (DynamicComponentClosed)="dynamicComponentClosed($event)" (ComponentCreated)="dynamicComponentCreated($event)" (DynamicComponentActionExecuted)="dynamicComponentActionExecuted($event)" (DynamicComponentViewModelLoaded)="dynamicComponentViewModelLoaded($event)" data-tid="A366607"></comp-compose>
+            </div>
+        </div>
+
+        <div id="A28484" data-tid="A366608">
+            <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A366609">
+            </dx-load-panel>
+        </div>
+
+    </div>
+
+</div>

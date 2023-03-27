@@ -1,0 +1,524 @@
+﻿<NeStatePanelComponent [OutgoingTransitions]="chemotherapyRadiotherapyFormViewModel?.OutgoingTransitions" [ObjectDefID]="chemotherapyRadiotherapyFormViewModel._ChemotherapyRadiotherapy.ObjectDefID" [CurrentStateDefID]="chemotherapyRadiotherapyFormViewModel._ChemotherapyRadiotherapy.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveFormData($event)" [StateCommandsVisible]="true" [CancelCommandVisible]="false" data-tid="A354694">
+</NeStatePanelComponent>
+<div class="container-fluid" data-tid="A354695">
+	<form id="ChemotherapyRadiotherapyForm" class="form-horizontal" role="form" data-tid="A354696">
+	</form>
+	<div class="row" data-tid="A354697">
+		<div class="col-sm-6" data-tid="A354698">
+			<patient-demographics-form [actionId]="chemotherapyRadiotherapyFormViewModel._ChemotherapyRadiotherapy.MasterAction" id="A24049" data-tid="A354699">
+			</patient-demographics-form>
+		</div>
+		<div class="col-sm-6" data-tid="A354700">
+			<DiagnosisGridReadOnlyForm [EpisodeAction]="chemotherapyRadiotherapyFormViewModel._ChemotherapyRadiotherapy.MasterAction" data-tid="A354701">
+			</DiagnosisGridReadOnlyForm>
+
+		</div>
+	</div>
+	<div class="row" data-tid="A354702">
+		<div class="col-sm-2" data-tid="A354703">
+			<div class="row" data-tid="A354704">
+				<label class="col-sm-12" data-tid="A354705">
+					Başlama Tarihi
+				</label>
+			</div>
+			<div class="row" data-tid="A354706">
+				<div class="col-sm-12" data-tid="A354707">
+					<hvl-date-picker #Validation (ValueChange)="onCureStartDateChanged($event)" [BackColor]="CureStartDate?.BackColor" [CustomFormat]="CureStartDate?.CustomFormat" [Enabled]="CureStartDate?.Enabled" [Font]="CureStartDate?.Font" [ForeColor]="CureStartDate?.ForeColor" [Format]="CureStartDate?.Format" [Max]="CureStartDate?.Max" [Min]="CureStartDate?.Min" [ReadOnly]="CureStartDate?.ReadOnly" [Required]="CureStartDate?.Required" [TabIndex]="CureStartDate?.TabIndex" [Value]="_ChemotherapyRadiotherapy.CureStartDate" [Visible]="CureStartDate?.Visible" data-tid="A354708">
+					</hvl-date-picker>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-2" data-tid="A354709">
+			<div class="row" data-tid="A354710">
+				<label class="col-sm-12" data-tid="A354711">
+					Tanı Tarihi
+				</label>
+			</div>
+			<div class="row" data-tid="A354712">
+				<div class="col-sm-12" data-tid="A354713">
+					<dx-date-box width="100%" type="datetime" displayFormat="dd/MM/yyyy HH:mm" [(value)]="chemotherapyRadiotherapyFormViewModel.diagnoseDate" [readOnly]="true" id="A28072" data-tid="A354714">
+					</dx-date-box>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-1" data-tid="A354715">
+			<div class="row" data-tid="A354716">
+				<label class="col-sm-12" data-tid="A354717">
+					Boy (cm)
+				</label>
+			</div>
+			<div class="row" data-tid="A354718">
+				<div class="col-sm-12" data-tid="A354719">
+					<dx-number-box [(value)]="chemotherapyRadiotherapyFormViewModel.patientHeight" (onValueChanged)="onpatientHeightChanged($event)" [min]="0" data-tid="A354720">
+					</dx-number-box>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-1" data-tid="A354721">
+			<div class="row" data-tid="A354722">
+				<label class="col-sm-12" data-tid="A354723">
+					Kilo (kg)
+				</label>
+			</div>
+			<div class="row" data-tid="A354724">
+				<div class="col-sm-12" data-tid="A354725">
+					<dx-number-box [(value)]="chemotherapyRadiotherapyFormViewModel.patientWeight" (onValueChanged)="onpatientWeightChanged($event)" [min]="0" data-tid="A354726">
+					</dx-number-box>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-1" data-tid="A354727">
+			<div class="row" data-tid="A354728">
+				<label class="col-sm-12" data-tid="A354729">
+					VKİ
+				</label>
+			</div>
+			<div class="row" data-tid="A354730">
+				<div class="col-sm-12" data-tid="A354731">
+					<dx-text-box [(value)]="patientVki" readOnly="true" data-tid="A354732">
+					</dx-text-box>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-1" data-tid="A354733">
+			<div class="row" data-tid="A354734">
+				<label class="col-sm-12" data-tid="A354735">
+					VYA
+				</label>
+			</div>
+			<div class="row" data-tid="A354736">
+				<div class="col-sm-12" data-tid="A354737">
+					<dx-text-box [(value)]="patientVya" readOnly="true" data-tid="A354738">
+					</dx-text-box>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-1" data-tid="A354739">
+			<div class="row" data-tid="A354740">
+				<label class="col-sm-12" data-tid="A354741">
+					VSM
+				</label>
+			</div>
+			<div class="row" data-tid="A354742">
+				<div class="col-sm-12" data-tid="A354743">
+					<dx-text-box [(value)]="patientVsm" readOnly="true" data-tid="A354744">
+					</dx-text-box>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="background-color:#d8ecf1;padding-top:5px" data-tid="A354745">
+		<div class="col-sm-2" data-tid="A354746">
+			<div class="row" data-tid="A354747">
+				<label class="col-sm-12" data-tid="A354748">
+					Protokol Şablonları
+				</label>
+			</div>
+			<div class="row" data-tid="A354749">
+				<div class="col-sm-12" data-tid="A354750">
+					<dx-select-box #TemplateCombo [dataSource]="chemotherapyRadiotherapyFormViewModel.userTemplateList" (onItemClick)="SelectUserTemplate($event)" noDataText="Kullanıcı Şablonu Bulunamadı!" displayExpr="Description" searchEnabled="true" searchMode="contains" valueExpr="ObjectID" data-tid="A354751">
+					</dx-select-box>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-1" data-tid="A354752">
+			<div class="row" data-tid="A354753">
+				<label class="col-sm-12" data-tid="A354754">
+					Protokol Tipi
+				</label>
+			</div>
+			<div class="row" data-tid="A354755">
+				<div class="col-sm-12" data-tid="A354756">
+					<dx-radio-group [items]="cureProtocols" displayExpr="name" [value]="cureProtocols[0]" (onValueChanged)="onChemoRadioTypeValueChanged($event)" data-tid="A354757">
+					</dx-radio-group>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-2" data-tid="A354758">
+			<div class="row" data-tid="A354759">
+				<label class="col-sm-12" data-tid="A354760">
+					Tekrar Gün Sayısı
+				</label>
+			</div>
+			<div class="row" data-tid="A354761">
+				<div class="col-sm-12" data-tid="A354762">
+					<dx-number-box [(value)]="chemotherapyRadiotherapyFormViewModel.lastSelectedCureProtocol.RepetitiveDayCount" data-tid="A354763">
+					</dx-number-box>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-1" data-tid="A354764">
+			<div class="row" data-tid="A354765">
+				<label class="col-sm-12" data-tid="A354766">
+					Kür Sayısı
+				</label>
+			</div>
+			<div class="row" data-tid="A354767">
+				<div class="col-sm-12" data-tid="A354768">
+					<dx-number-box [(value)]="chemotherapyRadiotherapyFormViewModel.lastSelectedCureProtocol.CureCount" data-tid="A354769">
+					</dx-number-box>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-2" data-tid="A354770">
+			<div class="row" data-tid="A354771">
+				<label class="col-sm-12" data-tid="A354772">
+					Tedavi Öncesi (dk)
+				</label>
+			</div>
+			<div class="row" data-tid="A354773">
+				<div class="col-sm-12" data-tid="A354774">
+					<dx-number-box [(value)]="chemotherapyRadiotherapyFormViewModel.lastSelectedCureProtocol.PreCureMinute" data-tid="A354775">
+					</dx-number-box>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-2" data-tid="A354776">
+			<div class="row" data-tid="A354777">
+				<label class="col-sm-12" data-tid="A354778">
+					Tedavi Süresi (dk)
+				</label>
+			</div>
+			<div class="row" data-tid="A354779">
+				<div class="col-sm-12" data-tid="A354780">
+					<dx-number-box [(value)]="chemotherapyRadiotherapyFormViewModel.lastSelectedCureProtocol.CureTime" data-tid="A354781">
+					</dx-number-box>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-2" data-tid="A354782">
+			<div class="row" data-tid="A354783">
+				<label class="col-sm-12" data-tid="A354784">
+					Tedavi Sonrası (dk)
+				</label>
+			</div>
+			<div class="row" data-tid="A354785">
+				<div class="col-sm-12" data-tid="A354786">
+					<dx-number-box [(value)]="chemotherapyRadiotherapyFormViewModel.lastSelectedCureProtocol.AfterCureTime" data-tid="A354787">
+					</dx-number-box>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="row" style="background-color:#d8ecf1;padding-top:5px" data-tid="A354788">
+		<div class="col-sm-3" data-tid="A354789">
+			<div class="row" data-tid="A354790">
+				<label class="col-sm-12" data-tid="A354791">
+					Etkin Madde
+				</label>
+			</div>
+			<div class="row" data-tid="A354792">
+				<div class="col-sm-12" data-tid="A354793">
+					<hvl-list-box #Validation (SelectedObjectChange)="onEtkinMaddeChanged($event)" [AutoCompleteDialogHeight]="EtkinMaddeList?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="EtkinMaddeList?.AutoCompleteDialogWidth" [AutoCompleteMode]="EtkinMaddeList?.AutoCompleteMode" [BackColor]="EtkinMaddeList?.BackColor" [DefinitionName]="EtkinMaddeList?.ListDefName" [Enabled]="EtkinMaddeList?.Enabled" [Font]="EtkinMaddeList?.Font" [ForeColor]="EtkinMaddeList?.ForeColor" [ListFilterExpression]="EtkinMaddeList?.ListFilterExpression" [MinSearchLength]="EtkinMaddeList?.MinSearchLength" [PopupDialogFieldConfig]="EtkinMaddeList?.PopupDialogFieldConfig" [PopupDialogGridColumns]="EtkinMaddeList?.PopupDialogGridColumns" [PopupDialogHeight]="EtkinMaddeList?.PopupDialogHeight" [PopupDialogTitle]="EtkinMaddeList?.PopupDialogTitle" [PopupDialogWidth]="EtkinMaddeList?.PopupDialogWidth" [ReadOnly]="EtkinMaddeList?.ReadOnly" [SearchMode]="EtkinMaddeList?.SearchMode" [SearchTimeout]="EtkinMaddeList?.SearchTimeout" [SelectedObject]="chemotherapyRadiotherapyFormViewModel?.lastSelectedCureProtocol?.EtkinMadde" [TabIndex]="EtkinMaddeList?.TabIndex" [Visible]="EtkinMaddeList?.Visible" [width]="EtkinMaddeList?.Width" data-tid="A354794">
+					</hvl-list-box>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-2" data-tid="A354795">
+			<div class="row" data-tid="A354796">
+				<label class="col-sm-12" data-tid="A354797">
+					İlaç Dozu (Mgr)
+				</label>
+			</div>
+			<div class="row" data-tid="A354798">
+				<div class="col-sm-12" data-tid="A354799">
+					<dx-number-box [(value)]="chemotherapyRadiotherapyFormViewModel.lastSelectedCureProtocol.DrugDose" data-tid="A354800">
+					</dx-number-box>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3" data-tid="A354801">
+			<div class="row" data-tid="A354802">
+				<label class="col-sm-12" data-tid="A354803">
+					Uygulama Şekli
+				</label>
+			</div>
+			<div class="row" data-tid="A354804">
+				<div class="col-sm-12" data-tid="A354805">
+					<hvl-list-box #Validation (SelectedObjectChange)="onChemotherapyApplyMethodChanged($event)" [AutoCompleteDialogHeight]="ChemotherapyApplyMethod?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ChemotherapyApplyMethod?.AutoCompleteDialogWidth" [AutoCompleteMode]="ChemotherapyApplyMethod?.AutoCompleteMode" [BackColor]="ChemotherapyApplyMethod?.BackColor" [DefinitionName]="ChemotherapyApplyMethod?.ListDefName" [DisplayExpressionsCache]="chemotherapyRadiotherapyFormViewModel?.ListDefDisplayExpressions" [Enabled]="ChemotherapyApplyMethod?.Enabled" [Font]="ChemotherapyApplyMethod?.Font" [ForeColor]="ChemotherapyApplyMethod?.ForeColor" [ListFilterExpression]="ChemotherapyApplyMethod?.ListFilterExpression" [MinSearchLength]="ChemotherapyApplyMethod?.MinSearchLength" [PopupDialogFieldConfig]="ChemotherapyApplyMethod?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ChemotherapyApplyMethod?.PopupDialogGridColumns" [PopupDialogHeight]="ChemotherapyApplyMethod?.PopupDialogHeight" [PopupDialogTitle]="ChemotherapyApplyMethod?.PopupDialogTitle" [PopupDialogWidth]="ChemotherapyApplyMethod?.PopupDialogWidth" [ReadOnly]="ChemotherapyApplyMethod?.ReadOnly" [SearchMode]="ChemotherapyApplyMethod?.SearchMode" [SearchTimeout]="ChemotherapyApplyMethod?.SearchTimeout" [SelectedObject]="chemotherapyRadiotherapyFormViewModel?.lastSelectedCureProtocol?.ChemotherapyApplyMethod" [TabIndex]="ChemotherapyApplyMethod?.TabIndex" [Visible]="ChemotherapyApplyMethod?.Visible" [width]="ChemotherapyApplyMethod?.Width" id="A26737" data-tid="A354806"></hvl-list-box>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4" data-tid="A354807">
+			<div class="row" data-tid="A354808">
+				<label class="col-sm-12" data-tid="A354809">
+					Alt Uygulama Şekli
+				</label>
+			</div>
+			<div class="row" data-tid="A354810">
+				<div class="col-sm-12" data-tid="A354811">
+					<hvl-list-box #Validation (SelectedObjectChange)="onChemotherapyApplySubMethodChanged($event)" [AutoCompleteDialogHeight]="ChemotherapyApplySubMethod?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ChemotherapyApplySubMethod?.AutoCompleteDialogWidth" [AutoCompleteMode]="ChemotherapyApplySubMethod?.AutoCompleteMode" [BackColor]="ChemotherapyApplySubMethod?.BackColor" [DefinitionName]="ChemotherapyApplySubMethod?.ListDefName" [DisplayExpressionsCache]="chemotherapyRadiotherapyFormViewModel?.ListDefDisplayExpressions" [Enabled]="ChemotherapyApplySubMethod?.Enabled" [Font]="ChemotherapyApplySubMethod?.Font" [ForeColor]="ChemotherapyApplySubMethod?.ForeColor" [ListFilterExpression]="ChemotherapyApplySubMethod?.ListFilterExpression" [MinSearchLength]="ChemotherapyApplySubMethod?.MinSearchLength" [PopupDialogFieldConfig]="ChemotherapyApplySubMethod?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ChemotherapyApplySubMethod?.PopupDialogGridColumns" [PopupDialogHeight]="ChemotherapyApplySubMethod?.PopupDialogHeight" [PopupDialogTitle]="ChemotherapyApplySubMethod?.PopupDialogTitle" [PopupDialogWidth]="ChemotherapyApplySubMethod?.PopupDialogWidth" [ReadOnly]="ChemotherapyApplySubMethod?.ReadOnly" [SearchMode]="ChemotherapyApplySubMethod?.SearchMode" [SearchTimeout]="ChemotherapyApplySubMethod?.SearchTimeout" [SelectedObject]="chemotherapyRadiotherapyFormViewModel?.lastSelectedCureProtocol?.ChemotherapyApplySubMethod" [TabIndex]="ChemotherapyApplySubMethod?.TabIndex" [Visible]="ChemotherapyApplySubMethod?.Visible" [width]="ChemotherapyApplySubMethod?.Width" id="A26737" data-tid="A354812"></hvl-list-box>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="row" style="background-color:#d8ecf1;padding-top:5px" data-tid="A354813">
+		<div class="col-sm-3" *ngIf="chemotherapyRadiotherapyFormViewModel?.lastSelectedCureProtocol?.IsRadiotherapyCure == false" data-tid="A354814">
+			<div class="row" data-tid="A354815">
+				<label class="col-sm-12" data-tid="A354816">
+					İlaç
+				</label>
+			</div>
+			<div class="row" data-tid="A354817">
+				<div class="col-sm-12" data-tid="A354818">
+					<hvl-list-box #Validation (SelectedObjectChange)="treatmentMaterialSelected($event)" [AutoCompleteDialogHeight]="TreatmentMaterial?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="TreatmentMaterial?.AutoCompleteDialogWidth" [AutoCompleteMode]="TreatmentMaterial?.AutoCompleteMode" [BackColor]="TreatmentMaterial?.BackColor" [DefinitionName]="TreatmentMaterial?.ListDefName" [DisplayExpressionsCache]="chemotherapyRadiotherapyFormViewModel?.ListDefDisplayExpressions" [Enabled]="TreatmentMaterial?.Enabled" [Font]="TreatmentMaterial?.Font" [ForeColor]="TreatmentMaterial?.ForeColor" [ListFilterExpression]="TreatmentMaterial?.ListFilterExpression" [MinSearchLength]="TreatmentMaterial?.MinSearchLength" [PopupDialogFieldConfig]="TreatmentMaterial?.PopupDialogFieldConfig" [PopupDialogGridColumns]="TreatmentMaterial?.PopupDialogGridColumns" [PopupDialogHeight]="TreatmentMaterial?.PopupDialogHeight" [PopupDialogTitle]="TreatmentMaterial?.PopupDialogTitle" [PopupDialogWidth]="TreatmentMaterial?.PopupDialogWidth" [ReadOnly]="TreatmentMaterial?.ReadOnly || IsReadOnly" [SearchMode]="TreatmentMaterial?.SearchMode" [SearchTimeout]="TreatmentMaterial?.SearchTimeout" [SelectedObject]="chemotherapyRadiotherapyFormViewModel?.lastSelectedCureProtocol?.Material" [TabIndex]="TreatmentMaterial?.TabIndex" [Visible]="TreatmentMaterial?.Visible" [width]="TreatmentMaterial?.Width" id="A26705" data-tid="A354819"></hvl-list-box>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3" *ngIf="chemotherapyRadiotherapyFormViewModel?.lastSelectedCureProtocol?.IsRadiotherapyCure == true" data-tid="A354820">
+			<div class="row" data-tid="A354821">
+				<label class="col-sm-12" data-tid="A354822">
+					Işın Tipi
+				</label>
+			</div>
+			<div class="row" data-tid="A354823">
+				<div class="col-sm-12" data-tid="A354824">
+					<hvl-list-box #Validation (SelectedObjectChange)="radiotherapyXrayTypeSelected($event)" [AutoCompleteDialogHeight]="RadiotherapyXrayDef?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="RadiotherapyXrayDef?.AutoCompleteDialogWidth" [AutoCompleteMode]="RadiotherapyXrayDef?.AutoCompleteMode" [BackColor]="RadiotherapyXrayDef?.BackColor" [DefinitionName]="RadiotherapyXrayDef?.ListDefName" [DisplayExpressionsCache]="chemotherapyRadiotherapyFormViewModel?.ListDefDisplayExpressions" [Enabled]="RadiotherapyXrayDef?.Enabled" [Font]="RadiotherapyXrayDef?.Font" [ForeColor]="RadiotherapyXrayDef?.ForeColor" [ListFilterExpression]="RadiotherapyXrayDef?.ListFilterExpression" [MinSearchLength]="RadiotherapyXrayDef?.MinSearchLength" [PopupDialogFieldConfig]="RadiotherapyXrayDef?.PopupDialogFieldConfig" [PopupDialogGridColumns]="RadiotherapyXrayDef?.PopupDialogGridColumns" [PopupDialogHeight]="RadiotherapyXrayDef?.PopupDialogHeight" [PopupDialogTitle]="RadiotherapyXrayDef?.PopupDialogTitle" [PopupDialogWidth]="RadiotherapyXrayDef?.PopupDialogWidth" [ReadOnly]="RadiotherapyXrayDef?.ReadOnly || IsReadOnly" [SearchMode]="RadiotherapyXrayDef?.SearchMode" [SearchTimeout]="RadiotherapyXrayDef?.SearchTimeout" [SelectedObject]="chemotherapyRadiotherapyFormViewModel?.lastSelectedCureProtocol?.RadiotherapyXRayTypeDef" [TabIndex]="RadiotherapyXrayDef?.TabIndex" [Visible]="RadiotherapyXrayDef?.Visible" [width]="RadiotherapyXrayDef?.Width" id="A26705" data-tid="A354825"></hvl-list-box>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-2" data-tid="A354826">
+			<div class="row" data-tid="A354827">
+				<label class="col-sm-12" data-tid="A354828">
+					Çözücü Dozu (Mililitre)
+				</label>
+			</div>
+			<div class="row" data-tid="A354829">
+				<div class="col-sm-12" data-tid="A354830">
+					<dx-number-box [(value)]="chemotherapyRadiotherapyFormViewModel.lastSelectedCureProtocol.SolventDose" data-tid="A354831">
+					</dx-number-box>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-5" data-tid="A354832">
+			<div class="row" data-tid="A354833">
+				<label class="col-sm-12" data-tid="A354834">
+					Eczane (Deposu)
+				</label>
+			</div>
+			<div class="row" data-tid="A354835">
+				<div class="col-sm-12" data-tid="A354836">
+					<dx-select-box [items]="chemotherapyRadiotherapyFormViewModel.storeList" displayExpr="Name" [searchEnabled]="true" [acceptCustomValue]="true" [(value)]="chemotherapyRadiotherapyFormViewModel.selectedStore" (onValueChanged)="selectStoreChange()" data-tid="A354837">
+					</dx-select-box>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="row" style="background-color:#d8ecf1;padding-top:5px" data-tid="A354838">
+		<div class="col-sm-3" data-tid="A354839">
+			<div class="row" data-tid="A354840">
+				<label class="col-sm-12" data-tid="A354841">
+					Çözücü
+				</label>
+			</div>
+			<div class="row" data-tid="A354842">
+				<div class="col-sm-12" data-tid="A354843">
+					<hvl-list-box #Validation (SelectedObjectChange)="solventSelected($event)" [AutoCompleteDialogHeight]="TreatmentMaterial?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="TreatmentMaterial?.AutoCompleteDialogWidth" [AutoCompleteMode]="TreatmentMaterial?.AutoCompleteMode" [BackColor]="TreatmentMaterial?.BackColor" [DefinitionName]="TreatmentMaterial?.ListDefName" [DisplayExpressionsCache]="chemotherapyRadiotherapyFormViewModel?.ListDefDisplayExpressions" [Enabled]="TreatmentMaterial?.Enabled" [Font]="TreatmentMaterial?.Font" [ForeColor]="TreatmentMaterial?.ForeColor" [ListFilterExpression]="TreatmentMaterial?.ListFilterExpression" [MinSearchLength]="TreatmentMaterial?.MinSearchLength" [PopupDialogFieldConfig]="TreatmentMaterial?.PopupDialogFieldConfig" [PopupDialogGridColumns]="TreatmentMaterial?.PopupDialogGridColumns" [PopupDialogHeight]="TreatmentMaterial?.PopupDialogHeight" [PopupDialogTitle]="TreatmentMaterial?.PopupDialogTitle" [PopupDialogWidth]="TreatmentMaterial?.PopupDialogWidth" [ReadOnly]="TreatmentMaterial?.ReadOnly || IsReadOnly" [SearchMode]="TreatmentMaterial?.SearchMode" [SearchTimeout]="TreatmentMaterial?.SearchTimeout" [SelectedObject]="chemotherapyRadiotherapyFormViewModel?.lastSelectedCureProtocol?.Solvent" [TabIndex]="TreatmentMaterial?.TabIndex" [Visible]="TreatmentMaterial?.Visible" [width]="TreatmentMaterial?.Width" id="A26705" data-tid="A354844"></hvl-list-box>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3" *ngIf="chemotherapyRadiotherapyFormViewModel?.lastSelectedCureProtocol?.IsRadiotherapyCure == false" data-tid="A354845">
+			<div class="row" data-tid="A354846">
+				<label class="col-sm-12" data-tid="A354847">
+					Hizmet
+				</label>
+			</div>
+			<div class="row" data-tid="A354848">
+				<div class="col-sm-12" data-tid="A354849">
+					<hvl-list-box #Validation (SelectedObjectChange)="chemotherapyProcedureSelected($event)" [AutoCompleteDialogHeight]="ChemotherapyProcedure?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ChemotherapyProcedure?.AutoCompleteDialogWidth" [AutoCompleteMode]="ChemotherapyProcedure?.AutoCompleteMode" [BackColor]="ChemotherapyProcedure?.BackColor" [DefinitionName]="ChemotherapyProcedure?.ListDefName" [DisplayExpressionsCache]="chemotherapyRadiotherapyFormViewModel?.ListDefDisplayExpressions" [Enabled]="ChemotherapyProcedure?.Enabled" [Font]="ChemotherapyProcedure?.Font" [ForeColor]="ChemotherapyProcedure?.ForeColor" [ListFilterExpression]="ChemotherapyProcedure?.ListFilterExpression" [MinSearchLength]="ChemotherapyProcedure?.MinSearchLength" [PopupDialogFieldConfig]="ChemotherapyProcedure?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ChemotherapyProcedure?.PopupDialogGridColumns" [PopupDialogHeight]="ChemotherapyProcedure?.PopupDialogHeight" [PopupDialogTitle]="ChemotherapyProcedure?.PopupDialogTitle" [PopupDialogWidth]="ChemotherapyProcedure?.PopupDialogWidth" [ReadOnly]="ChemotherapyProcedure?.ReadOnly || IsReadOnly" [SearchMode]="ChemotherapyProcedure?.SearchMode" [SearchTimeout]="ChemotherapyProcedure?.SearchTimeout" [SelectedObject]="chemotherapyRadiotherapyFormViewModel?.chemoRadioProcedure" [TabIndex]="ChemotherapyProcedure?.TabIndex" [Visible]="ChemotherapyProcedure?.Visible" [width]="ChemotherapyProcedure?.Width" id="A26705" data-tid="A354850"></hvl-list-box>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3" *ngIf="chemotherapyRadiotherapyFormViewModel?.lastSelectedCureProtocol?.IsRadiotherapyCure == true" data-tid="A354851">
+			<div class="row" data-tid="A354852">
+				<label class="col-sm-12" data-tid="A354853">
+					Hizmet
+				</label>
+			</div>
+			<div class="row" data-tid="A354854">
+				<div class="col-sm-12" data-tid="A354855">
+					<hvl-list-box #Validation (SelectedObjectChange)="radiotherapyProcedureSelected($event)" [AutoCompleteDialogHeight]="RadiotherapyProcedure?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="RadiotherapyProcedure?.AutoCompleteDialogWidth" [AutoCompleteMode]="RadiotherapyProcedure?.AutoCompleteMode" [BackColor]="RadiotherapyProcedure?.BackColor" [DefinitionName]="RadiotherapyProcedure?.ListDefName" [DisplayExpressionsCache]="chemotherapyRadiotherapyFormViewModel?.ListDefDisplayExpressions" [Enabled]="RadiotherapyProcedure?.Enabled" [Font]="RadiotherapyProcedure?.Font" [ForeColor]="RadiotherapyProcedure?.ForeColor" [ListFilterExpression]="RadiotherapyProcedure?.ListFilterExpression" [MinSearchLength]="RadiotherapyProcedure?.MinSearchLength" [PopupDialogFieldConfig]="RadiotherapyProcedure?.PopupDialogFieldConfig" [PopupDialogGridColumns]="RadiotherapyProcedure?.PopupDialogGridColumns" [PopupDialogHeight]="RadiotherapyProcedure?.PopupDialogHeight" [PopupDialogTitle]="RadiotherapyProcedure?.PopupDialogTitle" [PopupDialogWidth]="RadiotherapyProcedure?.PopupDialogWidth" [ReadOnly]="RadiotherapyProcedure?.ReadOnly || IsReadOnly" [SearchMode]="RadiotherapyProcedure?.SearchMode" [SearchTimeout]="RadiotherapyProcedure?.SearchTimeout" [SelectedObject]="chemotherapyRadiotherapyFormViewModel?.chemoRadioProcedure" [TabIndex]="RadiotherapyProcedure?.TabIndex" [Visible]="RadiotherapyProcedure?.Visible" [width]="RadiotherapyProcedure?.Width" id="A26705" data-tid="A354856"></hvl-list-box>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-6" data-tid="A354857">
+			<div class="row" data-tid="A354858">
+				<label class="col-sm-12" data-tid="A354859">
+					Açıklama
+				</label>
+			</div>
+			<div class="row" data-tid="A354860">
+				<div class="col-sm-12" data-tid="A354861">
+					<hvl-richtextbox (change)="onttrichtextboxAciklamaChanged($event)" [Height]="&#x27;50px&#x27;" [ngModelOptions]="{ standalone: true}" [ngModel]="chemotherapyRadiotherapyFormViewModel?.lastSelectedCureProtocol?.CureDescription" [ReadOnly]="ttrichtextboxAciklama?.ReadOnly" [TemplateGroupName]="ttrichtextboxAciklama?.TemplateGroupName" [Visible]="ttrichtextboxAciklama?.Visible" data-tid="A354862"></hvl-richtextbox>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="row" style="background-color:#d8ecf1; padding: top 5px;text-align: right" data-tid="A354863">
+		<div class="col-sm-12" data-tid="A354864">
+			<dx-button icon="edit" type="success" text="Protokol Ekle" (onClick)="AddChemoRadioOrder()" i18n-text="@@M20965" id="A24127" data-tid="A354865">
+			</dx-button>
+		</div>
+	</div>
+
+	<div class="row" style="padding-top:5px" data-tid="A354866">
+		<div class="col-sm-12" data-tid="A354867">
+			<dx-data-grid #dataGrid [columns]="cureDetailGridColumns" [dataSource]="chemotherapyRadiotherapyFormViewModel?.cureDetails" [selection]="{mode: 'single',allowSelectAll: false}" [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" height="400px" (onRowPrepared)="onRowPrepared($event)" id="A24131" data-tid="A354868">
+				<div *dxTemplate="let row of 'buttonCellTemplate'" id="A24132" data-tid="A354869">
+					<div class="row" data-tid="A354870">
+						<div class="col-sm-12" data-tid="A354871">
+							<dx-button type="success" (onClick)="completeProtocolDetail(row)" icon="fa fa-check" id="A24133" *ngIf="row.data.isNew == true || row.data.isAborted" hint="Tamamla" style="margin-right: 5px;" data-tid="A354872">
+							</dx-button>
+							<dx-button style="background-color: #d49639;margin-right: 5px;" type="success" (onClick)="stopProtocolDetail(row)" hint="Durdur" icon="fa fa-hand-paper-o" id="A24133" *ngIf="row.data.isNew == true" data-tid="A354873">
+							</dx-button>
+							<dx-button style="margin-right: 5px;" type="danger" (onClick)="cancelProtocolDetail(row)" hint="İptal Et" icon="fa fa-times" id="A24133" *ngIf="row.data.isNew == true || row.data.isAborted" data-tid="A354874">
+							</dx-button>
+							<dx-button style="margin-right: 5px;" type="danger" (onClick)="undoProtocolDetail(row)" hint="Geri Al" style="background-color: #22ccff;" icon="fa fa-undo" id="A24133" *ngIf="row.data.canUndo == true" data-tid="A354875">
+							</dx-button>
+						</div>
+					</div>
+				</div>
+				<div *dxTemplate="let row of 'templateButtonCellTemplate'" id="A24132" data-tid="A354876">
+					<div class="row" data-tid="A354877">
+						<div class="col-sm-12" data-tid="A354878">
+							<dx-button type="default" text="Oluştur" (onClick)="createUserProtocolTemplate(row)" icon="fa fa-plus" id="A24133" data-tid="A354879">
+							</dx-button>
+						</div>
+					</div>
+				</div>
+			</dx-data-grid>
+		</div>
+	</div>
+</div>
+<div class="row" id="A24102" data-tid="A354880">
+	<div class="col-xs-12" id="A24103" hidden="true" data-tid="A354881">
+		<procedure-request-form #procedureRequestForm [EpisodeAction]="chemotherapyRadiotherapyFormViewModel?._ChemotherapyRadiotherapy" [ProcedureRequestFormResourceIDs]="chemotherapyRadiotherapyFormViewModel.ProcedureRequestFormResourceIDs" id="A24104" data-tid="A354882"></procedure-request-form>
+	</div>
+</div>
+<dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A354883">
+</dx-load-panel>
+<dx-popup width="400px" height="400px" [(visible)]="showDetailStorePopUp" [closeOnOutsideClick]="false" title="İşlemi Tamamla/Durdur/İptal Et" i18n-title="@@M13708" id="A24159" data-tid="A354884">
+	<div *dxTemplate="let data of 'content'" id="A24160" data-tid="A354885">
+		<div class="row" data-tid="A354886">
+			<label class="col-sm-12" data-tid="A354887">
+				Açıklama
+			</label>
+		</div>
+		<div class="row" data-tid="A354888">
+			<div class="col-sm-12" data-tid="A354889">
+				<dx-text-area [height]="90" [(value)]="popUpDescription" data-tid="A354890">
+				</dx-text-area>
+			</div>
+		</div>
+		<div class="row" style="padding-top:5px" *ngIf="IsDetailComplete == true" data-tid="A354891">
+			<label class="col-sm-12" data-tid="A354892">
+				Depo
+			</label>
+		</div>
+		<div class="row" *ngIf="IsDetailComplete == true" data-tid="A354893">
+			<div class="col-sm-12" data-tid="A354894">
+				<dx-select-box [items]="chemotherapyRadiotherapyFormViewModel.storeList" displayExpr="Name" [searchEnabled]="true" [(value)]="popUpSelectedStore" data-tid="A354895">
+				</dx-select-box>
+			</div>
+		</div>
+		<div class="row" style="padding-top: 5px;text-align: right" data-tid="A354896">
+			<div class="col-sm-12" data-tid="A354897">
+				<dx-button #btnSelectStore type="success" style="margin-right: 8px;" icon="fa fa-save" text="Kaydet" i18n-text="@@M17210" id="A27992" data-tid="A354898"></dx-button>
+			</div>
+		</div>
+	</div>
+</dx-popup>
+
+<dx-popup width="600px" height="250px" [(visible)]="showAddUserTemplatePopUp" [closeOnOutsideClick]="false" title="Şablon Ekle" i18n-title="@@M13708" id="A24159" data-tid="A354899">
+	<div *dxTemplate="let data of 'content'" id="A24160" data-tid="A354900">
+		<div class="row" data-tid="A354901">
+			<div class="col-sm-12" data-tid="A354902">
+				<dx-text-box [(value)]="userTemplateName" placeholder="Eklenecek Şablon Adı" id="A30432" data-tid="A354903">
+				</dx-text-box>
+			</div>
+		</div>
+		<div class="row" style="padding-top:5px;text-align:right" data-tid="A354904">
+			<div class="col-sm-12" data-tid="A354905">
+				<dx-button #btnSelectStore type="success" style="margin-right: 8px;" icon="fa fa-save" text="Kaydet" (onClick)="AddUserTemplate()" i18n-text="@@M17210" id="A27992" data-tid="A354906"></dx-button>
+			</div>
+		</div>
+
+		<div class="row" data-tid="A354907">
+			<div class="col-md-4" data-placement="top" title="Kür Sayısı" i18n-title="@@M15336" id="A14418" data-tid="A354908">Kür Sayısı :
+				{{templateProtocol?.OrderObject?.CureCount}}</div>
+			<div class="col-md-4" data-placement="top" title="Tekrar Gün Sayısı" i18n-title="@@M11390" id="A14421" data-tid="A354909">
+				Tekrar Gün Sayısı : {{templateProtocol?.OrderObject?.RepetitiveDayCount}}</div>
+			<div class="col-md-4" data-placement="top" title="Tedavi Öncesi(dk)" i18n-title="@@M12265" id="A14419" data-tid="A354910">
+				Tedavi Öncesi(dk) : {{templateProtocol?.OrderObject?.PreCureMinute}}</div>
+			<div class="col-md-4" data-placement="top" title="Tedavi Süresi(dk)" i18n-title="@@M15262" id="A14420" data-tid="A354911">
+				Tedavi Süresi(dk) : {{templateProtocol?.OrderObject?.CureTime}}</div>
+			<div class="col-md-4" data-placement="top" title="Tedavi Sonrası(dk)" i18n-title="@@M11390" id="A14421" data-tid="A354912">
+				Tedavi Sonrası(dk): {{templateProtocol?.OrderObject?.AfterCureTime}}</div>
+			<div class="col-md-4" data-placement="top" title="Etkin Madde" i18n-title="@@M18009" id="A14422" data-tid="A354913">Etkin Madde
+				: {{templateProtocol?.EtkenMadde}}</div>
+			<div class="col-md-6" data-placement="top" title="İlaç/Işın Tipi" i18n-title="@@M15322" id="A14423" data-tid="A354914">
+				İlaç/Işın Tipi: {{templateProtocol?.Cure}}</div>
+			<div class="col-md-6" data-placement="top" title="Çözücü" i18n-title="@@M27441" id="A14424" data-tid="A354915"> Çözücü :
+				{{templateProtocol?.CureSolvent}}</div>
+			<div class="col-md-6" data-placement="top" title="İlaç Dozu" i18n-title="@@M15322" id="A14423" data-tid="A354916"> İlaç Dozu :
+				{{templateProtocol?.DrugDose}} mgr </div>
+			<div class="col-md-6" data-placement="top" title="Çözücü Dozu" i18n-title="@@M27441" id="A14424" data-tid="A354917"> Çözücü
+				Dozu : {{templateProtocol?.SolventDose}} ml</div>
+		</div>
+	</div>
+</dx-popup>
+<dx-popup width="1200px" height="700px" [(visible)]="showMaterialPopUp" [closeOnOutsideClick]="false" title="Malzeme Girişi" i18n-title="@@M13708" id="A24159" data-tid="A354918">
+	<div *dxTemplate="let data of 'content'" id="A24160" data-tid="A354919">
+		<div class="row" data-tid="A354920">
+			<div class="col-sm-12" data-tid="A354921">
+				<NeStatePanelComponent [ObjectDefID]="chemotherapyRadiotherapyFormViewModel._ChemotherapyRadiotherapy.ObjectDefID" [CurrentStateDefID]="chemotherapyRadiotherapyFormViewModel._ChemotherapyRadiotherapy.CurrentStateDefID" (onSetState)="setState($event)" (onSaveChanges)="saveFormData($event)" [StateCommandsVisible]="false" [CancelCommandVisible]="false" data-tid="A354922">
+				</NeStatePanelComponent>
+			</div>
+		</div>
+		<div class="row" data-tid="A354923">
+			<label class="col-sm-12" data-tid="A354924">
+				Malzeme
+			</label>
+		</div>
+		<div class="row" data-tid="A354925">
+			<div class="col-sm-12" data-tid="A354926">
+				<TreatmentMaterialForm [SelectStoreFromUserStore]="true" [EpisodeAction]="chemotherapyRadiotherapyFormViewModel._ChemotherapyRadiotherapy" [TreatmentMaterialGridList]="chemotherapyRadiotherapyFormViewModel?.TreatmentMaterialGridList" [IncludeDrugDefinition]="true" [IsReadOnly]="ReadOnly" id="A9921" data-tid="A354927"></TreatmentMaterialForm>
+
+			</div>
+		</div>
+
+	</div>
+</dx-popup>
+
+<dx-popup width="1200px" height="800px" [(visible)]="showProcedurePopUp" [closeOnOutsideClick]="false" title="Hizmet Girişi" i18n-title="@@M13708" id="A24159" data-tid="A354928">
+	<div *dxTemplate="let data of 'content'" id="A24160" data-tid="A354929">
+		<div class="row" data-tid="A354930">
+			<div class="col-sm-12" data-tid="A354931">
+				<NeStatePanelComponent [ObjectDefID]="chemotherapyRadiotherapyFormViewModel._ChemotherapyRadiotherapy.ObjectDefID" [CurrentStateDefID]="chemotherapyRadiotherapyFormViewModel._ChemotherapyRadiotherapy.CurrentStateDefID" (onSetState)="setState($event)" (onSaveChanges)="saveFormData($event)" [StateCommandsVisible]="false" [CancelCommandVisible]="false" data-tid="A354932">
+				</NeStatePanelComponent>
+			</div>
+		</div>		
+		<div class="row" data-tid="A354933">
+			<div class="col-sm-12" data-tid="A354934">
+				<requested-procedures-form #requestedProcedureForm style="height:100%!important;display:block;" [EpisodeAction]="chemotherapyRadiotherapyFormViewModel?._ChemotherapyRadiotherapy" [ShowTahlilTetkikIstemButton]="false" id="A9925" data-tid="A354935"></requested-procedures-form>
+			</div>
+		</div>
+
+	</div>
+</dx-popup>
+
+
+<dx-popup [(visible)]="showProcedurePlanningForm" [closeOnOutsideClick]="false" width="1000" height="900" title="İstem Planlama Formu" i18n-title="@@M30219" id="A24169" data-tid="A354936">
+	<div *dxTemplate="let data of 'content'" id="A24170" data-tid="A354937">
+		<div class="container-fluid" id="A24161" data-tid="A354938">
+			<ProcedureRequestPlanningForm *ngIf="showProcedurePlanningForm == true" [episodeActionId]="chemotherapyRadiotherapyFormViewModel?._ChemotherapyRadiotherapy?.ObjectID" (ProcessCompleted)="closeProcedurePlanningFormPopUp($event)" data-tid="A354939">
+			</ProcedureRequestPlanningForm>
+		</div>
+	</div>
+</dx-popup>

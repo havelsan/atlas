@@ -1,0 +1,138 @@
+﻿
+
+<div class="col-md-12" id="A13366" data-tid="A350368">
+    <!--<NeStatePanelComponent [ObjectDefID]="hemodialysisProcedureFormViewModel._HemodialysisRequest.ObjectDefID" [CurrentStateDefID]="hemodialysisProcedureFormViewModel._HemodialysisRequest.CurrentStateDefID" (onSetState)="setState($event)" (onSaveChanges)="save($event)">
+    </NeStatePanelComponent>-->
+    <form id="HemodialysisProcedureForm" class="form-horizontal" role="form" data-tid="A350369">
+
+        <div class="col-md-12" data-tid="A350370">
+            <div class="col-md-5" id="A13367" data-tid="A350371">
+                <patient-demographics-form [actionId]="hemodialysisProcedureFormViewModel._HemodialysisRequest?.ObjectID" [ShowFromResource]="true" id="A13368" data-tid="A350372"></patient-demographics-form>
+            </div>
+            <div class="col-md-5" id="A13369" data-tid="A350373">
+                <div class="row" id="A13370" data-tid="A350374">
+                    <label class="control-label col-md-2" id="A13371" data-tid="A350375">
+                        <b id="A13372" data-tid="A350376">Tıbbi Bilgiler </b>
+                    </label>
+                    <div class="col-md-10" id="A13373" data-tid="A350377">
+                        {{hemodialysisProcedureFormViewModel?.MedicalInfo}}
+                    </div>
+                </div>
+                <div class="row" [hidden]="hemodialysisProcedureFormViewModel.HideAnamnesisInfoButton" id="A13378" data-tid="A350378">
+                    <label class="control-label col-md-2" id="A13379" data-tid="A350379">
+                        <b id="A13380" data-tid="A350380">Anamnez Bilgileri </b>
+                    </label>
+                    <div class="col-md-1" id="A13381" data-tid="A350381">
+                        <a href="javascript:void(0)" class="nav-link" (click)="anamnesisInfoButtonClicked()" id="A13382" data-tid="A350382">
+                            <i style="float:right" class="fa fa-id-card-o fa-2x" data-toggle="tooltip" data-placement="bottom" title="Anamnez Bilgilerini G�r�nt�le" i18n-title="@@M30608" id="A13383" data-tid="A350383"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2" data-tid="A350384">
+                <button type="button" class="btn btn-xs btn-block btn-primary" (click)="ShowHemodialysisReport($event)" data-tid="A350385">Seans Raporu</button>
+                <button type="button" class="btn btn-xs btn-block btn-success" (click)="closeHemodialysisRequest($event)" data-tid="A350386">Diyaliz Tedavisine İhtiyaç Kalmadı</button>
+                <button type="button" class="btn btn-xs btn-block btn-success" (click)="openCancelOrderDetailsPopup($event)" data-tid="A350387">İptal Et</button>
+            </div>
+        </div>
+
+        <div class="row" data-tid="A350388">
+            <div class="col-md-12" data-tid="A350389">
+                <div *ngIf="isDynamicComponentOpened==true" id="A12727" data-tid="A350390">
+                    <!--(DynamicComponentClosed)="dynamicComponentClosed($event)" (ComponentCreated)="componentCreated($event)" id="A12728"-->
+                    <comp-compose [Info]="OrderDetailComponentInfo" data-tid="A350391"></comp-compose>
+                    <br data-tid="A350392" />
+                </div>
+            </div>
+            <div class="col-md-12" data-tid="A350393">
+                &nbsp;&nbsp;<u data-tid="A350394">Seans Bilgileri</u>
+                <div class="panel panel-default" data-tid="A350395">
+                    <!--<dxo-sorting mode="none" id="A13465"></dxo-sorting>
+
+                    <dxo-selection mode="multiple" id="A13468"></dxo-selection>-->
+                    <div class="panel-body" style="background-color:#f9f9f9" data-tid="A350396">
+                        <dx-data-grid [dataSource]="hemodialysisProcedureFormViewModel?.HemodialysisOrderDetailInfoList" [(selectedRowKeys)]="selectedRowKeysResultList" (onRowClick)="select($event)" (onRowPrepared)="onDetailGridRowPrepared($event)" columnAutoWidth="true" [hoverStateEnabled]="true" allowColumnReordering="true" allowColumnResizing="true" [filterRow]="{visible: true}" [selection]="{mode: 'multiple',allowSelectAll: false, showCheckBoxesMode: 'onClick'}" [editing]="{mode: 'row' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" data-tid="A350397">
+                            <dxo-column-chooser [enabled]="true" id="A28539" data-tid="A350398"></dxo-column-chooser>
+                            <dxo-load-panel [enabled]="true" id="A13463" data-tid="A350399"></dxo-load-panel>
+                            <dxo-scrolling mode="virtual" id="A13464" data-tid="A350400"></dxo-scrolling>
+
+                            <dxi-column dataField="SessionDate" caption="Tarih" dataType="date" [allowEditing]="false" width="auto" i18n-caption="@@M27302" id="A13470" data-tid="A350401"></dxi-column>
+                            <dxi-column dataField="StartTime" caption="Başlangıç" [allowEditing]="false" width="auto" i18n-caption="@@M11626" id="A13471" data-tid="A350402"></dxi-column>
+                            <dxi-column dataField="FinishTime" caption="Bitiş" [allowEditing]="false" width="auto" i18n-caption="@@M11929" id="A13472" data-tid="A350403"></dxi-column>
+                            <dxi-column dataField="HemodialysisState" caption="Durum" [allowEditing]="false" width="auto" i18n-caption="@@M27303" id="A13473" data-tid="A350404"></dxi-column>
+                            <dxi-column dataField="TreatmentEquipment" caption="Cihaz" [allowEditing]="false" width="auto" i18n-caption="@@M23046" id="A13474" data-tid="A350405"></dxi-column>
+                            <dxi-column dataField="ProcedureDoctor" caption="Doktor" [allowEditing]="false" width="auto" i18n-caption="@@M22405" id="A13478" data-tid="A350406"></dxi-column>
+                            <dxi-column dataField="BloodFlow" caption="Kan Alım Hızı" [allowEditing]="false" width="auto" i18n-caption="@@M22405" id="A13478" data-tid="A350407"></dxi-column>
+                            <dxi-column dataField="Intravenous" caption="Damar Yolu" [allowEditing]="false" width="auto" i18n-caption="@@M22405" id="A13478" data-tid="A350408"></dxi-column>
+                            <dxi-column dataField="Information" caption="Açıklama" [allowEditing]="false" width="auto" i18n-caption="@@M22405" id="A13478" data-tid="A350409"></dxi-column>
+                        </dx-data-grid>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+</div>
+
+
+<dx-popup width="1200px" height="340px" [(visible)]="showAnamnesisInfo" [closeOnOutsideClick]="true" (onDisposing)="onAnemnesisPopUpDisposing()" title="Anamnez Bilgisi" i18n-title="@@M10954" id="A13573" data-tid="A350410">
+    <div *dxTemplate="let data of 'content'" id="A13574" data-tid="A350411">
+        <div class="row" id="A13575" data-tid="A350412">
+            <div class="col-sm-6" id="A13576" data-tid="A350413">
+                <label class="control-label" id="A13577" data-tid="A350414">Şikayeti</label>
+                <hvl-richtextbox [value]="hemodialysisProcedureFormViewModel.AnamnesisComplaintInfo" Height="100px" ReadOnly="true" id="A13578" data-tid="A350415">
+                </hvl-richtextbox>
+            </div>
+            <div class="col-sm-6" id="A13579" data-tid="A350416">
+                <label class="control-label" id="A13580" data-tid="A350417">Özgeçmişi</label>
+                <hvl-richtextbox [value]="hemodialysisProcedureFormViewModel.AnamnesisPatientHistoryInfo" Height="100px" ReadOnly="true" id="A13581" data-tid="A350418">
+                </hvl-richtextbox>
+            </div>
+        </div>
+
+        <div class="row" id="A13582" data-tid="A350419">
+            <div class="col-sm-6" id="A13583" data-tid="A350420">
+                <label class="control-label" id="A13584" data-tid="A350421">Fiziki Muayene</label>
+                <hvl-richtextbox [value]="hemodialysisProcedureFormViewModel.AnamnesisPhysicalExaminationInfo" Height="100px" ReadOnly="true" id="A13585" data-tid="A350422">
+                </hvl-richtextbox>
+            </div>
+            <div class="col-sm-6" id="A13586" data-tid="A350423">
+                <label class="control-label" id="A13587" data-tid="A350424">Tedavi Karar</label>
+                <hvl-richtextbox [value]="hemodialysisProcedureFormViewModel.AnamnesisMTSConclusionInfo" Height="100px" ReadOnly="true" id="A13588" data-tid="A350425">
+                </hvl-richtextbox>
+            </div>
+        </div>
+    </div>
+</dx-popup>
+
+<dx-popup width="400px" height="140px" [(visible)]="showCancelOrderDetails" [closeOnOutsideClick]="true" (onDisposing)="onAnemnesisPopUpDisposing()" title="Anamnez Bilgisi" i18n-title="@@M10954" id="A13573" data-tid="A350426">
+    <div *dxTemplate="let data of 'content'" id="A13574" data-tid="A350427">
+        <p data-tid="A350428">
+            <input type="radio" value="false" name="cancelAllOrderDetails" [(ngModel)]="hemodialysisProcedureFormViewModel.cancelAllOrderDetails" data-tid="A350429" /> Sadece bu seansı iptal et
+            <br data-tid="A350430" />
+            <input type="radio" value="true" name="cancelAllOrderDetails" [(ngModel)]="hemodialysisProcedureFormViewModel.cancelAllOrderDetails" data-tid="A350431" /> Tüm seansları iptal et
+        </p>
+
+        <!--<div class="radio">
+            <label>
+                <input type="radio" [ngModel]="hemodialysisProcedureFormViewModel.cancelAllOrderDetails" id="optionsRadios1" value="false" checked>
+                Sadece bu seansı iptal et
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio" [ngModel]="hemodialysisProcedureFormViewModel.cancelAllOrderDetails" id="optionsRadios1" value="true">
+                Tüm seansları iptal et
+            </label>
+        </div>-->
+
+        <button type="button" class="btn btn-xs btn-success float-right" (click)="approveAllOrderDetails($event)" data-tid="A350432">Tamam</button>
+        <button type="button" class="btn btn-xs btn-primary float-right" (click)="rejectAllOrderDetails($event)" data-tid="A350433">İptal</button>
+    </div>
+</dx-popup>
+
+
+<dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A28559" data-tid="A350434">
+</dx-load-panel>

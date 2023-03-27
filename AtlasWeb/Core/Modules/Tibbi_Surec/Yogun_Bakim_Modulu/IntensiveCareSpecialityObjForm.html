@@ -1,0 +1,102 @@
+﻿<!--<NeStatePanelComponent [ObjectDefID]="intensiveCareSpecialityObjFormViewModel._IntensiveCareSpecialityObj.ObjectDefID" [CurrentStateDefID]="intensiveCareSpecialityObjFormViewModel._IntensiveCareSpecialityObj.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" id="A30106" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition">
+</NeStatePanelComponent>-->
+<form id="IntensiveCareSpecialityObjForm" class="form-horizontal" role="form" data-tid="A368986"></form>
+<div class="row" id="A30108" data-tid="A368987">
+    <div class="col-md-3" data-tid="A368988">
+        <label class="control-label" data-tid="A368989">Sepsis Durumu</label>
+        <hvl-list-box #Validation (SelectedObjectChange)="onSepsisStatusChanged($event)" [AutoCompleteDialogHeight]="SepsisStatus?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="SepsisStatus?.AutoCompleteDialogWidth" [AutoCompleteMode]="SepsisStatus?.AutoCompleteMode" [BackColor]="SepsisStatus?.BackColor" [DefinitionName]="SepsisStatus?.ListDefName" [DisplayExpressionsCache]="SepsisStatus?.ListDefDisplayExpressions" [Enabled]="SepsisStatus?.Enabled" [Font]="SepsisStatus?.Font" [ForeColor]="SepsisStatus?.ForeColor" [ListFilterExpression]="SepsisStatus?.ListFilterExpression" [MinSearchLength]="SepsisStatus?.MinSearchLength" [PopupDialogFieldConfig]="SepsisStatus?.PopupDialogFieldConfig" [PopupDialogGridColumns]="SepsisStatus?.PopupDialogGridColumns" [PopupDialogHeight]="SepsisStatus?.PopupDialogHeight" [PopupDialogTitle]="SepsisStatus?.PopupDialogTitle" [PopupDialogWidth]="SepsisStatus?.PopupDialogWidth" [ReadOnly]="SepsisStatus?.ReadOnly" [SearchMode]="SepsisStatus?.SearchMode" [SearchTimeout]="SepsisStatus?.SearchTimeout" [SelectedObject]="_IntensiveCareSpecialityObj.SepsisStatus" [TabIndex]="SepsisStatus?.TabIndex" [Visible]="SepsisStatus?.Visible" [width]="SepsisStatus?.Width" data-tid="A368990">
+        </hvl-list-box>
+    </div>
+    <div class="col-md-3" data-tid="A368991">
+        <label class="control-label" data-tid="A368992">Septik Şok</label>
+        <hvl-list-box #Validation (SelectedObjectChange)="onSepticShockChanged($event)" [AutoCompleteDialogHeight]="SepticShock?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="SepticShock?.AutoCompleteDialogWidth" [AutoCompleteMode]="SepticShock?.AutoCompleteMode" [BackColor]="SepticShock?.BackColor" [DefinitionName]="SepticShock?.ListDefName" [DisplayExpressionsCache]="SepticShock?.ListDefDisplayExpressions" [Enabled]="SepticShock?.Enabled" [Font]="SepticShock?.Font" [ForeColor]="SepticShock?.ForeColor" [ListFilterExpression]="SepticShock?.ListFilterExpression" [MinSearchLength]="SepticShock?.MinSearchLength" [PopupDialogFieldConfig]="SepticShock?.PopupDialogFieldConfig" [PopupDialogGridColumns]="SepticShock?.PopupDialogGridColumns" [PopupDialogHeight]="SepticShock?.PopupDialogHeight" [PopupDialogTitle]="SepticShock?.PopupDialogTitle" [PopupDialogWidth]="SepticShock?.PopupDialogWidth" [ReadOnly]="SepticShock?.ReadOnly" [SearchMode]="SepticShock?.SearchMode" [SearchTimeout]="SepticShock?.SearchTimeout" [SelectedObject]="_IntensiveCareSpecialityObj.SepticShock" [TabIndex]="SepticShock?.TabIndex" [Visible]="SepticShock?.Visible" [width]="SepticShock?.Width" data-tid="A368993">
+        </hvl-list-box>
+    </div>
+    <div class="col-md-3" data-tid="A368994">
+        <label class="control-label" data-tid="A368995">Basamak Bilgisi</label>
+        <hvl-enum-radio-button-group (ValueChange)="onIntensiveCareStepChanged($event)" [DataTypeName]="IntensiveCareStep?.DataTypeName" [(Value)]="_IntensiveCareSpecialityObj.IntensiveCareStep" data-tid="A368996">
+        </hvl-enum-radio-button-group>
+        <br data-tid="A368997" />
+    </div>
+</div>
+<!--<div class="row">
+    <div class="col-md-12">
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse1">Yenidoğan Bilgileri</a>
+                    </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <atlas-form-editor [QueryParameters]="NewBornIntensiveCareQueryParameters" [ComponentInfo]="NewBornIntensiveCareComponentInfo" [SaveForm]="true" Title="Yenidoğan Bilgileri" (QueryResultLoaded)="newBornIntensiveCareQueryResultLoaded($event)" (ComponentOpenedOrClosed)="formOpenedOrClosed($event)" class="hideQueryList"></atlas-form-editor>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+<div class="row" data-tid="A368998">
+    <div class="col-md-6" data-tid="A368999">
+        <br data-tid="A369000" />
+        <MultipleDataComponentForm ObjectDefName="APACHESCORE" [IsFormOpenPopup]="true" [episodeAction]="intensiveCareSpecialityObjFormViewModel?.physicianApplication" [SummaryInfoList]="intensiveCareSpecialityObjFormViewModel.ApacheScoreSummaryInfoList" title="APACHE II Skorlama" [IsReadOnly]="intensiveCareSpecialityObjFormViewModel.ReadOnly" (MultipleDataComponentSaved)="multipleDataComponentSaved($event)" [IsTitleRed]="intensiveCareSpecialityObjFormViewModel._IntensiveCareSpecialityObj.IntensiveCareType==2" id="A30111" data-tid="A369001"></MultipleDataComponentForm>
+    </div>
+    <div class="col-md-6" data-tid="A369002">
+        <br data-tid="A369003" />
+        <MultipleDataComponentForm ObjectDefName="GLASKOWSCORE" [IsFormOpenPopup]="true" [episodeAction]="intensiveCareSpecialityObjFormViewModel?.physicianApplication" [SummaryInfoList]="intensiveCareSpecialityObjFormViewModel.GlaskowScoreSummaryInfoList" title="GLASKOW Skorlama" [IsReadOnly]="intensiveCareSpecialityObjFormViewModel.ReadOnly" (MultipleDataComponentSaved)="multipleDataComponentSaved($event)" id="A30112" [IsTitleRed]="intensiveCareSpecialityObjFormViewModel._IntensiveCareSpecialityObj.IntensiveCareType==2 || intensiveCareSpecialityObjFormViewModel._IntensiveCareSpecialityObj.IntensiveCareType==1" data-tid="A369004"></MultipleDataComponentForm>
+    </div>
+</div>
+<div class="row" data-tid="A369005">
+    <div class="col-md-6" data-tid="A369006">
+        <br data-tid="A369007" />
+        <MultipleDataComponentForm ObjectDefName="SAPSSCORE" [IsFormOpenPopup]="true" [episodeAction]="intensiveCareSpecialityObjFormViewModel?.physicianApplication" [SummaryInfoList]="intensiveCareSpecialityObjFormViewModel.SapScoreSummaryInfoList" title="SAP II Skorlama" [IsReadOnly]="intensiveCareSpecialityObjFormViewModel.ReadOnly" (MultipleDataComponentSaved)="multipleDataComponentSaved($event)" id="A30112" data-tid="A369008"></MultipleDataComponentForm>
+    </div>
+    <div class="col-md-6" data-tid="A369009">
+        <br data-tid="A369010" />
+        <MultipleDataComponentForm ObjectDefName="APGAR" [IsFormOpenPopup]="true" [episodeAction]="intensiveCareSpecialityObjFormViewModel?.physicianApplication" [SummaryInfoList]="intensiveCareSpecialityObjFormViewModel.ApgarScoreSummaryInfoList" title="Apgar Skorlama" [IsReadOnly]="intensiveCareSpecialityObjFormViewModel.ReadOnly" (MultipleDataComponentSaved)="multipleDataComponentSaved($event)" id="A30112" data-tid="A369011"></MultipleDataComponentForm>
+    </div>
+</div>
+<div class="row" data-tid="A369012">
+    <div class="col-md-6" data-tid="A369013">
+        <br data-tid="A369014" />
+        <MultipleDataComponentForm ObjectDefName="BALLARDNEUROMUSCULAR" [IsFormOpenPopup]="true" [episodeAction]="intensiveCareSpecialityObjFormViewModel?.physicianApplication" [SummaryInfoList]="intensiveCareSpecialityObjFormViewModel.BallardNeuromuscularScoreSummaryInfoList" title="Ballard Nöromusküler Skorlama" [IsReadOnly]="intensiveCareSpecialityObjFormViewModel.ReadOnly" (MultipleDataComponentSaved)="multipleDataComponentSaved($event)" id="A30112" data-tid="A369015"></MultipleDataComponentForm>
+    </div>
+    <div class="col-md-6" data-tid="A369016">
+        <br data-tid="A369017" />
+        <MultipleDataComponentForm ObjectDefName="BALLARDPHYSICAL" [IsFormOpenPopup]="true" [episodeAction]="intensiveCareSpecialityObjFormViewModel?.physicianApplication" [SummaryInfoList]="intensiveCareSpecialityObjFormViewModel.BallardPhysicalScoreSummaryInfoList" title="Ballard Fiziksel Skorlama" [IsReadOnly]="intensiveCareSpecialityObjFormViewModel.ReadOnly" (MultipleDataComponentSaved)="multipleDataComponentSaved($event)" id="A30112" data-tid="A369018"></MultipleDataComponentForm>
+    </div>
+</div>
+<div class="row" data-tid="A369019">
+    <div class="col-md-6" data-tid="A369020">
+        <br data-tid="A369021" />
+        <MultipleDataComponentForm ObjectDefName="SNAPPE" [IsFormOpenPopup]="true" [episodeAction]="intensiveCareSpecialityObjFormViewModel?.physicianApplication" [SummaryInfoList]="intensiveCareSpecialityObjFormViewModel.SnappeIIScoreSummaryInfoList" title="SNAP II ve SNAP_PEII" [IsReadOnly]="intensiveCareSpecialityObjFormViewModel.ReadOnly" (MultipleDataComponentSaved)="multipleDataComponentSaved($event)" id="A30112" [IsTitleRed]="intensiveCareSpecialityObjFormViewModel._IntensiveCareSpecialityObj.IntensiveCareType==0" data-tid="A369022"></MultipleDataComponentForm>
+    </div>
+    <div class="col-md-6" data-tid="A369023">
+        <br data-tid="A369024" />
+        <MultipleDataComponentForm ObjectDefName="PRISM" [IsFormOpenPopup]="true" [episodeAction]="intensiveCareSpecialityObjFormViewModel?.physicianApplication" [SummaryInfoList]="intensiveCareSpecialityObjFormViewModel.PrismSummaryInfoList" title="PRISM Skorlama" [IsReadOnly]="intensiveCareSpecialityObjFormViewModel.ReadOnly" (MultipleDataComponentSaved)="multipleDataComponentSaved($event)" id="A30112" [IsTitleRed]="intensiveCareSpecialityObjFormViewModel._IntensiveCareSpecialityObj.IntensiveCareType==1" data-tid="A369025"></MultipleDataComponentForm>
+    </div>
+</div>
+<div class="row" data-tid="A369026">
+    <div class="col-md-6" data-tid="A369027">
+        <br data-tid="A369028" />
+        <MultipleDataComponentForm ObjectDefName="WEIGHTCHART" [IsFormOpenPopup]="true" [episodeAction]="intensiveCareSpecialityObjFormViewModel?.physicianApplication" [SummaryInfoList]="intensiveCareSpecialityObjFormViewModel.WeightChartSummaryInfoList" title="Kilo Takip Çizelgesi" [IsReadOnly]="intensiveCareSpecialityObjFormViewModel.ReadOnly" (MultipleDataComponentSaved)="multipleDataComponentSaved($event)" id="A30112" data-tid="A369029"></MultipleDataComponentForm>
+    </div>
+    <div class="col-md-6" data-tid="A369030">
+        <br data-tid="A369031" />
+        <MultipleDataComponentForm ObjectDefName="GENERALINFORMATION" [IsFormOpenPopup]="true" [episodeAction]="intensiveCareSpecialityObjFormViewModel?.physicianApplication" [SummaryInfoList]="intensiveCareSpecialityObjFormViewModel.GeneralInformationSummaryInfoList" title="Yenidoğan Genel Bilgiler" [IsReadOnly]="intensiveCareSpecialityObjFormViewModel.ReadOnly" (MultipleDataComponentSaved)="multipleDataComponentSaved($event)" id="A30112" data-tid="A369032"></MultipleDataComponentForm>
+        <br data-tid="A369033" />
+    </div>
+</div>
+<div class="row" data-tid="A369034">
+    <div class="col-md-6" data-tid="A369035">
+        <br data-tid="A369036" />
+        <MultipleDataComponentForm ObjectDefName="PHOTOTHERAPY" [IsFormOpenPopup]="true" [episodeAction]="intensiveCareSpecialityObjFormViewModel?.physicianApplication" [SummaryInfoList]="intensiveCareSpecialityObjFormViewModel.PhototherapySummaryInfoList" title="Fototerapi Uygulamaları" [IsReadOnly]="intensiveCareSpecialityObjFormViewModel.ReadOnly" (MultipleDataComponentSaved)="multipleDataComponentSaved($event)" id="A30112" data-tid="A369037"></MultipleDataComponentForm>
+    </div>
+</div>
+
+<dx-popup [showTitle]="true" title="Yatan Hasta Klinik İşlemleri" [width]="1250" [height]="750" [(visible)]="showInPatientTreatmentClinic" data-tid="A369038">
+    <div *dxTemplate="let data of 'content'" id="A19505" data-tid="A369039">
+        <comp-compose [Info]="systemApiService?.componentInfo" (DynamicComponentActionExecuted)="InPatientTreatmentClinicActionExecuted($event)" data-tid="A369040"></comp-compose>
+    </div>
+</dx-popup>

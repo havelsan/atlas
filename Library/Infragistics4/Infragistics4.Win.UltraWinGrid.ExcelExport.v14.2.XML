@@ -1,0 +1,1559 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Infragistics4.Win.UltraWinGrid.ExcelExport.v14.2</name>
+    </assembly>
+    <members>
+        <member name="M:Infragistics.Shared.LocalizedCategoryAttribute.GetLocalizedString(System.String)">
+            <summary>
+            Returns the localized category name
+            </summary>
+            <param name="value">Name of the category to retreive</param>
+            <returns>The localized string value</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.GridExportCache.DocumentBandInfo.GetItemsInLogicalRow(System.Int32)">
+            <summary>
+            Returns only the headers that have a presence on a particular logical row in order from left to right. 
+            </summary>
+            <param name="logicalRow"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infragistics.Shared.UltraLicenseAttribute.GetLicensedWithProducts">
+            <summary>
+            Return the list of products that this control can be licensed with
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.HeaderTypes">
+            <summary>
+            An enumerator for different header types used in header export related events.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.ExcelExport.HeaderTypes.BandHeader">
+            <summary>
+            Currently exporting band header.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.ExcelExport.HeaderTypes.GroupHeader">
+            <summary>
+            Currently exporting group header.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.ExcelExport.HeaderTypes.ColumnHeader">
+            <summary>
+            Currently exporting column header.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.FileLimitBehaviour">
+            <summary>
+            An enumeration specifying different behaviors if excel file limit (maximum column number, maximum row number etc.) is reached during the export.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.ExcelExport.FileLimitBehaviour.ThrowException">
+            <summary>
+            Throw exception if excel file limit is reached.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.ExcelExport.FileLimitBehaviour.TruncateData">
+            <summary>
+            Truncate extra data if excel file limit is reached.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportErrorAction">
+            <summary>
+            An enum listing possible actions to take when exporting a formula to Excel.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportErrorAction.WriteErrorMessageToWorksheetCell">
+            <summary>
+            Write the <see cref="P:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportErrorEventArgs.ErrorText"/> into the cell.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportErrorAction.CancelOne">
+            <summary>
+            Cancel the exporting of the formula to the cell. The cell value will remain unchanged. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportErrorAction.CancelAll">
+            <summary>
+            Cancels the exporting of all instances of this formula. The cell value will remain unchanged. No further events will be fired for this formula.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportErrorType">
+            <summary>
+            An enum listing possible errors when converting a function from the grid into Excel.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportErrorType.UnrecognizedFunction">
+            <summary>
+            The formula references a function that Excel does not recognize.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportErrorType.UnsupportedFunction">
+            <summary>
+            This function cannot be converted into an Excel function. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportErrorType.InvalidFormula">
+            <summary>
+            The Excel engine reported that the formula was invalid. 
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportAction">
+            <summary>
+            An enum listing possible actions to take when exporting a formula to Excel.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportAction.ExportFormula">
+            <summary>
+            Attempts to convert the formula from the grid into an equivalent Excel formula and exports the formula to the WorksheetCell.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportAction.CancelOne">
+            <summary>
+            Cancels the exporting of the formula to the individual WorksheetCell.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportAction.CancelAll">
+            <summary>
+            Cancels the exporting of the formula for all cells in the column or all occurrances of the summary.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.BandSpacing">
+            <summary>
+            An enumeration specifying the amount of empty rows used as padding around a set of child rows.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.ExcelExport.BandSpacing.None">
+            <summary>
+            Specifies that no empty rows will be placed around a child rows collection.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.ExcelExport.BandSpacing.SingleRow">
+            <summary>
+            A single empty row will be placed on either side of a child rows collection.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.OutliningStyle">
+            <summary>
+            An enumeration specifying different styles of outling to apply to the exported Excel document. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.ExcelExport.OutliningStyle.RaiseExceptionOnDepthOverflow">
+            <summary>
+            If the Exporter tries to create outlining past the level that Excel supports, throw an exception. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.ExcelExport.OutliningStyle.None">
+            <summary>
+            The grid will be exported with no outlining. All rows will be expanded. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.ExcelExport.OutliningStyle.IgnoreDepthOverflow">
+            <summary>
+            Outlining will be used up to the level that Excel supports. After that, no outlining will be used. 
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.BeginExportEventHandler">
+            <summary>
+            Delegate for handling the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.BeginExport"/> event.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.InitializeRowEventHandler">
+            <summary>
+            Delegate for handling the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.InitializeRow"/> event.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.RowExportingEventHandler">
+            <summary>
+            Delegate for handling the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.RowExporting"/> event.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.RowExportedEventHandler">
+            <summary>
+            Delegate for handling the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.RowExported"/> event.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.SummaryRowExportingEventHandler">
+            <summary>
+            Delegate for handling the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.SummaryRowExporting"/> event.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.SummaryRowExportedEventHandler">
+            <summary>
+            Delegate for handling the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.SummaryRowExported"/> event.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.HeaderRowExportingEventHandler">
+            <summary>
+            Delegate for handling the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.HeaderRowExporting"/> event.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.HeaderRowExportedEventHandler">
+            <summary>
+            Delegate for handling the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.HeaderRowExported"/> event.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.CellExportingEventHandler">
+            <summary>
+            Delegate for handling the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.CellExporting"/> event.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.CellExportedEventHandler">
+            <summary>
+            Delegate for handling the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.CellExported"/> event.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.HeaderCellExportingEventHandler">
+            <summary>
+            Delegate for handling the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.HeaderCellExporting"/> event.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.HeaderCellExportedEventHandler">
+            <summary>
+            Delegate for handling the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.HeaderCellExported"/> event.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.SummaryCellExportingEventHandler">
+            <summary>
+            Delegate for handling the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.SummaryCellExporting"/> event.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.SummaryCellExportedEventHandler">
+            <summary>
+            Delegate for handling the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.SummaryCellExported"/> event.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.EndExportEventHandler">
+            <summary>
+            Delegate for handling the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.EndExport"/> event.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.InitializeColumnEventHandler">
+            <summary>
+            Delegate for handling the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.InitializeColumn"/> event.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.ExportStartedEventHandler">
+            <summary>
+            Delegate for handling the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.ExportStarted"/> event.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.ExportEndingEventHandler">
+            <summary>
+            Delegate for handling the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.ExportEnding"/> event.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.ExportEndedEventHandler">
+            <summary>
+            Delegate for handling the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.ExportEnded"/> event.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.AsynchronousExportErrorEventHandler">
+            <summary>
+            Delegate for handling the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.AsynchronousExportError"/> event.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportEventArgs">
+            <summary>
+            ExcelExportEventArgs is a base class for non-cancelable event argument classes.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportEventArgs.Workbook">
+            <summary>
+            Exporting workbook.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportEventArgs.CurrentWorksheet">
+            <summary>
+            Current exporting worksheet.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportEventArgs.CurrentRowIndex">
+            <summary>
+            Zero-based index of current exporting row in excel worksheet.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportEventArgs.CurrentColumnIndex">
+            <summary>
+            Zero-based index of current exporting column in excel worksheet.
+            </summary>			
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportEventArgs.CurrentOutlineLevel">
+            <summary>
+            Current outline level used for grouping.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportCancelEventArgs">
+            <summary>
+            ExcelExportCancelEventArgs is a base class for cancelable event argument classes.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportCancelEventArgs.Workbook">
+            <summary>
+            Exporting workbook.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportCancelEventArgs.CurrentWorksheet">
+            <summary>
+            Current exporting worksheet.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportCancelEventArgs.CurrentRowIndex">
+            <summary>
+            Zero-based index of current exporting row in excel worksheet.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportCancelEventArgs.CurrentColumnIndex">
+            <summary>
+            Zero-based index of current exporting column in excel worksheet..
+            </summary>			
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportCancelEventArgs.CurrentOutlineLevel">
+            <summary>
+            Current outline level used for grouping.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.BeginExportEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.BeginExport"/> event.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.BeginExportEventArgs.Layout">
+            <summary>
+            Grid layout.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.BeginExportEventArgs.Rows">
+            <summary>
+            Top band rows collection.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportInitializeRowEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.InitializeRow"/> event.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportInitializeRowEventArgs.Row">
+            <summary>
+            Grid row.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportInitializeRowEventArgs.SkipRow">
+            <summary>
+            Specifies whether to skip the current row.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportInitializeRowEventArgs.SkipDescendants">
+            <summary>
+            Specifies whether to skip the descendats of the current row.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportInitializeRowEventArgs.SkipSiblings">
+            <summary>
+            Specifies whether to skip sibling rows of the current row.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportInitializeRowEventArgs.TerminateExport">
+            <summary>
+            Specifies whether to terminate the export process. Current row will 
+            not be processed.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.RowExportingEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.RowExporting"/> event.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.RowExportingEventArgs.GridRow">
+            <summary>
+            Reference to row being exported.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.RowExportedEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.RowExported"/> event.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.RowExportedEventArgs.GridRow">
+            <summary>
+            Reference to row being exported.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.SummaryRowExportingEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.SummaryRowExporting"/> event.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.SummaryRowExportingEventArgs.Summaries">
+            <summary>
+            Summary values.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.SummaryRowExportingEventArgs.SummaryLevel">
+            <summary>
+            Summary level.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.SummaryRowExportedEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.SummaryRowExported"/> event.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.SummaryRowExportedEventArgs.Summaries">
+            <summary>
+            Summary values.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.SummaryRowExportedEventArgs.SummaryLevel">
+            <summary>
+            Summary level.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.HeaderRowExportingEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.HeaderRowExporting"/> event.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.HeaderRowExportingEventArgs.Band">
+            <summary>
+            UltraGridBand associated with headers.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.HeaderRowExportingEventArgs.GridRow">
+            <summary>
+            UltraGridRow associated with headers.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.HeaderRowExportingEventArgs.HeaderType">
+            <summary>
+            Type of header.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.HeaderRowExportedEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.HeaderRowExported"/> event.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.HeaderRowExportedEventArgs.Band">
+            <summary>
+            UltraGrid band associated with headers.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.HeaderRowExportedEventArgs.GridRow">
+            <summary>
+            UltraGrid row associated with headers.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.HeaderRowExportedEventArgs.HeaderType">
+            <summary>
+            Type of header.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.CellExportingEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.CellExporting"/> event.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.CellExportingEventArgs.GridRow">
+            <summary>
+            Grid row containing the cell.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.CellExportingEventArgs.GridColumn">
+            <summary>
+            Associated grid column.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.CellExportingEventArgs.Value">
+            <summary>
+            Grid cell value.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.CellExportedEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.CellExported"/> event.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.CellExportedEventArgs.GridRow">
+            <summary>
+            Grid row containing the cell.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.CellExportedEventArgs.GridColumn">
+            <summary>
+            Associated grid column.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.CellExportedEventArgs.Value">
+            <summary>
+            Grid cell value.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.HeaderCellExportingEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.HeaderCellExporting"/> event.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.HeaderCellExportingEventArgs.GridHeader">
+            <summary>
+            Grid header.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.HeaderCellExportingEventArgs.GridRow">
+            <summary>
+            Associated grid row.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.HeaderCellExportingEventArgs.HeaderType">
+            <summary>
+            Type of header.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.HeaderCellExportedEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.HeaderCellExported"/> event.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.HeaderCellExportedEventArgs.GridHeader">
+            <summary>
+            Grid header.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.HeaderCellExportedEventArgs.GridRow">
+            <summary>
+            Associated grid row.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.HeaderCellExportedEventArgs.HeaderType">
+            <summary>
+            Type of header.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.SummaryCellExportingEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.SummaryCellExporting"/> event.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.SummaryCellExportingEventArgs.Summary">
+            <summary>
+            Summary value.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.SummaryCellExportingEventArgs.SummaryLevel">
+            <summary>
+            Summary level.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.SummaryCellExportedEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.SummaryCellExported"/> event.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.SummaryCellExportedEventArgs.Summary">
+            <summary>
+            Summary value.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.SummaryCellExportedEventArgs.SummaryLevel">
+            <summary>
+            Summary level.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.EndExportEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.EndExport"/> event.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.EndExportEventArgs.Canceled">
+            <summary>
+            True if exporting process was been canceled.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.InitializeColumnEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.InitializeColumn"/> event.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.InitializeColumnEventArgs.FrameworkFormatStr">
+            <summary>
+            Format string used in .NET Framework.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.InitializeColumnEventArgs.ExcelFormatStr">
+            <summary>
+            Excel specific format string.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.InitializeColumnEventArgs.Column">
+            <summary>
+            Ultra grid column.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaEventArgs">
+            <summary>
+            Base class for event arguments for events dealing with the exporting of formulas to excel.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaEventArgs.#ctor(System.Object,System.String,Infragistics.Documents.Excel.WorksheetCell)">
+            <summary>
+            Creates a new FormulaEventArgs instance. 
+            </summary>
+            <param name="context">The object in the UltraGrid whose formula is being exported. </param>
+            <param name="gridFormula">The formula of the object in the grid being exported. </param>
+            <param name="worksheetCell">The worksheet cell to which the formula is being exported.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaEventArgs.Context">
+            <summary>
+            The object in the UltraGrid whose formula is being exported. 
+            </summary>
+            <remarks>
+            <para class="body">This will either be an <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridCell"/> or an <see cref="T:Infragistics.Win.UltraWinGrid.SummaryValue"/> object.</para>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaEventArgs.GridFormula">
+            <summary>
+            The formula of the object in the grid being exported. 
+            </summary>
+            <remarks>
+            <para class="body">This property returns the formula string applied to the column or summary in the grid being exported.</para>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaEventArgs.WorksheetCell">
+            <summary>
+            The worksheet cell to which the formula is being exported.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportingEventArgs">
+            <summary>
+            Event arguments for the FormulaExporting event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportingEventArgs.#ctor(System.Object,System.String,Infragistics.Documents.Excel.WorksheetCell,Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportAction)">
+            <summary>
+            Creates a new FormulaEventArgs instance. 
+            </summary>
+            <param name="context">The object in the UltraGrid whose formula is being exported. </param>
+            <param name="gridFormula">The formula of the object in the grid being exported.</param>
+            <param name="worksheetCell">The worksheet cell to which the formula is being exported.</param>
+            <param name="action">Determines what action to take when exporting the formula.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportingEventArgs.Action">
+            <summary>
+            Determines what action to take when exporting a formula. 
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportedEventArgs">
+            <summary>
+            Event args for the FormulaExported event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportedEventArgs.#ctor(System.Object,System.String,Infragistics.Documents.Excel.WorksheetCell)">
+            <summary>
+            Creates a new FormulaEventArgs instance. 
+            </summary>
+            <param name="context">The object in the UltraGrid whose formula is being exported. </param>
+            <param name="gridFormula">The formula of the object in the grid being exported.</param>
+            <param name="worksheetCell">The worksheet cell to which the formula is being exported.</param>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportErrorEventArgs">
+            <summary>
+            Event arguments for the FormulaExportingError event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportErrorEventArgs.#ctor(System.Object,System.String,Infragistics.Documents.Excel.WorksheetCell,Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportErrorAction,Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportErrorType,System.String,System.String)">
+            <summary>
+            Creates a new FormulaEventArgs instance. 
+            </summary>
+            <param name="context">The object in the UltraGrid whose formula is being exported. </param>
+            <param name="gridFormula">The formula of the object in the grid being exported.</param>
+            <param name="worksheetCell">The worksheet cell to which the formula is being exported.</param>
+            <param name="action">Determines what action to take when exporting the formula to the cell.</param>
+            <param name="error">An enumeration value that describes the error.</param>
+            <param name="errorText">A string with details about the error.</param>
+            <param name="excelFormula">The converted formula to apply to the worksheet cell. May be null.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportErrorEventArgs.Action">
+            <summary>
+            Determines what action to take when exporting a formula. 
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportErrorEventArgs.Error">
+            <summary>
+            An enum returning the type of error that occurred when converting the formula from the grid to Excel. 
+            </summary>
+            <remarks>
+            <para class="body">For details on the error, see the ErrorText property.</para>
+            </remarks>
+            <see cref="P:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportErrorEventArgs.ErrorText"/>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportErrorEventArgs.ErrorText">
+            <summary>
+            Gets or sets the error message if there was an error when converting a grid formula to an equivalent Excel formula. 
+            </summary>
+            <remarks>
+            <para class="body">This property will return a string with a description of any errors that may have occurred when attempting to convert a grid formula to an equivalent Excel formula. To determine the type of the error, see the <see cref="P:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportErrorEventArgs.Error"/> property.</para>
+            <para class="body">This property is settable so that when the Action is set to WriteErrorMessageToWorksheetCell, you can specify custom error text.</para>
+            </remarks>
+            <see cref="P:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportErrorEventArgs.Error"/>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportErrorEventArgs.ExcelFormula">
+            <summary>
+            Gets or sets the converted formula to apply to the worksheet cell. May be null.
+            </summary>
+            <remarks>
+            <para class="body">This property returns the formula converted to an equivalent invalid formula in Excel. This property may return null if the formula could not be converted.</para>
+            <para class="body">This property may be set so that you can correct the invalid formula. It will not be applied to the cell, however, unless <see cref="P:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportErrorEventArgs.ApplyInvalidFormulaIfPossible"/> is set ot true.</para>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportErrorEventArgs.ApplyInvalidFormulaIfPossible">
+            <summary>
+            When set to true, the UltraGridExcelExporter will attempt to write the <see cref="P:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportErrorEventArgs.ExcelFormula"/> to the worksheet cell, even though it may be invalid.
+            </summary>
+            <remarks>
+            <para class="body">If this property is set to true and then formula fails to apply to the cell, the <see cref="P:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportErrorEventArgs.Action"/> property will be used to determine how to proceed.</para>
+            </remarks>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.InitializeSummaryEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.InitializeSummary"/> event.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.InitializeSummaryEventArgs.FrameworkFormatStr">
+            <summary>
+            Format string used in .NET Framework.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.InitializeSummaryEventArgs.ExcelFormatStr">
+            <summary>
+            Excel specific format string.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.InitializeSummaryEventArgs.Summary">
+            <summary>
+            Ultra grid summary settings.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.ExportStartedEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.ExportStarted"/> event.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.ExportStartedEventArgs.Layout">
+            <summary>
+            Grid layout.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.ExportStartedEventArgs.Rows">
+            <summary>
+            Top band rows collection.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.ExportEndingEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.ExportEnding"/> event.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.ExportEndingEventArgs.Canceled">
+            <summary>
+            True if exporting process was been canceled.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.ExportEndedEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.ExportEnded"/> event.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.ExportEndedEventArgs.Canceled">
+            <summary>
+            True if exporting process was been canceled.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.AsynchronousExportErrorEventArgs">
+            <summary>
+            The event args for the 
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.AsynchronousExportErrorEventArgs.DisplayErrorMessage">
+            <summary>
+            Gets or sets whether an error dialog will be displayed by the UltraGridExcelExporter.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.AsynchronousExportErrorEventArgs.Exception">
+            <summary>
+            The exception that occurred during the asynchronous export process, or null if the error was not caused by an exception.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.AsynchronousExportErrorEventArgs.FileName">
+            <summary>
+            The filename specified to the AsynchExport method. 
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.AsynchronousExportErrorEventArgs.Workbook">
+            <summary>
+            Exporting workbook.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExporting.ArgumentInfo.GetArgumentText(System.Nullable{Infragistics.Win.CalcEngine.UltraCalcOperatorFunction})">
+            <summary>
+            Returns the text of the argument. Automatically surrounds the text with parens if the needed (as determined by the order of precedence of the next operator).
+            </summary>
+            <param name="nextFunctionOperator"></param>        
+            <returns></returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExporting.ArgumentInfo.GetArgumentText(System.Nullable{Infragistics.Win.CalcEngine.UltraCalcOperatorFunction},System.Int32)">
+            <summary>
+            Returns the text of the argument. Automatically surrounds the text with parens if the needed (as determined by the order of precedence of the next operator).
+            </summary>
+            <param name="nextFunctionOperator"></param>
+            <param name="argumentIndex">An integer indicating whether the argument is the first or second arg in an operation.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.Resources">
+            <summary>
+            Exposes a <see cref="T:Infragistics.Shared.ResourceCustomizer"/> instance for this assembly. 
+            </summary>
+            <seealso cref="P:Infragistics.Win.UltraWinGrid.ExcelExport.Resources.Customizer"/> 
+            <seealso cref="T:Infragistics.Shared.ResourceCustomizer"/> 
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.Resources.GetString(System.String,System.Object[])">
+            <summary>
+            Returns the resource string using the specified name and default culture.
+            </summary>
+            <param name="name">Name of the string resource to return.</param>
+            <param name="args">Arguments supplied to the string.Format method when formatting the string.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.Resources.GetString(System.String)">
+            <summary>
+            Returns the resource string using the specified resource name and default culture. The string is then formatted using the arguments specified.
+            </summary>
+            <param name="name">Name of the string resource to return.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.Resources.GetObject(System.String)">
+            <summary>
+            Returns the resource object using the specified name.
+            </summary>
+            <param name="name">Name of the resource item</param>
+            <returns>An object containing the specified resource</returns>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.Resources.Customizer">
+            <summary>
+            Returns the <see cref="T:Infragistics.Shared.ResourceCustomizer"/> for this assembly.
+            </summary>
+            <seealso cref="T:Infragistics.Shared.ResourceCustomizer"/> 
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExporterHelper">
+            <summary>
+            UltraGridExporterHelper implements <see cref="T:Infragistics.Win.UltraWinGrid.IUltraGridExporter"/> and serves 
+            as communication between grid and <see cref="T:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter"/>. 
+            Class is internal so user can't create helper and call 
+            <see cref="M:Infragistics.Win.UltraWinGrid.UltraGrid.Export(Infragistics.Win.UltraWinGrid.IUltraGridExporter)"/> method on the grid directly.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter">
+            <summary>
+            UltraGridExcelExporter component provides excel exporting functionality to UltraGrid.
+            </summary>	
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.ExcelRelevantPropFlags">
+            <summary>
+            Relevant appearance properties used in excel exporting. All other 
+            properties are ignored in exporting process.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.#ctor">
+            <summary>
+            UltraGridExcelExporter constructor.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            UltraGridExcelExporter constructor.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.Export(Infragistics.Win.UltraWinGrid.UltraGrid,System.String)">
+            <summary>
+            Exports the passed in grid to specified file. 
+            </summary>
+            <param name="grid">Grid to export.</param>
+            <param name="fileName">Name and path of resulting excel file.</param>
+            <returns>Created <see cref="T:Infragistics.Documents.Excel.Workbook"/>.</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.Export(Infragistics.Win.UltraWinGrid.UltraGrid,System.String,Infragistics.Documents.Excel.WorkbookFormat)">
+            <summary>
+            Exports the passed in grid to specified file. 
+            </summary>
+            <param name="grid">Grid to export.</param>
+            <param name="fileName">Name and path of resulting excel file.</param>
+            <param name="workbookFormat">Specifies the format for the new workbook (Excel2007 or Excel97To2003) .</param>
+            <returns>Created <see cref="T:Infragistics.Documents.Excel.Workbook"/>.</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.Export(Infragistics.Win.UltraWinGrid.UltraGrid)">
+            <summary>
+            Creates a new workbook with empty <see cref="T:Infragistics.Documents.Excel.Worksheet"/> 
+            and exports the passed in grid to it. 
+            </summary>
+            <param name="grid">Grid to export.</param>
+            <returns>Created <see cref="T:Infragistics.Documents.Excel.Workbook"/>.</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.Export(Infragistics.Win.UltraWinGrid.UltraGrid,Infragistics.Documents.Excel.WorkbookFormat)">
+            <summary>
+            Creates a new workbook with empty <see cref="T:Infragistics.Documents.Excel.Worksheet"/> 
+            and exports the passed in grid to it. 
+            </summary>
+            <param name="grid">Grid to export.</param>
+            <param name="workbookFormat">Specifies the format for the new workbook (Excel2007 or Excel97To2003) .</param>
+            <returns>Created <see cref="T:Infragistics.Documents.Excel.Workbook"/>.</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.Export(Infragistics.Win.UltraWinGrid.UltraGrid,Infragistics.Documents.Excel.Workbook)">
+            <summary>
+            Exports the passed in ultragrid to the specified workbook in the active 
+            worksheet. If there are no worksheets in workbook, new worksheet is created. 
+            </summary>
+            <param name="grid">Grid to export.</param>
+            <param name="workbook">Destination <see cref="T:Infragistics.Documents.Excel.Workbook"/>.</param>
+            <returns>Destination <see cref="T:Infragistics.Documents.Excel.Workbook"/>.</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.Export(Infragistics.Win.UltraWinGrid.UltraGrid,Infragistics.Documents.Excel.Worksheet)">
+            <summary>
+            Exports the passed in ultragrid to the specified worksheet.
+            </summary>
+            <param name="grid">Grid to export.</param>
+            <param name="worksheet">Destination <see cref="T:Infragistics.Documents.Excel.Worksheet"/>.</param>
+            <returns>Parent workbook of passed in worksheet.</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.Export(Infragistics.Win.UltraWinGrid.UltraGrid,Infragistics.Documents.Excel.Workbook,System.Int32,System.Int32)">
+            <summary>
+            Exports the passed in ultragrid to the specified workbook in the active 
+            worksheet starting at the specified row and column. If there are no 
+            worksheets in workbook, new worksheet is created. It returns the passed 
+            in workbook.
+            </summary>
+            <param name="grid">Grid to export.</param>
+            <param name="workbook">Destination <see cref="T:Infragistics.Documents.Excel.Workbook"/>.</param>
+            <param name="startRow">Start row for exported data (zero based).</param>
+            <param name="startColumn">Start column for exported data (zero based).</param>
+            <returns>Destination <see cref="T:Infragistics.Documents.Excel.Workbook"/>.</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.Export(Infragistics.Win.UltraWinGrid.UltraGrid,Infragistics.Documents.Excel.Worksheet,System.Int32,System.Int32)">
+            <summary>
+            Exports the passed in ultragrid to the specified worksheet starting at 
+            the specified row and column.
+            </summary>
+            <param name="grid">Grid to export.</param>
+            <param name="worksheet">Destination <see cref="T:Infragistics.Documents.Excel.Worksheet"/>.</param>
+            <param name="startRow">Start row for exported data (zero based).</param>
+            <param name="startColumn">Start column for exported data (zero based).</param>
+            <returns>Parent workbook of passed in worksheet.</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.ExportAsync(Infragistics.Win.UltraWinGrid.UltraGrid,System.String)">
+            <summary>
+            Exports the passed in grid to specified file asynchronously. 
+            </summary>
+            <param name="grid">Grid to export.</param>
+            <param name="fileName">Name and path of resulting excel file.</param>   
+            <remarks>
+            <para class="body">
+            The ExportAsync method exports the UltraWinGrid to Excel asynchronously, unlike the Export method which is synchronous. This is acheived using timers and is not a multi-threaded operation. You should not attempt to access the exporter Workbook, Worksheet, or file until the operation export is complete. You can determine when the process has ending by trapping the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.EndExport"/> event.
+            During the asynchronous export process, the UltraWinGrid will disable the user's ability to add, remove, delete, edit, filter, sort, or otherwise modify the state of the data during the export process. 
+            It is strongly advised that you make sure that the grid's DataSource is not modified during the asynchronous export process.
+            If the data is modifed during the asynchonous export process, the modified data may or may not be exported in it's new state, or (more likely) the export process may be terminated entirely. 
+            Also note that you may not perform more than one export operation at a time on the same UltraWinGrid or using the same UltraGridExcelExporter, either synchronously or asynchronous. Attempting to do so will result in an <see cref="T:System.InvalidOperationException"/>.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.ExportAsync(Infragistics.Win.UltraWinGrid.UltraGrid,System.String,Infragistics.Documents.Excel.WorkbookFormat)">
+            <summary>
+            Exports the passed in grid to specified file asynchronously. 
+            </summary>
+            <param name="grid">Grid to export.</param>
+            <param name="fileName">Name and path of resulting excel file.</param>
+            <param name="workbookFormat">Specifies the format for the new workbook (Excel2007 or Excel97To2003) .</param>
+            <remarks>
+            <para class="body">
+            The ExportAsync method exports the UltraWinGrid to Excel asynchronously, unlike the Export method which is synchronous. This is acheived using timers and is not a multi-threaded operation. You should not attempt to access the exporter Workbook, Worksheet, or file until the operation export is complete. You can determine when the process has ending by trapping the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.EndExport"/> event.
+            During the asynchronous export process, the UltraWinGrid will disable the user's ability to add, remove, delete, edit, filter, sort, or otherwise modify the state of the data during the export process. 
+            It is strongly advised that you make sure that the grid's DataSource is not modified during the asynchronous export process.
+            If the data is modifed during the asynchonous export process, the modified data may or may not be exported in it's new state, or (more likely) the export process may be terminated entirely. 
+            Also note that you may not perform more than one export operation at a time on the same UltraWinGrid or using the same UltraGridExcelExporter, either synchronously or asynchronous. Attempting to do so will result in an <see cref="T:System.InvalidOperationException"/>.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.ExportAsync(Infragistics.Win.UltraWinGrid.UltraGrid,Infragistics.Documents.Excel.Workbook)">
+            <summary>
+            Exports the passed in ultragrid to the specified workbook in the active 
+            worksheet asynchronously. If there are no worksheets in workbook, new worksheet is created. 
+            </summary>
+            <param name="grid">Grid to export.</param>
+            <param name="workbook">Destination <see cref="T:Infragistics.Documents.Excel.Workbook"/>.</param>
+            <remarks>
+            <para class="body">
+            The ExportAsync method exports the UltraWinGrid to Excel asynchronously, unlike the Export method which is synchronous. This is acheived using timers and is not a multi-threaded operation. You should not attempt to access the exporter Workbook, Worksheet, or file until the operation export is complete. You can determine when the process has ending by trapping the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.EndExport"/> event.
+            During the asynchronous export process, the UltraWinGrid will disable the user's ability to add, remove, delete, edit, filter, sort, or otherwise modify the state of the data during the export process. 
+            It is strongly advised that you make sure that the grid's DataSource is not modified during the asynchronous export process.
+            If the data is modifed during the asynchonous export process, the modified data may or may not be exported in it's new state, or (more likely) the export process may be terminated entirely. 
+            Also note that you may not perform more than one export operation at a time on the same UltraWinGrid or using the same UltraGridExcelExporter, either synchronously or asynchronous. Attempting to do so will result in an <see cref="T:System.InvalidOperationException"/>.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.ExportAsync(Infragistics.Win.UltraWinGrid.UltraGrid,Infragistics.Documents.Excel.Worksheet)">
+            <summary>
+            Exports the passed in ultragrid to the specified worksheet asynchronously.
+            </summary>
+            <param name="grid">Grid to export.</param>
+            <param name="worksheet">Destination <see cref="T:Infragistics.Documents.Excel.Worksheet"/>.</param>
+            <remarks>
+            <para class="body">
+            The ExportAsync method exports the UltraWinGrid to Excel asynchronously, unlike the Export method which is synchronous. This is acheived using timers and is not a multi-threaded operation. You should not attempt to access the exporter Workbook, Worksheet, or file until the operation export is complete. You can determine when the process has ending by trapping the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.EndExport"/> event.
+            During the asynchronous export process, the UltraWinGrid will disable the user's ability to add, remove, delete, edit, filter, sort, or otherwise modify the state of the data during the export process. 
+            It is strongly advised that you make sure that the grid's DataSource is not modified during the asynchronous export process.
+            If the data is modifed during the asynchonous export process, the modified data may or may not be exported in it's new state, or (more likely) the export process may be terminated entirely. 
+            Also note that you may not perform more than one export operation at a time on the same UltraWinGrid or using the same UltraGridExcelExporter, either synchronously or asynchronous. Attempting to do so will result in an <see cref="T:System.InvalidOperationException"/>.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.ExportAsync(Infragistics.Win.UltraWinGrid.UltraGrid,Infragistics.Documents.Excel.Workbook,System.Int32,System.Int32)">
+            <summary>
+            Exports the passed in ultragrid to the specified workbook in the active 
+            worksheet asynchronously starting at the specified row and column. If there are no 
+            worksheets in workbook, new worksheet is created. It returns the passed 
+            in workbook.
+            </summary>
+            <param name="grid">Grid to export.</param>
+            <param name="workbook">Destination <see cref="T:Infragistics.Documents.Excel.Workbook"/>.</param>
+            <param name="startRow">Start row for exported data (zero based).</param>
+            <param name="startColumn">Start column for exported data (zero based).</param>
+            <remarks>
+            <para class="body">
+            The ExportAsync method exports the UltraWinGrid to Excel asynchronously, unlike the Export method which is synchronous. This is acheived using timers and is not a multi-threaded operation. You should not attempt to access the exporter Workbook, Worksheet, or file until the operation export is complete. You can determine when the process has ending by trapping the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.EndExport"/> event.
+            During the asynchronous export process, the UltraWinGrid will disable the user's ability to add, remove, delete, edit, filter, sort, or otherwise modify the state of the data during the export process. 
+            It is strongly advised that you make sure that the grid's DataSource is not modified during the asynchronous export process.
+            If the data is modifed during the asynchonous export process, the modified data may or may not be exported in it's new state, or (more likely) the export process may be terminated entirely. 
+            Also note that you may not perform more than one export operation at a time on the same UltraWinGrid or using the same UltraGridExcelExporter, either synchronously or asynchronous. Attempting to do so will result in an <see cref="T:System.InvalidOperationException"/>.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.ExportAsync(Infragistics.Win.UltraWinGrid.UltraGrid,Infragistics.Documents.Excel.Worksheet,System.Int32,System.Int32)">
+            <summary>
+            Exports the passed in ultragrid to the specified worksheet asynchronously starting at 
+            the specified row and column.
+            </summary>
+            <param name="grid">Grid to export.</param>
+            <param name="worksheet">Destination <see cref="T:Infragistics.Documents.Excel.Worksheet"/>.</param>
+            <param name="startRow">Start row for exported data (zero based).</param>
+            <param name="startColumn">Start column for exported data (zero based).</param>
+            <remarks>
+            <para class="body">
+            The ExportAsync method exports the UltraWinGrid to Excel asynchronously, unlike the Export method which is synchronous. This is acheived using timers and is not a multi-threaded operation. You should not attempt to access the exporter Workbook, Worksheet, or file until the operation export is complete. You can determine when the process has ending by trapping the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.EndExport"/> event.
+            During the asynchronous export process, the UltraWinGrid will disable the user's ability to add, remove, delete, edit, filter, sort, or otherwise modify the state of the data during the export process. 
+            It is strongly advised that you make sure that the grid's DataSource is not modified during the asynchronous export process.
+            If the data is modifed during the asynchonous export process, the modified data may or may not be exported in it's new state, or (more likely) the export process may be terminated entirely. 
+            Also note that you may not perform more than one export operation at a time on the same UltraWinGrid or using the same UltraGridExcelExporter, either synchronously or asynchronous. Attempting to do so will result in an <see cref="T:System.InvalidOperationException"/>.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.BeginExportInternal(Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExporterHelper,Infragistics.Win.UltraWinGrid.UltraGridLayout,Infragistics.Win.UltraWinGrid.RowsCollection)">
+            <summary>
+            BeginExportInternal is indirectly called by grid (via UltraGridExporterHelper).
+            </summary>
+            <param name="exportHelper"></param>
+            <param name="exportLayout"></param>
+            <param name="rows"></param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.ProcessGridRowInternal(Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExporterHelper,Infragistics.Win.UltraWinGrid.UltraGridRow,Infragistics.Win.UltraWinGrid.ProcessRowParams)">
+            <summary>
+            ProcessGridRowInternal is indirectly called by grid (via UltraGridExporterHelper).
+            </summary>
+            <param name="exportHelper"></param>
+            <param name="row"></param>
+            <param name="processRowParams"></param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.EndExportInternal(Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExporterHelper,System.Boolean)">
+            <summary>
+            EndExportInternal is indirectly called by grid (via UltraGridExporterHelper).
+            </summary>
+            <param name="exportHelper"></param>
+            <param name="canceled"></param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.OnBeginExport(Infragistics.Win.UltraWinGrid.ExcelExport.BeginExportEventArgs)">
+            <summary>
+            Called before grid export starts.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.OnInitializeRow(Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportInitializeRowEventArgs)">
+            <summary>
+            Called when a row is initialized.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.OnRowExporting(Infragistics.Win.UltraWinGrid.ExcelExport.RowExportingEventArgs)">
+            <summary>
+            Called before grid row is exported to excel.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.OnRowExported(Infragistics.Win.UltraWinGrid.ExcelExport.RowExportedEventArgs)">
+            <summary>
+            Called after grid row is exported to excel.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.OnSummaryRowExporting(Infragistics.Win.UltraWinGrid.ExcelExport.SummaryRowExportingEventArgs)">
+            <summary>
+            Called before summary row is exported to excel.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.OnSummaryRowExported(Infragistics.Win.UltraWinGrid.ExcelExport.SummaryRowExportedEventArgs)">
+            <summary>
+            Called after summary row is exported to excel.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.OnHeaderRowExporting(Infragistics.Win.UltraWinGrid.ExcelExport.HeaderRowExportingEventArgs)">
+            <summary>
+            Called before header row is exported to excel.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.OnHeaderRowExported(Infragistics.Win.UltraWinGrid.ExcelExport.HeaderRowExportedEventArgs)">
+            <summary>
+            Called after header row is exported to excel.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.OnCellExporting(Infragistics.Win.UltraWinGrid.ExcelExport.CellExportingEventArgs)">
+            <summary>
+            Called before grid cell is exported to excel.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.OnCellExported(Infragistics.Win.UltraWinGrid.ExcelExport.CellExportedEventArgs)">
+            <summary>
+            Called after grid cell is exported to excel.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.OnHeaderCellExporting(Infragistics.Win.UltraWinGrid.ExcelExport.HeaderCellExportingEventArgs)">
+            <summary>
+            Called before header cell is exported to excel.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.OnHeaderCellExported(Infragistics.Win.UltraWinGrid.ExcelExport.HeaderCellExportedEventArgs)">
+            <summary>
+            Called after header cell is exported to excel.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.OnSummaryCellExporting(Infragistics.Win.UltraWinGrid.ExcelExport.SummaryCellExportingEventArgs)">
+            <summary>
+            Called before summary cell is exported to excel.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.OnSummaryCellExported(Infragistics.Win.UltraWinGrid.ExcelExport.SummaryCellExportedEventArgs)">
+            <summary>
+            Called after summary cell is exported to excel.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.OnEndExport(Infragistics.Win.UltraWinGrid.ExcelExport.EndExportEventArgs)">
+            <summary>
+            Called after grid export is finished.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.OnInitializeColumn(Infragistics.Win.UltraWinGrid.ExcelExport.InitializeColumnEventArgs)">
+            <summary>
+            Occurs when a grid column is initialized. 
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.OnFormulaExporting(Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportingEventArgs)">
+            <summary>
+            Occurs before exporting a formula to a worksheet cell.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.OnFormulaExported(Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportedEventArgs)">
+            <summary>
+            Occurs after exporting a formula (or an error message if the formula could not be converted to Excel) to a worksheet cell.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.OnFormulaExportError(Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportErrorEventArgs)">
+            <summary>
+            Occurs after exporting a formula (or an error message if the formula could not be converted to Excel) to a worksheet cell.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.OnInitializeSummary(Infragistics.Win.UltraWinGrid.ExcelExport.InitializeSummaryEventArgs)">
+            <summary>
+            Occurs when a summary is initialized. 
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.OnExportStarted(Infragistics.Win.UltraWinGrid.ExcelExport.ExportStartedEventArgs)">
+            <summary>
+            Used to invoke the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.ExportStarted"/> event.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.OnExportEnding(Infragistics.Win.UltraWinGrid.ExcelExport.ExportEndingEventArgs)">
+            <summary>
+            Used to invoke the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.ExportEnding"/> event.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>        
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.OnExportEnded(Infragistics.Win.UltraWinGrid.ExcelExport.ExportEndedEventArgs)">
+            <summary>
+            Used to invoke the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.ExportEnded"/> event.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.OnAsynchronousExportError(Infragistics.Win.UltraWinGrid.ExcelExport.AsynchronousExportErrorEventArgs)">
+            <summary>
+            Used to invoke the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.AsynchronousExportError"/> event.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.FileLimitBehaviour">
+            <summary>
+            Specifies behavior during the exporting process. Use this if you want exporter to behave 
+            differently when it reaches one of excel file limits.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.DefaultWorkbookPaletteMode">
+            <summary>
+            Determines the default <see cref="T:Infragistics.Documents.Excel.WorkbookPaletteMode"/> to use when exporting.
+            </summary>
+            <remarks>
+            <p class="body">This property determines whether a custom palette will be created or whether to use the standard Excel palette of colors when exporting.</p>
+            <p class="body">A custom palette will make the exported Excel Workbook appear exactly like the exported grid. However, using a custom palette can cause problems when copying and pasting from one Excel Workbook to another. Since the two workbooks are unlikely to share exactly the same palette, colors may change.</p>
+            <p class="body">Using the standard Excel palette means that the colors in the Excel Workbook will not exactly match those in the grid. For each color used by the grid, the closest matching color in the standard palette will be used in Excel. Copy and Paste using a Workbook creating using the Standard palette will not result in any color changes - unless the pasting is done onto a Workbook with a custom palette.</p>
+            <p class="note">Note that the palette mode is determined by the WorkBook. So this property will only be used when the ExcelExport creates a new workbook. If a workbook is passed in to the Export method, then the palette mode of the Workbook is used. To change the palette mode of a Workbook created in code, pass a <see cref="T:Infragistics.Documents.Excel.WorkbookPaletteMode"/> into the Workbook constructor.</p>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.ExportFormulas">
+            <summary>
+            Determines whether formulas in the grid will be exported to Excel.
+            </summary>
+            <remarks>
+            <p class="body">When true (the default), the UltraGridExcelExport will attempt to convert grid formulas into equivalent formulas in the exported worksheet.</p>
+            <p class="body">When false, the value of the cell in the grid at the time of the export will be exported directly to the value of the cells in the worksheet.</p>
+            <p class="body">The exporting of formulas is done after all of the data in the grid has been exported. So when this property is set to true, the normal export process of exporting the values of the grid cells to the worksheet cells will still occur as normal, and the exporting of formulas will occur after all of the raw data exporting has completed.</p>
+            <p class="body">Due to limitations of Excel and differences between Excel and UltraCalcManager behavior, some formulas may require the creation of a hidden worksheet which will point back to the main worksheet for it's data.</p>
+            <p class="body">If the exporter fails to convert a formula for any reason, the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.FormulaExportError"/> event will fire. By default, if the event is not handled, the error message will be written to the worksheet cell.</p>
+            </remarks>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.FormulaExporting"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.FormulaExported"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.FormulaExportError"/>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.BandSpacing">
+            <summary>
+            Gets or sets the amount of empty rows used as padding around a set of child rows.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.OutliningStyle">
+            <summary>
+            Determines how outlining is handled.
+            </summary>
+            <remarks>
+            <para class="body">Excel only supports outlining up to 8 levels (0-7). This property allows you to specify what to do when the grid hierarchy exceeds this limit, or to turn outlining off entirely.</para>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.ExportValueLists">
+            <summary>
+            Determines whether dropdown lists in the grid will be exported to Excel.
+            </summary>
+            <remarks>
+            <p class="body">When true (the default), the UltraGridExcelExporter will try to duplicate any dropdown lists such as UltraDropDown, UltraCombo, ValueList or BindableValueList that are used in the grid in the exported Excel worksheet.</p>        
+            <p class="body">The exporting of value list is done during the export of the cell. So it is possible to modify or remove the list using the DataValidationRule propety of the WorksheetCell at any time after the cell has been exported, such as the CellExported event.</p>        
+            </remarks>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.FormulaExporting"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.FormulaExported"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.FormulaExportError"/>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.BeginExport">
+            <summary>
+            Occurs before grid export starts.
+            </summary>
+            <remarks>
+            <p class="body">The <i>Layout</i> argument returns a reference to a cloned UltraGridLayout used for excel exporting. Any changes you make to this layout will be reflected in exported file and not in the original grid layout.</p>
+            <p class="body">The <i>Rows</i> argument returns a reference to a original rows collection in top band.</p>
+            <p class="body">Additionaly this event has Workbook, CurrentWorksheet, CurrentRowIndex, CurrentColumnIndex, CurrentOutlineLevel arguments inherited from <see cref="T:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportEventArgs"/>.</p>
+            <p class="body">This event is fired before all other events. You can use it to do any preprocessing before exporting process starts. For example, you can set properties on cloned layout or write some custom header to Excel workbook.</p>
+            </remarks>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.InitializeRow">
+            <summary>
+            Occurs when a row is initialized.
+            </summary>
+            <remarks>
+            <p class="body">The <i>Row</i> argument returns a reference to a grid row which is being exported.</p>
+            <p class="body">The <i>SkipRow</i> argument specifies whether to skip the current row. This argument doesn't affect exporting of descendant rows.</p>
+            <p class="body">The <i>SkipDescendants</i> argument specifies whether to skip the descendats of the current row.</p>
+            <p class="body">The <i>SkipSiblings</i> argument specifies whether to skip sibling rows of the current row.</p>
+            <p class="body">The <i>TerminateExport</i> argument specifies whether to terminate the export process. Current row will not be processed.</p>
+            <p class="body">Additionaly this event has Workbook, CurrentWorksheet, CurrentRowIndex, CurrentColumnIndex, CurrentOutlineLevel arguments inherited from <see cref="T:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportEventArgs"/>.</p>
+            <p class="body">This event is fired for every grid row which is being exported, and before <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.RowExporting"/> and <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.RowExported"/> are fired. Use this event to set grid row specific properties and to control exporting process.</p>
+            </remarks>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.RowExporting">
+            <summary>
+            Occurs before grid row is exported to excel.
+            </summary>
+            <remarks>
+            <p class="body">The <i>GridRow</i> argument returns a reference to row being exported.</p>
+            <p class="body">Additionaly this event has Cancel, Workbook, CurrentWorksheet, CurrentRowIndex, CurrentColumnIndex, CurrentOutlineLevel arguments inherited from <see cref="T:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportCancelEventArgs"/>.</p>
+            <p class="body">This event is fired before excel row with grid data is processed. Use Cancel argument to cancel row exporting. If grid rows spans multiple Excel rows (like in row layout mode), this event is fired only for first row.</p>
+            </remarks>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.RowExported">
+            <summary>
+            Occurs after grid row is exported to excel.
+            </summary>
+            <remarks>
+            <p class="body">The <i>GridRow</i> argument returns a reference to row being exported.</p>
+            <p class="body">Additionaly this event has Workbook, CurrentWorksheet, CurrentRowIndex, CurrentColumnIndex, CurrentOutlineLevel arguments inherited from <see cref="T:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportEventArgs"/>.</p>
+            <p class="body">This event is fired after excel row with grid data is processed. Use it to apply any additional formatting to excel row. If grid rows spans multiple Excel rows (like in row layout mode), this event is fired only for last row.</p>
+            </remarks>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.SummaryRowExporting">
+            <summary>
+            Occurs before summary row is exported to excel.
+            </summary>
+            <remarks>
+            <p class="body">The <i>Summaries</i> argument returns a reference to summary values.</p>
+            <p class="body">The <i>SummaryLevel</i> argument returns a current summary level.</p>
+            <p class="body">Additionaly this event has Cancel, Workbook, CurrentWorksheet, CurrentRowIndex, CurrentColumnIndex, CurrentOutlineLevel arguments inherited from <see cref="T:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportCancelEventArgs"/>.</p>
+            <p class="body">This event is fired before excel row with summary values for specific level is processed. Use Cancel argument to cancel row exporting. If summaries span multiple Excel rows (like in row layout mode), this event is fired only for first row of summaries.</p>
+            </remarks>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.SummaryRowExported">
+            <summary>
+            Occurs after summary row is exported to excel.
+            </summary>
+            <remarks>
+            <p class="body">The <i>Summaries</i> argument returns a reference to summary values.</p>
+            <p class="body">The <i>SummaryLevel</i> argument returns a current summary level.</p>
+            <p class="body">Additionaly this event has Workbook, CurrentWorksheet, CurrentRowIndex, CurrentColumnIndex, CurrentOutlineLevel arguments inherited from <see cref="T:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportEventArgs"/>.</p>
+            <p class="body">This event is fired after excel row with summary values for specific level is processed. Use it to apply any additional formatting to excel row. If summaries span multiple Excel rows (like in row layout mode), this event is fired only for last row of summaries.</p>
+            </remarks>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.HeaderRowExporting">
+            <summary>
+            Occurs before header row is exported to excel.
+            </summary>
+            <remarks>
+            <p class="body">The <i>Band</i> argument returns a reference to UltraGridBand associated with headers.</p>
+            <p class="body">The <i>GridRow</i> argument returns a reference to UltraGridRow associated with headers.</p>
+            <p class="body">The <i>HeaderType</i> argument returns type of header.</p>
+            <p class="body">Additionaly this event has Cancel, Workbook, CurrentWorksheet, CurrentRowIndex, CurrentColumnIndex, CurrentOutlineLevel arguments inherited from <see cref="T:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportCancelEventArgs"/>.</p>
+            <p class="body">This event is fired before excel row with header values is processed. Use Cancel argument to cancel row exporting. If headers span multiple Excel rows (like in row layout mode), this event is fired only for first header row.</p>
+            </remarks>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.HeaderRowExported">
+            <summary>
+            Occurs after header row is exported to excel.
+            </summary>
+            <remarks>
+            <p class="body">The <i>Band</i> argument returns a reference to UltraGridBand associated with headers.</p>
+            <p class="body">The <i>GridRow</i> argument returns a reference to UltraGridRow associated with headers.</p>
+            <p class="body">The <i>HeaderType</i> argument returns type of header.</p>
+            <p class="body">Additionaly this event has Workbook, CurrentWorksheet, CurrentRowIndex, CurrentColumnIndex, CurrentOutlineLevel arguments inherited from <see cref="T:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportEventArgs"/>.</p>
+            <p class="body">This event is fired after excel row with header values is processed. Use it to apply any additional formatting to excel row. If headers span multiple Excel rows (like in row layout mode), this event is fired only for last header row.</p>
+            </remarks>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.CellExporting">
+            <summary>
+            Occurs before grid cell is exported to excel.
+            </summary>
+            <remarks>
+            <p class="body">The <i>GridRow</i> argument returns a reference to a grid row containing the cell.</p>
+            <p class="body">The <i>GridColumn</i> argument returns a reference to associated grid column.</p>
+            <p class="body">The <i>Value</i> argument returns a grid cell value.</p>
+            <p class="body">Additionaly this event has Cancel, Workbook, CurrentWorksheet, CurrentRowIndex, CurrentColumnIndex, CurrentOutlineLevel arguments inherited from <see cref="T:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportCancelEventArgs"/>.</p>
+            <p class="body">This event is fired before excel cell with grid data is processed. Use Cancel argument to cancel cell exporting.</p>
+            </remarks>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.CellExported">
+            <summary>
+            Occurs after grid cell is exported to excel.
+            </summary>
+            <remarks>
+            <p class="body">The <i>GridRow</i> argument returns a reference to a grid row containing the cell.</p>
+            <p class="body">The <i>GridColumn</i> argument returns a reference to associated grid column.</p>
+            <p class="body">The <i>Value</i> argument returns a grid cell value.</p>
+            <p class="body">Additionaly this event has Workbook, CurrentWorksheet, CurrentRowIndex, CurrentColumnIndex, CurrentOutlineLevel arguments inherited from <see cref="T:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportEventArgs"/>.</p>
+            <p class="body">This event is fired after excel cell with grid data is processed. Use it to apply any additional formatting to excel cell.</p>
+            </remarks>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.HeaderCellExporting">
+            <summary>
+            Occurs before header cell is exported to excel.
+            </summary>
+            <remarks>
+            <p class="body">The <i>GridHeader</i> argument returns a reference to grid header.</p>
+            <p class="body">The <i>GridRow</i> argument returns a reference to associated grid row.</p>
+            <p class="body">The <i>HeaderType</i> argument returns header type.</p>
+            <p class="body">Additionaly this event has Cancel, Workbook, CurrentWorksheet, CurrentRowIndex, CurrentColumnIndex, CurrentOutlineLevel arguments inherited from <see cref="T:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportCancelEventArgs"/>.</p>
+            <p class="body">This event is fired before excel cell with header value is processed. Use Cancel argument to cancel cell exporting.</p>
+            </remarks>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.HeaderCellExported">
+            <summary>
+            Occurs after header cell is exported to excel.
+            </summary>
+            <remarks>
+            <p class="body">The <i>GridHeader</i> argument returns a reference to grid header.</p>
+            <p class="body">The <i>GridRow</i> argument returns a reference to associated grid row.</p>
+            <p class="body">The <i>HeaderType</i> argument returns header type.</p>
+            <p class="body">Additionaly this event has Workbook, CurrentWorksheet, CurrentRowIndex, CurrentColumnIndex, CurrentOutlineLevel arguments inherited from <see cref="T:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportEventArgs"/>.</p>
+            <p class="body">This event is fired after excel cell with header value is processed. Use it to apply any additional formatting to excel cell.</p>
+            </remarks>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.SummaryCellExporting">
+            <summary>
+            Occurs before summary cell is exported to excel.
+            </summary>
+            <remarks>
+            <p class="body">The <i>Summary</i> argument returns a reference to a summary value.</p>
+            <p class="body">The <i>SummaryLevel</i> argument returns current summary level.</p>
+            <p class="body">Additionaly this event has Cancel, Workbook, CurrentWorksheet, CurrentRowIndex, CurrentColumnIndex, CurrentOutlineLevel arguments inherited from <see cref="T:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportCancelEventArgs"/>.</p>
+            <p class="body">This event is fired before excel cell with summary value is processed. Use Cancel argument to cancel cell exporting.</p>
+            </remarks>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.SummaryCellExported">
+            <summary>
+            Occurs after summary cell is exported to excel.
+            </summary>
+            <remarks>
+            <p class="body">The <i>Summary</i> argument returns a reference to a summary value.</p>
+            <p class="body">The <i>SummaryLevel</i> argument returns current summary level.</p>
+            <p class="body">Additionaly this event has Workbook, CurrentWorksheet, CurrentRowIndex, CurrentColumnIndex, CurrentOutlineLevel arguments inherited from <see cref="T:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportEventArgs"/>.</p>
+            <p class="body">This event is fired after excel cell with summary value is processed. Use it to apply any additional formatting to excel cell.</p>
+            </remarks>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.EndExport">
+            <summary>
+            Occurs after grid export is finished.
+            </summary>
+            <remarks>
+            <p class="body">The <i>Canceled</i> argument is true if exporting process was been canceled.</p>
+            <p class="body">This event has Workbook, CurrentWorksheet, CurrentRowIndex, CurrentColumnIndex, CurrentOutlineLevel arguments inherited from <see cref="T:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportEventArgs"/>.</p>
+            <p class="body">This event is fired after exporting process is finished and is fired after all other events. Use this event for any post processing of excel workbook.</p>
+            </remarks>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.InitializeColumn">
+            <summary>
+            Occurs when a grid column is initialized. 
+            </summary>
+            <remarks>
+            <p class="body">The <i>FrameworkFormatStr</i> argument has value only if column has format string assigned. Value represents format string in .NET Framework format.</p>
+            <p class="body">If needed, the <i>ExcelFormatStr</i> argument should be set to excel specific format string. If not set, cells in column will have no specific format.</p>
+            <p class="body">This event is fired when a grid column is initialized. You should use this event to convert format strings from .NET Framework format to Excel format. See .NET Framework documentation and Excel help file for more information about differences in format strings.</p>
+            </remarks>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.FormulaExporting">
+            <summary>
+            Fires before exporting a formula to a worksheet cell.
+            </summary>
+            <remarks>
+            <para class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaEventArgs.Context"/> property will return the object in the grid whose formula is being exported. This will be either an <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridCell"/> or a <see cref="T:Infragistics.Win.UltraWinGrid.SummaryValue"/>.</para>
+            <para class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaEventArgs.GridFormula"/> property will return the formula applied to the object in the grid.</para>
+            <para class="body">This event will fire after the <see cref="T:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter"/> has attempted to convert a grid formula into an equivalent Excel formula and is export to apply the formula (or an error message if the conversion failed) to the worksheet cell.</para>
+            </remarks>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.FormulaExported">
+            <summary>
+            Fires after exporting a formula (or an error message if the conversion from a grid formula to an Excel formula failed) to a worksheet cell.
+            </summary>
+            <remarks>
+            <para class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaEventArgs.Context"/> property will return the object in the grid whose formula is being exported. This will be either an <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridCell"/> or a <see cref="T:Infragistics.Win.UltraWinGrid.SummaryValue"/>.</para>
+            <para class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaEventArgs.GridFormula"/> property will return the formula applied to the object in the grid.</para>
+            </remarks>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.FormulaExportError">
+            <summary>
+            Fires after exporting a formula (or an error message if the conversion from a grid formula to an Excel formula failed) to a worksheet cell.
+            </summary>
+            <remarks>
+            <para class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaEventArgs.Context"/> property will return the object in the grid whose formula is being exported. This will be either an <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridCell"/> or a <see cref="T:Infragistics.Win.UltraWinGrid.SummaryValue"/>.</para>
+            <para class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaEventArgs.GridFormula"/> property will return the formula applied to the object in the grid.</para>
+            <para class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportErrorEventArgs.Error"/> property will indicate the type of error that occurred and the <see cref="P:Infragistics.Win.UltraWinGrid.ExcelExport.FormulaExportErrorEventArgs.ErrorText"/> provides details of the error.</para>
+            </remarks>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.InitializeSummary">
+            <summary>
+            Occurs when a summaryis initialized. 
+            </summary>
+            <remarks>
+            <p class="body">The <i>FrameworkFormatStr</i> argument has value only if summary has a DisplayFormat string assigned. This represents the format string in the .NET Framework format.</p>
+            <p class="body">If needed, the <i>ExcelFormatStr</i> argument should be set to an Excel-specific format string. If not set, exported summaries will have no specific format.</p>
+            <p class="body">This event is fired when a SummarySettings is initialized. You should use this event to convert format strings from .NET Framework format to Excel format. See .NET Framework documentation and Excel help file for more information about differences in format strings.</p>
+            </remarks>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.ExportStarted">
+            <summary>
+            Occurs before grid export starts.
+            </summary>
+            <remarks>
+            <p class="body">The <i>Layout</i> argument returns a reference to a cloned UltraGridLayout used for excel exporting. Any changes you make to this layout will be reflected in exported file and not in the original grid layout.</p>
+            <p class="body">The <i>Rows</i> argument returns a reference to a original rows collection in top band.</p>
+            <p class="body">Additionaly this event has Workbook, CurrentWorksheet, CurrentRowIndex, CurrentColumnIndex, CurrentOutlineLevel arguments inherited from <see cref="T:Infragistics.Win.UltraWinGrid.ExcelExport.ExcelExportEventArgs"/>.</p>
+            <p class="body">This event is fired before all other events. You can use it to do any preprocessing before exporting process starts. For example, you can set properties on cloned layout or write some custom header to Excel workbook.</p>
+            </remarks>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.ExportEnding">
+            <summary>
+            Occurs before the export process has ended, but before the Excel document is finalized.
+            </summary>
+            <remarks>
+            <p class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.ExcelExport.ExportEndedEventArgs.Canceled"/> argument is True if the exporting process was cancelled.</p>
+            <p class="body">The ExportEnding event is invoked when the export process has completed to give the developer 
+            one final opportunity to manipulate the Workbook being generated. This is particularly important when using an 
+            overload of the Export method that takes a filename as the file will be saved after the ExportEnding is complete 
+            but before the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.ExportEnded"/> so any changes to the Workbook in the ExportEnded will not be reflected 
+            in the saved file. Also, since the file will not have been created until after the ExportEnding, the file cannot 
+            be accessed in this event; use the ExportEnded event, instead.</p>    
+            </remarks>         
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.ExportStarted"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.ExportEnded"/>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.ExportEnded">
+            <summary>
+            Occurs after grid export is finished.
+            </summary>
+            <remarks>
+            <p class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.ExcelExport.ExportEndedEventArgs.Canceled"/> argument is True if the exporting process was cancelled.</p>
+            <p class="body">The ExportEnded event is raised after the export process has been completed. If an overload of 
+            the Export method that accepts a filename was used, then the file would be available at this point since the file 
+            is saved after the <see cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.ExportEnding"/> event has been completed but before the ExportEnded.</p>
+            </remarks>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.ExportStarted"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.ExportEnding"/>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.AsynchronousExportError">
+            <summary>
+            Occurs if there is an exception caught during an asyncrhonous export operation.
+            </summary>
+            <remarks>
+            <p class="body">This event fires when an error or exception occurs during an asynchronous export operation. For example, if you attempt to export to a file and the file is locked and cannot be overwritten.</p>
+            <p class="body">By default, the UltraGridExcelExporter will display an error message and the export process will be cancelled. Setting DisplayErrorMessage to false will cancel the default error message so that you can display your own, or re-try saveing the Workbook to a different filename.</p>
+            <p class="body">Note that this event will only fire for asynchronous export operations. For synchonrous operations, exceptions can be caught by wrapping the call to the Export method in a try...catch block.</p>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.About">
+            <summary>
+            Displays the About dialog for the control.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter.Infragistics#Shared#IUltraLicensedComponent#License">
+            <summary>
+            Return the license we cached inside the constructor
+            </summary>
+        </member>
+    </members>
+</doc>

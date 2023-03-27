@@ -1,0 +1,212 @@
+﻿<div class="row" data-tid="A374486">
+    <div class="col-md-12" data-tid="A374487">
+        <dx-accordion #topAccordion [items]="[{title:&#39;Sorgulama Paneli&#39;}]" collapsible="true" activeStateEnabled="false" hoverStateEnabled="false" data-tid="A374488">
+            <div *dxTemplate="let a of 'item'" data-tid="A374489">
+                <div class="row" data-tid="A374490">
+                    <div class="col-md-1" data-tid="A374491">
+                        <label class="control-label" data-tid="A374492">Başlangıç Tarihi</label>
+                        <dx-date-box type="date" displayFormat="dd/MM/yyyy" [(value)]="model.StartDate" data-tid="A374493">
+                        </dx-date-box>
+                    </div>
+                    <div class="col-md-1" data-tid="A374494">
+                        <label class="control-label" data-tid="A374495">Bitiş Tarihi</label>
+                        <dx-date-box type="date" displayFormat="dd/MM/yyyy" [(value)]="model.EndDate" data-tid="A374496">
+                        </dx-date-box>
+                    </div>
+                    <div class="col-md-1" data-tid="A374497">
+                        <label class="control-label" data-tid="A374498">TİF No</label>
+                        <dx-text-box [(value)]="model.TIFNumber" data-tid="A374499">
+                        </dx-text-box>
+                    </div>
+                    <div class="col-md-1" data-tid="A374500">
+                        <label class="control-label" data-tid="A374501">İşlem No</label>
+                        <dx-text-box [(value)]="model.OperationNumber" data-tid="A374502">
+                        </dx-text-box>
+                    </div>
+                    <div class="col-md-2" data-tid="A374503">
+                        <label class="control-label" data-tid="A374504">Dayanak Numarası</label>
+                        <dx-text-box [(value)]="model.BillNumber" data-tid="A374505">
+                        </dx-text-box>
+                    </div>
+                    <div class="col-md-2" data-tid="A374506">
+                        <label class="control-label" data-tid="A374507">Bütçe Türü</label>
+                        <dx-select-box [dataSource]="budgetTypeSource" valueExpr="ObjectID" displayExpr="Name" [(value)]="model.BudgetType" itemTemplate="customItem" (onOpened)="budgetTypeOpened()" data-tid="A374508">
+                            <div *dxTemplate="let item of 'customItem'" data-tid="A374509">
+                                <div class="row" data-tid="A374510">
+                                    <div class="col-md-3" data-tid="A374511">
+                                        {{item.Code}}
+                                    </div>
+                                    <div class="col-md-9" data-tid="A374512">
+                                        {{item.Name}}
+                                    </div>
+                                </div>
+                            </div>
+                        </dx-select-box>
+                    </div>
+                    <div class="col-md-2" data-tid="A374513">
+                        <label class="control-label" data-tid="A374514">Durumu</label>
+                        <dx-select-box [dataSource]="stateSource" valueExpr="ObjectID" displayExpr="Name" [(value)]="model.State" data-tid="A374515">
+                        </dx-select-box>
+                    </div>
+                    <div class="col-md-2" data-tid="A374516">
+                        <label class="control-label" data-tid="A374517">Ayniyat Makbuz No</label>
+                        <dx-text-box [(value)]="model.ReceiptNumber" data-tid="A374518">
+                        </dx-text-box>
+                    </div>
+                </div>
+                <div class="row" data-tid="A374519">
+                    <div class="col-md-2" data-tid="A374520">
+                        <label class="control-label" data-tid="A374521">Firma</label>
+                        <div class="row" data-tid="A374522">
+                            <div class="col-md-9" data-tid="A374523">
+                                <dx-text-box [(value)]="model.Supplier" required="true" [showClearButton]="true" data-tid="A374524">
+                                </dx-text-box>
+                            </div>
+                            <div class="col-md-3" data-tid="A374525">
+                                <dx-button icon="product" (onClick)="openCompanyList()" data-tid="A374526"></dx-button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2" data-tid="A374527">
+                        <label class="control-label" data-tid="A374528">Kurum</label>
+                        <div class="row" data-tid="A374529">
+                            <div class="col-md-9" data-tid="A374530">
+                                <dx-text-box [(value)]="model.Accountancy" required="true" readOnly="true" [showClearButton]="true" data-tid="A374531">
+                                </dx-text-box>
+                            </div>
+                            <div class="col-md-3" data-tid="A374532">
+                                <dx-button icon="product" (onClick)="openCompanyFromList()" data-tid="A374533"></dx-button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2" data-tid="A374534">
+                        <label class="control-label" data-tid="A374535">Malzeme</label>
+                        <div class="row" data-tid="A374536">
+                            <div class="col-md-9" data-tid="A374537">
+                                <dx-text-box [(value)]="model.MaterialName" required="true" readOnly="true" data-tid="A374538">
+                                </dx-text-box>
+                            </div>
+                            <div class="col-md-3" data-tid="A374539">
+                                <dx-button icon="product" (onClick)="openMaterialList()" data-tid="A374540"></dx-button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-2">
+                        <label class="control-label">Hastaya Özel Giriş</label>
+                        <dx-check-box [(value)]="model.PatientSpecial">
+                        </dx-check-box>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="control-label">Kabul No</label>
+                        <dx-text-box [(value)]="model.PatientProtocolNumber">
+                        </dx-text-box>
+                    </div> -->
+
+                    <div class="col-md-4" style="padding-top:10px;" data-tid="A374541">
+                        <div class="row" data-tid="A374542">
+                            <div class="col-md-3" data-tid="A374543">
+                                <dx-check-box [(value)]="model.PatientSpecial" text="Hastaya Özel Giriş" [width]="90" data-tid="A374544">
+                                </dx-check-box>
+                            </div>
+                            <div *ngIf="model.PatientSpecial" class="col-md-5" data-tid="A374545">
+                                <dx-text-box [(value)]="model.PatientProtocolNumber" placeholder="Hasta arama kriteri giriniz" data-tid="A374546"></dx-text-box>
+                            </div>
+                            <div *ngIf="model.PatientSpecial" class="col-md-4" data-tid="A374547">
+                                <dx-button icon="find" type="success" text="Hasta Bul" (onClick)="findPatientClick()" data-tid="A374548">
+                                </dx-button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2" data-tid="A374549">
+                        <label class="control-label" data-tid="A374550">Stok Hareket Id</label>
+                        <dx-text-box [(value)]="model.StockHareketId" data-tid="A374551">
+                        </dx-text-box>
+                    </div>
+
+                </div>
+                <br data-tid="A374552" />
+                <div class="row" data-tid="A374553">
+                    <div class="col-md-12" data-tid="A374554">
+                        <dx-button type="default" icon="search" text="Sorgula" (onClick)="getData()" data-tid="A374555"></dx-button>
+                        &nbsp;
+                        <dx-button type="default" icon="plus" (onClick)="createScreen(false)" text="Giriş Fişi Oluştur" data-tid="A374556">
+                        </dx-button>
+                        &nbsp;
+                        <dx-button type="success" icon="exportselected" text="MKYS'ye Gönder" data-tid="A374557"></dx-button>
+                        &nbsp;
+                        <dx-button type="success" icon="exportselected" text="ÜTS'ye Gönder" data-tid="A374558"></dx-button>
+                        &nbsp;
+                        <dx-button text="Temizle" icon="refresh" (onClick)="clearForm()" data-tid="A374559"></dx-button>
+                    </div>
+                </div>
+                <div class="row" data-tid="A374560">
+                    <div class="col-md-12" data-tid="A374561">
+                        <dx-data-grid width="100%" height="500px" (onRowClick)="onEditClick($event)" [dataSource]="stockActionDataSource" [showColumnLines]="true" [showRowLines]="true" [rowAlternationEnabled]="false" data-tid="A374562">
+                            <dxo-filter-row [visible]="true" data-tid="A374563"></dxo-filter-row>
+                            <dxo-paging [pageSize]="50" data-tid="A374564"></dxo-paging>
+                            <dxo-selection mode="multiple" data-tid="A374565"></dxo-selection>
+                            <dxi-column caption="Fiş Tarihi" dataField="TransactionDate" data-tid="A374566"></dxi-column>
+                            <dxi-column caption="TİF No" dataField="TIFNumber" data-tid="A374567"></dxi-column>
+                            <dxi-column caption="İşlem No" dataField="StockActionID" data-tid="A374568"></dxi-column>
+                            <dxi-column caption="Firma/Kurum Adı" dataField="DestinationStore" data-tid="A374569"></dxi-column>
+                            <dxi-column caption="Durumu" dataField="State" data-tid="A374570"></dxi-column>
+                            <dxi-column caption="Fatura Durumu" dataField="RecordType" data-tid="A374571"></dxi-column>
+                            <dxi-column caption="Hasta Adı Soyadı" dataField="PatientNameSurname" data-tid="A374572"></dxi-column>
+                            <dxi-column caption="Kabul No" dataField="PatientProtocolNumber" data-tid="A374573"></dxi-column>
+                            <dxi-column caption="Ayniyat Makbuz No" dataField="ReceiptNumber" data-tid="A374574"></dxi-column>
+                        </dx-data-grid>
+                    </div>
+                </div>
+            </div>
+        </dx-accordion>
+
+    </div>
+</div>
+<div *ngIf="isCreate" data-tid="A374575">
+    <create-entry-ticket (onEditClose)="onEditClose()" [askForMaterialGroup]="askForMaterialGroup" data-tid="A374576"></create-entry-ticket>
+</div>
+
+
+<dx-popup width="500px" height="400px" [(visible)]="isSupplierOpened" [closeOnOutsideClick]="false" title="Firma Listesi" data-tid="A374577">
+    <div class="margin-bottom-10" data-tid="A374578">
+        <div data-tid="A374579">
+            <dx-data-grid width="100%" height="300px" [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" [dataSource]="supplierGridDataSource" (onRowClick)="selectSupplier($event)" [remoteOperations]="true" [customizeColumns]="null" data-tid="A374580">
+                <dxo-filter-row [visible]="true" data-tid="A374581"></dxo-filter-row>
+                <dxo-paging [pageSize]="10" data-tid="A374582"></dxo-paging>
+                <dxo-selection mode="single" data-tid="A374583"></dxo-selection>
+                <dxi-column caption="Firma Adı" dataField="Name" data-tid="A374584"></dxi-column>
+            </dx-data-grid>
+            <dx-button type="button" class="btn btn-default" (onClick)="setSupplier()" style="margin-left: 200px;" text="Tamam" id data-tid="A374585"></dx-button>
+        </div>
+    </div>
+</dx-popup>
+
+<dx-popup width="500px" height="400px" [(visible)]="isCompanyOpened" [closeOnOutsideClick]="false" title="Firma Listesi" data-tid="A374586">
+    <div class="margin-bottom-10" data-tid="A374587">
+        <div data-tid="A374588">
+            <dx-data-grid width="100%" height="300px" [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" [dataSource]="supplierGridDataSource" (onRowClick)="selectCompany($event)" [remoteOperations]="true" [customizeColumns]="null" data-tid="A374589">
+                <dxo-filter-row [visible]="true" data-tid="A374590"></dxo-filter-row>
+                <dxo-paging [pageSize]="10" data-tid="A374591"></dxo-paging>
+                <dxo-selection mode="single" data-tid="A374592"></dxo-selection>
+                <dxi-column caption="Firma Adı" dataField="Name" data-tid="A374593"></dxi-column>
+            </dx-data-grid>
+            <dx-button type="button" class="btn btn-default" (onClick)="setCompany()" style="margin-left: 200px;" text="Tamam" id data-tid="A374594"></dx-button>
+        </div>
+    </div>
+</dx-popup>
+
+<dx-popup width="500px" height="400px" [(visible)]="showMaterialSelectGrid" [closeOnOutsideClick]="false" title="Malzeme Listesi" data-tid="A374595">
+    <div class="margin-bottom-10" data-tid="A374596">
+        <div data-tid="A374597">
+            <dx-data-grid width="100%" height="300px" [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" [dataSource]="materialDataSource" (onRowClick)="selectMaterial($event)" [remoteOperations]="true" [customizeColumns]="null" data-tid="A374598">
+                <dxo-filter-row [visible]="true" data-tid="A374599"></dxo-filter-row>
+                <dxo-paging [pageSize]="10" data-tid="A374600"></dxo-paging>
+                <dxo-selection mode="single" data-tid="A374601"></dxo-selection>
+                <dxi-column caption="Barkod" dataField="Barcode" width="100" data-tid="A374602"></dxi-column>
+                <dxi-column caption="Malzeme Adı" dataField="Name" width="300" data-tid="A374603"></dxi-column>
+                <dxi-column caption="Dağıtım Şekli" dataField="Distributiontypename" width="20" data-tid="A374604"></dxi-column>
+            </dx-data-grid>
+            <dx-button type="button" class="btn btn-default" (onClick)="setMaterial()" style="margin-left: 200px;" text="Tamam" id data-tid="A374605"></dx-button>
+        </div>
+    </div>
+</dx-popup>

@@ -1,0 +1,266 @@
+﻿<div class="row" data-tid="A339004">
+
+    <div class="col-sm-4" style="border-right-style: solid;border-right-width: 2px" data-tid="A339005">
+        <div class="row" data-tid="A339006">
+            <label class="col-sm-12" style="font-size: 20px" data-tid="A339007">
+                Yeni Randevu
+            </label>
+        </div>
+        <div class="row" *ngIf="isOpenedFromMenu == true" data-tid="A339008">
+            <div class="col-sm-12" data-tid="A339009">
+                <PatientSearchForm Width="100%" (SelectedPatientChanged)="patientChanged($event)" id="A27729" data-tid="A339010">
+                </PatientSearchForm>
+            </div>
+        </div>
+        <div class="row" data-tid="A339011">
+            <div class="col-sm-12" data-tid="A339012">
+                <SurgeryAppointmentForm *ngIf="_formLoadInput != null" [FormLoadInput]="_formLoadInput" (IsComponentSaved)="onAppointmentFormSaved($event)" data-tid="A339013">
+                </SurgeryAppointmentForm>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-sm-8" data-tid="A339014">
+        <div class="row" data-tid="A339015">
+            <label class="col-sm-12" style="font-size: 20px" data-tid="A339016">
+                Randevu Listesi
+            </label>
+        </div>
+        <div class="row" id="A27677" *ngIf="isOpenedFromMenu == true" data-tid="A339017">
+            <div class="col-sm-3" id="A27678" data-tid="A339018">
+                <div class="row" data-tid="A339019">
+                    <label class="control-label col-sm-12" id="A27679" data-tid="A339020">
+                        Randevu Başlangıç Tarihi
+                    </label>
+                    <div class="col-sm-12" id="A27680" data-tid="A339021">
+                        <dx-date-box [(value)]="surgeryAppointmentFormComponentViewModel._SearchCriteria.AppointmentStartDate" [showClearButton]="true" pickerType="calendar" type="date" style="width:100%" id="A27681" data-tid="A339022">
+                        </dx-date-box>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-3" id="A27683" data-tid="A339023">
+                <div class="row" data-tid="A339024">
+                    <label class="control-label col-sm-12" id="A27684" data-tid="A339025">
+                        Randevu Bitiş Tarihi
+                    </label>
+                    <div class="col-sm-12" id="A27685" data-tid="A339026">
+                        <dx-date-box [(value)]="surgeryAppointmentFormComponentViewModel._SearchCriteria.AppointmentEndDate" [showClearButton]="true" pickerType="calendar" type="date" style="width:100%" id="A27686" data-tid="A339027">
+                        </dx-date-box>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-3" id="A27683" data-tid="A339028">
+                <div class="row" data-tid="A339029">
+                    <label class="control-label col-sm-12" id="A27684" data-tid="A339030">
+                        Ameliyathane
+                    </label>
+                    <div class="col-sm-12" id="A27685" data-tid="A339031">
+                        <dx-tag-box [items]="surgeryAppointmentFormComponentViewModel.SurgeryDepartmentList" [(value)]="surgeryAppointmentFormComponentViewModel._SearchCriteria.SurgeryDepartments" placeholder="Ameliyathane" [searchEnabled]="true" displayExpr="Name" i18n-placeholder="@@M27304" id="A28501" data-tid="A339032">
+                        </dx-tag-box>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3" id="A27683" data-tid="A339033">
+                <div class="row" data-tid="A339034">
+                    <label class="control-label col-sm-12" id="A27684" data-tid="A339035">
+                        Salon
+                    </label>
+                    <div class="col-sm-12" id="A27685" data-tid="A339036">
+                        <dx-select-box [items]="surgeryAppointmentFormComponentViewModel.SurgeryRoomList" [(value)]="surgeryAppointmentFormComponentViewModel._SearchCriteria.SurgeryRooms" placeholder="Salon" [searchEnabled]="true" showClearButton="true" displayExpr="Name" i18n-placeholder="@@M27304" id="A28501" data-tid="A339037">
+                        </dx-select-box>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="A27677" *ngIf="isOpenedFromMenu == true" data-tid="A339038">
+            <div class="col-sm-3" id="A27678" data-tid="A339039">
+                <div class="row" data-tid="A339040">
+                    <label class="control-label col-sm-12" id="A27679" data-tid="A339041">
+                        Kabul No
+                    </label>
+                    <div class="col-sm-12" id="A27680" data-tid="A339042">
+                        <dx-text-box [(value)]="surgeryAppointmentFormComponentViewModel._SearchCriteria.SubEpisodeProtocolNo" pickerType="calendar" type="date" style="width:100%" id="A27681" data-tid="A339043">
+                        </dx-text-box>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3" id="A27683" data-tid="A339044">
+                <div class="row" data-tid="A339045">
+                    <label class="control-label col-sm-12" id="A27684" data-tid="A339046">
+                        Hasta
+                    </label>
+                    <div class="col-sm-12" id="A27685" data-tid="A339047">
+                        <PatientSearchForm Width="100%" (SelectedPatientChanged)="searchCriteriaPatientChanged($event)" id="A27729" data-tid="A339048">
+                        </PatientSearchForm>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-3" id="A27683" data-tid="A339049">
+                <div class="row" data-tid="A339050">
+                    <label class="control-label col-sm-12" id="A27684" data-tid="A339051">
+                        Servis
+                    </label>
+                    <div class="col-sm-12" id="A27685" data-tid="A339052">
+                        <dx-select-box [items]="surgeryAppointmentFormComponentViewModel.ResourceList" [(value)]="surgeryAppointmentFormComponentViewModel._SearchCriteria.Resources" placeholder="Servis" showClearButton="true" [searchEnabled]="true" displayExpr="Name" i18n-placeholder="@@M27304" id="A28501" data-tid="A339053">
+                        </dx-select-box>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3" id="A27683" data-tid="A339054">
+                <div class="row" data-tid="A339055">
+                    <label class="control-label col-sm-12" id="A27684" data-tid="A339056">
+                        Doktor
+                    </label>
+                    <div class="col-sm-12" id="A27685" data-tid="A339057">
+                        <dx-select-box [items]="surgeryAppointmentFormComponentViewModel.DoctorList" [(value)]="surgeryAppointmentFormComponentViewModel._SearchCriteria.Doctors" placeholder="Yatış Doktoru" showClearButton="true" [searchEnabled]="true" displayExpr="Name" i18n-placeholder="@@M27304" id="A28501" data-tid="A339058">
+                        </dx-select-box>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="isOpenedFromMenu == true" data-tid="A339059">
+            <div class="col-sm-2" style="padding-top: 15px" data-tid="A339060">
+                <dx-button icon="fa fa-bars" type="default" text="Listele" (onClick)="ListAppointmentsFromButton()" i18n-text="@@M11862" id="A27689" data-tid="A339061">
+                </dx-button>
+            </div>
+
+        </div>
+
+        <div class="row" data-tid="A339062">
+            <div class="col-sm-12" style="height:100%" data-tid="A339063">
+
+                <dx-data-grid #ReportGrid [columns]="SurgeryAppointmentListColumns" columnAutoWidth="true" allowColumnReordering="true" allowColumnResizing="true" [dataSource]="SurgeryAppointmentList" [filterRow]="{visible: true}" [ngStyle]="{'padding-top': '10px', 'min-width':'100%' }" keyExpr="AppointmentObjectId" [selection]="{mode: 'multiple',allowSelectAll: true, showCheckBoxesMode: 'always'}" [editing]="{mode: 'row' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" [scrolling]="{mode:'infinite'}" height="600px" data-tid="A339064">
+                    <div *dxTemplate="let cellData of 'ButtonCellTemplate'" id="A27832" data-tid="A339065">
+                        <i class="fa fa-2x fa-check-square-o" style="cursor:pointer;color: #008000" *ngIf="isOpenedFromMenu == true && cellData.data.isApprovedByDoctor == false && cellData.data.isCancelled == false" (click)="updateAppointment(cellData.data.AppointmentObjectId,true,false)" data-tid="A339066"></i>
+                        <i class="fa fa-2x fa-check-square-o" style="cursor:pointer;color: #008000" *ngIf="isOpenedFromMenu == true && cellData.data.isApprovedByDoctor == true && cellData.data.isApprovedByHeadDoctor != true && headDoctorApproveParameterActive == true && cellData.data.isCancelled == false" (click)="updateAppointment(cellData.data.AppointmentObjectId,false,false)" data-tid="A339067"></i>
+                        <i class="fa fa-2x fa-close" style="cursor:pointer;color: #f23434" *ngIf="isOpenedFromMenu == true && cellData.data.isCompleted != true && cellData.data.isCancelled == false" (click)="updateAppointment(cellData.data.AppointmentObjectId,false,true)" data-tid="A339068"></i>
+                    </div>
+                    <div *dxTemplate="let row of 'detailButtonTemplate'" id="A24132" data-tid="A367162">
+                        <button type="button" class="fa fa-archive" data-toggle="tooltip" data-placement="top" title="Ameliyat Malzemeleri" (click)="ShowSectionInfo_CellContentClickEmitted(row)" id="A35150" data-tid="A367163"></button>
+                    </div>
+
+                </dx-data-grid>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div data-tid="A339069">
+    <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A28485" data-tid="A339070">
+    </dx-load-panel>
+</div>
+
+
+<!--
+<dx-popup [showTitle]="true" [title]="reportTitle" [height]="popUpHeight" [width]="popUpWidth"
+    [(visible)]="ReportVisible" i18n-title="@@M20887" id="A27670" (onHiding)="dynamicComponentClosed($event)"
+    [position]="popUpPosition">
+    <div *dxTemplate="let data of 'content'" id="A27671">
+        <dx-scroll-view #scrollView id="scrollview" [scrollByContent]="true" [scrollByThumb]="true"
+            [showScrollbar]="always">
+            <div class="row" style="height:98%" id="A28481" [ngStyle]="composeComponentRowContainerVisible">
+                <div class="col-md-12 col-sm-12 col-xs-12" id="A28482">
+                    <comp-compose #dynamicComponent [Info]="systemApiService?.componentInfo"
+                        [SaveAndCloseCommandVisible]=true [CloseWithStateTransition]=true
+                        (DynamicComponentClosed)="dynamicComponentClosed($event)" id="A28483"></comp-compose>
+
+                    <comp-compose #dynamicComponent [Info]="systemApiService?.componentInfo" id="A16550"></comp-compose>
+                </div>
+            </div>
+        </dx-scroll-view>
+    </div>
+</dx-popup>-->
+
+<dx-popup [showTitle]="true" [height]="600" [width]="1000"
+    [(visible)]="surgeryMaterialVisible" i18n-title="@@M20887" id="A27670"
+    >
+
+        <dx-data-grid #materialMasterGrid id="materialMasterGrid" keyExpr="Procedure.ObjectID"
+            [masterDetail]="{ enabled: true, template: 'detail' }"
+            [dataSource]="MasterDataList"
+            [columns]="MasterGridColumns" [columnFixing]="{eneabled:'true'}" columnResizingMode="widget" height="500"
+            [(selectedRowKeys)]="selectedMasterGridRowKeys"
+            data-tid="A329495"
+            (onSelectionChanged)="onMasterGridSelectionChanged($event)">
+
+
+            <div *dxTemplate="let item of 'detail'" data-tid="A329520">
+                    <div class="row">
+
+                            <div class="col-sm-12" data-tid="A328114">
+                                <div class="col-sm-4" id="A26700" data-tid="A363546">
+                                    <label class="control-label" id="A26701" data-tid="A363547">Deposu</label>
+                                    <dx-select-box [items]="stores" displayExpr="Name" valueExpr="ObjectID" [searchEnabled]="true"
+                                        [acceptCustomValue]="true" [(value)]="selectedStore" (onValueChanged)="selectedStoreChange()">
+                                    </dx-select-box>
+                                </div>
+                        
+                                <div class="col-sm-6" id="A26703" data-tid="A363549">
+                                    <label class="control-label" id="A26704" data-tid="A363550">Sarf Malzeme</label>
+                        
+                                    <dx-drop-down-box #materialDrop [(value)]="selectedMaterialItem.Name" displayExpr="Name"
+                                        valueExpr="ObjectID" [showClearButton]="true" [dataSource] (onOpened)="openMaterialDropDown($event)"
+                                        (onValueChanged)="onClearMaterial($event)" data-tid="A363551">
+                                        <div *dxTemplate="let data of 'content'" data-tid="A363552">
+                                            <dx-data-grid [showColumnLines]="true" [showRowLines]="true" [showBorders]="true"
+                                                [rowAlternationEnabled]="true" [dataSource]="materialDataSource"
+                                                (onRowClick)="selectMaterial($event)" data-tid="A363553">
+                                                <dxo-search-panel [visible]="true" data-tid="A363554"></dxo-search-panel>
+                                                <dxo-filter-row [visible]="true" data-tid="A363555"></dxo-filter-row>
+                                                <dxo-paging [pageSize]="7" data-tid="A363556"></dxo-paging>
+                                                <dxo-selection mode="single" data-tid="A363557"></dxo-selection>
+                                                <dxi-column caption="Barkod" dataField="Barcode" width="100" data-tid="A363558">
+                                                </dxi-column>
+                                                <dxi-column caption="Taşınır Kodu" dataField="NATOStockNO" width="100" data-tid="A363559">
+                                                </dxi-column>
+                                                <dxi-column caption="Malzeme" dataField="Name" cssClass="pointer-column" data-tid="A363560">
+                                                </dxi-column>
+                                            </dx-data-grid>
+                                        </div>
+                                    </dx-drop-down-box>
+                                </div>
+                        
+                                <div class="col-sm-2">
+                                    <label class="control-label" id="A26704" data-tid="A363550">Miktar</label>
+                        
+                                    <dx-number-box [(value)]="materialAmount" max="9999999" id="A2030" data-tid="A324846">
+                                    </dx-number-box>
+                                </div>
+                            </div>
+                        
+                        </div>
+                        <br/>
+                        <div class="row" data-tid="A325676">
+                                <div class="col-sm-10">
+                            
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="col-sm-12" data-tid="A325677">
+                                        <dx-button type="success" style="width: 100%; margin: 0px 5px 0px 0px" text="Kaydet"
+                                            (onClick)="AddNewAppointmentMaterial(item)" data-tid="A325678"></dx-button>
+                                    </div>
+                                </div>
+                            
+                            </div>
+                            <div class="row">
+                <label class="col-sm-12" data-tid="A329521">Malzemeler</label>
+                <div class="col-sm-12 remove-padding" data-tid="A329522">
+                    <dx-data-grid #orderDetailGrid [dataSource]="item.data.Details"
+                        [columns]="DetailGridColumns"
+                        data-tid="A329523">
+                        <dxo-editing mode="cell" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="false"
+                            data-tid="A329524">
+                        </dxo-editing>
+                        <dxo-scrolling mode="infinite" data-tid="A329525"></dxo-scrolling>
+                        <dxo-sorting mode="none" data-tid="A329526"></dxo-sorting>
+                    </dx-data-grid>
+                </div>
+            </div>
+            </div>
+        </dx-data-grid>
+
+</dx-popup> 

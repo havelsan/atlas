@@ -1,0 +1,208 @@
+﻿<div class="{{this.collapseSelectedDivProperties()}}" style="height: 100%;" id="A16462" data-tid="A374768">
+    <div class="row" style="height: 100%;" data-tid="A374769">
+        <div class="col-sm-12 gradientPanel" id="A16463" data-tid="A374770">
+            <h4 style="color:#fff; font-size:19px;text-align:left;" id="A16464" data-tid="A374771">
+                <div class="btn collapseBtn" (click)="btnCollapse()" style="padding:0;margin-top:3px;margin-right: 5px;" id="A16465" data-tid="A374772">
+                    <i class="{{this.collapseIconProperties()}}" id="A16466" data-tid="A374773"></i>
+                </div>
+                <span id="A16467" data-tid="A374774">Ana Depo Listesi</span>
+            </h4>
+        </div>
+        <div class="panel-body" style="background-color:#f6f6f6;padding-bottom:0; height:100%;padding: 0" data-tid="A374775">
+            <div class="col-md-12" style="padding: 2px;height: calc(100% - 127px);" id="A10249" data-tid="A374776">
+                <dx-data-grid #grid [dataSource]="mainStoreDefinitionListDTOs" style="height: 650px;" [columns]="mainStoreDefinitionColumn" [filterRow]="{visible: true}" [paging]="{pageSize:34}" (onRowClick)="selectGridRow($event)" [showBorders]="true" data-tid="A374777">
+                    <dxo-selection mode="single" data-tid="A374778"></dxo-selection>
+                </dx-data-grid>
+            </div>
+            <br data-tid="A374779" />
+            <div class="col-md-12" style="max-height: 111px;" data-tid="A374780">
+                <div class="row" data-tid="A374781">
+                    <div class="col-sm-6" data-tid="A374782">
+                        <!--  <dx-button icon="fas fa-plus" style="float: left;" stylingMode="contained" text="Cep Depo Ekle"
+                            type="default" [width]="300" (onClick)="addNew()">
+                        </dx-button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="{{this.collapseSelectedHiddenDivProperties()}}" style="position:relative;" id="A16544" data-tid="A374783">
+    <div class="MyVerticalText" (click)="btnCollapse()" id="A16545" data-tid="A374784">
+        <i class="{{this.collapseIconProperties()}}" id="A16546" data-tid="A374785"></i>
+        <span data-tid="A374786">&nbsp;&nbsp;&nbsp;&nbsp;Ana Depo Listesi</span>
+    </div>
+</div>
+
+
+<div class="{{this.collapsedPanelProperties()}}" style="padding-top: 1%;padding-right: 3% !important;" data-tid="A374787">
+    <div id="detail" *ngIf="selectedItemFromOpen" data-tid="A374788">
+        <div class="row" data-tid="A374789">
+            <dx-button icon="fa fa-times" style="float: right;" stylingMode="contained" text="Vazgeç" type="danger" [width]="120" (onClick)="Cancel()" data-tid="A374790">
+            </dx-button>
+            <dx-button icon="fas fa-save" style="float: right;" stylingMode="contained" text="Kaydet" type="success" [width]="120" (onClick)="Save()" data-tid="A374791">
+            </dx-button>
+        </div>
+        <br data-tid="A374792" />
+        <div class="row" data-tid="A374793">
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A374794">
+                Ekleyen Kullanıcı
+                <dx-text-box [readOnly]="true" [(value)]="creationUser" data-tid="A374795"></dx-text-box>
+            </div>
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A374796">
+                Eklenme Tarihi
+                <dx-date-box style="width: 100%;" [readOnly]="true" [(value)]="creationDate" data-tid="A374797"></dx-date-box>
+            </div>
+            <div class="col-sm-2" style="font-weight: bold;" data-tid="A374798">
+                Değiştiren Kullanıcı
+                <dx-text-box [readOnly]="true" [(value)]="lastUpdateUser" data-tid="A374799"></dx-text-box>
+            </div>
+            <div class="col-sm-1" style="font-weight: bold;" data-tid="A374800">
+                <br data-tid="A374801" />
+                <dx-button type="btn btn-default" style="font-size: 100%;border-style: unset;color: #4276a4 !important;" text="İ" (onClick)="getDetailAudit()" data-tid="A374802"></dx-button>
+            </div>
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A374803">
+                Değiştirilme Tarihi
+                <dx-date-box style="width: 100%;" [readOnly]="true" [(value)]="lastUpdateDate" data-tid="A374804"></dx-date-box>
+            </div>
+        </div>
+        <br data-tid="A374805" />
+        <div class="row" data-tid="A374806">
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A374807">
+                Depo Kısa Adı *
+                <dx-text-box [(value)]="activeMainStoreDefinitionItem.Qref" data-tid="A374808">
+                </dx-text-box>
+            </div>
+            <div class="col-sm-6" style="font-weight: bold;" data-tid="A374809">
+                Depo Adı *
+                <dx-text-box [(value)]="activeMainStoreDefinitionItem.Name" data-tid="A374810">
+                </dx-text-box>
+            </div>
+            <div class="col-sm-2" style="font-weight: bold;" data-tid="A374811">
+                Durumu
+                <dx-select-box [dataSource]="MainStoreStatus" valueExpr="ordinal" displayExpr="description" [(value)]="activeMainStoreDefinitionItem.Status" data-tid="A374812">
+                </dx-select-box>
+            </div>
+            <div class="col-sm-1" style="font-weight: bold;" data-tid="A374813">
+                <br data-tid="A374814" />
+                <dx-check-box [(value)]="isActive" [width]="400" text="Aktif" style="margin-bottom: 10px;" data-tid="A374815">
+                </dx-check-box>
+            </div>
+        </div>
+        <br data-tid="A374816" />
+        <div class="row" data-tid="A374817">
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A374818">
+              Depo Kodu
+                <dx-text-box [(value)]="activeMainStoreDefinitionItem.StoreCode" data-tid="A374819">
+                </dx-text-box>
+            </div>
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A374820">
+                Depo Kayıt No
+                <dx-text-box [(value)]="activeMainStoreDefinitionItem.StoreRecordNo" data-tid="A374821">
+                </dx-text-box>
+            </div>
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A374822">
+               Birim Kayıt No
+                <dx-text-box [(value)]="activeMainStoreDefinitionItem.UnitRecordNo" data-tid="A374823">
+                </dx-text-box>
+            </div>
+            <div class="col-sm-3" data-tid="A374824">
+               Saymanlık
+                <dx-drop-down-box #ddBox [readOnly]="true" [(value)]="activeMainStoreDefinitionItem.Accountancy" [dataSource]="accoutancyDataSource" displayExpr="AccountancyName" valueExpr="ObjectID" data-tid="A374825">
+                    <dxo-drop-down-options [height]="500" data-tid="A374826"></dxo-drop-down-options>
+                    <div *dxTemplate="let data of 'content'" data-tid="A374827">
+                        <dx-data-grid keyExpr="ObjectID" width="100%" (onSelectionChanged)="onSelectionChangedAccountancy($event, ddBox.instance)" [dataSource]="accoutancyDataSource" height="100%" data-tid="A374828">
+                            <dxi-column dataField="AccountancyName" data-tid="A374829"></dxi-column>
+                            <dxo-filter-row [visible]="true" data-tid="A374830"></dxo-filter-row>
+                            <dxo-scrolling mode="infinite" data-tid="A374831"></dxo-scrolling>
+                            <dxo-selection mode="single" data-tid="A374832"></dxo-selection>
+                        </dx-data-grid>
+                    </div>
+                </dx-drop-down-box>
+            </div>
+        </div>
+        <br data-tid="A374833" />
+        <div class="row" data-tid="A374834">
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A374835">
+                MKYS Bütçe Turu
+                <dx-select-box [dataSource]="MKYSButceTuru" valueExpr="ordinal" displayExpr="description" [(value)]="activeMainStoreDefinitionItem.MKYS_ButceTuru" data-tid="A374836">
+                </dx-select-box>
+            </div>
+            <div class="col-sm-3" data-tid="A374837">
+                Depo Sorumlusu
+                <dx-drop-down-box #ddBox [(value)]="activeMainStoreDefinitionItem.GoodsAccountant.ResUserName" [dataSource]="resUserDataSource" displayExpr="ResUserName" valueExpr="ObjectID" data-tid="A374838">
+                    <dxo-drop-down-options [height]="500" data-tid="A374839"></dxo-drop-down-options>
+                    <div *dxTemplate="let data of 'content'" data-tid="A374840">
+                        <dx-data-grid keyExpr="ObjectID" width="100%" (onSelectionChanged)="onSelectionChangedGoodsAccountant($event, ddBox.instance)" [dataSource]="resUserDataSource" height="100%" data-tid="A374841">
+                            <dxi-column dataField="ResUserName" data-tid="A374842"></dxi-column>
+                            <dxo-filter-row [visible]="true" data-tid="A374843"></dxo-filter-row>
+                            <dxo-scrolling mode="infinite" data-tid="A374844"></dxo-scrolling>
+                            <dxo-selection mode="single" data-tid="A374845"></dxo-selection>
+                        </dx-data-grid>
+                    </div>
+                </dx-drop-down-box>
+            </div>
+            <div class="col-sm-3" data-tid="A374846">
+                Mal Sorumlusu
+                <dx-drop-down-box #ddBox [(value)]="activeMainStoreDefinitionItem.GoodsResponsible.ResUserName" [dataSource]="resUserDataSource" displayExpr="ResUserName" valueExpr="ObjectID" data-tid="A374847">
+                    <dxo-drop-down-options [height]="500" data-tid="A374848"></dxo-drop-down-options>
+                    <div *dxTemplate="let data of 'content'" data-tid="A374849">
+                        <dx-data-grid keyExpr="ObjectID" width="100%" (onSelectionChanged)="onSelectionChangedGoodsResponsible($event, ddBox.instance)" [dataSource]="resUserDataSource" height="100%" data-tid="A374850">
+                            <dxi-column dataField="ResUserName" data-tid="A374851"></dxi-column>
+                            <dxo-filter-row [visible]="true" data-tid="A374852"></dxo-filter-row>
+                            <dxo-scrolling mode="infinite" data-tid="A374853"></dxo-scrolling>
+                            <dxo-selection mode="single" data-tid="A374854"></dxo-selection>
+                        </dx-data-grid>
+                    </div>
+                </dx-drop-down-box>
+            </div>
+            <div class="col-sm-3" data-tid="A374855">
+                Hesap Sorumlusu
+                <dx-drop-down-box #ddBox [(value)]="activeMainStoreDefinitionItem.AccountManager.ResUserName" [dataSource]="resUserDataSource" displayExpr="ResUserName" valueExpr="ObjectID" data-tid="A374856">
+                    <dxo-drop-down-options [height]="500" data-tid="A374857"></dxo-drop-down-options>
+                    <div *dxTemplate="let data of 'content'" data-tid="A374858">
+                        <dx-data-grid keyExpr="ObjectID" width="100%" (onSelectionChanged)="onSelectionChangedAccountManager($event, ddBox.instance)" [dataSource]="resUserDataSource" height="100%" data-tid="A374859">
+                            <dxi-column dataField="ResUserName" data-tid="A374860"></dxi-column>
+                            <dxo-filter-row [visible]="true" data-tid="A374861"></dxo-filter-row>
+                            <dxo-scrolling mode="infinite" data-tid="A374862"></dxo-scrolling>
+                            <dxo-selection mode="single" data-tid="A374863"></dxo-selection>
+                        </dx-data-grid>
+                    </div>
+                </dx-drop-down-box>
+            </div>
+        </div>
+
+
+        <br data-tid="A374864" />
+        <div class="row" data-tid="A374865">
+            <div class="col-sm-3" style="font-weight: bold;" data-tid="A374866">
+                SMS Gönderilecek Kullanıcılar Ekleyin :
+                <dx-drop-down-box #ddBox [dataSource]="resUserDataSource" displayExpr="ResUserName" valueExpr="ObjectID" data-tid="A374867">
+                    <dxo-drop-down-options [height]="500" data-tid="A374868"></dxo-drop-down-options>
+                    <div *dxTemplate="let data of 'content'" data-tid="A374869">
+                        <dx-data-grid keyExpr="ObjectID" width="100%" (onSelectionChanged)="onSelectionChangedSmsUser($event, ddBox.instance)" [dataSource]="resUserDataSource" height="100%" data-tid="A374870">
+                            <dxi-column dataField="ResUserName" data-tid="A374871"></dxi-column>
+                            <dxo-filter-row [visible]="true" data-tid="A374872"></dxo-filter-row>
+                            <dxo-scrolling mode="infinite" data-tid="A374873"></dxo-scrolling>
+                            <dxo-selection mode="single" data-tid="A374874"></dxo-selection>
+                        </dx-data-grid>
+                    </div>
+                </dx-drop-down-box>
+            </div>
+            <div class="col-sm-9" data-tid="A374875">
+                <dx-data-grid [dataSource]="smsUserListDataSource" [columnFixing]="{eneabled:'true'}" columnResizingMode="widget" height="200" data-tid="A374876">
+                    <dxo-paging [enabled]="true" data-tid="A374877"></dxo-paging>
+                    <dxo-editing mode="cell" [allowUpdating]="false" [allowDeleting]="true" [allowAdding]="false" data-tid="A374878">
+                    </dxo-editing>
+                    <dxi-column dataField="ResUserName" caption="Sms Kullanıcı" [width]="500" [allowEditing]="true" data-tid="A374879">
+                    </dxi-column>
+                </dx-data-grid>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<dx-load-panel shadingColor="rgba(0,0,0,0.4)" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A374880">
+</dx-load-panel>

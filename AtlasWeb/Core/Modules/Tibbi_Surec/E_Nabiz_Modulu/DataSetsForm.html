@@ -1,0 +1,36 @@
+﻿
+
+ 
+
+<div style="height:100%" id="A11966" data-tid="A342266">
+    <div class="row" style="margin-bottom:2px" id="A11967" data-tid="A342267">
+        <div style="float: right" id="A11968" data-tid="A342268">
+            <dx-button type="default" style="margin: 0px 5px 0px 0px" text="Seç" (click)="onSelect()" i18n-text="@@M21507" id="A11969" data-tid="A342269"></dx-button>
+        </div>
+   
+    </div>
+
+
+    <div class="row" style="height:96%" id="A11970" data-tid="A342270">
+        
+        <dx-data-grid [dataSource]="_DatasetList" height="100%" [allowColumnReordering]="false" [selection]="{mode: 'multiple',showCheckBoxesMode:'always',selectAllMode:'page'}" [(selectedRowKeys)]="selectedDatasets" [columns]="DataSetListColumns" id="A11971" data-tid="A342271">
+
+        </dx-data-grid>
+    </div>
+
+    <dx-popup width="600px" [(visible)]="showENabizPopup" height="500px" [closeOnOutsideClick]="false" title="E-Nabız" i18n-title="@@M13708" id="A11972" data-tid="A342272">
+        <div *dxTemplate="let data of 'content'" id="A11973" data-tid="A342273">
+            <dx-scroll-view style="width: 100%;height:100%;" direction="both" data-tid="A342274">
+                <div id="content" data-tid="A342275">
+                    <div class="container-fluid" *ngIf="showENabizPopup" id="A11974" data-tid="A342276">
+                        <enabiz-form [NabizDataSetList]="selectedDatasets" [ENabizViewModels]="eNabizViewModels" [FromHelpMenu]="true" (OnClosing)="onEnabizClose()" [EpisodeActionID]="_EpisodeActionID" id="A11975" data-tid="A342277"></enabiz-form>
+                    </div>
+                </div>
+            </dx-scroll-view>
+        </div>
+    </dx-popup>
+</div>
+
+
+
+

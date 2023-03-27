@@ -1,0 +1,58 @@
+﻿<div class="row" data-tid="A369960">
+    <div class="col-sm-2" data-tid="A369961">
+        <dx-button icon="check" type="success" text="Kaydet" (onClick)="savePatientResarchClick()" data-tid="A369962">
+        </dx-button>
+    </div>
+   <!--  <div class="col-sm-2" style="margin-left: -7%;">
+        <dx-button icon="check" type="danger"  [visible]="btncancelResarch" text="Araştırmayı İptal Et" (onClick)="cancelResarchClick()">
+        </dx-button>
+    </div> -->
+
+    <div class="col-sm-2" style="padding-left: 7%;margin-left: 47%;" data-tid="A369963">
+        <dx-button icon="revert" type="danger" text="Vazgeç" (onClick)="cancelClick()" data-tid="A369964">
+        </dx-button>
+    </div>
+</div>
+
+
+<div class="row" data-tid="A369965">
+    <div class="col-md-6" data-tid="A369966">
+        <patient-demographics-form [actionId]="MedicalResarchEpisodeObjectID" data-tid="A369967"> </patient-demographics-form>
+    </div>
+</div>
+<div class="row" data-tid="A369968">
+    <div class="panel-group" data-tid="A369969">
+        <div class="panel panel-default" data-tid="A369970">
+            <div class="panel-heading" data-tid="A369971">
+                <h4 class="panel-title" id="A24093" data-tid="A369972">
+                    <a data-tid="A369973">Araştırma İstek Paneli</a>
+                </h4>
+            </div>
+            <div id="mostUsed_collapse" data-tid="A369974">
+                <dx-data-grid #mrProcedurGrid [columns]="MRProcedurGridColumns" allowColumnReordering="true" allowColumnResizing="true" [dataSource]="MRProcedurGridList" (onRowClick)="selectProcedure($event)" [filterRow]="{visible: true}" style="padding-top: 10px;height: 100%;" [selection]="{mode: 'single'}" [editing]="{mode: 'cell' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" data-tid="A369975">
+                </dx-data-grid>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" data-tid="A369976">
+    <div class="panel-group" id="A29153" data-tid="A369977">
+        <div class="panel panel-default" data-tid="A369978">
+            <div class="panel-heading" data-tid="A369979">
+                <h4 class="panel-title" data-tid="A369980">
+                    <a data-tid="A369981">Hizmet</a>
+                </h4>
+            </div>
+            <div id="mostUsed_collapse" data-tid="A369982">
+                <dx-data-grid #mrCreateProcedureGrid [columns]="MRCreateProcedurGridColumns" allowColumnReordering="true" allowColumnResizing="true" [dataSource]="MRCreateProcedurGridGridList" [filterRow]="{visible: true}" style="padding-top: 10px;height: 100%;" [selection]="{mode: 'single'}" [editing]="{mode: 'cell' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" data-tid="A369983">
+                </dx-data-grid>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+<dx-load-panel shadingColor="rgba(0,0,0,0.4)" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A369984">
+</dx-load-panel>

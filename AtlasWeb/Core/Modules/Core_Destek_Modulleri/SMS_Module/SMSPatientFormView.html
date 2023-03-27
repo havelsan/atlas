@@ -1,0 +1,232 @@
+﻿<div style="height: 100%; display:block;" data-tid="A324259">
+
+    <div style="height: 50px" class="col-sm-12" data-tid="A324260">
+        <user-search-criteria PageName="SMSPatientFormView" [SearchViewModel]="viewModel.PatientSearchModel" (ViewModelLoaded)="userSearchModelLoaded($event)" [DefaultButtonVisible]="false" PlaceHolder="Kayıtlı Sorgular" AutoCompleteClasses="col-sm-6" class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4" style="text-align:right;padding:0" i18n-PlaceHolder="@@M17434" id="A30704" data-tid="A324261">
+        </user-search-criteria>
+    </div>
+
+    <div style="height: calc(100% - 50px)" class="col-sm-12" data-tid="A324262">
+        <div style="height: 200px;display: grid;grid-template-columns:repeat(auto-fit, minmax(25px, 1fr)); grid-template-rows: repeat(5, minmax(40px, auto));" class="col-sm-12" data-tid="A324263">
+
+            <div style="grid-area: 1 / 1 / 5 / 1;" data-tid="A324264">
+
+                <div class="col-sm-12" data-tid="A324265">
+                    <label data-tid="A324266">Kabul Bş. Tarihi
+                        <span style="color: red;" data-tid="A324267">*</span>
+                    </label>
+                    <dx-date-box [(value)]="viewModel.PatientSearchModel.AdmissionStartDate" type="date" showClearButton="true" width="100%" (onValueChanged)="onAdmissionStartDateChanged($event)" data-tid="A324268">
+                        <dx-validator data-tid="A324269">
+                            <dxi-validation-rule type="required" message="Lütfen Kabul Bş. Tarihi seçiniz." data-tid="A324270">
+                            </dxi-validation-rule>
+                        </dx-validator>
+                    </dx-date-box>
+                </div>
+
+                <div class="col-sm-12" data-tid="A324271">
+                    <label data-tid="A324272">Kabul Bit. Tarihi</label>
+                    <dx-date-box [(value)]="viewModel.PatientSearchModel.AdmissionEndDate" type="date" showClearButton="true" width="100%" [readOnly]="AdmissionStartDateRelatedCriteriasReadOnly" data-tid="A324273">
+                    </dx-date-box>
+                </div>
+
+                <div class="col-sm-12" data-tid="A324274">
+                    <label data-tid="A324275">Yatış Bş. Tarihi</label>
+                    <dx-date-box [(value)]="viewModel.PatientSearchModel.InPatientStartDate" type="date" showClearButton="true" width="100%" [readOnly]="AdmissionStartDateRelatedCriteriasReadOnly" data-tid="A324276">
+                    </dx-date-box>
+                </div>
+
+                <div class="col-sm-12" data-tid="A324277">
+                    <label data-tid="A324278">Yatış Bit. Tarihi</label>
+                    <dx-date-box [(value)]="viewModel.PatientSearchModel.InPatientEndDate" type="date" showClearButton="true" width="100%" [readOnly]="AdmissionStartDateRelatedCriteriasReadOnly" data-tid="A324279">
+                    </dx-date-box>
+                </div>
+
+                <div class="col-sm-12" data-tid="A324280">
+                    <label data-tid="A324281">Tanı</label>
+                    <dx-tag-box #DiagnosisSearchBar [(value)]="viewModel.PatientSearchModel.SelectedDiagnosis" placeholder="Tanı Arama" [dataSource]="DiagnosisDataSource" displayExpr="Name" valueExpr="ObjectID" showClearButton="true" searchEnabled="true" showSelectionControls="true" [multiline]="false" [readOnly]="AdmissionStartDateRelatedCriteriasReadOnly" data-tid="A324282">
+                        <div *dxTemplate="let data of 'item'" data-tid="A324283">
+                            <div data-tid="A324284">
+                                <div class="col-sm-3" data-tid="A324285"> {{data.Code}} </div>
+                                <div class="col-sm-9" data-tid="A324286"> {{data.Name}} </div>
+                            </div>
+                        </div>
+                    </dx-tag-box>
+                </div>
+
+            </div>
+
+            <div style="grid-area: 1 / 2 / 6 / 2;" data-tid="A324287">
+
+                <div class="col-sm-12" data-tid="A324288">
+                    <label data-tid="A324289">Tedavi Türü</label>
+                    <dx-select-box [dataSource]="TedaviTuruDataSource" [(value)]="viewModel.PatientSearchModel.SelectedTreatment" displayExpr="tedaviTuruAdi" valueExpr="ObjectID" showClearButton="true" searchEnabled="true" [searchExpr]="TedaviTuruSearchExpr" [readOnly]="AdmissionStartDateRelatedCriteriasReadOnly" data-tid="A324290">
+                    </dx-select-box>
+                </div>
+
+                <div class="col-sm-12" data-tid="A324291">
+                    <label data-tid="A324292">Kurum</label>
+                    <dx-tag-box [dataSource]="PayerDefinitionDataSource" [(value)]="viewModel.PatientSearchModel.SelectedPayers" valueExpr="ObjectID" displayExpr="Name" showSelectionControls="true" showClearButton="true" searchEnabled="true" [multiline]="false" [readOnly]="AdmissionStartDateRelatedCriteriasReadOnly" data-tid="A324293">
+                    </dx-tag-box>
+                </div>
+
+                <div class="col-sm-12" data-tid="A324294">
+                    <label data-tid="A324295">Geliş Sebebi</label>
+                    <dx-tag-box [dataSource]="ProvizyonTipiDataSource" [(value)]="viewModel.PatientSearchModel.SelectedProvizyonTipi" valueExpr="ObjectID" displayExpr="provizyonTipiAdi" [searchExpr]="provizyonTibiSearchExp" showSelectionControls="true" showClearButton="true" searchEnabled="true" [multiline]="false" [readOnly]="AdmissionStartDateRelatedCriteriasReadOnly" data-tid="A324296">
+                    </dx-tag-box>
+                </div>
+
+                <div class="col-sm-12" data-tid="A324297">
+                    <label data-tid="A324298">İstisnai Hal</label>
+                    <dx-tag-box [dataSource]="IstisnaiHalDataSource" [(value)]="viewModel.PatientSearchModel.SelectedIstisnaiHal" valueExpr="ObjectID" displayExpr="Adi" [searchExpr]="IstisnaiHalSearchExpr" showSelectionControls="true" showClearButton="true" searchEnabled="true" [multiline]="false" [readOnly]="AdmissionStartDateRelatedCriteriasReadOnly" data-tid="A324299">
+                    </dx-tag-box>
+                </div>
+
+                <div class="col-sm-12" data-tid="A324300">
+                    <label data-tid="A324301">Kabul Birimi</label>
+                    <dx-tag-box [dataSource]="ResourceDataSource" [(value)]="viewModel.PatientSearchModel.SelectedPoliclinics" valueExpr="ObjectId" displayExpr="Name" showSelectionControls="true" showClearButton="true" searchEnabled="true" [multiline]="false" [readOnly]="AdmissionStartDateRelatedCriteriasReadOnly" data-tid="A324302">
+                    </dx-tag-box>
+                </div>
+
+            </div>
+
+            <div style="grid-area: 1 / 3 / 4 / 3;" data-tid="A324303">
+
+                <div class="col-sm-12" data-tid="A324304">
+                    <label data-tid="A324305">Kabul Branşı</label>
+                    <dx-tag-box [dataSource]="SpecialityDefDataSource" [(value)]="viewModel.PatientSearchModel.SelectedSpecialities" valueExpr="ObjectID" displayExpr="Name" showSelectionControls="true" showClearButton="true" searchEnabled="true" [multiline]="false" [readOnly]="AdmissionStartDateRelatedCriteriasReadOnly" [searchExpr]="SepcialitySearchExpr" data-tid="A324306">
+
+                    </dx-tag-box>
+                </div>
+
+                <div class="col-sm-12" data-tid="A324307">
+                    <label data-tid="A324308">Kabul Doktoru</label>
+                    <dx-tag-box [dataSource]="ClinicDoctorDataSource" [(value)]="viewModel.PatientSearchModel.SelectedAdmissionDoctor" valueExpr="ObjectID" displayExpr="Name" showSelectionControls="true" showClearButton="true" searchEnabled="true" [multiline]="false" [readOnly]="AdmissionStartDateRelatedCriteriasReadOnly" data-tid="A324309">
+
+                    </dx-tag-box>
+                </div>
+
+                <div class="col-sm-12" data-tid="A324310">
+                    <label data-tid="A324311">Adı</label>
+                    <dx-text-box showClearButton="true" [(value)]="viewModel.PatientSearchModel.FirstName" [readOnly]="AdmissionStartDateRelatedCriteriasReadOnly" data-tid="A324312">
+
+                    </dx-text-box>
+                </div>
+                <div class="col-sm-12" data-tid="A324313">
+                    <label data-tid="A324314">SoyAdı</label>
+                    <dx-text-box showClearButton="true" [(value)]="viewModel.PatientSearchModel.SurName" [readOnly]="AdmissionStartDateRelatedCriteriasReadOnly" data-tid="A324315">
+
+                    </dx-text-box>
+                </div>
+                <div class="col-sm-12" data-tid="A324316">
+                    <label data-tid="A324317">Cinsiyet</label>
+                    <dx-select-box [dataSource]="GenderDataSource" [(value)]="viewModel.PatientSearchModel.Gender" valueExpr="ordinal" displayExpr="description" showClearButton="true" [readOnly]="AdmissionStartDateRelatedCriteriasReadOnly" data-tid="A324318">
+                    </dx-select-box>
+                </div>
+
+            </div>
+
+            <div style="grid-area: 1 / 4 / 5 / 4;" data-tid="A324319">
+
+                <div class="col-sm-12" data-tid="A324320">
+                    <label data-tid="A324321">Doğum Tarihi</label>
+                    <dx-date-box [(value)]="viewModel.PatientSearchModel.BirthDate" type="date" showClearButton="true" width="100%" [readOnly]="AdmissionStartDateRelatedCriteriasReadOnly" data-tid="A324322">
+                    </dx-date-box>
+                </div>
+
+
+                <div class="col-sm-12" data-tid="A324323">
+                    <label data-tid="A324324">Doğum Yeri İl</label>
+                    <dx-select-box [dataSource]="SKRSIlDataSource" (onValueChanged)="onValueChangedCityForBirthPlace($event)" [(value)]="viewModel.PatientSearchModel.SelectedCityOfBirthPlace" displayExpr="ADI" [searchExpr]="SKRSILSearchExpr" valueExpr="ObjectID" showClearButton="true" searchEnabled="true" [readOnly]="AdmissionStartDateRelatedCriteriasReadOnly" data-tid="A324325">
+                    </dx-select-box>
+                </div>
+
+                <div class="col-sm-12" data-tid="A324326">
+                    <label data-tid="A324327">Doğum Yeri İlçe</label>
+                    <dx-select-box [dataSource]="SKRSILCEDatasourceForBirthPlace" [(value)]="viewModel.PatientSearchModel.SelectedCountyOfBirthPlace" displayExpr="ADI" valueExpr="ObjectID" showClearButton="true" searchEnabled="true" [readOnly]="CountyForBirthPlaceReadOnly" data-tid="A324328">
+                    </dx-select-box>
+                </div>
+
+                <div class="col-sm-12" data-tid="A324329">
+                    <label data-tid="A324330">Adres İli</label>
+                    <dx-select-box [dataSource]="SKRSIlDataSource" (onValueChanged)="onValueChangedCityForAddress($event)" valueExpr="ObjectID" [(value)]="viewModel.PatientSearchModel.SelectedCityOfAddress" displayExpr="ADI" [searchExpr]="SKRSILSearchExpr" showClearButton="true" searchEnabled="true" [readOnly]="AdmissionStartDateRelatedCriteriasReadOnly" data-tid="A324331">
+                    </dx-select-box>
+                </div>
+
+                <div class="col-sm-12" data-tid="A324332">
+                    <label data-tid="A324333">Adres İlçesi</label>
+                    <dx-select-box [dataSource]="SKRSILCEDatasourceForAddress" [(value)]="viewModel.PatientSearchModel.SelectedCountyOfAddress" displayExpr="ADI" valueExpr="ObjectID" showClearButton="true" searchEnabled="true" [readOnly]="CountyForAddressReadOnly" data-tid="A324334">
+                    </dx-select-box>
+                </div>
+
+            </div>
+
+            <div style="grid-area: 1 / 5 / 5 / 5;" data-tid="A324335">
+
+                <div class="col-sm-12" data-tid="A324336">
+                    <label data-tid="A324337">Uyruk</label>
+                    <dx-select-box [dataSource]="SKRSUlkeKodlariDataSource" [(value)]="viewModel.PatientSearchModel.Nationality" valueExpr="ObjectID" displayExpr="Adi" showClearButton="true" searchEnabled="true" [readOnly]="AdmissionStartDateRelatedCriteriasReadOnly" data-tid="A324338">
+                    </dx-select-box>
+                </div>
+
+                <div class="col-sm-12" style="padding-top:20px" data-tid="A324339">
+                    <dx-check-box text="Tel. No'su Olanlar" [(value)]="viewModel.PatientSearchModel.HasPhoneNumber" data-tid="A324340">
+
+                    </dx-check-box>
+                </div>
+
+            </div>
+
+            <div style="grid-area: 5 / 5 / 6 / 5;" data-tid="A324341">
+
+                <div class="col-sm-12" style="padding: 20px 0 0 0;" data-tid="A324342">
+                    <dx-button style="float:right" type="default" width="75" (onClick)="SearchPatient()" text="Listele" data-tid="A324343">
+
+                    </dx-button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div style="height: calc(100% - 400px); padding-top:15px;" class="col-sm-12" data-tid="A324344">
+            <dx-data-grid height="100%" [columns]="patientGridColumns" [dataSource]="viewModel.GridViewModel" [selection]="{mode: 'multiple',allowSelectAll: true}" [(selectedRowKeys)]="selectedPatientList" [filterRow]="{visible:true}" data-tid="A324345">
+            </dx-data-grid>
+        </div>
+
+        <div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3" style="padding:10px 0px 0px 0px" data-tid="A324346">
+
+            <user-search-criteria PageName="SMSTemplates" [SearchViewModel]="viewModel.SMSText" (ViewModelLoaded)="smsTemplateLoaded($event)" [DefaultButtonVisible]="false" PlaceHolder="SMS Şablonları" AutoCompleteClasses="col-xs-5" class="col-sm-12" style="text-align:right;padding:0" i18n-PlaceHolder="@@M17434" id="A30704" [ButtonGroupStyle]="UserSearchCriteriaButtonStyle" ButtonGroupClasses="col-sm-4 col-lg-6" data-tid="A324347">
+            </user-search-criteria>
+
+            <label class="col-xs-10" data-tid="A324348">SMS Türü</label>
+            <div class="col-sm-5" data-tid="A324349">
+                <dx-select-box [dataSource]="SMSTypeDataSource" [(value)]="SelectedSMSType" showClearButton="true" displayExpr="description" valueExpr="ordinal" data-tid="A324350">
+                </dx-select-box>
+            </div>
+
+            <label class="col-xs-10" data-tid="A324351">SMS Metni</label>
+            <div class="col-xs-10" data-tid="A324352">
+                <dx-text-area [(value)]="viewModel.SMSText" height="100px" showClearButton="true" multiline="true" data-tid="A324353">
+
+                </dx-text-area>
+                <!-- <hvl-richtextbox (change)="onrtfSMSTextChanged($event)" Height="100px"
+                        [ngModelOptions]="{ standalone: true}" [ngModel]="viewModel.SMSText" DisableResize="true"
+                        [ReadOnly]="rtfSMSText?.ReadOnly" [TemplateGroupName]="rtfSMSText?.TemplateGroupName"
+                        [Visible]="rtfSMSText?.Visible" id="A29106"></hvl-richtextbox> -->
+            </div>
+            <div style="float: right; padding: 0;" class="col-xs-2" data-tid="A324354">
+                <dx-button type="success" style="float: right" width="65px" (onClick)="SendSMS()" text="Gönder" data-tid="A324355">
+
+                </dx-button>
+            </div>
+            <div style="float: right; padding: 5px 0px 0 0;" class="col-xs-2" data-tid="A324356">
+                <dx-button type="danger" style="float: right" width="65px" (onClick)="CancelSMS()" text="İptal" data-tid="A324357">
+
+                </dx-button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" id="A31651" message="Lütfen Bekleyiniz..." data-tid="A324358">
+</dx-load-panel>

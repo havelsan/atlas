@@ -1,0 +1,42 @@
+﻿<div style="height:100%" data-tid="A349617">
+    <div class="col-sm-12" data-tid="A349618">
+        <!--<label class="control-label" style="color:red;">
+            Hasta Adı Soyadı: <b>{{_subepisodeInfo.PatientNameSurname}} </b>
+        </label>-->
+    </div>
+
+    <div class="col-sm-12" data-tid="A349619">
+        <dx-data-grid showColumnLines="true" showBorders="true" showRowLines="true" [height]="450" [dataSource]="_ProceduresArray" [columns]="_ProcedureGridColumns" [selection]="{mode: 'none'}" [editing]="{allowDeleting:false,allowUpdating:false,allowAdding:false, mode: 'cell'}" data-tid="A349620">
+
+            <div *dxTemplate="let row of 'linkReportTemplate'" data-tid="A349621">
+
+                <i class="fa fa-file" (click)="showAdditionalInfoReport(row)" data-toggle="tooltip" data-placement="bottom" title="Rapor" style="color:#e40d0d;margin-top: -2px;margin-bottom: -5px; cursor:pointer" data-tid="A349622"></i>
+
+            </div>
+
+            <div *dxTemplate="let row of 'linkResultTemplate'" data-tid="A349623">
+
+                <i class="fa fa-pencil-square-o" (click)="showAdditionalInfoForm(row)" data-toggle="tooltip" data-placement="bottom" title="Görüntüle" style="margin-top: -2px;margin-bottom: -5px; cursor:pointer" data-tid="A349624"></i>
+
+            </div>
+
+
+        </dx-data-grid>
+    </div>
+
+
+</div>
+
+<dx-popup width="700px" height="500px" [(visible)]="_showReportPopup" [closeOnOutsideClick]="false" title="Rapor" data-tid="A349625">
+    <div *dxTemplate="let data of 'content'" data-tid="A349626">
+
+        <div class="col-sm-12" data-tid="A349627">
+            <hvl-richtextbox [ngModelOptions]="{ standalone: true }" [ngModel]="_AdditionalReport" [ReadOnly]="true" [Height]="350" data-tid="A349628">
+            </hvl-richtextbox>
+        </div>
+       <div class="col-sm-12" data-tid="A349629">
+            <dx-button type="success" class="pull-right" text="Yazdır" (onClick)="printAdditionalInfoReport()" data-tid="A349630"></dx-button>
+     </div>
+
+    </div>
+</dx-popup>

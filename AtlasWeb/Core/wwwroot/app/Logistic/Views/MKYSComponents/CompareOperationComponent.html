@@ -1,0 +1,82 @@
+﻿<div class="row" id="A32370" data-tid="A375127">
+    <div class="col-sm-3" id="A32371" data-tid="A375128">
+        <div class="dx-field" id="A32372" data-tid="A375129">
+            <div class="dx-field-label" id="A32373" data-tid="A375130">Başlangıç Günü</div>
+            <div class="dx-field-value" id="A32374" data-tid="A375131">
+                <dx-date-box [(value)]="startDate" [(disabled)]="checkBoxValue" type="date" id="A32375" data-tid="A375132">
+                </dx-date-box>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-2" id="A32385" data-tid="A375133">
+        <div class="dx-field" id="A32386" data-tid="A375134">
+            <div class="dx-field-value" id="A32387" data-tid="A375135">
+                <dx-check-box [(value)]="checkBoxValue" [width]="280" (onValueChanged)="onValueChanged($event)" text="İşlem Numarası İle" i18n-text="@@M16871" id="A32388" data-tid="A375136"></dx-check-box>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-2" id="A32389" data-tid="A375137">
+        <dx-text-box [hoverStateEnabled]="false" [(value)]="stockActionID" [(readOnly)]="stockActionIDdisable" id="A32391" data-tid="A375138">
+        </dx-text-box>
+    </div>
+</div>
+<br id="A32376" data-tid="A375139" />
+<div class="row" id="A32377" data-tid="A375140">
+    <div class="col-sm-3" id="A32378" data-tid="A375141">
+        <div class="dx-field" id="A32379" data-tid="A375142">
+            <div class="dx-field-label" id="A32380" data-tid="A375143">Bitiş Günü</div>
+            <div class="dx-field-value" id="A32381" data-tid="A375144">
+                <dx-date-box [(value)]="endDate" [(disabled)]="checkBoxValue" type="date" id="A32382" data-tid="A375145">
+                </dx-date-box>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-2" id="A32395" data-tid="A375146">
+        <div class="dx-field" id="A32397" data-tid="A375147">
+            <div class="dx-field-value" id="A32398" data-tid="A375148">
+                <dx-check-box [(value)]="checkBoxValueFailed" [width]="280" (onValueChanged)="onValueChangedFailed($event)" text="Hatalı Olanları Göster " id="A32399" data-tid="A375149"></dx-check-box>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3" id="A32392" data-tid="A375150">
+        <dx-button type="success" icon="check" text="MKYS ile Karşılaştır" (onClick)="CompareWithMkys()" [(disabled)]="CompareWithMkysButton" i18n-text="@@M27586" id="A32394" data-tid="A375151">
+        </dx-button>
+    </div>
+</div>
+
+<!-- #endregion -->
+<br id="A32400" data-tid="A375152" />
+<!-- #region Mkys karşılaştırma grid -->
+<dx-data-grid id="gridContainer" [dataSource]="dataStockActionSource" [masterDetail]="{ enabled: true, template: 'detail' }" (onRowPrepared)="onRowPrepared($event)" data-tid="A375153">
+
+    <dxi-column dataField="StockActionID" [width]="180" caption="İşlem Numarası" i18n-caption="@@M16870" id="A32401" data-tid="A375154"></dxi-column>
+    <dxi-column dataField="StockActionName" caption="İşlem Adı" i18n-caption="@@M16821" id="A32402" data-tid="A375155"></dxi-column>
+    <dxi-column dataField="StockActionTransactionDate" caption="İşlem Tarihi" i18n-caption="@@M16886" id="A32403" data-tid="A375156"></dxi-column>
+
+
+    <div *dxTemplate="let dataStockActionSource of 'detail'" id="A32404" data-tid="A375157">
+        <div class="internal-grid-container" id="A32405" data-tid="A375158">
+            <dx-data-grid id="gridContainer" [dataSource]="dataStockActionSource.data.StockActionDetailViews" [masterDetail]="{ enabled: true, template: 'detail' }" data-tid="A375159">
+
+                <dxi-column dataField="Material" [width]="300" caption="Malzeme" i18n-caption="@@M18545" id="A32406" data-tid="A375160"></dxi-column>
+                <dxi-column dataField="MalzemeKayitID" caption="Malzeme Kayıt ID" i18n-caption="@@M18585" id="A32407" data-tid="A375161"></dxi-column>
+                <dxi-column dataField="AyniyatMakbuzID" caption="Ayniyat Numarası" i18n-caption="@@M27576" id="A32408" data-tid="A375162"></dxi-column>
+                <dxi-column dataField="StokHareketID" [width]="170" caption="Stock Hareket ID" id="A32409" data-tid="A375163"></dxi-column>
+
+                <div *dxTemplate="let stockActionDetailView of 'detail'" id="A32410" data-tid="A375164">
+                    <div class="internal-grid-container" id="A32411" data-tid="A375165">
+                        <dx-data-grid class="internal-grid" [dataSource]="stockActionDetailView.data.CompareTaskItems" [showBorders]="true" [columnAutoWidth]="true" id="A32412" data-tid="A375166">
+                            <dxi-column dataField="Subject" caption="Karşılaştırma Alanı" i18n-caption="@@M17321" id="A32413" data-tid="A375167"></dxi-column>
+                            <dxi-column dataField="MkysValue" caption="Mkys Değeri " id="A32414" data-tid="A375168"></dxi-column>
+                            <dxi-column dataField="MyValue" caption="Atlas Değeri " id="A32415" data-tid="A375169"></dxi-column>
+                            <dxi-column dataType="boolean" caption="Karşılaştırma Sonucu" dataField="Result" i18n-caption="@@M17322" id="A32416" data-tid="A375170"></dxi-column>
+                        </dx-data-grid>
+                    </div>
+                </div>
+            </dx-data-grid>
+        </div>
+    </div>
+</dx-data-grid>
+
+<dx-load-panel shadingColor="rgba(0,0,0,0.4)" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A375171">
+</dx-load-panel>

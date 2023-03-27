@@ -1,0 +1,172 @@
+﻿<h1 style="color:#08c;height: 60px;" data-tid="A370652"><i class="fa fa-file-text-o" style="font-size:40px" data-tid="A370653"></i> Dinamik Form Aracı
+</h1>
+<div style="padding: 20px;" data-tid="A370654">
+    <div class="row" style="height: unset !important;" data-tid="A370655">
+        <div class="col-xs-8" data-tid="A370656">
+            <div class="row item" data-tid="A370657">
+                <div class="col-xs-3" data-tid="A370658">Form</div>
+                <div class="col-xs-7" data-tid="A370659">
+                    <dx-select-box displayExpr="LongName" [dataSource]="forms" (onValueChanged)="formChanged($event)" data-tid="A370660">
+                    </dx-select-box>
+                </div>
+                <div class="col-xs-2" data-tid="A370661">
+                    <div *ngIf="selectedItem != null" data-tid="A370662">
+                        <dx-button *ngIf="selectedItem.IsEnable == false" type="success" text="Etkinleştir" (onClick)="enableDisableButtonClicked()" style="width: 100%" data-tid="A370663">
+                        </dx-button>
+                        <dx-button *ngIf="selectedItem.IsEnable == true" type="danger" text="Devre Dışı Bırak" (onClick)="enableDisableButtonClicked()" style="width: 100%" data-tid="A370664">
+                        </dx-button>
+                    </div>
+                </div>
+            </div>
+            <div class="row item" *ngIf="revisions.length > 0" data-tid="A370665">
+                <div class="col-xs-3" data-tid="A370666">Revizyon</div>
+                <div class="col-xs-4" data-tid="A370667">
+                    <dx-select-box displayExpr="Comment" [dataSource]="revisions" (onValueChanged)="revisionChanged($event)" data-tid="A370668">
+                    </dx-select-box>
+                </div>
+                <div class="col-xs-5" data-tid="A370669">
+                    <div class="row item" data-tid="A370670">
+                        <div class="col-xs-4" data-tid="A370671">
+                            <dx-button class="height26" type="success" (onClick)="setAsMainRevision()" style="width:100%" data-tid="A370672">
+                                <i class="fa fa-home" aria-hidden="true" data-tid="A370673"></i>&nbsp;Ana Revizyon
+                            </dx-button>
+                        </div>
+                        <div class="col-xs-4" data-tid="A370674">
+                            <dx-button class="height26" type="default" (onClick)="downloadRevision()" style="width:100%" data-tid="A370675">
+                                <i class="fa fa-download" aria-hidden="true" data-tid="A370676"></i>&nbsp;İndir
+                            </dx-button>
+                        </div>
+                        <!-- <div class="col-xs-4" id="formUploader" data-tid="A370677">
+                            <dx-file-uploader style="width:100%;margin-top:-4px;" [uploadUrl]="uploadUrl" [multiple]="false" accept="json" selectButtonText="Yukle" labelText [uploadHeaders]="uploadHeaders" uploadMode="instantly" (onUploaded)="onUploaded($event)" data-tid="A370678">
+                            </dx-file-uploader>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="showCreateForm" data-tid="A370679">
+                <div class="row item" data-tid="A370680">
+                    <div class="col-xs-3" data-tid="A370681">Form Adı</div>
+                    <div class="col-xs-9" data-tid="A370682">
+                        <dx-text-box #txtFormName data-tid="A370683"></dx-text-box>
+                    </div>
+                </div>
+                <div class="row item" data-tid="A370684">
+                    <div class="col-xs-3" data-tid="A370685">Form Kodu</div>
+                    <div class="col-xs-9" data-tid="A370686">
+                        <dx-text-box #txtFormCode data-tid="A370687"></dx-text-box>
+                    </div>
+                </div>
+                <div class="row item" data-tid="A370688">
+                    <div class="col-xs-3" data-tid="A370689">Post Script Class Adı</div>
+                    <div class="col-xs-9" data-tid="A370690">
+                        <dx-text-box #txtPostScriptClass data-tid="A370691"></dx-text-box>
+                    </div>
+                </div>
+                <div class="row item" data-tid="A370692">
+                    <div class="col-xs-3" data-tid="A370693">Check Script Class Adı</div>
+                    <div class="col-xs-9" data-tid="A370694">
+                        <dx-text-box #txtCheckScriptClass data-tid="A370695"></dx-text-box>
+                    </div>
+                </div>
+            </div>
+            <div class="row item" *ngIf="showDesigner == true" data-tid="A370696">
+                <div class="col-xs-3" data-tid="A370697">Form Açıklaması</div>
+                <div class="col-xs-9" data-tid="A370698">
+                    <dx-text-box #txtFormComment data-tid="A370699"></dx-text-box>
+                </div>
+            </div>
+            <div class="row item" *ngIf="showDesigner" data-tid="A370700">
+                <div class="col-xs-3" data-tid="A370701"></div>
+                <div class="col-xs-6" data-tid="A370702">
+                    <dx-tag-box [items]="parameters" [value]="parameters" (onValueChanged)="onTagChanged($event)" [hideSelectedItems]="true" [tagTemplate]="'item'" data-tid="A370703">
+                        <div *dxTemplate="let data of 'item'" data-tid="A370704">
+                            <div class="dx-tag-content" style="border: 1px solid black;" [ngStyle]="
+                            {
+                                'background-color': data.IsRequired == true ? '#08c' : '#dddddd',
+                                'color': data.IsRequired == true ? '#fff' : '#333'
+                            }" data-tid="A370705">
+                                <span data-tid="A370706">
+                                    {{ data.Key }}
+                                </span>
+                                <div class="dx-tag-remove-button {{data.IsRequired == true ? 'afterWhite' : ''}}" data-tid="A370707"></div>
+                            </div>
+                        </div>
+                    </dx-tag-box>
+                </div>
+                <div class="col-xs-1" data-tid="A370708">
+                    <dx-button icon="plus" (onClick)="openParameterPopup()" data-tid="A370709"></dx-button>
+                </div>
+                <div class="col-xs-1">
+                    <div id="formUploader" data-tid="A370677">
+                        <dx-file-uploader style="width:100%;margin-top:-4px;" [uploadUrl]="uploadUrl" [multiple]="false" accept="json" selectButtonText="Yukle" labelText [uploadHeaders]="uploadHeaders" uploadMode="instantly" (onUploaded)="onUploaded($event)" data-tid="A370678">
+                        </dx-file-uploader>
+                    </div>
+                </div>
+                <!-- <div class="col-xs-2">
+                    <dx-tag-box  [disabled]="true"></dx-tag-box>
+                </div> -->
+            </div>
+
+            <div class="row item" data-tid="A370710">
+                <div class="col-xs-3" data-tid="A370711"></div>
+                <div class="col-xs-9" data-tid="A370712">
+                    <dx-button *ngIf="showCreateForm" type="success" text="Kaydet" (onClick)="saveForm()" data-tid="A370713">
+                    </dx-button>
+                    <dx-button *ngIf="showDesigner" type="success" text="Kaydet" [disabled]="DynamicFormParameters.JsonTemplate == null"  (onClick)="saveRevision()" data-tid="A370714">
+                    </dx-button>
+                    <dx-button style="float: right;" *ngIf="showDesigner && !showPreview" type="default" text="Ön İzleme Göster" (onClick)="onShowPreview()" data-tid="A370715">
+                    </dx-button>
+                    <dx-button style="float: right;" *ngIf="showDesigner && showPreview" type="default" text="Ön İzleme Gizle" (onClick)="onShowPreview()" data-tid="A370716">
+                    </dx-button>
+                    <!-- <dx-button type="success" text="oData" (onClick)="openODataEditor()"></dx-button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="showDesigner == true" data-tid="A370717">
+        <app-renderer *ngIf="showPreview" [JsonTemplate]="DynamicFormParameters.JsonTemplate" data-tid="A370718"></app-renderer>
+        <app-builder *ngIf="!showPreview" [JsonTemplate]="DynamicFormParameters.JsonTemplate" (OnChange)="onChange($event)" data-tid="A370719"></app-builder>
+    </div>
+    <dx-popup width="1000px" height="750px" [(visible)]="showoDataEditor" [closeOnOutsideClick]="false" title="OData Editor" data-tid="A370720">
+        <odata-editor (onClose)="closePopup($event)" [dynamicParameters]="dynamicParameters" data-tid="A370721"></odata-editor>
+    </dx-popup>
+    <dx-popup width="1000px" height="750px" [(visible)]="showBase64Popup" [closeOnOutsideClick]="false" title="Resim Yukle" data-tid="A370722">
+        <filetobase64 (onClose)="closePopupBase64($event)" data-tid="A370723"></filetobase64>
+    </dx-popup>
+    <dx-popup width="600px" height="150px" [(visible)]="showParameter" [closeOnOutsideClick]="false" title="Parametre" data-tid="A370724">
+        <div class="row item" data-tid="A370725">
+            <div class="col-xs-12" data-tid="A370726">
+                <div class="col-xs-3" data-tid="A370727">Parametreler</div>
+                <div class="col-xs-4" data-tid="A370728">
+                    <dx-text-box #txtParameter data-tid="A370729"></dx-text-box>
+                </div>
+                <div class="col-xs-2" data-tid="A370730">
+                    <dx-check-box #checkRequeired text="Zorunlu" data-tid="A370731"></dx-check-box>
+                </div>
+                <div class="col-xs-2" data-tid="A370732">
+                    <dx-check-box #checkFilter text="Filtre" data-tid="A370733"></dx-check-box>
+                </div>
+            </div>
+        </div>
+        <div class="row item" data-tid="A370734">
+            <div class="col-xs-12" data-tid="A370735">
+                <dx-button (onClick)="addNewParameter()" text="Ekle" style="margin-left: 250px;" data-tid="A370736"></dx-button>
+            </div>
+        </div>
+    </dx-popup>
+    <style data-tid="A370737">
+        .height26 {
+            height: 26px;
+        }
+        .row div {
+            padding-left: 5px;
+        }
+        .item {
+            height: 33px;
+        }
+        .item .col-xs-3 {
+            color: #08c;
+            font-weight: 600;
+        }
+    </style>
+</div>

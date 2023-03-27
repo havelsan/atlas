@@ -1,0 +1,54 @@
+﻿<div style="height:100%;" id="A5680" data-tid="A332172">
+    <div class="row" id="A5681" data-tid="A332173">
+        <div *ngIf="ShowMuadilMedicineFilter" class="col-md-5" id="A5682" data-tid="A332174">
+            <div class="dx-fieldset" id="A5683" data-tid="A332175">
+                <div class="dx-fieldset-header" id="A5684" data-tid="A332176">Etken Madde ile Filtrele</div>
+                <div class="dx-field" id="A5685" data-tid="A332177">
+                    <dx-select-box [dataSource]="ActiveIngredientList" (onValueChanged)="selectActiveIngredient($event)" [searchEnabled]="true" [showClearButton]="true" displayExpr="Name" valueExpr="ObjectID" data-tid="A332178">
+                    </dx-select-box>
+                    <!-- (onOpened)="FillDataSources()" -->
+                </div>
+            </div>
+        </div>
+        <div *ngIf="ShowMuadilMedicineFilter" class="col-md-5" id="A5687" data-tid="A332179">
+            <div class="dx-fieldset" id="A5688" data-tid="A332180">
+                <div class="dx-fieldset-header" id="A5689" data-tid="A332181">Muadil Madde ile Filtrele</div>
+                <div class="dx-field" id="A5690" data-tid="A332182">
+                    <dx-select-box [items]="MaterialList_Muadil" [showClearButton]="true" displayExpr="Name" valueExpr="ObjectID" [searchEnabled]="true" (onValueChanged)="selectMuadilMedicineSelected($event)" id="A5691" data-tid="A332183"></dx-select-box>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="ShowMuadilMedicineFilter" class="col-md-2" id="A5692" data-tid="A332184">
+            <div class="dx-fieldset-header" id="A5693" data-tid="A332185">Mevcudu Olanlar</div>
+            <div class="dx-field" id="A5694" data-tid="A332186">
+                <div class="dx-field-value" id="A5695" data-tid="A332187">
+                    <dx-check-box [(value)]="HideAllZeroStock" [width]="80" (onValueChanged)="HideAllZeroStock_event($event)" id="A5696" data-tid="A332188"></dx-check-box>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" id="A5697" data-tid="A332189">
+            <div id="grid" data-tid="A332190">
+                <!--<dx-data-grid #materialGrid id="grid-container" [dataSource]="MaterialList" keyExpr="ObjectID" [(selectedRowKeys)]="selectedRows" [selection]="{mode: 'multiple',allowSelectAll: true}">-->
+                <dx-data-grid #materialGrid id="grid-container" [dataSource]="MaterialList" keyExpr="ObjectID" (onSelectionChanged)="selectionChangedHandler($event)" style="height: 550px;" [selection]="{mode: 'multiple',allowSelectAll: true}" data-tid="A332191">
+                    <dxo-filter-row [visible]="true" id="A5698" data-tid="A332192"> </dxo-filter-row>
+                    <dxi-column dataField="Barcode" caption="Barkod" [width]="160" data-tid="A332193"></dxi-column>
+                    <dxi-column dataField="NATOStockNO" caption="Taşınır Kodu" [width]="160" data-tid="A332194"></dxi-column>
+                    <dxi-column dataField="Name" caption="Adı" [width]="450" id="A5699" data-tid="A332195"></dxi-column>
+                    <dxi-column dataField="Inheld" caption="Mevcut" [width]="100" id="A5700" data-tid="A332196"></dxi-column>
+                    <dxi-column dataField="MinimumLevel" caption="Minimum Seviye" [width]="100" data-tid="A332197"></dxi-column>
+                    <dxi-column dataField="MaximumLevel" caption="Maximum Seviye" [width]="100" data-tid="A332198"></dxi-column>
+                    <dxi-column dataField="CriticalLevel" caption="Kritik Seviye" [width]="100" data-tid="A332199"></dxi-column>
+                    <dxi-column dataField="Distributiontypename" caption="Birimi" [width]="100" id="A5701" data-tid="A332200"></dxi-column>
+                    
+                </dx-data-grid>
+
+            </div>
+        </div>
+    </div>
+    <div class="row" style="float: right;padding-right: 1%;" id="A5702" data-tid="A332201">
+            <dx-button class="m--margin-right-5" text="Listeyi Temizle" rtlEnabled="true" type="default" (onClick)="ClearSelectedRows()" id="A5706" data-tid="A332202"></dx-button>
+            <dx-button text="Kaydet" rtlEnabled="true" type="default" icon="save" (onClick)="EmitSelectedRows()" id="A5705" data-tid="A332203"></dx-button>
+            <!--<dx-button text="Kapat" rtlEnabled="true" type="danger" icon="close" (onClick)="Close()" id="A5705">
+            </dx-button>-->
+    </div>
+</div>

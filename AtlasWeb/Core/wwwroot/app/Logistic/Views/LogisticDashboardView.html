@@ -1,0 +1,671 @@
+﻿<br id="A32001" data-tid="A373229" />
+<div class="container-fluid" id="A32003" data-tid="A373230">
+    <div class="row" id="A32004" data-tid="A373231">
+        <label class="control-label fltLeft margin-left-20 m--padding-top-7" id="A32005" data-tid="A373232">Ana Depo
+            Seçiniz : </label>
+        <div class="col-xs-4" id="A32006" data-tid="A373233">
+            <dx-select-box [items]="selecttableStores" displayExpr="Name" valueExpr="ObjectID" [searchEnabled]="true" [value]="SelectedMainStore?.ObjectID" (onItemClick)="SelectBoxChange($event)" id="A32007" data-tid="A373234">
+            </dx-select-box>
+        </div>
+        <div id="A32008" data-tid="A373235">
+            <label class="control-label fltLeft m--padding-top-7" id="A32009" data-tid="A373236">Hesap Dönemini Seçiniz :
+            </label>
+        </div>
+        <div class="col-sm-2" id="A32010" data-tid="A373237">
+            <dx-select-box #selectBox [dataSource]="costActionAccountingTerm" displayExpr="Desciption" valueExpr="ObjId" [acceptCustomValue]="true" (onSelectionChanged)="selectAccountingTerm($event)" id="A32011" [value]="activeAccountingTerm" data-tid="A373238"></dx-select-box>
+        </div>
+
+        <div class="col-sm-2" id="A32012" data-tid="A373239">
+            <dx-button type="btn btn-default" icon="fa fa-search" text="Yeni Hesap Dönemi Açma" (onClick)="btnOpenNewAccountingTerm()" [(disabled)]="btnOpenNewAccountingTermDisable" i18n-text="@@M27703" id="A32013" data-tid="A373240"></dx-button>
+        </div>
+
+    </div>
+    <br id="A32014" data-tid="A373241" />
+    <div class="row" id="A32015" data-tid="A373242">
+        <dx-tab-panel (onSelectionChanged)="onSelectionChanged($event)" [selectedIndex]="0" [animationEnabled]="true" id="A32016" data-tid="A373243">
+            <!-- #region Depo Mevcudu -->
+            <dxi-item *ngIf="hasRoleDashboardMaterialStatus" class="tabpanel-item" title="Depo Mevcudu" data-tid="A373244">
+                <div class="row" style="margin: 1%;" id="A32019" data-tid="A373245">
+                    <!--<div id="A32020">
+            <label class="control-label col-sm-1"  id="A32021">Malzeme Seçiniz : </label>
+        </div>-->
+                    <!--<div class="col-sm-4" id="A32022">
+            <hvl-valuelist-box #Validation (SelectedValueChange)="SelectMaterialBoxChange($event)" [(SelectedValue)]="logisticDashboardViewModel.Material"
+                               [AutoCompleteDialogHeight]="MaterialSelectBox?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="MaterialSelectBox?.AutoCompleteDialogWidth"
+                               [AutoCompleteMode]="MaterialSelectBox?.AutoCompleteMode" [BackColor]="MaterialSelectBox?.BackColor"
+                               [DefinitionName]="MaterialSelectBox?.ListDefName" [Enabled]="MaterialSelectBox?.Enabled" [Font]="MaterialSelectBox?.Font"
+                               [ForeColor]="MaterialSelectBox?.ForeColor" [ListFilterExpression]="MaterialSelectBox?.ListFilterExpression"
+                               [MinSearchLength]="MaterialSelectBox?.MinSearchLength" [PopupDialogFieldConfig]="MaterialSelectBox?.PopupDialogFieldConfig"
+                               [PopupDialogGridColumns]="MaterialSelectBox?.PopupDialogGridColumns" [PopupDialogHeight]="MaterialSelectBox?.PopupDialogHeight"
+                               [PopupDialogTitle]="MaterialSelectBox?.PopupDialogTitle" [PopupDialogWidth]="MaterialSelectBox?.PopupDialogWidth"
+                               [ReadOnly]="MaterialSelectBox?.ReadOnly" [SearchTimeout]="MaterialSelectBox?.SearchTimeout" [TabIndex]="MaterialSelectBox?.TabIndex"
+                               [Visible]="MaterialSelectBox?.Visible" [width]="MaterialSelectBox?.Width" id="A32023"></hvl-valuelist-box>
+        </div>-->
+                    <div id="A32020" class="m--padding-top-7 fltLeft" data-tid="A373246">
+                        <label class="control-label" id="A32021" data-tid="A373247">Bütçe : </label>
+                    </div>
+                    <div class="col-sm-2" id="A32010" data-tid="A373248">
+                        <dx-select-box #selectBox [dataSource]="budgetTypeSources" displayExpr="name" valueExpr="objectID" [acceptCustomValue]="true" (onSelectionChanged)="selectBudgetType($event)" [value]="defualtbudgetType" data-tid="A373249"></dx-select-box>
+                    </div>
+                    <div class="col-sm-2 m--padding-top-5" data-tid="A373250">
+                        <dx-check-box [(value)]="isZeroAmount" [width]="200" text="Mevcudu olmayanları da göster" data-tid="A373251">
+                        </dx-check-box>
+                    </div>
+                    <div class="col-sm-1" id="A32022" data-tid="A373252">
+                        <dx-button type="btn btn-default" [text]="MaterialMultiSelectButtonText" (onClick)="OpenMaterialMultiSelectComponent()" style="margin-bottom: 10px; min-width:128px;" [disabled]="showUnused" data-tid="A373253"></dx-button>
+                    </div>
+                    <div class="col-sm-2" id="A32024" data-tid="A373254">
+                        <dx-button type="btn btn-info" class="dx-icon" icon="fa fa-search" text="Sorgula" (onClick)="getInStockTransactions()" i18n-text="@@M16307" id="A32025" style="min-width:128px;" data-tid="A373255"></dx-button>
+                    </div>
+                    <div class="col-sm-2" id="A32024" data-tid="A373256">
+                        <dx-button type="btn btn-info" class="dx-icon" icon="fab fa-searchengin" text="TIF Hareket Dökümü" (onClick)="openDocumentRecordLogs()" style="min-width:128px;" data-tid="A373257">
+                        </dx-button>
+                    </div>
+                    <div class="col-sm-2" id="A32024" data-tid="A373258">
+                        <dx-button type="btn btn-info" class="dx-icon" icon="fas fa-calculator-alt" text="Giriş-Çıkış-Kalan Tutar" (onClick)="openCalculatePrice()" style="min-width:128px;" data-tid="A373259">
+                        </dx-button>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 1%; margin-bottom:1%; margin-left:1%; margin-right:1%" id="A32019" data-tid="A373260">
+                    <dx-data-grid #grid id="gridContainer" [dataSource]="inStockTransactions" keyExpr="stockTransactionObjectID" [hoverStateEnabled]="true" [showBorders]="true" [selectedRowKeys]="selectedInStockTransaction" data-tid="A373261">
+                        <dxo-export [enabled]="true" fileName="Giris" data-tid="A373262"></dxo-export>
+                        <dxo-paging [pageSize]="15" data-tid="A373263"></dxo-paging>
+                        <dxo-selection mode="single" data-tid="A373264"></dxo-selection>
+                        <dxo-filter-row [visible]="true" data-tid="A373265"></dxo-filter-row>
+                        <dxo-header-filter [visible]="true" data-tid="A373266"></dxo-header-filter>
+                        <dxi-column name="button" [allowEditing]="false" caption dataField="selectedInStockTransaction" cellTemplate="buttonCellTemplate" [width]="50" data-tid="A373267">
+                        </dxi-column>
+                        <dxi-column dataField="materialName" caption="Malzeme Adı" [width]="250" data-tid="A373268"></dxi-column>
+                        <dxi-column dataField="trxDescription" caption="Tipi" [width]="200" data-tid="A373269"></dxi-column>
+                        <dxi-column dataField="restAmount" caption="Miktar" data-tid="A373270"></dxi-column>
+                        <dxi-column dataField="unitPrice" caption="Birim Fiyat" data-tid="A373271"></dxi-column>
+                        <dxi-column dataField="BudgetType" caption="Bütçe Türü" data-tid="A373272"></dxi-column>
+                        <dxi-column dataField="destinationDescription" caption="Geldiği Yer" [width]="200" data-tid="A373273"></dxi-column>
+                        <dxi-column dataField="auctionNo" caption="İhale No" data-tid="A373274"></dxi-column>
+                        <dxi-column dataField="transactionDate" caption="Giriş Tarihi" dataType="date" alignment="center" data-tid="A373275"></dxi-column>
+                        <dxi-column dataField="inAmount" caption="Giriş" data-tid="A373276"></dxi-column>
+                        <dxi-column dataField="outAmount" caption="Çıkış" data-tid="A373277"></dxi-column>
+                        <dxi-column dataField="expirationDate" caption="Son Kul.Tar." dataType="date" alignment="center" data-tid="A373278"></dxi-column>
+                        <dxi-column dataField="minLevel" caption="Min. Stok" data-tid="A373279"></dxi-column>
+                        <dxi-column dataField="maxLevel" caption="Max. Stok" data-tid="A373280"></dxi-column>
+                        <dxi-column dataField="barcode" caption="Barkod" alignment="center" data-tid="A373281"></dxi-column>
+                        <dxi-column dataField="MKYSTrxID" caption="Stok Har. ID" alignment="center" data-tid="A373282"></dxi-column>
+                        <dxi-column dataField="stockActionId" caption="İşlem No" alignment="center" data-tid="A373283"></dxi-column>
+                        <dxi-column dataField="tifNo" caption="TİF No" alignment="center" data-tid="A373284"></dxi-column>
+                        <dxo-summary data-tid="A373285">
+                            <dxi-total-item column="materialName" summaryType="count" displayFormat="{0} satır" data-tid="A373286">
+                            </dxi-total-item>
+                            <dxi-total-item column="restAmount" summaryType="sum" displayFormat="T.M.: {0}" data-tid="A373287">
+                            </dxi-total-item>
+                            <dxi-total-item column="inAmount" summaryType="sum" displayFormat="T.G.: {0}" data-tid="A373288">
+                            </dxi-total-item>
+                            <dxi-total-item column="outAmount" summaryType="sum" displayFormat="T.Ç.: {0}" data-tid="A373289">
+                            </dxi-total-item>
+                        </dxo-summary>
+                        <div *dxTemplate="let row of 'buttonCellTemplate'" style="padding-bottom: 1px;" id="A32144" data-tid="A373290">
+                            <button type="button" class="btn btn-default glyphicon glyphicon-list" (click)="selectInStockTransaction(row)" data-toggle="tooltip" data-placement="top" title="İşlem Detayı" data-tid="A373291"></button>
+                        </div>
+                    </dx-data-grid>
+                </div>
+            </dxi-item>
+            <!-- #endregion -->
+            <!-- #region Malzeme Mevcut Durumu -->
+
+            <dxi-item *ngIf="hasRoleDashboardMaterialStatus" class="tabpanel-item" title="Malzeme Mevcut Durumu" style="max-height:900px;overflow-y: scroll;" i18n-title="@@M18595" id="A32017" data-tid="A373292">
+                <div id="A32018" data-tid="A373293">
+                    <div class="row" style="margin: 1%;" id="A32019" data-tid="A373294">
+                        <div id="A32020" class="m--padding-top-7 fltLeft" data-tid="A373295">
+                            <label class="control-label" id="A32021" data-tid="A373296">Malzeme Seçiniz : </label>
+                        </div>
+                        <div class="col-sm-6" id="A32022" data-tid="A373297">
+                            <hvl-valuelist-box #Validation (SelectedValueChange)="SelectMaterialBoxChange($event)" [(SelectedValue)]="logisticDashboardViewModel.Material" [AutoCompleteDialogHeight]="MaterialSelectBox?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="MaterialSelectBox?.AutoCompleteDialogWidth" [AutoCompleteMode]="MaterialSelectBox?.AutoCompleteMode" [BackColor]="MaterialSelectBox?.BackColor" [DefinitionName]="MaterialSelectBox?.ListDefName" [Enabled]="MaterialSelectBox?.Enabled" [Font]="MaterialSelectBox?.Font" [ForeColor]="MaterialSelectBox?.ForeColor" [ListFilterExpression]="MaterialSelectBox?.ListFilterExpression" [MinSearchLength]="MaterialSelectBox?.MinSearchLength" [PopupDialogFieldConfig]="MaterialSelectBox?.PopupDialogFieldConfig" [PopupDialogGridColumns]="MaterialSelectBox?.PopupDialogGridColumns" [PopupDialogHeight]="MaterialSelectBox?.PopupDialogHeight" [PopupDialogTitle]="MaterialSelectBox?.PopupDialogTitle" [PopupDialogWidth]="MaterialSelectBox?.PopupDialogWidth" [ReadOnly]="MaterialSelectBox?.ReadOnly" [SearchTimeout]="MaterialSelectBox?.SearchTimeout" [TabIndex]="MaterialSelectBox?.TabIndex" [Visible]="MaterialSelectBox?.Visible" [width]="MaterialSelectBox?.Width" id="A32023" data-tid="A373298"></hvl-valuelist-box>
+                        </div>
+                        <div class="col-sm-2" id="A32024" data-tid="A373299">
+                            <dx-button type="btn btn-info" class="dx-icon" icon="fa fa-search" text="İlaç Bilgileri Sorgulama" (onClick)="btnVademecumClick()" i18n-text="@@M16307" id="A32025" [(disabled)]="btnMaterialBarcodeDisable" data-tid="A373300"></dx-button>
+                        </div>
+                        <div class="col-sm-1" id="A32026" data-tid="A373301">
+                            <dx-number-box placeholder="Adet Giriniz..." [hoverStateEnabled]="false" [(value)]="valueCountOfBarcode" [(disabled)]="btnMaterialBarcodeDisable" (keypress)="barcodeAmountKeyPress($event)" i18n-placeholder="@@M10509" id="A32027" data-tid="A373302">
+                            </dx-number-box>
+                        </div>
+                        <div class="col-sm-1" id="A32028" style="padding-left: 5px;" data-tid="A373303">
+                            <dx-button type="btn btn-default" text="Barkod Oluştur" (onClick)="btnMaterialBarcode()" i18n-text="@@M11538" id="A32029" icon="fa fa-barcode" [(disabled)]="btnMaterialBarcodeDisable" data-tid="A373304"></dx-button>
+                        </div>
+                        <div class="col-sm-1" id="A32028" style="padding-left: 5px;" data-tid="A373305">
+                            <dx-button type="btn btn-default" text="Grafik" (onClick)="openChart()" i18n-text="@@M11538" id="A32029" icon="fa fa-chart-pie" [(disabled)]="btnMaterialBarcodeDisable" data-tid="A373306"></dx-button>
+                        </div>
+                    </div>
+                    <!-- #region Malzeme Bilgileri -->
+                    <dx-accordion #materialDetayAccordion [items]="[{title:&#39;Malzeme Bilgileri&#39;}]" collapsible="true" id="A32031" data-tid="A373307">
+                        <div *dxTemplate="let a of 'item'" id="A32032" data-tid="A373308">
+                            <div class="panel-group" id="A32033" data-tid="A373309">
+                                <div class="panel panel-success" id="A32034" data-tid="A373310">
+                                    <div class="row" id="A32035" data-tid="A373311">
+                                        <div class="col-sm-2" style="margin-left: 2%;margin-top: 2%;" id="A32036" data-tid="A373312">
+                                            <img id="myImage" (mouseenter)="toggleWithTemplate()" (mouseleave)="toggleWithTemplate()" [src]="MaterialPicture" style="height: 60px;width: 80px; border-color:white;" data-tid="A373313" />
+                                            <dx-tooltip target="#myImage" position="right" [(visible)]="withTemplateVisible" id="A32037" data-tid="A373314">
+                                                <div *dxTemplate="let data = data of 'content'" id="A32038" data-tid="A373315">
+                                                    <img [src]="MaterialPicture" id="A32039" data-tid="A373316" />
+                                                </div>
+                                            </dx-tooltip>
+                                        </div>
+                                        <div class="col-sm-1" style="margin-right:15px" id="A32040" data-tid="A373317">
+                                            <label class="control-label " id="A32043" data-tid="A373318">Adı :</label>
+                                            <label class="control-label " id="A32046" data-tid="A373319"> MKYS Kodu
+                                                :</label>
+                                            <label class="control-label  " id="A32049" data-tid="A373320">Barkodu :</label>
+                                            <label class="control-label " id="A32052" data-tid="A373321">Dağıtım Şekli
+                                                :</label>
+                                            <label class="control-label " id="A32055" data-tid="A373322">Max Seviye
+                                                :</label>
+                                            <label class="control-label " id="A32058" data-tid="A373323">Min Seviye
+                                                :</label>
+                                            <label class="control-label " id="A32061" data-tid="A373324">Saklama Koşulları
+                                                :</label>
+                                        </div>
+                                        <div class="col-sm-4" id="A32062" data-tid="A373325">
+                                            <label class="control-label " id="A32065" data-tid="A373326">{{MaterialItem?.materialName}}</label>
+                                            <label class="control-label " id="A32068" data-tid="A373327">{{MaterialItem?.materialMKYSCod}}</label>
+                                            <label class="control-label " id="A32071" data-tid="A373328">{{MaterialItem?.barcode}}</label>
+                                            <label class="control-label " id="A32074" data-tid="A373329">{{MaterialItem?.distibutiontype}}</label>
+                                            <label class="control-label " id="A32077" data-tid="A373330">{{MaterialItem?.StockInheldMaxLevel}}</label>
+                                            <label class="control-label " id="A32080" data-tid="A373331">{{MaterialItem?.StockInheldMinLevel}}</label>
+                                            <label class="control-label  " id="A32083" data-tid="A373332">{{MaterialItem?.storageConditions}}</label>
+                                        </div>
+                                        <div class="col-sm-1" id="A32084" data-tid="A373333">
+                                            <label class="control-label " id="A32087" data-tid="A373334">Depo Mevcudu
+                                                :</label>
+                                            <label class="control-label " id="A32090" data-tid="A373335">Tahmini Temin Süre
+                                                :</label>
+                                            <label class="control-label " id="A32093" data-tid="A373336">Toplam Giren
+                                                Hareket:</label>
+                                            <label class="control-label " id="A32096" data-tid="A373337">Toplam Giren Tutar
+                                                :</label>
+                                            <label class="control-label " id="A32099" data-tid="A373338">Toplam Çıkan
+                                                Hareket:</label>
+                                            <label class="control-label " id="A32102" data-tid="A373339">Toplam Çıkan Tutar
+                                                :</label>
+                                        </div>
+                                        <div class="col-sm-2" id="A32103" data-tid="A373340">
+                                            <label class="control-label " id="A32106" data-tid="A373341">{{MaterialItem?.Inheld}}</label>
+                                            <label class="control-label " id="A32109" data-tid="A373342">{{MaterialItem?.estimatedTimeOfCheck}}</label>
+                                            <label class="control-label " id="A32112" data-tid="A373343">{{MaterialItem?.totalIn}}</label>
+                                            <label class="control-label " id="A32115" data-tid="A373344">{{MaterialItem?.totalInPrice}}</label>
+                                            <label class="control-label " id="A32118" data-tid="A373345">{{MaterialItem?.totalOut}}</label>
+                                            <label class="control-label " id="A32121" data-tid="A373346">{{MaterialItem?.totalOutPrice}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </dx-accordion>
+                    <!-- #endregion -->
+                    <!-- #region Malzeme Miktar Detayları -->
+                    <dx-accordion [items]="[{title:&#39;Malzeme Miktar Detayları&#39;}]" collapsible="true" id="A32123" data-tid="A373347">
+                        <div *dxTemplate="let a of 'item'" id="A32124" data-tid="A373348">
+                            <div class="panel-group" id="A32125" data-tid="A373349">
+                                <div class="panel panel-success" style="border-color:#f8f8f8" id="A32126" data-tid="A373350">
+                                    <div style="float:left; width:100%; " id="A32127" data-tid="A373351">
+                                        <div class="row" id="A32128" data-tid="A373352">
+                                            <div class="col-sm-4" id="A32129" data-tid="A373353">
+                                                <dx-data-grid [columns]="StockDataInformationGrid" [dataSource]="StockdataInformation" [paging]="{pageSize:Model.WorkListCount}" [selection]="{mode: 'single',allowSelectAll: false}" [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" id="A32130" data-tid="A373354">
+                                                </dx-data-grid>
+                                            </div>
+                                            <div class="col-sm-4" id="A32131" data-tid="A373355">
+                                                <dx-data-grid [columns]="StockDataLevelTypeGrid" [dataSource]="StockdataLevelType" [paging]="{pageSize:Model.WorkListCount}" [selection]="{mode: 'single',allowSelectAll: false}" [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" id="A32132" data-tid="A373356">
+                                                    <div style="height:16px;margin-top:-7px" *dxTemplate="let cellData of 'enumCmbTemplate'" id="A32133" data-tid="A373357">
+                                                        <hvl-enum-combobox [(Value)]="cellData.data[cellData.column.dataField]" DataTypeName="StockLevelTypeEnum" ReadOnly="true" id="A32134" data-tid="A373358">
+                                                        </hvl-enum-combobox>
+                                                    </div>
+                                                </dx-data-grid>
+                                            </div>
+                                            <div class="col-sm-4" id="A32135" data-tid="A373359">
+                                                <dx-data-grid [columns]="StockDataBudgetTypeGrid" [dataSource]="StockBudgetType" [paging]="{pageSize:Model.WorkListCount}" [selection]="{mode: 'single',allowSelectAll: false}" [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" id="A32136" data-tid="A373360">
+                                                </dx-data-grid>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </dx-accordion>
+                    <!-- #endregion -->
+                    <!-- #region Malzeme Hareket Detayları -->
+                    <dx-accordion #materialActionDetayAccordion [items]="[{title:&#39;Malzeme Hareket Detayları&#39;}]" collapsible="true" id="A32138" data-tid="A373361">
+                        <div *dxTemplate="let a of 'item'" id="A32139" data-tid="A373362">
+                            <div class="panel-group" id="A32140" data-tid="A373363">
+                                <div class="panel panel-success" style="border-color:#f8f8f8" id="A32141" data-tid="A373364">
+                                    <div style="float:left; width:100%; " id="A32142" data-tid="A373365">
+
+                                        <dx-data-grid [columns]="WorkListColumns" [dataSource]="Model.stockactionlist" [groupPanel]="{visible: true}" [filterRow]="{visible: true}" [paging]="{pageSize:Model.WorkListCount}" [selection]="{mode: 'single',allowSelectAll: false}" [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" id="A32143" data-tid="A373366">
+                                            <div *dxTemplate="let row of 'buttonCellTemplate'" id="A32144" data-tid="A373367">
+                                                <dx-button height="16px" style="margin-top: -7px" (onClick)="selectAction(row)" icon="fa fa-pencil-square-o" id="A32145" data-tid="A373368">
+                                                </dx-button>
+                                            </div>
+                                            <div style="height:16px;margin-top:-7px" *dxTemplate="let cellData of 'enumCmbTemplate'" id="A32146" data-tid="A373369">
+                                                <hvl-enum-combobox [(Value)]="cellData.data[cellData.column.dataField]" DataTypeName="TransactionTypeEnum" ReadOnly="true" id="A32147" data-tid="A373370">
+                                                </hvl-enum-combobox>
+                                            </div>
+                                        </dx-data-grid>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </dx-accordion>
+                    <!-- #endregion -->
+                    <div class="row" id="A32149" data-tid="A373371">
+                        <div class="col-sm-11" id="A32150" data-tid="A373372">
+                            <!--<dx-tab-panel [selectedIndex]="0" [animationEnabled]="true" id="A32151">
+                                 #region Malzeme Girisleri
+                                <dxi-item class="tabpanel-item" title="Malzeme Girisleri" i18n-title="@@M18576"
+                                    id="A32152">
+                                    <div class="col-sm-6" id="A32153">
+                                        <dx-pie-chart id="pie" palette="Ocean" title="Depo Malzeme Girişleri"
+                                            [dataSource]="girisInfos" (onPointClick)="selectPieChartInStock($event)"
+                                            [size]="{heigth:400,width:400}" i18n-title="@@M12624">
+                                            <dxo-legend orientation="horizontal" itemTextPosition="left"
+                                                horizontalAlignment="right" verticalAlignment="bottom" [columnCount]="4"
+                                                id="A32154"></dxo-legend>
+                                            <dxo-tooltip [enabled]="true" [customizeTooltip]="customizeLabel"
+                                                id="A32155">
+                                            </dxo-tooltip>
+                                            <dxi-series argumentField="Description" valueField="Amount" id="A32156">
+                                                <dxo-label [visible]="true" position="columns"
+                                                    [customizeText]="customizeLabel" id="A32157">
+                                                    <dxo-font [size]="16" id="A32158"></dxo-font>
+                                                    <dxo-connector [visible]="true" [width]="0.5" id="A32159">
+                                                    </dxo-connector>
+                                                </dxo-label>
+                                            </dxi-series>
+                                        </dx-pie-chart>
+                                    </div>
+                                    <div class="col-sm-6" id="A32160">
+                                        <label
+                                            style="font-size: 20px;font-family: 'Segoe UI Light', 'Helvetica Neue Light', 'Segoe UI', 'Helvetica Neue', 'Trebuchet MS', Verdana;font-weight: 200; fill: #232323;cursor: default; margin-left:12%;margin-top: 5%;"
+                                            id="girisDetayLabel"></label>
+                                        <dx-pie-chart id="pie" palette="Ocean" [dataSource]="girisInfosDetail"
+                                            [size]="{heigth:400,width:400}">
+                                            <dxo-legend orientation="horizontal" itemTextPosition="left"
+                                                horizontalAlignment="right" verticalAlignment="bottom" [columnCount]="4"
+                                                id="A32161"></dxo-legend>
+                                            <dxo-tooltip [enabled]="true" [customizeTooltip]="customizeLabel"
+                                                id="A32162">
+                                            </dxo-tooltip>
+                                            <dxi-series argumentField="description" valueField="amount" id="A32163">
+                                                <dxo-label [visible]="true" position="columns"
+                                                    [customizeText]="customizeLabel" id="A32164">
+                                                    <dxo-font [size]="16" id="A32165"></dxo-font>
+                                                    <dxo-connector [visible]="true" [width]="0.5" id="A32166">
+                                                    </dxo-connector>
+                                                </dxo-label>
+                                            </dxi-series>
+                                        </dx-pie-chart>
+                                    </div>
+                                </dxi-item>
+                                #region Malzeme Çıkışları 
+                                <dxi-item class="tabpanel-item" title="Malzeme Çıkışları" i18n-title="@@M18559"
+                                    id="A32167">
+                                    <div class="col-sm-6" id="A32168">
+                                        <dx-pie-chart id="pie" palette="Vintage" title="Depo Malzeme Çıkışları"
+                                            [dataSource]="cikisInfos" (onPointClick)="selectPieChartOutStock($event)"
+                                            [size]="{heigth:400,width:400}" i18n-title="@@M12623">
+                                            <dxo-legend orientation="horizontal" itemTextPosition="right"
+                                                horizontalAlignment="right" verticalAlignment="bottom" [columnCount]="4"
+                                                id="A32169"></dxo-legend>
+                                            <dxo-tooltip [enabled]="true" [customizeTooltip]="customizeLabel"
+                                                id="A32170">
+                                            </dxo-tooltip>
+                                            <dxi-series argumentField="Description" valueField="Amount" id="A32171">
+                                                <dxo-label [visible]="true" position="columns"
+                                                    [customizeText]="customizeLabel" id="A32172">
+                                                    <dxo-font [size]="16" id="A32173"></dxo-font>
+                                                    <dxo-connector [visible]="true" [width]="0.5" id="A32174">
+                                                    </dxo-connector>
+                                                </dxo-label>
+                                            </dxi-series>
+                                        </dx-pie-chart>
+                                    </div>
+                                    <div class="col-sm-6" id="A32175">
+                                        <label
+                                            style="font-size: 20px;font-family: 'Segoe UI Light', 'Helvetica Neue Light', 'Segoe UI', 'Helvetica Neue', 'Trebuchet MS', Verdana;font-weight: 200; fill: #232323;cursor: default; margin-left:12%;margin-top: 5%;"
+                                            id="cikisDetayLabel"></label>
+                                        <dx-pie-chart id="pie" palette="Vintage" [dataSource]="cikisInfosDetail"
+                                            [size]="{heigth:400,width:400}">
+                                            <dxo-legend orientation="horizontal" itemTextPosition="right"
+                                                horizontalAlignment="right" verticalAlignment="bottom" [columnCount]="4"
+                                                id="A32176"></dxo-legend>
+                                            <dxo-tooltip [enabled]="true" [customizeTooltip]="customizeLabel"
+                                                id="A32177">
+                                            </dxo-tooltip>
+                                            <dxi-series argumentField="description" valueField="amount" id="A32178">
+                                                <dxo-label [visible]="true" position="columns"
+                                                    [customizeText]="customizeLabel" id="A32179">
+                                                    <dxo-font [size]="16" id="A32180"></dxo-font>
+                                                    <dxo-connector [visible]="true" [width]="0.5" id="A32181">
+                                                    </dxo-connector>
+                                                </dxo-label>
+                                            </dxi-series>
+                                        </dx-pie-chart>
+                                    </div>
+                                </dxi-item>
+                                #endregion 
+                            </dx-tab-panel>-->
+                        </div>
+                        <!-- #region Stok Durumu 
+                        <div class="col-sm-1" id="A32182">
+                            <div class="panel-group" id="A32183">
+                                <div class="panel panel-success" id="A32184">
+                                    <div class="panel-heading"  id="A32185">Stok Durumu</div>
+                                    <div id="gauge-demo">
+                                        <dx-linear-gauge class="gauge-element" [value]="MaterialInheldMaxMin.inheld"
+                                            style="width: 100px;height: 415px;margin-top: 12%;" id="A32186">
+                                            <dxo-tooltip [enabled]="true" [customizeTooltip]="customizeLabel"
+                                                id="A32187">
+                                            </dxo-tooltip>
+                                            <dxo-value-indicator type="circle" color="#E3A857" id="A32188">
+                                            </dxo-value-indicator>
+                                            <dxo-geometry orientation="vertical" id="A32189"></dxo-geometry>
+                                            <dxo-scale [startValue]="0" [endValue]="100" [customTicks]="[0, 25,50, 100]"
+                                                id="A32190"></dxo-scale>
+                                            <dxo-range-container backgroundColor="none" id="A32191">
+                                                <dxi-range [startValue]="0" [endValue]="MaterialInheldMaxMin.minInheld"
+                                                    color="#E18E92" id="A32192"></dxi-range>
+                                                <dxi-range [startValue]="MaterialInheldMaxMin.minInheld"
+                                                    [endValue]="MaterialInheldMaxMin.maxInheld" color="#A6C567"
+                                                    id="A32193">
+                                                </dxi-range>
+                                                <dxi-range [startValue]="MaterialInheldMaxMin.maxInheld"
+                                                    [endValue]="100" color="#679EC5" id="A32194"></dxi-range>
+                                            </dxo-range-container>
+                                        </dx-linear-gauge>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        #endregion -->
+                    </div>
+                </div>
+            </dxi-item>
+
+            <!-- #endregion -->
+            <!-- #region Maliyet Analizi -->
+            <dxi-item *ngIf="hasRoleDashboardCostAction" class="tabpanel-item" title="Aylık Ort. Maliyet Analizi" i18n-title="@@M27651" id="A32195" data-tid="A373373">
+                <br id="A32196" data-tid="A373374" />
+                <div class="row" style="margin: 1%;" id="A32197" data-tid="A373375">
+                    <div id="A32198" data-tid="A373376">
+                        <label class="control-label m--padding-top-7 fltLeft" id="A32199" data-tid="A373377">Maliyet Analiz
+                            Ayını Seçiniz : </label>
+                    </div>
+                    <div class="col-sm-2" id="A32200" data-tid="A373378">
+                        <dx-select-box [dataSource]="SelectBoxDataSource" displayExpr="costActionDesciption" valueExpr="Objetid" (onSelectionChanged)="selectMonths($event)" id="A32201" data-tid="A373379"></dx-select-box>
+                    </div>
+                </div>
+                <br id="A32202" data-tid="A373380" />
+                <br id="A32203" data-tid="A373381" />
+                <div id="A32204" data-tid="A373382">
+                    <div class="col-xs-12" id="A32205" data-tid="A373383">
+                        <div id="grid" data-tid="A373384">
+                            <dx-data-grid id="grid-container" [dataSource]="costActionGridMateril" (onSelectionChanged)="selectMaterial($event)" [allowColumnReordering]="true" [allowColumnResizing]="true" [columnAutoWidth]="true" data-tid="A373385">
+                                <dxo-selection [selectAllMode]="allPages" [showCheckBoxesMode]="onClick" mode="multiple" id="A32206" data-tid="A373386"></dxo-selection>
+                                <dxo-column-chooser [enabled]="true" id="A32207" data-tid="A373387"></dxo-column-chooser>
+                                <dxo-column-fixing [enabled]="true" id="A32208" data-tid="A373388"></dxo-column-fixing>
+                                <dxo-paging [pageSize]="10" id="A32209" data-tid="A373389"></dxo-paging>
+                                <dxo-filter-row [visible]="true" id="A32210" data-tid="A373390"></dxo-filter-row>
+                                <dxi-column caption="Malzeme" [width]="700" [fixed]="true" dataField="MaterialName" i18n-caption="@@M18545" id="A32211" data-tid="A373391"></dxi-column>
+                                <dxi-column dataField="PreviousMothInheld" caption="Önceki Aydan Devreden Miktar" i18n-caption="@@M20000" id="A32212" data-tid="A373392"></dxi-column>
+                                <dxi-column dataField="PreviousMonthPrice" [format]="customizeFormat" caption="Önceki Aydan Devreden Toplam Maliyet" i18n-caption="@@M20001" id="A32213" data-tid="A373393">
+                                </dxi-column>
+                                <dxi-column dataField="TotalAmount" caption="Toplam Giriş" i18n-caption="@@M23499" id="A32214" data-tid="A373394"></dxi-column>
+                                <dxi-column dataField="TotalOutAmunt" caption="Toplam Çıkış" i18n-caption="@@M23489" id="A32215" data-tid="A373395"></dxi-column>
+                                <dxi-column dataField="TotalPrice" [format]="customizeFormat" caption="Toplam Giriş Fiyatı" i18n-caption="@@M23500" id="A32216" data-tid="A373396"></dxi-column>
+                                <dxi-column dataField="AvarageUnitePrice" [format]="customizeFormat" caption="Ortalama Birim Maliyet" i18n-caption="@@M19766" id="A32217" data-tid="A373397"></dxi-column>
+                                <dxi-column dataField="MaterialPrice" [format]="customizeFormat" caption="Satış Fiyatı" i18n-caption="@@M21392" id="A32218" data-tid="A373398"></dxi-column>
+                                <dxi-column dataField="ProfitAndLoss" [format]="customizeFormat" caption="Kar / Zarar" cellTemplate="diffCellTemplate" i18n-caption="@@M17260" id="A32219" data-tid="A373399"></dxi-column>
+                                <dxi-column dataField="TransferredAmount" caption="Sonraki Aya Devreden Miktar" i18n-caption="@@M22073" id="A32220" data-tid="A373400"></dxi-column>
+                                <dxi-column dataField="DifAvarageUnitePrice" [format]="customizeFormat" caption="Sonraki Aya Devreden Toplam Maliyet" i18n-caption="@@M22074" id="A32221" data-tid="A373401">
+                                </dxi-column>
+
+
+                                <div *dxTemplate="let d of 'diffCellTemplate'" [class]="d.value > 0  ? 'inc' : 'dec'" id="A32222" data-tid="A373402">
+                                    <span class="current-value" id="A32223" data-tid="A373403">{{d.value}} ₺</span>
+                                </div>
+
+                            </dx-data-grid>
+                        </div>
+                    </div>
+                </div>
+                <br id="A32224" data-tid="A373404" />
+                <div id="A32225" data-tid="A373405">
+                    <div class="col-xs-12 m--margin-top-20" id="A32226" data-tid="A373406">
+                        <dx-chart id="chart" [dataSource]="architectureInfoList" [series]="architectureInfoSeries" title="Ortalama Birim Maliyet Tablosu" i18n-title="@@M19767" data-tid="A373407">
+                            <dxo-common-series-settings argumentField="month" type="spline" hoverMode="includePoints" id="A32227" data-tid="A373408">
+                                <dxo-point hoverMode="allArgumentPoints" id="A32228" data-tid="A373409"></dxo-point>
+                            </dxo-common-series-settings>
+                            <dxo-legend verticalAlignment="bottom" horizontalAlignment="center" hoverMode="excludePoints" id="A32229" data-tid="A373410"></dxo-legend>
+                            <dxo-export [enabled]="true" id="A32230" data-tid="A373411"></dxo-export>
+                            <dxo-tooltip [enabled]="true" id="A32231" data-tid="A373412"></dxo-tooltip>
+                        </dx-chart>
+                    </div>
+                </div>
+            </dxi-item>
+            <!-- #endregion -->
+            <!-- #region Stok Seviyesi Belirleme -->
+            <dxi-item *ngIf="hasRoleDashboardMinMax" class="tabpanel-item" title="Stok Seviyesi Belirleme " data-tid="A373413">
+                <br data-tid="A373414" />
+                <div class="row" style="margin-top: 1%; margin-left: 10px;" data-tid="A373415">
+                    <div data-tid="A373416">
+                        <!--<label class="control-label col-sm-2" >Minimum / Maximum Seviye Hesaplama Yöntemi: </label>-->
+                        <label class="control-label m--padding-top-7" style="float:left;" data-tid="A373417">Hesaplama
+                            Tarih Aralığı: </label>
+                    </div>
+                    <!--<div class="col-sm-2">
+                        <hvl-enum-combobox #Validation (ValueChange)="selectedMinMaxCalType($event)" [BackColor]="MinMaxCalcType?.BackColor" [DataTypeName]="MinMaxCalcType?.DataTypeName" [Enabled]="MinMaxCalcType?.Enabled" [Font]="MinMaxCalcType?.Font" [ForeColor]="MinMaxCalcType?.ForeColor" [IncludeOnly]="MinMaxCalcType?.IncludeOnly" [ReadOnly]="MinMaxCalcType?.ReadOnly" [ShowClearButton]="MinMaxCalcType?.ShowClearButton" [SortBy]="MinMaxCalcType?.SortBy" [TabIndex]="MinMaxCalcType?.TabIndex" [Value]="logisticDashboardViewModel?.selectedMinMaxCalc" [Visible]="MinMaxCalcType?.Visible"></hvl-enum-combobox>
+                    </div>-->
+                    <!--<div class="col-sm-4">-->
+                    <div class="col-sm-2" data-tid="A373418">
+                        <dx-date-box [acceptCustomValue]="false" [(value)]="startDate" pickerType="calendar" type="date" displayFormat="dd/MM/yyyy" style="width:100%" data-tid="A373419"> </dx-date-box>
+                    </div>
+                    <div class="col-sm-2" data-tid="A373420">
+                        <dx-date-box [acceptCustomValue]="false" [(value)]="endDate" pickerType="calendar" type="date" displayFormat="dd/MM/yyyy" style="width:100%" data-tid="A373421"> </dx-date-box>
+                    </div>
+                    <!--</div>-->
+                    <!--<div class="control-label m--padding-top-5" style="float:left;" id="A32020">
+                        <label class="control-label"  id="A32021">{{MaterialMultiSelectLabel}}</label>
+                    </div>-->
+                    <div class="col-sm-1" id="A32022" data-tid="A373422">
+                        <dx-button type="btn btn-default" [text]="MaterialMultiSelectButtonText" (onClick)="OpenMaterialMultiSelectComponent()" style="margin-bottom: 10px;" [disabled]="showUnused" data-tid="A373423"></dx-button>
+                    </div>
+                    <div class="col-sm-1" data-tid="A373424">
+                        <dx-button icon="percent" type="btn btn-default" text="Hesapla" (onClick)="CalculateClick()" i18n-text="@@M15755" data-tid="A373425">
+                        </dx-button>
+                    </div>
+                    <div class="col-sm-1" id="A32241" data-tid="A373426">
+                        <dx-button icon="check" type="btn btn-default" text="Güncelle" (onClick)="UpdateClick()" i18n-text="@@M15005" id="A32242" data-tid="A373427">
+                        </dx-button>
+                    </div>
+                    <div class="col-sm-2" data-tid="A373428">
+                        <dx-check-box text="Hareket Görmemişler Dahil" [(value)]="StokLevelAllProduct" data-tid="A373429">
+                        </dx-check-box>
+                    </div>
+                    <div class="col-sm-2" data-tid="A373430">
+                        <dx-check-box [(value)]="StockHasInheld" text="Mevcutları Göster" i18n-text="@@M16871" id="A32388" data-tid="A373431"></dx-check-box>
+                    </div>
+                </div>
+                <!-- <div class="row" style="margin-left: 10px;">
+                    <label class="control-label">Seçilen Malzemeler</label>
+                    <dx-text-box [value]="SelectedMaterialName" readOnly="true">
+                    </dx-text-box>
+                </div> -->
+                <br id="A32243" data-tid="A373432" />
+                <div class="row" style="padding-left: 1%;" data-tid="A373433">
+                    <div class="col-sm-4" data-tid="A373434">
+                        <label data-tid="A373435">Stok Seviyesi Filtresi</label>
+                        <dx-select-box [items]="CriticalStockLevelTypeItems" displayExpr="description" valueExpr="ordinal" (onValueChanged)="onStockLevelTypeChanged($event)" showClearButton="true" id="A30266" data-tid="A373436">
+                        </dx-select-box>
+                    </div>
+                </div>
+                <br id="A32244" data-tid="A373437" />
+                <div class="row" id="A32245" data-tid="A373438">
+                    <div class="col-xs-12" id="A32246" data-tid="A373439">
+                        <div id="grid" data-tid="A373440">
+                            <!--(onSelectionChanged)="selectedCalculetedItem($event)"-->
+                            <!--<dx-data-grid id="grid-container" #GridMinMax showColumnLines="true" showRowLines="true" rowAlternationEnabled="true" showBorders="true" 
+                                [dataSource]="CalculetedItems"  (onRowUpdating)="onGrdCalculateStocktRowUpdating($event)" (onCellPrepared)="onCellPrepared($event)"
+                                 [allowColumnReordering]="true" [allowColumnResizing]="true" [columnAutoWidth]="true" [(selectedRowKeys)]="selectedGridItems" [columns]="gridColumns">
+                                <dxo-editing mode="cell" [allowUpdating]="true">
+                                </dxo-editing>
+                                <dxo-selection [selectAllMode]="allPages" [showCheckBoxesMode]="onClick" mode="multiple"></dxo-selection>
+                                <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+                                <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+                                <dxo-paging [pageSize]="25"></dxo-paging>
+                                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                <dxi-column caption="Malzeme" [allowEditing]="false" [width]="700" [fixed]="true" dataField="MaterialName" i18n-caption="@@M18545"></dxi-column>
+                                <dxi-column dataField="Inheld" [allowEditing]="false" caption="Depo Mevcudu" i18n-caption="@@M12625"></dxi-column>
+                                <dxi-column dataField="MinLevel" [allowEditing]="false" caption="Kayıtlı Minimum Seviye" i18n-caption="@@M22502"></dxi-column>
+                                <dxi-column dataField="CriticalLevel" [allowEditing]="false" caption="Kayıtlı Kritik Seviye" i18n-caption="@@M22502"></dxi-column>
+                                <dxi-column dataField="MaxLevel" [allowEditing]="false" caption="Kayıtlı Maximum Seviye" i18n-caption="@@M22501"></dxi-column>
+                                <dxi-column dataField="CalcMinLevel" [allowEditing]="true" caption="Hesaplanan Minimum Seviye" i18n-caption="@@M15757"></dxi-column>
+                                <dxi-column dataField="CalcCriticalLevel" [allowEditing]="true" caption="Hesaplanan Kritik Seviye" i18n-caption="@@M15757"></dxi-column>
+                                <dxi-column dataField="CalcMaxLevel" [allowEditing]="true" caption="Hesaplanan Maximum Seviye" i18n-caption="@@M15756"></dxi-column>
+                                <dxi-column dataField="OutAmount" caption="Toplam Çıkış Miktarı" i18n-caption="@@M23490"></dxi-column>
+                            </dx-data-grid>-->
+                            <!--[selection]="{mode: 'multiple',allowSelectAll: true}"-->
+                            <dx-data-grid #calculatedItemsGrid showColumnLines="true" showRowLines="true" rowAlternationEnabled="true" showBorders="true" height="600" (onRowUpdating)="onGrdCalculateStocktRowUpdating($event)" (onCellPrepared)="onCellPrepared($event)" [dataSource]="filteredCriticalStockLevelOfItems" [columns]='gridCalcValuesColumns' [paging]="{enable: true, pageSize:25}" [(selectedRowKeys)]="calcValueChangedItems" [filterRow]="{visible:true}" data-tid="A373441">
+                                <dxo-editing mode="cell" [allowUpdating]="true" data-tid="A373442"></dxo-editing>
+                                <dxo-selection mode="multiple" data-tid="A373443"></dxo-selection>
+                                <dxo-summary data-tid="A373444">
+                                    <dxi-total-item column="MaterialName" summaryType="count" data-tid="A373445">
+                                    </dxi-total-item>
+                                </dxo-summary>
+                            </dx-data-grid>
+                        </div>
+                    </div>
+                </div>
+            </dxi-item>
+            <!-- #endregion -->
+            <!-- #region Cep Depo Son Kullanma Tarihi Güncelleme -->
+            <dxi-item *ngIf="hasRoleSubStoreExpDateUpdate" class="tabpanel-item" title="Cep Depo Son Kullanma Tarihi Güncelleme" id="A32195" data-tid="A373446">
+                <br id="A32196" data-tid="A373447" />
+                <div class="row" style="margin-top: 1%;" id="A32197" data-tid="A373448">
+                    <div class="col-sm-4" id="A32200" data-tid="A373449">
+                        <dx-select-box [dataSource]="selectedSubStores" [(value)]="selectedSubStore" displayExpr="Name" valueExpr="ObjectID" placeholder="Cep Depo Seçiniz" style="margin-left:10px" id="A32201" data-tid="A373450">
+                        </dx-select-box>
+                    </div>
+                    <div class="col-sm-1" id="A32022" data-tid="A373451">
+                        <dx-button type="btn btn-default" [text]="MaterialMultiSelectButtonText" (onClick)="OpenSubStoreMaterialMultiSelectComponent()" style="margin-bottom: 10px;" [disabled]="showUnused" data-tid="A373452"></dx-button>
+                    </div>
+                    <div class="col-sm-2" id="A32022" data-tid="A373453">
+                        <dx-number-box #numberBox [min]="0" [showSpinButtons]="true" [(value)]="ExpDayLimit" data-tid="A373454">
+                        </dx-number-box>
+                        <label style="float:left;" data-tid="A373455">Günden az kalanlar </label>
+                    </div>
+                    <div class="col-sm-1" data-tid="A373456">
+                        <dx-button icon="percent" type="btn btn-default" text="Sorgula" (onClick)="SearchExpDateClick()" data-tid="A373457">
+                        </dx-button>
+                    </div>
+                    <div class="col-sm-1" id="A32241" data-tid="A373458">
+                        <dx-button icon="check" type="btn btn-default" text="Güncelle" (onClick)="UpdateExpDateClick()" id="A32242" data-tid="A373459">
+                        </dx-button>
+                    </div>
+                </div>
+                <br id="A32202" data-tid="A373460" />
+                <br id="A32203" data-tid="A373461" />
+                <div class="row" id="A32204" data-tid="A373462">
+                    <div class="col-xs-12" id="A32205" data-tid="A373463">
+                        <div id="grid" data-tid="A373464">
+                            <dx-data-grid id="grid-container" [dataSource]="searchExpDate" (onSelectionChanged)="selectMaterial($event)" [allowColumnReordering]="true" [allowColumnResizing]="true" [columnAutoWidth]="true" data-tid="A373465">
+                                <dxo-selection [selectAllMode]="allPages" [showCheckBoxesMode]="onClick" mode="multiple" id="A32206" data-tid="A373466"></dxo-selection>
+                                <dxo-filter-row [visible]="true" id="A32210" data-tid="A373467"></dxo-filter-row>
+                                <dxo-editing mode="cell" [allowUpdating]="true" data-tid="A373468">
+                                </dxo-editing>
+                                <dxi-column caption="Malzeme" [width]="700" [fixed]="true" dataField="materialName" [allowEditing]="false" data-tid="A373469"></dxi-column>
+                                <dxi-column dataField="inheld" caption="Mevcut" [allowEditing]="false" data-tid="A373470"></dxi-column>
+                                <dxi-column dataField="dayDiff" caption="Kalan Gün" [allowEditing]="false" data-tid="A373471"></dxi-column>
+                                <dxi-column dataField="expDate" caption="Mevcut SKT" dataType="date" [allowEditing]="false" data-tid="A373472"></dxi-column>
+                                <dxi-column dataField="newExpDate" caption="Güncel SKT" dataType="date" [allowEditing]="true" data-tid="A373473"></dxi-column>
+                            </dx-data-grid>
+                        </div>
+                    </div>
+                </div>
+            </dxi-item>
+            <!-- #endregion -->
+            <dxi-item *ngIf="hasRoleSubStoreWaitingWorks" class="tabpanel-item" title="Cep Depo Bekleyen İşler" data-tid="A373474">
+                <div class="row" style="margin: 1%;" id="A32019" data-tid="A373475">
+
+                    <div class="col-sm-2" data-tid="A373476">
+                        <label class="control-label" style="border:0; box-shadow:none; color:#08c" data-tid="A373477">Başlangıç Tarihi </label>
+                        <dx-date-box width="100%" type="datetime" displayFormat="dd/MM/yyyy hh:mm" [(value)]="startDate" id="A32547" data-tid="A373478">
+                        </dx-date-box>
+                    </div>
+                    <div class="col-sm-2" data-tid="A373479">
+                        <label class="control-label" style="border:0; box-shadow:none; color:#08c" data-tid="A373480">Bitiş
+                            Tarihi </label>
+                        <dx-date-box width="100%" type="datetime" displayFormat="dd/MM/yyyy hh:mm" [(value)]="endDate" id="A32547" data-tid="A373481">
+                        </dx-date-box>
+                    </div>
+                    <div class="col-sm-1" style="padding-top: 1%" data-tid="A373482">
+                        <dx-check-box [(value)]="AllReport" [width]="200" text="Tümünü Getir" (onValueChanged)="getAllReport($event)" data-tid="A373483"></dx-check-box>
+                    </div>
+
+                    <div class="col-sm-1" style="padding-top: 0.6%" data-tid="A373484">
+                        <dx-button style="float: right;margin-right: 0%;" type="default" icon="fa fa-bars" text="Listele" (onClick)="SubStoreWorklistSearch()" i18n-text="@@M27337" id="A32565" data-tid="A373485">
+                        </dx-button>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 1%; margin-bottom:1%; margin-left:1%; margin-right:1%" id="A32019" data-tid="A373486">
+                    <dx-data-grid [columns]="SubStoreWaitingWorksColumns" [dataSource]="SubStoreWorklist" [groupPanel]="{visible: false}" [filterRow]="{visible: true}" [paging]="{pageSize:Model.WorkListCount}" [selection]="{mode: 'single',allowSelectAll: false}" [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" style="height : 650px" id="A32567" showRowLines="true" data-tid="A373487">
+                        <div *dxTemplate="let row of 'ReportButtonCellTemplate'" data-tid="A373488">
+                            <button type="button" class="btn btn-default glyphicon glyphicon-pencil" (click)="prepareDocument_Click(row)" style="height: 20px;" data-toggle="tooltip" data-placement="top" title="Görüntüle" data-tid="A373489"></button>
+                        </div>
+                    </dx-data-grid>
+                </div>
+
+            </dxi-item>
+        </dx-tab-panel>
+    </div>
+    <!-- <dx-tag-box [items]="MaterialListDefinition_MinMax" [searchEnabled]="true" displayExpr="Name" [(value)]="selectedMaterial"
+                        [multiline]="false" showSelectionControls="true" [disabled]="showUnused">
+                         </dx-tag-box>  -->
+
+    <dx-popup width="1400px" height="800px" style="position: inherit;" [(visible)]="showMaterialMultiSelectForm" [closeOnOutsideClick]="false" title="Malzeme Listesi" i18n-title="@@M20728" data-tid="A373490">
+        <div class="margin-bottom-10" data-tid="A373491">
+            <div *dxTemplate="let data of 'content'" data-tid="A373492">
+                <MaterialMultiSelectForm (SelectedMaterialsClear)="MaterialsCleared()" (SelectedMaterialsChanged)="MaterialsSelected($event)" [FilterByStockCard]="true" [ShowMuadilMedicineFilter]="true" FilterByStockInheld="false" [StoreObjectId]="store" [CanZeroMaterialSelect]="true" data-tid="A373493"></MaterialMultiSelectForm>
+            </div>
+        </div>
+    </dx-popup>
+
+    <dx-popup width="1400px" height="800px" style="position: inherit;" [(visible)]="showSubStoreMaterialMultiSelectForm" [closeOnOutsideClick]="false" title="Malzeme Listesi" i18n-title="@@M20728" data-tid="A373494">
+        <div class="margin-bottom-10" data-tid="A373495">
+            <div *dxTemplate="let data of 'content'" data-tid="A373496">
+                <MaterialMultiSelectForm (SelectedMaterialsClear)="MaterialsCleared()" (SelectedMaterialsChanged)="MaterialsSelected($event)" (CloseComponent)="CloseMaterialSelect()" [FilterByStockCard]="true" [ShowMuadilMedicineFilter]="true" FilterByStockInheld="true" [StoreObjectId]="store" [CanZeroMaterialSelect]="true" data-tid="A373497"></MaterialMultiSelectForm>
+            </div>
+        </div>
+    </dx-popup>
+
+
+    <!-- <dx-popup width="500px" height="500px" [(visible)]="showMaterialMultiSelectForm" [closeOnOutsideClick]="false" title="Malzeme Listesi">
+        <div id="list-api-demo">
+            <div class="margin-bottom-10">
+                <div *dxTemplate="let data of 'content'">
+                    <dx-list [dataSource]="MaterialListDefinition_MinMax" height="400" selectAllMode="allPages" searchExpr="Name" selectionMode="all"
+                        showSelectionControls="true" searchMode="contains" nextButtonText="Daha Fazla Göster" [(selectedItems)]="selectedMaterial"
+                        [searchEnabled]="true" pageLoadMode="scrollBottom">
+                        <div *dxTemplate="let data of 'item'">
+                            <div>{{data.Name}}</div>
+                        </div>
+                    </dx-list>
+                    <dx-button type="button" (onClick)="selectedChangeOnActiveIngredient()" style="margin-left: 200px;" text="Tamam" id=""></dx-button>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </dx-popup> -->
+</div>
+
+<dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#outTrxGrid' }" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="true" data-tid="A373498">
+</dx-load-panel>

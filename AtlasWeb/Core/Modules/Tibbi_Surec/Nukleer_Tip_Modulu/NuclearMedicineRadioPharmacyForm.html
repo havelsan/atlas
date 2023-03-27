@@ -1,0 +1,166 @@
+﻿<!--//$21B13EC1-->
+<NeStatePanelComponent [OutgoingTransitions]="nuclearMedicineRadioPharmacyFormViewModel?.OutgoingTransitions" [ObjectDefID]="nuclearMedicineRadioPharmacyFormViewModel._NuclearMedicine.ObjectDefID" [CurrentStateDefID]="nuclearMedicineRadioPharmacyFormViewModel._NuclearMedicine.CurrentStateDefID" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A358159">
+</NeStatePanelComponent>
+
+<form id="NuclearMedicineRadioPharmacyForm" class="form-horizontal" role="form" data-tid="A358160"></form>
+
+<div class="row" style="margin-top: 2px;" id="A22922" data-tid="A358161">
+    <div class="col-md-6" id="A22923" data-tid="A358162">
+        <patient-demographics-form [actionId]="nuclearMedicineRadioPharmacyFormViewModel._NuclearMedicine.ObjectID" id="A22924" data-tid="A358163"></patient-demographics-form>
+    </div>
+    <div class="col-md-6" id="A22925" data-tid="A358164">
+        <DiagnosisGridReadOnlyForm [EpisodeAction]="nuclearMedicineRadioPharmacyFormViewModel._NuclearMedicine" id="A22926" data-tid="A358165"></DiagnosisGridReadOnlyForm>
+    </div>
+</div>
+
+<div class="col-sm-3" data-tid="A358166">
+    <div class="col-sm-12" id="A22933" data-tid="A358167">
+        <label class="control-label" id="A22934" data-tid="A358168">
+            İşlem Zamanı
+        </label>
+        <hvl-date-picker #Validation (ValueChange)="onActionDateChanged($event)" [BackColor]="ActionDate?.BackColor" [CustomFormat]="ActionDate?.CustomFormat" [Enabled]="ActionDate?.Enabled" [Font]="ActionDate?.Font" [ForeColor]="ActionDate?.ForeColor" [Format]="ActionDate?.Format" [Max]="ActionDate?.Max" [Min]="ActionDate?.Min" [ReadOnly]="ActionDate?.ReadOnly" [Required]="ActionDate?.Required" [TabIndex]="ActionDate?.TabIndex" [Value]="_NuclearMedicine.ActionDate" [Visible]="ActionDate?.Visible" id="A22935" data-tid="A358169">
+        </hvl-date-picker>
+    </div>
+    <div class="col-sm-12" data-tid="A358170">
+        <label class="control-label" data-tid="A358171">
+            Tetkik
+        </label>
+        <!--<hvl-text-box #Validation="" (TextChange)="nucMedSelectedTesttxt.Text=$event;" [BackColor]="nucMedSelectedTesttxt?.BackColor" [CharacterCasing]="nucMedSelectedTesttxt?.CharacterCasing" [Enabled]="nucMedSelectedTesttxt?.Enabled" [Font]="nucMedSelectedTesttxt?.Font" [ForeColor]="nucMedSelectedTesttxt?.ForeColor" [height]="nucMedSelectedTesttxt?.Height" [InputFormat]="nucMedSelectedTesttxt?.InputFormat" [InputTurkishCharacter]="nucMedSelectedTesttxt?.InputTurkishCharacter" [IsNonNumeric]="nucMedSelectedTesttxt?.IsNonNumeric" [MultiLine]="nucMedSelectedTesttxt?.Multiline" [ReadOnly]="nucMedSelectedTesttxt?.ReadOnly" [Required]="nucMedSelectedTesttxt?.Required" [TabIndex]="nucMedSelectedTesttxt?.TabIndex" [TextAlign]="nucMedSelectedTesttxt?.TextAlign" [Text]="nucMedSelectedTesttxt?.Text" [Visible]="nucMedSelectedTesttxt?.Visible">
+        </hvl-text-box>-->
+        <hvl-text-box #Validation (TextChange)="nucMedSelectedTesttxt.Text=$event;" [BackColor]="nucMedSelectedTesttxt?.BackColor" [CharacterCasing]="nucMedSelectedTesttxt?.CharacterCasing" [Enabled]="nucMedSelectedTesttxt?.Enabled" [Font]="nucMedSelectedTesttxt?.Font" [ForeColor]="nucMedSelectedTesttxt?.ForeColor" [height]="nucMedSelectedTesttxt?.Height" [InputFormat]="nucMedSelectedTesttxt?.InputFormat" [InputTurkishCharacter]="nucMedSelectedTesttxt?.InputTurkishCharacter" [IsNonNumeric]="nucMedSelectedTesttxt?.IsNonNumeric" [MultiLine]="nucMedSelectedTesttxt?.Multiline" [ReadOnly]="nucMedSelectedTesttxt?.ReadOnly" [Required]="nucMedSelectedTesttxt?.Required" [TabIndex]="nucMedSelectedTesttxt?.TabIndex" [TextAlign]="nucMedSelectedTesttxt?.TextAlign" [Text]="_NuclearMedicine.DescriptionForWorkList" [Visible]="nucMedSelectedTesttxt?.Visible" data-tid="A358172">
+        </hvl-text-box>
+    </div>
+</div>
+
+<div class="col-sm-3" data-tid="A358173">
+    <div class="col-sm-12" data-tid="A358174">
+        <label class="control-label" data-tid="A358175">
+            İstek Yapan Doktor
+        </label>
+        <hvl-list-box #Validation (SelectedObjectChange)="onREQUESTDOCTORChanged($event)" [AutoCompleteDialogHeight]="REQUESTDOCTOR?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="REQUESTDOCTOR?.AutoCompleteDialogWidth" [AutoCompleteMode]="REQUESTDOCTOR?.AutoCompleteMode" [BackColor]="REQUESTDOCTOR?.BackColor" [DefinitionName]="REQUESTDOCTOR?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="REQUESTDOCTOR?.Enabled" [Font]="REQUESTDOCTOR?.Font" [ForeColor]="REQUESTDOCTOR?.ForeColor" [ListFilterExpression]="REQUESTDOCTOR?.ListFilterExpression" [MinSearchLength]="REQUESTDOCTOR?.MinSearchLength" [PopupDialogFieldConfig]="REQUESTDOCTOR?.PopupDialogFieldConfig" [PopupDialogGridColumns]="REQUESTDOCTOR?.PopupDialogGridColumns" [PopupDialogHeight]="REQUESTDOCTOR?.PopupDialogHeight" [PopupDialogTitle]="REQUESTDOCTOR?.PopupDialogTitle" [PopupDialogWidth]="REQUESTDOCTOR?.PopupDialogWidth" [ReadOnly]="REQUESTDOCTOR?.ReadOnly" [SearchMode]="REQUESTDOCTOR?.SearchMode" [SearchTimeout]="REQUESTDOCTOR?.SearchTimeout" [SelectedObject]="_NuclearMedicine.RequestDoctor" [TabIndex]="REQUESTDOCTOR?.TabIndex" [Visible]="REQUESTDOCTOR?.Visible" [width]="REQUESTDOCTOR?.Width" id="A22949" data-tid="A358176">
+        </hvl-list-box>
+    </div>
+    <div class="col-sm-12" id="A22950" data-tid="A358177">
+        <label class="control-label" id="A22951" data-tid="A358178">
+            İstek Yapan Doktor Telefon
+        </label>
+        <hvl-text-box #Validation (TextChange)="onREQUESTDOCTORPHONEChanged($event)" [BackColor]="REQUESTDOCTORPHONE?.BackColor" [CharacterCasing]="REQUESTDOCTORPHONE?.CharacterCasing" [Enabled]="REQUESTDOCTORPHONE?.Enabled" [Font]="REQUESTDOCTORPHONE?.Font" [ForeColor]="REQUESTDOCTORPHONE?.ForeColor" [height]="REQUESTDOCTORPHONE?.Height" [InputFormat]="REQUESTDOCTORPHONE?.InputFormat" [InputTurkishCharacter]="REQUESTDOCTORPHONE?.InputTurkishCharacter" [IsNonNumeric]="REQUESTDOCTORPHONE?.IsNonNumeric" [MultiLine]="REQUESTDOCTORPHONE?.Multiline" [ReadOnly]="REQUESTDOCTORPHONE?.ReadOnly" [Required]="REQUESTDOCTORPHONE?.Required" [TabIndex]="REQUESTDOCTORPHONE?.TabIndex" [TextAlign]="REQUESTDOCTORPHONE?.TextAlign" [Text]="_NuclearMedicine.RequestDoctor.PhoneNumber" [Visible]="REQUESTDOCTORPHONE?.Visible" id="A22952" data-tid="A358179">
+        </hvl-text-box>
+    </div>
+</div>
+
+<div class="col-sm-3" data-tid="A358180">
+    <div class="col-sm-12" data-tid="A358181">
+        <label class="control-label" data-tid="A358182">
+            Hastanın Kilosu
+        </label>
+        <hvl-text-box #Validation (TextChange)="onPATIENTWEIGHTChanged($event)" [BackColor]="PATIENTWEIGHT?.BackColor" [CharacterCasing]="PATIENTWEIGHT?.CharacterCasing" [Enabled]="PATIENTWEIGHT?.Enabled" [Font]="PATIENTWEIGHT?.Font" [ForeColor]="PATIENTWEIGHT?.ForeColor" [height]="PATIENTWEIGHT?.Height" [InputFormat]="PATIENTWEIGHT?.InputFormat" [InputTurkishCharacter]="PATIENTWEIGHT?.InputTurkishCharacter" [IsNonNumeric]="PATIENTWEIGHT?.IsNonNumeric" [MultiLine]="PATIENTWEIGHT?.Multiline" [ReadOnly]="PATIENTWEIGHT?.ReadOnly" [Required]="PATIENTWEIGHT?.Required" [TabIndex]="PATIENTWEIGHT?.TabIndex" [TextAlign]="PATIENTWEIGHT?.TextAlign" [Text]="_NuclearMedicine.PatientWeight" [Visible]="PATIENTWEIGHT?.Visible" id="A22938" data-tid="A358183">
+        </hvl-text-box>
+    </div>
+    <div class="col-sm-12" id="A22939" data-tid="A358184">
+        <label class="control-label" id="A22940" data-tid="A358185">
+            Hastanın Telefonu
+        </label>
+        <hvl-text-box #Validation (TextChange)="onPatientPhoneChanged($event)" [BackColor]="PatientPhone?.BackColor" [CharacterCasing]="PatientPhone?.CharacterCasing" [Enabled]="PatientPhone?.Enabled" [Font]="PatientPhone?.Font" [ForeColor]="PatientPhone?.ForeColor" [height]="PatientPhone?.Height" [InputFormat]="PatientPhone?.InputFormat" [InputTurkishCharacter]="PatientPhone?.InputTurkishCharacter" [IsNonNumeric]="PatientPhone?.IsNonNumeric" [MultiLine]="PatientPhone?.Multiline" [ReadOnly]="PatientPhone?.ReadOnly" [Required]="PatientPhone?.Required" [TabIndex]="PatientPhone?.TabIndex" [TextAlign]="PatientPhone?.TextAlign" [Text]="_NuclearMedicine.PatientPhoneNumber" [Visible]="PatientPhone?.Visible" id="A22941" data-tid="A358186">
+        </hvl-text-box>
+    </div>
+</div>
+<div class="col-sm-3" data-tid="A358187">
+    <div class="col-sm-12" data-tid="A358188">
+        <label class="control-label" data-tid="A358189">
+            Farmasötik Hazırlama Tarihi
+        </label>
+        <hvl-date-picker #Validation (ValueChange)="onttdatetimepicker1Changed($event)" [BackColor]="ttdatetimepicker1?.BackColor" [CustomFormat]="ttdatetimepicker1?.CustomFormat" [Enabled]="ttdatetimepicker1?.Enabled" [Font]="ttdatetimepicker1?.Font" [ForeColor]="ttdatetimepicker1?.ForeColor" [Format]="ttdatetimepicker1?.Format" [Max]="ttdatetimepicker1?.Max" [Min]="ttdatetimepicker1?.Min" [ReadOnly]="ttdatetimepicker1?.ReadOnly" [Required]="ttdatetimepicker1?.Required" [TabIndex]="ttdatetimepicker1?.TabIndex" [Value]="_NuclearMedicine.PharmaceuticalPrepDate" [Visible]="ttdatetimepicker1?.Visible" data-tid="A358190">
+        </hvl-date-picker>
+    </div>
+    <div class="col-sm-12" data-tid="A358191">
+        <label class="control-label" data-tid="A358192">
+            Enjeksiyonu Yapan
+        </label>
+        <hvl-list-box #Validation (SelectedObjectChange)="onInjectedByChanged($event)" [AutoCompleteDialogHeight]="InjectedBy?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="InjectedBy?.AutoCompleteDialogWidth" [AutoCompleteMode]="InjectedBy?.AutoCompleteMode" [BackColor]="InjectedBy?.BackColor" [DefinitionName]="InjectedBy?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="InjectedBy?.Enabled" [Font]="InjectedBy?.Font" [ForeColor]="InjectedBy?.ForeColor" [ListFilterExpression]="InjectedBy?.ListFilterExpression" [MinSearchLength]="InjectedBy?.MinSearchLength" [PopupDialogFieldConfig]="InjectedBy?.PopupDialogFieldConfig" [PopupDialogGridColumns]="InjectedBy?.PopupDialogGridColumns" [PopupDialogHeight]="InjectedBy?.PopupDialogHeight" [PopupDialogTitle]="InjectedBy?.PopupDialogTitle" [PopupDialogWidth]="InjectedBy?.PopupDialogWidth" [ReadOnly]="InjectedBy?.ReadOnly" [SearchMode]="InjectedBy?.SearchMode" [SearchTimeout]="InjectedBy?.SearchTimeout" [SelectedObject]="_NuclearMedicine.InjectedBy" [TabIndex]="InjectedBy?.TabIndex" [Visible]="InjectedBy?.Visible" [width]="InjectedBy?.Width" id="A22957" data-tid="A358193">
+        </hvl-list-box>
+    </div>
+</div>
+
+    <div class="col-sm-8" data-tid="A358194">
+        <label class="control-label" data-tid="A358195">
+            Açıklama
+        </label>
+        <hvl-text-box #Validation (TextChange)="ontttextbox2Changed($event)" [BackColor]="tttextbox2?.BackColor" [CharacterCasing]="tttextbox2?.CharacterCasing" [Enabled]="tttextbox2?.Enabled" [Font]="tttextbox2?.Font" [ForeColor]="tttextbox2?.ForeColor" [height]="tttextbox2?.Height" [InputFormat]="tttextbox2?.InputFormat" [InputTurkishCharacter]="tttextbox2?.InputTurkishCharacter" [IsNonNumeric]="tttextbox2?.IsNonNumeric" [MultiLine]="tttextbox2?.Multiline" [ReadOnly]="tttextbox2?.ReadOnly" [Required]="tttextbox2?.Required" [TabIndex]="tttextbox2?.TabIndex" [TextAlign]="tttextbox2?.TextAlign" [Text]="_NuclearMedicine.NuclearMaterialName" [Visible]="tttextbox2?.Visible" data-tid="A358196">
+        </hvl-text-box>
+    </div>
+
+
+    <div class="col-sm-3" data-tid="A358197">
+        <label class="control-label" data-tid="A358198">
+            Test Sıra No
+        </label>
+        <hvl-text-box #Validation (TextChange)="ontttextbox4Changed($event)" [BackColor]="tttextbox4?.BackColor" [CharacterCasing]="tttextbox4?.CharacterCasing" [Enabled]="tttextbox4?.Enabled" [Font]="tttextbox4?.Font" [ForeColor]="tttextbox4?.ForeColor" [height]="tttextbox4?.Height" [InputFormat]="tttextbox4?.InputFormat" [InputTurkishCharacter]="tttextbox4?.InputTurkishCharacter" [IsNonNumeric]="tttextbox4?.IsNonNumeric" [MultiLine]="tttextbox4?.Multiline" [ReadOnly]="tttextbox4?.ReadOnly" [Required]="tttextbox4?.Required" [TabIndex]="tttextbox4?.TabIndex" [TextAlign]="tttextbox4?.TextAlign" [Text]="_NuclearMedicine.TestSequenceNo" [Visible]="tttextbox4?.Visible" data-tid="A358199">
+        </hvl-text-box>
+    </div>
+    <div class="col-sm-1" data-tid="A358200">
+        <br data-tid="A358201" />
+        <!--<hvl-button (BtnClicked)="PrintBarcodeButton_Click" [BackColor]="PrintBarcodeButton?.BackColor" [Enabled]="PrintBarcodeButton?.Enabled" [Font]="PrintBarcodeButton?.Font" [ForeColor]="PrintBarcodeButton?.ForeColor" [height]="PrintBarcodeButton?.Height" [ReadOnly]="PrintBarcodeButton?.ReadOnly" [TabIndex]="PrintBarcodeButton?.TabIndex" [Text]="PrintBarcodeButton?.Text" [Visible]="PrintBarcodeButton?.Visible">
+        </hvl-button>-->
+        <dx-button type="success" icon="fa fa-barcode" text="Barkod Bas" (onClick)="cmdBarcode_Click()" i18n-text="@@M16462" id="A22798" data-tid="A358202"></dx-button>
+    </div>
+
+    <!--<div class="row" id="A22929">
+        <div class="col-sm-1" id="A22930">
+            <label class="control-label" id="A22931">
+                Acil
+            </label>
+            <hvl-checkbox #Validation (ValuleChange)="onIsEmergencyChanged($event)" [AllowThreeState]="IsEmergency?.ThreeState" [BackColor]="IsEmergency?.BackColor" [Enabled]="IsEmergency?.Enabled" [Font]="IsEmergency?.Font" [ForeColor]="IsEmergency?.ForeColor" [IsTitleLeft]="IsEmergency?.IsTitleLeft" [Margin]="IsEmergency?.Margin" [ReadOnly]="IsEmergency?.ReadOnly" [TabIndex]="IsEmergency?.TabIndex" [TitleTopPadding]="IsEmergency?.TitleTopPadding" [Title]="IsEmergency?.Title" [Value]="_NuclearMedicine.Emergency" [Visible]="IsEmergency?.Visible" id="A22932">
+            </hvl-checkbox>
+        </div>
+
+     
+
+   
+    </div>-->
+
+
+
+    <div class="col-sm-12" style="margin-top:10px;" id="A22970" data-tid="A358203">
+        <dx-tab-panel [selectedIndex]="0" id="A22971" style="height:500px" data-tid="A358204">
+            <dxi-item class="tabpanel-item" title="Kısa Anamnez ve Klinik Bulgular" id="A22972" data-tid="A358205">
+                <br data-tid="A358206" />
+                <div class="col-sm-12" id="A22974" data-tid="A358207">
+                    <hvl-text-box #Validation (TextChange)="onPREDIAGNOSISChanged($event)" [BackColor]="PREDIAGNOSIS?.BackColor" [CharacterCasing]="PREDIAGNOSIS?.CharacterCasing" [Enabled]="PREDIAGNOSIS?.Enabled" [Font]="PREDIAGNOSIS?.Font" [ForeColor]="PREDIAGNOSIS?.ForeColor" [height]="PREDIAGNOSIS?.Height" [InputFormat]="PREDIAGNOSIS?.InputFormat" [InputTurkishCharacter]="PREDIAGNOSIS?.InputTurkishCharacter" [IsNonNumeric]="PREDIAGNOSIS?.IsNonNumeric" [MultiLine]="PREDIAGNOSIS?.Multiline" [ReadOnly]="PREDIAGNOSIS?.ReadOnly" [Required]="PREDIAGNOSIS?.Required" [TabIndex]="PREDIAGNOSIS?.TabIndex" [TextAlign]="PREDIAGNOSIS?.TextAlign" [Text]="_NuclearMedicine.PreDiagnosis" [Visible]="PREDIAGNOSIS?.Visible" id="A22975" data-tid="A358208">
+                    </hvl-text-box>
+                </div>
+
+            </dxi-item>
+            <dxi-item class="tabpanel-item" title="N.T. Doktor Notu" id="A22976" data-tid="A358209">
+                <br data-tid="A358210" />
+                <div class="col-sm-12" id="A22978" data-tid="A358211">
+                    <hvl-text-box #Validation (TextChange)="onRADIOPHARMACYDESCChanged($event)" [BackColor]="RADIOPHARMACYDESC?.BackColor" [CharacterCasing]="RADIOPHARMACYDESC?.CharacterCasing" [Enabled]="RADIOPHARMACYDESC?.Enabled" [Font]="RADIOPHARMACYDESC?.Font" [ForeColor]="RADIOPHARMACYDESC?.ForeColor" [height]="RADIOPHARMACYDESC?.Height" [InputFormat]="RADIOPHARMACYDESC?.InputFormat" [InputTurkishCharacter]="RADIOPHARMACYDESC?.InputTurkishCharacter" [IsNonNumeric]="RADIOPHARMACYDESC?.IsNonNumeric" [MultiLine]="RADIOPHARMACYDESC?.Multiline" [ReadOnly]="RADIOPHARMACYDESC?.ReadOnly" [Required]="RADIOPHARMACYDESC?.Required" [TabIndex]="RADIOPHARMACYDESC?.TabIndex" [TextAlign]="RADIOPHARMACYDESC?.TextAlign" [Text]="_NuclearMedicine.RadioPharmacyDescription" [Visible]="RADIOPHARMACYDESC?.Visible" id="A22979" data-tid="A358212">
+                    </hvl-text-box>
+                </div>
+
+            </dxi-item>
+            <dxi-item class="tabpanel-item" title="Sarf Malzeme" id="A22980" data-tid="A358213">
+                <br data-tid="A358214" />
+                <div class="col-sm-12" id="A22982" data-tid="A358215">
+                    <!--<hvl-datagrid (CellValueChange)="GridNuclearMedicineMaterial" [AllowUserToAddRows]="_NuclearMedicine.NucMedTreatmentMats?.AllowUserToAddRows" [AllowUserToDeleteRows]="_NuclearMedicine.NucMedTreatmentMats?.AllowUserToDeleteRows" [Columns]="_NuclearMedicine.NucMedTreatmentMatsColumns" [dataSource]="dummyModel?.dataMember" [DeleteButtonWidth]="_NuclearMedicine.NucMedTreatmentMats?.DeleteButtonWidth" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [EnableFilter]="_NuclearMedicine.NucMedTreatmentMats?.ShowFilterRow" [FilterColumnName]="_NuclearMedicine.NucMedTreatmentMats?.FilterColumnName" [FilterLabel]="_NuclearMedicine.NucMedTreatmentMats?.FilterLabel" [Filter]="_NuclearMedicine.NucMedTreatmentMats?.Filter" [height]="_NuclearMedicine.NucMedTreatmentMats?.Height" [IsFilterLabelSingleLine]="_NuclearMedicine.NucMedTreatmentMats?.IsFilterLabelSingleLine" [ShowColumnHeaders]="_NuclearMedicine.NucMedTreatmentMats?.ColumnHeadersVisible" [ShowFilterCombo]="_NuclearMedicine.NucMedTreatmentMats?.ShowFilterCombo" [ShowTotalNumberOfRows]="_NuclearMedicine.NucMedTreatmentMats?.ShowTotalNumberOfRows">
+        </hvl-datagrid>-->
+                    <TreatmentMaterialForm [EpisodeAction]="nuclearMedicineRadioPharmacyFormViewModel._NuclearMedicine" [StoreResourceId]="nuclearMedicineRadioPharmacyFormViewModel._NuclearMedicine.MasterResource" [TreatmentMaterialGridList]="nuclearMedicineRadioPharmacyFormViewModel._NuclearMedicine.NucMedTreatmentMats" [IsReadOnly]="ReadOnly" [TreatmentMaterialTypeName]="TreatmentMaterialTypeName1" id="A22983" data-tid="A358216"></TreatmentMaterialForm>
+                </div>
+
+            </dxi-item>
+            <dxi-item class="tabpanel-item" title="Radyofarmasötik  Madde Sarf " id="A22984" data-tid="A358217">
+                <br data-tid="A358218" />
+                <div class="col-sm-12" id="A22986" data-tid="A358219">
+                    <!--<hvl-datagrid (CellValueChange)="GridRadPharmMaterials" [AllowUserToAddRows]="_NuclearMedicine.RadPharmMaterials?.AllowUserToAddRows" [AllowUserToDeleteRows]="_NuclearMedicine.RadPharmMaterials?.AllowUserToDeleteRows" [Columns]="_NuclearMedicine.RadPharmMaterialsColumns" [dataSource]="dummyModel?.dataMember" [DeleteButtonWidth]="_NuclearMedicine.RadPharmMaterials?.DeleteButtonWidth" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [EnableFilter]="_NuclearMedicine.RadPharmMaterials?.ShowFilterRow" [FilterColumnName]="_NuclearMedicine.RadPharmMaterials?.FilterColumnName" [FilterLabel]="_NuclearMedicine.RadPharmMaterials?.FilterLabel" [Filter]="_NuclearMedicine.RadPharmMaterials?.Filter" [height]="_NuclearMedicine.RadPharmMaterials?.Height" [IsFilterLabelSingleLine]="_NuclearMedicine.RadPharmMaterials?.IsFilterLabelSingleLine" [ShowColumnHeaders]="_NuclearMedicine.RadPharmMaterials?.ColumnHeadersVisible" [ShowFilterCombo]="_NuclearMedicine.RadPharmMaterials?.ShowFilterCombo" [ShowTotalNumberOfRows]="_NuclearMedicine.RadPharmMaterials?.ShowTotalNumberOfRows">
+        </hvl-datagrid>-->
+                    <TreatmentMaterialForm [EpisodeAction]="nuclearMedicineRadioPharmacyFormViewModel._NuclearMedicine" [StoreResourceId]="nuclearMedicineRadioPharmacyFormViewModel._NuclearMedicine.MasterResource" [TreatmentMaterialGridList]="nuclearMedicineRadioPharmacyFormViewModel._NuclearMedicine.RadPharmMaterials" [IsReadOnly]="ReadOnly" [TreatmentMaterialTypeName]="TreatmentMaterialTypeName2" id="A22987" data-tid="A358220"></TreatmentMaterialForm>
+                </div>
+
+            </dxi-item>
+        </dx-tab-panel>
+    </div>
+
+    <br data-tid="A358221" />
+
+    <!--<pre>
+        {{ _ViewModel | json }}</pre>-->

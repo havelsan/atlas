@@ -1,0 +1,54 @@
+﻿<div class="col-md-12" data-tid="A337730">
+
+    <div class="row" data-tid="A337731">
+
+        <div class="col-sm-3" data-tid="A337732">
+            <label class="control-label" data-tid="A337733">
+                İşlem No
+            </label>
+        </div>
+        <div class="col-sm-3" data-tid="A337734">
+            <label class="control-label" data-tid="A337735">
+                İşlem Tarihi
+            </label>
+        </div>
+        <div class="col-sm-3" data-tid="A337736">
+            <label class="control-label" data-tid="A337737">
+                İşlem Türü
+            </label>
+            <dx-select-box searchEnabled="true" [(value)]="SelectedNotificationType" (onSelectionChanged)="UTSNotificationTypeChanged($event)" [items]="notificationTypes" placeholder="İşlem Tipini Seçiniz..." displayExpr="description" valueExpr="code" data-tid="A337738"></dx-select-box>
+        </div>
+        <div class="col-sm-3" data-tid="A337739">
+            <label class="control-label" data-tid="A337740">
+                Ana Depo
+            </label>
+        </div>
+    </div>
+    <div class="row" data-tid="A337741">
+        <div class="col-sm-3" data-tid="A337742">
+            <label class="control-label" data-tid="A337743">
+                Başlangıç Tarihi
+            </label>
+            <dx-date-box width="100%" type="datetime" displayFormat="dd/MM/yyyy" [(value)]="StartDate" [readOnly]="isAlmaNotification" data-tid="A337744">
+            </dx-date-box>
+        </div>
+        <div class="col-sm-3" data-tid="A337745">
+            <label class="control-label" data-tid="A337746">
+                Bitiş Tarihi
+            </label>
+            <dx-date-box width="100%" type="datetime" displayFormat="dd/MM/yyyy" [(value)]="EndDate" [readOnly]="isAlmaNotification" data-tid="A337747">
+            </dx-date-box>
+        </div>
+        <div class="col-sm-4" id="A14634" data-tid="A337748">
+            <dx-button icon="fa fa-list" text="Listele" type="btn btn-default" style="margin-top: 12px;" (onClick)="listNotifications()" data-tid="A337749"></dx-button>
+        </div>
+    </div>
+
+    <div class="row" data-tid="A337750">
+        <dx-data-grid [columns]="activeGridColumns" [allowColumnResizing]="true" [dataSource]="docs" [editing]="{allowDeleting:false,mode: 'row',  texts:{confirmDeleteMessage:'Silmek İstediğinizden Emin misiniz?'}}" [filterRow]="{visible: true}" style="height:300px" data-tid="A337751">
+            <dxo-paging [pageSize]="50" [pageIndex]="currentPage" data-tid="A337752"></dxo-paging>
+        </dx-data-grid>
+    </div>
+
+
+</div>

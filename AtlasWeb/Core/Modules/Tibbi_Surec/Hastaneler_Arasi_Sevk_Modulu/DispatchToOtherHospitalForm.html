@@ -1,0 +1,305 @@
+﻿
+    <NeStatePanelComponent *ngIf="!(openedByTreatmentDischargeForm == true || openedFromInpatientPhysician == true)" [OutgoingTransitions]="dispatchToOtherHospitalFormViewModel?.OutgoingTransitions" [StateReports]="dispatchToOtherHospitalFormViewModel?.CurrentStateReports" [ObjectID]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.ObjectID" [ObjectDefID]="dispatchToOtherHospitalFormViewModel._DispatchToOtherHospital.ObjectDefID" [CurrentStateDefID]="dispatchToOtherHospitalFormViewModel._DispatchToOtherHospital.CurrentStateDefID" [CancelCommandVisible]="false" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()" [DropStateList]="DropStateList" id="A14278" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A345484">
+    </NeStatePanelComponent>
+
+<div class="container-fluid" id="A14279" data-tid="A345485">
+
+    <form id="DispatchToOtherHospitalForm" class="form-horizontal" role="form" data-tid="A345486"></form>
+    <!--<div class="row">
+        <div class="col-sm-4">
+            <label class="control-label">
+                Genel Sağlık Sigortalısının Adı
+            </label>
+            <hvl-text-box #Validation (TextChange)="onGSSOwnerNameChanged($event)" [BackColor]="GSSOwnerName?.BackColor" [CharacterCasing]="GSSOwnerName?.CharacterCasing" [Enabled]="GSSOwnerName?.Enabled" [Font]="GSSOwnerName?.Font" [ForeColor]="GSSOwnerName?.ForeColor" [height]="GSSOwnerName?.Height" [InputFormat]="GSSOwnerName?.InputFormat" [InputTurkishCharacter]="GSSOwnerName?.InputTurkishCharacter" [IsNonNumeric]="GSSOwnerName?.IsNonNumeric" [MultiLine]="GSSOwnerName?.Multiline" [ReadOnly]="GSSOwnerName?.ReadOnly" [Required]="GSSOwnerName?.Required" [TabIndex]="GSSOwnerName?.TabIndex" [TextAlign]="GSSOwnerName?.TextAlign" [Text]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.GSSOwnerName" [Visible]="GSSOwnerName?.Visible"></hvl-text-box>
+            <label class="control-label">
+                Sevk İstek Tarihi
+            </label>
+            <hvl-date-picker #Validation (ValueChange)="onRequestDateChanged($event)" [BackColor]="RequestDate?.BackColor" [CustomFormat]="RequestDate?.CustomFormat" [Enabled]="RequestDate?.Enabled" [Font]="RequestDate?.Font" [ForeColor]="RequestDate?.ForeColor" [Format]="RequestDate?.Format" [Max]="RequestDate?.Max" [Min]="RequestDate?.Min" [ReadOnly]="RequestDate?.ReadOnly" [Required]="RequestDate?.Required" [TabIndex]="RequestDate?.TabIndex" [Value]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.RequestDate" [Visible]="RequestDate?.Visible"></hvl-date-picker>
+        </div>
+        <div class="col-sm-8">
+            <DiagnosisGridReadOnlyForm [EpisodeAction]="dispatchToOtherHospitalFormViewModel._DispatchToOtherHospital.MasterAction"></DiagnosisGridReadOnlyForm>
+        </div>
+    </div>-->
+    <div class="row" id="A14280" *ngIf="!(openedByTreatmentDischargeForm == true || openedByFormEditor == true)" data-tid="A345487">
+        <div class="col-md-4 col-sm-12" *ngIf="!(openedByTreatmentDischargeForm == true || openedByFormEditor == true)" id="A14281" data-tid="A345488">
+            <patient-demographics-form [actionId]="dispatchToOtherHospitalFormViewModel._DispatchToOtherHospital?.ObjectID" id="A14282" data-tid="A345489"></patient-demographics-form>
+        </div>
+        <div class="col-md-2 col-sm-12" id="A14283" data-tid="A345490">
+            <label class="control-label" id="A14284" data-tid="A345491">
+                Sevk İstek Tarihi
+            </label>
+            <hvl-date-picker #Validation (ValueChange)="onRequestDateChanged($event)" [BackColor]="RequestDate?.BackColor" [CustomFormat]="RequestDate?.CustomFormat" [Enabled]="RequestDate?.Enabled" [Font]="RequestDate?.Font" [ForeColor]="RequestDate?.ForeColor" [Format]="RequestDate?.Format" [Max]="RequestDate?.Max" [Min]="RequestDate?.Min" [ReadOnly]="RequestDate?.ReadOnly" [Required]="RequestDate?.Required" [TabIndex]="RequestDate?.TabIndex" [Value]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.RequestDate" [Visible]="RequestDate?.Visible" id="A14285" data-tid="A345492"></hvl-date-picker>
+            <label class="control-label" id="A14286" data-tid="A345493">
+                Sevk Takip No
+            </label>
+            <hvl-text-box #Validation [ReadOnly]="true" [Text]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.MedulaSevkTakipNo" id="A14287" data-tid="A345494"></hvl-text-box>
+        </div>
+        <div class="col-md-6 col-sm-12" id="A14288" data-tid="A345495">
+            <DiagnosisGridReadOnlyForm [EpisodeAction]="dispatchToOtherHospitalFormViewModel._DispatchToOtherHospital.MasterAction" id="A14289" data-tid="A345496"></DiagnosisGridReadOnlyForm>
+        </div>
+    </div>
+
+    <div class="row" id="B14280" *ngIf="(openedByTreatmentDischargeForm == true || openedByFormEditor == true)" data-tid="A345497">
+
+        <label class="control-label col-sm-2" id="B14284" data-tid="A345498">
+            Sevk İstek Tarihi
+        </label>
+        <label class="control-label col-sm-2" id="B14286" data-tid="A345499">
+            Sevk Takip No
+        </label>
+
+        <div class="col-sm-3 pull-right" style=" margin-right:-10px" data-tid="A345500">
+            <dx-button icon="print" type="default" text="Sevk Raporu" style="float:right" (onClick)="openDispatchReport()" i18n-text="@@M14084" id="A27691" data-tid="A345501">
+            </dx-button>
+        </div>
+
+    </div>
+
+    <div class="row" id="C14280" *ngIf="(openedByTreatmentDischargeForm == true || openedByFormEditor == true)" style="margin-bottom:10px" data-tid="A345502">
+        <div class="col-md-2 " id="C14283" data-tid="A345503">
+            <hvl-date-picker #Validation (ValueChange)="onRequestDateChanged($event)" [BackColor]="RequestDate?.BackColor" [CustomFormat]="RequestDate?.CustomFormat" [Enabled]="RequestDate?.Enabled" [Font]="RequestDate?.Font" [ForeColor]="RequestDate?.ForeColor" [Format]="RequestDate?.Format" [Max]="RequestDate?.Max" [Min]="RequestDate?.Min" [ReadOnly]="RequestDate?.ReadOnly" [Required]="RequestDate?.Required" [TabIndex]="RequestDate?.TabIndex" [Value]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.RequestDate" [Visible]="RequestDate?.Visible" id="C14285" data-tid="A345504"></hvl-date-picker>
+            
+        </div>
+        <div class="col-md-2" id="C14288" data-tid="A345505">
+            <hvl-text-box #Validation [ReadOnly]="true" [Text]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.MedulaSevkTakipNo" id="C14287" data-tid="A345506"></hvl-text-box>
+        </div>
+    </div>
+
+        <div class="row" *ngIf="false" id="A14290" data-tid="A345507">
+
+            <label class="control-label col-sm-5" style="visibility:hidden" id="A14291" data-tid="A345508">
+                Sevk Edilen XXXXXX
+            </label>
+        </div>
+        <div class="row" *ngIf="false" id="A14292" data-tid="A345509">
+            <div class="col-sm-6" id="A14293" data-tid="A345510">
+                <hvl-list-box #Validation (SelectedObjectChange)="onRequestedSiteChanged($event)" [AutoCompleteDialogHeight]="RequestedSite?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="RequestedSite?.AutoCompleteDialogWidth" [AutoCompleteMode]="RequestedSite?.AutoCompleteMode" [BackColor]="RequestedSite?.BackColor" [DefinitionName]="RequestedSite?.ListDefName" [DisplayExpressionsCache]="dispatchToOtherHospitalFormViewModel?.ListDefDisplayExpressions" [Enabled]="RequestedSite?.Enabled" [Font]="RequestedSite?.Font" [ForeColor]="RequestedSite?.ForeColor" [ListFilterExpression]="RequestedSite?.ListFilterExpression" [MinSearchLength]="RequestedSite?.MinSearchLength" [PopupDialogFieldConfig]="RequestedSite?.PopupDialogFieldConfig" [PopupDialogGridColumns]="RequestedSite?.PopupDialogGridColumns" [PopupDialogHeight]="RequestedSite?.PopupDialogHeight" [PopupDialogTitle]="RequestedSite?.PopupDialogTitle" [PopupDialogWidth]="RequestedSite?.PopupDialogWidth" [ReadOnly]="RequestedSite?.ReadOnly" [SearchMode]="RequestedSite?.SearchMode" [SearchTimeout]="RequestedSite?.SearchTimeout" [SelectedObject]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.RequestedSite" [TabIndex]="RequestedSite?.TabIndex" [Visible]="RequestedSite?.Visible" [width]="RequestedSite?.Width" id="A14294" data-tid="A345511"></hvl-list-box>
+            </div>
+        </div>
+        <div class="row" id="A14295" data-tid="A345512">
+
+            <div class="fixpopup" data-tid="AYY361619">
+                <dx-tab-panel [selectedIndex]="0" height="550px"  id="A14296" data-tid="A345513">
+                    <dxi-item class="tabpanel-item" title="Sevk Bilgileri" i18n-title="@@M27517" id="A14297" data-tid="A345514">
+
+                        <label class="control-label col-sm-6" id="A14299" data-tid="A345515">
+                            Sevk Gerekçesi
+                        </label>
+                        <label class="control-label col-sm-6" id="A14300" data-tid="A345516">
+                            Açıklama
+                        </label>
+
+                        <div class="col-sm-6" id="A14302" data-tid="A345517">
+                            <hvl-text-box #Validation (TextChange)="onReasonOfDispatchChanged($event)" [BackColor]="ReasonOfDispatch?.BackColor" [CharacterCasing]="ReasonOfDispatch?.CharacterCasing" [Enabled]="ReasonOfDispatch?.Enabled" [Font]="ReasonOfDispatch?.Font" [ForeColor]="ReasonOfDispatch?.ForeColor" [height]="ReasonOfDispatch?.Height" [InputFormat]="ReasonOfDispatch?.InputFormat" [InputTurkishCharacter]="ReasonOfDispatch?.InputTurkishCharacter" [IsNonNumeric]="ReasonOfDispatch?.IsNonNumeric" [MultiLine]="ReasonOfDispatch?.Multiline" [ReadOnly]="ReasonOfDispatch?.ReadOnly" [Required]="ReasonOfDispatch?.Required" [TabIndex]="ReasonOfDispatch?.TabIndex" [TextAlign]="ReasonOfDispatch?.TextAlign" [Text]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.ReasonOfDispatch" [Visible]="ReasonOfDispatch?.Visible" id="A14303" data-tid="A345518"></hvl-text-box>
+                        </div>
+                        <div class="col-sm-6" id="A14304" data-tid="A345519">
+                            <hvl-text-box #Validation (TextChange)="onDescriptionChanged($event)" [BackColor]="Description?.BackColor" [CharacterCasing]="Description?.CharacterCasing" [Enabled]="Description?.Enabled" [Font]="Description?.Font" [ForeColor]="Description?.ForeColor" [height]="Description?.Height" [InputFormat]="Description?.InputFormat" [InputTurkishCharacter]="Description?.InputTurkishCharacter" [IsNonNumeric]="Description?.IsNonNumeric" [MultiLine]="Description?.Multiline" [ReadOnly]="Description?.ReadOnly" [Required]="Description?.Required" [TabIndex]="Description?.TabIndex" [TextAlign]="Description?.TextAlign" [Text]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.Description" [Visible]="Description?.Visible" id="A14305" data-tid="A345520"></hvl-text-box>
+                        </div>
+
+                        <div class="col-sm-4" data-tid="A345521">
+                            <label class="control-label col-sm-12" id="A14307" data-tid="A345522">
+                                Gideceği Şehir
+                            </label>
+                            <div class="col-sm-12" id="A14310" data-tid="A345523">
+                                <hvl-list-box #Validation (SelectedObjectChange)="onDispatchCityChanged($event)" [AutoCompleteDialogHeight]="DispatchCity?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="DispatchCity?.AutoCompleteDialogWidth" [AutoCompleteMode]="DispatchCity?.AutoCompleteMode" [BackColor]="DispatchCity?.BackColor" [DefinitionName]="DispatchCity?.ListDefName" [DisplayExpressionsCache]="dispatchToOtherHospitalFormViewModel?.ListDefDisplayExpressions" [Enabled]="DispatchCity?.Enabled" [Font]="DispatchCity?.Font" [ForeColor]="DispatchCity?.ForeColor" [ListFilterExpression]="DispatchCity?.ListFilterExpression" [MinSearchLength]="DispatchCity?.MinSearchLength" [PopupDialogFieldConfig]="DispatchCity?.PopupDialogFieldConfig" [PopupDialogGridColumns]="DispatchCity?.PopupDialogGridColumns" [PopupDialogHeight]="DispatchCity?.PopupDialogHeight" [PopupDialogTitle]="DispatchCity?.PopupDialogTitle" [PopupDialogWidth]="DispatchCity?.PopupDialogWidth" [ReadOnly]="DispatchCity?.ReadOnly" [SearchMode]="DispatchCity?.SearchMode" [SearchTimeout]="DispatchCity?.SearchTimeout" [SelectedObject]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.DispatchCity" [TabIndex]="DispatchCity?.TabIndex" [Visible]="DispatchCity?.Visible" [width]="DispatchCity?.Width" id="A14311" data-tid="A345524"></hvl-list-box>
+                            </div>
+                            <label class="control-label col-sm-12" id="A14315" data-tid="A345525">
+                                Sevk Edildiği Branş
+                            </label>
+                            <div class="col-sm-12" id="A14318" data-tid="A345526">
+                                <hvl-list-box #Validation (SelectedObjectChange)="onDispatchedSpecialityChanged($event)" [AutoCompleteDialogHeight]="DispatchedSpeciality?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="DispatchedSpeciality?.AutoCompleteDialogWidth" [AutoCompleteMode]="DispatchedSpeciality?.AutoCompleteMode" [BackColor]="DispatchedSpeciality?.BackColor" [DefinitionName]="DispatchedSpeciality?.ListDefName" [DisplayExpressionsCache]="dispatchToOtherHospitalFormViewModel?.ListDefDisplayExpressions" [Enabled]="DispatchedSpeciality?.Enabled" [Font]="DispatchedSpeciality?.Font" [ForeColor]="DispatchedSpeciality?.ForeColor" [ListFilterExpression]="DispatchedSpeciality?.ListFilterExpression" [MinSearchLength]="DispatchedSpeciality?.MinSearchLength" [PopupDialogFieldConfig]="DispatchedSpeciality?.PopupDialogFieldConfig" [PopupDialogGridColumns]="DispatchedSpeciality?.PopupDialogGridColumns" [PopupDialogHeight]="DispatchedSpeciality?.PopupDialogHeight" [PopupDialogTitle]="DispatchedSpeciality?.PopupDialogTitle" [PopupDialogWidth]="DispatchedSpeciality?.PopupDialogWidth" [ReadOnly]="DispatchedSpeciality?.ReadOnly" [SearchMode]="DispatchedSpeciality?.SearchMode" [SearchTimeout]="DispatchedSpeciality?.SearchTimeout" [SelectedObject]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.DispatchedSpeciality" [TabIndex]="DispatchedSpeciality?.TabIndex" [Visible]="DispatchedSpeciality?.Visible" [width]="DispatchedSpeciality?.Width" id="A14319" data-tid="A345527"></hvl-list-box>
+                            </div>
+                            <div class="col-sm-6" id="A14323" data-tid="A345528">
+                                <hvl-checkbox #Validation (ValueChange)="onmedulaRefakatciDurumuChanged($event)" [AllowThreeState]="medulaRefakatciDurumu?.ThreeState" [BackColor]="medulaRefakatciDurumu?.BackColor" [Enabled]="medulaRefakatciDurumu?.Enabled" [Font]="medulaRefakatciDurumu?.Font" [ForeColor]="medulaRefakatciDurumu?.ForeColor" [IsTitleLeft]="medulaRefakatciDurumu?.IsTitleLeft" [Margin]="medulaRefakatciDurumu?.Margin" [ReadOnly]="medulaRefakatciDurumu?.ReadOnly" [TabIndex]="medulaRefakatciDurumu?.TabIndex" [TitleTopPadding]="medulaRefakatciDurumu?.TitleTopPadding" [Title]="medulaRefakatciDurumu?.Title" [Value]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.MedulaRefakatciDurumu" [Visible]="medulaRefakatciDurumu?.Visible" id="A14324" data-tid="A345529"></hvl-checkbox>
+                            </div>
+                            <div class="col-sm-6" id="A14325" data-tid="A345530">
+                                <hvl-checkbox #Validation (ValueChange)="onEpicrisisDeliveredChanged($event)" [AllowThreeState]="EpicrisisDelivered?.ThreeState" [BackColor]="EpicrisisDelivered?.BackColor" [Enabled]="EpicrisisDelivered?.Enabled" [Font]="EpicrisisDelivered?.Font" [ForeColor]="EpicrisisDelivered?.ForeColor" [IsTitleLeft]="EpicrisisDelivered?.IsTitleLeft" [Margin]="EpicrisisDelivered?.Margin" [ReadOnly]="EpicrisisDelivered?.ReadOnly" [TabIndex]="EpicrisisDelivered?.TabIndex" [TitleTopPadding]="EpicrisisDelivered?.TitleTopPadding" [Title]="EpicrisisDelivered?.Title" [Value]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.EpicrisisDelivered" [Visible]="EpicrisisDelivered?.Visible" id="A14326" data-tid="A345531"></hvl-checkbox>
+                            </div>
+                            <label class="control-label col-sm-12" id="A14330" data-tid="A345532">
+                                Refakatçi Gerekçesi
+                            </label>
+                            <div class="col-sm-12" id="A14332" data-tid="A345533">
+                                <hvl-text-box #Validation (TextChange)="onCompanionReasonChanged($event)" [BackColor]="CompanionReason?.BackColor" [CharacterCasing]="CompanionReason?.CharacterCasing" [Enabled]="CompanionReason?.Enabled" [Font]="CompanionReason?.Font" [ForeColor]="CompanionReason?.ForeColor" [height]="CompanionReason?.Height" [InputFormat]="CompanionReason?.InputFormat" [InputTurkishCharacter]="CompanionReason?.InputTurkishCharacter" [IsNonNumeric]="CompanionReason?.IsNonNumeric" [MultiLine]="CompanionReason?.Multiline" [ReadOnly]="CompanionReason?.ReadOnly" [Required]="CompanionReason?.Required" [TabIndex]="CompanionReason?.TabIndex" [TextAlign]="CompanionReason?.TextAlign" [Text]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.CompanionReason" [Visible]="CompanionReason?.Visible" id="A14333" data-tid="A345534"></hvl-text-box>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4" data-tid="A345535">
+                            <label class="control-label col-sm-12" id="A14308" data-tid="A345536">
+                                Sevk Edilen Dış XXXXXX
+                            </label>
+                            <div class="col-sm-12" id="A14312" data-tid="A345537">
+                                <hvl-list-box #Validation (SelectedObjectChange)="onRequestedExternalHospitalChanged($event)" [AutoCompleteDialogHeight]="RequestedExternalHospital?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="RequestedExternalHospital?.AutoCompleteDialogWidth" [AutoCompleteMode]="RequestedExternalHospital?.AutoCompleteMode" [BackColor]="RequestedExternalHospital?.BackColor" [DefinitionName]="RequestedExternalHospital?.ListDefName" [DisplayExpressionsCache]="dispatchToOtherHospitalFormViewModel?.ListDefDisplayExpressions" [Enabled]="RequestedExternalHospital?.Enabled" [Font]="RequestedExternalHospital?.Font" [ForeColor]="RequestedExternalHospital?.ForeColor" [ListFilterExpression]="RequestedExternalHospital?.ListFilterExpression" [MinSearchLength]="RequestedExternalHospital?.MinSearchLength" [PopupDialogFieldConfig]="RequestedExternalHospital?.PopupDialogFieldConfig" [PopupDialogGridColumns]="RequestedExternalHospital?.PopupDialogGridColumns" [PopupDialogHeight]="RequestedExternalHospital?.PopupDialogHeight" [PopupDialogTitle]="RequestedExternalHospital?.PopupDialogTitle" [PopupDialogWidth]="RequestedExternalHospital?.PopupDialogWidth" [ReadOnly]="RequestedExternalHospital?.ReadOnly" [SearchMode]="RequestedExternalHospital?.SearchMode" [SearchTimeout]="RequestedExternalHospital?.SearchTimeout" [SelectedObject]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.RequestedExternalHospital" [TabIndex]="RequestedExternalHospital?.TabIndex" [Visible]="RequestedExternalHospital?.Visible" [width]="RequestedExternalHospital?.Width" id="A14313" data-tid="A345538"></hvl-list-box>
+                            </div>
+                            <label class="control-label col-sm-6" id="A14316" data-tid="A345539">
+                                Sevk Tedavi Tipi
+                            </label>
+                            <label class="control-label col-sm-5" data-tid="A345540">
+                                İl Sınır Bilgisi
+                            </label>
+                            <div class="col-sm-6" id="A14320" data-tid="A345541">
+                                <hvl-list-box #Validation (SelectedObjectChange)="onTTListBoxSevkTedaviTipiChanged($event)" [AutoCompleteDialogHeight]="TTListBoxSevkTedaviTipi?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="TTListBoxSevkTedaviTipi?.AutoCompleteDialogWidth" [AutoCompleteMode]="TTListBoxSevkTedaviTipi?.AutoCompleteMode" [BackColor]="TTListBoxSevkTedaviTipi?.BackColor" [DefinitionName]="TTListBoxSevkTedaviTipi?.ListDefName" [DisplayExpressionsCache]="dispatchToOtherHospitalFormViewModel?.ListDefDisplayExpressions" [Enabled]="TTListBoxSevkTedaviTipi?.Enabled" [Font]="TTListBoxSevkTedaviTipi?.Font" [ForeColor]="TTListBoxSevkTedaviTipi?.ForeColor" [ListFilterExpression]="TTListBoxSevkTedaviTipi?.ListFilterExpression" [MinSearchLength]="TTListBoxSevkTedaviTipi?.MinSearchLength" [PopupDialogFieldConfig]="TTListBoxSevkTedaviTipi?.PopupDialogFieldConfig" [PopupDialogGridColumns]="TTListBoxSevkTedaviTipi?.PopupDialogGridColumns" [PopupDialogHeight]="TTListBoxSevkTedaviTipi?.PopupDialogHeight" [PopupDialogTitle]="TTListBoxSevkTedaviTipi?.PopupDialogTitle" [PopupDialogWidth]="TTListBoxSevkTedaviTipi?.PopupDialogWidth" [ReadOnly]="TTListBoxSevkTedaviTipi?.ReadOnly" [SearchMode]="TTListBoxSevkTedaviTipi?.SearchMode" [SearchTimeout]="TTListBoxSevkTedaviTipi?.SearchTimeout" [SelectedObject]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.SevkTedaviTipi" [TabIndex]="TTListBoxSevkTedaviTipi?.TabIndex" [Visible]="TTListBoxSevkTedaviTipi?.Visible" [width]="TTListBoxSevkTedaviTipi?.Width" id="A14321" data-tid="A345542"></hvl-list-box>
+                            </div>
+                            <div class="col-sm-6" data-tid="A345543">
+                                <hvl-enum-combobox #Validation (ValueChange)="onIlSinirChanged($event)" [BackColor]="IlSinir?.BackColor" [DataTypeName]="IlSinir?.DataTypeName" [Enabled]="IlSinir?.Enabled" [Font]="IlSinir?.Font" [ForeColor]="IlSinir?.ForeColor" [IncludeOnly]="IlSinir?.IncludeOnly" [ReadOnly]="IlSinir?.ReadOnly" [ShowClearButton]="IlSinir?.ShowClearButton" [SortBy]="IlSinir?.SortBy" [TabIndex]="IlSinir?.TabIndex" [Value]="_DispatchToOtherHospital.IlSinir" [Visible]="IlSinir?.Visible" data-tid="A345544">
+                                </hvl-enum-combobox>
+                            </div>
+                            <div class="col-sm-12" id="A14327" data-tid="A345545">
+                                <hvl-checkbox #Validation (ValueChange)="onNeedSpecialEquipmentChanged($event)" [AllowThreeState]="NeedSpecialEquipment?.ThreeState" [BackColor]="NeedSpecialEquipment?.BackColor" [Enabled]="NeedSpecialEquipment?.Enabled" [Font]="NeedSpecialEquipment?.Font" [ForeColor]="NeedSpecialEquipment?.ForeColor" [IsTitleLeft]="NeedSpecialEquipment?.IsTitleLeft" [Margin]="NeedSpecialEquipment?.Margin" [ReadOnly]="NeedSpecialEquipment?.ReadOnly" [TabIndex]="NeedSpecialEquipment?.TabIndex" [TitleTopPadding]="NeedSpecialEquipment?.TitleTopPadding" [Title]="NeedSpecialEquipment?.Title" [Value]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.NeedSpecialEquipment" [Visible]="NeedSpecialEquipment?.Visible" id="A14328" data-tid="A345546"></hvl-checkbox>
+                            </div>
+                            <div class="col-sm-12" id="A14334" data-tid="A345547">
+                                <label class="control-label" id="A14335" data-tid="A345548">
+                                    Sevk Nedeni
+                                </label>
+                                <div id="A14336" data-tid="A345549">
+                                    <hvl-list-box #Validation (SelectedObjectChange)="onTTListBoxMedulaSevkNedeniChanged($event)" [AutoCompleteDialogHeight]="TTListBoxMedulaSevkNedeni?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="TTListBoxMedulaSevkNedeni?.AutoCompleteDialogWidth" [AutoCompleteMode]="TTListBoxMedulaSevkNedeni?.AutoCompleteMode" [BackColor]="TTListBoxMedulaSevkNedeni?.BackColor" [DefinitionName]="TTListBoxMedulaSevkNedeni?.ListDefName" [DisplayExpressionsCache]="dispatchToOtherHospitalFormViewModel?.ListDefDisplayExpressions" [Enabled]="TTListBoxMedulaSevkNedeni?.Enabled" [Font]="TTListBoxMedulaSevkNedeni?.Font" [ForeColor]="TTListBoxMedulaSevkNedeni?.ForeColor" [ListFilterExpression]="TTListBoxMedulaSevkNedeni?.ListFilterExpression" [MinSearchLength]="TTListBoxMedulaSevkNedeni?.MinSearchLength" [PopupDialogFieldConfig]="TTListBoxMedulaSevkNedeni?.PopupDialogFieldConfig" [PopupDialogGridColumns]="TTListBoxMedulaSevkNedeni?.PopupDialogGridColumns" [PopupDialogHeight]="TTListBoxMedulaSevkNedeni?.PopupDialogHeight" [PopupDialogTitle]="TTListBoxMedulaSevkNedeni?.PopupDialogTitle" [PopupDialogWidth]="TTListBoxMedulaSevkNedeni?.PopupDialogWidth" [ReadOnly]="TTListBoxMedulaSevkNedeni?.ReadOnly" [SearchMode]="TTListBoxMedulaSevkNedeni?.SearchMode" [SearchTimeout]="TTListBoxMedulaSevkNedeni?.SearchTimeout" [SelectedObject]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.SevkNedeni" [TabIndex]="TTListBoxMedulaSevkNedeni?.TabIndex" [Visible]="TTListBoxMedulaSevkNedeni?.Visible" [width]="TTListBoxMedulaSevkNedeni?.Width" id="A14337" data-tid="A345550"></hvl-list-box>
+                                </div>
+                                <label class="control-label" id="A14338" data-tid="A345551">
+                                    Medula Sevk Vasıtası
+                                </label>
+                                <div id="A14339" data-tid="A345552">
+                                    <hvl-list-box #Validation IsOnPopUp="True" (SelectedObjectChange)="onTTListBoxMedulaSevkVasitasiChanged($event)" [AutoCompleteDialogHeight]="TTListBoxMedulaSevkVasitasi?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="TTListBoxMedulaSevkVasitasi?.AutoCompleteDialogWidth" [AutoCompleteMode]="TTListBoxMedulaSevkVasitasi?.AutoCompleteMode" [BackColor]="TTListBoxMedulaSevkVasitasi?.BackColor" [DefinitionName]="TTListBoxMedulaSevkVasitasi?.ListDefName" [DisplayExpressionsCache]="dispatchToOtherHospitalFormViewModel?.ListDefDisplayExpressions" [Enabled]="TTListBoxMedulaSevkVasitasi?.Enabled" [Font]="TTListBoxMedulaSevkVasitasi?.Font" [ForeColor]="TTListBoxMedulaSevkVasitasi?.ForeColor" [ListFilterExpression]="TTListBoxMedulaSevkVasitasi?.ListFilterExpression" [MinSearchLength]="TTListBoxMedulaSevkVasitasi?.MinSearchLength" [PopupDialogFieldConfig]="TTListBoxMedulaSevkVasitasi?.PopupDialogFieldConfig" [PopupDialogGridColumns]="TTListBoxMedulaSevkVasitasi?.PopupDialogGridColumns" [PopupDialogHeight]="TTListBoxMedulaSevkVasitasi?.PopupDialogHeight" [PopupDialogTitle]="TTListBoxMedulaSevkVasitasi?.PopupDialogTitle" [PopupDialogWidth]="TTListBoxMedulaSevkVasitasi?.PopupDialogWidth" [ReadOnly]="TTListBoxMedulaSevkVasitasi?.ReadOnly" [SearchMode]="TTListBoxMedulaSevkVasitasi?.SearchMode" [SearchTimeout]="TTListBoxMedulaSevkVasitasi?.SearchTimeout" [SelectedObject]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.SevkVasitasi" [TabIndex]="TTListBoxMedulaSevkVasitasi?.TabIndex" [Visible]="TTListBoxMedulaSevkVasitasi?.Visible" [width]="TTListBoxMedulaSevkVasitasi?.Width" id="A14340" data-tid="A345553"></hvl-list-box>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4" data-tid="A345554">
+                            <div class="col-sm-12" id="A14355" data-tid="A345555">
+                                <hvl-datagrid [AllowUserToAddRows]="ttgridSevkEdenDoktorlar?.AllowUserToAddRows" [AllowUserToDeleteRows]="ttgridSevkEdenDoktorlar?.AllowUserToDeleteRows" [Columns]="ttgridSevkEdenDoktorlarColumns" [dataSource]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.DoctorsGrid" [DeleteButtonWidth]="ttgridSevkEdenDoktorlar?.DeleteButtonWidth" [DisplayExpressionsCache]="dispatchToOtherHospitalFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="ttgridSevkEdenDoktorlar?.ShowFilterRow" [FilterColumnName]="ttgridSevkEdenDoktorlar?.FilterColumnName" [FilterLabel]="ttgridSevkEdenDoktorlar?.FilterLabel" [Filter]="ttgridSevkEdenDoktorlar?.Filter" [height]="ttgridSevkEdenDoktorlar?.Height" [IsFilterLabelSingleLine]="ttgridSevkEdenDoktorlar?.IsFilterLabelSingleLine" [ShowColumnHeaders]="ttgridSevkEdenDoktorlar?.ColumnHeadersVisible" [ShowFilterCombo]="ttgridSevkEdenDoktorlar?.ShowFilterCombo" [ShowTotalNumberOfRows]="ttgridSevkEdenDoktorlar?.ShowTotalNumberOfRows" id="A14356" data-tid="A345556"></hvl-datagrid>
+                            </div>
+                        </div>
+
+
+                        <div class="row" *ngIf="false" id="A14341" data-tid="A345557">
+                            <label class="control-label col-sm-6" style="visibility:hidden" id="A14342" data-tid="A345558">
+                                Sevk Edilen Dış XXXXXX Birimi
+                            </label>
+                        </div>
+                        <div class="row" *ngIf="false" id="A14343" data-tid="A345559">
+                            <div class="col-sm-12" id="A14344" data-tid="A345560">
+                                <hvl-list-box #Validation (SelectedObjectChange)="onRequestedExternalDepartmentChanged($event)" [AutoCompleteDialogHeight]="RequestedExternalDepartment?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="RequestedExternalDepartment?.AutoCompleteDialogWidth" [AutoCompleteMode]="RequestedExternalDepartment?.AutoCompleteMode" [BackColor]="RequestedExternalDepartment?.BackColor" [DefinitionName]="RequestedExternalDepartment?.ListDefName" [DisplayExpressionsCache]="dispatchToOtherHospitalFormViewModel?.ListDefDisplayExpressions" [Enabled]="RequestedExternalDepartment?.Enabled" [Font]="RequestedExternalDepartment?.Font" [ForeColor]="RequestedExternalDepartment?.ForeColor" [ListFilterExpression]="RequestedExternalDepartment?.ListFilterExpression" [MinSearchLength]="RequestedExternalDepartment?.MinSearchLength" [PopupDialogFieldConfig]="RequestedExternalDepartment?.PopupDialogFieldConfig" [PopupDialogGridColumns]="RequestedExternalDepartment?.PopupDialogGridColumns" [PopupDialogHeight]="RequestedExternalDepartment?.PopupDialogHeight" [PopupDialogTitle]="RequestedExternalDepartment?.PopupDialogTitle" [PopupDialogWidth]="RequestedExternalDepartment?.PopupDialogWidth" [ReadOnly]="RequestedExternalDepartment?.ReadOnly" [SearchMode]="RequestedExternalDepartment?.SearchMode" [SearchTimeout]="RequestedExternalDepartment?.SearchTimeout" [SelectedObject]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.RequestedExternalDepartment" [TabIndex]="RequestedExternalDepartment?.TabIndex" [Visible]="RequestedExternalDepartment?.Visible" [width]="RequestedExternalDepartment?.Width" id="A14345" data-tid="A345561"></hvl-list-box>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="false" id="A14346" data-tid="A345562">
+
+                            <div class="col-sm-3" id="A14347" data-tid="A345563">
+                                <hvl-number-box #Validation (ValueChange)="onGSSOwnerUniquerefNoChanged($event)" [BackColor]="GSSOwnerUniquerefNo?.BackColor" [Enabled]="GSSOwnerUniquerefNo?.Enabled" [Font]="GSSOwnerUniquerefNo?.Font" [ForeColor]="GSSOwnerUniquerefNo?.ForeColor" [ReadOnly]="GSSOwnerUniquerefNo?.ReadOnly" [TabIndex]="GSSOwnerUniquerefNo?.TabIndex" [Value]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.GSSOwnerUniquerefNo" [Visible]="GSSOwnerUniquerefNo?.Visible" id="A14348" data-tid="A345564"></hvl-number-box>
+                            </div>
+                        </div>
+
+
+                        <div class="row" id="A14349" data-tid="A345565">
+                            <div class="col-sm-12" id="A14350" data-tid="A345566">
+
+                                <div class="row" *ngIf="false" id="A14351" data-tid="A345567">
+
+                                    <div class="col-sm-2" id="A14352" data-tid="A345568">
+                                        <hvl-number-box #Validation (ValueChange)="ontxtMedulaSiteCodeChanged($event)" [BackColor]="txtMedulaSiteCode?.BackColor" [Enabled]="txtMedulaSiteCode?.Enabled" [Font]="txtMedulaSiteCode?.Font" [ForeColor]="txtMedulaSiteCode?.ForeColor" [ReadOnly]="txtMedulaSiteCode?.ReadOnly" [TabIndex]="txtMedulaSiteCode?.TabIndex" [Value]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.MedulaSiteCode" [Visible]="txtMedulaSiteCode?.Visible" id="A14353" data-tid="A345569"></hvl-number-box>
+                                    </div>
+
+                                </div>
+
+                                <div class="row" id="A14354" data-tid="A345570">
+
+                                    <hvl-group-box class="col-sm-6" [Text]="ttgroupboxMutatDisiAracRaporBilgileri.Text" style="margin-top:25px" [hidden]="hideMutatReportDiv" id="A14357" data-tid="A345571">
+                                        <div class="col-sm-6" id="A14358" data-tid="A345572">
+                                            <label class="control-label col-sm-12" id="A14359" data-tid="A345573">
+                                                Rapor Tarihi
+                                            </label>
+                                            <div class="col-sm-12" id="A14360" data-tid="A345574">
+                                                <hvl-date-picker #Validation (ValueChange)="onRaporTarihiChanged($event)" [BackColor]="RaporTarihi?.BackColor" [CustomFormat]="RaporTarihi?.CustomFormat" [Enabled]="RaporTarihi?.Enabled" [Font]="RaporTarihi?.Font" [ForeColor]="RaporTarihi?.ForeColor" [Format]="RaporTarihi?.Format" [Max]="RaporTarihi?.Max" [Min]="RaporTarihi?.Min" [ReadOnly]="RaporTarihi?.ReadOnly" [Required]="RaporTarihi?.Required" [TabIndex]="RaporTarihi?.TabIndex" [Value]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.MutatDisiAracRaporTarihi" [Visible]="RaporTarihi?.Visible" id="A14361" data-tid="A345575"></hvl-date-picker>
+                                            </div>
+
+                                            <label class="control-label col-sm-12" id="A14362" data-tid="A345576">
+                                                Başlangıç Tarihi
+                                            </label>
+                                            <div class="col-sm-12" id="A14363" data-tid="A345577">
+                                                <hvl-date-picker #Validation (ValueChange)="onRaporBaslangicTarihiChanged($event)" [BackColor]="RaporBaslangicTarihi?.BackColor" [CustomFormat]="RaporBaslangicTarihi?.CustomFormat" [Enabled]="RaporBaslangicTarihi?.Enabled" [Font]="RaporBaslangicTarihi?.Font" [ForeColor]="RaporBaslangicTarihi?.ForeColor" [Format]="RaporBaslangicTarihi?.Format" [Max]="RaporBaslangicTarihi?.Max" [Min]="RaporBaslangicTarihi?.Min" [ReadOnly]="RaporBaslangicTarihi?.ReadOnly" [Required]="RaporBaslangicTarihi?.Required" [TabIndex]="RaporBaslangicTarihi?.TabIndex" [Value]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.MutatDisiAracBaslangicTarihi" [Visible]="RaporBaslangicTarihi?.Visible" id="A14364" data-tid="A345578"></hvl-date-picker>
+                                            </div>
+                                            <label class="control-label col-sm-12" id="A14365" data-tid="A345579">
+                                                Bitiş Tarihi
+                                            </label>
+                                            <div class="col-sm-12" id="A14366" data-tid="A345580">
+                                                <hvl-date-picker #Validation (ValueChange)="onRaporBitisTarihiChanged($event)" [BackColor]="RaporBitisTarihi?.BackColor" [CustomFormat]="RaporBitisTarihi?.CustomFormat" [Enabled]="RaporBitisTarihi?.Enabled" [Font]="RaporBitisTarihi?.Font" [ForeColor]="RaporBitisTarihi?.ForeColor" [Format]="RaporBitisTarihi?.Format" [Max]="RaporBitisTarihi?.Max" [Min]="RaporBitisTarihi?.Min" [ReadOnly]="RaporBitisTarihi?.ReadOnly" [Required]="RaporBitisTarihi?.Required" [TabIndex]="RaporBitisTarihi?.TabIndex" [Value]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.MutatDisiAracBitisTarihi" [Visible]="RaporBitisTarihi?.Visible" id="A14367" data-tid="A345581"></hvl-date-picker>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6" id="A14368" data-tid="A345582">
+                                            <label class="control-label col-sm-12" id="A14369" data-tid="A345583">
+                                                Mutat Dışı Gerekçesi
+                                            </label>
+                                            <div class="col-sm-12" id="A14370" data-tid="A345584">
+                                                <hvl-text-box #Validation (TextChange)="onMutatDisiGerekcesiChanged($event)" [BackColor]="MutatDisiGerekcesi?.BackColor" [CharacterCasing]="MutatDisiGerekcesi?.CharacterCasing" [Enabled]="MutatDisiGerekcesi?.Enabled" [Font]="MutatDisiGerekcesi?.Font" [ForeColor]="MutatDisiGerekcesi?.ForeColor" [height]="MutatDisiGerekcesi?.Height" [InputFormat]="MutatDisiGerekcesi?.InputFormat" [InputTurkishCharacter]="MutatDisiGerekcesi?.InputTurkishCharacter" [IsNonNumeric]="MutatDisiGerekcesi?.IsNonNumeric" [MultiLine]="MutatDisiGerekcesi?.Multiline" [ReadOnly]="MutatDisiGerekcesi?.ReadOnly" [Required]="MutatDisiGerekcesi?.Required" [TabIndex]="MutatDisiGerekcesi?.TabIndex" [TextAlign]="MutatDisiGerekcesi?.TextAlign" [Text]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.MutatDisiGerekcesi" [Visible]="MutatDisiGerekcesi?.Visible" id="A14371" data-tid="A345585"></hvl-text-box>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" *ngIf="false" id="A14372" data-tid="A345586">
+                                            <div class="col-sm-3" id="A14373" data-tid="A345587">
+                                                <hvl-button (BtnClicked)="saglikTesisiAra_Click()" [BackColor]="saglikTesisiAra?.BackColor" [Enabled]="saglikTesisiAra?.Enabled" [Font]="saglikTesisiAra?.Font" [ForeColor]="saglikTesisiAra?.ForeColor" [height]="saglikTesisiAra?.Height" [ReadOnly]="saglikTesisiAra?.ReadOnly" [TabIndex]="saglikTesisiAra?.TabIndex" [Text]="saglikTesisiAra?.Text" [Visible]="saglikTesisiAra?.Visible" id="A14374" data-tid="A345588"></hvl-button>
+                                            </div>
+                                        </div>
+                                    </hvl-group-box>
+
+                                </div>
+                            </div>
+                        </div>
+                    </dxi-item>
+                    <dxi-item class="tabpanel-item" title="Sevk Sonucu" i18n-title="@@M27423" id="A14375" data-tid="A345589">
+                        <div class="row" id="A14376" data-tid="A345590">
+                            <label class="control-label col-sm-5" id="A14377" data-tid="A345591">
+                                Sağlık Kurum Kuruluşuna Başvuru Tarihi
+                            </label>
+                            <label class="control-label col-sm-5" id="A14378" data-tid="A345592">
+                                Sağlık Kurum Kuruluşundan Ayrılış Tarihi
+                            </label>
+                        </div>
+                        <div class="row" id="A14379" data-tid="A345593">
+                            <div class="col-sm-5" id="A14380" data-tid="A345594">
+                                <hvl-date-picker #Validation (ValueChange)="onRestingStartDateChanged($event)" [BackColor]="RestingStartDate?.BackColor" [CustomFormat]="RestingStartDate?.CustomFormat" [Enabled]="RestingStartDate?.Enabled" [Font]="RestingStartDate?.Font" [ForeColor]="RestingStartDate?.ForeColor" [Format]="RestingStartDate?.Format" [Max]="RestingStartDate?.Max" [Min]="RestingStartDate?.Min" [ReadOnly]="RestingStartDate?.ReadOnly" [Required]="RestingStartDate?.Required" [TabIndex]="RestingStartDate?.TabIndex" [Value]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.RestingStartDate" [Visible]="RestingStartDate?.Visible" id="A14381" data-tid="A345595"></hvl-date-picker>
+                            </div>
+                            <div class="col-sm-5" id="A14382" data-tid="A345596">
+                                <hvl-date-picker #Validation (ValueChange)="onRestingEndDateChanged($event)" [BackColor]="RestingEndDate?.BackColor" [CustomFormat]="RestingEndDate?.CustomFormat" [Enabled]="RestingEndDate?.Enabled" [Font]="RestingEndDate?.Font" [ForeColor]="RestingEndDate?.ForeColor" [Format]="RestingEndDate?.Format" [Max]="RestingEndDate?.Max" [Min]="RestingEndDate?.Min" [ReadOnly]="RestingEndDate?.ReadOnly" [Required]="RestingEndDate?.Required" [TabIndex]="RestingEndDate?.TabIndex" [Value]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.RestingEndDate" [Visible]="RestingEndDate?.Visible" id="A14383" data-tid="A345597"></hvl-date-picker>
+                            </div>
+                        </div>
+                        <div class="row" id="A14384" data-tid="A345598">
+                            <label class="control-label col-sm-5" id="A14385" data-tid="A345599">
+                                Düzenleyen Hekim
+                            </label>
+                        </div>
+                        <div class="row" id="A14386" data-tid="A345600">
+                            <div class="col-sm-11" id="A14387" data-tid="A345601">
+                                <hvl-text-box #Validation (TextChange)="onDispatchedDoctorNameChanged($event)" [BackColor]="DispatchedDoctorName?.BackColor" [CharacterCasing]="DispatchedDoctorName?.CharacterCasing" [Enabled]="DispatchedDoctorName?.Enabled" [Font]="DispatchedDoctorName?.Font" [ForeColor]="DispatchedDoctorName?.ForeColor" [height]="DispatchedDoctorName?.Height" [InputFormat]="DispatchedDoctorName?.InputFormat" [InputTurkishCharacter]="DispatchedDoctorName?.InputTurkishCharacter" [IsNonNumeric]="DispatchedDoctorName?.IsNonNumeric" [MultiLine]="DispatchedDoctorName?.Multiline" [ReadOnly]="DispatchedDoctorName?.ReadOnly" [Required]="DispatchedDoctorName?.Required" [TabIndex]="DispatchedDoctorName?.TabIndex" [TextAlign]="DispatchedDoctorName?.TextAlign" [Text]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.DispatchedDoctorName" [Visible]="DispatchedDoctorName?.Visible" id="A14388" data-tid="A345602"></hvl-text-box>
+                            </div>
+                        </div>
+                        <div class="row" id="A14389" data-tid="A345603">
+                            <label class="control-label col-sm-5" id="A14390" data-tid="A345604">
+                                Refakatçi Durumu
+                            </label>
+                        </div>
+                        <div class="row" id="A14391" data-tid="A345605">
+                            <div class="col-sm-11" id="A14392" data-tid="A345606">
+                                <hvl-text-box #Validation (TextChange)="onCompanionStatusChanged($event)" [BackColor]="CompanionStatus?.BackColor" [CharacterCasing]="CompanionStatus?.CharacterCasing" [Enabled]="CompanionStatus?.Enabled" [Font]="CompanionStatus?.Font" [ForeColor]="CompanionStatus?.ForeColor" [height]="150" [InputFormat]="CompanionStatus?.InputFormat" [InputTurkishCharacter]="CompanionStatus?.InputTurkishCharacter" [IsNonNumeric]="CompanionStatus?.IsNonNumeric" [MultiLine]="CompanionStatus?.Multiline" [ReadOnly]="CompanionStatus?.ReadOnly" [Required]="CompanionStatus?.Required" [TabIndex]="CompanionStatus?.TabIndex" [TextAlign]="CompanionStatus?.TextAlign" [Text]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.CompanionStatus" [Visible]="CompanionStatus?.Visible" id="A14393" data-tid="A345607"></hvl-text-box>
+                            </div>
+                        </div>
+                    </dxi-item>
+                </dx-tab-panel>
+
+            </div>
+        </div>
+        <div class="row" *ngIf="false" id="A14394" data-tid="A345608">
+            <label class="control-label col-sm-2" id="A14395" data-tid="A345609">
+                Sevk Edilen XXXXXX XXXXXX
+            </label>
+            <label class="control-label col-sm-2" id="A14396" data-tid="A345610">
+                Sevk Edilen XXXXXX XXXXXX Birimi
+            </label>
+        </div>
+        <div class="row" *ngIf="false" id="A14397" data-tid="A345611">
+            <div class="col-sm-2" id="A14398" data-tid="A345612">
+                <hvl-list-box #Validation (SelectedObjectChange)="onRequestedReferableHospitalChanged($event)" [AutoCompleteDialogHeight]="RequestedReferableHospital?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="RequestedReferableHospital?.AutoCompleteDialogWidth" [AutoCompleteMode]="RequestedReferableHospital?.AutoCompleteMode" [BackColor]="RequestedReferableHospital?.BackColor" [DefinitionName]="RequestedReferableHospital?.ListDefName" [DisplayExpressionsCache]="dispatchToOtherHospitalFormViewModel?.ListDefDisplayExpressions" [Enabled]="RequestedReferableHospital?.Enabled" [Font]="RequestedReferableHospital?.Font" [ForeColor]="RequestedReferableHospital?.ForeColor" [ListFilterExpression]="RequestedReferableHospital?.ListFilterExpression" [MinSearchLength]="RequestedReferableHospital?.MinSearchLength" [PopupDialogFieldConfig]="RequestedReferableHospital?.PopupDialogFieldConfig" [PopupDialogGridColumns]="RequestedReferableHospital?.PopupDialogGridColumns" [PopupDialogHeight]="RequestedReferableHospital?.PopupDialogHeight" [PopupDialogTitle]="RequestedReferableHospital?.PopupDialogTitle" [PopupDialogWidth]="RequestedReferableHospital?.PopupDialogWidth" [ReadOnly]="RequestedReferableHospital?.ReadOnly" [SearchMode]="RequestedReferableHospital?.SearchMode" [SearchTimeout]="RequestedReferableHospital?.SearchTimeout" [SelectedObject]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.RequestedReferableHospital" [TabIndex]="RequestedReferableHospital?.TabIndex" [Visible]="RequestedReferableHospital?.Visible" [width]="RequestedReferableHospital?.Width" id="A14399" data-tid="A345613"></hvl-list-box>
+            </div>
+            <div class="col-sm-2" id="A14400" data-tid="A345614">
+                <hvl-list-box #Validation (SelectedObjectChange)="onRequestedReferableResourceChanged($event)" [AutoCompleteDialogHeight]="RequestedReferableResource?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="RequestedReferableResource?.AutoCompleteDialogWidth" [AutoCompleteMode]="RequestedReferableResource?.AutoCompleteMode" [BackColor]="RequestedReferableResource?.BackColor" [DefinitionName]="RequestedReferableResource?.ListDefName" [DisplayExpressionsCache]="dispatchToOtherHospitalFormViewModel?.ListDefDisplayExpressions" [Enabled]="RequestedReferableResource?.Enabled" [Font]="RequestedReferableResource?.Font" [ForeColor]="RequestedReferableResource?.ForeColor" [ListFilterExpression]="RequestedReferableResource?.ListFilterExpression" [MinSearchLength]="RequestedReferableResource?.MinSearchLength" [PopupDialogFieldConfig]="RequestedReferableResource?.PopupDialogFieldConfig" [PopupDialogGridColumns]="RequestedReferableResource?.PopupDialogGridColumns" [PopupDialogHeight]="RequestedReferableResource?.PopupDialogHeight" [PopupDialogTitle]="RequestedReferableResource?.PopupDialogTitle" [PopupDialogWidth]="RequestedReferableResource?.PopupDialogWidth" [ReadOnly]="RequestedReferableResource?.ReadOnly" [SearchMode]="RequestedReferableResource?.SearchMode" [SearchTimeout]="RequestedReferableResource?.SearchTimeout" [SelectedObject]="dispatchToOtherHospitalFormViewModel?._DispatchToOtherHospital?.RequestedReferableResource" [TabIndex]="RequestedReferableResource?.TabIndex" [Visible]="RequestedReferableResource?.Visible" [width]="RequestedReferableResource?.Width" id="A14401" data-tid="A345615"></hvl-list-box>
+            </div>
+        </div>
+    </div>
+    <!--<pre>
+        {{ _ViewModel | json }}</pre>-->

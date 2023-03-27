@@ -1,0 +1,101 @@
+﻿<h5 class="logisticLabel" style="margin-left:40%;color:#08c;" id="A3981" data-tid="A329375">{{FormCaption}}</h5>
+
+<NeStatePanelComponent [OutgoingTransitions]="patientOwnDrugEntryFormViewModel?.OutgoingTransitions" [StateReports]="patientOwnDrugEntryFormViewModel?.CurrentStateReports" [ObjectID]="patientOwnDrugEntryFormViewModel?._PatientOwnDrugEntry?.ObjectID" [ObjectDefID]="patientOwnDrugEntryFormViewModel?._PatientOwnDrugEntry?.ObjectDefID" [CurrentStateDefID]="patientOwnDrugEntryFormViewModel._PatientOwnDrugEntry.CurrentStateDefID" [DropStateList]="DropStateList" (onSetState)="setStateToTransition($event)" [SaveCommandVisible]="false" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()" id="A3982" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A329376">
+</NeStatePanelComponent>
+<div class="container-fluid" id="A3983" data-tid="A329377">
+    <form id="PatientOwnDrugEntryForm" class="form-horizontal" role="form" data-tid="A329378">
+
+    </form>
+    <br data-tid="A329379" />
+    <div class="row" id="A3984" data-tid="A329380">
+        <label class="control-label col-sm-2" id="A3985" data-tid="A329381">
+            İşlem Nu.
+        </label>
+        <label class="control-label col-sm-4" id="A3986" data-tid="A329382">
+            İşlem Tarihi
+        </label>
+    </div>
+    <div class="row" id="A3987" data-tid="A329383">
+        <div class="col-sm-2" id="A3988" data-tid="A329384">
+            <dx-text-box [readOnly]="true" [disabled]="true" [hoverStateEnabled]="false" [value]="patientOwnDrugEntryFormViewModel?._PatientOwnDrugEntry?.ID" data-tid="A329385">
+            </dx-text-box>
+        </div>
+        <div class="col-sm-4" id="A3990" data-tid="A329386">
+            <hvl-date-picker #Validation (ValueChange)="onActionDateChanged($event)" [BackColor]="ActionDate?.BackColor" [CustomFormat]="ActionDate?.CustomFormat" [Enabled]="ActionDate?.Enabled" [Font]="ActionDate?.Font" [ForeColor]="ActionDate?.ForeColor" [Format]="ActionDate?.Format" [Max]="ActionDate?.Max" [Min]="ActionDate?.Min" [ReadOnly]="ActionDate?.ReadOnly" [Required]="ActionDate?.Required" [TabIndex]="ActionDate?.TabIndex" [Value]="patientOwnDrugEntryFormViewModel?._PatientOwnDrugEntry?.ActionDate" [Visible]="ActionDate?.Visible" id="A3991" data-tid="A329387"></hvl-date-picker>
+        </div>
+        <div class="col-sm-3" id="A3992" data-tid="A329388">
+            <dx-button type="default" icon="fa fa-barcode" (onClick)="btnMaterialBarcode()" text="Barkod Oluştur" i18n-text="@@M11538" id="A3993" data-tid="A329389"></dx-button>
+        </div>
+    </div>
+    <br data-tid="A329390" />
+    <dx-tab-panel [selectedIndex]="0" id="A3994" data-tid="A329391">
+        <dxi-item class="tabpanel-item" title="Yeni Giriş" i18n-title="@@M24554" id="A3995" style="height: 50%;" data-tid="A329392">
+            <div class="row" id="A3996" data-tid="A329393">
+                <div class="col-sm-12" data-tid="A329394">
+                    <label class="control-label" data-tid="A329395">Malzeme Seçiniz</label>
+                </div>
+            </div>
+            <div class="row" style="position: relative;" data-tid="A329396">
+                <div class="col-sm-12" style="position: relative;" data-tid="A329397">
+                    <hvl-list-box [(SelectedObject)]="selectedMaterial" [AutoCompleteDialogHeight]="400" [AutoCompleteDialogWidth]="800" [AutoCompleteMode]="MaterialPatientOwnDrugEntryDetail?.AutoCompleteMode" [Enabled]="true" [BackColor]="MaterialPatientOwnDrugEntryDetail?.BackColor" [DefinitionName]="MaterialPatientOwnDrugEntryDetail?.ListDefName" [Font]="MaterialPatientOwnDrugEntryDetail?.Font" [ForeColor]="MaterialPatientOwnDrugEntryDetail?.ForeColor" [ListFilterExpression]="this.MaterialPatientOwnDrugEntryDetail.ListFilterExpression" [MinSearchLength]="MaterialPatientOwnDrugEntryDetail?.MinSearchLength" [PopupDialogFieldConfig]="MaterialPatientOwnDrugEntryDetail?.PopupDialogFieldConfig" [PopupDialogGridColumns]="MaterialPatientOwnDrugEntryDetail?.PopupDialogGridColumns" [PopupDialogHeight]="400" [PopupDialogTitle]="MaterialPatientOwnDrugEntryDetail?.PopupDialogTitle" [PopupDialogWidth]="800" [ReadOnly]="MaterialPatientOwnDrugEntryDetail?.ReadOnly" [SearchMode]="MaterialPatientOwnDrugEntryDetail?.SearchMode" [SearchTimeout]="MaterialPatientOwnDrugEntryDetail?.SearchTimeout" [TabIndex]="MaterialPatientOwnDrugEntryDetail?.TabIndex" [Visible]="MaterialPatientOwnDrugEntryDetail?.Visible" width="100%" [IsOnPopUp]="true" (SelectedObjectChange)="onMaterialSelectionChange($event)" data-tid="A329398">
+                    </hvl-list-box>
+                </div>
+
+            </div>
+
+            <div class="row" id="A3996" data-tid="A329399">
+                <div class="col-sm-12" id="A3997" data-tid="A329400">
+                    <dx-data-grid #materialGrid showColumnLines="true" showRowLines="true" height="400px" [dataSource]="patientOwnDrugEntryFormViewModel?._PatientOwnDrugEntry?.PatientOwnDrugEntryDetails" [columns]="columns" [scrolling]="{mode:'infinite'}" (onRowUpdated)="MaterialGridCellChanged($event)" data-tid="A329401">
+                        <dxo-editing mode="cell" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="false" data-tid="A329402">
+                        </dxo-editing>
+                        <div *dxTemplate="let cellData of 'deleteCellTemplate'" id="A26722" data-tid="A329403">
+                            <i *ngIf="GridTreatmentMaterials?.AllowUserToDeleteRows != false" class="fa fa fa-trash" style="cursor:pointer" (click)="gridTreatmentMaterialGrid_CellContentClicked(cellData)" id="A26723" data-tid="A329404"></i>
+                        </div>
+                    </dx-data-grid>
+                </div>
+            </div>
+        </dxi-item>
+        <dxi-item class="tabpanel-item" title="Mevcutlar" i18n-title="@@M18967" id="A3999" data-tid="A329405">
+            <div class="row" id="A4000" data-tid="A329406">
+                <div class="col-sm-12" id="A4001" data-tid="A329407">
+
+                    <dx-data-grid #oldDrug showColumnLines="true" showRowLines="true" height="400px" [dataSource]="patientOwnDrugs" [columns]="columsOwnDrug" [scrolling]="{mode:'infinite'}" data-tid="A329408">
+                        <dxo-editing mode="cell" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="false" data-tid="A329409">
+                        </dxo-editing>
+                        <div *dxTemplate="let cellData of 'barcodeCellTemplate'" id="A26722" data-tid="A329410">
+                            <i class="fa fa fa-barcode" style="cursor:pointer" (click)="PatientOwnDetail_CellContentClicked(cellData)" id="A26723" data-tid="A329411"></i>
+                        </div>
+                        <div *dxTemplate="let cellData of 'deleteCellTemplate'" id="A26722" data-tid="A329412">
+                            <i class="fa fa fa-trash" style="cursor:pointer" (click)="PatientOwnDetail_CellContentClicked(cellData)" id="A26723" data-tid="A329413"></i>
+                        </div>
+                    </dx-data-grid>
+                </div>
+            </div>
+        </dxi-item>
+        <dxi-item class="tabpanel-item" title="Son 24 Saat Alınan İlaçlar" i18n-title="@@M18967" id="A3999" data-tid="A329414">
+            <div class="row" id="A3996" data-tid="A329415">
+                <div class="col-sm-12" data-tid="A329416">
+                    <label class="control-label" data-tid="A329417">İlaç Seçiniz</label>
+                </div>
+            </div>
+            <div class="row" style="position: relative;" data-tid="A329418">
+                <div class="col-sm-12" style="position: relative;" data-tid="A329419">
+                    <hvl-list-box [(SelectedObject)]="selectedUsedMaterial" [AutoCompleteDialogHeight]="400" [AutoCompleteDialogWidth]="800" [AutoCompleteMode]="MaterialPatientOwnDrugEntryDetail?.AutoCompleteMode" [Enabled]="true" [BackColor]="MaterialPatientOwnDrugEntryDetail?.BackColor" [DefinitionName]="MaterialPatientOwnDrugEntryDetail?.ListDefName" [Font]="MaterialPatientOwnDrugEntryDetail?.Font" [ForeColor]="MaterialPatientOwnDrugEntryDetail?.ForeColor" [ListFilterExpression]="this.MaterialPatientOwnDrugEntryDetail.ListFilterExpression" [MinSearchLength]="MaterialPatientOwnDrugEntryDetail?.MinSearchLength" [PopupDialogFieldConfig]="MaterialPatientOwnDrugEntryDetail?.PopupDialogFieldConfig" [PopupDialogGridColumns]="MaterialPatientOwnDrugEntryDetail?.PopupDialogGridColumns" [PopupDialogHeight]="400" [PopupDialogTitle]="MaterialPatientOwnDrugEntryDetail?.PopupDialogTitle" [PopupDialogWidth]="800" [ReadOnly]="MaterialPatientOwnDrugEntryDetail?.ReadOnly" [SearchMode]="MaterialPatientOwnDrugEntryDetail?.SearchMode" [SearchTimeout]="MaterialPatientOwnDrugEntryDetail?.SearchTimeout" [TabIndex]="MaterialPatientOwnDrugEntryDetail?.TabIndex" [Visible]="MaterialPatientOwnDrugEntryDetail?.Visible" width="100%" [IsOnPopUp]="true" (SelectedObjectChange)="onUsedMaterialSelectionChange($event)" data-tid="A329420">
+                    </hvl-list-box>
+                </div>
+
+            </div>
+            <div class="row" id="A3996" data-tid="A329421">
+                <div class="col-sm-12" id="A3997" data-tid="A329422">
+                    <dx-data-grid #lastUsedDrugGrid showColumnLines="true" showRowLines="true" height="400px" [dataSource]="patientOwnDrugEntryFormViewModel?._PatientOwnDrugEntry?.PatientLastUseDrugs" [columns]="columnsLastDrug" [scrolling]="{mode:'infinite'}" data-tid="A329423">
+                        <dxo-editing mode="cell" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="false" data-tid="A329424">
+                        </dxo-editing>
+                        <div *dxTemplate="let cellData of 'deleteCellTemplate'" id="A26722" data-tid="A329425">
+                            <i *ngIf="GridTreatmentMaterials?.AllowUserToDeleteRows != false" class="fa fa fa-trash" style="cursor:pointer" (click)="gridLastUsedDrugGrid_CellContentClicked(cellData)" id="A26723" data-tid="A329426"></i>
+                        </div>
+                    </dx-data-grid>
+                </div>
+            </div>
+        </dxi-item>
+    </dx-tab-panel>
+</div>

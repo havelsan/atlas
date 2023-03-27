@@ -1,0 +1,30 @@
+﻿<form id="PatientAllRadiologyTestResultsForm" class="form-horizontal" role="form" data-tid="A360286">
+    <div class="row" id="A24687" data-tid="A360287">
+        <div class="col-md-2" id="A24688" data-tid="A360288">
+            <label class="control-label" id="A24689" data-tid="A360289">Tarih Aralığı(Son)</label>
+            <dx-select-box [(value)]="MonthlyTimeInterval" [items]="MonthDt" displayExpr="Name" valueExpr="Value" data-tid="A360290"></dx-select-box>
+           <!-- <hvl-enum-combobox #Validation [(Value)]="MonthlyTimeInterval" [BackColor]="cmbDateInterval?.BackColor" [DataTypeName]="cmbDateInterval?.DataTypeName" [Enabled]="true" [Font]="cmbDateInterval?.Font" [ForeColor]="cmbDateInterval?.ForeColor" [IncludeOnly]="cmbDateInterval?.IncludeOnly" [ReadOnly]="cmbDateInterval?.ReadOnly" [ShowClearButton]="cmbDateInterval?.ShowClearButton" [SortBy]="cmbDateInterval?.SortBy" [TabIndex]="cmbDateInterval?.TabIndex" [Visible]="cmbDateInterval?.Visible" id="A24690"></hvl-enum-combobox>-->
+        </div>
+        <div class="col-md-2" style="padding-top: 15px;" id="A24691" data-tid="A360291">
+            <dx-button type="default" icon="fa fa-refresh" text="Sorgula" (onClick)="cmdGetPatientAllRadiologyTests_Click()" i18n-text="@@M22125" id="A24692" data-tid="A360292"></dx-button>
+        </div>
+    </div>
+    <br id="A24693" data-tid="A360293" />
+    <br id="A24694" data-tid="A360294" />
+    <div class="row" id="A24695" data-tid="A360295">
+        <div class="col-md-12" id="A24696" data-tid="A360296">
+            <dx-data-grid #radiologyTestsGrid showColumnLines="true" height="86%" showRowLines="true" showBorders="true" [filterRow]="{visible: true}" [columns]="PatientAllRadiologyTestsColumns" [dataSource]="PatientAllRadiologyTests" allowColumnReordering="true" allowColumnResizing="true" [selection]="{mode: 'single',allowSelectAll: false}" [editing]="{mode: 'row', texts:{confirmDeleteMessage:''}}" id="A24697" data-tid="A360297">
+
+                <div *dxTemplate="let row of 'linkCellTemplateReport'" id="A24698" data-tid="A360298">
+                    <button *ngIf="row.data.isReportShown" class="btn btn-xs btn-default" style="margin-top: -12px;margin-bottom: -10px;margin-left: 17px;height: 16px !important; color:rebeccapurple;" (click)="selectReport(row)" id="A24699" data-tid="A360299"><i class="fa fa-print" title="Sonuç Raporu" i18n-title="@@M22107" id="A24700" data-tid="A360300"></i></button>
+                </div>
+                <div *dxTemplate="let row of 'linkCellTemplateResult'" id="A24701" data-tid="A360301">
+                    <button *ngIf="row.data.isResultShown" class="btn btn-xs btn-default" style="margin-top: -12px;margin-bottom: -10px;margin-left: 17px;height: 16px !important; color:rebeccapurple;" (click)="selectResultView(row)" id="A24702" data-tid="A360302"><i class="fa fa-desktop" title="Sonuç Görüntüleme" i18n-title="@@M22096" id="A24703" data-tid="A360303"></i></button>
+                </div>
+
+
+            </dx-data-grid>
+        </div>
+    </div>
+
+</form>

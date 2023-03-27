@@ -1,0 +1,81 @@
+﻿<div class style="display: flex" data-tid="A332098">
+    <div class="{{this.collapseSelectedDivProperties()}}" style="flex:1;" id="A16462" data-tid="A332099">
+
+        <div class="row" style="height: 100%;" data-tid="A332100">
+            <div class="col-sm-12 gradientPanel" style="height:4%;min-height: 35px;" id="A16463" data-tid="A332101">
+                <h4 style="color:#fff; font-size:19px;text-align:left;" id="A16464" data-tid="A332102">
+                    <div class="btn collapseBtn" (click)="btnCollapse()" style="padding:0;margin-top:3px;margin-right: 5px;" id="A16465" data-tid="A332103">
+                        <i class="{{this.collapseIconProperties()}}" id="A16466" data-tid="A332104"></i>
+                    </div>
+                    <span id="A16467" data-tid="A332105">Malzeme Listesi</span>
+                </h4>
+            </div>
+            <div class="panel-body" style="background-color:#f6f6f6;padding-bottom:0; height:100%;padding: 0" id="A16468" data-tid="A332106">
+                <div class="col-md-12" style="height:calc(100% - 240px);padding: 2px;;padding: 2px; " id="A10249" data-tid="A332107">
+                    <dx-data-grid class="unsetMaxWidth" [columns]="GridColumns" [dataSource]="ViewModel.GridDataSource" (onSelectionChanged)="selectionMaterial($event)" [selection]="{mode: 'single',allowSelectAll: false}" [paging]="{pageSize: 100, enable: true}" [groupPanel]="{visible: false}" [filterRow]="{visible: true}" style="height:600px; width:100% !important;" id="A102501" data-tid="A332108">
+                        <!-- <dxo-scrolling mode="virtual"></dxo-scrolling> -->
+                        <div *dxTemplate="let cellData of 'LabelCellTemplate'" id="A16530" data-tid="A332109">
+                            <span *ngIf="cellData.data.IsActive==1" data-tid="A332110">Aktif</span>
+                            <span *ngIf="cellData.data.IsActive==0" data-tid="A332111">Pasif</span>
+                            <span *ngIf="cellData.data.IsActive==-1" data-tid="A332112">Tümü</span>
+                        </div>
+                    </dx-data-grid>
+                </div>
+                <div class="col-md-12" style="padding: 2px;" data-tid="A332113">
+                    <div class="row" data-tid="A332114">
+                        <div class="col-md-6" data-tid="A332115">
+                            <label class="control-label" data-tid="A332116">Durumu</label>
+                            <dx-select-box searchEnabled="true" [(value)]="QueryModel.IsActive" [items]="Items" placeholder="Yeri Seçiniz..." displayExpr="Name" valueExpr="Value" data-tid="A332117"></dx-select-box>
+                        </div>
+
+                        <div class="col-md-6" data-tid="A332118">
+                            <label class="control-label" data-tid="A332119">Orderda Gizlenenler</label>
+                            <dx-select-box searchEnabled="true" [(value)]="QueryModel.ShowZeroOnDrugOrder" [items]="OrderItems" placeholder="Yeri Seçiniz..." displayExpr="Name" valueExpr="Value" data-tid="A332120"></dx-select-box>
+                        </div>
+                    </div>
+                    <div class="row" data-tid="A332121">
+                        <div class="col-md-6" data-tid="A332122">
+                            <label class="control-label" data-tid="A332123">Özellikli İlaçlar</label>
+                            <dx-tag-box [items]="QueryModel.DrugSpecificationEnumDef" [searchEnabled]="true" valueExpr="ordinal" displayExpr="description" [(value)]="QueryModel.DrugSpecs" [multiline]="false" showSelectionControls="false" [disabled]="showUnused" data-tid="A332124">
+                                    </dx-tag-box>
+                                    <!-- (onSelectionChanged)="onMaterialSelectionChanged($event)" -->
+                        </div>
+                        <div class="col-md-6" data-tid="A332125">
+                            <label class="control-label" data-tid="A332126">Stok Mevcudu</label>
+                            <dx-select-box searchEnabled="true" [(value)]="QueryModel.IsInheld" [items]="StockItems" placeholder="Yeri Seçiniz..." displayExpr="Name" valueExpr="Value" data-tid="A332127"></dx-select-box>
+                        </div>
+                    </div>
+                    <div class="row" data-tid="A332128">
+                        <div class="col-md-6" data-tid="A332129">
+                            <label class="control-label" data-tid="A332130">D. Belgesinde Gizlenenler</label>
+                            <dx-select-box searchEnabled="true" [(value)]="QueryModel.ShowZeroDistributionInfo" [items]="OrderItems" placeholder="Yeri Seçiniz..." displayExpr="Name" valueExpr="Value" data-tid="A332131"></dx-select-box>
+                        </div>
+                        <div class="col-md-6" data-tid="A332132">
+                            <label class="control-label" data-tid="A332133">İlaç Grubu</label>
+                            <dx-tag-box searchEnabled="true" [(value)]="QueryModel.DrugShape" [items]="QueryModel.DrugShapeTypeList" placeholder="Seçiniz..." displayExpr="name" valueExpr="ordinal" [multiline]="false" showSelectionControls="false" [disabled]="showUnused" data-tid="A332134"></dx-tag-box>
+                        </div>
+                    </div>
+                    <div class="row" data-tid="A332135">
+                        <div class="col-md-6" data-tid="A332136">
+                            <label class="control-label" data-tid="A332137">Hareket Durumu</label>
+                            <dx-select-box searchEnabled="true" [(value)]="QueryModel.ActionStatus" [items]="OrderItems" placeholder="Yeri Seçiniz..." displayExpr="Name" valueExpr="Value" data-tid="A332138"></dx-select-box>
+                        </div>
+                    </div>
+                    <div class="col-md-12" data-tid="A332139">
+                        <dx-button type="btn btn-info" icon="fa fa-bars" (onClick)="query()" style="float: right;" text="Listele" i18n-text="@@M27337" id="A10230" data-tid="A332140"></dx-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="{{this.collapseSelectedHiddenDivProperties()}}" style="position:relative;" id="A16544" data-tid="A332141">
+        <div class="MyVerticalText" (click)="btnCollapse()" id="A16545" data-tid="A332142">
+            <i class="{{this.collapseIconProperties()}}" id="A16546" data-tid="A332143"></i>
+            <span id="A16547" data-tid="A332144">&nbsp;&nbsp;&nbsp;&nbsp;Malzeme Listesi</span>
+        </div>
+    </div>
+    <div class="{{this.collapsedPanelProperties()}}" style="flex:3" data-tid="A332145">
+        <comp-compose [Info]="componentInfo" (ComponentCreated)="onComponentCreated($event)" (DynamicComponentActionExecuted)="dynamicComponentActionExecuted($event)" [DestroyComponentOnSave]='true' data-tid="A332146"></comp-compose>
+    </div>
+</div>

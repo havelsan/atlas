@@ -1,0 +1,54 @@
+﻿<div class="col-md-12" style="height:100%;overflow-x:hidden;overflow-y:auto;padding-top: 1%;" data-tid="A331636">
+   <div class="row" style="padding-left: 1%;" data-tid="A331637">
+
+      <div class="col-sm-3" data-tid="A331638">
+         <label class="control-label" style="border:0; box-shadow:none; " data-tid="A331639">Depo Seçiniz</label>
+         <dx-tag-box [(items)]="StoreList" [(value)]="selectedStores" placeholder="Depo" [searchEnabled]="true" [showSelectionControls]="true" displayExpr="Name" [multiline]="false" id="A28501" data-tid="A331640">
+         </dx-tag-box>
+     </div>
+
+      <div class="col-md-4" data-tid="A331641">
+         <label class="control-label" data-tid="A331642">Malzeme Seçiniz</label>
+         <dx-drop-down-box #materialDrop [(value)]="selectedMaterialItem.Name" displayExpr="Name" valueExpr="ObjectID" [showClearButton]="true" [dataSource] (onOpened)="openMaterialDropDown()" (onValueChanged)="onClearMaterial($event)" data-tid="A331643">
+            <div *dxTemplate="let data of 'content'" data-tid="A331644">
+               <dx-data-grid [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" [dataSource]="materialDataSource" (onRowClick)="selectMaterial($event)" [remoteOperations]="true" [customizeColumns]="null" data-tid="A331645">
+                  <dxo-filter-row [visible]="true" data-tid="A331646"></dxo-filter-row>
+                  <dxo-paging [pageSize]="10" data-tid="A331647"></dxo-paging>
+                  <dxo-selection mode="single" data-tid="A331648"></dxo-selection>
+                  <dxi-column caption="Barkod" dataField="Barcode" width="100" data-tid="A331649"></dxi-column>
+                  <dxi-column caption="Taşınır Kodu" dataField="NATOStockNO" width="100" data-tid="A331650"></dxi-column>
+                  <dxi-column caption="Malzeme" dataField="Name" data-tid="A331651"></dxi-column>
+               </dx-data-grid>
+            </div>
+         </dx-drop-down-box>
+      </div>
+
+      <div class="col-sm-2" data-tid="A331652">
+         <label class="control-label" data-tid="A331653">Bütçe Seçiniz</label>
+         <dx-select-box [dataSource]="budgetTypeSources" displayExpr="Name" valueExpr="ObjectID" [(value)]="budgetTypeObjectID" data-tid="A331654"></dx-select-box>
+      </div>
+
+      <div class="col-sm-2" id="A5668" style="margin-top: 12px;" data-tid="A331655">
+         <dx-button type="btn btn-info" icon="fa fa-bars" class="center-block" (onClick)="GetStockInheldList()" text="Sorgula" id="A5669" data-tid="A331656"></dx-button>
+      </div>
+   </div>
+   <div class="row" data-tid="A331657">
+      <div class="col-sm-12" style="margin-top:5px;" data-tid="A331658">
+         <div id="grid" data-tid="A331659">
+            <dx-data-grid [columns]="storeInheldColumn" [dataSource]="stockInheld" [groupPanel]="{visible: true}" [filterRow]="{visible: true}" width="100%" height="560px" showRowLines="true" [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" data-tid="A331660">
+               <dxo-paging [pageSize]="20" data-tid="A331661"></dxo-paging>
+               <dxo-group-panel [visible]="true" data-tid="A331662"></dxo-group-panel>
+               <dxo-filter-row [visible]="true" data-tid="A331663"> </dxo-filter-row>
+               <dxo-grouping #expand [autoExpandAll]="true" data-tid="A331664"></dxo-grouping>
+               <dxo-export [enabled]="true" fileName="Depo Mevcudu Raporu" [allowExportSelectedData]="false" data-tid="A331665"></dxo-export>
+            </dx-data-grid>
+         </div>
+      </div>
+      <div class="col-sm-12 pull pull-right" style="width:100%;color: black;padding: 15px;font-size: larger;" data-tid="A331666">
+         Toplam Kayıt Sayısı: {{ TotalNumberOfRows }}
+      </div>
+   </div>
+
+   <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" showIndicator="true" showPane="true" shading="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A331667">
+   </dx-load-panel>
+</div>

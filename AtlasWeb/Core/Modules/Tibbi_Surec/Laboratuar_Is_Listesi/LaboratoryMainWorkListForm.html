@@ -1,0 +1,220 @@
+﻿
+
+ 
+
+<style type="text/css" id="A21044" data-tid="A356030">
+
+    .grid-height {
+        height: 73%;
+    }
+
+    @media(max-width:1920px) {
+        .grid-height {
+            height: 68%;
+        }
+
+        .search-panel-height {
+            height: 27%;
+        }
+    }
+
+    .dx-button {
+        max-width: unset; 
+
+    }
+
+
+    @media(max-width:1680px) {
+        .grid-height {
+            height: 65%;
+        }
+
+        .search-panel-height {
+            height: 30%;
+        }
+    }
+    @media(max-width:1366px) {
+        .grid-height {
+            height: 60%;
+        }
+
+        .search-panel-height {
+            height: 35%;
+        }
+    }
+
+
+    @media(max-height:1200px) {
+        .grid-height {
+            height: 69%;
+        }
+
+        .search-panel-height {
+            height: 95%;
+        }
+    }
+
+    @media(max-height:918px) {
+        .grid-height {
+            height: 68%;
+        }
+
+        .search-panel-height {
+            height: 28%;
+        }
+    }
+
+    @media(max-width:1024px) {
+        .grid-height {
+            height: 63%;
+        }
+
+        .search-panel-height {
+            height: 32%;
+        }
+    }
+</style>
+
+<div class="col-sm-12 gradientPanel" style="height:4%;" id="A21045" data-tid="A356031">
+    <h4 style="color:#fff; font-size:19px;text-align:center;" id="A21046" data-tid="A356032">Laboratuvar İş Listesi</h4>
+</div>
+<div class="col-sm-12 search-panel-height" style="background-color:#f6f6f6;padding-top:5px;" id="A21047" data-tid="A356033">
+    <div class="row" id="A21048" data-tid="A356034">
+        <div class="col-sm-8" id="A21049" data-tid="A356035">
+            <dx-autocomplete id="A1025" [(value)]="Model.LastSelectedSpecialPanelCaption" (onFocusIn)="openSpecialList()" minSearchLength="0" (onSelectionChanged)="loadSpecialCriteria($event.selectedItem)" [dataSource]="Model.SpecialPanelListItems" placeholder="Özel Paneller..." valueExpr="Caption" i18n-placeholder="@@M20102" data-tid="A356036">
+            </dx-autocomplete>
+        </div>
+        <div class="col-sm-2" id="A21050" style="padding:0" data-tid="A356037">
+            <dx-button id="A1026" icon="save" type="default" text="Kaydet" style="float:right" (onClick)="btnSpecialPanelKaydet_Click()" i18n-text="@@M17386" data-tid="A356038"></dx-button>
+        </div>
+        <div class="col-sm-2" id="A21051" style="padding:0" data-tid="A356039">
+            <dx-button id="A1027" icon="fa fa-times" type="danger" text="Sil" style="float:right" (onClick)="btnSpecialPanelSil_Click()" i18n-text="@@M27286" data-tid="A356040"></dx-button>
+        </div>
+    </div>
+    <div class="row" id="A21052" data-tid="A356041">
+        <label class="control-label col-sm-12" id="A21053" data-tid="A356042">Hasta</label>
+        <div class="col-md-12" id="A21054" data-tid="A356043">
+            <PatientSearchForm id="A1028" Width="100%" (SelectedPatientChanged)="patientChanged($event)" data-tid="A356044"></PatientSearchForm>
+        </div>
+    </div>
+
+
+    <div class="row" data-tid="A356045">
+        <div class="col-sm-6" data-tid="A356046">
+            <label class="control-label" data-tid="A356047">Kabul No</label>
+            <dx-text-box [showClearButton]="true" [(value)]="Model.txtSEProtocolNo" (onEnterKey)="onProtocolNoEnterKeyDown($event)" data-tid="A356048"></dx-text-box>
+
+        </div>
+        <div class="col-sm-3" id="A21065" data-tid="A356049">
+            <label class="control-label" id="A21062" data-tid="A356050">Ayaktan</label>
+            <hvl-checkbox id="A1031" #Validation (ValueChange)="chkOutPatient.Value=$event;onchkOutPatientChanged($event)" [AllowThreeState]="chkOutPatient?.ThreeState" [BackColor]="chkOutPatient?.BackColor" [Enabled]="chkOutPatient?.Enabled" [Font]="chkOutPatient?.Font" [ForeColor]="chkOutPatient?.ForeColor" [IsTitleLeft]="chkOutPatient?.IsTitleLeft" [Margin]="chkOutPatient?.Margin" [Name]="chkOutPatient?.Name" [ReadOnly]="chkOutPatient?.ReadOnly" [TabIndex]="chkOutPatient?.TabIndex" [TitleTopPadding]="chkOutPatient?.TitleTopPadding" [Title]="chkOutPatient?.Title" [Value]="chkOutPatient?.Value" [Visible]="chkOutPatient?.Visible" data-tid="A356051"></hvl-checkbox>
+        </div>
+        <div class="col-sm-3" id="A21066" data-tid="A356052">
+            <label class="control-label" id="A21063" data-tid="A356053">Yatan</label>
+            <hvl-checkbox id="A1032" #Validation (ValueChange)="chkInPatient.Value=$event;onchkInPatientChanged($event)" [AllowThreeState]="chkInPatient?.ThreeState" [BackColor]="chkInPatient?.BackColor" [Enabled]="chkInPatient?.Enabled" [Font]="chkInPatient?.Font" [ForeColor]="chkInPatient?.ForeColor" [IsTitleLeft]="chkInPatient?.IsTitleLeft" [Margin]="chkInPatient?.Margin" [Name]="chkInPatient?.Name" [ReadOnly]="chkInPatient?.ReadOnly" [TabIndex]="chkInPatient?.TabIndex" [TitleTopPadding]="chkInPatient?.TitleTopPadding" [Title]="chkInPatient?.Title" [Value]="chkInPatient?.Value" [Visible]="chkInPatient?.Visible" data-tid="A356054"></hvl-checkbox>
+        </div>
+
+
+       
+    </div>
+
+    <div class="row" id="A21055" data-tid="A356055">
+        <label class="control-label col-sm-6" id="A21056" data-tid="A356056">Başlangıç Tarihi</label>
+        <label class="control-label col-sm-6" id="A21057" data-tid="A356057">Bitiş Tarihi</label>
+    </div>
+    <div class="row" id="A21058" data-tid="A356058">
+        <div class="col-sm-6" id="A21059" data-tid="A356059">
+            <dx-date-box id="A1029" width="100%" type="date" displayFormat="dd/MM/yyyy" [(value)]="Model.StartDate" data-tid="A356060">
+            </dx-date-box>
+        </div>
+        <div class="col-sm-6" id="A21060" data-tid="A356061">
+            <dx-date-box id="A1030" width="100%" type="date" displayFormat="dd/MM/yyyy" [(value)]="Model.EndDate" data-tid="A356062">
+            </dx-date-box>
+        </div>
+    </div>
+   
+    <div class="row" id="A21067" data-tid="A356063">
+        <label class="control-label col-sm-12" id="A21068" data-tid="A356064">İşlem Adımı</label>
+    </div>
+    <div class="row" id="A21069" data-tid="A356065">
+        <div class="col-sm-12" id="A21070" data-tid="A356066">
+            <dx-tag-box id="A1033" [items]="LaboratoryWorkListStateItems" applyValueMode="useButtons" displayExpr="StateDefName" valueExpr="StateDefID" showDataBeforeSearch="true" showSelectionControls="true" [multiline]="false" placeholder="İşlem Durumu" [value]="SelectedLaboratoryWorkListStateItems" (onSelectionChanged)="laboratoryWorkListStateItemsSelectionChanged($event.addedItems)" i18n-placeholder="@@M16838" data-tid="A356067">
+            </dx-tag-box>
+        </div>
+    </div>
+    <br id="A51071" data-tid="A356068" />
+    <div class="row" id="A51067" data-tid="A356069">
+        <label class="control-label col-sm-12" id="A51068" data-tid="A356070">Sonuç Barkodu</label>
+    </div>
+    <div class="row" id="A51072" data-tid="A356071">
+        <div class="col-sm-12" id="A51070" data-tid="A356072">
+            <dx-text-box id="A5022" #BarcodeText [readOnly]="false" [hoverStateEnabled]="false" placeholder="Barkod okutunuz" [(value)]="BarcodeValue" valueChangeEvent="keyup" (keypress)=" onBarcodeChanged($event)" i18n-placeholder="@@M17292" data-tid="A356073">
+            </dx-text-box>
+        </div>
+    </div>
+    <br id="A51071" data-tid="A356074" />
+
+    <div class="row" id="A21072" data-tid="A356075">
+        <div class="col-sm-12" id="A21073" data-tid="A356076">
+            <label class="control-label col-sm-8" style="color:#08c;padding:0;font-weight:400 !important" id="A21074" data-tid="A356077">Listelenen İşlem Sayısı :{{this.Model.LaboratoryProcedureMasterList?.length}}</label>
+            <div class="col-sm-2" id="A21075" style="float:right;padding:0" data-tid="A356078">
+                <dx-button id="A1042" type="default" style="float:right;background-color:#08c;margin-right: -14px;" icon="fa fa-bars" text="Listele" (onClick)="btnListele_Click()" i18n-text="@@M27337" data-tid="A356079"></dx-button>
+            </div>
+        </div>
+    </div>
+
+    <br id="A60000" data-tid="A356080" />
+    <div class="col-sm-12 grid-height" style="padding:0;" id="A21076" data-tid="A356081">
+        <dx-data-grid id="A1034" [columns]="WorkListColumns" allowColumnReordering="true" allowColumnResizing="true" height="100%" [dataSource]="Model.LaboratoryProcedureMasterList" (onSelectionChanged)="workListItemSelect2($event)" (onRowPrepared)="rowPrepared($event)" [filterRow]="{visible: true}" [paging]="{enable: true, pageSize:100}" [selection]="{mode: 'single',allowSelectAll: false}" [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" data-tid="A356082">
+            <div *dxTemplate="let cellData of 'PriorityCellTemplate'" id="A21077" data-tid="A356083">
+                <div class="col-md-2" style="float:left;margin-left: -16px;" id="A21078" data-tid="A356084">{{cellData.text}}</div>&nbsp;
+                <i *ngIf="cellData.data.isPregnant" class="fa fa-gratipay" data-toggle="tooltip" data-placement="bottom" title="Hamile" style="float:right;color:#956be0;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M15097" id="A21079" data-tid="A356085">&nbsp;</i>
+                <i *ngIf="cellData.data.isEmergency" class="fa fa-ambulance" data-toggle="tooltip" data-placement="bottom" title="Acil!" style="float:right;color:#e40d0d;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M10456" id="A21080" data-tid="A356086">&nbsp;</i>
+                <i *ngIf="cellData.data.isYoung" class="fa fa-child" data-toggle="tooltip" data-placement="bottom" title="7 Yaş Altı" style="float:right;color:#26c281;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M10377" id="A21081" data-tid="A356087">&nbsp;</i>
+                <i *ngIf="cellData.data.isOld" class="fa fa-blind" data-toggle="tooltip" data-placement="bottom" title="65 Yaş Üstü" style="float:right;color:#2f353b;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M10366" id="A21082" data-tid="A356088">&nbsp;</i>
+                <i *ngIf="cellData.data.isVetera" class="fa fa-star-half-o" data-toggle="tooltip" data-placement="bottom" title="Harp ve vazife şehitlerinin dul ve yetimleri ile malül ve gaziler" style="float:right;color:#cec00e;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M27738" id="A21083" data-tid="A356089">&nbsp;</i>
+                <i *ngIf="cellData.data.isDisabled" class="fa fa-wheelchair" data-toggle="tooltip" data-placement="bottom" title="Engelli" style="float:right;color:#52a5ec;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M13739" id="A21084" data-tid="A356090">&nbsp;</i>
+                <i *ngIf="cellData.data.hasMedicalInformation" class="fa fa-exclamation-triangle" data-toggle="tooltip" data-placement="bottom" title="Önemli Tıbbi Bilgisi Var" style="float:right;color:#e06b6b;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M13739" id="A16537" data-tid="A356091">&nbsp;</i>
+            </div>
+            <div *dxTemplate="let cellData of 'TestPriorityCellTemplate'" id="A21085" data-tid="A356092">
+                <i *ngIf="cellData.data.isRadTestEmergency" class="fa fa-ambulance" data-toggle="tooltip" data-placement="bottom" title="Acil İstem!" style="float:left;color:#e40d0d;margin-top: -2px;margin-bottom: -5px;" i18n-title="@@M10432" id="A21086" data-tid="A356093">&nbsp;</i>
+                <div *ngIf="cellData.data.isRadTestEmergency==false" class="col-md-2" style="float:left;margin-left: 6px;" id="A21087" data-tid="A356094">{{cellData.text}}</div>
+                <div *ngIf="cellData.data.isRadTestEmergency==true" class="col-md-2" style="float:left;margin-left: -10px;" id="A21088" data-tid="A356095">{{cellData.text}}</div>
+
+            </div>
+        </dx-data-grid>
+
+        <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A21089" data-tid="A356096">
+        </dx-load-panel>
+    </div>
+
+
+    <dx-popup showTitle="true" title="Laboratuvar Test Sayıları" [width]="500" [height]="400" [(visible)]="showLabTestNumberPopup" [position]="{my:'center',at:'center'}" data-tid="A356097">
+        <div *dxTemplate="let data of 'content'" data-tid="A356098">
+            <div class="col-sm-4" data-tid="A356099">
+                <label class="control-label" data-tid="A356100">Başlangıç Tarihi</label>
+                <dx-date-box [(value)]="ReportStartDate" type="date" showClearButton="false" width="100%" data-tid="A356101">
+                </dx-date-box>
+            </div>
+
+            <div class="col-sm-4" data-tid="A356102">
+                <label class="control-label" data-tid="A356103">Bitiş Tarihi</label>
+                <dx-date-box [(value)]="ReportEndDate" type="date" showClearButton="false" width="100%" data-tid="A356104">
+                </dx-date-box>
+            </div>
+
+            <div class="col-sm-12" data-tid="A356105">
+
+                <label class="control-label" data-tid="A356106">Hizmet Sınıfı</label>
+
+                <dx-tag-box [items]="ProcedureTreeList" [(value)]="SelectedProcedureTree" placeholder="Hizmet Sınıfı" [searchEnabled]="true" [showSelectionControls]="true" displayExpr="Name" [multiline]="true" data-tid="A356107">
+                </dx-tag-box>
+
+            </div>
+            <div class="col-sm-12" style="float:right;margin-top:10px;" data-tid="A356108">
+                <dx-button icon="far fa-file-alt" class="pull-right" type="default" hint="Rapor" text="Rapor" (onClick)="PrepareLabTestReport()" data-tid="A356109"></dx-button>
+
+            </div>
+        </div>
+    </dx-popup>
+</div>

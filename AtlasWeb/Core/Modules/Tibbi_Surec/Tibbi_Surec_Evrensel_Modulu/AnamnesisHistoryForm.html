@@ -1,0 +1,65 @@
+﻿
+
+<form id="AnamnesisHistoryForm" class="form-horizontal" role="form" data-tid="A365779"></form>
+<div id="idAnamnesis" data-tid="A365780">
+    <div class="col-sm-4" style="margin-top:18px" id="A28369" data-tid="A365781">
+        <div class="row" id="A28370" data-tid="A365782">
+            <div class="col-sm-12 remove-padding" style="border:1px solid #abe7ed;float:right;" id="A28371" data-tid="A365783">
+                <dx-radio-group [items]="ListType" [(value)]="OldAnamnesisListType" layout="horizontal" (onValueChanged)="onRadioSelectChanged()" id="A28372" data-tid="A365784">
+                </dx-radio-group>
+            </div>
+
+        </div>
+        <div class="row" id="A28373" data-tid="A365785">
+            <dx-data-grid [columns]="AnamnesisListColumns" [allowColumnReordering]="false" [allowColumnResizing]="true" height="375px" [dataSource]="AnamnesisHistoryList" (onSelectionChanged)="selectAnamnesis($event)" [filterRow]="{visible: false}" [selection]="{mode: 'single',allowSelectAll: false}" id="A28374" data-tid="A365786">
+                <dxo-editing mode="cell" [allowUpdating]="false" [allowAdding]="false" [allowDeleting]="false" id="A28375" data-tid="A365787">
+                </dxo-editing>
+            </dx-data-grid>
+        </div>
+
+    </div>
+
+    <div class="col-sm-8" id="A28376" data-tid="A365788">
+        <div class="row" id="A28377" data-tid="A365789">
+            <div class="col-sm-6" id="A28378" data-tid="A365790">
+                <label class="control-label" id="A28379" data-tid="A365791">
+                    Şikayet&nbsp;
+                    <a (click)="copyComplaintHistory()" class="pull-right" style="font-size:16px;" data-toggle="tooltip" data-placement="top" title="Kopyala" data-tid="A365792"><i class="glyphicon glyphicon-copy" data-tid="A365793"></i></a>
+                </label>
+                <hvl-richtextbox #oldComplaint [ngModel]="oldAnamnesisInfo?.Complaint" [config]="oldAnamnesisConfig" [ReadOnly]="true" id="A28380" data-tid="A365794"></hvl-richtextbox>
+            </div>
+            <div class="col-sm-6" id="A28381" data-tid="A365795">
+                <label class="control-label" id="A28382" data-tid="A365796">
+                    Özgeçmiş / Soygeçmiş&nbsp;
+                    <a (click)="copyPatientHistory()" class="pull-right" style="font-size:16px;" data-toggle="tooltip" data-placement="top" title="Kopyala" data-tid="A365797"><i class="glyphicon glyphicon-copy" data-tid="A365798"></i></a>
+                </label>
+                <hvl-richtextbox #OldPatientHistory [ngModel]="oldAnamnesisInfo?.PatientHistory" [config]="oldAnamnesisConfig" [ReadOnly]="true" id="A28383" data-tid="A365799"></hvl-richtextbox>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top:10px" id="A28384" data-tid="A365800">
+            <div class="col-sm-6" id="A28385" data-tid="A365801">
+                <label class="control-label" id="A28386" data-tid="A365802">
+                    Fizik Muayene&nbsp;
+                    <a (click)="copyPhysicalExamination()" class="pull-right" style="font-size:16px;" data-toggle="tooltip" data-placement="top" title="Kopyala" data-tid="A365803"><i class="glyphicon glyphicon-copy" data-tid="A365804"></i></a>
+                </label>
+                <hvl-richtextbox #oldPhysicalExamination [ngModel]="oldAnamnesisInfo?.PhysicalExamination" [config]="oldAnamnesisConfig" [ReadOnly]="true" id="A28387" data-tid="A365805"></hvl-richtextbox>
+            </div>
+            <div class="col-sm-6" id="A28388" data-tid="A365806">
+                <label class="control-label" id="A28389" data-tid="A365807">
+                    Tedavi Karar&nbsp;
+                    <a (click)="copyMTSConclusion()" class="pull-right" style="font-size:16px;" data-toggle="tooltip" data-placement="top" title="Kopyala" data-tid="A365808"><i class="glyphicon glyphicon-copy" data-tid="A365809"></i></a>
+                </label>
+                <hvl-richtextbox #oldMTSConclusion [ngModel]="oldAnamnesisInfo?.MTSConclusion" [config]="oldAnamnesisConfig" [ReadOnly]="true" id="A28390" data-tid="A365810"></hvl-richtextbox>
+
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px;margin-bottom:10px;" id="A28391" data-tid="A365811">
+            <div class="col-sm-12" id="A28392" data-tid="A365812">
+                <VitalSingsForm [vitalSingsFormViewModel]="oldAnamnesisInfo?.vitalSingsViewModel" [heightVisible]="true" [weightVisible]="true" [bmiVisible]="true" [IsReadOnly]="true" id="A28393" data-tid="A365813"></VitalSingsForm>
+            </div>
+        </div>
+    </div>
+
+</div>
+

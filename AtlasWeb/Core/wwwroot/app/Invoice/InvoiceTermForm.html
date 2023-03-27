@@ -1,0 +1,103 @@
+﻿<link href="/Content/CashOffice/CashOfficeGeneral.css" rel="stylesheet" />
+
+<div id="InvoiceTermForm" style="height: 100%;display: block; padding-top:5px; padding-bottom:5px" data-tid="A372738">
+    <!-- [class.col-sm-12.panel.panel-success]="changeClasses()" -->
+    <div class="col-md-5 col-sm-12 panel panel-success" style="height:100%;left:0;margin-bottom: 0; position:relative; padding-top:10px" id="A31848" data-tid="A372739">
+        <div class="margin-top-10" style="height:100%" id="A31849" data-tid="A372740">
+            <div style="border: 1px solid #ddd;text-align: right;padding: 5px;" id="A31850" data-tid="A372741">
+                <dx-button type="success" icon="fa fa-plus" text="Dönem Oluştur" (onClick)="createTermClick()" i18n-text="@@M13315" id="A31851" data-tid="A372742">
+
+                </dx-button>
+            </div>
+            <dx-data-grid [selection]="{mode: 'single'}" hoverStateEnabled="true" [dataSource]="ViewModelLeft.InvoiceTermList" [columns]='InvoiceTermListColumns' (onRowClick)="loadInvoiceCollection($event)" [filterRow]="{visible: true}" [paging]="{pageSize: 50}" height="90%" [scrolling]="{mode:'infinite'}" id="A31852" data-tid="A372743">
+            </dx-data-grid>
+        </div>
+    </div>
+    <!-- [class.col-sm-12.panel.panel-success]="changeClasses()" -->
+    <div class="col-md-7 col-sm-12 panel panel-success panel-success-seperator-3" style="position:relative; height:100%; margin:0;" id="A31853" data-tid="A372744">
+        <div class="row col-sm-12 margin-bottom-10 margin-top-10" style="padding-top:5px;" id="A31854" data-tid="A372745">
+            <dx-button type="default" icon="fa fa-unlock" [(visible)]="openButtonVisible" text="Aç" (onClick)="invoiceTermActions($event,0)" i18n-text="@@M27280" id="A31855" data-tid="A372746">
+
+            </dx-button>
+            <dx-button type="danger" icon="fa fa-times" [(visible)]="cancelButtonVisible" text="İptal" (onClick)="invoiceTermActions($event,1)" i18n-text="@@M16526" id="A31856" data-tid="A372747">
+
+            </dx-button>
+            <dx-button type="default" icon="fa fa-lock" [(visible)]="lockButtonVisible" text="Kilitle" (onClick)="invoiceTermActions($event,2)" i18n-text="@@M17559" id="A31857" data-tid="A372748">
+
+            </dx-button>
+            <dx-button type="success" icon="fa fa-check" [(visible)]="closeButtonVisible" text="Kapat" (onClick)="invoiceTermActions($event,3)" i18n-text="@@M17252" id="A31858" data-tid="A372749">
+
+            </dx-button>
+        </div>
+        <div class="row col-sm-12" id="A31859" data-tid="A372750">
+            <div class="col-sm-4" id="A31860" data-tid="A372751">
+                <label class="control-label col-sm-6 remove-padding" id="A31861" data-tid="A372752">
+                    Son İşlem Tarihi
+                </label>
+                <div class="col-sm-6 remove-padding" id="A31862" data-tid="A372753">
+                    <dx-date-box [acceptCustomValue]="false" [disabled]="true" [(value)]="ViewModelRight.LastUpdateDate" pickerType="calendar" type="date" displayFormat="dd/MM/yyyy" style="width:100%" id="A31863" data-tid="A372754">
+                    </dx-date-box>
+                </div>
+                <label class="control-label col-sm-6 remove-padding" id="A31864" data-tid="A372755">
+                    Son İşlemi Yapan
+                </label>
+                <div class="col-sm-6 remove-padding" id="A31865" data-tid="A372756">
+                    <dx-text-box id="txtLastStateUser" class="form-control" [disabled]="true" [value]="ViewModelRight.SonIslemiYapan" data-tid="A372757">
+                    </dx-text-box>
+                </div>
+            </div>
+            <div class="col-sm-4" id="A31866" data-tid="A372758">
+                <label class="control-label col-sm-6 remove-padding" id="A31867" data-tid="A372759">
+                    Fatura Tutarı
+                </label>
+                <div class="col-sm-6 remove-padding" id="A31868" data-tid="A372760">
+                    <dx-text-box id="txtTotalPrice" class="form-control" [disabled]="true" [value]="ViewModelRight.InvoicePrice" data-tid="A372761">
+                    </dx-text-box>
+                </div>
+                <label class="control-label col-sm-6 remove-padding" id="A31869" data-tid="A372762">
+                    Fatura Sayısı
+                </label>
+                <div class="col-sm-6 remove-padding" id="A31870" data-tid="A372763">
+                    <dx-text-box id="txtInvoiceCount" class="form-control" [disabled]="true" [value]="ViewModelRight.FaturaSayisi" data-tid="A372764">
+                    </dx-text-box>
+                </div>
+            </div>
+            <div class="col-sm-4" id="A31871" data-tid="A372765">
+                <label class="control-label col-sm-6 remove-padding" id="A31872" data-tid="A372766">
+                    Hizmet Tutarı
+                </label>
+                <div class="col-sm-6 remove-padding" id="A31873" data-tid="A372767">
+                    <dx-text-box class="form-control" [disabled]="true" [value]="ViewModelRight.ProcedureTotal" id="A31874" data-tid="A372768">
+                    </dx-text-box>
+                </div>
+                <label class="control-label col-sm-6 remove-padding" id="A31875" data-tid="A372769">
+                    Malzeme Tutarı
+                </label>
+                <div class="col-sm-6 remove-padding" id="A31876" data-tid="A372770">
+                    <dx-text-box id="txtTotalPrice" class="form-control" [disabled]="true" [value]="ViewModelRight.MaterialTotal" data-tid="A372771">
+                    </dx-text-box>
+                </div>
+                <label class="control-label col-sm-6 remove-padding" id="A31877" data-tid="A372772">
+                    İlaç Tutarı
+                </label>
+                <div class="col-sm-6 remove-padding" id="A31878" data-tid="A372773">
+                    <dx-text-box class="form-control" [disabled]="true" [value]="ViewModelRight.DrugTotal" id="A31879" data-tid="A372774">
+                    </dx-text-box>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12" style="height:83%" id="A31880" data-tid="A372775">
+            <div class="row" style="height:100%" data-tid="A372776">
+                <dx-data-grid #invoiceCollectionGrid [filterRow]="{visible: true}" [paging]="{pageSize: 25}" [columnFixing]="{enabled: true}" height="100%" [scrolling]="{mode:'infinite'}" [dataSource]="ViewModelRight.InvoiceCollectionList" [columns]='InvoiceCollectionListColumns' [(selectedRowKeys)]="SelectedInvoiceCollections" (onSelectionChanged)="onSelectionChanged($event)" (onRowClick)="invoiceCollectionGridOnRowClick($event)" (onContextMenuPreparing)="onContextMenuPreparingICGrid($event)" id="A31881" data-tid="A372777">
+                    <dxo-selection selectAllMode="true" mode="multiple" data-tid="A372778">
+                    </dxo-selection>
+                    <dxo-paging [pageSize]="50" data-tid="A372779"></dxo-paging>
+                </dx-data-grid>
+            </div>
+        </div>
+
+        <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A31882" data-tid="A372780">
+        </dx-load-panel>
+
+    </div>
+</div>

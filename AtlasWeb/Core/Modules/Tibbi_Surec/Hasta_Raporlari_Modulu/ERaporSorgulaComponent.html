@@ -1,0 +1,30 @@
+﻿<div class="row" data-tid="A348476">
+    <label class="col-sm-12" data-tid="A348477">
+        Hastanın Mevcut Raporları
+    </label>
+</div>
+<div class="row" data-tid="A348478">
+    <div class="col-sm-12" data-tid="A348479">
+        <dx-data-grid [columns]="PatientReportsColumns" [dataSource]="ReportList" [editing]="{allowUpdating:false , allowAdding:false, allowDeleting:false}" style="height : 350px" id="A24131" data-tid="A348480">
+            <div *dxTemplate="let row of 'buttonCellTemplate'" id="A24132" data-tid="A348481">
+                <span class="fa fa-search" (click)="select(row)" style="color: rgb(216, 25, 25); font-size:20px" id="A13447" data-tid="A348482"></span>
+            </div>
+        </dx-data-grid>
+    </div>
+</div>
+
+<dx-popup [(visible)]="showSelectedReportDetailPopUp" *ngIf="showSelectedReportDetailPopUp == true" [closeOnOutsideClick]="false" title="Rapor Detayı" position="center" height="700" width="500" data-tid="A348483">
+    <div *dxTemplate="let data of 'content'" data-tid="A348484">
+        <div class="row" data-tid="A348485">
+            <div class="col-sm-12" style="margin-left:0px; background-color: #e8e8e8" data-tid="A348486">
+                <dx-text-area [height]="600" [(value)]="reportDetail" readOnly="false" data-tid="A348487">
+                </dx-text-area>
+            </div>
+
+        </div>
+
+    </div>
+</dx-popup>
+
+<dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A31651" data-tid="A348488">
+    </dx-load-panel>

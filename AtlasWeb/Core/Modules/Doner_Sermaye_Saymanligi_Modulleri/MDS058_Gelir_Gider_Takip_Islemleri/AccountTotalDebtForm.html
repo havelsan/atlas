@@ -1,0 +1,58 @@
+﻿<!-- //$07B3BF45 -->
+<!-- <NeStatePanelComponent [ObjectDefID]="accountTotalDebtFormViewModel._AccountTotalDebt.ObjectDefID" [CurrentStateDefID]="accountTotalDebtFormViewModel._AccountTotalDebt.CurrentStateDefID" (onSetState)="setState($event)" (onSaveChanges)="save($event)" >
+</NeStatePanelComponent> -->
+<div class="container-fluid" data-tid="A325180">
+	<form id="AccountTotalDebtForm" class="form-horizontal" role="form" data-tid="A325181">
+	</form>
+	<div class="panel panel-default gradientPanel" style="border:0; box-shadow:none;" id="A21093" data-tid="A325182">
+		<div class style="height: 50px;" id="A21094" data-tid="A325183">
+			<h4 style="color:#fff; font-size:19px;padding: 15px; text-align:center;height:50px;" id="A21095" data-tid="A325184">Toplam Borç</h4>
+		</div>
+	</div>
+	<div class="row" data-tid="A325185">
+		<label class="control-label col-sm-2" data-tid="A325186">
+			Toplam Borç </label>
+		<label class="control-label col-sm-2" data-tid="A325187">
+			Dönem </label>
+	</div>
+	<div class="row" data-tid="A325188">
+		<div class="col-sm-2" data-tid="A325189">
+			<dx-number-box [(value)]="_AccountTotalDebt.TotalDebt" format="#,##0.00" data-tid="A325190"></dx-number-box>
+		</div>
+		<div class="col-sm-2" data-tid="A325191">
+			<hvl-list-box #Validation (SelectedObjectChange)="onAccountPeriodChanged($event)" [AutoCompleteDialogHeight]="AccountPeriod?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="AccountPeriod?.AutoCompleteDialogWidth" [AutoCompleteMode]="AccountPeriod?.AutoCompleteMode" [BackColor]="AccountPeriod?.BackColor" [DefinitionName]="AccountPeriod?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="true" [Font]="AccountPeriod?.Font" [ForeColor]="AccountPeriod?.ForeColor" [ListFilterExpression]="AccountPeriod?.ListFilterExpression" [MinSearchLength]="AccountPeriod?.MinSearchLength" [PopupDialogFieldConfig]="AccountPeriod?.PopupDialogFieldConfig" [PopupDialogGridColumns]="AccountPeriod?.PopupDialogGridColumns" [PopupDialogHeight]="AccountPeriod?.PopupDialogHeight" [PopupDialogTitle]="AccountPeriod?.PopupDialogTitle" [PopupDialogWidth]="AccountPeriod?.PopupDialogWidth" [ReadOnly]="false" [SearchMode]="AccountPeriod?.SearchMode" [SearchTimeout]="AccountPeriod?.SearchTimeout" [SelectedObject]="_AccountTotalDebt.AccountPeriod" [TabIndex]="AccountPeriod?.TabIndex" [Visible]="AccountPeriod?.Visible" [width]="AccountPeriod?.Width" data-tid="A325192">
+			</hvl-list-box>
+		</div>
+	</div>
+	<div class="col-md-12" data-tid="A325193">
+		<dx-button type="default" text="Kaydet" style="float:right" (onClick)="save()" i18n-text="@@M17386" id="A28588" data-tid="A325194">
+		</dx-button>
+		<dx-button type="success" text="Yeni Kayıt" style="float:right; margin-right: 2px;" (onClick)="initViewModel()" i18n-text="@@M24567" id="A28589" data-tid="A325195"></dx-button>
+	</div>
+	<div class="col-sm-12" style="height:97%;padding:0" data-tid="A325196">
+		<dx-data-grid [dataSource]="AccountTotalDebtDataSource" (onRowRemoving)="RowRemoving($event)" (onSelectionChanged)="select($event)" [editing]="{allowUpdating: false,allowAdding: false,allowDeleting: true}" [columns]="AccountTotalDebtColumns" [selection]="{mode: 'single',allowSelectAll: true}" [paging]="{enable: true, pageSize:60}" [filterRow]="{visible: true}" style="height : 80%" id="A28598" data-tid="A325197">
+			<dxo-export [enabled]="true" fileName="AccountVoucher" data-tid="A325198"></dxo-export>
+			<dxo-summary data-tid="A325199">
+				<dxi-total-item column="Year" summaryType="count" data-tid="A325200">
+				</dxi-total-item>
+			</dxo-summary>
+			<div *dxTemplate="let cellData of 'MonthCellTemplate'" id="A16530" data-tid="A325201">
+				<span *ngIf="cellData.data.Month ==1" data-tid="A325202">Ocak</span>
+				<span *ngIf="cellData.data.Month ==2" data-tid="A325203">Şubat</span>
+				<span *ngIf="cellData.data.Month ==3" data-tid="A325204">Mart</span>
+				<span *ngIf="cellData.data.Month ==4" data-tid="A325205">Nisan</span>
+				<span *ngIf="cellData.data.Month ==5" data-tid="A325206">Mayıs</span>
+				<span *ngIf="cellData.data.Month ==6" data-tid="A325207">Haziran</span>
+				<span *ngIf="cellData.data.Month ==7" data-tid="A325208">Temmuz</span>
+				<span *ngIf="cellData.data.Month ==8" data-tid="A325209">Ağustos</span>
+				<span *ngIf="cellData.data.Month ==9" data-tid="A325210">Eylül</span>
+				<span *ngIf="cellData.data.Month ==10" data-tid="A325211">Ekim</span>
+				<span *ngIf="cellData.data.Month ==11" data-tid="A325212">Kasım</span>
+				<span *ngIf="cellData.data.Month ==12" data-tid="A325213">Aralık</span>
+			</div>
+			<div *dxTemplate="let cellData of 'TotalDebtCellTemplate'" id="A16530" data-tid="A325214">
+				<dx-number-box [rtlEnabled]="true" [readOnly]="true" [(value)]="cellData.data.TotalDebt" format="#,##0.00" data-tid="A325215"></dx-number-box>
+			</div>
+		</dx-data-grid>
+	</div>
+</div>

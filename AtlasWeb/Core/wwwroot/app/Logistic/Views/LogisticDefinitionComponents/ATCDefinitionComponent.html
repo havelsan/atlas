@@ -1,0 +1,47 @@
+﻿<div style="height: 100%;width: 99%;" data-tid="A374720">
+    <div class="row" style="height: 100%;" data-tid="A374721">
+        <div class="col-sm-12 gradientPanel" id="A16463" data-tid="A374722">
+            <h4 style="color:#fff; font-size:19px;text-align:left;padding-left:1%;" id="A16464" data-tid="A374723">
+                <span id="A16467" data-tid="A374724">ATC Kodu Tanımları</span>
+            </h4>
+        </div>
+        <div class="panel-body" style="background-color:#f6f6f6;padding-bottom:0; height:100%;padding: 0" data-tid="A374725">
+            <div class="col-md-12" style="height: calc(100% - 127px);" data-tid="A374726">
+                <dx-data-grid [dataSource]="atcDefinitionSource" style="height: 650px;" [columns]="atcDefinitionDataColumn" [filterRow]="{visible: true}" [paging]="{pageSize:28}" [showBorders]="true" data-tid="A374727">
+                </dx-data-grid>
+            </div>
+            <br data-tid="A374728" />
+            <div class="col-md-12" style="max-height: 111px;" data-tid="A374729">
+                <div class="row" data-tid="A374730">
+                    <div class="col-sm-6" data-tid="A374731">
+                        <dx-button type="btn btn-info" icon="fa fa-bars" style="float: left;padding: 2px;margin-left: 10px;" stylingMode="contained" text="Listele" type="success" (onClick)="listATC()" data-tid="A374732">
+                        </dx-button>
+                    </div>
+                    <div class="col-sm-6" style="float: right;" data-tid="A374733">
+                        <dx-button icon="fas fa-plus" style="float: right;padding: 2px;margin-right: 10px;" stylingMode="contained" text="SKRS Güncelle" type="default" (onClick)="updateSKRS()" data-tid="A374734">
+                        </dx-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<dx-popup width="1200px" height="600px" [(visible)]="skrsUpdatePopupVisible" [closeOnOutsideClick]="false" title="SKRS'den Güncellenecekler" data-tid="A374735">
+    <div class="row" data-tid="A374736">
+        <div class="col-sm-12" data-tid="A374737">
+            <dx-data-grid [dataSource]="skrsUpdateList" style="height: 500px;" [columns]="skrsUpdateListDataColumn" [filterRow]="{visible: true}" [paging]="{pageSize:20}" [showBorders]="true" data-tid="A374738">
+            </dx-data-grid>
+        </div>
+    </div>
+    <br data-tid="A374739" />
+    <div class="row" data-tid="A374740">
+        <dx-button type="danger" class="btn btn-default" (onClick)="closePopupCancel()" style="margin-right: 20px;margin-left: 16px;" text="Vazgeç" id data-tid="A374741"></dx-button>
+
+        <dx-button class="btn btn-default" type="success" (onClick)="closePopupOK()" style="margin-right: 20px;float: right;" text="Güncelle" id data-tid="A374742"></dx-button>
+
+    </div>
+</dx-popup>
+
+<dx-load-panel shadingColor="rgba(0,0,0,0.4)" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" data-tid="A374743">
+</dx-load-panel>

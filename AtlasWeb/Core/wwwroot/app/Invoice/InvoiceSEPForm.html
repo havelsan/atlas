@@ -1,0 +1,1415 @@
+﻿
+
+
+    <div class="col-sm-12 remove-padding" style="height:100%!important" id="A30943" data-tid="A371420">
+        <div class="col-sm-8 remove-padding" id="A30944" style="height:20px!important;" data-tid="A371421">
+            <dx-menu [dataSource]="menuData" (onItemClick)="onItemClickTopMenu($event)" displayExpr="name" [showFirstSubmenuMode]="{name: 'onHover',delay: {show: 100,hide: 300} }" [hideSubmenuOnMouseLeave]="true" id="A30945" data-tid="A371422">
+            </dx-menu>
+        </div>
+        <div class="col-sm-4 remove-padding" id="A30946" data-tid="A371423">
+            <dx-button type="default" style="float: right;" icon="fa fa-lock" (onClick)="btnInvoiceBlockingClicked()" id="A30947" data-tid="A371424"></dx-button>
+            <dx-button type="default" style="float: right;" icon="fa fa-refresh" text="Yenile" (onClick)="btnRefreshClicked()" i18n-text="@@M24622" id="A30948" data-tid="A371425"></dx-button>
+            <dx-button type="success" style="float: right;" icon="fa fa-history" text="Geçmiş" (onClick)="btnHistoryClicked()" i18n-text="@@M14631" id="A30949" data-tid="A371426"></dx-button>
+            <dx-button type="danger" style="float: right;" icon="fa fa-external-link" text="Medusa" [visible]="false" (onClick)="btnOpenMedulaLink()" id="A30950" data-tid="A371427"></dx-button>
+            <dx-text-box [showClearButton]="true" style="float: right; padding:2px 2px 2px 2px !important" width="120px" valueChangeEvent="keyup" (keypress)="enterSearchKeyPress($event)" [(value)]="searchTextKabulNo" placeholder="Kabul Arama..." data-tid="A371428"></dx-text-box>
+        </div>
+        <div class="col-sm-12 remove-padding" id="A30951" data-tid="A371429">
+            <b id="A30952" data-tid="A371430">  {{invoiceSEPFormViewModel.InvoiceSEPMaster.NameAndSurname}} > {{invoiceSEPFormViewModel.InvoiceSEPMaster.UniqueRefNo}} > {{invoiceSEPFormViewModel.InvoiceSEPMaster.BirthDate}} > {{invoiceSEPFormViewModel.InvoiceSEPMaster.YupassNo}}> {{invoiceSEPFormViewModel?.InvoiceSEPMaster?.PayerType?.Name}} > {{invoiceSEPFormViewModel?.InvoiceSEPMaster?.Payer?.Name}} <font color="darkred" data-tid="A371431">  || {{titleProtocol}} > {{titleDate}} > {{titleStatus}} > {{titleProvision}} > {{titleSection}} > {{titleTedaviTuruKodu}} </font> <font *ngIf="invoiceSEPFormViewModel.InvoiceSEPDetail.InpatientStatus != ''" class="blink" data-tid="A371432"> > {{invoiceSEPFormViewModel.InvoiceSEPDetail.InpatientStatus}} </font> <font *ngIf="invoiceSEPFormViewModel.InvoiceSEPDetail.DischargeType != ''" color="darkred" data-tid="A371433"> > {{invoiceSEPFormViewModel.InvoiceSEPDetail.DischargeType}} </font> </b>
+        </div>
+        <div class="col-sm-12 remove-padding" id="A30951" data-tid="A371434">
+            <dx-accordion #detailFormAccordion [collapsible]="true" [animationDuration]="200" (onItemTitleClick)="onAccordionItemTitleClickDetailForm($event)" id="A31653" data-tid="A371435">
+                <dxi-item class="remove-padding-left remove-padding-right" title="Detaylar" icon="fa fa-sort" id="A31654" data-tid="A371436">
+                    <div class="col-sm-12 remove-padding-left remove-padding-right" id="A30953" data-tid="A371437">
+                        <div class="col-sm-2" style="float: left;height:100%" id="A30954" data-tid="A371438">
+                            <div class="row padding-bottom-5" id="A30955" data-tid="A371439">
+                                <label class="control-label col-sm-5 remove-padding text-align-left " id="A30956" data-tid="A371440">
+                                    Başvuru No
+                                </label>
+                                <div class="col-sm-6 remove-padding" id="A30957" data-tid="A371441">
+                                    <dx-text-box [showClearButton]="true" [(value)]="invoiceSEPFormViewModel.InvoiceSEPDetail.MedulaBasvuruNo" [disabled]="true" id="A30958" data-tid="A371442"></dx-text-box>
+                                </div>
+                            </div>
+                            <div class="row padding-bottom-5" id="A30959" data-tid="A371443">
+                                <label class="control-label col-sm-5  remove-padding text-align-left" id="A30960" data-tid="A371444">
+                                    Vaka Açılış Tar.
+                                </label>
+                                <div class="col-sm-6 remove-padding" id="A30961" data-tid="A371445">
+                                    <dx-text-box [showClearButton]="true" [(value)]="invoiceSEPFormViewModel.InvoiceSEPDetail.EpisodeOpeningDate" [disabled]="true" id="A30962" data-tid="A371446"></dx-text-box>
+                                </div>
+                            </div>
+                            <div class="row padding-bottom-5" id="A30963" data-tid="A371447">
+                                <label class="control-label col-sm-5  remove-padding text-align-left" id="A30964" data-tid="A371448">
+                                    Yatış Tar.
+                                </label>
+                                <dx-check-box [(value)]="inpatientDateCheck" (onValueChanged)="inOutpatientDateCheckValueChanged()" data-tid="A371449"></dx-check-box>
+                                <div class="col-sm-6 remove-padding" id="A30965" data-tid="A371450">
+                                    <dx-date-box [(value)]="invoiceSEPFormViewModel.InvoiceSEPDetail.InPatientDate" type="date" displayFormat="dd/MM/yyyy" [disabled]="true" style="width:100%" id="A30996" data-tid="A371451"> </dx-date-box>
+                                </div>
+                            </div>
+                            <div class="row padding-bottom-5" id="A30967" data-tid="A371452">
+                                <label class="control-label col-sm-5  remove-padding text-align-left" id="A30968" data-tid="A371453">
+                                    Çıkış Tar.
+                                </label>
+                                <dx-check-box [(value)]="disChargeDateCheck" (onValueChanged)="inOutpatientDateCheckValueChanged()" data-tid="A371454"></dx-check-box>
+                                <div class="col-sm-6 remove-padding" id="A30969" data-tid="A371455">
+                                    <dx-date-box [(value)]="invoiceSEPFormViewModel.InvoiceSEPDetail.DischargeDate" type="date" displayFormat="dd/MM/yyyy" [disabled]="hasProvision" style="width:100%" (onValueChanged)="onValueChangedDischargeDate($event)" id="A30996" data-tid="A371456"> </dx-date-box>
+                                </div>
+                            </div>
+                            <div class="row padding-bottom-5" id="A30971" data-tid="A371457">
+                                <label class="control-label col-sm-5  remove-padding text-align-left" id="A30972" data-tid="A371458">
+                                    Yatılan Gün
+                                </label>
+                                <div class="col-sm-6 remove-padding" id="A30973" data-tid="A371459">
+                                    <dx-text-box [showClearButton]="true" [(value)]="invoiceSEPFormViewModel.InvoiceSEPDetail.TotalInPatientDate" [disabled]="true" id="A30974" data-tid="A371460"></dx-text-box>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-3" style="float: left;height:100%" id="A30975" data-tid="A371461">
+                            <div class="row padding-bottom-5" id="A30976" data-tid="A371462">
+                                <label class="control-label col-sm-3 remove-padding text-align-left" id="A30977" data-tid="A371463">
+                                    Branş
+                                </label>
+                                <div class="col-sm-8 remove-padding" id="A30978" data-tid="A371464">
+                                    <dx-select-box [(value)]="invoiceSEPFormViewModel.InvoiceSEPDetail.Brans" searchEnabled="true" [dataSource]="bransArray" displayExpr="Name" valueExpr="ObjectID" [disabled]="hasProvision || invoiced" (onValueChanged)="detailFormSelectboxChanged($event,1)" id="A30979" data-tid="A371465"></dx-select-box>
+                                </div>
+                            </div>
+                            <div class="row padding-bottom-5" id="A30976" data-tid="A371466">
+                                <label class="control-label col-sm-3 remove-padding text-align-left" id="A30977" data-tid="A371467">
+                                    Doktor
+                                </label>
+                                <div class="col-sm-8 remove-padding" id="A30978" data-tid="A371468">
+                                    <dx-text-box [showClearButton]="true" [(value)]="invoiceSEPFormViewModel.InvoiceSEPDetail.DoctorName" [readOnly]="true" id="A30958" data-tid="A371469"></dx-text-box>
+                                </div>
+                            </div>
+                            <div class="row padding-bottom-5" id="A30980" data-tid="A371470">
+                                <label class="control-label col-sm-3  remove-padding text-align-left" id="A30981" data-tid="A371471">
+                                    Dev. Kurum
+                                </label>
+                                <div class="col-sm-8 remove-padding" id="A30982" data-tid="A371472">
+                                    <dx-select-box [(value)]="invoiceSEPFormViewModel.InvoiceSEPDetail.MedulaDevredilenKurum" searchEnabled="true" [dataSource]="devredilenKurumArray" displayExpr="Name" valueExpr="ObjectID" [disabled]="hasProvision || invoiced" (onValueChanged)="detailFormSelectboxChanged($event,2)" id="A30983" data-tid="A371473"></dx-select-box>
+                                </div>
+                            </div>
+                            <div class="row padding-bottom-5" id="A30984" data-tid="A371474">
+                                <label class="control-label col-sm-3  remove-padding text-align-left" id="A30985" data-tid="A371475">
+                                    İstisnai Hal
+                                </label>
+                                <div class="col-sm-8 remove-padding" id="A30986" data-tid="A371476">
+                                    <dx-select-box [(value)]="invoiceSEPFormViewModel.InvoiceSEPDetail.MedulaIstisnaiHal" searchEnabled="true" [dataSource]="istisnaiHalArray" displayExpr="Name" valueExpr="ObjectID" [disabled]="hasProvision || invoiced" (onValueChanged)="detailFormSelectboxChanged($event,3)" id="A30987" data-tid="A371477"></dx-select-box>
+                                </div>
+                            </div>
+                            <div class="row padding-bottom-5" id="A30988" data-tid="A371478">
+                                <label class="control-label col-sm-3 remove-padding text-align-left " id="A30989" data-tid="A371479">
+                                    Sigortalı Türü
+                                </label>
+                                <div class="col-sm-8 remove-padding" id="A30990" data-tid="A371480">
+                                    <dx-select-box [(value)]="invoiceSEPFormViewModel.InvoiceSEPDetail.MedulaSigortaliTuru" searchEnabled="true" [dataSource]="sigortaliTuruArray" displayExpr="Name" valueExpr="ObjectID" [disabled]="hasProvision || invoiced" (onValueChanged)="detailFormSelectboxChanged($event,4)" id="A30991" data-tid="A371481"></dx-select-box>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2" style="float: left;height:100%" id="A30992" data-tid="A371482">
+                            <div class="row padding-bottom-5" id="A30993" data-tid="A371483">
+                                <label class="control-label col-sm-6  remove-padding text-align-left" id="A30994" data-tid="A371484">
+                                    Fatura Tarihi
+                                </label>
+                                <div class="col-sm-6 remove-padding" id="A30995" data-tid="A371485">
+                                    <dx-date-box [(value)]="invoiceSEPFormViewModel.InvoiceSEPDetail.InvoiceDate" type="date" displayFormat="dd/MM/yyyy" [disabled]="invoiced" style="width:100%" id="A30996" data-tid="A371486"> </dx-date-box>
+                                </div>
+                            </div>
+                            <div class="row padding-bottom-5" id="A30997" data-tid="A371487">
+                                <label class="control-label col-sm-6  remove-padding text-align-left" id="A30998" data-tid="A371488">
+                                    Fatura Açıklaması
+                                </label>
+                                <div class="col-sm-6 remove-padding" id="A30999" data-tid="A371489">
+                                    <dx-text-box placeholder="Fatura Açıklaması Giriniz" [showClearButton]="true" [(value)]="invoiceSEPFormViewModel.InvoiceSEPDetail.InvoiceDescription" [disabled]="invoiced" i18n-placeholder="@@M14106" id="A31000" data-tid="A371490"></dx-text-box>
+                                </div>
+                            </div>
+                            <div class="row padding-bottom-5" id="A31001" data-tid="A371491">
+                                <label class="control-label col-sm-6  remove-padding text-align-left" id="A31002" data-tid="A371492">
+                                    Fatura No
+                                </label>
+                                <div class="col-sm-6 remove-padding" id="A31003" data-tid="A371493">
+                                    <dx-text-box placeholder="Fatura Numarası" [showClearButton]="true" [(value)]="invoiceSEPFormViewModel.InvoiceSEPDetail.InvoiceNo" disabled="true" i18n-placeholder="@@M14182" id="A31004" data-tid="A371494"></dx-text-box>
+                                </div>
+                            </div>
+                            <div class="row padding-bottom-5" id="A31005" data-tid="A371495">
+                                <label class="control-label col-sm-6 remove-padding text-align-left " id="A31006" data-tid="A371496">
+                                    Fatura İptal Sayısı
+                                </label>
+                                <div class="col-sm-6 remove-padding" id="A31007" data-tid="A371497">
+                                    <dx-text-box [showClearButton]="true" [(value)]="invoiceSEPFormViewModel.InvoiceSEPDetail.InvoiceCancelCount" disabled="true" id="A31008" data-tid="A371498"></dx-text-box>
+                                </div>
+                            </div>
+                            <div class="row padding-bottom-5" id="A30984" data-tid="A371499">
+                                <label class="control-label col-sm-6 remove-padding text-align-left" id="A30985" data-tid="A371500">
+                                    Triaj
+                                </label>
+                                <div class="col-sm-6 remove-padding" id="A30986" data-tid="A371501">
+                                    <dx-select-box [(value)]="invoiceSEPFormViewModel.InvoiceSEPDetail.Triage" searchEnabled="true" [dataSource]="triageArray" displayExpr="Name" valueExpr="ObjectID" [disabled]="invoiced" (onValueChanged)="detailFormSelectboxChanged($event,5)" id="A30987" data-tid="A371502"></dx-select-box>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2" style="float: left;height:100%" id="A31009" data-tid="A371503">
+                            <div class="row padding-bottom-5" id="A31010" data-tid="A371504">
+                                <label class="control-label col-sm-5  remove-padding text-align-left" id="A31011" data-tid="A371505">
+                                    Dönem
+                                </label>
+                                <div class="col-sm-6 remove-padding" id="A31012" data-tid="A371506">
+                                    <dx-text-box [showClearButton]="true" [(value)]="invoiceSEPFormViewModel.InvoiceSEPDetail.InvoiceTerm" disabled="true" id="A31013" data-tid="A371507"></dx-text-box>
+                                </div>
+                            </div>
+                            <div class="row padding-bottom-5" id="A31014" data-tid="A371508">
+                                <label class="control-label col-sm-5 remove-padding text-align-left" id="A31015" data-tid="A371509">
+                                    İcmal
+                                </label>
+                                <div class="col-sm-6 remove-padding" id="A31016" data-tid="A371510">
+                                    <dx-text-box [showClearButton]="true" [(value)]="invoiceSEPFormViewModel.InvoiceSEPDetail.InvoiceCollection.Name" disabled="true" id="A31017" data-tid="A371511"></dx-text-box>
+                                </div>
+                            </div>
+                            <div class="row padding-bottom-5" id="A31018" data-tid="A371512">
+                                <label class="control-label col-sm-5 remove-padding text-align-left " id="A31019" data-tid="A371513">
+                                    Fatura Tutarı
+                                </label>
+                                <div class="col-sm-6 remove-padding" id="A31020" data-tid="A371514">
+                                    <dx-text-box [showClearButton]="true" [(value)]="invoiceSEPFormViewModel.InvoiceSEPDetail.InvoiceTotalPrice" disabled="true" id="A31021" data-tid="A371515"></dx-text-box>
+                                </div>
+                            </div>
+                            <div class="row padding-bottom-5" id="A31022" data-tid="A371516">
+                                <label class="control-label col-sm-5 remove-padding text-align-left " id="A31023" data-tid="A371517">
+                                    HBYS Tutarı
+                                </label>
+                                <div class="col-sm-6 remove-padding" id="A31024" data-tid="A371518">
+                                    <dx-text-box [showClearButton]="true" [(value)]="invoiceSEPFormViewModel.InvoiceSEPDetail.HBYSTotalPrice" disabled="true" id="A31025" data-tid="A371519"></dx-text-box>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2" style="float: left;" id="A31026" data-tid="A371520">
+                            <div class="row remove-padding" id="A31027" data-tid="A371521">
+                                <div class="col-sm-12 remove-padding" id="A31028" data-tid="A371522">
+                                    <dx-text-area [height]="55" [value]="invoiceSEPFormViewModel.InvoiceSEPDetail.MedulaSonucMesaji" (onFocusIn)="onFocusInMedulaSonucMesaji($event)" id="A31029" data-tid="A371523"></dx-text-area>
+                                </div>
+                            </div>
+                            <div class="row remove-padding" id="A31030" data-tid="A371524">
+                                <div class="col-sm-12 remove-padding" id="A31031" data-tid="A371525">
+                                    <dx-text-area [height]="55" [(value)]="invoiceSEPFormViewModel.InvoiceSEPDetail.SEPDescription" disabled="true" id="A31032" data-tid="A371526"></dx-text-area>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1" style="float: left;height:100%" id="A31033" data-tid="A371527">
+                            <div class="row padding-bottom-5" id="A31034" data-tid="A371528">
+                                <div class="col-sm-12 remove-padding" id="A31035" data-tid="A371529">
+                                    <dx-list [(dataSource)]="invoiceSEPFormViewModel.InvoiceTypes" selectionMode="single" (onItemClick)="onItemClickInvoiceTypes($event)" [selectedItems]="InvoiceTypesSelectedItems" height="95%" id="A31036" data-tid="A371530">
+
+                                    </dx-list>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 remove-padding-left remove-padding-right" id="A31037" data-tid="A371531">
+                        <dx-data-grid [selection]="{mode: 'multiple',showCheckBoxesMode: 'onLongTap'}" [columnResizingMode]="widget" [dataSource]="invoiceSEPFormViewModel.InvoiceSEPList" [columns]="InvoiceSEPListColumns" (onRowClick)="onRowClickSEPList($event)" (onRowPrepared)="onRowPreparedSEPList($event)" (onRowUpdating)="onRowUpdatingSEPList($event)" [(selectedRowKeys)]="selectedSEPs" [editing]="{allowUpdating: true, mode: 'cell'}" [height]="150" (onEditingStart)="onEditingStartSEPList($event)" (onContextMenuPreparing)="onContextMenuPreparingSEPList($event)" id="A31038" data-tid="A371532">
+                        </dx-data-grid>
+                    </div>
+                </dxi-item>
+            </dx-accordion>
+        </div>
+        <div class="col-sm-12 remove-padding" id="A30951" data-tid="A371533">
+            <dx-tab-panel [selectedIndex]="0" fill-height [(triggerResize)]="resizeDateVariable" (onSelectionChanged)="hizmetlerTabClick($event)" elementOffsetTopTrim="-10" [animationEnabled]="true" [deferRendering]="false" id="A31040" data-tid="A371534">
+                <dxi-item title="Hizmetler" i18n-title="@@M15953" id="A31041" data-tid="A371535">
+
+                    <dx-data-grid #transactionGrid style="height:100%!important;width:100%!important" [selection]="{mode: 'multiple',showCheckBoxesMode: 'onLongTap', selectAllMode:'page'}" [filterRow]="{visible: true}" [headerFilter]="{visible: true}" (onToolbarPreparing)="onToolbarPreparingTransactionList($event)" (onContextMenuPreparing)="onContextMenuPreparingTransactionList($event)" [dataSource]="InvoiceSEPTransactionList" [columns]="InvoiceTransactionListColumns" (onRowPrepared)="onRowPreparedTransactionList($event)" (onContentReady)="onContentReadyTransactionList($event)" [(selectedRowKeys)]="selectedTransactions" (onSelectionChanged)="onSelectionChangedTransactionList($event)" (onEditingStart)="onEditingStartTransactionList($event)" (onRowUpdating)="onRowUpdatingTransactionList($event)" (onRowClick)="onRowClickTransactionList($event)" [allowColumnReordering]="true" [allowColumnResizing]="true" id="A31042" [columnResizingMode]="widget" [remoteOperations]="true" [customizeColumns]="null" data-tid="A371536">
+                        <dxo-column-chooser [enabled]="true" height="600" width="300" title="Hizmet listesi özelleştirme menüsü" i18n-title="@@M15895" id="A31043" data-tid="A371537">
+                        </dxo-column-chooser>
+                        <dxo-load-panel [enabled]="true" data-tid="A371538"></dxo-load-panel>
+                        <dxo-paging [pageSize]="200" id="A31044" data-tid="A371539"></dxo-paging>
+                        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[25,50,200]" id="A31045" data-tid="A371540"></dxo-pager>
+
+                        <dxo-editing mode="cell" [allowUpdating]="true" id="A31046" data-tid="A371541">
+                        </dxo-editing>
+                        <dxo-scrolling showScrollbar="always" data-tid="A371542"></dxo-scrolling>
+                        <dxo-sorting mode="multiple" data-tid="A371543"></dxo-sorting>
+                        <dxo-group-panel [visible]="true" data-tid="A371544"></dxo-group-panel>
+                        <dxo-grouping [autoExpandAll]="expanded" data-tid="A371545"></dxo-grouping>
+                        <dxo-export [enabled]="true" fileName="Takip Hizmet Listesi" [allowExportSelectedData]="true" data-tid="A371546"></dxo-export>
+                        <dxo-summary id="A31047" data-tid="A371547">
+                            <!-- [customizeText]="gridRowCount" -->
+                            <dxi-total-item column="Id" summaryType="count" id="A31048" data-tid="A371548">
+                            </dxi-total-item>
+                            <!-- [customizeText]="customizeMoney" -->
+                            <dxi-total-item column="TotalPrice" summaryType="sum" id="A31829" data-tid="A371549">
+                            </dxi-total-item>
+                            <!-- [customizeText]="customizeMoney" -->
+                            <dxi-total-item column="MedulaPrice" summaryType="sum" id="A31830" data-tid="A371550">
+                            </dxi-total-item>
+
+                        </dxo-summary>
+
+                    </dx-data-grid>
+
+                </dxi-item>
+
+                <dxi-item title="Tanılar" class="remove-padding" i18n-title="@@M22790" id="A31049" data-tid="A371551">
+
+                    <dx-button type="default" icon="fa fa-plus" (onClick)="onClickShowAddDiagnosis()" text="Tanı Ekleme" i18n-text="@@M22745" id="A31050" data-tid="A371552"></dx-button>
+
+                    <dx-data-grid #diagnosisGrid [columnAutoWidth]="true" height="90%" [selection]="{mode: 'multiple',showCheckBoxesMode: 'onLongTap'}" [dataSource]="invoiceSEPFormViewModel.InvoiceSEPDiagnoseList" [columns]="InvoiceDiagnoseListColumns" (onRowPrepared)="onRowPreparedDiagnosisList($event)" (onContextMenuPreparing)="onContextMenuPreparingDiagnosisList($event)" [columnResizingMode]="widget" [(selectedRowKeys)]="selectedDiagnosis" id="A31051" data-tid="A371553">
+                    </dx-data-grid>
+                </dxi-item>
+
+                <dxi-item class="remove-padding" title="Hasta Geçmişi" i18n-title="@@M27456" id="A31052" data-tid="A371554">
+                    <dx-data-grid #patientSEPListGrid [columnResizingMode]="widget" [dataSource]="invoiceSEPFormViewModel.PatientSEPList" [columns]="PatientSEPListColumns" (onContextMenuPreparing)="onContextMenuPreparingPatientSEPList($event)" (onRowClick)="onRowClickPatientSEPList($event)" [columnAutoWidth]="true" id="A31053" data-tid="A371555">
+                    </dx-data-grid>
+
+                </dxi-item>
+
+                <dxi-item class="remove-padding" title="Medula Epikriz" id="A31054" data-tid="A371556">
+
+                    <dx-data-grid #epicrisisGrid height="50%" [columnResizingMode]="widget" [dataSource]="invoiceSEPFormViewModel.InvoiceSEPEpicrisis.EpicrisisDetail" [columns]="EpicrisisDetailListColumns" [editing]="{allowUpdating: true, mode: 'cell'}" (onRowUpdated)="onRowUpdatedEpicrisisDetailList($event)" id="A31056" data-tid="A371557">
+                        <dxo-paging [pageSize]="5" id="A31057" data-tid="A371558"></dxo-paging>
+                        <div *dxTemplate="let row of 'buttonCellTemplate'" id="A31058" data-tid="A371559">
+                            <div class="col-sm-6 remove-padding" id="A31059" data-tid="A371560">
+                                <dx-button type="default" style=" margin-top: -7px" (onClick)="onClickMoveUpDown(row,0)" icon="fa fa-caret-square-o-up" id="A31060" data-tid="A371561"></dx-button>
+                            </div>
+                            <div class="col-sm-6 remove-padding" id="A31061" data-tid="A371562">
+                                <dx-button type="default" style=" margin-top: -7px" (onClick)="onClickMoveUpDown(row,1)" icon="fa fa-caret-square-o-down" id="A31062" data-tid="A371563"></dx-button>
+                            </div>
+                        </div>
+                    </dx-data-grid>
+                    <div class="row" height="10%" id="A31063" data-tid="A371564">
+                        <div class="col-sm-12" id="A31064" data-tid="A371565">
+                            <dx-button type="danger" style="float: right;" icon="fa fa-times" (onClick)="onClickClearSEPEpicrisis()" text="Temizle" i18n-text="@@M23181" id="A31065" data-tid="A371566"></dx-button>
+                            <dx-button type="default" style="float: right;" icon="fa fa-check" (onClick)="onClickSaveSEPEpicrisis()" text="Kaydet" i18n-text="@@M17386" id="A31066" data-tid="A371567"></dx-button>
+                            <dx-button type="success" style="float: right;" icon="fa fa-question" (onClick)="onClickFirst2000SEPEpicrisis()" text="İlk 2000" i18n-text="@@M16434" id="A31067" data-tid="A371568"></dx-button>
+                        </div>
+                    </div>
+                    <div class="row" id="A31068" height="40%" data-tid="A371569">
+                        <div class="col-sm-12" id="A31069" data-tid="A371570">
+                            <hvl-richtextbox (change)="onRtfDescriptionChanged($event)" [Height]="&#x27;250px&#x27;" [ngModelOptions]="{ standalone: true}" [ngModel]="invoiceSEPFormViewModel?.InvoiceSEPEpicrisis?.Description" [ReadOnly]="rtfDescription?.ReadOnly" [TemplateGroupName]="rtfDescription?.TemplateGroupName" [Visible]="rtfDescription?.Visible" id="A31070" data-tid="A371571"></hvl-richtextbox>
+                        </div>
+                    </div>
+
+
+                </dxi-item>
+
+            </dx-tab-panel>
+        </div>
+
+        <dx-popup width="1200px" height="896px" [(visible)]="showTransactionReadPopup" [closeOnOutsideClick]="true" title="Hizmet Kayıt Okuma Sonucu" i18n-title="@@M15891" id="A31071" data-tid="A371572">
+            <div *dxTemplate="let data of 'content'" id="A31072" data-tid="A371573">
+
+                Takip No:<b id="A31073" data-tid="A371574">{{readHizmetResult.takipNo}} </b> >  Triaj Beyanı:<b id="A31074" data-tid="A371575">{{readHizmetResult.triajBeyani}} </b>>  Ödeme Sorgu: <b id="A31075" data-tid="A371576">{{readHizmetResult.odemeSorguDurum}}</b> <br id="A31076" data-tid="A371577" />
+
+                <dx-data-grid [height]="700" [columnResizingMode]="widget" [selection]="{mode: 'single'}" [dataSource]="readHizmetResult.tumHizmetler" [columns]="TransactionReadColumns" [masterDetail]="{ enabled: true, template: 'detail' }" [filterRow]="{visible: true}" [headerFilter]="{visible: true}" id="A31077" data-tid="A371578">
+                    <dxo-paging [pageSize]="20" id="A31078" data-tid="A371579"></dxo-paging>
+
+                    <div *dxTemplate="let transaction of 'detail'" id="A31079" data-tid="A371580">
+                        <div class="internal-grid-container" id="A31080" data-tid="A371581">
+                            <div id="A31081" data-tid="A371582">Tahlil Sonuçları</div>
+                            <dx-data-grid [dataSource]="transaction.data.tahlilSonuc" [columnAutoWidth]="true" style="width:40%" id="A31082" data-tid="A371583">
+                                <dxi-column dataField="islemSiraNo" id="A31083" data-tid="A371584">İşlem Sıra No</dxi-column>
+                                <dxi-column dataField="sonuc" id="A31084" data-tid="A371585">Sonuç</dxi-column>
+                                <dxi-column dataField="tahlilTipi" id="A31085" data-tid="A371586">Tahlil Tipi</dxi-column>
+                                <dxi-column dataField="birim" id="A31086" data-tid="A371587">Birim</dxi-column>
+                            </dx-data-grid>
+                        </div>
+                    </div>
+                </dx-data-grid>
+
+            </div>
+        </dx-popup>
+
+        <dx-popup width="1200px" height="600px" [(visible)]="showSUTRuleEngineResultPopup" [closeOnOutsideClick]="false" title="SUT Kuralları Uygulama Sonucu" i18n-title="@@M27683" id="A31332" data-tid="A371588">
+            <div *dxTemplate="let data of 'content'" id="A31333" data-tid="A371589">
+                <div class="row" id="A31334" data-tid="A371590">
+                    <dx-data-grid height="500px" [selection]="{mode: 'single'}" [allowColumnReordering]="true" [dataSource]="SUTRuleEngineResult" [columns]="SUTRuleEngineResultColumns" [editing]="{allowUpdating: true, mode: 'cell'}" (onRowUpdating)="onRowUpdatingSUTRuleEngineResult($event)" [filterRow]="{visible: true}" [headerFilter]="{visible: true}" id="A31335" data-tid="A371591">
+
+                        <dxo-grouping [autoExpandAll]="true" data-tid="A371592"></dxo-grouping>
+
+                        <dxo-summary data-tid="A371593">
+                            <dxi-group-item column="ObjectID" summaryType="count" data-tid="A371594">
+                            </dxi-group-item>
+                            <dxi-group-item column="Price" summaryType="sum" data-tid="A371595">
+                            </dxi-group-item>
+
+                        </dxo-summary>
+
+                    </dx-data-grid>
+                </div>
+                <dx-check-box [(value)]="approveChoice" [width]="100" text="Seçimi Onayla" data-tid="A371596"></dx-check-box>
+                <div class="row" id="A31337" data-tid="A371597">
+
+                    <dx-button type="danger" style="float: right;" icon="fa fa-times" (onClick)="this.showSUTRuleEngineResultPopup = false;" text="Çıkış" i18n-text="@@M12363" data-tid="A371598"></dx-button>
+                    <dx-button type="default" style="float: right;" icon="fa fa-check" (onClick)="onClickSUTRuleEngineResult()" text="Seçimleri Uygula" data-tid="A371599"></dx-button>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="1000px" height="870px" [(visible)]="showProvisionPopup" [closeOnOutsideClick]="true" title="Takip Okuma Sonucu" i18n-title="@@M22665" id="A31087" data-tid="A371600">
+            <div *dxTemplate="let data of 'content'" style="overflow-y:scroll" id="A31088" data-tid="A371601">
+                <div *ngFor="let provision of readProvisionResultArray" class="col-sm-4 remove-padding" style="border: 2px solid #73AD21; border-radius: 10px;" id="A31089" data-tid="A371602">
+                    <hr style="margin: 0px 0;" id="A31090" data-tid="A371603" />
+                    <font color="red" id="A31091" data-tid="A371604"><b id="A31092" data-tid="A371605"> &nbsp;&nbsp;&nbsp;{{provision.takipNo }}</b></font>
+                    <hr style="margin: 0px 0;" id="A31093" data-tid="A371606" />
+                    <span id="A31094" data-tid="A371607"><b id="A31095" data-tid="A371608">&nbsp;Takip T.:</b> {{provision.takipTarihi }}</span><br id="A31096" data-tid="A371609" />
+                    <span id="A31097" data-tid="A371610"><b id="A31098" data-tid="A371611">&nbsp;Takip No:</b> {{provision.takipNo }}</span><br id="A31099" data-tid="A371612" />
+                    <span id="A31100" data-tid="A371613"><b id="A31101" data-tid="A371614">&nbsp;İlk Takip No:</b> {{provision.ilkTakipNo }}</span><br id="A31102" data-tid="A371615" />
+                    <span id="A31103" data-tid="A371616"><b id="A31104" data-tid="A371617">&nbsp;Başvuru No:</b> {{provision.hastaBasvuruNo }}</span><br id="A31105" data-tid="A371618" />
+                    <span id="A31106" data-tid="A371619"><b id="A31107" data-tid="A371620">&nbsp;Branş Kodu:</b> {{provision.bransKodu }}</span><br id="A31108" data-tid="A371621" />
+                    <br id="A31109" data-tid="A371622" />
+                    <u id="A31110" data-tid="A371623"> <b id="A31111" data-tid="A371624">Hasta Bilgileri</b> </u><br id="A31112" data-tid="A371625" />
+                    <span id="A31113" data-tid="A371626"><b id="A31114" data-tid="A371627">&nbsp;TC:</b> {{provision.hastaBilgileri.tcKimlikNo }}</span><br id="A31115" data-tid="A371628" />
+                    <span id="A31116" data-tid="A371629"><b id="A31117" data-tid="A371630">&nbsp;Ad:</b> {{provision.hastaBilgileri.ad }}</span><br id="A31118" data-tid="A371631" />
+                    <span id="A31119" data-tid="A371632"><b id="A31120" data-tid="A371633">&nbsp;Soyad:</b> {{provision.hastaBilgileri.soyad }}</span><br id="A31121" data-tid="A371634" />
+                    <span id="A31122" data-tid="A371635"><b id="A31123" data-tid="A371636">&nbsp;Cinsiyet:</b> {{provision.hastaBilgileri.cinsiyet }}</span><br id="A31124" data-tid="A371637" />
+                    <span id="A31125" data-tid="A371638"><b id="A31126" data-tid="A371639">&nbsp;Doğum T.:</b> {{provision.hastaBilgileri.dogumTarihi }}</span><br id="A31127" data-tid="A371640" />
+                    <span id="A31128" data-tid="A371641"><b id="A31129" data-tid="A371642">&nbsp;Sigortalı Turu:</b> {{provision.hastaBilgileri.sigortaliTuru }}</span><br id="A31130" data-tid="A371643" />
+                    <span id="A31131" data-tid="A371644"><b id="A31132" data-tid="A371645">&nbsp;Devredilen K.:</b> {{provision.hastaBilgileri.devredilenKurum }}</span><br id="A31133" data-tid="A371646" />
+                    <span id="A31134" data-tid="A371647"><b id="A31135" data-tid="A371648">&nbsp;Katilim Pay. Muaf:</b> {{provision.hastaBilgileri.katilimPayindanMuaf }}</span><br id="A31136" data-tid="A371649" />
+                    <span id="A31137" data-tid="A371650"><b id="A31138" data-tid="A371651">&nbsp;Kapsam Adı:</b> {{provision.hastaBilgileri.kapsamAdi }}</span><br id="A31139" data-tid="A371652" />
+                    <br id="A31140" data-tid="A371653" />
+                    <span id="A31141" data-tid="A371654"><b id="A31142" data-tid="A371655">&nbsp;Provizyon Tipi:</b> {{provision.provizyonTipi }}</span><br id="A31143" data-tid="A371656" />
+                    <span id="A31144" data-tid="A371657"><b id="A31145" data-tid="A371658">&nbsp;Takip Tipi:</b> {{provision.takipTipi }}</span><br id="A31146" data-tid="A371659" />
+                    <span id="A31147" data-tid="A371660"><b id="A31148" data-tid="A371661">&nbsp;Tedavi Tipi:</b> {{provision.tedaviTipi }}</span><br id="A31149" data-tid="A371662" />
+                    <span id="A31150" data-tid="A371663"><b id="A31151" data-tid="A371664">&nbsp;Tedavi Türü:</b> {{provision.tedaviTuru }}</span><br id="A31152" data-tid="A371665" />
+                    <span id="A31153" data-tid="A371666"><b id="A31154" data-tid="A371667">&nbsp;İstisnai Hal:</b> {{provision.istisnaiHal }}</span><br id="A31155" data-tid="A371668" />
+                    <br id="A31156" data-tid="A371669" />
+                    <span id="A31157" data-tid="A371670"><b id="A31158" data-tid="A371671">&nbsp;Fatura Teslim No:</b> {{provision.faturaTeslimNo }}</span><br id="A31159" data-tid="A371672" />
+                    <span id="A31160" data-tid="A371673"><b id="A31161" data-tid="A371674">&nbsp;Fatura T.:</b> {{provision.faturaTarihi }}</span><br id="A31162" data-tid="A371675" />
+                    <span id="A31163" data-tid="A371676"><b id="A31164" data-tid="A371677">&nbsp;Fatura İptal H.:</b>{{provision.fatutaIptalHakki }}</span><br id="A31165" data-tid="A371678" />
+                    <span id="A31166" data-tid="A371679"><b id="A31167" data-tid="A371680">&nbsp;Evrak ID:</b> {{provision.evrakID }}</span><br id="A31168" data-tid="A371681" />
+                    <span id="A31169" data-tid="A371682"><b id="A31170" data-tid="A371683">&nbsp;Takip Durumu:</b> {{provision.takipDurumu }}</span><br id="A31171" data-tid="A371684" />
+                    <br id="A31172" data-tid="A371685" />
+                    <span id="A31173" data-tid="A371686"><b id="A31174" data-tid="A371687">&nbsp;Kayit T.:</b> {{provision.kayitTarihi }}</span><br id="A31175" data-tid="A371688" />
+                    <span id="A31176" data-tid="A371689"><b id="A31177" data-tid="A371690">&nbsp;Dönor TC:</b> {{provision.donorTCKimlikNo }}</span><br id="A31178" data-tid="A371691" />
+                    <span id="A31179" data-tid="A371692"><b id="A31180" data-tid="A371693">&nbsp;Tesis Kodu:</b> {{provision.tesisKodu }}</span><br id="A31181" data-tid="A371694" />
+                    <span id="A31182" data-tid="A371695"><b id="A31183" data-tid="A371696">&nbsp;Sevk Durumu:</b> {{provision.sevkDurumu }}</span><br id="A31184" data-tid="A371697" />
+                    <span id="A31185" data-tid="A371698"><b id="A31186" data-tid="A371699">&nbsp;YD Çocuk Sira:</b> {{provision.yeniDoganCocukSiraNo }}</span><br id="A31187" data-tid="A371700" />
+                    <span id="A31188" data-tid="A371701"><b id="A31189" data-tid="A371702">&nbsp;YD Çocuk Doğum T.:</b> {{provision.yeniDoganDogumTarihi }}</span><br id="A31190" data-tid="A371703" />
+                    <span id="A31191" data-tid="A371704"><b id="A31192" data-tid="A371705">&nbsp;Arv Flag:</b> {{provision.arvFlag }}</span><br id="A31193" data-tid="A371706" />
+                    <br id="A31194" data-tid="A371707" />
+                    <span id="A31195" data-tid="A371708"><b id="A31196" data-tid="A371709">&nbsp;Sonuç Kodu:</b> {{provision.sonucKodu }}</span><br id="A31197" data-tid="A371710" />
+                    <span id="A31198" data-tid="A371711"><b id="A31199" data-tid="A371712">&nbsp;Sonuç Mesajı:</b> {{provision.sonucMesaji }}</span>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="420px" height="870px" [(visible)]="showApplicationNoReadPopup" [closeOnOutsideClick]="true" title="Başvuru Okuma Sonucu" i18n-title="@@M27600" id="A31200" data-tid="A371713">
+            <div *dxTemplate="let data of 'content'" style="overflow-y:scroll" id="A31201" data-tid="A371714">
+                <span id="A31202" data-tid="A371715"><b id="A31203" data-tid="A371716">&nbsp;Başvuru No:</b> {{readApplicationNoResultArray.hastaBasvuruNo}}</span><br id="A31204" data-tid="A371717" />
+                <span id="A31205" data-tid="A371718"><b id="A31206" data-tid="A371719">&nbsp;Sonuç Kodu:</b> {{readApplicationNoResultArray.sonucKodu}}</span><br id="A31207" data-tid="A371720" />
+                <span id="A31208" data-tid="A371721"><b id="A31209" data-tid="A371722">&nbsp;Sonuç Mesajı:</b> {{readApplicationNoResultArray.sonucMesaji}}</span><br id="A31210" data-tid="A371723" />
+                <br id="A31211" data-tid="A371724" />
+                <span id="A31212" data-tid="A371725"><b id="A31213" data-tid="A371726">&nbsp;<U id="A31214" data-tid="A371727">Takip Listesi</U></b></span><br id="A31215" data-tid="A371728" />
+                <br id="A31216" data-tid="A371729" />
+                <div *ngFor="let provision of readApplicationNoResultArray.basvuruTakip" class="col-sm-12 remove-padding" style="border: 2px solid #73AD21; border-radius: 10px;" id="A31217" data-tid="A371730">
+                    <span id="A31218" data-tid="A371731"><b id="A31219" data-tid="A371732">&nbsp;Takip No:</b><font color="red" id="A31220" data-tid="A371733"> {{provision.takipNo}}</font></span><br id="A31221" data-tid="A371734" />
+                    <span id="A31222" data-tid="A371735"><b id="A31223" data-tid="A371736">&nbsp;Takip Fatura Durumu:</b> {{provision.takipFaturaDurumu}}</span><br id="A31224" data-tid="A371737" />
+                </div>
+
+            </div>
+        </dx-popup>
+
+        <dx-popup width="450px" height="300px" [(visible)]="showBagliTakipAlPopup" [closeOnOutsideClick]="true" title="Bağlı Takip Alma Formu" i18n-title="@@M27668" id="A31225" data-tid="A371738">
+            <div *dxTemplate="let data of 'content'" id="A31226" data-tid="A371739">
+
+                <span id="A31227" data-tid="A371740">
+                    <b id="A31228" data-tid="A371741">&nbsp;Takip Seçim Listesi:</b> <dx-select-box searchEnabled="true" [dataSource]="bagliTakipArray" displayExpr="Name" valueExpr="ObjectID" (onValueChanged)="onValueChangedBagliTakipPopup($event)" id="A31229" data-tid="A371742"></dx-select-box><br id="A31230" data-tid="A371743" />
+                </span><br id="A31231" data-tid="A371744" />
+
+                <span id="A31232" data-tid="A371745">
+                    <b id="A31233" data-tid="A371746">&nbsp;Bağlı Alınacak Takip:</b> <dx-text-box [showClearButton]="true" [(value)]="bagliTakipNo" id="A31234" data-tid="A371747"></dx-text-box><br id="A31235" data-tid="A371748" />
+                </span>
+
+                <dx-button type="danger" style="float: right;" icon="fa fa-times" (onClick)="this.showBagliTakipAlPopup = false;" id="A31236" data-tid="A371749"></dx-button>
+                <dx-button type="default" style="float: right;" icon="fa fa-check" (onClick)="onClickBagliTakipAl()" id="A31237" data-tid="A371750"></dx-button>
+
+
+            </div>
+        </dx-popup>
+
+
+        <dx-popup width="1000px" height="870px" [(visible)]="showReadInvoicePopup" [closeOnOutsideClick]="true" title="Fatura Okuma Sonucu" i18n-title="@@M27589" id="A31238" data-tid="A371751">
+            <div *dxTemplate="let data of 'content'" style="overflow-y:scroll" id="A31239" data-tid="A371752">
+                <span id="A31240" data-tid="A371753"><b id="A31241" data-tid="A371754">&nbsp;Ref No:</b> {{readInvoiceResultArray.faturaRefNoField}}</span>
+                <span id="A31242" data-tid="A371755"><b id="A31243" data-tid="A371756">&nbsp;Teslim No:</b> {{readInvoiceResultArray.faturaTeslimNoField}}</span><br id="A31244" data-tid="A371757" />
+                <span id="A31245" data-tid="A371758"><b id="A31246" data-tid="A371759">&nbsp;Tarih:</b> {{readInvoiceResultArray.faturaTarihiField}}</span>
+                <span id="A31247" data-tid="A371760"><b id="A31248" data-tid="A371761">&nbsp;Tutar:</b> {{readInvoiceResultArray.faturaTutariField}}</span><br id="A31249" data-tid="A371762" />
+                <span id="A31250" data-tid="A371763"><b id="A31251" data-tid="A371764">&nbsp;Sonuç Kodu:</b> {{readInvoiceResultArray.sonucKoduField}}</span>
+                <span id="A31252" data-tid="A371765"><b id="A31253" data-tid="A371766">&nbsp;Sonuç Mesajı:</b> {{readInvoiceResultArray.sonucMesajiField}}</span><br id="A31254" data-tid="A371767" />
+                <br id="A31255" data-tid="A371768" />
+                <span id="A31256" data-tid="A371769"><b id="A31257" data-tid="A371770">&nbsp;<U id="A31258" data-tid="A371771">Fatura Detayları</U></b></span><br id="A31259" data-tid="A371772" />
+                <div *ngFor="let faturaDetay of readInvoiceResultArray.faturaDetaylariField" class="col-sm-12 remove-padding" style="border: 2px solid #73AD21; border-radius: 10px; height:680px; " id="A31260" data-tid="A371773">
+                    <span id="A31261" data-tid="A371774"><b id="A31262" data-tid="A371775">&nbsp;Takip No:</b> <font color="red" id="A31263" data-tid="A371776"> {{faturaDetay.takipNoField}} </font> </span>
+                    <span id="A31264" data-tid="A371777"><b id="A31265" data-tid="A371778">&nbsp;Protokol No:</b> {{faturaDetay.protokolNoField}}</span><br id="A31266" data-tid="A371779" />
+                    <span id="A31267" data-tid="A371780"><b id="A31268" data-tid="A371781">&nbsp;Tutar:</b> {{faturaDetay.takipToplamTutarField}}</span>
+                    <span id="A31269" data-tid="A371782"><b id="A31270" data-tid="A371783">&nbsp;Taburcu Kodu:</b> {{faturaDetay.taburcuKoduField}}</span><br id="A31271" data-tid="A371784" />
+                    <span id="A31272" data-tid="A371785"><b id="A31273" data-tid="A371786">&nbsp;Açıklama:</b> {{faturaDetay.aciklamaField}}</span><br id="A31274" data-tid="A371787" />
+
+                    <br id="A31275" data-tid="A371788" /><span id="A31276" data-tid="A371789"><b id="A31277" data-tid="A371790">&nbsp;<U id="A31278" data-tid="A371791">İşlem Detayları</U></b></span><br id="A31279" data-tid="A371792" />
+                    <dx-data-grid [height]="550" [columnResizingMode]="widget" [selection]="{mode: 'single'}" [dataSource]="faturaDetay.islemDetaylariField" [columns]="TransactionInvoiceReadColumns" [filterRow]="{visible: true}" [headerFilter]="{visible: true}" id="A31280" data-tid="A371793">
+                        <dxo-paging [pageSize]="20" id="A31281" data-tid="A371794"></dxo-paging>
+                    </dx-data-grid>
+                </div>
+
+            </div>
+        </dx-popup>
+
+        <dx-popup width="900px" height="700px" [(visible)]="showTransactionXMLReadPopup" [closeOnOutsideClick]="true" title="XML Okuma Sonucu" i18n-title="@@M24219" id="A31282" data-tid="A371795">
+            <div *dxTemplate="let data of 'content'" id="A31283" data-tid="A371796">
+                <dx-text-area style=" height:100%!important" [(value)]="readTransactionXMLResult" readOnly="true" id="A31284" data-tid="A371797"></dx-text-area>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="600px" height="500px" [(visible)]="showUpdateDescriptionPopup" [closeOnOutsideClick]="false" title="Açıklama Bilgisi Güncelleme" i18n-title="@@M10472" id="A31285" data-tid="A371798">
+            <div *dxTemplate="let data of 'content'" id="A31286" data-tid="A371799">
+                <dx-text-area style=" height:90%!important" [(value)]="updateDescription" id="A31287" data-tid="A371800"></dx-text-area>
+
+                <div class="row" id="A31288" data-tid="A371801">
+                    <dx-button type="danger" style="float: right;" icon="fa fa-times" (onClick)="this.showUpdateDescriptionPopup = false;" text="Çıkış" i18n-text="@@M12363" id="A31289" data-tid="A371802"></dx-button>
+                    <dx-button type="default" style="float: right;" icon="fa fa-check" (onClick)="onClickSaveTransactionDescriptionValue()" text="Kaydet" i18n-text="@@M17386" id="A31290" data-tid="A371803"></dx-button>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="900px" height="300px" [(visible)]="showAddDiagnosisPopup" [closeOnOutsideClick]="false" title="Tanı Ekleme Formu" i18n-title="@@M22746" id="A31291" data-tid="A371804">
+            <div *dxTemplate="let data of 'content'" id="A31292" data-tid="A371805">
+                <DiagnosisGridForm [GridDiagnosisGridList]="GridDiagnosisGridList" id="A31293" data-tid="A371806"></DiagnosisGridForm>
+
+                <div class="row" id="A31294" data-tid="A371807">
+                    <dx-button type="danger" style="float: right;" icon="fa fa-times" (onClick)="this.showAddDiagnosisPopup = false;" text="Çıkış" i18n-text="@@M12363" id="A31295" data-tid="A371808"></dx-button>
+                    <dx-button type="default" style="float: right;" icon="fa fa-check" (onClick)="onClickAddDiagnosis()" text="Kaydet" i18n-text="@@M17386" id="A31296" data-tid="A371809"></dx-button>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="900px" height="650px" [(visible)]="showAddNewProcedurePopup" [closeOnOutsideClick]="false" title="İşlem Ekleme Formu" i18n-title="@@M16840" id="A31297" data-tid="A371810">
+            <div *dxTemplate="let data of 'content'" id="A31298" data-tid="A371811">
+                <div class="row" id="A31299" data-tid="A371812">
+                    <div class="col-sm-1 remove-padding" id="A31300" data-tid="A371813">
+                        İlk Tarih
+                    </div>
+                    <div class="col-sm-2 remove-padding" id="A31301" data-tid="A371814">
+                        <dx-date-box placeholder="İlk Tarih" [(value)]="invoiceSEPFormViewModel.AddNewProcedure.TransactionDate" type="date" displayFormat="dd/MM/yyyy" style="width:100%" i18n-placeholder="@@M16455" id="A31302" data-tid="A371815"> </dx-date-box>
+                    </div>
+                    <div class="col-sm-1 remove-padding" id="A31303" data-tid="A371816">
+                        Son Tarih
+                    </div>
+                    <div class="col-sm-2 remove-padding" id="A31304" data-tid="A371817">
+                        <dx-date-box placeholder="Son Tarih" [(value)]="invoiceSEPFormViewModel.AddNewProcedure.TransactionLastDate" type="date" displayFormat="dd/MM/yyyy" style="width:100%" i18n-placeholder="@@M22066" id="A31305" data-tid="A371818"> </dx-date-box>
+                    </div>
+                    <div class="col-sm-3 remove-padding" id="A31306" data-tid="A371819">
+                        Haftasonu Dahil
+                    </div>
+                    <div class="col-sm-3 remove-padding" id="A31307" data-tid="A371820">
+                        <dx-check-box [(value)]="invoiceSEPFormViewModel.AddNewProcedure.WeekendsIncluded" style="width:100%" id="A31308" data-tid="A371821"></dx-check-box>
+                    </div>
+                </div>
+                <div class="row" id="A31309" data-tid="A371822">
+                    <div class="col-sm-1 remove-padding" id="A31310" data-tid="A371823">
+                        Doktor
+                    </div>
+                    <div class="col-sm-2 remove-padding" id="A31311" data-tid="A371824">
+                        <dx-select-box placeholder="Doktor" [(value)]="invoiceSEPFormViewModel.AddNewProcedure.Doctor" searchEnabled="true" [dataSource]="doctorArray" displayExpr="Name" valueExpr="ObjectID" i18n-placeholder="@@M27330" id="A31312" data-tid="A371825"></dx-select-box>
+                    </div>
+                    <div class="col-sm-1 remove-padding" id="A31313" data-tid="A371826">
+                        Adet
+                    </div>
+                    <div class="col-sm-1 remove-padding" id="A31314" data-tid="A371827">
+                        <dx-text-box placeholder="Adet" [showClearButton]="true" [(value)]="invoiceSEPFormViewModel.AddNewProcedure.Amount" i18n-placeholder="@@M10505" id="A31315" data-tid="A371828"></dx-text-box>
+                    </div>
+                    <div class="col-sm-1 remove-padding" id="A31316" data-tid="A371829">
+                        Hizmet
+                    </div>
+                    <div class="col-sm-4 remove-padding" id="A31317" data-tid="A371830">
+                        <hvl-list-box #Validation (SelectedObjectChange)="AddNewProcedureSelected($event)" [(SelectedObject)]="invoiceSEPFormViewModel.AddNewProcedure.ProcedureObjectID" [AutoCompleteDialogHeight]="cmbAllProcedure?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="cmbAllProcedure?.AutoCompleteDialogWidth" [AutoCompleteMode]="cmbAllProcedure?.AutoCompleteMode" [BackColor]="cmbAllProcedure?.BackColor" [DefinitionName]="cmbAllProcedure?.ListDefName" [DisplayExpressionsCache]="invoiceSEPFormModel?.ListDefDisplayExpressions" [Enabled]="cmbAllProcedure?.Enabled" [Font]="cmbAllProcedure?.Font" [ForeColor]="cmbAllProcedure?.ForeColor" [ListFilterExpression]="cmbAllProcedure?.ListFilterExpression" [MinSearchLength]="cmbAllProcedure?.MinSearchLength" [PopupDialogFieldConfig]="cmbAllProcedure?.PopupDialogFieldConfig" [PopupDialogGridColumns]="cmbAllProcedure?.PopupDialogGridColumns" [PopupDialogHeight]="cmbAllProcedure?.PopupDialogHeight" [PopupDialogTitle]="cmbAllProcedure?.PopupDialogTitle" [PopupDialogWidth]="cmbAllProcedure?.PopupDialogWidth" [ReadOnly]="cmbAllProcedure?.ReadOnly" [SearchMode]="cmbAllProcedure?.SearchMode" [SearchTimeout]="cmbAllProcedure?.SearchTimeout" [TabIndex]="cmbAllProcedure?.TabIndex" [Visible]="cmbAllProcedure?.Visible" [width]="cmbAllProcedure?.Width" id="A31318" data-tid="A371831"></hvl-list-box>
+                    </div>
+                    <div class="col-sm-2 remove-padding" id="A31319" data-tid="A371832">
+                        <dx-button type="success" style="float: right;" icon="fa fa-arrow-down" (onClick)="AddNewProcedureClicked()" text="Listeye Ekle" i18n-text="@@M18285" id="A31320" data-tid="A371833"></dx-button>
+                    </div>
+                </div>
+                <div class="row" id="A31321" data-tid="A371834">
+                    <dx-data-grid height="500px" [columnResizingMode]="widget" [selection]="{mode: 'none'}" [dataSource]="tempAddNewProcedureGridArray" [columns]="AddNewProcedureGridColumns" [filterRow]="{visible: false}" [headerFilter]="{visible: false}" [editing]="EditingConfig" id="A31322" data-tid="A371835">
+                        <dxo-paging [pageSize]="20" id="A31323" data-tid="A371836"></dxo-paging>
+                    </dx-data-grid>
+                </div>
+                <div class="row" id="A31324" data-tid="A371837">
+                    <dx-button type="danger" style="float: right;" icon="fa fa-times" (onClick)="this.showAddNewProcedurePopup = false;" text="Çıkış" i18n-text="@@M12363" id="A31325" data-tid="A371838"></dx-button>
+                    <dx-button type="default" style="float: right;" icon="fa fa-check" (onClick)="onClickAddNewProcedure()" text="Kaydet" i18n-text="@@M17386" id="A31326" data-tid="A371839"></dx-button>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="900px" height="630px" [(visible)]="showHistoryPopup" [closeOnOutsideClick]="true" title="Kayıt Geçmişi" i18n-title="@@M17394" id="A31327" data-tid="A371840">
+            <div *dxTemplate="let data of 'content'" id="A31328" data-tid="A371841">
+                <div class="row" id="A31329" data-tid="A371842">
+                    <dx-data-grid height="560px" [selection]="{mode: 'none'}" [dataSource]="HistoryGridArray" [columns]="HistoryGridColumns" [filterRow]="{visible: true}" [headerFilter]="{visible: true}" id="A31330" data-tid="A371843">
+                        <dxo-paging [pageSize]="20" id="A31331" data-tid="A371844"></dxo-paging>
+                    </dx-data-grid>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="900px" height="350px" [(visible)]="showAfterInvoiceSUTControlPopup" [closeOnOutsideClick]="false" title="Medula Yasaklı İşlem Kontrolü" i18n-title="@@M27683" id="A31332" data-tid="A371845">
+            <div *dxTemplate="let data of 'content'" id="A31333" data-tid="A371846">
+                <div class="row" id="A31334" data-tid="A371847">
+                    <dx-data-grid height="220px" [selection]="{mode: 'none'}" [dataSource]="AfterInvoiceOperationArray" [columns]="AfterInvoiceOperationGridColumns" [filterRow]="{visible: true}" [headerFilter]="{visible: true}" id="A31335" data-tid="A371848">
+                    </dx-data-grid>
+                </div>
+                <div class="row" id="A31336" data-tid="A371849">
+                    Lütfen göndermekten vazgeçtiğiniz hizmeti seçiniz. Seçilen hizmetin medula hizmet kaydı silinip işlem tekrar denenecektir.
+                </div>
+                <div class="row" id="A31337" data-tid="A371850">
+                    <dx-button type="danger" style="float: right;" icon="fa fa-times" (onClick)="this.showAfterInvoiceSUTControlPopup = false;" text="Çıkış" i18n-text="@@M12363" id="A31338" data-tid="A371851"></dx-button>
+                    <dx-button type="default" style="float: right;" icon="fa fa-check" (onClick)="onClickAfterInvoiceSUTControl(this.AfterInvoiceOperationArray[0])" [text]="firstButtonText" id="A31339" data-tid="A371852"></dx-button>
+                    <dx-button type="default" style="float: right;" icon="fa fa-check" (onClick)="onClickAfterInvoiceSUTControl(this.AfterInvoiceOperationArray[1])" [text]="secondButtonText" id="A31340" data-tid="A371853"></dx-button>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="900px" height="350px" [(visible)]="showSGKHizmetSorgulamaPopup" [closeOnOutsideClick]="true" title="Nabız Sorgulama Sonucu" data-tid="A371854">
+            <div *dxTemplate="let data of 'content'" id="A31333" data-tid="A371855">
+                <div class="row" id="A31334" data-tid="A371856">
+                    <dx-data-grid height="220px" [selection]="{mode: 'none'}" [dataSource]="SGKHizmetSorgulamaResultDataSource" [columns]="SGKHizmetSorgulamaResultColumns" [filterRow]="{visible: true}" [headerFilter]="{visible: true}" data-tid="A371857">
+                    </dx-data-grid>
+                </div>
+
+                <div class="row" id="A31337" data-tid="A371858">
+                    <dx-button type="danger" style="float: right;" icon="fa fa-times" (onClick)="this.showSGKHizmetSorgulamaPopup = false;" text="Çıkış" data-tid="A371859"></dx-button>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="90%" height="50%" [(visible)]="showInvoiceBlockingPopup" [closeOnOutsideClick]="true" title="Fatura Engelleri Listesi" i18n-title="@@M14151" id="A31341" data-tid="A371860">
+            <div *dxTemplate="let data of 'content'" id="A31342" data-tid="A371861">
+
+                <div class="col-sm-12" id="A31343" data-tid="A371862">
+                    <span id="A31344" data-tid="A371863">Engelleme Açıklaması</span><br id="A31345" data-tid="A371864" />
+                    <dx-text-area height="30%" [(value)]="newInvoiceBlockingDescription" id="A31346" data-tid="A371865"></dx-text-area>
+
+                </div>
+                <br id="A31347" data-tid="A371866" />
+                <dx-button type="default" style="float: right;" icon="fa fa-check" (onClick)="onClickSaveNewInvoiceBlocking()" text="Yeni Engelleme Kaydet" i18n-text="@@M24546" id="A31348" data-tid="A371867"></dx-button>
+
+                <div class="col-sm-12 remove-padding" id="A31349" data-tid="A371868">
+                    <dx-data-grid height="60%" [selection]="{mode: 'none'}" [dataSource]="InvoiceBlockingGridArray" [columns]="InvoiceBlockingGridColumns" [filterRow]="{visible: true}" [headerFilter]="{visible: true}" [editing]="{allowUpdating: true, mode: 'cell'}" id="A31350" data-tid="A371869">
+                        <dxo-paging [pageSize]="20" id="A31351" data-tid="A371870"></dxo-paging>
+                        <div *dxTemplate="let cellData of 'buttonPassTemplate'" id="A31352" data-tid="A371871">
+
+                            <dx-button *ngIf="cellData.data.Active == true" type="danger" height="22px" text="Engeli Kaldır" (onClick)="onClickPassInvoiceBlocking(cellData)" icon="fa fa-unlock" i18n-text="@@M13734" id="A31353" data-tid="A371872"></dx-button>
+
+                        </div>
+                    </dx-data-grid>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="1000px" height="660" [(visible)]="showMedulaInpatientOpPopup" [closeOnOutsideClick]="false" title="Yatış-Çıkış İşlemleri" i18n-title="@@M24452" id="A31354" data-tid="A371873">
+            <div *dxTemplate="let data of 'content'" id="A31355" data-tid="A371874">
+                <div class="col-sm-8" id="A31356" data-tid="A371875">
+                    <div class="row" id="A31357" data-tid="A371876">
+                        <dx-data-grid height="560px" [selection]="{mode: 'none'}" [dataSource]="MedulaInpatientInfo.basvuruYatisBilgileri" [columns]="MedulaInpatientFirstAndLastDateColumns" id="A31358" data-tid="A371877">
+                            <div *dxTemplate="let row of 'buttonDeleteInpatientCellTemplate'" id="A31359" data-tid="A371878">
+                                <dx-button type="danger" (onClick)="deleteYatisCikisKayit(row)" icon="fa fa-times" id="A31360" data-tid="A371879"></dx-button>
+                            </div>
+                        </dx-data-grid>
+                    </div>
+                </div>
+                <div class="col-sm-4" id="A31361" data-tid="A371880">
+                    <span id="A31362" data-tid="A371881"><b id="A31363" data-tid="A371882"><u id="A31364" data-tid="A371883">&nbsp;Hasta Yatış Okuma Sonuçları</u></b></span><br id="A31365" data-tid="A371884" />
+                    <span id="A31366" data-tid="A371885"><b id="A31367" data-tid="A371886">&nbsp;Tesis Kodu:</b> {{MedulaInpatientInfo.saglikTesisiKodu}}</span><br id="A31368" data-tid="A371887" />
+                    <span id="A31369" data-tid="A371888"><b id="A31370" data-tid="A371889">&nbsp;Başvuru No:</b> {{MedulaInpatientInfo.hastaBasvuruNo}}</span><br id="A31371" data-tid="A371890" />
+                    <span id="A31372" data-tid="A371891"><b id="A31373" data-tid="A371892">&nbsp;Y.D.Doğum Tar.</b> {{MedulaInpatientInfo.yeniDoganDogumTarihi}}</span><br id="A31374" data-tid="A371893" />
+                    <span id="A31375" data-tid="A371894"><b id="A31376" data-tid="A371895">&nbsp;Y.D.Çocuk Sıra:</b> {{MedulaInpatientInfo.yeniDoganCocukSiraNo}}</span><br id="A31377" data-tid="A371896" />
+                    <span id="A31378" data-tid="A371897"><b id="A31379" data-tid="A371898">&nbsp;Sonuç Kodu:</b> {{MedulaInpatientInfo.sonucKodu}}</span><br id="A31380" data-tid="A371899" />
+                    <span id="A31381" data-tid="A371900"><b id="A31382" data-tid="A371901">&nbsp;Sonuç Mesajı:</b> {{MedulaInpatientInfo.sonucMesaji}}</span><br id="A31383" data-tid="A371902" /><br id="A31384" data-tid="A371903" /><br id="A31385" data-tid="A371904" />
+                    <div id="A31386" data-tid="A371905">
+                        <span id="A31387" data-tid="A371906"><b id="A31388" data-tid="A371907"><u id="A31389" data-tid="A371908">&nbsp;Yeni Yatış-Çıkış Kayıt</u></b></span><br id="A31390" data-tid="A371909" />
+                        <div class="row" id="A31391" data-tid="A371910">
+                            <div class="col-sm-6" id="A31392" data-tid="A371911">
+                                <dx-date-box [(value)]="MedulaInpatientInfo.ClinicDischargeDate" type="date" displayFormat="dd/MM/yyyy" [disabled]="false" id="A31393" data-tid="A371912"> </dx-date-box>
+                            </div>
+                            <div class="col-sm-6" id="A31394" data-tid="A371913">
+                                <dx-button type="success" style="float: right;" icon="fa fa-check" (onClick)="saveNewYatisCikis()" text="Yatış Çıkış Kayıt" i18n-text="@@M24428" id="A31395" data-tid="A371914"></dx-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12" id="A31396" data-tid="A371915">
+                    <div class="row" id="A31397" data-tid="A371916">
+                        <dx-button type="danger" style="float: right;" icon="fa fa-times" (onClick)="this.showMedulaInpatientOpPopup = false;" text="Çıkış" i18n-text="@@M12363" id="A31398" data-tid="A371917"></dx-button>
+                    </div>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="1000px" height="660" [(visible)]="showMedulaExtraProvisionPopup" [closeOnOutsideClick]="false" title="Fazla Takip İşlemleri" i18n-title="@@M14278" id="A31399" data-tid="A371918">
+            <div *dxTemplate="let data of 'content'" id="A31400" data-tid="A371919">
+
+                <div class="row" id="A31401" data-tid="A371920">
+
+                    <div class="col-sm-1" id="A31402" data-tid="A371921">
+                        <span id="A31403" data-tid="A371922"><b id="A31404" data-tid="A371923">TC:</b></span><br id="A31405" data-tid="A371924" />
+                    </div>
+                    <div class="col-sm-3" id="A31406" data-tid="A371925">
+                        <dx-text-box [(value)]="MedulaExtraProvisionInfo.tc" id="A31407" data-tid="A371926"></dx-text-box>
+                    </div>
+                    <div class="col-sm-2" id="A31408" data-tid="A371927">
+                        <span id="A31409" data-tid="A371928"><b id="A31410" data-tid="A371929">Sorgu Tarih Aralığı :</b></span><br id="A31411" data-tid="A371930" />
+                    </div>
+                    <div class="col-sm-2" id="A31412" data-tid="A371931">
+                        <dx-date-box [(value)]="MedulaExtraProvisionInfo.ilkTarih" type="date" displayFormat="dd/MM/yyyy" id="A31413" data-tid="A371932"> </dx-date-box>
+                    </div>
+                    <div class="col-sm-2" id="A31414" data-tid="A371933">
+                        <dx-date-box [(value)]="MedulaExtraProvisionInfo.sonTarih" type="date" displayFormat="dd/MM/yyyy" id="A31415" data-tid="A371934"> </dx-date-box>
+                    </div>
+                    <div class="col-sm-2" id="A31416" data-tid="A371935">
+                        <dx-button type="success" style="float: right;" icon="fa fa-check" (onClick)="ReadExtraProvision()" text="Takip Ara" i18n-text="@@M27397" id="A31417" data-tid="A371936"></dx-button>
+                    </div>
+                </div>
+
+                <div class="col-sm-12" id="A31418" data-tid="A371937">
+                    <div class="row" id="A31419" data-tid="A371938">
+                        <dx-data-grid height="520px" [selection]="{mode: 'none'}" [dataSource]="MedulaExtraProvisionInfo.takipListesi" [columns]="MedulaExtraProvisionInfoColumns" id="A31420" data-tid="A371939">
+                            <div *dxTemplate="let row of 'buttonDeleteProvisionCellTemplate'" id="A31421" data-tid="A371940">
+                                <dx-button type="danger" (onClick)="deleteMedulaExtraProvision(row)" icon="fa fa-times" id="A31422" data-tid="A371941"></dx-button>
+                            </div>
+                        </dx-data-grid>
+                    </div>
+                </div>
+
+                <div class="col-sm-12" id="A31423" data-tid="A371942">
+                    <div class="row" id="A31424" data-tid="A371943">
+                        <dx-button type="danger" style="float: right;" icon="fa fa-times" (onClick)="this.showMedulaExtraProvisionPopup = false;" text="Çıkış" i18n-text="@@M12363" id="A31425" data-tid="A371944"></dx-button>
+                    </div>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="800px" height="400px" [(visible)]="showMedulaVefatKayitPopup" [closeOnOutsideClick]="false" title="Vefat Kayıt İşlemleri" >
+            <div *dxTemplate="let data of 'content'" id="A31400" data-tid="A371919">
+
+                <div class="row" id="A31401" data-tid="A371920">
+
+                    <div class="col-sm-1" id="A31402" data-tid="A371921">
+                        <span id="A31403" data-tid="A371922"><b id="A31404" data-tid="A371923">TC:</b></span><br id="A31405" data-tid="A371924" />
+                    </div>
+                    <div class="col-sm-3" id="A31406" data-tid="A371925">
+                        <dx-text-box [(value)]="MedulaVefatKayitInfo.tc" id="A31407" disabled="true" data-tid="A371926"></dx-text-box>
+                    </div>
+                    <div class="col-sm-2" id="A31408" data-tid="A371927">
+                        <span id="A31409" data-tid="A371928"><b id="A31410" data-tid="A371929">Vefat Tarihi:</b></span><br id="A31411" data-tid="A371930" />
+                    </div>
+                    <div class="col-sm-3" id="A31412" data-tid="A371931">
+                        <dx-date-box [(value)]="MedulaVefatKayitInfo.vefatTarihi" type="date" displayFormat="dd/MM/yyyy" id="A31413" data-tid="A371932"> </dx-date-box>
+                    </div>
+
+                    <div class="col-sm-3" id="A31416" data-tid="A371935">
+                        <dx-button type="success" style="float: right;" icon="fa fa-check" (onClick)="VefatKayit()" text="Vefat Kayıt"></dx-button>
+                    </div>
+                </div>
+
+                <div class="row" id="A31638" data-tid="A372183">
+                    <div class="col-sm-4" id="A31639" data-tid="A372184">
+                        <label class="control-label" id="A31640" data-tid="A372185">
+                            Sonuç Kodu-Mesajı:
+                        </label>
+                    </div>
+                    <div class="col-sm-8 " id="A31641" data-tid="A372186">
+                        <label class="control-label" id="A31642" data-tid="A372187">
+                            <dx-text-area [height]="100" [(value)]="MedulaVefatKayitInfo.sonucKoduMesaji" disabled="true" id="A31647" data-tid="A372188"></dx-text-area>
+                        </label>
+                    </div>
+                </div>
+                 
+                <div class="col-sm-1" id="A31639" data-tid="A372184">
+                    <label class="control-label" id="A31640" data-tid="A372185">
+                        Tc:
+                    </label>
+                </div>
+                <div class="col-sm-3 " id="A31641" data-tid="A372186">
+                    <label class="control-label" id="A31642" data-tid="A372187">
+                        <dx-text-box [(value)]="MedulaVefatKayitInfo.cevapTc" disabled="true" ></dx-text-box>
+                    </label>
+                </div>
+                <div class="col-sm-1" id="A31639" data-tid="A372184">
+                    <label class="control-label" id="A31640" data-tid="A372185">
+                        Adı:
+                    </label>
+                </div>
+                <div class="col-sm-3 " id="A31641" data-tid="A372186">
+                    <label class="control-label" id="A31642" data-tid="A372187">
+                        <dx-text-box [(value)]="MedulaVefatKayitInfo.adi" disabled="true" ></dx-text-box>
+                    </label>
+                </div>
+                <div class="col-sm-1" id="A31639" data-tid="A372184">
+                    <label class="control-label" id="A31640" data-tid="A372185">
+                        Soyadı:
+                    </label>
+                </div>
+                <div class="col-sm-3 " id="A31641" data-tid="A372186">
+                    <label class="control-label" id="A31642" data-tid="A372187">
+                        <dx-text-box [(value)]="MedulaVefatKayitInfo.soyadi" disabled="true" ></dx-text-box>
+                    </label>
+                </div>
+                <div class="col-sm-1" id="A31639" data-tid="A372184">
+                    <label class="control-label" id="A31640" data-tid="A372185">
+                        Vefat Tarihi:
+                    </label>
+                </div>
+                <div class="col-sm-3 " id="A31641" data-tid="A372186">
+                    <label class="control-label" id="A31642" data-tid="A372187">
+                        <dx-text-box [(value)]="MedulaVefatKayitInfo.cevapVefatTarihi" disabled="true"></dx-text-box>
+                    </label>
+                </div>
+                <div class="col-sm-1" id="A31639" data-tid="A372184">
+                    <label class="control-label" id="A31640" data-tid="A372185">
+                        Tesis:
+                    </label>
+                </div>
+                <div class="col-sm-3 " id="A31641" data-tid="A372186">
+                    <label class="control-label" id="A31642" data-tid="A372187">
+                        <dx-text-box [(value)]="MedulaVefatKayitInfo.tesis" disabled="true"></dx-text-box>
+                    </label>
+                </div>
+                
+                <div class="col-sm-12" id="A31423" data-tid="A371942">
+                    <div class="row" id="A31424" data-tid="A371943">
+                        <dx-button type="danger" style="float: right;" icon="fa fa-times" (onClick)="this.showMedulaVefatKayitPopup = false;" text="Çıkış" i18n-text="@@M12363" id="A31425" data-tid="A371944"></dx-button>
+                    </div>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="800" height="600" [(visible)]="showMedulaDoctorSearchPopup" [closeOnOutsideClick]="false" title="Doktor Arama Sonucu" i18n-title="@@M13160" id="A31426" data-tid="A371945">
+            <div *dxTemplate="let data of 'content'" id="A31427" data-tid="A371946">
+                <div class="col-sm-2 remove-padding" id="A31428" data-tid="A371947">
+                    <label class="control-label" id="A31429" data-tid="A371948">
+                        Doktor Adı
+                    </label>
+                </div>
+                <div class="col-sm-2 remove-padding" id="A31430" data-tid="A371949">
+                    <dx-text-box [(value)]="DoktorAraGirisSearchModel.drAdi" id="A31431" data-tid="A371950"></dx-text-box>
+                </div>
+                <div class="col-sm-2 remove-padding" id="A31432" data-tid="A371951">
+                    <label class="control-label" id="A31433" data-tid="A371952">
+                        Doktor Soyadı
+                    </label>
+                </div>
+                <div class="col-sm-2 remove-padding" id="A31434" data-tid="A371953">
+                    <dx-text-box [(value)]="DoktorAraGirisSearchModel.drSoyadi" id="A31435" data-tid="A371954"></dx-text-box>
+                </div>
+                <div class="col-sm-2 remove-padding" id="A31436" data-tid="A371955">
+                    <label class="control-label" id="A31437" data-tid="A371956">
+                        Branş
+                    </label>
+                </div>
+                <div class="col-sm-2 remove-padding" id="A31438" data-tid="A371957">
+                    <dx-select-box [(value)]="DoktorAraGirisSearchModel.drBransKodu" searchEnabled="true" [dataSource]="bransArray" displayExpr="Name" valueExpr="Code" id="A31439" data-tid="A371958"></dx-select-box>
+                </div>
+                <div class="col-sm-2 remove-padding" id="A31440" data-tid="A371959">
+                    <label class="control-label" id="A31441" data-tid="A371960">
+                        Diploma No
+                    </label>
+                </div>
+                <div class="col-sm-2 remove-padding" id="A31442" data-tid="A371961">
+                    <dx-text-box [(value)]="DoktorAraGirisSearchModel.drDiplomaNo" id="A31443" data-tid="A371962"></dx-text-box>
+                </div>
+
+                <div class="col-sm-2 remove-padding" id="A31444" data-tid="A371963">
+                    <label class="control-label" id="A31445" data-tid="A371964">
+                        Tescil No
+                    </label>
+                </div>
+                <div class="col-sm-2 remove-padding" id="A31446" data-tid="A371965">
+                    <dx-text-box [(value)]="DoktorAraGirisSearchModel.drTescilNo" id="A31447" data-tid="A371966"></dx-text-box>
+                </div>
+                <div class="col-sm-4 remove-padding" id="A31448" data-tid="A371967">
+                    <dx-button type="success" style="float: right; margin:0!important;" icon="fa fa-check" (onClick)="SearchDoctor()" text="Doktor Ara" i18n-text="@@M27442" id="A31449" data-tid="A371968"></dx-button>
+                </div>
+                <div class="col-sm-12 remove-padding" id="A31450" data-tid="A371969">
+                    <dx-data-grid height="400px" [selection]="{mode: 'none'}" [dataSource]="DoktorAraCevapDVO.doktorlar" [columns]="DoctorListColumns" id="A31451" data-tid="A371970">
+                    </dx-data-grid>
+                </div>
+
+                <div class="col-sm-12 remove-padding" id="A31452" data-tid="A371971">
+                    <dx-button type="danger" style="float: right;margin:0!important;" icon="fa fa-times" (onClick)="closeSearchDoctorPopup()" text="Çıkış" i18n-text="@@M12363" id="A31453" data-tid="A371972"></dx-button>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="800" height="600" [(visible)]="showMedulaBedSearchPopup" [closeOnOutsideClick]="false" title="Tesis Yatak Sorgulama Sonucu" i18n-title="@@M23216" id="A31454" data-tid="A371973">
+            <div *dxTemplate="let data of 'content'" id="A31455" data-tid="A371974">
+                <div class="col-sm-2 remove-padding" id="A31456" data-tid="A371975">
+                    <label class="control-label" id="A31457" data-tid="A371976">
+                        Tarih
+                    </label>
+                </div>
+                <div class="col-sm-2 remove-padding" id="A31458" data-tid="A371977">
+                    <dx-date-box [(value)]="TesisYatakSorguSearchModel.tarih" id="A31459" data-tid="A371978"></dx-date-box>
+                </div>
+
+                <div class="col-sm-8 remove-padding" id="A31460" data-tid="A371979">
+                    <dx-button type="success" style="float: right; margin:0!important;" icon="fa fa-check" (onClick)="SearchBeds()" text="Yatak Sorgula" i18n-text="@@M24368" id="A31461" data-tid="A371980"></dx-button>
+                </div>
+                <div class="col-sm-12 remove-padding" id="A31462" data-tid="A371981">
+                    <dx-data-grid height="400px" [selection]="{mode: 'none'}" [dataSource]="TesisYatakSorguCevapDVO.yataklar" [columns]="BedListColumns" id="A31463" data-tid="A371982">
+                    </dx-data-grid>
+                </div>
+
+                <div class="col-sm-12 remove-padding" id="A31464" data-tid="A371983">
+                    <dx-button type="danger" style="float: right;margin:0!important;" icon="fa fa-times" (onClick)="closeSearchBedPopup()" text="Çıkış" i18n-text="@@M12363" id="A31465" data-tid="A371984"></dx-button>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="540px" height="300" [(visible)]="changePayerPopup" [closeOnOutsideClick]="false" title="Kurum Değiştirme İşlemleri" i18n-title="@@M18042" id="A31466" data-tid="A371985">
+            <div *dxTemplate="let data of 'content'" id="A31467" data-tid="A371986">
+                <span id="A31468" data-tid="A371987"><b id="A31469" data-tid="A371988"><u id="A31470" data-tid="A371989">Müstehaklık Sorgusu</u></b></span>
+
+                <div class="row" id="A31471" data-tid="A371990">
+                    <div class="col-sm-4 remove-padding" id="A31472" data-tid="A371991">
+                        <span id="A31473" data-tid="A371992"><b id="A31474" data-tid="A371993">Sorgu Tarihi:</b></span><br id="A31475" data-tid="A371994" />
+                    </div>
+                    <div class="col-sm-5 remove-padding " id="A31476" data-tid="A371995">
+                        <dx-date-box [(value)]="this.mustehaklikTarihi" type="date" displayFormat="dd/MM/yyyy" id="A31477" data-tid="A371996"> </dx-date-box>
+                    </div>
+                    <div class="col-sm-3 remove-padding " id="A31478" data-tid="A371997">
+                        <dx-button type="success" icon="fa fa-check" (onClick)="mustehaklikSorgusuFromChangePayerForm()" text="Sorgula" i18n-text="@@M22125" id="A31479" data-tid="A371998"></dx-button>
+                    </div>
+                </div>
+
+                <br id="A31480" data-tid="A371999" />
+                <span id="A31481" data-tid="A372000"><b id="A31482" data-tid="A372001"><u id="A31483" data-tid="A372002">Yeni Kurum-Anlaşma</u></b></span>
+                <br id="A31484" data-tid="A372003" />
+                <div class="row" id="A31485" data-tid="A372004">
+                    <div class="col-sm-4 remove-padding" id="A31486" data-tid="A372005">
+                        <span id="A31487" data-tid="A372006"><b id="A31488" data-tid="A372007">Kurum :</b></span><br id="A31489" data-tid="A372008" />
+                    </div>
+                    <div class="col-sm-8 remove-padding" id="A31490" data-tid="A372009">
+                        <dx-select-box [(value)]="newPayer" searchEnabled="true" [dataSource]="payerArray" displayExpr="Name" valueExpr="ObjectID" (onValueChanged)="changePayerSelectboxChanged($event)" id="A31491" data-tid="A372010"></dx-select-box>
+                    </div>
+                    <div class="col-sm-4 remove-padding" id="A31492" data-tid="A372011">
+                        <span id="A31493" data-tid="A372012"><b id="A31494" data-tid="A372013">Anlaşma :</b></span><br id="A31495" data-tid="A372014" />
+                    </div>
+                    <div class="col-sm-8 remove-padding" id="A31496" data-tid="A372015">
+                        <dx-select-box [(value)]="newProtocol" searchEnabled="true" [dataSource]="protocolArray" displayExpr="Name" valueExpr="ObjectID" id="A31497" data-tid="A372016"></dx-select-box>
+                    </div>
+                </div>
+                <br id="A31498" data-tid="A372017" /><br id="A31499" data-tid="A372018" /><br id="A31500" data-tid="A372019" /><br id="A31501" data-tid="A372020" />
+                <div class="col-sm-12" id="A31502" data-tid="A372021">
+                    <div class="row" id="A31503" data-tid="A372022">
+                        <dx-button type="danger" style="float: right;" icon="fa fa-times" (onClick)="this.changePayerPopup = false;" text="Çıkış" i18n-text="@@M12363" id="A31504" data-tid="A372023"></dx-button>
+                        <dx-button type="default" style="float: right;" icon="fa fa-check" (onClick)="saveNewPayer()" text="Kurum Değiştir" i18n-text="@@M18039" id="A31505" data-tid="A372024"></dx-button>
+                    </div>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="540px" height="500" [(visible)]="addPayerPopup" [closeOnOutsideClick]="false" title="Kurum Ekleme İşlemleri" i18n-title="@@M18049" id="A31506" data-tid="A372025">
+            <div *dxTemplate="let data of 'content'" id="A31507" data-tid="A372026">
+                <span id="A31508" data-tid="A372027"><b id="A31509" data-tid="A372028"><u id="A31510" data-tid="A372029">Müstehaklık Sorgusu</u></b></span>
+
+                <div class="row" id="A31511" data-tid="A372030">
+                    <div class="col-sm-4 remove-padding" id="A31512" data-tid="A372031">
+                        <span id="A31513" data-tid="A372032"><b id="A31514" data-tid="A372033">Sorgu Tarihi:</b></span><br id="A31515" data-tid="A372034" />
+                    </div>
+                    <div class="col-sm-5 remove-padding " id="A31516" data-tid="A372035">
+                        <dx-date-box [(value)]="this.mustehaklikTarihi" type="date" displayFormat="dd/MM/yyyy" id="A31517" data-tid="A372036"> </dx-date-box>
+                    </div>
+                    <div class="col-sm-3 remove-padding " id="A31518" data-tid="A372037">
+                        <dx-button type="success" icon="fa fa-check" (onClick)="mustehaklikSorgusuFromChangePayerForm()" text="Sorgula" i18n-text="@@M22125" id="A31519" data-tid="A372038"></dx-button>
+                    </div>
+                </div>
+                <br id="A31520" data-tid="A372039" />
+                <span id="A31521" data-tid="A372040"><b id="A31522" data-tid="A372041"><u id="A31523" data-tid="A372042">Vaka Listesi</u></b></span>
+                <div class="row" id="A31524" data-tid="A372043">
+                    <dx-data-grid height="200px" [(selectedRowKeys)]="selectedSubepisodes" [selection]="{mode: 'multiple'}" [dataSource]="subEpisodeArrayForAddPayer" [columns]="subEpisodeArrayForAddPayerColumns" id="A31525" data-tid="A372044">
+                    </dx-data-grid>
+                </div>
+                <br id="A31526" data-tid="A372045" />
+                <span id="A31527" data-tid="A372046"><b id="A31528" data-tid="A372047"><u id="A31529" data-tid="A372048">Yeni Eklenecek Kurum-Anlaşma</u></b></span>
+                <br id="A31530" data-tid="A372049" />
+                <div class="row" id="A31531" data-tid="A372050">
+                    <div class="col-sm-4 remove-padding" id="A31532" data-tid="A372051">
+                        <span id="A31533" data-tid="A372052"><b id="A31534" data-tid="A372053">Kurum :</b></span><br id="A31535" data-tid="A372054" />
+                    </div>
+                    <div class="col-sm-8 remove-padding" id="A31536" data-tid="A372055">
+                        <dx-select-box [(value)]="addNewPayer" searchEnabled="true" [dataSource]="payerArray" displayExpr="Name" valueExpr="ObjectID" (onValueChanged)="changePayerSelectboxChanged($event)" id="A31537" data-tid="A372056"></dx-select-box>
+                    </div>
+                    <div class="col-sm-4 remove-padding" id="A31538" data-tid="A372057">
+                        <span id="A31539" data-tid="A372058"><b id="A31540" data-tid="A372059">Anlaşma :</b></span><br id="A31541" data-tid="A372060" />
+                    </div>
+                    <div class="col-sm-8 remove-padding" id="A31542" data-tid="A372061">
+                        <dx-select-box [(value)]="addNewProtocol" searchEnabled="true" [dataSource]="protocolArray" displayExpr="Name" valueExpr="ObjectID" id="A31543" data-tid="A372062"></dx-select-box>
+                    </div>
+                </div>
+                <br id="A31544" data-tid="A372063" /><br id="A31545" data-tid="A372064" />
+                <div class="col-sm-12" id="A31546" data-tid="A372065">
+                    <div class="row" id="A31547" data-tid="A372066">
+                        <dx-button type="danger" style="float: right;" icon="fa fa-times" (onClick)="this.addPayerPopup = false;" text="Çıkış" i18n-text="@@M12363" id="A31548" data-tid="A372067"></dx-button>
+                        <dx-button type="default" style="float: right;" icon="fa fa-check" (onClick)="saveAddNewPayer()" text="Kurum Ekle" i18n-text="@@M18047" id="A31549" data-tid="A372068"></dx-button>
+                    </div>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="1024px" height="768px" [(visible)]="showMedulaDrugSearchPopup" [closeOnOutsideClick]="true" title="İlaç Arama Sonucu" i18n-title="@@M16301" id="A31550" data-tid="A372069">
+            <div *dxTemplate="let data of 'content'" id="A31551" data-tid="A372070">
+
+                <div class="col-sm-1 remove-padding" id="A31552" data-tid="A372071">
+                    <label class="control-label" id="A31553" data-tid="A372072">
+                        İlaç Adı
+                    </label>
+                </div>
+                <div class="col-sm-2 remove-padding" id="A31554" data-tid="A372073">
+                    <dx-text-box [(value)]="IlacAraGirisSearchModel.ilacAdi" id="A31555" data-tid="A372074"></dx-text-box>
+                </div>
+                <div class="col-sm-1 remove-padding" id="A31556" data-tid="A372075">
+                    <label class="control-label" id="A31557" data-tid="A372076">
+                        Barkod
+                    </label>
+                </div>
+                <div class="col-sm-2 remove-padding" id="A31558" data-tid="A372077">
+                    <dx-text-box [(value)]="IlacAraGirisSearchModel.barkod" id="A31559" data-tid="A372078"></dx-text-box>
+                </div>
+                <div class="col-sm-2 col-sm-offset-4 remove-padding" id="A31560" data-tid="A372079">
+                    <dx-button type="success" style="float: right; margin:0!important;" icon="fa fa-check" (onClick)="SearchDrug('','')" text="İlaç Ara" i18n-text="@@M27354" id="A31561" data-tid="A372080"></dx-button>
+                </div>
+                <div class="col-sm-12 remove-padding" id="A31562" data-tid="A372081">
+                    <dx-data-grid class="drugSearchMasterGrid" [height]="500" [selection]="{mode: 'single'}" [dataSource]="IlacAraCevapDVO?.ilaclar" [columns]="DrugListColumns" [masterDetail]="{ enabled: true, template: 'drugs' }" [filterRow]="{visible: true}" [headerFilter]="{visible: true}" id="A31563" data-tid="A372082">
+                        <dxo-paging [pageSize]="20" id="A31564" data-tid="A372083"></dxo-paging>
+
+                        <div *dxTemplate="let drug of 'drugs'" id="A31565" data-tid="A372084">
+                            <div class="internal-grid-container" id="A31566" data-tid="A372085">
+                                <div class="col-sm-4" id="A31567" data-tid="A372086">
+                                    <div id="A31568" data-tid="A372087">Fiyatlar</div>
+                                    <dx-data-grid [dataSource]="drug.data.ilacFiyatlari" [columnAutoWidth]="true" style="width:100%" id="A31569" data-tid="A372088">
+                                        <dxi-column dataField="fiyat" i18n-dataField="@@M14352" id="A31570" data-tid="A372089">Fiyat</dxi-column>
+                                        <dxi-column dataField="gecerlilikTarihi" id="A31571" data-tid="A372090">Geçerlilik Tarihi</dxi-column>
+                                    </dx-data-grid>
+                                </div>
+                                <div class="col-sm-8" id="A31572" data-tid="A372091">
+                                    <div id="A31573" data-tid="A372092">İndirim Oranları</div>
+                                    <dx-data-grid [dataSource]="drug.data.ilacIndirimleri" [columnAutoWidth]="true" style="width:100%" id="A31574" data-tid="A372093">
+                                        <dxi-column dataField="kamuIndOranAlt" id="A31575" data-tid="A372094">Kamu In. Alt Oranı</dxi-column>
+                                        <dxi-column dataField="kamuIndOranUst" id="A31576" data-tid="A372095">Kamu In. Üst Oranı</dxi-column>
+                                        <dxi-column dataField="gecerlilikTarihi" id="A31577" data-tid="A372096">Geçerlilik Tarihi</dxi-column>
+                                        <dxi-column dataField="ilac_id" id="A31578" data-tid="A372097">İlaç Tekil Numarası</dxi-column>
+                                        <dxi-column dataField="indirimOrani1" id="A31579" data-tid="A372098">Indirim Oranı 1</dxi-column>
+                                        <dxi-column dataField="indirimOrani2" id="A31580" data-tid="A372099">Indirim Oranı 2</dxi-column>
+                                        <dxi-column dataField="indirimOrani3" id="A31581" data-tid="A372100">Indirim Oranı 3</dxi-column>
+                                        <dxi-column dataField="indirimOrani4" id="A31582" data-tid="A372101">Indirim Oranı 4</dxi-column>
+                                    </dx-data-grid>
+                                </div>
+                            </div>
+                        </div>
+                    </dx-data-grid>
+
+                </div>
+                <div class="col-sm-12 remove-padding" id="A31583" data-tid="A372102">
+                    <dx-button type="danger" style="float: right;margin:0!important;" icon="fa fa-times" (onClick)="closeSearchDrugPopup()" text="Çıkış" i18n-text="@@M12363" id="A31584" data-tid="A372103"></dx-button>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="400" height="500" [(visible)]="showMedulaErrorMessagePopup" [closeOnOutsideClick]="true" title="Medula Hata Mesajı" id="A31585" data-tid="A372104">
+            <div *dxTemplate="let data of 'content'" id="A31586" data-tid="A372105">
+                <p id="A31587" data-tid="A372106">
+                    {{showMedulaErrorPopupMessage}}
+                </p>
+                <dx-button type="success" style="margin:0!important; position:absolute!important; bottom:20px;right:100px" icon="fa fa-check" (onClick)="this.showMedulaErrorMessagePopup = false;" text="Tamam" id="A31588" data-tid="A372107"></dx-button>
+            </div>
+        </dx-popup>
+
+
+        <dx-popup width="1100" height="800" [(visible)]="showMedulaTedaviRaporuOkuPopup" [closeOnOutsideClick]="false" title="Tedavi Raporları Sorgulama Sonucu (FTR)" i18n-title="@@M23013" id="A31589" data-tid="A372108">
+            <div *dxTemplate="let data of 'content'" id="A31590" data-tid="A372109">
+                <div class="col-sm-1 remove-padding-right" id="A31591" data-tid="A372110">
+                    <label class="control-label" id="A31592" data-tid="A372111">
+                        TC:
+                    </label>
+                </div>
+                <div class="col-sm-2 remove-padding" id="A31593" data-tid="A372112">
+                    <dx-text-box [(value)]="tedaviRaporuOkuTC" id="A31594" data-tid="A372113"></dx-text-box>
+                </div>
+                <div class="col-sm-1 remove-padding-right" id="A31595" data-tid="A372114">
+                    <label class="control-label" id="A31596" data-tid="A372115">
+                        Ad Soyad:
+                    </label>
+                </div>
+                <div class="col-sm-2 remove-padding" id="A31597" data-tid="A372116">
+                    <dx-text-box [(value)]="MedulaTedaviRaporuFTROkuResultNameSurname" disabled="true" id="A31598" data-tid="A372117"></dx-text-box>
+                </div>
+                <div class="col-sm-6 remove-padding" id="A31599" data-tid="A372118">
+                    <dx-button type="success" style="float: right; margin:0!important;" icon="fa fa-check" (onClick)="medulaFTRRaporOku()" text="Tedavi Raporu Oku ( FTR )" i18n-text="@@M23019" id="A31600" data-tid="A372119"></dx-button>
+                </div>
+                <div class="col-sm-12 remove-padding" id="A31601" data-tid="A372120">
+                    <dx-data-grid height="200px" [selection]="{mode: 'single'}" [dataSource]="MedulaTedaviRaporuFTROkuArray" [columns]="MedulaTedaviRaporuOkuColumns" (onRowClick)="onRowClickMedulaTedaviRaporuFTROku($event)" id="A31602" data-tid="A372121">
+                    </dx-data-grid>
+                </div>
+                <div class="row" id="A31603" data-tid="A372122">
+                    <div class="col-sm-12" id="A31604" data-tid="A372123">
+                        <label class="control-label" id="A31605" data-tid="A372124">
+                            Uygun FTR Paket Hizmetleri:
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 remove-padding" id="A31606" data-tid="A372125">
+                    <dx-data-grid height="220px" [(selectedRowKeys)]="selectedFTRTransactions" [selection]="{mode: 'multiple'}" [dataSource]="SuitableFTRTransactionDS" [columns]="SuitableFTRTransactionColumns" id="A31607" data-tid="A372126">
+                        <dxo-group-panel [visible]="false" id="A31608" data-tid="A372127"></dxo-group-panel>
+                        <dxo-grouping [autoExpandAll]="false" id="A31609" data-tid="A372128"></dxo-grouping>
+                    </dx-data-grid>
+                </div>
+                <div class="row" id="A31610" data-tid="A372129">
+                    <div class="col-sm-4  " id="A31611" data-tid="A372130">
+                        <label class="control-label" id="A31612" data-tid="A372131">
+                            Doktorlar:
+                        </label>
+                    </div>
+                    <div class="col-sm-4  " id="A31613" data-tid="A372132">
+                        <label class="control-label" id="A31614" data-tid="A372133">
+                            Tanılar:
+                        </label>
+                    </div>
+                    <div class="col-sm-4  " id="A31615" data-tid="A372134">
+                        <label class="control-label" id="A31616" data-tid="A372135">
+                            Açıklama:
+                        </label>
+                    </div>
+                </div>
+                <div class="row" id="A31617" data-tid="A372136">
+                    <div class="col-sm-4  " id="A31618" data-tid="A372137">
+                        <dx-list [(dataSource)]="MedulaTedaviRaporuFTROkuSelected.doktorlar" selectionMode="single" id="A31619" data-tid="A372138">
+                        </dx-list>
+                    </div>
+                    <div class="col-sm-4  " id="A31620" data-tid="A372139">
+                        <dx-list [(dataSource)]="MedulaTedaviRaporuFTROkuSelected.tanilar" selectionMode="single" id="A31621" data-tid="A372140">
+                        </dx-list>
+                    </div>
+                    <div class="col-sm-4  " id="A31622" data-tid="A372141">
+                        <dx-text-area [height]="40" [(value)]="MedulaTedaviRaporuFTROkuSelected.aciklama" disabled="true" id="A31623" data-tid="A372142"></dx-text-area>
+                    </div>
+                </div>
+                <div class="row" id="A31624" data-tid="A372143">
+                    <div class="col-sm-4  " id="A31625" data-tid="A372144">
+                        <label class="control-label" id="A31626" data-tid="A372145">
+                            Protokol No:
+                        </label>
+                    </div>
+                    <div class="col-sm-4  " id="A31627" data-tid="A372146">
+                        <label class="control-label" id="A31628" data-tid="A372147">
+                            Protokol Tarihi:
+                        </label>
+                    </div>
+                    <div class="col-sm-4  " id="A31629" data-tid="A372148">
+                        <label class="control-label" id="A31630" data-tid="A372149">
+                            Alındığı Tesis:
+                        </label>
+                    </div>
+                </div>
+                <div class="row" id="A31631" data-tid="A372150">
+                    <div class="col-sm-4  " id="A31632" data-tid="A372151">
+                        <dx-text-box [(value)]="MedulaTedaviRaporuFTROkuSelected.protocolNo" id="A31633" data-tid="A372152"></dx-text-box>
+                    </div>
+                    <div class="col-sm-4  " id="A31634" data-tid="A372153">
+                        <dx-text-box [(value)]="MedulaTedaviRaporuFTROkuSelected.protocolTarihi" id="A31635" data-tid="A372154"></dx-text-box>
+                    </div>
+                    <div class="col-sm-4  " id="A31636" data-tid="A372155">
+                        <dx-text-box [(value)]="MedulaTedaviRaporuFTROkuSelected.tesisKodu" id="A31637" data-tid="A372156"></dx-text-box>
+                    </div>
+                </div>
+                <div class="row" id="A31638" data-tid="A372157">
+                    <div class="col-sm-4" id="A31639" data-tid="A372158">
+                        <label class="control-label" id="A31640" data-tid="A372159">
+                            Rapor Tar:
+                        </label>
+                    </div>
+                    <div class="col-sm-4 " id="A31641" data-tid="A372160">
+                        <label class="control-label" id="A31642" data-tid="A372161">
+                            Sonuç Mesajı
+                        </label>
+                    </div>
+                </div>
+                <div class="row" id="A31643" data-tid="A372162">
+                    <div class="col-sm-4" id="A31644" data-tid="A372163">
+                        <dx-text-box [(value)]="MedulaTedaviRaporuFTROkuSelected.raporTarihi" id="A31645" data-tid="A372164"></dx-text-box>
+                    </div>
+                    <div class="col-sm-8" id="A31646" data-tid="A372165">
+
+                    </div>
+                </div>
+                <div class="row" id="A31648" data-tid="A372166">
+                    Seçili hizmetlerden değiştirilebilecek rapor takip numaralarını seçili raporun takip numarası ile değiştirir.
+                    <dx-button type="danger" style="margin:0!important; position:absolute!important; bottom:20px;right:10px" icon="fa fa-times" (onClick)="this.showMedulaTedaviRaporuOkuPopup = false;" text="Çıkış" id="A31649" data-tid="A372167"></dx-button>
+                    <dx-button type="success" style="margin:0!important; position:absolute!important; bottom:20px;right:100px" icon="fa fa-check" (onClick)="btnChangeMedulaReportNoByPopup()" text="Rapor Takip Değiştir" id="A31650" data-tid="A372168"></dx-button>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="700" height="400" [(visible)]="showMedulaIlacRaporuOkuPopup" [closeOnOutsideClick]="false" title="İlaç Raporları Sorgulama Sonucu (FTR)" i18n-title="@@M23013" id="A31589" data-tid="A372169">
+            <div *dxTemplate="let data of 'content'" id="A31590" data-tid="A372170">
+                <div class="col-sm-1 remove-padding-right" id="A31591" data-tid="A372171">
+                    <label class="control-label" id="A31592" data-tid="A372172">
+                        TC:
+                    </label>
+                </div>
+                <div class="col-sm-2 remove-padding" id="A31593" data-tid="A372173">
+                    <dx-text-box [(value)]="ilacRaporuOkuTC" id="A31594" data-tid="A372174"></dx-text-box>
+                </div>
+                <div class="col-sm-2 remove-padding-right" id="A31595" data-tid="A372175">
+                    <label class="control-label" id="A31596" data-tid="A372176">
+                        Ad Soyad:
+                    </label>
+                </div>
+                <div class="col-sm-5 remove-padding" id="A31597" data-tid="A372177">
+                    <dx-text-box [(value)]="MedulaIlacRaporuOkuResultNameSurname" disabled="true" id="A31598" data-tid="A372178"></dx-text-box>
+                </div>
+                <div class="col-sm-2 remove-padding" id="A31599" data-tid="A372179">
+                    <dx-button type="success" style="float: right; margin:0!important;" icon="fa fa-check" (onClick)="medulaIlacRaporOku()" text="İlaç Raporu Oku" data-tid="A372180"></dx-button>
+                </div>
+                <div class="col-sm-12 remove-padding" id="A31601" data-tid="A372181">
+                    <dx-data-grid height="200px" [selection]="{mode: 'single'}" [dataSource]="MedulaIlacRaporuOkuArray" [columns]="MedulaIlacRaporuOkuColumns" id="A31602" data-tid="A372182">
+                    </dx-data-grid>
+                </div>
+                <div class="row" id="A31638" data-tid="A372183">
+                    <div class="col-sm-4" id="A31639" data-tid="A372184">
+                        <label class="control-label" id="A31640" data-tid="A372185">
+                            Sonuç Mesajı:
+                        </label>
+                    </div>
+                    <div class="col-sm-8 " id="A31641" data-tid="A372186">
+                        <label class="control-label" id="A31642" data-tid="A372187">
+                            <dx-text-area [height]="40" [(value)]="MedulaIlacRaporuOkuResultMessage" disabled="true" id="A31647" data-tid="A372188"></dx-text-area>
+                        </label>
+                    </div>
+                </div>
+                <div class="row" id="A31648" data-tid="A372189">
+                    <dx-button type="danger" style="margin:0!important; position:absolute!important; bottom:20px;right:10px" icon="fa fa-times" (onClick)="this.showMedulaIlacRaporuOkuPopup = false;" text="Çıkış" id="A31649" data-tid="A372190"></dx-button>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="1100" height="700" [(visible)]="showUTSUsageCommitmentPopup" [closeOnOutsideClick]="false" title="ÜTS Kullanım Kesinleştirme" i18n-title="@@M23013" id="A31589" data-tid="A372191">
+            <div *dxTemplate="let data of 'content'" id="A31590" data-tid="A372192">
+                <div class="col-sm-2 remove-padding" id="A31599" data-tid="A372193">
+                    <dx-button type="success" style="float: left; margin:0!important;" icon="fa fa-check" (onClick)="medulaUXXXXXXullanimKesinlestirme()" text="ÜTS Kesinleştirme" data-tid="A372194"></dx-button>
+                </div>
+                <div class="col-sm-3 remove-padding" id="A31599" data-tid="A372195">
+                    <dx-button type="danger" style="float: left; margin:0!important;" icon="fa fa-times" (onClick)="medulaUXXXXXXullanimKesinlestirmeIptal()" text="ÜTS Kesinleştirme İptal" data-tid="A372196"></dx-button>
+                </div>
+                <div class="col-sm-12 remove-padding" id="A31595" data-tid="A372197">
+                    <label class="control-label" id="A31596" data-tid="A372198">
+                        ÜTS Bildirimi Yapılmış Malzemeler
+                    </label>
+                </div>
+                <div class="col-sm-12 remove-padding" id="A31601" data-tid="A372199">
+                    <dx-data-grid height="200px" [selection]="{mode: 'multiple'}" [dataSource]="UTSMaterialArray" [columns]="UTSMaterialColumns" id="A31602" [(selectedRowKeys)]="selectedUTSMaterials" data-tid="A372200">
+                    </dx-data-grid>
+                </div>
+
+                <div class="col-sm-2 remove-padding" id="A31599" data-tid="A372201">
+                    <dx-button type="default" style="float: left; margin:0!important;" icon="fa fa-question" (onClick)="medulaUXXXXXXullanimKesinlestirmeSorgu()" text="ÜTS Sorgula" data-tid="A372202"></dx-button>
+                </div>
+                <div class="row" id="A31638" data-tid="A372203">
+                    <div class="col-sm-3" id="A31639" data-tid="A372204">
+                        <label class="control-label" id="A31640" data-tid="A372205">
+                            Sonuç Mesajı:
+                        </label>
+                    </div>
+                    <div class="col-sm-9" id="A31641" data-tid="A372206">
+                        <label class="control-label" id="A31642" data-tid="A372207">
+                            <dx-text-area [height]="40" [(value)]="MedulaUXXXXXXesinlestirmeSorguResultMessage" disabled="true" id="A31647" data-tid="A372208"></dx-text-area>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 remove-padding" id="A31595" data-tid="A372209">
+                    <label class="control-label" id="A31596" data-tid="A372210">
+                        ÜTS Kesinleştirme Sorgu Sonucu
+                    </label>
+                </div>
+                <div class="col-sm-12 remove-padding" id="A31601" data-tid="A372211">
+                    <dx-data-grid height="200px" [selection]="{mode: 'single'}" [dataSource]="UXXXXXXesinlestirmeSorguArray" [columns]="UXXXXXXesinlestirmeSorguColumns" id="A31602" data-tid="A372212">
+                    </dx-data-grid>
+                </div>
+
+                <div class="row" id="A31648" data-tid="A372213">
+                    <dx-button type="danger" style="margin:0!important; position:absolute!important; bottom:20px;right:10px" icon="fa fa-times" (onClick)="this.showUTSUsageCommitmentPopup = false;" text="Çıkış" id="A31649" data-tid="A372214"></dx-button>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="1100" height="700" [(visible)]="this.showDocumentOperationsPopup" [closeOnOutsideClick]="false" title="Döküman İşlemleri" i18n-title="@@M23013" id="A31589" data-tid="A372215">
+            <div *dxTemplate="let data of 'content'" id="A31590" data-tid="A372216">
+
+                <div class="row" id="A30705" data-tid="A372217">
+                    <label class="control-label col-sm-1" id="A30709" data-tid="A372218">
+                        Evrak No
+                    </label>
+                    <div class="col-sm-2" id="A30735" data-tid="A372219">
+                        <dx-number-box [(value)]="documentOperationsModel.evrakId" id="txtEvrakId" data-tid="A372220"></dx-number-box>
+                    </div>
+                    <label class="control-label col-sm-1" id="A30709" data-tid="A372221">
+                        Takip No
+                    </label>
+                    <div class="col-sm-2" id="A30735" data-tid="A372222">
+                        <dx-text-box id="txtTakipNo" class="form-control" [disabled]="true" [value]="documentOperationsModel.takipNo" data-tid="A372223"></dx-text-box>
+                    </div>
+                </div>
+                <br data-tid="A372224" />
+                <div class="col-sm-2 remove-padding" id="A31599" data-tid="A372225">
+                    <dx-button type="success" style="float: left; margin:0!important;" icon="fa fa-check" (onClick)="medulaDokumanKaydet()" text="Döküman Kaydet" data-tid="A372226"></dx-button>
+                </div>
+                <div class="col-sm-3 remove-padding" id="A31599" data-tid="A372227">
+                    <dx-button type="danger" style="float: left; margin:0!important;" icon="fa fa-times" (onClick)="medulaDokumanSil()" text="Döküman Sil" data-tid="A372228"></dx-button>
+                </div>
+                <div class="col-sm-7 remove-padding" id="A31599" data-tid="A372229">
+                    <dx-button type="default" style="float: right; margin:0!important;" icon="fa fa-download" (onClick)="dokumanIndir()" text="İndir" data-tid="A372230"></dx-button>
+                </div>
+                <div class="col-sm-12 remove-padding" id="A31595" data-tid="A372231">
+                    <label class="control-label" id="A31596" data-tid="A372232">
+                        Eklenmiş Dökümanlar
+                    </label>
+                </div>
+                <div class="col-sm-12 remove-padding" id="A31601" data-tid="A372233">
+                    <dx-data-grid height="200px" [selection]="{mode: 'multiple'}" [dataSource]="documentOperationsModel.uploadedDocumentArray" [columns]="UploadedDocumentColumns" id="A31602" [(selectedRowKeys)]="documentOperationsModel.selectedUploadedDocumentArray" data-tid="A372234">
+                    </dx-data-grid>
+                </div>
+                <div class="col-sm-4 remove-padding" id="A31599" data-tid="A372235">
+                    <dx-button type="default" style="float: left; margin:0!important;" icon="fa fa-question" (onClick)="medulaTakipDokumanListesiSorgu()" text="Medula Takip Doküman Listesi Sorgula" data-tid="A372236"></dx-button>
+                </div>
+                <div class="col-sm-8 remove-padding" id="A31599" data-tid="A372237">
+                    <div class="row" id="A31638" data-tid="A372238">
+                        <div class="col-sm-12" id="A31639" data-tid="A372239">
+                            <label class="control-label" id="A31640" data-tid="A372240">
+                                Sonuç Mesajı:
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row" id="A31638" data-tid="A372241">
+                        <div class="col-sm-12" id="A31641" data-tid="A372242">
+                            <label class="control-label" id="A31642" data-tid="A372243">
+                                <dx-text-area [height]="40" [(value)]="documentOperationsModel.medulaTakipDokumanListesiSorguResultMessage" disabled="true" id="A31647" data-tid="A372244"></dx-text-area>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 remove-padding" id="A31595" data-tid="A372245">
+                    <label class="control-label" id="A31596" data-tid="A372246">
+                        Medula Takip Doküman Listesi
+                    </label>
+                </div>
+                <div class="col-sm-12 remove-padding" id="A31601" data-tid="A372247">
+                    <dx-data-grid height="200px" [selection]="{mode: 'single'}" [dataSource]="documentOperationsModel.medulaTakipDokumanArray" [columns]="MedulaTakipDokumanColumns" id="A31602" data-tid="A372248">
+                    </dx-data-grid>
+                </div>
+
+                <div class="row" id="A31648" data-tid="A372249">
+                    <dx-button type="danger" style="margin:0!important; position:absolute!important; bottom:20px;right:10px" icon="fa fa-times" (onClick)="this.showDocumentOperationsPopup = false;" text="Çıkış" id="A31649" data-tid="A372250"></dx-button>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="900" height="700" [(visible)]="this.showBarcodeSUTMatchPopup" [closeOnOutsideClick]="false" title="Barkod SUT Eşleşme" i18n-title="@@M23013" id="A31589" data-tid="A372251">
+            <div *dxTemplate="let data of 'content'" id="A31590" data-tid="A372252">
+                <div class="row" id="A30705" data-tid="A372253">
+                    <label class="control-label col-sm-2" id="A30709" data-tid="A372254">
+                        Tarih
+                    </label>
+                    <div class="col-sm-3" id="A31516" data-tid="A372255">
+                        <dx-date-box [(value)]="barcodeSUTMatch.queryInput.tarih" type="date" displayFormat="dd/MM/yyyy" style="width:100%" id="A33517" data-tid="A372256"></dx-date-box>
+                    </div>
+                    <label class="control-label col-sm-2" id="A30709" data-tid="A372257">
+                        Barkod
+                    </label>
+                    <div class="col-sm-3" id="A30735" data-tid="A372258">
+                        <dx-text-box id="txtBarkod" class="form-control" [(value)]="barcodeSUTMatch.queryInput.barkod" data-tid="A372259"></dx-text-box>
+                    </div>
+                </div>
+                <div class="row" id="A30705" data-tid="A372260">
+                    <label class="control-label col-sm-2" id="A30709" data-tid="A372261">
+                        SUT Kodu
+                    </label>
+                    <div class="col-sm-3" id="A30735" data-tid="A372262">
+                        <dx-text-box id="txtSutKodu" class="form-control" [(value)]="barcodeSUTMatch.queryInput.sutKodu" data-tid="A372263"></dx-text-box>
+                    </div>
+                    <label class="control-label col-sm-2" id="A30709" data-tid="A372264">
+                        Firma Tanımlayıcı No
+                    </label>
+                    <div class="col-sm-3" id="A30735" data-tid="A372265">
+                        <dx-text-box id="txtFirmaTanimlayiciNo" class="form-control" [(value)]="barcodeSUTMatch.queryInput.firmaTanimlayiciNo" data-tid="A372266"></dx-text-box>
+                    </div>
+                </div>
+                <br data-tid="A372267" />
+                <div class="col-sm-4 remove-padding" id="A31599" data-tid="A372268">
+                    <dx-button type="default" style="float: left; margin:0!important;" icon="fa fa-question" (onClick)="medulaBarcodeSUTMatchQuery()" text="Medula Barkod SUT Eşleşme Sorgula" data-tid="A372269"></dx-button>
+                </div>
+                <div class="col-sm-8 remove-padding" id="A31599" data-tid="A372270">
+                    <div class="row" id="A31638" data-tid="A372271">
+                        <div class="col-sm-12" id="A31639" data-tid="A372272">
+                            <label class="control-label" id="A31640" data-tid="A372273">
+                                Sonuç Mesajı:
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row" id="A31638" data-tid="A372274">
+                        <div class="col-sm-12" id="A31641" data-tid="A372275">
+                            <label class="control-label" id="A31642" data-tid="A372276">
+                                <dx-text-area [height]="40" [(value)]="barcodeSUTMatch.resultMessage" disabled="true" id="A31647" data-tid="A372277"></dx-text-area>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 remove-padding" id="A31595" data-tid="A372278">
+                    <label class="control-label" id="A31596" data-tid="A372279">
+                        Medula Barkod SUT Eşleşme Listesi
+                    </label>
+                </div>
+                <div class="col-sm-12 remove-padding" id="A31601" data-tid="A372280">
+                    <dx-data-grid height="450px" [selection]="{mode: 'single'}" [dataSource]="barcodeSUTMatch.medulaBarcodeSUTMatchArray" [columns]="MedulaBarcodeSUTMatchColumns" [filterRow]="{visible: true}" id="A31602" data-tid="A372281">
+                        <dxo-scrolling showScrollbar="always" data-tid="A372282"></dxo-scrolling>
+                        <dxo-paging [pageSize]="25" id="A31825" data-tid="A372283"></dxo-paging>
+                        <dxo-summary data-tid="A372284">
+                            <dxi-total-item column="barkod" summaryType="count" data-tid="A372285">
+                            </dxi-total-item>
+                        </dxo-summary>
+                    </dx-data-grid>
+                </div>
+
+                <div class="row" id="A31648" data-tid="A372286">
+                    <dx-button type="danger" style="margin:0!important; position:absolute!important; bottom:20px;right:10px" icon="fa fa-times" (onClick)="this.showBarcodeSUTMatchPopup = false;" text="Çıkış" id="A31649" data-tid="A372287"></dx-button>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="600" height="660" [(visible)]="this.showENabizBildirimSorguPopup" [closeOnOutsideClick]="false" title="E-Nabız Bildirimi Yapılmış Hizmetler" i18n-title="@@M23013" id="A31589" data-tid="A372288">
+            <div *dxTemplate="let data of 'content'" id="A31590" data-tid="A372289">
+                <div class="col-sm-12 remove-padding" id="A31601" data-tid="A372290">
+                    <dx-data-grid height="560px" [selection]="{mode: 'single'}" [dataSource]="eNabizBildirimHizmetArray" [columns]="ENabizBildirimColumns" [filterRow]="{visible: true}" [headerFilter]="{visible: true}" id="A31602" data-tid="A372291">
+                        <dxo-scrolling showScrollbar="always" data-tid="A372292"></dxo-scrolling>
+                        <dxo-paging [pageSize]="25" id="A31825" data-tid="A372293"></dxo-paging>
+                        <dxo-summary data-tid="A372294">
+                            <dxi-total-item column="hizmetSunucuRefNo" summaryType="count" data-tid="A372295">
+                            </dxi-total-item>
+                        </dxo-summary>
+                    </dx-data-grid>
+                </div>
+                <div class="row" id="A31648" data-tid="A372296">
+                    <dx-button type="danger" style="margin:0!important; position:absolute!important; bottom:20px;right:10px" icon="fa fa-times" (onClick)="this.showENabizBildirimSorguPopup = false;" text="Çıkış" id="A31649" data-tid="A372297"></dx-button>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-popup width="700px" height="500px" [(visible)]="showMaterialPurchaseInfoPopup" [closeOnOutsideClick]="true" title="Malzeme Satın Alma Bilgileri" i18n-title="@@M24219" id="A31282" data-tid="A371795">
+            <div *dxTemplate="let data of 'content'" id="A31283" data-tid="A371796">
+                <div class="row" id="A31329" data-tid="A371842">
+                    <dx-data-grid height="450px" [selection]="{mode: 'none'}" [dataSource]="MaterialPurchaseInfoArray" [columns]="MaterialPurchaseInfoGridColumns" id="A31330" data-tid="A371843">
+                    </dx-data-grid>
+                </div>
+            </div>
+        </dx-popup>
+
+        <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A31651" data-tid="A372298">
+        </dx-load-panel>
+
+    </div>
+

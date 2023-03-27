@@ -1,0 +1,96 @@
+﻿
+<div class="container-fluid" style="margin-right: -20px;margin-left: -25px;" id="A28803" data-tid="A367352">
+    <NeStatePanelComponent [OutgoingTransitions]="companionApplicationFormViewModel?.OutgoingTransitions" [StateReports]="companionApplicationFormViewModel?.CurrentStateReports" [ObjectID]="companionApplicationFormViewModel?._CompanionApplication?.ObjectID" [ObjectDefID]="companionApplicationFormViewModel?._CompanionApplication?.ObjectDefID" [CurrentStateDefID]="companionApplicationFormViewModel._CompanionApplication.CurrentStateDefID" [DropStateList]="DropStateList" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" [CancelCommandVisible]="false" SaveButtonCaption="Refakatçi Ekle" i18n-SaveButtonCaption="@@M27513" id="A28804" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A367353">
+    </NeStatePanelComponent>
+
+    <form id="CompanionApplicationForm" class="form-horizontal" role="form" data-tid="A367354">
+        
+    </form>
+    <div class="row" id="A28805" data-tid="A367355">
+        <div class="col-sm-3" id="A28806" data-tid="A367356">
+            <label class="control-label col-sm-12" id="A28807" data-tid="A367357">
+                T.C. Kimlik No
+            </label>
+            <div class="col-sm-12" id="A28808" data-tid="A367358">
+                <div class=" col-sm-11" id="A28809" data-tid="A367359">
+                    <hvl-number-box #Validation (ValueChange)="onUniqueRefNoChanged($event)" [BackColor]="UniqueRefNo?.BackColor" [Enabled]="UniqueRefNo?.Enabled" [Font]="UniqueRefNo?.Font" [ForeColor]="UniqueRefNo?.ForeColor" [ReadOnly]="UniqueRefNo?.ReadOnly" [TabIndex]="UniqueRefNo?.TabIndex" [Value]="companionApplicationFormViewModel?._CompanionApplication?.UniqueRefNo" [Visible]="UniqueRefNo?.Visible" id="A28810" data-tid="A367360"></hvl-number-box>
+                </div>
+                <div class="col-sm-1" (click)="CheckMernis_Click()" style="border:0; box-shadow:none; padding:1px 2px 5px;" id="A28811" data-tid="A367361">
+                    <i class="fa fa-search" style="color:#08c;margin-top:5px" id="A28812" data-tid="A367362"></i>
+                </div>
+            </div>
+            <label class="control-label col-sm-12" id="A28813" data-tid="A367363">
+                Pasaport No
+            </label>
+            <div class="col-sm-12" id="A28814" data-tid="A367364">
+                <hvl-text-box #Validation (TextChange)="onPassportNoChanged($event)" [BackColor]="PassportNo?.BackColor" [CharacterCasing]="PassportNo?.CharacterCasing" [Enabled]="PassportNo?.Enabled" [Font]="PassportNo?.Font" [ForeColor]="PassportNo?.ForeColor" [height]="PassportNo?.Height" [InputFormat]="PassportNo?.InputFormat" [InputTurkishCharacter]="PassportNo?.InputTurkishCharacter" [IsNonNumeric]="PassportNo?.IsNonNumeric" [MultiLine]="PassportNo?.Multiline" [ReadOnly]="PassportNo?.ReadOnly" [Required]="PassportNo?.Required" [TabIndex]="PassportNo?.TabIndex" [TextAlign]="PassportNo?.TextAlign" [Text]="companionApplicationFormViewModel?._CompanionApplication?.PassportNo" [Visible]="PassportNo?.Visible" id="A28815" data-tid="A367365"></hvl-text-box>	
+            </div>
+            <label class="control-label col-sm-12" id="A28816" data-tid="A367366">
+                Refakatçi Adı
+            </label>
+            <div class="col-sm-12" id="A28817" data-tid="A367367">
+                <hvl-text-box #Validation (TextChange)="onCompanionNameChanged($event)" [BackColor]="CompanionName?.BackColor" [CharacterCasing]="CompanionName?.CharacterCasing" [Enabled]="CompanionName?.Enabled" [Font]="CompanionName?.Font" [ForeColor]="CompanionName?.ForeColor" [height]="CompanionName?.Height" [InputFormat]="CompanionName?.InputFormat" [InputTurkishCharacter]="CompanionName?.InputTurkishCharacter" [IsNonNumeric]="CompanionName?.IsNonNumeric" [MultiLine]="CompanionName?.Multiline" [ReadOnly]="CompanionName?.ReadOnly" [Required]="CompanionName?.Required" [TabIndex]="CompanionName?.TabIndex" [TextAlign]="CompanionName?.TextAlign" [Text]="companionApplicationFormViewModel?._CompanionApplication?.CompanionName" [Visible]="CompanionName?.Visible" id="A28818" data-tid="A367368"></hvl-text-box>
+            </div>
+            <label class="control-label col-sm-12" id="A28819" data-tid="A367369">
+                Refakatçi Doğum Tarihi
+            </label>
+            <div class="col-sm-12" id="A28820" data-tid="A367370">
+                <hvl-date-picker #Validation (ValueChange)="onCompanionBirthDateChanged($event)" [BackColor]="CompanionBirthDate?.BackColor" [CustomFormat]="CompanionBirthDate?.CustomFormat" [Enabled]="CompanionBirthDate?.Enabled" [Font]="CompanionBirthDate?.Font" [ForeColor]="CompanionBirthDate?.ForeColor" [Format]="CompanionBirthDate?.Format" [Max]="CompanionBirthDate?.Max" [Min]="CompanionBirthDate?.Min" [ReadOnly]="CompanionBirthDate?.ReadOnly" [Required]="CompanionBirthDate?.Required" [TabIndex]="CompanionBirthDate?.TabIndex" [Value]="companionApplicationFormViewModel?._CompanionApplication?.CompanionBirthDate" [Visible]="CompanionBirthDate?.Visible" id="A28821" data-tid="A367371"></hvl-date-picker>
+            </div>
+        </div>
+        <div class="col-sm-3" id="A28822" data-tid="A367372">
+            <label class="control-label col-sm-12" id="A28823" data-tid="A367373">
+                Refakatçi Cinsiyeti
+            </label>
+            <div class="col-sm-12" id="A28824" data-tid="A367374">
+                <hvl-list-box #Validation (SelectedObjectChange)="onCompanionSexChanged($event)" [AutoCompleteDialogHeight]="CompanionSex?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="CompanionSex?.AutoCompleteDialogWidth" [AutoCompleteMode]="CompanionSex?.AutoCompleteMode" [BackColor]="CompanionSex?.BackColor" [DefinitionName]="CompanionSex?.ListDefName" [DisplayExpressionsCache]="companionApplicationFormViewModel?.ListDefDisplayExpressions" [Enabled]="CompanionSex?.Enabled" [Font]="CompanionSex?.Font" [ForeColor]="CompanionSex?.ForeColor" [ListFilterExpression]="CompanionSex?.ListFilterExpression" [MinSearchLength]="CompanionSex?.MinSearchLength" [PopupDialogFieldConfig]="CompanionSex?.PopupDialogFieldConfig" [PopupDialogGridColumns]="CompanionSex?.PopupDialogGridColumns" [PopupDialogHeight]="CompanionSex?.PopupDialogHeight" [PopupDialogTitle]="CompanionSex?.PopupDialogTitle" [PopupDialogWidth]="CompanionSex?.PopupDialogWidth" [ReadOnly]="CompanionSex?.ReadOnly" [SearchMode]="CompanionSex?.SearchMode" [SearchTimeout]="CompanionSex?.SearchTimeout" [SelectedObject]="companionApplicationFormViewModel?._CompanionApplication?.CompanionSex" [TabIndex]="CompanionSex?.TabIndex" [Visible]="CompanionSex?.Visible" [width]="CompanionSex?.Width" id="A28825" data-tid="A367375"></hvl-list-box>
+            </div>
+            <label class="control-label col-sm-12" id="A28826" data-tid="A367376">
+                Yakınlık Derecesi
+            </label>
+            <div class="col-sm-12" id="A28827" data-tid="A367377">
+                <hvl-enum-combobox #Validation (ValueChange)="onRelationshipChanged($event)" [BackColor]="Relationship?.BackColor" [DataTypeName]="Relationship?.DataTypeName" [Enabled]="Relationship?.Enabled" [Font]="Relationship?.Font" [ForeColor]="Relationship?.ForeColor" [IncludeOnly]="Relationship?.IncludeOnly" [ReadOnly]="Relationship?.ReadOnly" [ShowClearButton]="Relationship?.ShowClearButton" [SortBy]="Relationship?.SortBy" [TabIndex]="Relationship?.TabIndex" [Value]="companionApplicationFormViewModel?._CompanionApplication?.Relationship" [Visible]="Relationship?.Visible" id="A28828" data-tid="A367378"></hvl-enum-combobox>
+            </div>
+            <label class="control-label col-sm-12" id="A28829" data-tid="A367379">
+                Refakatçinin Kalmasına Gerek Görülen Sebep
+            </label>
+            <div class="col-sm-12" id="A28830" data-tid="A367380">
+                <hvl-text-box #Validation (TextChange)="onMedicalReasonForCompanionChanged($event)" [BackColor]="MedicalReasonForCompanion?.BackColor" [CharacterCasing]="MedicalReasonForCompanion?.CharacterCasing" [Enabled]="MedicalReasonForCompanion?.Enabled" [Font]="MedicalReasonForCompanion?.Font" [ForeColor]="MedicalReasonForCompanion?.ForeColor" [height]="MedicalReasonForCompanion?.Height" [InputFormat]="MedicalReasonForCompanion?.InputFormat" [InputTurkishCharacter]="MedicalReasonForCompanion?.InputTurkishCharacter" [IsNonNumeric]="MedicalReasonForCompanion?.IsNonNumeric" [MultiLine]="MedicalReasonForCompanion?.Multiline" [ReadOnly]="MedicalReasonForCompanion?.ReadOnly" [Required]="MedicalReasonForCompanion?.Required" [TabIndex]="MedicalReasonForCompanion?.TabIndex" [TextAlign]="MedicalReasonForCompanion?.TextAlign" [Text]="companionApplicationFormViewModel?._CompanionApplication?.MedicalReasonForCompanion" [Visible]="MedicalReasonForCompanion?.Visible" id="A28831" data-tid="A367381"></hvl-text-box>
+            </div>
+        </div>
+        <div class="col-sm-3" id="A28832" data-tid="A367382">
+            <label class="control-label col-sm-12" id="A28833" data-tid="A367383">
+                Refakatçi Adresi
+            </label>
+            <div class="col-sm-12" id="A28834" data-tid="A367384">
+                <hvl-text-box #Validation (TextChange)="ontttextbox7Changed($event)" [BackColor]="tttextbox7?.BackColor" [CharacterCasing]="tttextbox7?.CharacterCasing" [Enabled]="tttextbox7?.Enabled" [Font]="tttextbox7?.Font" [ForeColor]="tttextbox7?.ForeColor" [height]="tttextbox7?.Height" [InputFormat]="tttextbox7?.InputFormat" [InputTurkishCharacter]="tttextbox7?.InputTurkishCharacter" [IsNonNumeric]="tttextbox7?.IsNonNumeric" [MultiLine]="tttextbox7?.Multiline" [ReadOnly]="tttextbox7?.ReadOnly" [Required]="tttextbox7?.Required" [TabIndex]="tttextbox7?.TabIndex" [TextAlign]="tttextbox7?.TextAlign" [Text]="companionApplicationFormViewModel?._CompanionApplication?.CompanionAddress" [Visible]="tttextbox7?.Visible" id="A28835" data-tid="A367385"></hvl-text-box>
+            </div>
+            <label class="control-label col-sm-12" id="A28836" data-tid="A367386">
+                Refakatçi Diyeti
+            </label>
+            <div class="col-sm-12" id="A28837" data-tid="A367387">
+                <hvl-list-box #Validation (SelectedObjectChange)="onDietDefinitionChanged($event)" [AutoCompleteDialogHeight]="DietDefinition?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="DietDefinition?.AutoCompleteDialogWidth" [AutoCompleteMode]="DietDefinition?.AutoCompleteMode" [BackColor]="DietDefinition?.BackColor" [DefinitionName]="DietDefinition?.ListDefName" [DisplayExpressionsCache]="companionApplicationFormViewModel?.ListDefDisplayExpressions" [Enabled]="DietDefinition?.Enabled" [Font]="DietDefinition?.Font" [ForeColor]="DietDefinition?.ForeColor" [ListFilterExpression]="DietDefinition?.ListFilterExpression" [MinSearchLength]="DietDefinition?.MinSearchLength" [PopupDialogFieldConfig]="DietDefinition?.PopupDialogFieldConfig" [PopupDialogGridColumns]="DietDefinition?.PopupDialogGridColumns" [PopupDialogHeight]="DietDefinition?.PopupDialogHeight" [PopupDialogTitle]="DietDefinition?.PopupDialogTitle" [PopupDialogWidth]="DietDefinition?.PopupDialogWidth" [ReadOnly]="DietDefinition?.ReadOnly" [SearchMode]="DietDefinition?.SearchMode" [SearchTimeout]="DietDefinition?.SearchTimeout" [SelectedObject]="companionApplicationFormViewModel?._CompanionApplication?.DietDefinition" [TabIndex]="DietDefinition?.TabIndex" [Visible]="DietDefinition?.Visible" [width]="DietDefinition?.Width" id="A28838" data-tid="A367388"></hvl-list-box>
+            </div>
+        </div>
+        <div class="col-sm-3" id="A28839" data-tid="A367389">
+            <label class="control-label col-sm-12" id="A28840" data-tid="A367390">
+                Kalma Başlangıç Tarihi
+            </label>
+            <div class="col-sm-12" id="A28841" data-tid="A367391">
+                <hvl-date-picker #Validation (ValueChange)="onRequestDateChanged($event)" [BackColor]="RequestDate?.BackColor" [CustomFormat]="RequestDate?.CustomFormat" [Enabled]="RequestDate?.Enabled" [Font]="RequestDate?.Font" [ForeColor]="RequestDate?.ForeColor" [Format]="RequestDate?.Format" [Max]="RequestDate?.Max" [Min]="RequestDate?.Min" [ReadOnly]="RequestDate?.ReadOnly" [Required]="RequestDate?.Required" [TabIndex]="RequestDate?.TabIndex" [Value]="companionApplicationFormViewModel?._CompanionApplication?.RequestDate" [Visible]="RequestDate?.Visible" id="A28842" data-tid="A367392"></hvl-date-picker>
+            </div>
+            <label class="control-label col-sm-12" id="A28843" data-tid="A367393">
+                Kalacağı Gün Sayısı
+            </label>
+            <div class="col-sm-12" id="A28844" data-tid="A367394">
+                <hvl-number-box #Validation (ValueChange)="onStayingDateCountChanged($event)" [BackColor]="StayingDateCount?.BackColor" [Enabled]="StayingDateCount?.Enabled" [Font]="StayingDateCount?.Font" [ForeColor]="StayingDateCount?.ForeColor" [ReadOnly]="StayingDateCount?.ReadOnly" [TabIndex]="StayingDateCount?.TabIndex" [Value]="companionApplicationFormViewModel?._CompanionApplication?.StayingDateCount" [Visible]="StayingDateCount?.Visible" id="A28845" data-tid="A367395"></hvl-number-box>
+            </div>
+            <label class="control-label col-sm-12" id="A28846" data-tid="A367396">
+                Kalma Bitiş Tarihi
+            </label>
+            <div class="col-sm-12" id="A28847" data-tid="A367397">
+                <hvl-date-picker #endDate (ValueChange)="onEndDateChanged($event)" [BackColor]="EndDate?.BackColor" [CustomFormat]="EndDate?.CustomFormat" [Enabled]="EndDate?.Enabled" [Font]="EndDate?.Font" [ForeColor]="EndDate?.ForeColor" [Format]="EndDate?.Format" [Max]="EndDate?.Max" [Min]="EndDate?.Min" [ReadOnly]="EndDate?.ReadOnly" [TabIndex]="EndDate?.TabIndex" [Value]="companionApplicationFormViewModel?._CompanionApplication?.EndDate" [Visible]="EndDate?.Visible" id="A28848" data-tid="A367398"></hvl-date-picker>
+            </div>
+        </div>
+    </div>
+</div>

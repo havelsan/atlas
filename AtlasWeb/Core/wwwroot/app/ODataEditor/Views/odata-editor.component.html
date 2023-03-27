@@ -1,0 +1,106 @@
+﻿<div class="row" data-tid="A375259">
+    <div class="col-md-12" data-tid="A375260">
+        <div class="col-md-6" data-tid="A375261">
+            <dx-select-box #dataSourceList [items]="odataDataSources" displayExpr="Name" valueExpr="ObjectID" (onSelectionChanged)="onDataSourceChanged($event)" data-tid="A375262">
+            </dx-select-box>
+        </div>
+        <div class="col-md-4" data-tid="A375263">
+            <dx-text-box #txtDataSource data-tid="A375264"></dx-text-box>
+        </div>
+        <div class="col-md-2" data-tid="A375265">
+            <dx-button type="default" class="btn btn-default" (onClick)="saveDataSource()" text="Kaydet" data-tid="A375266"></dx-button>
+            &nbsp; &nbsp;
+            <dx-button type="danger" class="btn btn-default" (onClick)="deleteDataSource()" text="Sil" data-tid="A375267"></dx-button>
+        </div>
+    </div>
+</div>
+<br data-tid="A375268" />
+<div class="col-md-12" data-tid="A375269">
+    <div class="col-md-6" data-tid="A375270">
+        <div class="panel panel-default" style="height: 600px;" data-tid="A375271">
+            <div class="panel-heading" style="font-size: 16px;color:#08c;font-weight: 600;" data-tid="A375272">
+                Model Listesi</div>
+            <div class="panel-body" data-tid="A375273">
+                <div class="margin-bottom-10" data-tid="A375274">
+                    <dx-tree-list #treeList [dataSource]="dataSource" [showBorders]="true" [remoteOperations]="{ filtering: true, paging: false }" keyExpr="id" [height]="500" displayExpr="text" parentIdExpr="parentId" hasItemsExpr="hasItems" (onRowClick)="onItemSelected($event)" [(expandedRowKeys)]="expandedRowKeys" focusedRowEnabled="true" [focusedRowIndex]="-1" (onRowPrepared)="onRowPrepared($event)" rootValue (onSelectionChanged)="onItemSelectionChanged($event)" data-tid="A375275">
+                        <dxi-column dataField="text" caption="Model Adı" sortOrder="asc" data-tid="A375276"></dxi-column>
+                        <dxo-scrolling mode="virtual" data-tid="A375277"></dxo-scrolling>
+                        <dxo-selection mode="multiple" [recursive]="true" data-tid="A375278">
+                            ></dxo-selection>
+                    </dx-tree-list>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-6" data-tid="A375279">
+        <div class="panel panel-default" style="height: 600px;" data-tid="A375280">
+            <div class="panel-heading" style="font-size: 16px;color:#08c;font-weight: 600;" data-tid="A375281">
+                Filtreler</div>
+            <div class="panel-body" id="filterPanel" data-tid="A375282">
+                <dx-select-box #countSelect [items]="topCountItems" data-tid="A375283"></dx-select-box>
+                <br data-tid="A375284" />
+                <dx-list [items]="conditions" [height]="400" [allowItemDeleting]="true" (onItemDeleting)="onItemDeleting($event)" data-tid="A375285">
+                    <div *dxTemplate="let item of 'item'" data-tid="A375286">
+                        <div data-tid="A375287">
+                            {{item.Path}}
+                            <span *ngIf="item.WhereCondition != null" data-tid="A375288">Filtre: {{item.WhereCondition?.Text}}
+                                {{item.WhereCondition?.Value}}</span>
+                            &nbsp;
+                            <span *ngIf="item.Order != 'None'" data-tid="A375289">Sıralama: {{item.Order}} </span>
+                        </div>
+                    </div>
+                </dx-list>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12" *ngIf="showQueryPreview" data-tid="A375290">
+    <dx-text-box [(value)]="oDataQuery" readOnly="true" data-tid="A375291"></dx-text-box>
+    <dx-button (onClick)="copyQuery()" text="Kopyala" data-tid="A375292"></dx-button>
+    <dx-button type="default" class="btn btn-default" (onClick)="prepareQuery()" style="margin-left: 200px;" text="Hazırla" id data-tid="A375293"></dx-button>
+</div>
+
+<br data-tid="A375294" />
+<div class="row" data-tid="A375295">
+    <div class="col-md-12 text-center" data-tid="A375296">
+        <dx-button type="success" class="btn btn-default" (onClick)="closePopup()" text="Tamam" data-tid="A375297"></dx-button>
+        &nbsp;
+        <dx-button class="btn btn-default" (onClick)="clearComponent()" text="Temizle" data-tid="A375298"></dx-button>
+    </div>
+</div>
+
+
+
+
+<dx-popup width="500px" height="250px" [(visible)]="showFilterPopup" [closeOnOutsideClick]="false" title="OData Sorgu Hazırlama" data-tid="A375299">
+    <div class="margin-bottom-10" data-tid="A375300">
+        <div data-tid="A375301">
+            <div class="row" data-tid="A375302">
+                <div class="col-md-12" data-tid="A375303">
+                    <div class="col-md-3" data-tid="A375304">
+                        <dx-text-box readOnly="true" [(value)]="selectedColumn.data.text" data-tid="A375305"></dx-text-box>
+                    </div>
+                    <div class="col-md-5" data-tid="A375306">
+                        <dx-select-box [dataSource]="whereOperations" displayExpr="Text" valueExpr="Operation" [(value)]="filterOperation" data-tid="A375307"></dx-select-box>
+                    </div>
+                    <div class="col-md-4" data-tid="A375308">
+                        <dx-select-box [acceptCustomValue]="true" [(value)]="filterValue" [dataSource]="dynamicParameters" data-tid="A375309">
+                        </dx-select-box>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row" data-tid="A375310">
+                <div class="col-md-12" data-tid="A375311">
+                    <div class="col-md-4" data-tid="A375312">
+                        <dx-radio-group [items]="orderTypes" [(value)]="orderType" data-tid="A375313">
+                        </dx-radio-group>
+                    </div>
+                </div>
+            </div>
+            <dx-button type="button" class="btn btn-default" (onClick)="addFilter()" style="margin-left: 200px;" text="Tamam" id data-tid="A375314"></dx-button>
+        </div>
+    </div>
+</dx-popup>

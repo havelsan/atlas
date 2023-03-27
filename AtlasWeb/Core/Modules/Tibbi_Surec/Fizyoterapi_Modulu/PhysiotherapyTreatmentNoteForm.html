@@ -1,0 +1,43 @@
+﻿
+<form id="PhysiotherapyTreatmentNoteForm" class="form-horizontal" role="form" data-tid="A344768">
+</form>
+<div *ngIf="isNewTreatmentNote==true" data-tid="A344769">
+    <NeStatePanelComponent [ObjectDefID]="physiotherapyTreatmentNoteFormViewModel._PhysiotherapyTreatmentNote.ObjectDefID" [CurrentStateDefID]="physiotherapyTreatmentNoteFormViewModel._PhysiotherapyTreatmentNote.CurrentStateDefID" (onSetState)="setState($event)" (onSaveChanges)="save($event)" data-tid="A344770">
+    </NeStatePanelComponent>
+</div>
+<div class="row" *ngIf="isNewTreatmentNote==true" data-tid="A344771">
+    <div class="col-md-12" data-tid="A344772">
+        <label class="control-label" data-tid="A344773">
+            Açıklama
+        </label>
+        <hvl-richtextbox (change)="onDescriptionChanged($event)" [ngModelOptions]="{ standalone: true }" [ngModel]="_PhysiotherapyTreatmentNote.Description" [ReadOnly]="Description?.ReadOnly" [TemplateGroupName]="Description?.TemplateGroupName" [Visible]="Description?.Visible" data-tid="A344774">
+        </hvl-richtextbox>
+    </div>
+</div>
+
+<div class="panel panel-default" data-tid="A344775">
+    <div class="panel-heading" data-tid="A344776">Tedavi Seyri</div>
+    <div class="panel-body" data-tid="A344777">
+        <dx-data-grid id="gridContainer2" [dataSource]="physiotherapyTreatmentNoteFormViewModel.PhyTreatmentNoteList" [showBorders]="true" data-tid="A344778">
+            <dxo-paging [pageSize]="5" data-tid="A344779"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true" data-tid="A344780">
+            </dxo-pager>
+
+            <dxi-column dataField="Description" caption="Açıklama" [encodeHtml]="false" data-tid="A344781"></dxi-column>
+        </dx-data-grid>
+    </div>
+</div>
+
+<div class="panel panel-default" data-tid="A344782">
+    <div class="panel-heading" data-tid="A344783">Seans Sonlandırma Notları</div>
+    <div class="panel-body" data-tid="A344784">
+        <dx-data-grid id="gridContainer" [dataSource]="physiotherapyTreatmentNoteFormViewModel.PhyOrderTreatmentNoteList" [showBorders]="true" data-tid="A344785">
+            <dxo-paging [pageSize]="5" data-tid="A344786"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true" data-tid="A344787">
+            </dxo-pager>
+
+            <dxi-column dataField="Description" caption="Açıklama" [encodeHtml]="false" data-tid="A344788"></dxi-column>
+        </dx-data-grid>
+    </div>
+</div>
+

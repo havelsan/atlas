@@ -1,0 +1,47 @@
+﻿<!-- <li class="m-nav__item m-topbar__notifications m-topbar__notifications--img m-dropdown m-dropdown--large m-dropdown--header-bg-fill m-dropdown--arrow m-dropdown--align-center 	m-dropdown--mobile-full-width" m-dropdown-toggle="click" m-dropdown-persistent="true"> -->
+<a href="javascript:;" (click)="iconClick()" class="m-nav__link m-dropdown__toggle" id="m_topbar_notification_icon" data-tid="A375619">
+    <span *ngIf="showNotification == true" class="m-nav__link-badge m-badge m-badge--dot m-badge--dot-small m-badge--danger" [ngClass]="animateBlink" data-tid="A375620"></span>
+    <span class="m-nav__link-icon" [ngClass]="animateShake" data-tid="A375621">
+        <span class="m-nav__link-icon-wrapper" data-tid="A375622">
+            <i class="flaticon-alarm" data-tid="A375623"></i>
+        </span>
+    </span>
+</a>
+<div class="m-dropdown__wrapper" data-tid="A375624">
+    <span class="m-dropdown__arrow m-dropdown__arrow--center" data-tid="A375625"></span>
+
+    <div class="m-dropdown__inner" data-tid="A375626">
+
+        <div class="m-dropdown__header m--align-center" style="background: #08c" data-tid="A375627">
+            <span class="m-dropdown__header-title" data-tid="A375628">
+                Bildirimler
+            <i *ngIf="showReadAll" (click)="readAll()" class="notification-read-all fa fa-check-square-o" data-tid="A375629"></i>
+            </span>
+        </div>
+
+        <div class="m-dropdown__body" data-tid="A375630">
+            <div class="m-dropdown__content" [hidden]="notificationService.Notifications.length < 1" data-tid="A375631">
+                <dx-scroll-view #dxscroll [height]="250" (onReachBottom)="onReachBottom()" [useNative]="true" data-tid="A375632">
+                    <div class="m-list-timeline" data-tid="A375633">
+                        <div class="m-list-timeline__group " data-tid="A375634">
+                            <div class="m-list-timeline__items" data-tid="A375635">
+
+                                <div class="m-list-timeline__item" *ngFor="let notification of notificationService.Notifications; let i = index" data-tid="A375636">
+                                    <span (click)="dotClick(notification)" class="m-list-timeline__badge m-list-timeline__badge--state-warning {{notification.isRead == false ? 'notification-unread' : 'notification-read'}}" data-tid="A375637"></span>
+                                    <a class="m-list-timeline__text" href="javascript:;" (click)="onNotificationClicked(notification)" data-tid="A375638">{{notification.content}}</a>
+                                    <span class="m-list-timeline__time " data-tid="A375639">
+                                        {{notification.createTimeStr}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </dx-scroll-view>
+            </div>
+            <div class="m-dropdown__content" *ngIf="notificationService.Notifications.length < 1" data-tid="A375640">
+                Yeni Bildiriminiz Bulunmamaktadır.
+            </div>
+        </div>
+    </div>
+</div>
+<!-- </li> -->

@@ -1,0 +1,76 @@
+﻿<div class="panel panel-default gradientPanel" style="border:0; box-shadow:none;" id="A21093" data-tid="A325125">
+    <div class style="height: 50px;" id="A21094" data-tid="A325126">
+        <h4 style="color:#fff; font-size:19px;padding: 15px; text-align:center;height:50px;" id="A21095" data-tid="A325127">Muhasebeleştirme Gün İşlemleri</h4>
+    </div>
+</div>
+<div class="row" data-tid="A325128">
+    <label class="control-label col-sm-2" data-tid="A325129">
+        Dönem
+    </label>
+    <label class="control-label col-sm-2" data-tid="A325130">
+        Ortalama
+    </label>
+    <label class="control-label col-sm-2" data-tid="A325131">
+        Taşınır Ortalama
+    </label>
+    <label class="control-label col-sm-2" data-tid="A325132">
+        Hizmet Ortalama
+    </label>
+
+</div>
+<div class="row" data-tid="A325133">
+    <div class="col-sm-2" data-tid="A325134">
+        <hvl-list-box #Validation (SelectedObjectChange)="onAccountPeriodChanged($event)" [AutoCompleteDialogHeight]="AccountPeriod?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="AccountPeriod?.AutoCompleteDialogWidth" [AutoCompleteMode]="AccountPeriod?.AutoCompleteMode" [BackColor]="AccountPeriod?.BackColor" [DefinitionName]="AccountPeriod?.ListDefName" [DisplayExpressionsCache]="dummyModel?.ListDefDisplayExpressions" [Enabled]="AccountPeriod?.Enabled" [Font]="AccountPeriod?.Font" [ForeColor]="AccountPeriod?.ForeColor" [ListFilterExpression]="AccountPeriod?.ListFilterExpression" [MinSearchLength]="AccountPeriod?.MinSearchLength" [PopupDialogFieldConfig]="AccountPeriod?.PopupDialogFieldConfig" [PopupDialogGridColumns]="AccountPeriod?.PopupDialogGridColumns" [PopupDialogHeight]="AccountPeriod?.PopupDialogHeight" [PopupDialogTitle]="AccountPeriod?.PopupDialogTitle" [PopupDialogWidth]="AccountPeriod?.PopupDialogWidth" [ReadOnly]="AccountPeriod?.ReadOnly" [SearchMode]="AccountPeriod?.SearchMode" [SearchTimeout]="AccountPeriod?.SearchTimeout" [SelectedObject]="_AccountDayTerm.AccountPeriod" [TabIndex]="AccountPeriod?.TabIndex" [Visible]="AccountPeriod?.Visible" [width]="AccountPeriod?.Width" data-tid="A325135">
+        </hvl-list-box>
+    </div>
+    <div class="col-sm-2" data-tid="A325136">
+        <dx-number-box [(value)]="_AccountDayTerm.Average" format="#,##0.00" data-tid="A325137"></dx-number-box>
+    </div>
+    <div class="col-sm-2" data-tid="A325138">
+        <dx-number-box [(value)]="_AccountDayTerm.MovableAverage" format="#,##0.00" data-tid="A325139"></dx-number-box>
+    </div>
+    <div class="col-sm-2" data-tid="A325140">
+        <dx-number-box [(value)]="_AccountDayTerm.ProcedureAverage" format="#,##0.00" data-tid="A325141"></dx-number-box>
+    </div>
+</div>
+<div class="col-md-12" data-tid="A325142">
+    <dx-button type="default" text="Kaydet" style="float:right" (onClick)="save()" i18n-text="@@M17386" id="A28588" data-tid="A325143"></dx-button>
+    <dx-button type="success" text="Yeni Kayıt" style="float:right; margin-right: 2px;" (onClick)="initViewModel()" i18n-text="@@M24567" id="A28589" data-tid="A325144"></dx-button>
+</div>
+<div class="col-sm-12" style="height:97%;padding:0" data-tid="A325145">
+    <dx-data-grid [dataSource]="AccountDays" (onRowRemoving)="RowRemoving($event)" (onSelectionChanged)="select($event)" [editing]="{allowUpdating: false,allowAdding: false,allowDeleting: true}" [columns]="AccountDayColumns" [selection]="{mode: 'single',allowSelectAll: true}" [paging]="{enable: true, pageSize:60}" [filterRow]="{visible: true}" style="height : 80%" id="A28598" data-tid="A325146">
+        <dxo-export [enabled]="true" fileName="AccountVoucher" data-tid="A325147"></dxo-export>
+        <dxo-summary data-tid="A325148">
+            <dxi-total-item column="Year" summaryType="count" data-tid="A325149">
+            </dxi-total-item>           
+        </dxo-summary>
+        <div *dxTemplate="let cellData of 'IsDeptCellTemplate'" id="A16530" data-tid="A325150">
+            <span *ngIf="cellData.data.IsDept ==0" data-tid="A325151">Gelir</span>
+            <span *ngIf="cellData.data.IsDept ==1" data-tid="A325152">Gider</span>
+        </div>
+        <div *dxTemplate="let cellData of 'MonthCellTemplate'" id="A16530" data-tid="A325153">
+            <span *ngIf="cellData.data.Month ==1" data-tid="A325154">Ocak</span>
+            <span *ngIf="cellData.data.Month ==2" data-tid="A325155">Şubat</span>
+            <span *ngIf="cellData.data.Month ==3" data-tid="A325156">Mart</span>
+            <span *ngIf="cellData.data.Month ==4" data-tid="A325157">Nisan</span>
+            <span *ngIf="cellData.data.Month ==5" data-tid="A325158">Mayıs</span>
+            <span *ngIf="cellData.data.Month ==6" data-tid="A325159">Haziran</span>
+            <span *ngIf="cellData.data.Month ==7" data-tid="A325160">Temmuz</span>
+            <span *ngIf="cellData.data.Month ==8" data-tid="A325161">Ağustos</span>
+            <span *ngIf="cellData.data.Month ==9" data-tid="A325162">Eylül</span>
+            <span *ngIf="cellData.data.Month ==10" data-tid="A325163">Ekim</span>
+            <span *ngIf="cellData.data.Month ==11" data-tid="A325164">Kasım</span>
+            <span *ngIf="cellData.data.Month ==12" data-tid="A325165">Aralık</span>
+        </div>
+        <div *dxTemplate="let cellData of 'AverageCellTemplate'" id="A16530" data-tid="A325166">
+            <dx-number-box [rtlEnabled]="true" [readOnly]="true" [(value)]="cellData.data.Average" format="#,##0.00" data-tid="A325167"></dx-number-box>
+        </div>
+        <div *dxTemplate="let cellData of 'MovableAverageCellTemplate'" id="A16530" data-tid="A325168">
+            <dx-number-box [rtlEnabled]="true" [readOnly]="true" [(value)]="cellData.data.MovableAverage" format="#,##0.00" data-tid="A325169"></dx-number-box>
+        </div>
+        <div *dxTemplate="let cellData of 'ProcedureAverageCellTemplate'" id="A16530" data-tid="A325170">
+            <dx-number-box [rtlEnabled]="true" [readOnly]="true" [(value)]="cellData.data.ProcedureAverage" format="#,##0.00" data-tid="A325171"></dx-number-box>
+        </div>
+    </dx-data-grid>
+</div>
+

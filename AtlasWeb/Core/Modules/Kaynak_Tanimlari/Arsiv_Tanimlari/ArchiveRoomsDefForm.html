@@ -1,0 +1,144 @@
+﻿<div class="row" data-tid="A325529">
+	<NeStatePanelComponent [ObjectDefID]="archiveRoomsDefFormViewModel._ResArchiveRoom.ObjectDefID" [CurrentStateDefID]="archiveRoomsDefFormViewModel._ResArchiveRoom.CurrentStateDefID" (onSetState)="setState($event)" (onSaveChanges)="saveForm($event)" data-tid="A325530">
+	</NeStatePanelComponent>
+	<!--<div style="float: right">
+		<dx-button type="success" style="margin: 0px 5px 0px 0px" text="Yeni Oda Oluştur" (onClick)="clearForm()"></dx-button>
+	</div>-->
+</div>
+<div class="container-fluid" data-tid="A325531">
+	<form id="ArchiveRoomsDefForm" class="form-horizontal" role="form" data-tid="A325532">
+	</form>
+	<div class="row" data-tid="A325533">
+		<div class="col-sm-4" data-tid="A325534">
+
+			<label class="control-label" data-tid="A325535">Arşiv Oda Listesi</label>
+			<dx-data-grid #roomGrid height="500px" [(dataSource)]="archiveRoomsDefFormViewModel.RoomList" [columns]="RoomGridColumns" keyExpr="ObjectID" (onRowClick)="onGridRowClick($event)" data-tid="A325536">
+			</dx-data-grid>
+
+		</div>
+		<div class="col-sm-8" data-tid="A325537">
+			<div class="row" data-tid="A325538">
+				<label class="control-label col-sm-3" data-tid="A325539">
+					Bina </label>
+				<label class="control-label col-sm-3" data-tid="A325540">
+					Kanat </label>
+				<label class="control-label col-sm-3" data-tid="A325541">
+					Kat </label>
+
+			</div>
+			<div class="row" data-tid="A325542">
+				<div class="col-sm-3" data-tid="A325543">
+					<hvl-list-box #Validation (SelectedObjectChange)="onResBuildingChanged($event)" [AutoCompleteDialogHeight]="ResBuilding?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ResBuilding?.AutoCompleteDialogWidth" [AutoCompleteMode]="ResBuilding?.AutoCompleteMode" [BackColor]="ResBuilding?.BackColor" [DefinitionName]="ResBuilding?.ListDefName" [DisplayExpressionsCache]="archiveRoomsDefFormViewModel?.ListDefDisplayExpressions" [Enabled]="ResBuilding?.Enabled" [Font]="ResBuilding?.Font" [ForeColor]="ResBuilding?.ForeColor" [ListFilterExpression]="ResBuilding?.ListFilterExpression" [MinSearchLength]="ResBuilding?.MinSearchLength" [PopupDialogFieldConfig]="ResBuilding?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ResBuilding?.PopupDialogGridColumns" [PopupDialogHeight]="ResBuilding?.PopupDialogHeight" [PopupDialogTitle]="ResBuilding?.PopupDialogTitle" [PopupDialogWidth]="ResBuilding?.PopupDialogWidth" [ReadOnly]="ResBuilding?.ReadOnly" [SearchMode]="ResBuilding?.SearchMode" [SearchTimeout]="ResBuilding?.SearchTimeout" [SelectedObject]="archiveRoomsDefFormViewModel._ResArchiveRoom.ResBuilding" [TabIndex]="ResBuilding?.TabIndex" [Visible]="ResBuilding?.Visible" [width]="ResBuilding?.Width" data-tid="A325544">
+					</hvl-list-box>
+				</div>
+				<div class="col-sm-3" data-tid="A325545">
+					<hvl-list-box #Validation (SelectedObjectChange)="onResBuildingWingChanged($event)" [AutoCompleteDialogHeight]="ResBuildingWing?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ResBuildingWing?.AutoCompleteDialogWidth" [AutoCompleteMode]="ResBuildingWing?.AutoCompleteMode" [BackColor]="ResBuildingWing?.BackColor" [DefinitionName]="ResBuildingWing?.ListDefName" [DisplayExpressionsCache]="archiveRoomsDefFormViewModel?.ListDefDisplayExpressions" [Enabled]="ResBuildingWing?.Enabled" [Font]="ResBuildingWing?.Font" [ForeColor]="ResBuildingWing?.ForeColor" [ListFilterExpression]="ResBuildingWing?.ListFilterExpression" [MinSearchLength]="ResBuildingWing?.MinSearchLength" [PopupDialogFieldConfig]="ResBuildingWing?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ResBuildingWing?.PopupDialogGridColumns" [PopupDialogHeight]="ResBuildingWing?.PopupDialogHeight" [PopupDialogTitle]="ResBuildingWing?.PopupDialogTitle" [PopupDialogWidth]="ResBuildingWing?.PopupDialogWidth" [ReadOnly]="ResBuildingWing?.ReadOnly" [SearchMode]="ResBuildingWing?.SearchMode" [SearchTimeout]="ResBuildingWing?.SearchTimeout" [SelectedObject]="archiveRoomsDefFormViewModel._ResArchiveRoom.ResBuildingWing" [TabIndex]="ResBuildingWing?.TabIndex" [Visible]="ResBuildingWing?.Visible" [width]="ResBuildingWing?.Width" data-tid="A325546">
+					</hvl-list-box>
+				</div>
+				<div class="col-sm-3" data-tid="A325547">
+					<hvl-list-box #Validation (SelectedObjectChange)="onResFloorChanged($event)" [AutoCompleteDialogHeight]="ResFloor?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="ResFloor?.AutoCompleteDialogWidth" [AutoCompleteMode]="ResFloor?.AutoCompleteMode" [BackColor]="ResFloor?.BackColor" [DefinitionName]="ResFloor?.ListDefName" [DisplayExpressionsCache]="archiveRoomsDefFormViewModel?.ListDefDisplayExpressions" [Enabled]="ResFloor?.Enabled" [Font]="ResFloor?.Font" [ForeColor]="ResFloor?.ForeColor" [ListFilterExpression]="ResFloor?.ListFilterExpression" [MinSearchLength]="ResFloor?.MinSearchLength" [PopupDialogFieldConfig]="ResFloor?.PopupDialogFieldConfig" [PopupDialogGridColumns]="ResFloor?.PopupDialogGridColumns" [PopupDialogHeight]="ResFloor?.PopupDialogHeight" [PopupDialogTitle]="ResFloor?.PopupDialogTitle" [PopupDialogWidth]="ResFloor?.PopupDialogWidth" [ReadOnly]="ResFloor?.ReadOnly" [SearchMode]="ResFloor?.SearchMode" [SearchTimeout]="ResFloor?.SearchTimeout" [SelectedObject]="archiveRoomsDefFormViewModel._ResArchiveRoom.ResFloor" [TabIndex]="ResFloor?.TabIndex" [Visible]="ResFloor?.Visible" [width]="ResFloor?.Width" data-tid="A325548">
+					</hvl-list-box>
+				</div>
+
+			</div>
+			<br data-tid="A325549" />
+			<div class="row" data-tid="A325550">
+				<label class="control-label col-sm-3" data-tid="A325551">
+					Oda Adı </label>
+				<label class="control-label col-sm-3" data-tid="A325552">
+					Adres </label>
+				<label class="control-label col-sm-2" data-tid="A325553">
+					İrtibat Telefonu </label>
+				<label class="control-label col-sm-1" data-tid="A325554">
+					Aktif </label>
+			</div>
+			<div class="row" data-tid="A325555">
+				<div class="col-sm-3" data-tid="A325556">
+					<hvl-text-box #Validation (TextChange)="onNameChanged($event)" [BackColor]="Name?.BackColor" [CharacterCasing]="Name?.CharacterCasing" [Enabled]="Name?.Enabled" [Font]="Name?.Font" [ForeColor]="Name?.ForeColor" [height]="Name?.Height" [InputFormat]="Name?.InputFormat" [InputTurkishCharacter]="Name?.InputTurkishCharacter" [IsNonNumeric]="Name?.IsNonNumeric" [MultiLine]="Name?.Multiline" [ReadOnly]="Name?.ReadOnly" [Required]="Name?.Required" [TabIndex]="Name?.TabIndex" [TextAlign]="Name?.TextAlign" [Text]="archiveRoomsDefFormViewModel._ResArchiveRoom.Name" [Visible]="Name?.Visible" data-tid="A325557">
+					</hvl-text-box>
+				</div>
+
+				<div class="col-sm-3" data-tid="A325558">
+					<hvl-text-box #Validation (TextChange)="onLocationChanged($event)" [BackColor]="Location?.BackColor" [CharacterCasing]="Location?.CharacterCasing" [Enabled]="Location?.Enabled" [Font]="Location?.Font" [ForeColor]="Location?.ForeColor" [height]="Location?.Height" [InputFormat]="Location?.InputFormat" [InputTurkishCharacter]="Location?.InputTurkishCharacter" [IsNonNumeric]="Location?.IsNonNumeric" [MultiLine]="Location?.Multiline" [ReadOnly]="Location?.ReadOnly" [Required]="Location?.Required" [TabIndex]="Location?.TabIndex" [TextAlign]="Location?.TextAlign" [Text]="archiveRoomsDefFormViewModel._ResArchiveRoom.Location" [Visible]="Location?.Visible" data-tid="A325559">
+					</hvl-text-box>
+				</div>
+				<div class="col-sm-2" data-tid="A325560">
+					<hvl-text-box #Validation (TextChange)="onContactPhoneChanged($event)" [BackColor]="ContactPhone?.BackColor" [CharacterCasing]="ContactPhone?.CharacterCasing" [Enabled]="ContactPhone?.Enabled" [Font]="ContactPhone?.Font" [ForeColor]="ContactPhone?.ForeColor" [height]="ContactPhone?.Height" [InputFormat]="ContactPhone?.InputFormat" [InputTurkishCharacter]="ContactPhone?.InputTurkishCharacter" [IsNonNumeric]="ContactPhone?.IsNonNumeric" [MultiLine]="ContactPhone?.Multiline" [ReadOnly]="ContactPhone?.ReadOnly" [Required]="ContactPhone?.Required" [TabIndex]="ContactPhone?.TabIndex" [TextAlign]="ContactPhone?.TextAlign" [Text]="archiveRoomsDefFormViewModel._ResArchiveRoom.ContactPhone" [Visible]="ContactPhone?.Visible" data-tid="A325561">
+					</hvl-text-box>
+				</div>
+				<div class="col-sm-1" data-tid="A325562">
+					<hvl-checkbox #Validation (ValueChange)="onIsActiveChanged($event)" [AllowThreeState]="IsActive?.ThreeState" [BackColor]="IsActive?.BackColor" [Enabled]="IsActive?.Enabled" [Font]="IsActive?.Font" [ForeColor]="IsActive?.ForeColor" [IsTitleLeft]="IsActive?.IsTitleLeft" [Margin]="IsActive?.Margin" [ReadOnly]="IsActive?.ReadOnly" [TabIndex]="IsActive?.TabIndex" [TitleTopPadding]="IsActive?.TitleTopPadding" [Title]="IsActive?.Title" [Value]="archiveRoomsDefFormViewModel._ResArchiveRoom.ISACTIVE" [Visible]="IsActive?.Visible" data-tid="A325563">
+					</hvl-checkbox>
+				</div>
+			</div>
+
+			<br data-tid="A325564" />
+
+			<div class="row" data-tid="A325565">
+				<div class="col-sm-6" data-tid="A325566">
+
+					<div class="row" data-tid="A325567">
+						<label class="control-label col-sm-5" data-tid="A325568">
+							Dolap Adı </label>
+
+						<label class="control-label col-sm-4" data-tid="A325569">
+							Aktif </label>
+					</div>
+					<div class="row" data-tid="A325570">
+						<div class="col-sm-5" data-tid="A325571">
+							<dx-text-box [(value)]="CabinetName" i18n-placeholder="@@M27276" id="A1148" data-tid="A325572">
+							</dx-text-box>
+						</div>
+
+
+						<div class="col-sm-4" data-tid="A325573">
+							<dx-check-box [(value)]="CabinetActive" id="A1465" data-tid="A325574"></dx-check-box>
+						</div>
+						<div class="col-sm-3" data-tid="A325575">
+							<dx-button type="default" text="Ekle / Güncelle" (onClick)="AddOrUpdateCabinet()" id="A19853" data-tid="A325576"></dx-button>
+						</div>
+					</div>
+
+					<label class="control-label" data-tid="A325577">Dolap Listesi</label>
+					<dx-data-grid [(dataSource)]="archiveRoomsDefFormViewModel.CabinetList" [columns]="CabinetGridColumns" (onRowClick)="onCabinetGridRowClick($event)" data-tid="A325578">
+					</dx-data-grid>
+
+				</div>
+				<div class="col-sm-6" *ngIf="selectedCabinet!=null" data-tid="A325579">
+
+					<div class="row" data-tid="A325580">
+						<label class="control-label col-sm-3" data-tid="A325581">
+							Raf Adı </label>
+						<label class="control-label col-sm-3" data-tid="A325582">
+							Dosya Kapasitesi </label>
+						<label class="control-label col-sm-3" data-tid="A325583">
+							Aktif </label>
+					</div>
+					<div class="row" data-tid="A325584">
+						<div class="col-sm-3" data-tid="A325585">
+							<dx-text-box [(value)]="ShelfName" i18n-placeholder="@@M27276" id="A1148" data-tid="A325586">
+							</dx-text-box>
+						</div>
+						<div class="col-sm-3" data-tid="A325587">
+							<dx-number-box [(value)]="ShelfFileCapacity" max="9999999" min="0" id="A2030" data-tid="A325588">
+							</dx-number-box>
+						</div>
+
+						<div class="col-sm-3" data-tid="A325589">
+							<dx-check-box [(value)]="ShelfActive" id="A1465" data-tid="A325590"></dx-check-box>
+						</div>
+						<div class="col-sm-3" data-tid="A325591">
+							<dx-button type="default" text="Ekle / Güncelle" (onClick)="AddOrUpdateShelf()" id="A19853" data-tid="A325592">
+							</dx-button>
+						</div>
+					</div>
+
+					<label class="control-label" data-tid="A325593">Raf Listesi</label>
+					<dx-data-grid [(dataSource)]="selectedCabinet.ResShelves" [columns]="ShelfGridColumns" (onRowClick)="onShelfGridRowClick($event)" data-tid="A325594">
+					</dx-data-grid>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

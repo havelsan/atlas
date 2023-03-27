@@ -1,0 +1,154 @@
+﻿<div class="row" data-tid="A354940">
+    <div class="col-sm-8" data-tid="A354941">
+
+    </div>
+    <div class="col-sm-2" style="text-align: right" data-tid="A354942">
+        <dx-button type="danger" class=" btn-danger" (click)="cancel()" id="A17492" data-tid="A354943"><span class="fa fa-times" id="A17493" data-tid="A354944"></span>&nbsp;Vazgeç</dx-button>
+    </div>
+    <div class="col-sm-2" style="text-align: right" data-tid="A354945">
+        <dx-button type="success" style="margin-right:3px" (click)="saveRequestPlanningForm()" id="A17495" data-tid="A354946"><span class="fa fa-save" id="A17496" data-tid="A354947"></span>&nbsp;Kaydet</dx-button>
+    </div>
+</div>
+<div class="row" style="padding-top:5px" data-tid="A354948">
+    <label class="col-sm-12" data-tid="A354949">
+        Kullanıcı Şablonları
+    </label>
+</div>
+<div class="row" data-tid="A354950">
+    <div class="col-md-2" data-tid="A354951">
+        <dx-select-box #TemplateCombo [dataSource]="viewModel.userTemplateList" (onItemClick)="SelectUserTemplate($event)" noDataText="Kullanıcı Şablonu Bulunamadı!" displayExpr="Description" searchEnabled="true" searchMode="contains" valueExpr="ObjectID" data-tid="A354952">
+        </dx-select-box>
+    </div>
+    <div class="col-md-2" style="text-align: center" data-tid="A354953">
+        <dx-button type="default" *ngIf="selectedUserTemplate != null" (onClick)="btnClearUserTemplate_Click()" text="Temizle" style="margin-left:0px;" data-tid="A354954">
+        </dx-button>
+    </div>
+    <div class="col-md-2" data-tid="A354955">
+        <dx-button type="danger" *ngIf="selectedUserTemplate != nulll" (onClick)="btnDeleteSelectedUserTemplate_Click()" text="Sil" style="margin-left:0px;" data-tid="A354956">
+        </dx-button>
+    </div>
+</div>
+
+<div class="row" style="padding-top:5px" data-tid="A354957">
+    <label class="col-sm-3" data-tid="A354958">
+        Planlama Süre Türü :
+    </label>
+    <div class="col-sm-6" data-tid="A354959">
+        <dx-radio-group [items]="PlanningTypes" displayExpr="name" [value]="PlanningTypes[0]" (onValueChanged)="onPlanningTypeChanged($event)" data-tid="A354960">
+        </dx-radio-group>
+    </div>
+    <div class="col-sm-3" data-tid="A354961">
+        <div class="row" *ngIf="viewModel.PlannedProcedureRequest.IsOnCureCount == true" data-tid="A354962">
+            <label class="col-sm-12" data-tid="A354963">
+                Kaçıncı Kür
+            </label>
+        </div>
+        <div class="row" data-tid="A354964">
+            <div class="col-sm-12" data-tid="A354965">
+                <dx-number-box [(value)]="viewModel.PlannedProcedureRequest.WhichCure" [showSpinButtons]="true" [showClearButton]="true" data-tid="A354966"></dx-number-box>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row" data-tid="A354967">
+    <div class="col-sm-6" style="background-color: #f0f8ff;" data-tid="A354968">
+        <div class="row" data-tid="A354969">
+            <label class="col-sm-12" data-tid="A354970">
+                İstem Üniteleri
+            </label>
+        </div>
+        <div class="row" data-tid="A354971">
+            <div class="col-sm-12" data-tid="A354972">
+                <dx-list [dataSource]="viewModel.FormUnitList" [height]="150" selectionMode="single" displayExpr="UnitName" (onItemClick)="onUnitSelected($event)" data-tid="A354973">
+                </dx-list>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-sm-6" *ngIf="selectedFormUnit != null" style="background-color: #f0f8ff;" data-tid="A354974">
+        <div class="row" data-tid="A354975">
+            <label class="col-sm-12" data-tid="A354976">
+                İstem Kategorileri
+            </label>
+        </div>
+        <div class="row" data-tid="A354977">
+            <div class="col-sm-12" data-tid="A354978">
+                <dx-list [dataSource]="selectedFormUnit.FormCategories" [height]="150" selectionMode="single" displayExpr="CategoryName" searchEnabled="true" searchMode="contains" [searchExpr]="['teshisKodu','teshisAdi']" (onItemClick)="onCategorySelected($event)" data-tid="A354979">
+                </dx-list>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row" style="padding-top:5px" *ngIf="selectedFormCategory != null" style="background-color: #f0f8ff;" data-tid="A354980">
+    <label class="col-sm-12" data-tid="A354981">
+        İstem Listesi
+    </label>
+</div>
+<div class="row" *ngIf="selectedFormCategory != null" style="padding-bottom:5px;background-color: #f0f8ff;" data-tid="A354982">
+    <div class="col-sm-12" data-tid="A354983">
+        <dx-list [dataSource]="selectedFormCategory.FormDetailDefinitionList" [height]="200" selectionMode="single" displayExpr="ProcedureDefinition.Name" searchEnabled="true" searchMode="contains" [searchExpr]="['ProcedureDefinition.Name']" (onItemClick)="onDetailSelected($event)" data-tid="A354984">
+        </dx-list>
+    </div>
+</div>
+<br data-tid="A354985" />
+<div class="row" style="padding-top:5px" data-tid="A354986">
+    <label class="col-sm-12" data-tid="A354987">
+        Planlanacak Tetkikler
+    </label>
+</div>
+<div class="row" data-tid="A354988">
+    <div class="col-sm-12" data-tid="A354989">
+        <dx-data-grid #selectedProcedureDetailGrid showColumnLines="true" showRowLines="true" showBorders="true" [allowColumnResizing]="true" height="95%" [dataSource]="viewModel.FormDetailDefinitions" [columns]='SelectedFormDetailGridColumns' [height]="175" id="A12579" data-tid="A354990">
+            <div *dxTemplate="let cellData of 'deleteCellTemplate'" id="A27832" data-tid="A354991">
+                <i class="fa fa fa-trash" style="cursor:pointer" (click)="selectedProcedureDetailGrid_CellContentClick(cellData)" data-tid="A354992"></i>
+            </div>
+        </dx-data-grid>
+    </div>
+</div>
+<br data-tid="A354993" />
+<div class="row" style="padding-top:5px" *ngIf="viewModel.OldPlannedRequests.length > 0" style="background-color: #e2ecf8;" data-tid="A354994">
+    <label class="col-sm-12" data-tid="A354995">
+        Bu İşleme Yapılmış Planlamalar
+    </label>
+</div>
+<div class="row" *ngIf="viewModel.OldPlannedRequests.length > 0" style="background-color: #e2ecf8;padding-bottom:5px" data-tid="A354996">
+    <div class="col-sm-12" data-tid="A354997">
+        <dx-data-grid showColumnLines="true" showRowLines="true" showBorders="true" [allowColumnResizing]="true" height="95%" [dataSource]="viewModel.OldPlannedRequests" [columns]='OldPlannedRequestColumns' [height]="115" id="A12579" data-tid="A354998">
+            <div *dxTemplate="let cellData of 'InfoCellTemplate'" id="A27832" data-tid="A354999">
+                <i class="fa fa-xx fa-info" style="cursor:pointer" (click)="selectedOldPlanGrid_CellContentClick(cellData)" data-tid="A355000"></i>
+            </div>
+        </dx-data-grid>
+    </div>
+</div>
+
+<dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A31651" data-tid="A355001">
+</dx-load-panel>
+
+<dx-popup width="700px" height="400px" [(visible)]="showOldPlannedProceduresDetail" [closeOnOutsideClick]="true" title="Detay" data-tid="A355002">
+    <div *dxTemplate="let data of 'content'" data-tid="A355003">
+        <div class="row" style="padding-top:5px" *ngIf="lastSelectedOldPlannedRequest.HasTemplate == false" data-tid="A355004">
+            <div class="col-md-9" data-tid="A355005">
+                <dx-text-box [(value)]="userTemplateName" placeholder="Eklenecek Şablon Adı" id="A30432" data-tid="A355006">
+                </dx-text-box>
+            </div>
+            <div class="col-md-3" data-tid="A355007">
+                <dx-button type="success" [disabled]="sended" (onClick)="btnAddUserTemplate_Click()" text="Şablon Oluştur" style="margin-left:0px;" data-tid="A355008"></dx-button>
+            </div>
+        </div>
+        <br data-tid="A355009" />
+        <div class="row" data-tid="A355010">
+            <div class="col-sm-12" data-tid="A355011">
+                <dx-data-grid showColumnLines="true" showRowLines="true" showBorders="true" [allowColumnResizing]="true" height="95%" [dataSource]="lastSelectedOldPlannedRequest.FormDetailDefinitionList" [columns]='PlannedDetailDefinitionColumns' [height]="200" id="A12579" data-tid="A355012">
+
+                </dx-data-grid>
+                <!--(onRowClick)="grdCashOfficeWorkListClick($event) (onContextMenuPreparing)="onGrdWorkListContextPreparing($event)"-->
+            </div>
+        </div>
+    </div>
+</dx-popup>

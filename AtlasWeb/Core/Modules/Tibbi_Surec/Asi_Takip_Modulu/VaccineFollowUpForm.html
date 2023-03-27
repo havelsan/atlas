@@ -1,0 +1,91 @@
+﻿
+
+<!--<div class="col-sm-12 margin-bottom-10 " id="A10496">
+
+    <dx-button text="İptal Et" rtlEnabled="true" class="dx-button-danger pull-right" (onClick)="CancelVaccineDetail()" i18n-text="@@M16526" id="A10497"></dx-button>
+    <dx-button text="Kaydet" rtlEnabled="true" class="dx-button-blue pull-right" (onClick)="SaveVaccineCalendar()" i18n-text="@@M17386" id="A10498"></dx-button>
+</div>-->
+
+    <form id="VaccineFollowUpForm" class="form-horizontal" role="form" data-tid="A340167">
+        
+    </form>
+    
+    <div class="row" id="A10499" data-tid="A340168">
+        <div class="col-sm-10 margin-bottom-10" id="A10500" data-tid="A340169">
+            <a href="javascript:void(0)" class="nav-link" (click)="onPrepareVaccineCalendar()" id="A10501" data-tid="A340170">
+                <i style="float:left;margin-right:20px" class="fa fa-calendar fa-2x" data-toggle="tooltip" data-placement="bottom" title="Aşı Takvimi Oluştur" i18n-title="@@M11217" id="A10502" data-tid="A340171"></i>
+            </a>
+            <a href="javascript:void(0)" class="nav-link" (click)="onAddNewVaccine()" id="A10503" data-tid="A340172">
+                <i style="float:left;margin-right:20px" class="fa fa-plus-circle fa-2x" data-toggle="tooltip" data-placement="bottom" title="Aşı Ekle" i18n-title="@@M11200" id="A10504" data-tid="A340173"></i>
+            </a>
+            <a href="javascript:void(0)" class="nav-link" (click)="onOpenVaccineReport()" data-tid="A340174">
+                <i style="float:left;margin-right:20px" class="fas fa-file-alt fa-2x" data-toggle="tooltip" data-placement="bottom" title="Aşı Takvim Raporu" data-tid="A340175"></i>
+            </a>
+
+        </div>
+  
+
+    </div>
+    <div class="row" id="A10505" data-tid="A340176">
+        <div class="col-sm-4" id="A10506" data-tid="A340177">
+            <dx-data-grid #vaccinedetails [paging]="{enable: false, pageSize:1000000}" style="height:600px; " [columns]="VaccineListColumns" [dataSource]="vaccineFollowUpFormViewModel._VaccineFollowUp.VaccineDetails" (onSelectionChanged)="onSelectVaccine($event)" allowColumnReordering="true" allowColumnResizing="true" [selection]="{mode: 'single',allowSelectAll: false}" [editing]="{mode: 'row' ,allowUpdating:false , allowAdding:false, allowDeleting:true}" (onRowRemoving)="onRowRemoving($event)" (onRowPrepared)="onRowPreparedVaccineList($event)" id="A10507" data-tid="A340178">
+              
+                <dxo-group-panel [visible]="false" id="A10508" data-tid="A340179"></dxo-group-panel>
+                <dxo-grouping #expand [autoExpandAll]="true" id="A10509" data-tid="A340180"></dxo-grouping>
+             
+            </dx-data-grid>
+        </div>
+        <div class="col-sm-8" id="A10510" data-tid="A340181">
+            <VaccineApplicationForm [vaccineDetail]="VaccineRow" [_VaccineFollowupEA]="vaccineFollowUpFormViewModel._VaccineFollowUp" [_PatientID]="vaccineFollowUpFormViewModel.PatientID" (refreshDetails)="refreshDetails()" [_IsReadOnly]="IsVaccineDetailReadOnly" id="A10511" data-tid="A340182"> </VaccineApplicationForm>
+        </div>
+        </div>
+   
+
+    
+
+
+    <dx-popup width="800px" height="550px" [(visible)]="showVaccinedefinitionsPopup" [closeOnOutsideClick]="true" title="Aşı Takvimi Oluştur" i18n-title="@@M11217" id="A10512" data-tid="A340183">
+        <div *dxTemplate="let data of 'content'" id="A10513" data-tid="A340184">
+
+            <div class="col-sm-12" id="A10514" data-tid="A340185">
+                <div class="row" id="A10515" data-tid="A340186">
+                    <dx-data-grid showColumnLines="true" showRowLines="true" showBorders="true" [height]="400" [selection]="{mode: 'multiple',showCheckBoxesMode:'always',selectAllMode:'page'}" [dataSource]="vaccineDefinitionsResult" [columns]="VaccineDefinitionsColumns" [masterDetail]="{ enabled: true, template: 'detail' }" [filterRow]="{visible: false}" [editing]="{allowUpdating: true, mode: 'cell'}" [headerFilter]="{visible: false}" (onSelectionChanged)="onSelectionChangedVaccineList($event)" (onRowUpdating)="onStartDateChanged($event)" id="A10516" data-tid="A340187">
+                        <dxo-paging [pageSize]="20" id="A10517" data-tid="A340188"></dxo-paging>
+
+                        <div *dxTemplate="let row of 'startDateTemplate'" id="A10518" data-tid="A340189">
+                            <dx-date-box height="18px" style="margin-top: -4px;margin-bottom: -5px;padding-top:0px" [value]="row.value" (onValueChanged)="onStartDateChanged($event,row)" id="A10519" data-tid="A340190"></dx-date-box>
+                        </div>
+
+                        <div *dxTemplate="let period of 'detail'" id="A10520" data-tid="A340191">
+                            <div class="internal-grid-container" id="A10521" data-tid="A340192">
+
+                                <div class="row" id="A10522" data-tid="A340193">
+                                    <div class="col-sm-12" id="A10523" data-tid="A340194">
+                                        <dx-data-grid [dataSource]="period.data.VaccinePeriodList" [columns]="VaccinePeriodColumns" [columnAutoWidth]="true" [editing]="{allowUpdating: true, mode: 'cell'}" id="A10524" data-tid="A340195">
+
+                                        </dx-data-grid>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </dx-data-grid>
+                </div>
+            </div>
+
+
+            <div class="row" id="A10525" data-tid="A340196">
+                <div class="col-sm-10" id="A10526" data-tid="A340197">
+                </div>
+                <div class="col-sm-2" id="A10527" data-tid="A340198">
+                    <br id="A10528" data-tid="A340199" />
+
+                    <dx-button (onClick)="onCreateVaccineCalendar()" text="Tamam" i18n-text="@@M22704" id="A10529" data-tid="A340200"></dx-button>
+                </div>
+            </div>
+
+        </div>
+
+
+    </dx-popup>
+
+

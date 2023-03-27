@@ -1,0 +1,69 @@
+﻿
+
+  
+<div class="container-fluid form-horizontal" style="height:100%" id="A30755" data-tid="A371213">
+
+    <dx-box direction="row" width="100%" [height]="30" id="A30756" data-tid="A371214">
+
+        <dxi-item [ratio]="11" id="A30757" data-tid="A371215">
+            <dx-menu [dataSource]="menuData" (onItemClick)="onItemClickTopMenu($event)" displayExpr="name" [showFirstSubmenuMode]="{name: 'onHover',delay: {show: 100,hide: 300} }" [hideSubmenuOnMouseLeave]="true" id="A30758" data-tid="A371216">
+            </dx-menu>
+        </dxi-item>
+        <dxi-item [ratio]="1" style="align-items:flex-end" id="A30759" data-tid="A371217">
+            <dx-button style="float: right;" icon="fa fa-refresh" (onClick)="btnRefreshClicked()" id="A30760" data-tid="A371218">Yenile</dx-button>
+        </dxi-item>
+    </dx-box>
+
+    <div class="row" id="A30761" data-tid="A371219">
+        <div class="col-sm-12" id="A30762" data-tid="A371220">
+            <dx-data-grid rowAlternationEnabled="true" [columnResizingMode]="widget" [selection]="{mode: 'multiple',showCheckBoxesMode: 'onLongTap'}" (onRowClick)="searchResultClicked($event)" [dataSource]="invoiceEpisodeSearchResultFormModel.InvoiceEpisodeResultList" [columns]='InvoiceEpisodeSearchResultListColumns' [height]="searchResultHeight" [(selectedRowKeys)]="selectedRowKeysEpisodeResultList" [disabled]="collectiveOperationStart" (onContentReady)="onContentReadyEpisodeSearchResultList($event)" [filterRow]="{visible: true}" [headerFilter]="{visible: true}" [allowColumnReordering]="true" [allowColumnResizing]="true" [columnAutoWidth]="true" id="A30763" data-tid="A371221">
+                <dxo-column-chooser [enabled]="true" height="600" width="300" title="Başvuru listesi özelleştirme menüsü" i18n-title="@@M27733" id="A30764" data-tid="A371222">
+                </dxo-column-chooser>
+                <dxo-export [enabled]="true" fileName="Fatura Sorgusu Başvuru Listesi" [allowExportSelectedData]="true" i18n-fileName="@@M14196" id="A30765" data-tid="A371223"></dxo-export>
+
+                <dxo-summary id="A30766" data-tid="A371224">
+                    <dxi-total-item column="HospitalProtocolNo" summaryType="count" [customizeText]="gridRowCount" id="A30767" data-tid="A371225">
+                    </dxi-total-item>
+                    <dxi-total-item column="HBYSTutari" summaryType="sum" [customizeText]="customizeMoney" id="A30768" data-tid="A371226">
+                    </dxi-total-item>
+                    <dxi-total-item column="FaturaTutari" summaryType="sum" [customizeText]="customizeMoney" id="A30769" data-tid="A371227">
+                    </dxi-total-item>
+                </dxo-summary>
+
+            </dx-data-grid>
+        </div>
+    </div>
+    <div class="row" style="padding-top:3px" id="A30770" data-tid="A371228">
+        <dx-box direction="row" width="100%" [height]="30" [visible]="collectiveOperationPanel" id="A30771" data-tid="A371229">
+            <dxi-item [ratio]="4" id="A30772" data-tid="A371230">
+
+
+                <dx-progress-bar [min]="0" [max]="totalCount" [statusFormat]="format" [value]="succesCount+errorCount" id="A30773" data-tid="A371231">
+                </dx-progress-bar>
+            </dxi-item>
+            <dxi-item [ratio]="4" style="align-items:center" id="A30774" data-tid="A371232">
+
+                <b id="A30775" data-tid="A371233"> Toplam Çalışılan Kayıt Sayısı: <font color="#08c" id="A30776" data-tid="A371234">{{totalCount}}</font>      Başarılı: <font color="#08c" id="A30777" data-tid="A371235">{{succesCount}}</font>  Hatalı: <font color="#08c" id="A30778" data-tid="A371236">{{errorCount}}</font> </b>
+            </dxi-item>
+
+            <dxi-item [ratio]="2" style="align-items:flex-end" id="A30779" data-tid="A371237">
+                <div class="row" id="A30780" data-tid="A371238">
+                    <dx-button icon="fa fa-list" (onClick)="onClickShowErrorList()" text="Hata Listesi" i18n-text="@@M15544" id="A30781" data-tid="A371239"></dx-button>
+                    <dx-button icon="fa fa-sort-amount-desc" (onClick)="onClickExitCollectiveOperation()" text="Gizle" i18n-text="@@M14812" id="A30782" data-tid="A371240"></dx-button>
+                </div>
+            </dxi-item>
+        </dx-box>
+    </div>
+
+    <dx-popup width="1000px" height="800px" [(visible)]="showErrorListPopup" [closeOnOutsideClick]="true" title="Hatalı Kayıtlar Deyatları" i18n-title="@@M15550" id="A30783" data-tid="A371241">
+        <div *dxTemplate="let data of 'content'" id="A30784" data-tid="A371242">
+
+            <dx-data-grid [height]="700" [selection]="{mode: 'single'}" [dataSource]="errorList" [columns]="ErrorListColumns" [filterRow]="{visible: true}" [headerFilter]="{visible: true}" id="A30785" data-tid="A371243">
+                <dxo-paging [pageSize]="20" id="A30786" data-tid="A371244"></dxo-paging>
+            </dx-data-grid>
+
+        </div>
+    </dx-popup>
+</div>
+
+

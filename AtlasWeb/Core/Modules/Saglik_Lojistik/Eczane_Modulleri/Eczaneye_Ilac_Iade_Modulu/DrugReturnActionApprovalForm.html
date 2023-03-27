@@ -1,0 +1,78 @@
+﻿<h4 class="logisticLabel" style="margin-left:40%;color:#08c;" id="A3570" data-tid="A328618">{{FormCaption}}</h4>
+
+<NeStatePanelComponent [OutgoingTransitions]="drugReturnActionApprovalFormViewModel?.OutgoingTransitions" [StateReports]="drugReturnActionApprovalFormViewModel?.CurrentStateReports" [ObjectID]="drugReturnActionApprovalFormViewModel?._DrugReturnAction?.ObjectID" [ObjectDefID]="drugReturnActionApprovalFormViewModel?._DrugReturnAction?.ObjectDefID" [CurrentStateDefID]="drugReturnActionApprovalFormViewModel._DrugReturnAction.CurrentStateDefID" [DropStateList]="DropStateList" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" (onCancel)="cancel()" id="A3360" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A328619">
+</NeStatePanelComponent>
+
+<form id="DrugReturnActionApprovalForm" class="form-horizontal" role="form" data-tid="A328620">
+
+    <div class="container-fluid" id="A3361" data-tid="A328621">
+
+        <div class="row" id="A3362" data-tid="A328622">
+            <div class="col-md-4 col-sm-12" id="A3363" data-tid="A328623">
+                <patient-demographics-form [actionId]="drugReturnActionApprovalFormViewModel._DrugReturnAction.ObjectID" id="A3364" data-tid="A328624"></patient-demographics-form>
+            </div>
+            <div class="col-md-2 col-sm-12" id="A3365" data-tid="A328625">
+                <div class="row" id="A3366" data-tid="A328626">
+                    <div class="col-md-12" id="A3367" data-tid="A328627">
+                        <label class="control-label" id="A3368" data-tid="A328628">Klinik Protokol No</label>
+                    </div>
+                </div>
+                <div class="row" id="A3369" data-tid="A328629">
+                    <div class="col-md-12" id="A3370" data-tid="A328630">
+                        <label class="control-label" id="A3371" data-tid="A328631">Hastanın Tedavi Gördüğü Klinik</label>
+                    </div>
+                </div>
+                <div class="row" id="A3372" data-tid="A328632">
+                    <div class="col-md-6" id="A3373" data-tid="A328633">
+                        <label class="control-label" id="A3374" data-tid="A328634">Oda</label>
+                    </div>
+                    <div class="col-md-6" id="A3375" data-tid="A328635">
+                        <label class="control-label" id="A3376" data-tid="A328636">Yatak</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12" id="A3377" data-tid="A328637">
+                <DiagnosisGridReadOnlyForm [EpisodeAction]="drugReturnActionApprovalFormViewModel._DrugReturnAction" id="A3378" data-tid="A328638"></DiagnosisGridReadOnlyForm>
+
+            </div>
+        </div>
+
+
+        <br id="A3379" data-tid="A328639" />
+        <div class="row" id="A3380" data-tid="A328640">
+            <div class="col-sm-2" id="A3381" data-tid="A328641">
+                <label class="control-label" id="A3382" data-tid="A328642">
+                    İşlem No
+                </label>
+                <hvl-text-box #Validation (TextChange)="onIDChanged($event)" [BackColor]="ID?.BackColor" [CharacterCasing]="ID?.CharacterCasing" [Enabled]="ID?.Enabled" [Font]="ID?.Font" [ForeColor]="ID?.ForeColor" [height]="ID?.Height" [InputFormat]="ID?.InputFormat" [InputTurkishCharacter]="ID?.InputTurkishCharacter" [IsNonNumeric]="ID?.IsNonNumeric" [MultiLine]="ID?.Multiline" [ReadOnly]="ID?.ReadOnly" [Required]="ID?.Required" [TabIndex]="ID?.TabIndex" [TextAlign]="ID?.TextAlign" [Text]="drugReturnActionApprovalFormViewModel?._DrugReturnAction?.ID" [Visible]="ID?.Visible" id="A3383" data-tid="A328643"></hvl-text-box>
+            </div>
+            <div class="col-sm-2" id="A3384" data-tid="A328644">
+                <label class="control-label" id="A3385" data-tid="A328645">
+                    İşlem Tarihi
+                </label>
+                <hvl-date-picker #Validation (ValueChange)="onActionDateChanged($event)" [BackColor]="ActionDate?.BackColor" [CustomFormat]="ActionDate?.CustomFormat" [Enabled]="ActionDate?.Enabled" [Font]="ActionDate?.Font" [ForeColor]="ActionDate?.ForeColor" [Format]="ActionDate?.Format" [Max]="ActionDate?.Max" [Min]="ActionDate?.Min" [ReadOnly]="ActionDate?.ReadOnly" [Required]="ActionDate?.Required" [TabIndex]="ActionDate?.TabIndex" [Value]="drugReturnActionApprovalFormViewModel?._DrugReturnAction?.ActionDate" [Visible]="ActionDate?.Visible" id="A3386" data-tid="A328646"></hvl-date-picker>
+            </div>
+            <div class="col-sm-8" id="A3387" data-tid="A328647">
+                <label class="control-label" id="A3388" data-tid="A328648">
+                    Eczane
+                </label>
+                <hvl-list-box #Validation (SelectedObjectChange)="onPharmacyStoreDefinitionChanged($event)" [AutoCompleteDialogHeight]="PharmacyStoreDefinition?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="PharmacyStoreDefinition?.AutoCompleteDialogWidth" [AutoCompleteMode]="PharmacyStoreDefinition?.AutoCompleteMode" [BackColor]="PharmacyStoreDefinition?.BackColor" [DefinitionName]="PharmacyStoreDefinition?.ListDefName" [DisplayExpressionsCache]="drugReturnActionApprovalFormViewModel?.ListDefDisplayExpressions" [Enabled]="PharmacyStoreDefinition?.Enabled" [Font]="PharmacyStoreDefinition?.Font" [ForeColor]="PharmacyStoreDefinition?.ForeColor" [ListFilterExpression]="PharmacyStoreDefinition?.ListFilterExpression" [MinSearchLength]="PharmacyStoreDefinition?.MinSearchLength" [PopupDialogFieldConfig]="PharmacyStoreDefinition?.PopupDialogFieldConfig" [PopupDialogGridColumns]="PharmacyStoreDefinition?.PopupDialogGridColumns" [PopupDialogHeight]="PharmacyStoreDefinition?.PopupDialogHeight" [PopupDialogTitle]="PharmacyStoreDefinition?.PopupDialogTitle" [PopupDialogWidth]="PharmacyStoreDefinition?.PopupDialogWidth" [ReadOnly]="PharmacyStoreDefinition?.ReadOnly" [SearchMode]="PharmacyStoreDefinition?.SearchMode" [SearchTimeout]="PharmacyStoreDefinition?.SearchTimeout" [SelectedObject]="drugReturnActionApprovalFormViewModel?._DrugReturnAction?.PharmacyStoreDefinition" [TabIndex]="PharmacyStoreDefinition?.TabIndex" [Visible]="PharmacyStoreDefinition?.Visible" [width]="PharmacyStoreDefinition?.Width" id="A3389" data-tid="A328649"></hvl-list-box>
+            </div>
+        </div>
+        <br id="A3390" data-tid="A328650" />
+        <div class="row" id="A3391" data-tid="A328651">
+            <div class="col-sm-12" id="A3392" data-tid="A328652">
+                <label class="control-label" id="A3393" data-tid="A328653">
+                    İade Nedeni
+                </label>
+                <hvl-text-box #Validation [(Text)]="drugReturnActionApprovalFormViewModel._DrugReturnAction.DrugReturnReason" [BackColor]="DrugReturnReason?.BackColor" [CharacterCasing]="DrugReturnReason?.CharacterCasing" [Enabled]="DrugReturnReason?.Enabled" [Font]="DrugReturnReason?.Font" [ForeColor]="DrugReturnReason?.ForeColor" [height]="DrugReturnReason?.Height" [InputFormat]="DrugReturnReason?.InputFormat" [InputTurkishCharacter]="DrugReturnReason?.InputTurkishCharacter" [IsNonNumeric]="DrugReturnReason?.IsNonNumeric" [MultiLine]="DrugReturnReason?.Multiline" [ReadOnly]="DrugReturnReason?.ReadOnly" [Required]="DrugReturnReason?.Required" [TabIndex]="DrugReturnReason?.TabIndex" [TextAlign]="DrugReturnReason?.TextAlign" [Visible]="DrugReturnReason?.Visible" id="A3394" data-tid="A328654"></hvl-text-box>
+            </div>
+        </div>
+        <br id="A3395" data-tid="A328655" />
+        <div class="row" id="A3396" data-tid="A328656">
+            <div class="col-sm-12" id="A3397" data-tid="A328657">
+                <hvl-datagrid (CellContentClicked)="onDrugReturnActionDetailsCellContentClicked($event)" (CellValueChange)="DrugReturnActionDetails_CellValueChangedEmitted($event)" (InitNewRow)="initDrugReturnActionDetailsNewRow($event)" (RowInserting)="onDrugReturnActionDetailsRowInserting($event)" (SelectedObjectChange)="onSelectionChangeDrugReturnActionDetails($event)" [AllowUserToAddRows]="DrugReturnActionDetails?.AllowUserToAddRows" [AllowUserToDeleteRows]="DrugReturnActionDetails?.AllowUserToDeleteRows" [Columns]="DrugReturnActionDetailsColumns" [dataSource]="drugReturnActionApprovalFormViewModel?._DrugReturnAction?.DrugReturnActionDetails" [DeleteButtonWidth]="DrugReturnActionDetails?.DeleteButtonWidth" [DisplayExpressionsCache]="drugReturnActionApprovalFormViewModel?.ListDefDisplayExpressions" [EnableFilter]="DrugReturnActionDetails?.ShowFilterRow" [FilterColumnName]="DrugReturnActionDetails?.FilterColumnName" [FilterLabel]="DrugReturnActionDetails?.FilterLabel" [Filter]="DrugReturnActionDetails?.Filter" [height]="DrugReturnActionDetails?.Height" [IsFilterLabelSingleLine]="DrugReturnActionDetails?.IsFilterLabelSingleLine" [ShowColumnHeaders]="DrugReturnActionDetails?.ColumnHeadersVisible" [ShowFilterCombo]="DrugReturnActionDetails?.ShowFilterCombo" [ShowTotalNumberOfRows]="DrugReturnActionDetails?.ShowTotalNumberOfRows" id="A3398" data-tid="A328658"></hvl-datagrid>
+            </div>
+        </div>
+    </div>
+</form>

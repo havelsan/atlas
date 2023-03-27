@@ -1,0 +1,121 @@
+﻿
+
+  
+
+<link href="/Content/CashOffice/CashOfficeGeneral.css" rel="stylesheet" />
+
+<div id="InvoiceTermForm" style="height: 100%;display: block; padding-top:5px; padding-bottom:5px" data-tid="A371155">
+    <div class style="height:100%; position:relative" id="A30701" data-tid="A371156">
+        <div class="col-sm-5 panel panel-success" [class.col-sm-12.panel.panel-success]="changeClasses()" style="height:100%;left:0;margin-bottom: 0; position:relative" id="A30702" data-tid="A371157">
+            <div class="col-sm-12" style="height:100%" id="A30703" data-tid="A371158">
+                <user-search-criteria PageName="InvoiceCollectionSearchForm" [SearchViewModel]="invoiceCollectionSearchFormModel.InvoiceCollectionSearchModel" (ViewModelLoaded)="userSearchModelLoaded($event)" [DefaultButtonVisible]="false" PlaceHolder="Kayıtlı Sorgular" AutoCompleteClasses="col-sm-6 row" class="col-sm-12" style="text-align:right;padding:0" i18n-PlaceHolder="@@M17434" id="A30704" data-tid="A371159">
+                </user-search-criteria>
+                <div class="row" id="A30705" data-tid="A371160">
+                    <label class="control-label col-sm-2" id="A30706" data-tid="A371161">
+                        Dönem
+                    </label>
+                    <div class="col-sm-4" id="A30707" data-tid="A371162">
+                        <hvl-listdef-combobox #Validation (SelectedValueChange)="onCmbTermChanged($event)" [(SelectedValue)]="invoiceCollectionSearchFormModel.InvoiceCollectionSearchModel.Term" [BackColor]="cmbTerm?.BackColor" [DefinitionName]="cmbTerm?.ListDefName" [Enabled]="cmbTerm?.Enabled" [Font]="cmbTerm?.Font" [ForeColor]="cmbTerm?.ForeColor" [ReadOnly]="cmbTerm?.ReadOnly" [SearchingMode]="cmbTerm?.SearchMode" [TabIndex]="cmbTerm?.TabIndex" [Visible]="cmbTerm?.Visible" id="A30708" data-tid="A371163"></hvl-listdef-combobox>
+                    </div>
+                    <label class="control-label col-sm-2" id="A30709" data-tid="A371164">
+                        Kurum
+                    </label>
+                    <div class="col-sm-4" id="A30710" data-tid="A371165">
+                        <hvl-valuelist-box #Validation [(SelectedValue)]="invoiceCollectionSearchFormModel.InvoiceCollectionSearchModel.Payer" [AutoCompleteDialogHeight]="cmbPayer?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="cmbPayer?.AutoCompleteDialogWidth" [AutoCompleteMode]="cmbPayer?.AutoCompleteMode" [BackColor]="cmbPayer?.BackColor" [DefinitionName]="cmbPayer?.ListDefName" [Enabled]="cmbPayer?.Enabled" [Font]="cmbPayer?.Font" [ForeColor]="cmbPayer?.ForeColor" [ListFilterExpression]="cmbPayer?.ListFilterExpression" [MinSearchLength]="cmbPayer?.MinSearchLength" [PopupDialogFieldConfig]="cmbPayer?.PopupDialogFieldConfig" [PopupDialogGridColumns]="cmbPayer?.PopupDialogGridColumns" [PopupDialogHeight]="cmbPayer?.PopupDialogHeight" [PopupDialogTitle]="cmbPayer?.PopupDialogTitle" [PopupDialogWidth]="cmbPayer?.PopupDialogWidth" [ReadOnly]="cmbPayer?.ReadOnly" [SearchTimeout]="cmbPayer?.SearchTimeout" [TabIndex]="cmbPayer?.TabIndex" [Visible]="cmbPayer?.Visible" [width]="cmbPayer?.Width" id="A30711" data-tid="A371166"></hvl-valuelist-box>
+                    </div>
+                </div>
+                <div class="row" id="A30712" data-tid="A371167">
+                    <label class="control-label col-sm-2" id="A30713" data-tid="A371168">
+                        Durum
+                    </label>
+                    <div class="col-sm-4" id="A30714" data-tid="A371169">
+                        <hvl-enum-combobox #Validation [(Value)]="invoiceCollectionSearchFormModel.InvoiceCollectionSearchModel.State" [BackColor]="cmbState?.BackColor" [DataTypeName]="cmbState?.DataTypeName" [Enabled]="cmbState?.Enabled" [Font]="cmbState?.Font" [ForeColor]="cmbState?.ForeColor" [IncludeOnly]="cmbState?.IncludeOnly" [ReadOnly]="cmbState?.ReadOnly" [ShowClearButton]="cmbState?.ShowClearButton" [SortBy]="cmbState?.SortBy" [TabIndex]="cmbState?.TabIndex" [Visible]="cmbState?.Visible" id="A30715" data-tid="A371170"></hvl-enum-combobox>
+                    </div>
+                    <label class="control-label col-sm-2" id="A30716" data-tid="A371171">
+                        Tedavi Türü
+                    </label>
+                    <div class="col-sm-4" id="A30717" data-tid="A371172">
+                        <hvl-listdef-combobox #Validation [(SelectedValue)]="invoiceCollectionSearchFormModel.InvoiceCollectionSearchModel.TedaviTuru" [BackColor]="cmbTedaviTuru?.BackColor" [DefinitionName]="cmbTedaviTuru?.ListDefName" [Enabled]="cmbTedaviTuru?.Enabled" [Font]="cmbTedaviTuru?.Font" [ForeColor]="cmbTedaviTuru?.ForeColor" [ReadOnly]="cmbTedaviTuru?.ReadOnly" [SearchingMode]="cmbTedaviTuru?.SearchMode" [TabIndex]="cmbTedaviTuru?.TabIndex" [Visible]="cmbTedaviTuru?.Visible" id="A30718" data-tid="A371173"></hvl-listdef-combobox>
+                    </div>
+                </div>
+                <div class="row" id="A30719" data-tid="A371174">
+                    <label class="control-label col-sm-2" id="A30720" data-tid="A371175">
+                        İcmal Tarihi
+                    </label>
+                    <div class="col-sm-4" id="A30721" data-tid="A371176">
+                        <dx-date-box [acceptCustomValue]="false" [(value)]="invoiceCollectionSearchFormModel.InvoiceCollectionSearchModel.ICFirstDate" [showClearButton]="true" pickerType="calendar" type="date" displayFormat="dd/MM/yyyy" style="width:100%" id="A30722" data-tid="A371177"></dx-date-box>
+                    </div>
+                    <label class="control-label col-sm-2" style="text-align:center!important" id="A30723" data-tid="A371178">
+                        -
+                    </label>
+                    <div class="col-sm-4" id="A30724" data-tid="A371179">
+                        <dx-date-box [acceptCustomValue]="false" [(value)]="invoiceCollectionSearchFormModel.InvoiceCollectionSearchModel.ICLastDate" [showClearButton]="true" pickerType="calendar" type="date" displayFormat="dd/MM/yyyy" style="width:100%" id="A30725" data-tid="A371180"></dx-date-box>
+                    </div>
+                </div>
+                <div class="row" id="A30726" data-tid="A371181">
+                    <label class="control-label col-sm-2" id="A30727" data-tid="A371182">
+                        Gönderim Tarihi
+                    </label>
+                    <div class="col-sm-4" id="A30728" data-tid="A371183">
+                        <hvl-date-picker #Validation [(Value)]="invoiceCollectionSearchFormModel.InvoiceCollectionSearchModel.ICPostFirstDate" [BackColor]="dtDate?.BackColor" [CustomFormat]="dtDate?.CustomFormat" [Enabled]="dtDate?.Enabled" [Font]="dtDate?.Font" [ForeColor]="dtDate?.ForeColor" [Format]="dtDate?.Format" [Max]="dtDate?.Max" [Min]="dtDate?.Min" [ReadOnly]="dtDate?.ReadOnly" [Required]="dtDate?.Required" [TabIndex]="dtDate?.TabIndex" [Visible]="dtDate?.Visible" id="A30729" data-tid="A371184"></hvl-date-picker>
+                    </div>
+                    <label class="control-label col-sm-2" style="text-align:center!important" id="A30730" data-tid="A371185">
+                        -
+                    </label>
+                    <div class="col-sm-4" id="A30731" data-tid="A371186">
+                        <hvl-date-picker #Validation [(Value)]="invoiceCollectionSearchFormModel.InvoiceCollectionSearchModel.ICPostLastDate" [BackColor]="dtDate?.BackColor" [CustomFormat]="dtDate?.CustomFormat" [Enabled]="dtDate?.Enabled" [Font]="dtDate?.Font" [ForeColor]="dtDate?.ForeColor" [Format]="dtDate?.Format" [Max]="dtDate?.Max" [Min]="dtDate?.Min" [ReadOnly]="dtDate?.ReadOnly" [Required]="dtDate?.Required" [TabIndex]="dtDate?.TabIndex" [Visible]="dtDate?.Visible" id="A30732" data-tid="A371187"></hvl-date-picker>
+                    </div>
+                </div>
+                <div class="row" id="A30733" data-tid="A371188">
+                    <label class="control-label col-sm-2" id="A30734" data-tid="A371189">
+                        İcmal No
+                    </label>
+                    <div class="col-sm-4" id="A30735" data-tid="A371190">
+                        <hvl-text-box #Validation [(Text)]="invoiceCollectionSearchFormModel.InvoiceCollectionSearchModel.ICNo" [BackColor]="txtText?.BackColor" [CharacterCasing]="txtText?.CharacterCasing" [Enabled]="txtText?.Enabled" [Font]="txtText?.Font" [ForeColor]="txtText?.ForeColor" [height]="txtText?.Height" [InputFormat]="txtText?.InputFormat" [InputTurkishCharacter]="txtText?.InputTurkishCharacter" [IsNonNumeric]="txtText?.IsNonNumeric" [MultiLine]="txtText?.Multiline" [ReadOnly]="txtText?.ReadOnly" [Required]="txtText?.Required" [TabIndex]="txtText?.TabIndex" [TextAlign]="txtText?.TextAlign" [Visible]="txtText?.Visible" id="A30736" data-tid="A371191"></hvl-text-box>
+                    </div>
+                    <label class="control-label col-sm-2" id="A30737" data-tid="A371192">
+                        Gönderim No
+                    </label>
+                    <div class="col-sm-4" id="A30738" data-tid="A371193">
+                        <hvl-text-box #Validation [(Text)]="invoiceCollectionSearchFormModel.InvoiceCollectionSearchModel.ICPostNo" [BackColor]="txtText?.BackColor" [CharacterCasing]="txtText?.CharacterCasing" [Enabled]="txtText?.Enabled" [Font]="txtText?.Font" [ForeColor]="txtText?.ForeColor" [height]="txtText?.Height" [InputFormat]="txtText?.InputFormat" [InputTurkishCharacter]="txtText?.InputTurkishCharacter" [IsNonNumeric]="txtText?.IsNonNumeric" [MultiLine]="txtText?.Multiline" [ReadOnly]="txtText?.ReadOnly" [Required]="txtText?.Required" [TabIndex]="txtText?.TabIndex" [TextAlign]="txtText?.TextAlign" [Visible]="txtText?.Visible" id="A30739" data-tid="A371194"></hvl-text-box>
+                    </div>
+                </div>
+                <div class="row" style="padding-bottom:5px;" id="A30740" data-tid="A371195">
+                    <label class="control-label col-sm-2" id="A30741" data-tid="A371196">
+                        İcmal Tutarı
+                    </label>
+                    <div class="col-sm-2" id="A30742" data-tid="A371197">
+                        <hvl-text-box #Validation [(Text)]="invoiceCollectionSearchFormModel.InvoiceCollectionSearchModel.ICFirstPrice" [BackColor]="txtText?.BackColor" [CharacterCasing]="txtText?.CharacterCasing" [Enabled]="txtText?.Enabled" [Font]="txtText?.Font" [ForeColor]="txtText?.ForeColor" [height]="txtText?.Height" [InputFormat]="txtText?.InputFormat" [InputTurkishCharacter]="txtText?.InputTurkishCharacter" [IsNonNumeric]="txtText?.IsNonNumeric" [MultiLine]="txtText?.Multiline" [ReadOnly]="txtText?.ReadOnly" [Required]="txtText?.Required" [TabIndex]="txtText?.TabIndex" [TextAlign]="txtText?.TextAlign" [Visible]="txtText?.Visible" id="A30743" data-tid="A371198"></hvl-text-box>
+                    </div>
+                    <div class="col-sm-2" id="A30744" data-tid="A371199">
+                        <hvl-text-box #Validation [(Text)]="invoiceCollectionSearchFormModel.InvoiceCollectionSearchModel.ICLastPrice" [BackColor]="txtText?.BackColor" [CharacterCasing]="txtText?.CharacterCasing" [Enabled]="txtText?.Enabled" [Font]="txtText?.Font" [ForeColor]="txtText?.ForeColor" [height]="txtText?.Height" [InputFormat]="txtText?.InputFormat" [InputTurkishCharacter]="txtText?.InputTurkishCharacter" [IsNonNumeric]="txtText?.IsNonNumeric" [MultiLine]="txtText?.Multiline" [ReadOnly]="txtText?.ReadOnly" [Required]="txtText?.Required" [TabIndex]="txtText?.TabIndex" [TextAlign]="txtText?.TextAlign" [Visible]="txtText?.Visible" id="A30745" data-tid="A371200"></hvl-text-box>
+                    </div>
+       
+                    <div class="col-sm-12" style="text-align:right;" id="A30746" data-tid="A371201">
+                        <dx-button type="default" icon="fa fa-bars" text="Listele" (onClick)="btnListClicked(false)" i18n-text="@@M27337" id="A30747" data-tid="A371202"></dx-button>
+                    </div>
+                </div>
+                <div class="row margin-top-20" style="border: 1px solid #ddd;text-align: right;padding: 5px; width:100%; margin-left:0!important" id="A30748" data-tid="A371203">
+                    <dx-button type="success" icon="fa fa-plus" text="İcmal Oluştur" (onClick)="createInvoiceCollectionClick()" i18n-text="@@M16138" id="A30749" data-tid="A371204">
+
+                    </dx-button>
+                </div>
+                <div id="invoiceCollection-grid-container" class="row" style="margin:0;width:100%;" data-tid="A371205">
+                    <dx-data-grid #invoiceCollectionGrid showColumnLines="true" showRowLines="true" rowAlternationEnabled="true" showBorders="true" [selection]="{mode:'multiple', allowSelectAll:'true'}" [filterRow]="{visible: true}" height="100%" [columns]='InvoiceCollectionListColumns' [paging]="{enabled:'true', pageSize:25}" [dataSource]="invoiceCollectionSearchFormModel.InvoiceCollectionList" [(selectedRowKeys)]="SelectedInvoiceCollections" (onRowClick)="loadInvoiceCollection($event)" (onContextMenuPreparing)="onContextMenuPreparingICGrid($event)" id="A30750" data-tid="A371206">
+                    </dx-data-grid>
+                </div>
+            </div>
+        </div>
+        <div id="systemapi-container-parent" class="col-sm-7 panel panel-success" [class.col-sm-12.panel.panel-success]="changeClasses()" style="position:relative; height:100%; right:-3px; margin:0;" data-tid="A371207">
+            <div class="row" style="height:100%;" id="A30751" data-tid="A371208">
+                <div id="systemapi-container" class="col-sm-12" style="height:100%" data-tid="A371209">
+                    <comp-compose (DynamicComponentActionExecuted)="dynamicComponentActionExecuted($event)" [Info]="systemApiService?.componentInfo" id="A30752" data-tid="A371210"></comp-compose>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,75 @@
+﻿
+<div class="col-md-2" data-tid="A324157">
+    <div class="row" data-tid="A324158">
+        <h3 style="text-align:center" data-tid="A324159">ATLAS TANIMLAR</h3><br data-tid="A324160" />
+        <ul class="nav nav-pills nav-stacked" data-tid="A324161">
+            <li class="active" data-tid="A324162"><a data-toggle="tab" href="#kullaniciListesi" (click)="showUserList()" data-tid="A324163">Kullanıcı Listesi</a></li>
+            <li data-tid="A324164"><a data-toggle="tab" href="#rolTanimlama" data-tid="A324165">Rol Tanımlama</a></li>
+            <li data-tid="A324166"><a data-toggle="tab" href="#yetkiTanimlama" data-tid="A324167">Yetki Tanımlama</a></li>
+            <li data-tid="A324168"><a data-toggle="tab" href="#moduller" data-tid="A324169">Modüller</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="tab-content col-md-10" data-tid="A324170">
+    <div id="kullaniciListesi" class="tab-pane fade in active" data-tid="A324171">
+        <div class="row" data-tid="A324172">
+            <div class="panel panel-primary" data-tid="A324173">
+                <div class="panel-heading" style="text-align:center" *ngIf="!showNewUser" data-tid="A324174"><i class="fa fa-users" data-tid="A324175"></i>&nbsp; Kullanıcı Listesi</div>
+                <div class="panel-heading" style="text-align:center" *ngIf="showNewUser" data-tid="A324176"><i class="fa fa-users" data-tid="A324177"></i>&nbsp; Kullanıcı Yetkilendirme Ekranı</div>
+            </div>
+        </div>
+        <div class="row" data-tid="A324178">
+            <div class="col-md-12" *ngIf="!showNewUser" data-tid="A324179">
+                <br data-tid="A324180" />
+                <button type="button" class="btn btn-primary" (click)="btnNewUser()" data-tid="A324181"><i class="glyphicon glyphicon-plus" data-tid="A324182"></i>&nbsp;Yeni Kullanıcı Ekle</button>
+            </div>
+            <div class="col-md-12" *ngIf="showNewUser" data-tid="A324183">
+                <button type="button" class="btn btn-primary pull-right" (click)="btnNewUser()" data-tid="A324184"><i class="glyphicon glyphicon-repeat" data-tid="A324185"></i>&nbsp;Yenile!</button>
+            </div>
+            <div class="col-md-12" *ngIf="showNewUser" data-tid="A324186">
+                <comp-compose [Info]="componentInfo" id="A12728" data-tid="A324187"></comp-compose><!--(DynamicComponentClosed)="dynamicComponentClosed($event)"-->
+            </div>
+        </div>
+        <div class="row" [class.hidden]="showNewUser" data-tid="A324188">
+            <!--*ngIf="!showNewUser"-->
+            <div class="col-md-12" data-tid="A324189">
+                <dx-data-grid [showColumnLines]="true" [showRowLines]="true" [rowAlternationEnabled]="true" [showBorders]="true" height="100%" [remoteOperations]="true" (onRowClick)="selectGridRow($event)" [dataSource]="resUserGridDataSource" [allowColumnResizing]="true" data-tid="A324190">
+
+                    <dxo-filter-row [visible]="true" data-tid="A324191"></dxo-filter-row>
+                    <dxo-paging [pageSize]="50" data-tid="A324192"></dxo-paging>
+                    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 25, 50, 100]" data-tid="A324193"></dxo-pager>
+
+                    <dxi-column dataField="Name" caption="Adı Soyadı" width="auto" data-tid="A324194"></dxi-column>
+                    <dxi-column dataField="UserLogonName" caption="Kullanıcı Adı" width="auto" [allowFiltering]="false" data-tid="A324195"></dxi-column>
+                    <dxi-column dataField="UniqueRefNo" caption="Tc Kimlik No" width="auto" data-tid="A324196"></dxi-column>
+                </dx-data-grid>
+            </div>
+        </div>
+
+        <!--<dxo-editing mode="form"
+                     [allowUpdating]="true">
+        </dxo-editing> (OnUpdateButtonClick)="onGridRowClick($event)"-->
+    </div>
+    <div id="rolTanimlama" class="tab-pane fade" data-tid="A324197">
+        <div class="row" data-tid="A324198">
+            <div class="panel panel-primary" data-tid="A324199">
+                <div class="panel-heading" style="text-align:center" data-tid="A324200"><i class="fa fa-film" data-tid="A324201"></i>&nbsp; Rol Tanımlama</div>
+            </div>
+        </div>
+    </div>
+    <div id="yetkiTanimlama" class="tab-pane fade" data-tid="A324202">
+        <div class="row" data-tid="A324203">
+            <div class="panel panel-primary" data-tid="A324204">
+                <div class="panel-heading" style="text-align:center" data-tid="A324205"><i class="fa fa-film" data-tid="A324206"></i>&nbsp; Yetki Tanımlama</div>
+            </div>
+        </div>
+    </div>
+    <div id="moduller" class="tab-pane fade" data-tid="A324207">
+        <div class="row" data-tid="A324208">
+            <div class="panel panel-primary" data-tid="A324209">
+                <div class="panel-heading" style="text-align:center" data-tid="A324210"><i class="fa fa-film" data-tid="A324211"></i>&nbsp; Modüller</div>
+            </div>
+        </div>
+    </div>
+</div>

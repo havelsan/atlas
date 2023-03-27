@@ -1,0 +1,1611 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Infragistics4.Win.UltraWinGrid.DocumentExport.v14.2</name>
+    </assembly>
+    <members>
+        <member name="M:Infragistics.Shared.LocalizedCategoryAttribute.GetLocalizedString(System.String)">
+            <summary>
+            Returns the localized category name
+            </summary>
+            <param name="value">Name of the category to retreive</param>
+            <returns>The localized string value</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.GridExportCache.DocumentBandInfo.GetItemsInLogicalRow(System.Int32)">
+            <summary>
+            Returns only the headers that have a presence on a particular logical row in order from left to right. 
+            </summary>
+            <param name="logicalRow"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infragistics.Shared.UltraLicenseAttribute.GetLicensedWithProducts">
+            <summary>
+            Return the list of products that this control can be licensed with
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderTypes">
+            <summary>
+            An enumerator for different header types used in header export related events.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderTypes.BandHeader">
+            <summary>
+            Indicates that the header being exported is a band header.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderTypes.GroupHeader">
+            <summary>
+            Indicates that the header being exported is a group header.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderTypes.ColumnHeader">
+            <summary>
+            Indicates that the header being exported is a column header.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.DocumentExport.GridExportFileFormat">
+            <summary>
+            Defines the file formats to which the grid can be exported.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.DocumentExport.GridExportFileFormat.PDF">
+            <summary>
+            Specifies the Portable Document Format.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.DocumentExport.GridExportFileFormat.XPS">
+            <summary>
+            Specifies the XML Paper Specification format.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.DocumentExport.AutoSize">
+            <summary>
+            Options for automatically sizing the columns and rows of the grid before exporting.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.DocumentExport.AutoSize.None">
+            <summary>
+            No automatic sizing will be performed on either columns or rows.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.DocumentExport.AutoSize.SizeColumnsToContent">
+            <summary>
+            Size the columns to their contents before exporting.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.DocumentExport.AutoSize.SizeRowsToContent">
+            <summary>
+            Size the rows to their contents before exporting.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.DocumentExport.AutoSize.SizeColumnsAndRowsToContent">
+            <summary>
+            Size the columns and the rows to their contents before exporting.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.DocumentExport.ImageCompressorType">
+            <summary>
+            Determines which compressor to use for exported images. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.DocumentExport.ImageCompressorType.Flate">
+            <summary>
+            Not as good for compression as JPEG, but can handle transparency in images. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.DocumentExport.ImageCompressorType.JPEG">
+            <summary>
+            Better image compression for photos and complex images, but cannot support transparency.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.DocumentExport.BeginExportEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.BeginExport"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.BeginExportEventArgs.#ctor(Infragistics.Win.UltraWinGrid.UltraGridLayout,Infragistics.Win.UltraWinGrid.RowsCollection,Infragistics.Documents.Reports.Report.Section.ISection)">
+            <summary>
+            Creates a new BeginExportEventArgs instance.
+            </summary>
+            <param name="layout">A cloned <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridLayout"/> of the grid being exported.</param>
+            <param name="rows">The root <see cref="T:Infragistics.Win.UltraWinGrid.RowsCollection"/> of the grid being exported.</param>
+            <param name="section">The <see cref="T:Infragistics.Documents.Reports.Report.Section.ISection"/> in the report to which the grid will be exported.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.BeginExportEventArgs.Layout">
+            <summary>
+            A cloned <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridLayout"/> of the grid being exported.
+            </summary>
+            <remarks>
+            <para class="body">Since this layout is a clone of the grid layout, it can be safely modified to affect the export without affecting the on-screen grid.</para>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.BeginExportEventArgs.Rows">
+            <summary>
+            The root <see cref="T:Infragistics.Win.UltraWinGrid.RowsCollection"/> of the grid being exported.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.BeginExportEventArgs.Section">
+            <summary>
+            The <see cref="T:Infragistics.Documents.Reports.Report.Section.ISection"/> in the report to which the grid will be exported.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.DocumentExport.DocumentExportInitializeRowEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.InitializeRow"/> event.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.DocumentExportInitializeRowEventArgs.Row">
+            <summary>
+            The grid row being initialized.
+            </summary>
+            <remarks>
+            <para class="body">This row is not the same as the row in the On-screen grid. It is a new row that belongs to the export layout. As such, properties of the row can safely be modified and will affect the export, but will not affect the on-screen grid.</para>
+            <para class="note"><b>Note:</b> The Value property of a cell is not stored by the row. It is stored by the underlying data source. So setting the Value of a cell in this row will affect the same data source as the on-screen grid.</para>
+            <para class="note"><b>Note:</b> Since this row is part of the export layout, it will not share state information (such as the selected or expanded state) with the on-screen row. To get a reference to the corresponding on-screen grid row, use the <see cref="M:Infragistics.Win.UltraWinGrid.UltraGrid.GetRowFromPrintRow(Infragistics.Win.UltraWinGrid.UltraGridRow)"/> method of the grid.</para>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.DocumentExportInitializeRowEventArgs.SkipRow">
+            <summary>
+            Specifies whether to skip the current row.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.DocumentExportInitializeRowEventArgs.SkipDescendants">
+            <summary>
+            Specifies whether to skip the descendats of the current row.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.DocumentExportInitializeRowEventArgs.SkipSiblings">
+            <summary>
+            Specifies whether to skip sibling rows of the current row.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.DocumentExportInitializeRowEventArgs.TerminateExport">
+            <summary>
+            Specifies whether to terminate the export process. If the export is terminated, the current row will not be processed.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.DocumentExport.EndExportEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.EndExport"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.EndExportEventArgs.#ctor(System.Boolean)">
+            <summary>
+            Creates a new <see cref="T:Infragistics.Win.UltraWinGrid.DocumentExport.EndExportEventArgs"/> instance.
+            </summary>
+            <param name="canceled">True if exporting process was canceled.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.EndExportEventArgs.Canceled">
+            <summary>
+            True if the exporting process was canceled.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportingEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.HeaderRowExporting"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportingEventArgs.#ctor(Infragistics.Win.UltraWinGrid.UltraGridBand,System.Boolean,Infragistics.Documents.Reports.Report.Tree.INode,Infragistics.Documents.Reports.Report.Table.ITableHeader)">
+            <summary>
+            Creates a new <see cref="T:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportingEventArgs"/> instance.
+            </summary>
+            <param name="band">The <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridBand"/> whose headers are being exported.</param>
+            <param name="isFixedHeader">Returns whether the header being exported is a fixed header. </param>
+            <param name="fixedHeaderContainer">Returns an INode into which the header will be exported if this is a fixed header.</param>
+            <param name="headerContainer">Returns an ITableHeader into which the header will be exported if it is not a fixed header.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportingEventArgs.Band">
+            <summary>
+            The <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridBand"/> whose headers are being exported.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportingEventArgs.IsFixedHeader">
+            <summary>
+            Returns whether the header being exported is a fixed header. 
+            </summary>
+            <remarks>
+            <para class="body">A set of headers for a band may be exported to one of two places.</para>
+            <para class="body">If the header is fixed, it will be exported into an INode which is contained within the report band header. This type of header will repeat at the top of each page of the report. In this case, the container is returned by the <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportingEventArgs.FixedHeaderContainer"/> property and <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportingEventArgs.HeaderContainer"/> will be null.</para>
+            <para class="body">If the header is not fixed, it will be exported into the header of the ITable representing the rows collection being exported. In this case, the container is returned by the HeaderContainer property and FixedHeaderContainer will be null.</para>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportingEventArgs.FixedHeaderContainer">
+            <summary>
+            Returns an INode into which the header will be exported.
+            </summary>
+            <remarks>
+            <para class="body">The FixedHeaderContainer is only available when <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportingEventArgs.IsFixedHeader"/> is True. Otherwise, it will return null.</para>
+            <para class="body">If the event is not cancelled, the header will be exported into the <see cref="P:Infragistics.Documents.Reports.Report.Tree.INode.Caption"/> of the INode specified by this property.</para>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportingEventArgs.HeaderContainer">
+            <summary>
+            Returns an ITableHeader into which the header will be exported.
+            </summary>
+            <remarks>
+            <para class="body">The HeaderContainer is only available when <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportingEventArgs.IsFixedHeader"/> is False. Otherwise, it will return null.</para>
+            <para class="body">If the event is not cancelled, the header will be exported into the <see cref="T:Infragistics.Documents.Reports.Report.Table.ITableHeader"/> specified by this property.</para>
+            </remarks>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.DocumentExport.RowExportingEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.RowExporting"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.RowExportingEventArgs.#ctor(Infragistics.Win.UltraWinGrid.UltraGridRow,Infragistics.Documents.Reports.Report.Table.ITable)">
+            <summary>
+            Creates a new <see cref="T:Infragistics.Win.UltraWinGrid.DocumentExport.RowExportingEventArgs"/> instance.
+            </summary>
+            <param name="gridRow">The grid row being exported.</param>
+            <param name="containingTable">The ITable in the report to which the new row will be added.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.RowExportingEventArgs.GridRow">
+            <summary>
+            The grid row being exported.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.RowExportingEventArgs.ContainingTable">
+            <summary>
+            The ITable in the report to which the new row will be added.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryRowExportingEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.SummaryRowExporting"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryRowExportingEventArgs.#ctor(Infragistics.Win.UltraWinGrid.UltraGridSummaryRow,Infragistics.Documents.Reports.Report.Table.ITable)">
+            <summary>
+            Creates a new <see cref="T:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryRowExportingEventArgs"/> instance.
+            </summary>
+            <param name="gridSummaryRow">The UltraGridSummaryRow representing the summaries to be exported.</param>
+            <param name="containingTable">The ITable in the report to which the summary row will be appended.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryRowExportingEventArgs.GridSummaryRow">
+            <summary>
+            The UltraGridSummaryRow representing the summaries to be exported.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryRowExportingEventArgs.ContainingTable">
+            <summary>
+            The ITable in the report to which the summary row will be appended.
+            </summary>
+            <remarks>
+            <para class="body">The table into which the summaries are exported will usually be a table representing a rows collection. But it may also be a table representing a GroupByRow (in the case where summaries are displayed as cells inside a GroupByRow).</para>
+            </remarks>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportedEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.HeaderRowExported"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportedEventArgs.#ctor(Infragistics.Win.UltraWinGrid.UltraGridBand,System.Boolean,Infragistics.Documents.Reports.Report.Tree.INode,Infragistics.Documents.Reports.Report.Table.ITableHeader,Infragistics.Documents.Reports.Report.Table.ITable)">
+            <summary>
+            Creates a new <see cref="T:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportedEventArgs"/> instance.
+            </summary>
+            <param name="band">The <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridBand"/> whose headers are being exported.</param>
+            <param name="isFixedHeader">Returns whether the header being exported is a fixed header. </param>
+            <param name="fixedHeaderContainer">Returns an INode into which the header will be exported.</param>
+            <param name="headerContainer">Returns an ITableHeader into which the header will be exported.</param>
+            <param name="reportHeaderRow">Return the ITable in the report into which the header row was exported.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportedEventArgs.Band">
+            <summary>
+            The <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridBand"/> whose headers are being exported.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportedEventArgs.IsFixedHeader">
+            <summary>
+            Returns whether the header being exported is a fixed header. 
+            </summary>
+            <remarks>
+            <para class="body">A set of headers for a band may be exported to one of two places.</para>
+            <para class="body">If the header is fixed, it will be exported into an INode which is contained within the report band header. This type of header will repeat at the top of each page of the report. In this case, the container is returned by the <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportedEventArgs.FixedHeaderContainer"/> property and <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportedEventArgs.HeaderContainer"/> will be null.</para>
+            <para class="body">If the header is not fixed, it will be exported into the header of the ITable representing the rows collection being exported. In this case, the container is returned by the HeaderContainer property and FixedHeaderContainer will be null.</para>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportedEventArgs.FixedHeaderContainer">
+            <summary>
+            Returns an INode into which the header will be exported.
+            </summary>
+            <remarks>
+            <para class="body">The FixedHeaderContainer is only available when <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportedEventArgs.IsFixedHeader"/> is True. Otherwise, it will return null.</para>
+            <para class="body">If the event is not cancelled, the header will be exported into the <see cref="P:Infragistics.Documents.Reports.Report.Tree.INode.Caption"/> of the INode specified by this property.</para>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportedEventArgs.HeaderContainer">
+            <summary>
+            Returns an ITableHeader into which the header will be exported.
+            </summary>
+            <remarks>
+            <para class="body">The HeaderContainer is only available when <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportedEventArgs.IsFixedHeader"/> is False. Otherwise, it will return null.</para>
+            <para class="body">If the event is not cancelled, the header will be exported into the <see cref="T:Infragistics.Documents.Reports.Report.Table.ITableHeader"/> specified by this property.</para>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportedEventArgs.ReportHeaderRow">
+            <summary>
+            Returns an ITable representing the header in the report.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.DocumentExport.RowExportedEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.RowExported"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.RowExportedEventArgs.#ctor(Infragistics.Win.UltraWinGrid.UltraGridRow,Infragistics.Documents.Reports.Report.Table.ITable,Infragistics.Documents.Reports.Report.Table.ITable)">
+            <summary>
+            Creates a new <see cref="T:Infragistics.Win.UltraWinGrid.DocumentExport.RowExportedEventArgs"/> instance.
+            </summary>
+            <param name="gridRow">The grid row being exported.</param>
+            <param name="containingTable">The ITable in the report to which the new row will be added.</param>
+            <param name="reportRow">The ITable in the report which represents the row.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.RowExportedEventArgs.GridRow">
+            <summary>
+            The grid row being exported.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.RowExportedEventArgs.ContainingTable">
+            <summary>
+            The <see cref="T:Infragistics.Documents.Reports.Report.Table.ITable"/> in the report to which the new row will be added.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.RowExportedEventArgs.ReportRow">
+            <summary>
+            The <see cref="T:Infragistics.Documents.Reports.Report.Table.ITable"/> in the report which represents the row.
+            </summary>
+            <remarks>
+            <para class="body">The grid row is represented in the report by an ITable.</para>
+            <para class="body">If the grid row is a normal row (as opposed to a GroupByRow), then the table will have 1 or 2 rows. The first row will contain an <see cref="T:Infragistics.Documents.Reports.Report.Grid.IGrid"/> rerepsenting the main part of the row, including all of the cells. The second row in the table contains the RowAutoPreviewArea, if any.</para>
+            <para class="body">If the grid row is a GroupByRow, then the table will have 1 or 2 rows. The first row will contain the Description of the row. The second row in the table will contain the summaries, if they are displayed within the GroupByRow as cells.</para>
+            </remarks>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryRowExportedEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.SummaryRowExported"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryRowExportedEventArgs.#ctor(Infragistics.Win.UltraWinGrid.UltraGridSummaryRow,Infragistics.Documents.Reports.Report.Table.ITable,Infragistics.Documents.Reports.Report.Table.ITable)">
+            <summary>
+            Creates a new <see cref="T:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryRowExportedEventArgs"/> instance.
+            </summary>
+            <param name="gridSummaryRow">The UltraGridSummaryRow representing the summaries to be exported.</param>
+            <param name="containingTable">The ITable in the report to which the summary row will be appended.</param>
+            <param name="reportSummaryRow">The ITable that represents the summary row in the report.</param>        
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryRowExportedEventArgs.#ctor(Infragistics.Win.UltraWinGrid.UltraGridSummaryRow,Infragistics.Documents.Reports.Report.Table.ITable,Infragistics.Documents.Reports.Report.Table.ITable,Infragistics.Documents.Reports.Report.Table.ITableCell)">
+            <summary>
+            Creates a new <see cref="T:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryRowExportedEventArgs"/> instance.
+            </summary>
+            <param name="gridSummaryRow">The UltraGridSummaryRow representing the summaries to be exported.</param>
+            <param name="containingTable">The ITable in the report to which the summary row will be appended.</param>
+            <param name="reportSummaryRow">The ITable that represents the summary row in the report.</param>
+            <param name="reportSummaryFooterCell">The ITableCell that represents the summary row footer in the report.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryRowExportedEventArgs.GridSummaryRow">
+            <summary>
+            The UltraGridSummaryRow representing the summaries that were exported.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryRowExportedEventArgs.ContainingTable">
+            <summary>
+            The ITable in the report to which the summary row was appended.
+            </summary>
+            <remarks>
+            <para class="body">The table into which the summaries are exported will usually be a table representing a rows collection. But it may also be a table representing a GroupByRow, in the case where summaries are displayed as cells inside a GroupByRow.</para>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryRowExportedEventArgs.ReportSummaryRow">
+            <summary>
+            The ITable in the report which represents the row.
+            </summary>
+            <remarks>
+            <para class="body">The summary row is represented in the report by an <see cref="T:Infragistics.Documents.Reports.Report.Table.ITable"/>.</para>
+            <para class="body">The table may have one to three rows. The first row represents the SummaryFooterCaption. The second row represents summaries that are aligned to a particular grid column. The third row contains summaries that are aligned to the Left, Center, or Right.</para>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryRowExportedEventArgs.ReportSummaryFooterCell">
+            <summary>
+            The ITableCell in the report which represents the summary footer (or null if no summary footer is displayed).
+            </summary>
+            <remarks>
+            <para class="body">The summary footer row is represented in the report by an <see cref="T:Infragistics.Documents.Reports.Report.Table.ITableCell"/>.</para>
+            <para class="body">If not summary footer is displayed, then this property will return null.</para>
+            </remarks>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.DocumentExport.CellExportingEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.CellExporting"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.CellExportingEventArgs.#ctor(Infragistics.Win.UltraWinGrid.UltraGridRow,Infragistics.Win.UltraWinGrid.UltraGridColumn,Infragistics.Documents.Reports.Report.Grid.IGridCell)">
+            <summary>
+            Creates a new <see cref="T:Infragistics.Win.UltraWinGrid.DocumentExport.CellExportingEventArgs"/> instance.
+            </summary>
+            <param name="gridRow">The <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridRow"/> containing the cell.</param>
+            <param name="gridColumn">The associated <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridColumn"/> containing the cell.</param>
+            <param name="reportCell">The <see cref="T:Infragistics.Documents.Reports.Report.Grid.IGridCell"/> into which the contents of the cell will be exported.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.CellExportingEventArgs.GridRow">
+            <summary>
+            Returns the <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridRow"/> containing the cell.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.CellExportingEventArgs.GridColumn">
+            <summary>
+            Returns the <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridColumn"/> which contains the cell being exported.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.CellExportingEventArgs.CellValue">
+            <summary>
+            Returns the grid cell value.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.CellExportingEventArgs.ExportValue">
+            <summary>
+            Gets or sets the value that will be exported to the report. 
+            </summary>
+            <remarks>
+            <p class="body">This property allows you to change the value being exported without affecting the on-screen grid or the data source.</p>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.CellExportingEventArgs.ReportCell">
+            <summary>
+            Returns the <see cref="T:Infragistics.Documents.Reports.Report.Grid.IGridCell"/> into which the contents of the cell will be exported.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportingEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.HeaderCellExporting"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportingEventArgs.#ctor(Infragistics.Win.UltraWinGrid.HeaderBase,Infragistics.Win.UltraWinGrid.DocumentExport.HeaderTypes,Infragistics.Documents.Reports.Report.Grid.IGridCell,Infragistics.Documents.Reports.Report.Table.ITableCell,Infragistics.Documents.Reports.Report.Table.ITableCell)">
+            <summary>
+            Creates a new <see cref="T:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportingEventArgs"/> instance.
+            </summary>
+            <param name="gridHeader">The <see cref="T:Infragistics.Win.UltraWinGrid.HeaderBase"/> being exported.</param>
+            <param name="headerType">The type of header is being exported: a band header, group, or column header.</param>
+            <param name="columnHeaderContainer">An <see cref="T:Infragistics.Documents.Reports.Report.Grid.IGridCell"/> which will contain the column header being exported. If <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportingEventArgs.HeaderType"/> is not a column header, this should be null.</param>
+            <param name="groupHeaderContainer">An <see cref="T:Infragistics.Documents.Reports.Report.Table.ITableCell"/> which will contain the group header being exported. If HeaderType is not a group header, this should be null.</param>
+            <param name="bandHeaderContainer">An ITableCell which will contain the band header being exported. If HeaderType is not a band header, this should be null.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportingEventArgs.GridHeader">
+            <summary>
+            Returns the <see cref="T:Infragistics.Win.UltraWinGrid.HeaderBase"/> being exported.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportingEventArgs.HeaderType">
+            <summary>
+            Indicates what type of header is being exported: a band header, group, or column header.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportingEventArgs.ColumnHeaderContainer">
+            <summary>
+            Returns an <see cref="T:Infragistics.Documents.Reports.Report.Grid.IGridCell"/> which will contain the column header being exported. If <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportingEventArgs.HeaderType"/> is not a column header, this will be null.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportingEventArgs.GroupHeaderContainer">
+            <summary>
+            Returns an <see cref="T:Infragistics.Documents.Reports.Report.Table.ITableCell"/> which will contain the group header being exported. If <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportingEventArgs.HeaderType"/> is not a group header, this will be null.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportingEventArgs.BandHeaderContainer">
+            <summary>
+            Returns an <see cref="T:Infragistics.Documents.Reports.Report.Table.ITableCell"/> which will contain the band header being exported. If <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportingEventArgs.HeaderType"/> is not a band header, this will be null.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryCellExportingEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.SummaryCellExporting"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryCellExportingEventArgs.#ctor(Infragistics.Win.UltraWinGrid.SummaryValue,System.Int32,Infragistics.Documents.Reports.Report.Grid.IGridCell)">
+            <summary>
+            Creates a new <see cref="T:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryCellExportingEventArgs"/> instance.
+            </summary>
+            <param name="summary">The <see cref="T:Infragistics.Win.UltraWinGrid.SummaryValue"/> being exported.</param>
+            <param name="summaryLevel">The level of the Summary. Summaries are exporting into multiple rows (levels). The summary level indicates on which level this summary is displayed.</param>
+            <param name="reportCell">The <see cref="T:Infragistics.Documents.Reports.Report.Grid.IGridCell"/> into which the contents of the summary value will be exported.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryCellExportingEventArgs.Summary">
+            <summary>
+            Returns the <see cref="T:Infragistics.Win.UltraWinGrid.SummaryValue"/> being exported.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryCellExportingEventArgs.SummaryLevel">
+            <summary>
+            Returns the level of the Summary. Summaries are exporting into multiple rows (levels). The summary level indicates on which level this summary is displayed.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryCellExportingEventArgs.ReportCell">
+            <summary>
+            Returns the <see cref="T:Infragistics.Documents.Reports.Report.Grid.IGridCell"/> into which the contents of the summary value will be exported.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.DocumentExport.CellExportedEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.CellExported"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.CellExportedEventArgs.#ctor(Infragistics.Win.UltraWinGrid.UltraGridRow,Infragistics.Win.UltraWinGrid.UltraGridColumn,Infragistics.Documents.Reports.Report.Grid.IGridCell)">
+            <summary>
+            Creates a new <see cref="T:Infragistics.Win.UltraWinGrid.DocumentExport.CellExportedEventArgs"/> instance.
+            </summary>
+            <param name="gridRow">The <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridRow"/> containing the cell.</param>
+            <param name="gridColumn">The associated <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridColumn"/> containing the cell.</param>
+            <param name="reportCell">The <see cref="T:Infragistics.Documents.Reports.Report.Grid.IGridCell"/> into which the contents of the cell were exported.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.CellExportedEventArgs.GridRow">
+            <summary>
+            Returns the <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridRow"/> containing the cell.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.CellExportedEventArgs.GridColumn">
+            <summary>
+            Returns the <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridColumn"/> which contains the cell being exported.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.CellExportedEventArgs.Value">
+            <summary>
+            Returns the grid cell value.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.CellExportedEventArgs.ReportCell">
+            <summary>
+            Returns the <see cref="T:Infragistics.Documents.Reports.Report.Grid.IGridCell"/> into which the contents of the cell were exported.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportedEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.HeaderCellExported"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportedEventArgs.#ctor(Infragistics.Win.UltraWinGrid.HeaderBase,Infragistics.Win.UltraWinGrid.DocumentExport.HeaderTypes,Infragistics.Documents.Reports.Report.Grid.IGridCell,Infragistics.Documents.Reports.Report.Table.ITableCell,Infragistics.Documents.Reports.Report.Table.ITableCell)">
+            <summary>
+            Creates a new <see cref="T:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportedEventArgs"/> instance.
+            </summary>
+            <param name="gridHeader">The <see cref="T:Infragistics.Win.UltraWinGrid.HeaderBase"/> being exported.</param>
+            <param name="headerType">Indicates what type of header is being exported: a band header, group, or column header.</param>
+            <param name="columnHeaderContainer">An <see cref="T:Infragistics.Documents.Reports.Report.Grid.IGridCell"/> which contains the column header being exported. If <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportedEventArgs.HeaderType"/> is not a column header, this will be null.</param>
+            <param name="groupHeaderContainer">An <see cref="T:Infragistics.Documents.Reports.Report.Table.ITableCell"/> which contains the group header being exported. If HeaderType is not a group header, this will be null.</param>
+            <param name="bandHeaderContainer">An ITableCell which contains the band header being exported. If HeaderType is not a band header, this will be null.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportedEventArgs.GridHeader">
+            <summary>
+            Returns the <see cref="T:Infragistics.Win.UltraWinGrid.HeaderBase"/> being exported.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportedEventArgs.HeaderType">
+            <summary>
+            Indicates what type of header is being exported: a band header, group, or column header.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportedEventArgs.ColumnHeaderContainer">
+            <summary>
+            Returns an <see cref="T:Infragistics.Documents.Reports.Report.Grid.IGridCell"/> which contains the column header being exported. If <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportedEventArgs.HeaderType"/> is not a column header, this will be null.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportedEventArgs.GroupHeaderContainer">
+            <summary>
+            Returns an <see cref="T:Infragistics.Documents.Reports.Report.Table.ITableCell"/> which contains the group header being exported. If <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportedEventArgs.HeaderType"/> is not a group header, this will be null.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportedEventArgs.BandHeaderContainer">
+            <summary>
+            Returns an <see cref="T:Infragistics.Documents.Reports.Report.Table.ITableCell"/> which contains the band header being exported. If <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportedEventArgs.HeaderType"/> is not a band header, this will be null.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryCellExportedEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.SummaryCellExported"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryCellExportedEventArgs.#ctor(Infragistics.Win.UltraWinGrid.SummaryValue,System.Int32,Infragistics.Documents.Reports.Report.Grid.IGridCell)">
+            <summary>
+            Creates a new <see cref="T:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryCellExportedEventArgs"/> instance.
+            </summary>
+            <param name="summary">The <see cref="T:Infragistics.Win.UltraWinGrid.SummaryValue"/> being exported.</param>
+            <param name="summaryLevel">The level of the Summary. Summaries are exporting into multiple rows (levels). The summary level indicates on which level this summary is displayed.</param>
+            <param name="reportCell">The <see cref="T:Infragistics.Documents.Reports.Report.Grid.IGridCell"/> into which the contents of the summary value were exported.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryCellExportedEventArgs.Summary">
+            <summary>
+            Returns the <see cref="T:Infragistics.Win.UltraWinGrid.SummaryValue"/> being exported.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryCellExportedEventArgs.SummaryLevel">
+            <summary>
+            Returns the level of the Summary. Summaries are exporting into multiple rows (levels). The summary level indicates on which level this summary is displayed.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryCellExportedEventArgs.ReportCell">
+            <summary>
+            Returns the <see cref="T:Infragistics.Documents.Reports.Report.Grid.IGridCell"/> into which the contents of the summary value were exported.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.DocumentExport.ExportStartedEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ExportStarted"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.ExportStartedEventArgs.#ctor(Infragistics.Win.UltraWinGrid.UltraGridLayout,Infragistics.Win.UltraWinGrid.RowsCollection,Infragistics.Documents.Reports.Report.Section.ISection)">
+            <summary>
+            Creates a new ExportStartedEventArgs instance.
+            </summary>
+            <param name="layout">A cloned <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridLayout"/> of the grid being exported.</param>
+            <param name="rows">The root <see cref="T:Infragistics.Win.UltraWinGrid.RowsCollection"/> of the grid being exported.</param>
+            <param name="section">The <see cref="T:Infragistics.Documents.Reports.Report.Section.ISection"/> in the report to which the grid will be exported.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.ExportStartedEventArgs.Layout">
+            <summary>
+            A cloned <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridLayout"/> of the grid being exported.
+            </summary>
+            <remarks>
+            <para class="body">Since this layout is a clone of the grid layout, it can be safely modified to affect the export without affecting the on-screen grid.</para>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.ExportStartedEventArgs.Rows">
+            <summary>
+            The root <see cref="T:Infragistics.Win.UltraWinGrid.RowsCollection"/> of the grid being exported.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.ExportStartedEventArgs.Section">
+            <summary>
+            The <see cref="T:Infragistics.Documents.Reports.Report.Section.ISection"/> in the report to which the grid will be exported.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.DocumentExport.ExportEndingEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ExportEnding"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.ExportEndingEventArgs.#ctor(System.Boolean)">
+            <summary>
+            Creates a new <see cref="T:Infragistics.Win.UltraWinGrid.DocumentExport.ExportEndingEventArgs"/> instance.
+            </summary>
+            <param name="canceled">True if exporting process was canceled.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.ExportEndingEventArgs.Canceled">
+            <summary>
+            True if the exporting process was canceled.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.DocumentExport.ExportEndedEventArgs">
+            <summary>
+            Event parameters used for the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ExportEnded"/> event.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.ExportEndedEventArgs.#ctor(System.Boolean)">
+            <summary>
+            Creates a new <see cref="T:Infragistics.Win.UltraWinGrid.DocumentExport.ExportEndedEventArgs"/> instance.
+            </summary>
+            <param name="canceled">True if exporting process was canceled.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.ExportEndedEventArgs.Canceled">
+            <summary>
+            True if the exporting process was canceled.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.DocumentExport.AsynchronousExportErrorEventArgs">
+            <summary>
+            The event args for the 
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.AsynchronousExportErrorEventArgs.DisplayErrorMessage">
+            <summary>
+            Gets or sets whether an error dialog will be displayed by the UltraGridExcelExporter.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.AsynchronousExportErrorEventArgs.Exception">
+            <summary>
+            The exception that occurred during the asynchronous export process, or null if the error was not caused by an exception.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.AsynchronousExportErrorEventArgs.FileName">
+            <summary>
+            The filename specified to the AsynchExport method. 
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.AsynchronousExportErrorEventArgs.Report">
+            <summary>
+            Exporting report.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.GraphicsCache.Dispose">
+            <summary>
+            Cleans up (disposes) the cached resources 
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.DocumentExport.PropertyIds">
+            <summary>
+               Values that uniquely identify each control property. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.DocumentExport.PropertyIds.AutoSize">
+            <summary>
+            The <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.AutoSize"/> property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.DocumentExport.PropertyIds.FileBuffer">
+            <summary>
+            The <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.FileBuffer"/> property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.DocumentExport.PropertyIds.ImageCompressorType">
+            <summary>
+            The <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ImageCompressorType"/> property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.DocumentExport.PropertyIds.ImageTransparentMapColor">
+            <summary>
+            The <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ImageTransparentMapColor"/> property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.DocumentExport.PropertyIds.Margins">
+            <summary>
+            The <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.Margins"/> property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.DocumentExport.PropertyIds.TargetPaperOrientation">
+            <summary>
+            The <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.TargetPaperOrientation"/> property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.DocumentExport.PropertyIds.TargetPaperSize">
+            <summary>
+            The <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.TargetPaperSize"/> property.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.DocumentExport.PropertyIds.UseFileBuffer">
+            <summary>
+            The <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.UseFileBuffer"/> property.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.DocumentExport.Resources">
+            <summary>
+            Exposes a <see cref="T:Infragistics.Shared.ResourceCustomizer"/> instance for this assembly. 
+            </summary>
+            <seealso cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.Resources.Customizer"/> 
+            <seealso cref="T:Infragistics.Shared.ResourceCustomizer"/> 
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.Resources.GetString(System.String,System.Object[])">
+            <summary>
+            Returns the resource string using the specified name and default culture.
+            </summary>
+            <param name="name">Name of the string resource to return.</param>
+            <param name="args">Arguments supplied to the string.Format method when formatting the string.</param>
+            <returns>The resource string using the specified resource name and default culture.</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.Resources.GetString(System.String)">
+            <summary>
+            Returns the resource string using the specified resource name and default culture. The string is then formatted using the arguments specified.
+            </summary>
+            <param name="name">Name of the string resource to return.</param>
+            <returns>The resource string using the specified resource name and default culture.</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.Resources.GetObject(System.String)">
+            <summary>
+            Returns the resource object using the specified name.
+            </summary>
+            <param name="name">Name of the resource item.</param>
+            <returns>An object containing the specified resource.</returns>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.Resources.Customizer">
+            <summary>
+            Returns the <see cref="T:Infragistics.Shared.ResourceCustomizer"/> for this assembly.
+            </summary>
+            <seealso cref="T:Infragistics.Shared.ResourceCustomizer"/> 
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter">
+            <summary>
+            UltraGridDocumentExporter component provides document (PDF or XPS) exporting functionality to UltraGrid.
+            </summary>	
+        </member>
+        <member name="F:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ReportRelevantPropFlags">
+            <summary>
+            Relevant appearance properties used in reports. All other 
+            properties are ignored in exporting process.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.#ctor">
+            <summary>
+            UltraGridDocumentExporter constructor.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            Creates a new <see cref="T:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter"/> instance.
+            </summary>    
+            <param name="container">The <see cref="T:System.ComponentModel.IContainer"/> implementor which will contain the component.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources used by the System.ComponentModel.Component and optionally releases the managed resources.
+            </summary>
+            <param name="disposing">True to release both managed and unmanaged resources; False to release only unmanaged resources.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ShouldSerializeImageTransparentMapColor">
+            <summary>
+            Returns True if the value is not the default.
+            </summary>
+            <returns>True if the value is not the default.</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ResetImageTransparentMapColor">
+            <summary>
+            Resets the property back to its default value.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ShouldSerializeMargins">
+            <summary>
+            Returns True if the value is not the default.
+            </summary>
+            <returns>True if the value is not the default.</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ResetMargins">
+            <summary>
+            Resets the property back to its default value.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ShouldSerializeTargetPaperSize">
+            <summary>
+            Returns True if the value is not the default.
+            </summary>
+            <returns>True if the value is not the default.</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ResetTargetPaperSize">
+            <summary>
+            Resets the property back to its default value.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.GetCellExportValue(Infragistics.Win.UltraWinGrid.UltraGridRow,Infragistics.Win.UltraWinGrid.UltraGridColumn,Infragistics.Win.UltraWinGrid.DocumentExport.CellExportingEventArgs)">
+            <summary>
+            Get the value of a cell to export.
+            </summary>
+            <param name="gridRow"></param>
+            <param name="gridColumn"></param>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.PrepareLayoutBeforeBeginExport(Infragistics.Win.UltraWinGrid.UltraGridLayout)">
+            <summary>
+            Prepares the layout for exporting by modifying any properties that don't make sense in an export, such as ExclusiveColScrollRegions or a Horizontal ViewStyle.
+            This method fires before the BeginExport event, so changes made here can be overriden by the programmer.
+            </summary>
+            <param name="exportLayout"></param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.PrepareLayoutAfterBeginExport(Infragistics.Win.UltraWinGrid.UltraGridLayout)">
+            <summary>
+            Prepares the layout for exporting by modifying any properties that don't make sense in an export, such as ExclusiveColScrollRegions or a Horizontal ViewStyle.
+            This method is called After the BeginExport event fires, so changes made in BeforeExport
+            will be overriden here. 
+            </summary>
+            <param name="exportLayout"></param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.Export(Infragistics.Win.UltraWinGrid.UltraGrid,System.String,Infragistics.Win.UltraWinGrid.DocumentExport.GridExportFileFormat)">
+            <summary>
+            Exports the specified grid to the specified file. 
+            </summary>
+            <param name="grid">The <see cref="T:Infragistics.Win.UltraWinGrid.UltraGrid"/> control to export.</param>
+            <param name="fileName">Name and path of resulting file.</param>
+            <param name="fileFormat">The file format of the report.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="grid"/> is null.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="fileName"/> is null.</exception>
+            <returns>The newly created <see cref="T:Infragistics.Documents.Reports.Report.Report"/> into which the grid was exported..</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.Export(Infragistics.Win.UltraWinGrid.UltraGrid,System.IO.Stream,Infragistics.Win.UltraWinGrid.DocumentExport.GridExportFileFormat)">
+            <summary>
+            Exports the specified grid to the specified file. 
+            </summary>
+            <param name="grid">The <see cref="T:Infragistics.Win.UltraWinGrid.UltraGrid"/> control to export.</param>
+            <param name="stream">The stream into which the grid will be exported.</param>
+            <param name="fileFormat">The file format of the report.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="grid"/> is null.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="stream"/> is null.</exception>
+            <returns>The newly-created <see cref="T:Infragistics.Documents.Reports.Report.Report"/> into which the grid was exported.</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.Export(Infragistics.Win.UltraWinGrid.UltraGrid)">
+            <summary>
+            Creates a new <see cref="T:Infragistics.Documents.Reports.Report.Report"/> and exports the specified grid into the report in a new <see cref="T:Infragistics.Documents.Reports.Report.Section.ISection"/>. 
+            </summary>
+            <param name="grid">The <see cref="T:Infragistics.Win.UltraWinGrid.UltraGrid"/> control to export.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="grid"/> is null.</exception>
+            <returns>The newly-created report section in the newly-created report into which the grid was exported.</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.Export(Infragistics.Win.UltraWinGrid.UltraGrid,Infragistics.Documents.Reports.Report.Report)">
+            <summary>
+            Exports the specified ultragrid to the specified report in a new section.
+            </summary>
+            <param name="grid">The <see cref="T:Infragistics.Win.UltraWinGrid.UltraGrid"/> control to export.</param>
+            <param name="report">The <see cref="T:Infragistics.Documents.Reports.Report.Report"/> into which to export the grid.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="grid"/> is null.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="report"/> is null.</exception>
+            <returns>The newly-created <see cref="T:Infragistics.Documents.Reports.Report.Section.ISection"/> in the report into which the grid was exported.</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.Export(Infragistics.Win.UltraWinGrid.UltraGrid,Infragistics.Documents.Reports.Report.Section.ISection)">
+            <summary>
+            Exports the specified ultragrid to the specified section of a report.        
+            </summary>
+            <param name="grid">The <see cref="T:Infragistics.Win.UltraWinGrid.UltraGrid"/> control to export.</param>
+            <param name="section">The destination <see cref="T:Infragistics.Documents.Reports.Report.Section.ISection"/> into which the grid will be exported.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="grid"/> is null.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="section"/> is null.</exception>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ExportAsync(Infragistics.Win.UltraWinGrid.UltraGrid,System.String,Infragistics.Win.UltraWinGrid.DocumentExport.GridExportFileFormat)">
+            <summary>
+            Exports the specified grid to the specified file asynchronously. 
+            </summary>
+            <param name="grid">The <see cref="T:Infragistics.Win.UltraWinGrid.UltraGrid"/> control to export.</param>
+            <param name="fileName">Name and path of resulting file.</param>
+            <param name="fileFormat">The file format of the report.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="grid"/> is null.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="fileName"/> is null.</exception>
+            <remarks>
+            <para class="body">
+            The ExportAsync method exports the UltraWinGrid to a document asynchronously, unlike the Export method which is synchronous. This is acheived using timers and is not a multi-threaded operation. You should not attempt to access the exporter Workbook, Worksheet, or file until the operation export is complete. You can determine when the process has ending by trapping the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.EndExport"/> event.
+            During the asynchronous export process, the UltraWinGrid will disable the user's ability to add, remove, delete, edit, filter, sort, or otherwise modify the state of the data during the export process. 
+            It is strongly advised that you make sure that the grid's DataSource is not modified during the asynchronous export process.
+            If the data is modifed during the asynchonous export process, the modified data may or may not be exported in it's new state, or (more likely) the export process may be terminated entirely. 
+            Also note that you may not perform more than one export operation at a time on the same UltraWinGrid or using the same UltraGridDocumentExporter, either synchronously or asynchronous. Attempting to do so will result in an <see cref="T:System.InvalidOperationException"/>.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ExportAsync(Infragistics.Win.UltraWinGrid.UltraGrid,System.IO.Stream,Infragistics.Win.UltraWinGrid.DocumentExport.GridExportFileFormat)">
+            <summary>
+            Exports the specified grid to the specified file asynchronously. 
+            </summary>
+            <param name="grid">The <see cref="T:Infragistics.Win.UltraWinGrid.UltraGrid"/> control to export.</param>
+            <param name="stream">The stream into which the grid will be exported.</param>
+            <param name="fileFormat">The file format of the report.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="grid"/> is null.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="stream"/> is null.</exception>
+            <remarks>
+            <para class="body">
+            The ExportAsync method exports the UltraWinGrid to a document asynchronously, unlike the Export method which is synchronous. This is acheived using timers and is not a multi-threaded operation. You should not attempt to access the exporter Workbook, Worksheet, or file until the operation export is complete. You can determine when the process has ending by trapping the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.EndExport"/> event.
+            During the asynchronous export process, the UltraWinGrid will disable the user's ability to add, remove, delete, edit, filter, sort, or otherwise modify the state of the data during the export process. 
+            It is strongly advised that you make sure that the grid's DataSource is not modified during the asynchronous export process.
+            If the data is modifed during the asynchonous export process, the modified data may or may not be exported in it's new state, or (more likely) the export process may be terminated entirely. 
+            Also note that you may not perform more than one export operation at a time on the same UltraWinGrid or using the same UltraGridDocumentExporter, either synchronously or asynchronous. Attempting to do so will result in an <see cref="T:System.InvalidOperationException"/>.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ExportAsync(Infragistics.Win.UltraWinGrid.UltraGrid,Infragistics.Documents.Reports.Report.Report)">
+            <summary>
+            Exports the specified ultragrid to the specified report in a new section asynchronously.
+            </summary>
+            <param name="grid">The <see cref="T:Infragistics.Win.UltraWinGrid.UltraGrid"/> control to export.</param>
+            <param name="report">The <see cref="T:Infragistics.Documents.Reports.Report.Report"/> into which to export the grid.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="grid"/> is null.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="report"/> is null.</exception>
+            <remarks>
+            <para class="body">
+            The ExportAsync method exports the UltraWinGrid to a document asynchronously, unlike the Export method which is synchronous. This is acheived using timers and is not a multi-threaded operation. You should not attempt to access the exporter Workbook, Worksheet, or file until the operation export is complete. You can determine when the process has ending by trapping the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.EndExport"/> event.
+            During the asynchronous export process, the UltraWinGrid will disable the user's ability to add, remove, delete, edit, filter, sort, or otherwise modify the state of the data during the export process. 
+            It is strongly advised that you make sure that the grid's DataSource is not modified during the asynchronous export process.
+            If the data is modifed during the asynchonous export process, the modified data may or may not be exported in it's new state, or (more likely) the export process may be terminated entirely. 
+            Also note that you may not perform more than one export operation at a time on the same UltraWinGrid or using the same UltraGridDocumentExporter, either synchronously or asynchronous. Attempting to do so will result in an <see cref="T:System.InvalidOperationException"/>.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ExportAsync(Infragistics.Win.UltraWinGrid.UltraGrid,Infragistics.Documents.Reports.Report.Section.ISection)">
+            <summary>
+            Exports the specified ultragrid to the specified section of a report asynchronously.        
+            </summary>
+            <param name="grid">The <see cref="T:Infragistics.Win.UltraWinGrid.UltraGrid"/> control to export.</param>
+            <param name="section">The destination <see cref="T:Infragistics.Documents.Reports.Report.Section.ISection"/> into which the grid will be exported.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="grid"/> is null.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="section"/> is null.</exception>
+            <remarks>
+            <para class="body">
+            The ExportAsync method exports the UltraWinGrid to a document asynchronously, unlike the Export method which is synchronous. This is acheived using timers and is not a multi-threaded operation. You should not attempt to access the exporter Workbook, Worksheet, or file until the operation export is complete. You can determine when the process has ending by trapping the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.EndExport"/> event.
+            During the asynchronous export process, the UltraWinGrid will disable the user's ability to add, remove, delete, edit, filter, sort, or otherwise modify the state of the data during the export process. 
+            It is strongly advised that you make sure that the grid's DataSource is not modified during the asynchronous export process.
+            If the data is modifed during the asynchonous export process, the modified data may or may not be exported in it's new state, or (more likely) the export process may be terminated entirely. 
+            Also note that you may not perform more than one export operation at a time on the same UltraWinGrid or using the same UltraGridDocumentExporter, either synchronously or asynchronous. Attempting to do so will result in an <see cref="T:System.InvalidOperationException"/>.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.OnBeginExport(Infragistics.Win.UltraWinGrid.DocumentExport.BeginExportEventArgs)">
+            <summary>
+            Called before grid export starts.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.OnInitializeRow(Infragistics.Win.UltraWinGrid.DocumentExport.DocumentExportInitializeRowEventArgs)">
+            <summary>
+            Called when a row is initialized.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.OnEndExport(Infragistics.Win.UltraWinGrid.DocumentExport.EndExportEventArgs)">
+            <summary>
+            Called after grid export is finished.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.OnHeaderRowExporting(Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportingEventArgs)">
+            <summary>
+            Called before a header row is exported to a report.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.OnRowExporting(Infragistics.Win.UltraWinGrid.DocumentExport.RowExportingEventArgs)">
+            <summary>
+            Called before a grid row is exported to a report.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.OnSummaryRowExporting(Infragistics.Win.UltraWinGrid.DocumentExport.SummaryRowExportingEventArgs)">
+            <summary>
+            Called before a summary row is exported to a report.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.OnHeaderRowExported(Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportedEventArgs)">
+            <summary>
+            Called after a header row is exported to a report.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.OnRowExported(Infragistics.Win.UltraWinGrid.DocumentExport.RowExportedEventArgs)">
+            <summary>
+            Called after a grid row is exported to a report.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.OnSummaryRowExported(Infragistics.Win.UltraWinGrid.DocumentExport.SummaryRowExportedEventArgs)">
+            <summary>
+            Called after a summary row is exported to a report.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.OnCellExporting(Infragistics.Win.UltraWinGrid.DocumentExport.CellExportingEventArgs)">
+            <summary>
+            Called before a grid cell is exported to a report.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.OnHeaderCellExporting(Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportingEventArgs)">
+            <summary>
+            Called before a header cell is exported to a report.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.OnSummaryCellExporting(Infragistics.Win.UltraWinGrid.DocumentExport.SummaryCellExportingEventArgs)">
+            <summary>
+            Called before a summary cell is exported to a report.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.OnCellExported(Infragistics.Win.UltraWinGrid.DocumentExport.CellExportedEventArgs)">
+            <summary>
+            Called after a grid cell is exported to a report.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.OnHeaderCellExported(Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportedEventArgs)">
+            <summary>
+            Called after a header cell is exported to a report.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.OnSummaryCellExported(Infragistics.Win.UltraWinGrid.DocumentExport.SummaryCellExportedEventArgs)">
+            <summary>
+            Called after summary cell is exported to a report.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.OnExportStarted(Infragistics.Win.UltraWinGrid.DocumentExport.ExportStartedEventArgs)">
+            <summary>
+            Used to invoke the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ExportStarted"/> event.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.OnExportEnding(Infragistics.Win.UltraWinGrid.DocumentExport.ExportEndingEventArgs)">
+            <summary>
+            Used to invoke the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ExportEnding"/> event.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.OnExportEnded(Infragistics.Win.UltraWinGrid.DocumentExport.ExportEndedEventArgs)">
+            <summary>
+            Used to invoke the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ExportEnded"/> event.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.OnAsynchronousExportError(Infragistics.Win.UltraWinGrid.DocumentExport.AsynchronousExportErrorEventArgs)">
+            <summary>
+            Used to invoke the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.AsynchronousExportError"/> event.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.AutoSize">
+            <summary>
+            Gets / sets whether columns and rows will be automatically sized to fit their contents before exporting.
+            </summary>
+            <remarks>
+            <para class="note"><b>Note:</b> columns with <see cref="P:Infragistics.Win.UltraWinGrid.UltraGridColumn.CellMultiLine"/> set to True will not be autosized horizontally. This is to prevent columns for memo or other extremely large fields from becoming too wide. If you want to autosize a multiline column, you should do so in the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ExportStarted"/> event by calling the <see cref="M:Infragistics.Win.UltraWinGrid.UltraGridColumn.PerformAutoResize(Infragistics.Win.UltraWinGrid.PerformAutoSizeType)"/> method on the column.</para>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.FileBuffer">
+            <summary>
+            A filename where data can be cached during a Publish operation. 
+            </summary>
+            <remarks>
+            <para class="body">Specifies a filename for the file buffer. A filebuffer will only be used if <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.UseFileBuffer"/> is True. The filename specified need not exist on the drive, but if it does, any data in the file will be lost.</para>
+            <para class="note"><b>Note:</b> If FileBuffer is not specified and UseFileBuffer is True, the UltraGridDocumentExporter will attempt to create a file in the system temp folder. So it is not neccessary to specify a FileBuffer unless there is reason to beleive that the application will not have access to the temp folder.</para>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ImageCompressorType">
+            <summary>
+            Determines which type of compressor to use for images. 
+            </summary>
+            <remarks>
+            <para class="body">The default is the <see cref="P:Infragistics.Documents.Reports.Graphics.ImageCompressors.Flate"/> compressor. This compressor generally results in less compression (larger files), but it can handle transparent images. The <see cref="P:Infragistics.Documents.Reports.Graphics.ImageCompressors.JPEG"/> compressor results in better compression (smaller files), but it will not support transparency. So you should use JPEG only when you know that none of the images in your grid have transparency.</para>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ImageTransparentMapColor">
+            <summary>
+            Determines the color in the exported documented that will be used as the Transparent color. 
+            </summary>
+            <remarks>
+            <para class="body">PDF and XPS format do not support per-pixel transparency. So the alpha channel of an image is stripped out of any images in the document before it is exported. By default, completely transparent pixels will be converted to White, since that the standard background color.</para>
+            <para class="body">By specifying an ImageTransparentMapColor, you can make the transparent parts of your image display transparently (instead of white). However, the color selected here will apply to all parts of the image. So, for example, if you choose Magenta, all parts of the image that are either transparent or magenta will display transparently in the resulting exported document. Therefore, it is advisable to choose an ImageTransparentMapColor that is not used in any of the images being exported.</para>
+            <para class="body">Also note that if you are using a JPEG Compressor, the colors in the image may be changed by compression and transparency will not work properly. If you have transparency in you images, you sure make sure <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ImageCompressorType"/> is set to Flate.</para>
+            </remarks>
+            <exception cref="T:System.ArgumentOutOfRangeException">The assigned color value is not opaque (has an Alpha value of less than 255).</exception>        
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.Margins">
+            <summary>
+            Gets or returns the page margins of the pages within the section of the report in which the grid is exported.
+            </summary>
+            <remarks>
+            <para class="body">The Margins indicate the amount of space around the edges of each page of the document section into which the grid is exporter.</para>
+            </remarks> 
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.TargetPaperOrientation">
+            <summary>
+            Gets/sets the target paper orientation. 
+            </summary>
+            <remarks>
+            <para class="body">This is used to maintain the aspect ratio of the pages of the document. When exporting, the DocumentExporter will determine the neccessary page width in order to fit all grid columns on one page. If this is wider than the <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.TargetPaperSize"/>, then the page width and height will be increased proportionally, maintaining the aspect ratio of the page based on the TargetPaperSize and <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.TargetPaperOrientation"/>. This means that when the document is printed and scaled down to a page, the maximum amount of page area will be utilized.</para>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.TargetPaperSize">
+            <summary>
+            The target paper size in points (a point is 1/72th of an inch). 
+            </summary>
+            <remarks>
+            <para class="body">This is used to maintain the aspect ratio of the pages of the document. When exporting, the DocumentExporter will determine the neccessary page width in order to fit all grid columns on one page. If this is wider than the <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.TargetPaperSize"/>, then the page width and height will be increased proportionally, maintaining the aspect ratio of the page based on the TargetPaperSize and <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.TargetPaperOrientation"/>. This means that when the document is printed and scaled down to a page, the maximum amount of page area will be utilized.</para>
+            </remarks> 
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.UseFileBuffer">
+            <summary>
+            Gets or returns whether a FileBuffer will be used during a Publish operation. 
+            </summary>
+            <remarks>
+            <para class="body">The file buffer is used to store data to a temporary file during the publishing of a report. If a filename is specified by the <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.FileBuffer"/> property, then that filename is used. If no filename is specified, the UltraGridDocumentExporter will attempt to create a file in the system temp folder.</para>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.Report">
+            <summary>
+            Gets the report that is currently being exported. This property is only valid during an export event. 
+            </summary>
+            <remarks>
+            <p class="body">This property is deprecated with no replacement.</p>
+            </remarks>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.BeginExport">
+            <summary>
+            Occurs before the export begins.
+            </summary>
+            <remarks>
+            <p class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.BeginExportEventArgs.Layout"/> is a cloned <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridLayout"/> of the grid being exported. Since the layout is cloned, you can safely modify the layout for exporting without affecting the on-screen grid.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.BeginExportEventArgs.Rows"/> is the root <see cref="T:Infragistics.Win.UltraWinGrid.RowsCollection"/> of the grid being exported.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.BeginExportEventArgs.Section"/> is the the <see cref="T:Infragistics.Documents.Reports.Report.Section.ISection"/> in the report into which the grid will be exported. The section PageSize will automatically be set during the export process and should not be modified in this event.</p>
+            <p class="body">This event is fired before all other events when the <see cref="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.Export(Infragistics.Win.UltraWinGrid.UltraGrid,System.String,Infragistics.Win.UltraWinGrid.DocumentExport.GridExportFileFormat)"/> method is called. You can use it to do any preprocessing before exporting process starts. For example, you can set properties on the cloned layout.</p>
+            </remarks>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.EndExport"/>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.InitializeRow">
+            <summary>
+            Occurs when a row is initialized.
+            </summary>
+            <remarks>
+            <p class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.DocumentExportInitializeRowEventArgs.Row"/> argument returns the grid row which is being initialized. Note that this row exists in the cloned export layout, so any changes made to this row will affect the export without affecting the on-screen grid. This row may not have the same state information (such as the Selected or Expanded state) as the actual grid row in the on-screen grid. To get the on-screen row associated with this row, use the <see cref="M:Infragistics.Win.UltraWinGrid.UltraGrid.GetRowFromPrintRow(Infragistics.Win.UltraWinGrid.UltraGridRow)"/> method.</p>
+            <p class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.DocumentExportInitializeRowEventArgs.SkipRow"/> argument specifies whether to skip the current row. This argument doesn't affect exporting of descendant rows.</p>
+            <p class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.DocumentExportInitializeRowEventArgs.SkipDescendants"/> argument specifies whether to skip the descendats of the current row.</p>
+            <p class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.DocumentExportInitializeRowEventArgs.SkipSiblings"/> argument specifies whether to skip sibling rows of the current row.</p>
+            <p class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.DocumentExportInitializeRowEventArgs.TerminateExport"/> argument specifies whether to terminate the export process. Current row will not be processed.</p>        
+            <p class="body">This event is fired for every grid row which is being exported, and before <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.RowExporting"/> and <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.RowExported"/> are fired. Use this event to set grid row specific properties and to control exporting process.</p>
+            </remarks>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.EndExport">
+            <summary>
+            Occurs after grid export is finished.
+            </summary>
+            <remarks>
+            <p class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.EndExportEventArgs.Canceled"/> argument is True if the exporting process was canceled.</p>
+            <p class="body">This event is fired after the exporting process is finished and is fired after all other events.</p>
+            </remarks>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.BeginExport"/>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.HeaderRowExporting">
+            <summary>
+            Occurs before a header row is exported to a report.
+            </summary>
+            <remarks>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportingEventArgs.Band"/> returns the <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridBand"/> associated with the headers being exported.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportingEventArgs.IsFixedHeader"/> returns a boolean indicating whether this set of headers is a fixed header or not. A fixed header will repeat at the top of every page of the report. Other headers will appear at the top of a particulr island of data and repeat on a page break.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportingEventArgs.FixedHeaderContainer"/> returns a the report object which will contain the set of headers if the headers are fixed. If IsFixedHeader is false, this will return null.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportingEventArgs.HeaderContainer"/> returns a report object which will contain the headers if they are not fixed. If IsFixedHeader is True, this will return null.</p>
+            <p class="body">This event is fired before a set of headers is exported to the report. The header includes the band header (if any), the group headers (if groups and levels are used), and the column headers. Use the Cancel argument to cancel the exporting of the entire set of headers.</p>
+            <p class="body">Using these event arguments, it is possible to override the exporting of a header and provide custom exported data. Typically, this would be done by setting Cancel to True, and adding conent to the appropriate header container. If IsFixedHeader is True, content should be added to the FixedHeaderContainer, otherwise, content should be added to the HeaderContainer.</p>
+            </remarks>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.HeaderRowExported"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.RowExporting"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.SummaryRowExporting"/>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.RowExporting">
+            <summary>
+            Occurs before a grid row is exported to a report.
+            </summary>
+            <remarks>        
+            <p class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.RowExportingEventArgs.GridRow"/> argument returns the grid row which is being exported. Note that this row exists in the cloned export layout, so any changes made to this row will affect the export without affecting the on-screen grid. This row may not have the same state information (such as the Selected or Expanded state) as the actual grid row in the on-screen grid. To get the on-screen row associated with this row, use the <see cref="M:Infragistics.Win.UltraWinGrid.UltraGrid.GetRowFromPrintRow(Infragistics.Win.UltraWinGrid.UltraGridRow)"/> method.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.RowExportingEventArgs.ContainingTable"/> returns the ITable in the report to which the row will be exported.</p>
+            <p class="body">This event is fired before each row is exported. This includes the row, it's cells, it's RowPreviewArea, and may also include column header if using RowLayout mode with column headers that are displayed with the cells. Use the Cancel argument to cancel the default exporting of this row.</p>
+            <p class="body">This event fires only for normal data rows or GroupBy rows. It does not fire for header or summary rows. For header rows, use <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.HeaderRowExporting"/>. For summary rows, use <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.SummaryRowExporting"/>.</p>
+            <p class="body">Using these event arguments, it is possible to override the exporting of a row and provide a custom export. Typically, this would be done by setting Cancel to True, adding a row to the reportTable, and then populating that row with the desired contents.</p>
+            </remarks>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.RowExported"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.HeaderRowExporting"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.SummaryRowExporting"/>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.SummaryRowExporting">
+            <summary>
+            Occurs before summary row is exported to a report.
+            </summary>
+            <remarks>        
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryRowExportingEventArgs.GridSummaryRow"/> returns the <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridSummaryRow"/> being exported.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryRowExportingEventArgs.ContainingTable"/> returns the ITable in the report to which the row will be exported.</p>
+            <p class="body">This event is fired before a summary row is exported to a report. A summary row includes the SummaryFooterCaption and all summary values. Use the Cancel argument to cancel row exporting.</p>
+            <p class="body">Using these event arguments, it is possible to override the exporting of a summary row and provide a custom export. Typically, this would be done by setting Cancel to True, adding a row to the reportTable, and then populating that row with the desired contents.</p>
+            </remarks>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.SummaryRowExported"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.HeaderRowExporting"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.RowExporting"/>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.HeaderRowExported">
+            <summary>
+            Occurs after a header row is exported to a report.
+            </summary>
+            <remarks>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportedEventArgs.Band"/> returns the <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridBand"/> associated with the headers that were exported.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportedEventArgs.IsFixedHeader"/> returns a boolean indicating whether this set of headers is a fixed header or not. A fixed header will repeat at the top of every page of the report. Other headers will appear at the top of a particulr island of data and repeat on a page break.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportedEventArgs.FixedHeaderContainer"/> returns a the report object which contains the set of headers if the headers are fixed. If IsFixedHeader is false, this will return null.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportedEventArgs.HeaderContainer"/> returns a report object which contains the headers if they are not fixed. If IsFixedHeader is True, this will return null.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderRowExportedEventArgs.ReportHeaderRow"/> returns the ITable in the report which represents the exported header row.</p>
+            <p class="body">This event is fired after a set of headers is exported to the report. The header includes the band header (if any), the group headers (if groups and levels are used), and the column headers.</p>
+            </remarks>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.HeaderRowExporting"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.RowExported"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.SummaryRowExported"/>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.RowExported">
+            <summary>
+            Occurs after a grid row is exported to a report.
+            </summary>
+            <remarks>        
+            <p class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.RowExportedEventArgs.GridRow"/> property returns the grid row which was being exported. Note that this row exists in the cloned export layout. This row may not have the same state information (such as the Selected or Expanded state) as the actual grid row in the on-screen grid. To get the on-screen row associated with this row, use the <see cref="M:Infragistics.Win.UltraWinGrid.UltraGrid.GetRowFromPrintRow(Infragistics.Win.UltraWinGrid.UltraGridRow)"/> method.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.RowExportedEventArgs.ContainingTable"/> returns the <see cref="T:Infragistics.Documents.Reports.Report.Table.ITable"/> in the report to which the row was exported.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.RowExportedEventArgs.ReportRow"/> returns the ITable in the report which represents the exported row.</p>
+            <p class="body">This event is fired after each row is exported. This includes the row, it's cells, it's RowPreviewArea, and may also include column header if using RowLayout mode with column headers that are displayed with the cells.</p>
+            <p class="body">This event fires only for normal data rows or GroupBy rows. It does not fire for header or summary rows. For header rows, use <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.HeaderRowExported"/>. For summary rows, use <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.SummaryRowExported"/>.</p>
+            </remarks>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.RowExporting"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.HeaderRowExported"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.SummaryRowExported"/>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.SummaryRowExported">
+            <summary>
+            Occurs after a summary row is exported to a report.
+            </summary>
+            <remarks>        
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryRowExportedEventArgs.GridSummaryRow"/> returns the <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridSummaryRow"/> that was exported.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryRowExportedEventArgs.ContainingTable"/> returns the ITable in the report to which the row was exported.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryRowExportedEventArgs.ReportSummaryRow"/> returns the ITable in the report which represents the exported summary row.</p>
+            <p class="body">This event is fired after a summary row is exported to a report. A summary row includes the SummaryFooterCaption and all summary values.</p>
+            </remarks>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.SummaryRowExporting"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.HeaderRowExported"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.RowExported"/>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.CellExporting">
+            <summary>
+            Occurs before a grid cell is exported to a report.
+            </summary>
+            <remarks>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.CellExportingEventArgs.GridRow"/> returns the <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridRow"/> containing the cell.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.CellExportingEventArgs.GridColumn"/> returns the associated <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridColumn"/>.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.CellExportingEventArgs.ReportCell"/> returns the <see cref="T:Infragistics.Documents.Reports.Report.Grid.IGridCell"/> into which the contents of the cell will be exported.</p>
+            <p class="body">This event fires for data cells only. It will not fire for header or summary cells. For header cells, use <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.HeaderCellExporting"/>. For summary cells, use <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.SummaryCellExporting"/>. </p>
+            <p class="body">Use the Cancel argument to cancel the exporting of a cell.</p>
+            <p class="body">Using these event arguments, it is possible to override the exporting of a cell and provide a custom export. Typically, this would be done by setting Cancel to True, and then adding content to the ReportCell.</p>
+            </remarks>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.CellExported"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.HeaderCellExporting"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.SummaryCellExporting"/>        
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.HeaderCellExporting">
+            <summary>
+            Occurs before a header cell is exported to a report.
+            </summary>
+            <remarks>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportingEventArgs.GridHeader"/> returns the <see cref="T:Infragistics.Win.UltraWinGrid.HeaderBase"/> being exported.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportingEventArgs.HeaderType"/> indicates what type of header is being exported: a band header, group, or column header.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportingEventArgs.ColumnHeaderContainer"/>, <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportingEventArgs.GroupHeaderContainer"/>, and <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportingEventArgs.BandHeaderContainer"/> return a report object which will contain the header being exported. Only one of these three properties will contain an object, the other two will be null.</p>
+            <p class="body">ColumnHeaderContainer returns an <see cref="T:Infragistics.Documents.Reports.Report.Grid.IGridCell"/> which will contain the column header being exported. If HeaderType is not a column header, this will be null.</p>
+            <p class="body">GroupHeaderContainer returns an <see cref="T:Infragistics.Documents.Reports.Report.Table.ITableCell"/> which will contain the group header being exported. If HeaderType is not a group header, this will be null.</p>
+            <p class="body">BandHeaderContainer returns an ITableCell which will contain the band header being exported. If HeaderType is not a band header, this will be null.</p>
+            <p class="body">Use the <see cref="P:System.ComponentModel.CancelEventArgs.Cancel"/> argument to cancel the exporting of the header cell.</p>
+            <p class="body">Using these event arguments, it is possible to override the exporting of a header cell and provide a custom export. Typically, this would be done by setting Cancel to True, and then adding content to the ColumnHeaderContainer, GroupHeaderContainer, or BandHeaderContainer (depending on the HeaderType).</p>
+            </remarks>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.HeaderCellExported"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.CellExporting"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.SummaryCellExporting"/> 
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.SummaryCellExporting">
+            <summary>
+            Occurs before a summary cell is exported to a report.
+            </summary>
+            <remarks>        
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryCellExportingEventArgs.Summary"/> returns the <see cref="T:Infragistics.Win.UltraWinGrid.SummaryValue"/> being exported.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryCellExportingEventArgs.SummaryLevel"/> returns the level of the Summary. Summaries are exporting into multiple rows (levels). The summary level indicates on which level this summary is displayed.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryCellExportingEventArgs.ReportCell"/> returns the <see cref="T:Infragistics.Documents.Reports.Report.Grid.IGridCell"/> into which the contents of the summary value will be exported.</p>
+            <p class="body">Use the <see cref="P:System.ComponentModel.CancelEventArgs.Cancel"/> argument to cancel the exporting of a summary cell.</p>
+            <p class="body">Using these event arguments, it is possible to override the exporting of a summary cell and provide a custom export. Typically, this would be done by setting Cancel to True, and then adding content to the ReportCell.</p>
+            </remarks>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.SummaryCellExported"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.CellExporting"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.HeaderCellExporting"/> 
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.CellExported">
+            <summary>
+            Occurs after a grid cell is exported to a report.
+            </summary>
+            <remarks>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.CellExportedEventArgs.GridRow"/>  returns the <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridRow"/> containing the cell.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.CellExportedEventArgs.GridColumn"/> returns the associated <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridColumn"/>.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.CellExportedEventArgs.ReportCell"/> returns the <see cref="T:Infragistics.Documents.Reports.Report.Grid.IGridCell"/> into which the contents of the cell were exported.</p>
+            <p class="body">This event fires for data cells only. It will not fire for header or summary cells. For header cells, use <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.HeaderCellExported"/>. For summary cells, use <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.SummaryCellExported"/>.</p>               
+            </remarks>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.CellExporting"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.HeaderCellExported"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.SummaryCellExported"/>   
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.HeaderCellExported">
+            <summary>
+            Occurs after a header cell is exported to a report.
+            </summary>
+            <remarks>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportedEventArgs.GridHeader"/> returns the <see cref="T:Infragistics.Win.UltraWinGrid.HeaderBase"/> being exported.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportedEventArgs.HeaderType"/> indicates what type of header is being exported: a band header, group, or column header.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportedEventArgs.ColumnHeaderContainer"/>, <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportedEventArgs.GroupHeaderContainer"/>, and <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.HeaderCellExportedEventArgs.BandHeaderContainer"/> return a report object which contains the header being exported. Only one of these three properties will contain an object, the other two will be null.</p>
+            <p class="body">ColumnHeaderContainer returns an <see cref="T:Infragistics.Documents.Reports.Report.Grid.IGridCell"/> which contains the column header being exported. If HeaderType is not a column header, this will be null.</p>
+            <p class="body">GroupHeaderContainer returns an <see cref="T:Infragistics.Documents.Reports.Report.Table.ITableCell"/> which contains the group header being exported. If HeaderType is not a group header, this will be null.</p>
+            <p class="body">BandHeaderContainer returns an ITableCell which contains the band header being exported. If HeaderType is not a band header, this will be null.</p>
+            </remarks>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.HeaderCellExporting"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.CellExported"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.SummaryCellExported"/>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.SummaryCellExported">
+            <summary>
+            Occurs after a summary cell is exported to a report.
+            </summary>
+            <remarks>        
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryCellExportedEventArgs.Summary"/> returns the <see cref="T:Infragistics.Win.UltraWinGrid.SummaryValue"/> being exported.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryCellExportedEventArgs.SummaryLevel"/> returns the level of the Summary. Summaries are exporting into multiple rows (levels). The summary level indicates on which level this summary is displayed.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.SummaryCellExportedEventArgs.ReportCell"/> returns the <see cref="T:Infragistics.Documents.Reports.Report.Grid.IGridCell"/> into which the contents of the summary value were exported.</p>
+            </remarks>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.SummaryCellExporting"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.CellExported"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.HeaderCellExported"/> 
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ExportStarted">
+            <summary>
+            Occurs before the export begins.
+            </summary>
+            <remarks>
+            <p class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.ExportStartedEventArgs.Layout"/> is a cloned <see cref="T:Infragistics.Win.UltraWinGrid.UltraGridLayout"/> of the grid being exported. Since the layout is cloned, you can safely modify the layout for exporting without affecting the on-screen grid.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.ExportStartedEventArgs.Rows"/> is the root <see cref="T:Infragistics.Win.UltraWinGrid.RowsCollection"/> of the grid being exported.</p>
+            <p class="body"><see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.ExportStartedEventArgs.Section"/> is the the <see cref="T:Infragistics.Documents.Reports.Report.Section.ISection"/> in the report into which the grid will be exported. The section PageSize will automatically be set during the export process and should not be modified in this event.</p>
+            <p class="body">This event is fired before all other events when the <see cref="M:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.Export(Infragistics.Win.UltraWinGrid.UltraGrid,System.String,Infragistics.Win.UltraWinGrid.DocumentExport.GridExportFileFormat)"/> method is called. You can use it to do any preprocessing before exporting process starts. For example, you can set properties on the cloned layout.</p>
+            </remarks>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.EndExport"/>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ExportEnding">
+            <summary>
+            Occurs before the export process has ended, but before the document is finalized.
+            </summary>
+            <remarks>
+            <p class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.ExportEndingEventArgs.Canceled"/> argument is True if the exporting process was canceled.</p>
+            <p class="body">The ExportEnding event is invoked when the export process has completed to give the developer 
+            one final opportunity to manipulate the document being generated. This is particularly important when using an 
+            overload of the Export method that takes a filename as the file will be saved after the ExportEnding is complete 
+            but before the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ExportEnded"/> so it will not be possible to make changes to the document after the 
+            ExportEnding event has fired. Also, since the file will not have been created until after the ExportEnding event
+            fires, the file cannot be accessed until the ExportEnded event.</p>
+            </remarks>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ExportStarted"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ExportEnded"/>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ExportEnded">
+            <summary>
+            Occurs after grid export is finished.
+            </summary>
+            <remarks>
+            <p class="body">The <see cref="P:Infragistics.Win.UltraWinGrid.DocumentExport.ExportEndedEventArgs.Canceled"/> argument is True if the exporting process was canceled.</p>
+            <p class="body">The ExportEnded event is raised after the export process has been completed. If an overload of 
+            the Export method that accepts a filename was used, then the file would be available at this point since the file 
+            is saved after the <see cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ExportEnding"/> event has been completed but before the ExportEnded.</p>
+            </remarks>            
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ExportStarted"/>
+            <seealso cref="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.ExportEnding"/>
+        </member>
+        <member name="E:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.AsynchronousExportError">
+            <summary>
+            Occurs if there is an exception caught during an asyncrhonous export operation.
+            </summary>
+            <remarks>
+            <p class="body">This event fires when an error or exception occurs during an asynchronous export operation. For example, if you attempt to export to a file and the file is locked and cannot be overwritten.</p>
+            <p class="body">By default, the UltraGridExcelExporter will display an error message and the export process will be cancelled. Setting DisplayErrorMessage to false will cancel the default error message so that you can display your own, or re-try saveing the Workbook to a different filename.</p>
+            <p class="body">Note that this event will only fire for asynchronous export operations. For synchonrous operations, exceptions can be caught by wrapping the call to the Export method in a try...catch block.</p>
+            </remarks>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.About">
+            <summary>
+            Displays the About dialog for the control.
+            </summary>
+        </member>
+        <member name="P:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter.Infragistics#Shared#IUltraLicensedComponent#License">
+            <summary>
+            Return the license we cached inside the constructor
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridExporterHelper">
+            <summary>
+            UltraGridExporterHelper implements <see cref="T:Infragistics.Win.UltraWinGrid.IUltraGridExporter"/> and serves 
+            as communication between grid and <see cref="T:Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter"/>. 
+            Class is internal so user can't create helper and call 
+            <see cref="M:Infragistics.Win.UltraWinGrid.UltraGrid.Export(Infragistics.Win.UltraWinGrid.IUltraGridExporter)"/> method on the grid directly.
+            </summary>
+        </member>
+        <member name="T:Infragistics.Win.UltraWinGrid.DocumentExport.Utilities">
+            <summary>
+            A class containing static helper methods.
+            </summary>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.Utilities.BuildFormattedText(System.String,System.Drawing.Size,System.Drawing.Font,Infragistics.Win.AppearanceData@)">
+             <summary>
+             Generates a string that can be parsed by the <see cref="M:Infragistics.Documents.Reports.Report.Text.IText.AddRichContent(System.String)"/> method.
+             </summary>
+             <param name="formattedText">The string representation of the value of a <see cref="T:Infragistics.Win.FormattedLinkLabel.FormattedLinkEditor"/>.</param>
+             <param name="sizeInPixels">The size of the object that will contain the string.  This is mainly used for images whose size is represented as a percentage.</param>
+             <param name="baseFont">The default font to use when no font is specified for an element.</param>
+             <param name="defaultAppearance">The default <see cref="T:Infragistics.Win.AppearanceData"/> used to resolve the font information and color.</param>
+             <returns>A string containing the supported elements of the AddRichContent method.</returns>
+             <remarks>
+             <p class="body">
+             BuildFormattedText is a method used to parse the string representation of an UltraFormattedTextEditor or
+             UltraFormattedLinkLabel such that it can be added to an element of a report.  Not all aspects of these controls are
+             supported by the AddRichContent method, so any such attributes are
+             ignored.
+             </p>
+             <br/>
+             <p class="note">
+             <b>Note:</b>The list of unsupported attributes or properties includes the following list:
+             <br/>
+             <ul type="bullet">
+             <li>Floating Images</li>
+             <li>Text Background</li>        
+             </ul>
+             </p>
+             <p class="body">
+             In addition to the above list, the following are not possible without providing an element into which multiple 
+             <see cref="T:Infragistics.Documents.Reports.Report.Text.IText"/> elements can be added, such as through
+             <see cref="M:Infragistics.Win.UltraWinGrid.DocumentExport.Utilities.BuildFormattedText(System.String,System.Drawing.Size,System.Drawing.Font,Infragistics.Win.AppearanceData@,Infragistics.Documents.Reports.Report.Grid.IGridCell@)"/>.
+             <br/>
+             <ul type="bullet">
+             <li>Horizontal Rule</li>
+             <li>Text Alignment</li>
+             <li>
+             If the resolved font, specified in either in the formatted text or the base font, does not natively support bold as a 
+             TrueType font, then it cannot be drawn as such into a PDF document; for example, if the font does not have a specific Bold entry in the Fonts
+             directory (default: C:\Windows\Fonts), then the text will be rendered as slightly wider than non-bold text.
+             </li>
+             </ul>
+             </p>
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.Utilities.BuildFormattedText(System.String,System.Drawing.Size,System.Drawing.Font,Infragistics.Win.AppearanceData@,Infragistics.Documents.Reports.Report.Grid.IGridCell@)">
+             <summary>
+             Generates a string that can be parsed by the <see cref="M:Infragistics.Documents.Reports.Report.Text.IText.AddRichContent(System.String)"/> method.
+             </summary>
+             <param name="formattedText">The string representation of the value of a <see cref="T:Infragistics.Win.FormattedLinkLabel.FormattedLinkEditor"/>.</param>
+             <param name="sizeInPixels">The size of the object that will contain the string.  This is mainly used for images whose size is represented as a percentage.</param>
+             <param name="baseFont">The default font to use when no font is specified for an element.</param>
+             <param name="defaultAppearance">The default <see cref="T:Infragistics.Win.AppearanceData"/> used to resolve the font information and color.</param>
+             <param name="cell">The <see cref="T:Infragistics.Documents.Reports.Report.Grid.IGridCell"/> into which the formatted text should be rendered.</param>
+             <returns>A string containing the supported elements of the AddRichContent method.</returns>
+             <remarks>
+             <p class="body">
+             BuildFormattedText is a method used to parse the string representation of a UltraFormattedTextEditor or
+             UltraFormattedLinkLabel such that it can be added to an element of a report.  Not all aspects of these controls are
+             supported by the AddRichContent method, so any such attributes are
+             ignored.
+             </p>
+             <br/>
+             <p class="note">
+             <b>Note:</b>The list of unsupported attributes or properties includes the following list:
+             <br/>
+             <ul type="bullet">
+             <li>Floating Images</li>
+             <li>Text Background</li>     
+             <li>
+             If the resolved font, specified in either in the formatted text or the base font, does not natively support bold as a 
+             TrueType font, then it cannot be drawn as such into a PDF document; for example, if the font does not have a specific Bold entry in the Fonts
+             directory (default: C:\Windows\Fonts), then the text will be rendered as slightly wider than non-bold text.
+             </li>
+             </ul>
+             </p>
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.Utilities.DrawCheckbox(Infragistics.Documents.Reports.Report.ICanvas,System.Windows.Forms.CheckState)">
+            <summary>
+            Renders a simple checkbox into a <see cref="T:Infragistics.Documents.Reports.Report.ICanvas"/>.
+            </summary>
+            <param name="canvas">The ICanvas into which the checkbox should be rendered.</param>
+            <param name="checkState">The <see cref="T:System.Windows.Forms.CheckState"/> of the checkbox.</param>
+            <remarks>
+            This method will draw a checkbox into a ICanvas, but it is up to the programmer to
+            align that canvas in its container.
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.Utilities.PixelsToPoints(System.Int32,System.Boolean)">
+            <summary>
+             Converts pixels to points using the screen DPI.
+            </summary>
+            <param name="pixels">An integer indicating a measurement in pixels.</param>        
+            <param name="horizontal">Indicates whether the measurement is horizontal or vertical. This is neccessary to account for screen DPI.</param>
+            <returns>The value converted to Points.</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.Utilities.PointsToPixels(System.Single,System.Boolean)">
+            <summary>
+             Converts points to pixels using the screen DPI.
+            </summary>
+            <param name="points">A float indicating a measurement in points.</param>
+            <param name="horizontal">Indicates whether the measurement is horizontal or vertical. This is neccessary to account for screen DPI.</param>
+            <returns>The value converted to pixels.</returns>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.Utilities.InchesToPoints(System.Single)">
+            <summary>
+            Converts a length measured in inches into its corresponding measurement in points (a unit often used when printing).”
+            </summary>
+            <param name="inches">A float indicating a measurement in inches.</param>
+            <returns>A float indicates the value in points.</returns>
+            <remarks>
+            <p class="body">This is typically used for printer calcuations where there are 72 points per inch.</p>
+            </remarks>
+        </member>
+        <member name="M:Infragistics.Win.UltraWinGrid.DocumentExport.Utilities.PointsToInches(System.Single)">
+            <summary>
+            Converts a length measured in points (a unit often used when printing) into its corresponding measurement in inches.
+            </summary>
+            <param name="points">A float indicating a value in points.</param>
+            <returns>The value in inches.</returns>
+            <remarks>
+            <p class="body">This is typically used for printer calcuations where there are 72 points per inch.</p>
+            </remarks>
+        </member>
+    </members>
+</doc>

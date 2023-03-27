@@ -1,0 +1,69 @@
+﻿
+
+<div class="container-fluid" id="A4954" data-tid="A330868">
+    <h4 class="logisticLabel" style="margin-left:40%;color:#08c;" id="A4955" data-tid="A330869">{{FormCaption}}</h4>
+    <NeStatePanelComponent [OutgoingTransitions]="baseSupplyRequestViewModel?.OutgoingTransitions" [StateReports]="baseSupplyRequestViewModel?.CurrentStateReports" [ObjectID]="baseSupplyRequestViewModel?._SupplyRequest?.ObjectID" [ObjectDefID]="baseSupplyRequestViewModel?._SupplyRequest?.ObjectDefID" [CurrentStateDefID]="baseSupplyRequestViewModel._SupplyRequest.CurrentStateDefID" [DropStateList]="DropStateList" (onSetState)="setStateToTransition($event)" (onSaveChanges)="saveForm($event)" id="A4956" [SaveAndCloseCommandVisible]="saveAndCloseCommandVisible" [CloseWithStateTransition]="closeWithStateTransition" data-tid="A330870">
+    </NeStatePanelComponent>
+
+    <form id="BaseSupplyRequest" class="form-horizontal" role="form" data-tid="A330871">
+        
+    </form>
+    <div class="row" id="A4957" data-tid="A330872">
+        <div class="col-sm-1" id="A4958" data-tid="A330873">
+            <label class="control-label" id="A4959" data-tid="A330874">
+                İşlem No
+            </label>
+            <hvl-text-box #Validation (TextChange)="onStockActionIDChanged($event)" [BackColor]="StockActionID?.BackColor" [CharacterCasing]="StockActionID?.CharacterCasing" [Enabled]="StockActionID?.Enabled" [Font]="StockActionID?.Font" [ForeColor]="StockActionID?.ForeColor" [height]="StockActionID?.Height" [InputFormat]="StockActionID?.InputFormat" [InputTurkishCharacter]="StockActionID?.InputTurkishCharacter" [IsNonNumeric]="StockActionID?.IsNonNumeric" [MultiLine]="StockActionID?.Multiline" [ReadOnly]="StockActionID?.ReadOnly" [Required]="StockActionID?.Required" [TabIndex]="StockActionID?.TabIndex" [TextAlign]="StockActionID?.TextAlign" [Text]="baseSupplyRequestViewModel?._SupplyRequest?.StockActionID" [Visible]="StockActionID?.Visible" id="A4960" data-tid="A330875"></hvl-text-box>
+        </div>
+        <div class="col-sm-2" id="A4961" data-tid="A330876">
+            <label class="control-label" id="A4962" data-tid="A330877">
+                İşlem Tarihi
+            </label>
+            <hvl-date-picker #Validation (ValueChange)="onActionDateChanged($event)" [BackColor]="ActionDate?.BackColor" [CustomFormat]="ActionDate?.CustomFormat" [Enabled]="ActionDate?.Enabled" [Font]="ActionDate?.Font" [ForeColor]="ActionDate?.ForeColor" [Format]="ActionDate?.Format" [Max]="ActionDate?.Max" [Min]="ActionDate?.Min" [ReadOnly]="ActionDate?.ReadOnly" [Required]="ActionDate?.Required" [TabIndex]="ActionDate?.TabIndex" [Value]="baseSupplyRequestViewModel?._SupplyRequest?.ActionDate" [Visible]="ActionDate?.Visible" id="A4963" data-tid="A330878"></hvl-date-picker>
+        </div>
+        <div class="col-sm-2" id="A4964" data-tid="A330879">
+            <label class="control-label" id="A4965" data-tid="A330880">
+                İstek Yapan Depo
+            </label>
+            <hvl-list-box #Validation (SelectedObjectChange)="onStoreChanged($event)" [AutoCompleteDialogHeight]="Store?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="Store?.AutoCompleteDialogWidth" [AutoCompleteMode]="Store?.AutoCompleteMode" [BackColor]="Store?.BackColor" [DefinitionName]="Store?.ListDefName" [DisplayExpressionsCache]="baseSupplyRequestViewModel?.ListDefDisplayExpressions" [Enabled]="Store?.Enabled" [Font]="Store?.Font" [ForeColor]="Store?.ForeColor" [ListFilterExpression]="Store?.ListFilterExpression" [MinSearchLength]="Store?.MinSearchLength" [PopupDialogFieldConfig]="Store?.PopupDialogFieldConfig" [PopupDialogGridColumns]="Store?.PopupDialogGridColumns" [PopupDialogHeight]="Store?.PopupDialogHeight" [PopupDialogTitle]="Store?.PopupDialogTitle" [PopupDialogWidth]="Store?.PopupDialogWidth" [ReadOnly]="Store?.ReadOnly" [SearchMode]="Store?.SearchMode" [SearchTimeout]="Store?.SearchTimeout" [SelectedObject]="baseSupplyRequestViewModel?._SupplyRequest?.Store" [TabIndex]="Store?.TabIndex" [Visible]="Store?.Visible" [width]="Store?.Width" id="A4966" data-tid="A330881"></hvl-list-box>
+        </div>
+        <div class="col-sm-2" id="A4967" data-tid="A330882">
+            <label class="control-label" id="A4968" data-tid="A330883">
+                İstek Yapılan Ana Depo
+            </label>
+            <hvl-list-box #Validation (SelectedObjectChange)="onDestinationStoreChanged($event)" [AutoCompleteDialogHeight]="DestinationStore?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="DestinationStore?.AutoCompleteDialogWidth" [AutoCompleteMode]="DestinationStore?.AutoCompleteMode" [BackColor]="DestinationStore?.BackColor" [DefinitionName]="DestinationStore?.ListDefName" [DisplayExpressionsCache]="baseSupplyRequestViewModel?.ListDefDisplayExpressions" [Enabled]="DestinationStore?.Enabled" [Font]="DestinationStore?.Font" [ForeColor]="DestinationStore?.ForeColor" [ListFilterExpression]="DestinationStore?.ListFilterExpression" [MinSearchLength]="DestinationStore?.MinSearchLength" [PopupDialogFieldConfig]="DestinationStore?.PopupDialogFieldConfig" [PopupDialogGridColumns]="DestinationStore?.PopupDialogGridColumns" [PopupDialogHeight]="DestinationStore?.PopupDialogHeight" [PopupDialogTitle]="DestinationStore?.PopupDialogTitle" [PopupDialogWidth]="DestinationStore?.PopupDialogWidth" [ReadOnly]="DestinationStore?.ReadOnly" [SearchMode]="DestinationStore?.SearchMode" [SearchTimeout]="DestinationStore?.SearchTimeout" [SelectedObject]="baseSupplyRequestViewModel?._SupplyRequest?.DestinationStore" [TabIndex]="DestinationStore?.TabIndex" [Visible]="DestinationStore?.Visible" [width]="DestinationStore?.Width" id="A4969" data-tid="A330884"></hvl-list-box>
+        </div>
+        <div class="col-sm-1" id="A4970" data-tid="A330885">
+            <label class="control-label" id="A4971" data-tid="A330886">
+                Alım Türü
+            </label>
+            <hvl-enum-combobox #Validation (ValueChange)="onRequestTypeChanged($event)" [BackColor]="RequestType?.BackColor" [DataTypeName]="RequestType?.DataTypeName" [Enabled]="RequestType?.Enabled" [Font]="RequestType?.Font" [ForeColor]="RequestType?.ForeColor" [IncludeOnly]="RequestType?.IncludeOnly" [ReadOnly]="RequestType?.ReadOnly" [ShowClearButton]="RequestType?.ShowClearButton" [SortBy]="RequestType?.SortBy" [TabIndex]="RequestType?.TabIndex" [Value]="baseSupplyRequestViewModel?._SupplyRequest?.RequestType" [Visible]="RequestType?.Visible" id="A4972" data-tid="A330887"></hvl-enum-combobox>
+        </div>
+        <div class="col-sm-2" id="A4973" data-tid="A330888">
+            <label class="control-label" id="A4974" data-tid="A330889">
+                İstek Yapan Personel
+            </label>
+            <hvl-list-box #Validation (SelectedObjectChange)="onSignUserChanged($event)" [AutoCompleteDialogHeight]="SignUser?.AutoCompleteDialogHeight" [AutoCompleteDialogWidth]="SignUser?.AutoCompleteDialogWidth" [AutoCompleteMode]="SignUser?.AutoCompleteMode" [BackColor]="SignUser?.BackColor" [DefinitionName]="SignUser?.ListDefName" [DisplayExpressionsCache]="baseSupplyRequestViewModel?.ListDefDisplayExpressions" [Enabled]="SignUser?.Enabled" [Font]="SignUser?.Font" [ForeColor]="SignUser?.ForeColor" [ListFilterExpression]="SignUser?.ListFilterExpression" [MinSearchLength]="SignUser?.MinSearchLength" [PopupDialogFieldConfig]="SignUser?.PopupDialogFieldConfig" [PopupDialogGridColumns]="SignUser?.PopupDialogGridColumns" [PopupDialogHeight]="SignUser?.PopupDialogHeight" [PopupDialogTitle]="SignUser?.PopupDialogTitle" [PopupDialogWidth]="SignUser?.PopupDialogWidth" [ReadOnly]="SignUser?.ReadOnly" [SearchMode]="SignUser?.SearchMode" [SearchTimeout]="SignUser?.SearchTimeout" [SelectedObject]="baseSupplyRequestViewModel?._SupplyRequest?.SignUser" [TabIndex]="SignUser?.TabIndex" [Visible]="SignUser?.Visible" [width]="SignUser?.Width" id="A4975" data-tid="A330890"></hvl-list-box>
+        </div>
+        <div class="col-sm-2" id="A4976" data-tid="A330891">
+            <hvl-checkbox #Validation (ValueChange)="onIsImmediateChanged($event)" [AllowThreeState]="IsImmediate?.ThreeState" [BackColor]="IsImmediate?.BackColor" [Enabled]="IsImmediate?.Enabled" [Font]="IsImmediate?.Font" [ForeColor]="IsImmediate?.ForeColor" [IsTitleLeft]="IsImmediate?.IsTitleLeft" [Margin]="IsImmediate?.Margin" [ReadOnly]="IsImmediate?.ReadOnly" [TabIndex]="IsImmediate?.TabIndex" [TitleTopPadding]="IsImmediate?.TitleTopPadding" [Title]="IsImmediate?.Title" [Value]="baseSupplyRequestViewModel?._SupplyRequest?.IsImmediate" [Visible]="IsImmediate?.Visible" id="A4977" data-tid="A330892"></hvl-checkbox>
+        </div>
+    </div>
+    <div class="row" id="A4978" data-tid="A330893">
+        <div class="col-sm-11" id="A4979" data-tid="A330894">
+            <label class="control-label" id="A4980" data-tid="A330895">
+                Talep Gerekçesi
+            </label>
+            <hvl-text-box #Validation (TextChange)="onDescriptionChanged($event)" [BackColor]="Description?.BackColor" [CharacterCasing]="Description?.CharacterCasing" [Enabled]="Description?.Enabled" [Font]="Description?.Font" [ForeColor]="Description?.ForeColor" [height]="Description?.Height" [InputFormat]="Description?.InputFormat" [InputTurkishCharacter]="Description?.InputTurkishCharacter" [IsNonNumeric]="Description?.IsNonNumeric" [MultiLine]="Description?.Multiline" [ReadOnly]="Description?.ReadOnly" [Required]="Description?.Required" [TabIndex]="Description?.TabIndex" [TextAlign]="Description?.TextAlign" [Text]="baseSupplyRequestViewModel?._SupplyRequest?.Description" [Visible]="Description?.Visible" id="A4981" data-tid="A330896"></hvl-text-box>
+        </div>
+    </div>
+    <div class="row" id="A4982" data-tid="A330897">
+        <hvl-group-box class="col-sm-11" [Text]="ttgroupbox1.Text" id="A4983" data-tid="A330898">
+            <div class="row" id="A4984" data-tid="A330899">
+                <div class="col-sm-12" id="A4985" data-tid="A330900">
+                    <hvl-datagrid [AllowUserToAddRows]="SupplyRequestDetails?.AllowUserToAddRows" [AllowUserToDeleteRows]="SupplyRequestDetails?.AllowUserToDeleteRows" [Columns]="SupplyRequestDetailsColumns" [dataSource]="baseSupplyRequestViewModel?._SupplyRequest?.SupplyRequestDetails" [DeleteButtonWidth]="SupplyRequestDetails?.DeleteButtonWidth" [DisplayExpressionsCache]="baseSupplyRequestViewModel?.ListDefDisplayExpressions" [EnableFilter]="SupplyRequestDetails?.ShowFilterRow" [FilterColumnName]="SupplyRequestDetails?.FilterColumnName" [FilterLabel]="SupplyRequestDetails?.FilterLabel" [Filter]="SupplyRequestDetails?.Filter" [height]="SupplyRequestDetails?.Height" [IsFilterLabelSingleLine]="SupplyRequestDetails?.IsFilterLabelSingleLine" [ShowColumnHeaders]="SupplyRequestDetails?.ColumnHeadersVisible" [ShowFilterCombo]="SupplyRequestDetails?.ShowFilterCombo" [ShowTotalNumberOfRows]="SupplyRequestDetails?.ShowTotalNumberOfRows" id="A4986" data-tid="A330901"></hvl-datagrid>
+                </div>
+            </div>
+        </hvl-group-box>
+    </div>
+</div>

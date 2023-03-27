@@ -1,0 +1,63 @@
+﻿
+<link href="/Content/DoctorPerformance/DoctorPerformance.css" rel="stylesheet" />
+
+<div class="col-sm-12 remove-padding" style="height:100%!important;width:100%!important" data-tid="A370448">
+
+    <div class="col-sm-12 remove-padding" data-tid="A370449"> 
+        <DPTermSelectComponent [(value)]="selectedTerm" (valueChange)="termValueChanged($event)" data-tid="A370450"></DPTermSelectComponent>
+    </div>
+    <div class="col-sm-12 remove-padding" style="height:49%!important;width:100%!important; " data-tid="A370451">
+        <dx-chart id="chart" [dataSource]="DailyInfo"   title="Gün Bazında Dönem Puanları" data-tid="A370452">
+            <dxi-series argumentField="ColumnName" valueField="Value" type="bar" color="#ffaa66"> </dxi-series>
+            <dxo-export [enabled]="true" data-tid="A370434"></dxo-export>
+            <dxo-legend [visible]="false" verticalAlignment="top" horizontalAlignment="center" itemTextPosition="right" data-tid="A370422">
+            </dxo-legend>
+            <dxo-tooltip [enabled]="true" location="edge" [customizeTooltip]="customizeTooltipBar" data-tid="A370435"> </dxo-tooltip>
+        </dx-chart>
+    </div>
+    <div class="col-sm-12 remove-padding" style="height:49%!important;width:100%!important" data-tid="A370459">
+        <div class="col-sm-4 remove-padding" style="height:100%!important; " data-tid="A370460">
+            <dx-pie-chart id="pie" title="Tedavi Türü" palette="bright" [dataSource]="TedaviTuruInfo" data-tid="A370469">
+                <dxo-legend horizontalAlignment="center" verticalAlignment="bottom" data-tid="A370470"></dxo-legend>
+                <dxo-export [enabled]="true" data-tid="A370471"></dxo-export>
+                <dxi-series argumentField="ColumnName" valueField="Value" data-tid="A370472">
+                    <dxo-label [visible]="true" format="fixedPoint" [customizeText]="customizeLabel" data-tid="A370473">
+                        <dxo-connector [visible]="true" [width]="0.5" data-tid="A370474"></dxo-connector>
+                    </dxo-label>
+                    <dxo-small-values-grouping mode="smallValueThreshold" [threshold]="4.5" data-tid="A370475"></dxo-small-values-grouping>
+                </dxi-series>
+                <dxo-tooltip [enabled]="true" location="edge" [customizeTooltip]="customizeTooltip2" data-tid="A370435"> </dxo-tooltip>
+            </dx-pie-chart>
+
+        </div>
+        <div class="col-sm-4 remove-padding" style="height:100%!important; " data-tid="A370468">
+            <dx-pie-chart id="pie" title="Hizmet" palette="bright" [dataSource]="ProcedureInfo" data-tid="A370469">
+                <dxo-legend horizontalAlignment="center" verticalAlignment="bottom" data-tid="A370470"></dxo-legend>
+                <dxo-export [enabled]="true" data-tid="A370471"></dxo-export>
+                <dxi-series argumentField="ColumnName" valueField="Value" data-tid="A370472">
+                    <dxo-label [visible]="true" format="fixedPoint" [customizeText]="customizeLabel" data-tid="A370473">
+                        <dxo-connector [visible]="true" [width]="0.5" data-tid="A370474"></dxo-connector>
+                    </dxo-label>
+                    <dxo-small-values-grouping mode="smallValueThreshold" [threshold]="4.5" data-tid="A370475"></dxo-small-values-grouping>
+                </dxi-series>
+                <dxo-tooltip [enabled]="true" location="edge" [customizeTooltip]="customizeTooltip2" data-tid="A370435"> </dxo-tooltip>
+            </dx-pie-chart>
+
+        </div>
+        <div class="col-sm-4 remove-padding" style="height:100%!important; " data-tid="A370476">
+            <dx-pie-chart id="pie" title="İşlem Türü" palette="bright" [dataSource]="ProcedureTypeInfo" data-tid="A370469">
+                <dxo-legend horizontalAlignment="center" verticalAlignment="bottom" data-tid="A370470"></dxo-legend>
+                <dxo-export [enabled]="true" data-tid="A370471"></dxo-export>
+                <dxi-series argumentField="ColumnName" valueField="Value" data-tid="A370472">
+                    <dxo-label [visible]="true" format="fixedPoint" [customizeText]="customizeLabel" data-tid="A370473">
+                        <dxo-connector [visible]="true" [width]="0.5" data-tid="A370474"></dxo-connector>
+                    </dxo-label>
+                    <dxo-small-values-grouping mode="smallValueThreshold" [threshold]="4.5" data-tid="A370475"></dxo-small-values-grouping>
+                </dxi-series>
+                <dxo-tooltip [enabled]="true" location="edge" [customizeTooltip]="customizeTooltip2" data-tid="A370435"> </dxo-tooltip>
+            </dx-pie-chart>
+
+        </div>
+
+    </div>
+</div>

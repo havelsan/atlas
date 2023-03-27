@@ -1,0 +1,99 @@
+﻿
+<form id="InpatientAppWorkListForm" class="form-horizontal" role="form" style="height:100%" data-tid="A362218">
+    <fieldset style="height:100%" id="A12681" data-tid="A362219">
+        <legend class="bottomOrangeBorder" id="A12682" data-tid="A362220">Yatan Hasta Randevu İş Listesi</legend>
+
+        <div class="row" style="margin-bottom: 10px;" id="A12683" data-tid="A362221">
+            <div class="col-md-12" id="A12684" data-tid="A362222">
+
+                <div class="panel-group" id="A12685" data-tid="A362223">
+                    <div class="panel panel-default" id="A12686" data-tid="A362224">
+                        <div class="panel-heading" (click)="changeAcoordionCollapse()" data-toggle="collapse" id="A12687" data-tid="A362225">
+                            <h4 class="panel-title" id="A12688" data-tid="A362226">
+                                <a i18n-title="@@M22127" id="A12689" data-tid="A362227">Sorgulama Paneli</a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse" [class.out]="isAccordionOpened==false" [class.in]="isAccordionOpened==true" data-tid="A362228">
+                            <div class="panel-body" id="A12690" data-tid="A362229">
+                                <div class="row" id="A12691" data-tid="A362230">
+                                    <div class="col-md-3" id="A12692" data-tid="A362231">
+                                        <label class="control-label" id="A12693" data-tid="A362232">Başlangıç Tarihi</label>
+                                        <dx-date-box width="100%" type="date" displayFormat="dd/MM/yyyy" [(value)]="inpatientAppWorkListFormViewModel._inpatientAppWorkListSearchCriteria.WorkListStartDate" id="A12694" data-tid="A362233"></dx-date-box>
+                                    </div>
+                                    <div class="col-md-3" id="A12695" data-tid="A362234">
+                                        <label class="control-label" id="A12696" data-tid="A362235">Bitiş Tarihi</label>
+                                        <dx-date-box width="100%" type="date" displayFormat="dd/MM/yyyy" [(value)]="inpatientAppWorkListFormViewModel._inpatientAppWorkListSearchCriteria.WorkListEndDate" id="A12697" data-tid="A362236"></dx-date-box>
+                                    </div>
+                                    <div class="col-md-3" id="A12705" data-tid="A362237">
+                                        <label class="control-label" id="A12706" data-tid="A362238">Servis</label>
+                                        <dx-tag-box [items]="inpatientAppWorkListFormViewModel.ClinicList" [(value)]="inpatientAppWorkListFormViewModel._inpatientAppWorkListSearchCriteria.ClinicName" placeholder="Servis" [searchEnabled]="true" [showSelectionControls]="true" displayExpr="Name" [multiline]="false" data-tid="A362239">
+                                        </dx-tag-box>
+                                    </div>
+                                    <div class="col-md-3" id="A12714" data-tid="A362240">
+                                        <label class="control-label" id="A12715" data-tid="A362241">Doktor</label>
+                                        <dx-tag-box [items]="inpatientAppWorkListFormViewModel.DoctorList" [(value)]="inpatientAppWorkListFormViewModel._inpatientAppWorkListSearchCriteria.Doctor" placeholder="Doktor" [searchEnabled]="true" [showSelectionControls]="true" displayExpr="Name" [multiline]="false" data-tid="A362242">
+                                        </dx-tag-box>
+                                    </div>
+                                    <div class="col-md-3" id="A12698" data-tid="A362243">
+                                        <label class="control-label" id="A12699" data-tid="A362244">Kabul No</label>
+                                        <hvl-text-box [(Text)]="inpatientAppWorkListFormViewModel._inpatientAppWorkListSearchCriteria.AdmissionNumber" id="A12700" data-tid="A362245"></hvl-text-box>
+                                    </div>
+                                    <div class="col-md-3" id="A12702" data-tid="A362246">
+                                        <label class="control-label" id="A12703" data-tid="A362247">Hasta</label>
+                                        <PatientSearchForm Width="100%" (SelectedPatientChanged)="patientChanged($event)" id="A23653" data-tid="A362248"></PatientSearchForm>
+                                    </div>
+
+                                    <div class="col-md-3" id="A12701" data-tid="A362249">
+                                        <br data-tid="A362250" />
+                                        <dx-check-box text="Randevu Tarihi Geçmiş Hastalar" [(value)]="inpatientAppWorkListFormViewModel._inpatientAppWorkListSearchCriteria.IsAppDatePast" id="A28507" data-tid="A362251"></dx-check-box>
+                                    </div>
+
+                                    <div class="col-md-3" id="A12708" data-tid="A362252">
+                                        <br data-tid="A362253" />
+                                        <dx-check-box text="Yatışa Uygun Hastalar" [(value)]="inpatientAppWorkListFormViewModel._inpatientAppWorkListSearchCriteria.IsInpatientSuitable" id="A28507" data-tid="A362254"></dx-check-box>
+                                    </div>
+                                </div>
+
+                                <dx-button type="default" icon="fa fa-bars" text="Listele" (onClick)="btnSearchClicked()" i18n-text="@@M27496" style="float:right;margin-right:16px" data-tid="A362255"></dx-button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="row" id="A12719" data-tid="A362256">
+            <div class="col-sm-12" id="A12720" data-tid="A362257">
+
+                <dx-data-grid id="inpatientAppWorkListGrid" [class.inpatientAppWorkListGridMinimize]="isAccordionOpened==true" [class.inpatientAppWorkListGridMaximize]="isAccordionOpened==false" #inpatientAppWorkListGrid [columns]="WorkListColumns" allowColumnReordering="true" allowColumnResizing="true" [dataSource]="inpatientAppWorkListFormViewModel.InpatientAppWorkList" (onRowClick)="select($event)" (onRowPrepared)="onRowPrepared($event)" [filterRow]="{visible: true}" style="padding-top: 10px;" [selection]="{mode: 'single',allowSelectAll: false, showCheckBoxesMode: 'none'}" [editing]="{mode: 'row' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" data-tid="A362258">
+
+                    <dxo-scrolling mode="virtual" id="A12721" data-tid="A362259"></dxo-scrolling>
+                </dx-data-grid>
+
+                <div class="col-sm-12" style="margin-top: 20px;font-weight: bold;" id="A12722" data-tid="A362260">
+                    <span id="A12723" data-tid="A362261">Toplam İşlem Sayısı:{{inpatientAppWorkListFormViewModel.InpatientAppWorkList.length}}</span>
+                </div>
+
+                <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A12724" data-tid="A362262">
+                </dx-load-panel>
+            </div>
+        </div>
+
+
+
+    </fieldset>
+</form>
+
+
+<dx-popup [showTitle]="true" class="reportStyle" [fullScreen]="true" title="Fizyoterapi İşlemi" [width]="1600" [(visible)]="isDynamicComponentOpened" id="A12725" data-tid="A362263">
+    <div *dxTemplate="let data of 'content'" id="A12726" data-tid="A362264">
+        <div *ngIf="isDynamicComponentOpened==true" id="A12727" data-tid="A362265">
+            <comp-compose [Info]="componentInfo" (DynamicComponentClosed)="dynamicComponentClosed($event)" (ComponentCreated)="componentCreated($event)" id="A12728" data-tid="A362266"></comp-compose>
+        </div>
+    </div>
+</dx-popup>
+
+

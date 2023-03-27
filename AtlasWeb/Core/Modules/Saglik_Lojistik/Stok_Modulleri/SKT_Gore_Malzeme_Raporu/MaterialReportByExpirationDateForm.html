@@ -1,0 +1,79 @@
+﻿<div class="col-md-12" style="height:100%;overflow-x:hidden;overflow-y:auto;padding-top: 10px;" data-tid="A337571">
+    <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" showIndicator="true" showPane="true" shading="true" [closeOnOutsideClick]="false" [message]="LoadPanelMessage" data-tid="A337572">
+    </dx-load-panel>
+    <div class="row" data-tid="A337573">
+    
+        <div class="col-sm-3" data-tid="A337574">
+            <label class="control-label" style="border:0; box-shadow:none; color:#08c" data-tid="A337575">Sorgulanacak Gün Sayısı </label>
+            <dx-number-box #numberBox [min]="0" [showSpinButtons]="true" [(value)]="DayQueryNumber" data-tid="A337576">
+            </dx-number-box>
+        </div>
+        <div class="col-sm-3" data-tid="A337577">
+            <label class="control-label" style="border:0; box-shadow:none; color:#08c" data-tid="A337578">Başlangıç Tarihi </label>
+            <dx-date-box width="100%" type="datetime" displayFormat="dd/MM/yyyy" [(value)]="StartDate" [readOnly]="false" data-tid="A337579">
+            </dx-date-box>
+        </div>
+        <div class="col-sm-3" data-tid="A337580">
+            <label class="control-label" style="border:0; box-shadow:none; color:#08c" data-tid="A337581">Bitiş Tarihi</label>
+            <dx-date-box width="100%" type="datetime" displayFormat="dd/MM/yyyy" [(value)]="EndDate" [readOnly]="false" data-tid="A337582">
+            </dx-date-box>
+        </div>
+        <div class="col-sm-3" data-tid="A337583">
+            <dx-button type="btn btn-default" text="Çoklu Malzeme Seçimi" (onClick)="OpenMaterialMultiSelectComponent()" data-tid="A337584"></dx-button>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px;" data-tid="A337585">
+        <!-- <div class="col-sm-6">
+            <hvl-text-box #Validation [MultiLine]="true" [ReadOnly]="true" [Text]="selectedMaterialsText" [Visible]="this.visibility"></hvl-text-box>
+        </div>
+        <div class="col-sm-2" style="text-align:right; padding-top: 13px;" [hidden]="!this.visibility">
+            <dx-button text="Seçilen Malzemeleri Temizle" rtlEnabled="true" type="danger" icon="refresh" style="margin-top: -20px;" (onClick)="clearSelectedMaterials()"></dx-button>
+        </div> -->
+        <div class="col-sm-1" data-tid="A337586">
+            <label id="A1461" data-tid="A337587">Stokta Olanları Getir</label>
+            <dx-check-box [(value)]="OnlyInStore" data-tid="A337588"></dx-check-box>
+        </div>
+        <div class="col-sm-1 pull-right" data-tid="A337589">
+            <dx-button type="btn btn-info" icon="fa fa-bars" class="pull-right" (onClick)="GetMaterialListWithFilter()" text="Sorgula" data-tid="A337590"></dx-button>
+        </div>
+    </div>
+    <div class="row" data-tid="A337591">
+        <div class="col-sm-12" style="margin-top:15px;" data-tid="A337592">
+            <div id="grid" data-tid="A337593">
+                <dx-data-grid #grid id="grid-container" [dataSource]="MaterialList" (onRowPrepared)="rowPrepared($event)" (onRowClick)="showWorkListDetail($event)" [columns]="MaterialColumns" [paging]="{pageSize:20}" [selection]="{mode: 'single',allowSelectAll: false}" [filterRow]="{visible: true}" data-tid="A337594">
+                    <dxo-export [enabled]="true" fileName="Son Kullanma Raporuna Göre Malzeme Detayları Listesi" [allowExportSelectedData]="false" data-tid="A337595"></dxo-export>
+                </dx-data-grid>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- #region Malzeme Hareket Detayları -->
+    <dx-accordion #materialActionDetayAccordion [items]="[{title:&#39;Malzeme Hareket Detayları&#39;}]" collapsible="true" style="padding-bottom: 11px;" data-tid="A337596">
+        <div *dxTemplate="let a of 'item'" style="padding: 0px;" id="A32139" data-tid="A337597">
+            <div class="panel-group" id="A32140" data-tid="A337598">
+                <div class="panel panel-success" style="border-color:#f8f8f8" id="A32141" data-tid="A337599">
+                    <div style="float:left; width:100%; " id="A32142" data-tid="A337600">
+                        <dx-data-grid [columns]="WorkListColumns" [dataSource]="stockactionlist" [groupPanel]="{visible: true}" [filterRow]="{visible: true}" [paging]="{pageSize:10}" [selection]="{mode: 'single',allowSelectAll: false}" [editing]="{mode: 'form' ,allowUpdating:false , allowAdding:false, allowDeleting:false}" data-tid="A337601">
+                            <div *dxTemplate="let row of 'buttonCellTemplate'" style="padding-bottom: 1px;" id="A32144" data-tid="A337602">
+                                <button type="button" class="btn btn-default glyphicon glyphicon-list" (click)="selectAction(row)" data-toggle="tooltip" data-placement="top" title="İşlem Detayı" data-tid="A337603"></button>
+                            </div>
+                            <dxo-export [enabled]="true" fileName="Malzeme Hareket Detayları" [allowExportSelectedData]="false" data-tid="A337604"></dxo-export>
+                        </dx-data-grid>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </dx-accordion>
+    <!-- #endregion -->
+
+    <dx-popup width="1400px" height="800px" style="position: inherit;" [(visible)]="showMaterialMultiSelectForm" [closeOnOutsideClick]="false" title="Malzeme Listesi" i18n-title="@@M20728" data-tid="A337605">
+<div class="margin-bottom-10" data-tid="A337606">
+  <div *dxTemplate="let data of 'content'" data-tid="A337607">
+      <MaterialMultiSelectForm (SelectedMaterialsChanged)="MaterialsSelected($event)" (SelectedMaterialsClear)="MaterialsCleared()" [FilterByStockCard]="true" [ShowMuadilMedicineFilter]="true" FilterByStockInheld="false" [StoreObjectId]="storeListFiltred" [CanZeroMaterialSelect]="true" data-tid="A337608">
+      </MaterialMultiSelectForm>
+  </div>
+</div>
+</dx-popup>
+
+</div>

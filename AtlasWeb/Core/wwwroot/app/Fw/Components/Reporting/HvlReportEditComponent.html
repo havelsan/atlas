@@ -1,0 +1,123 @@
+﻿<h1 style="color:#08c;height: 60px;" data-tid="A370895"><i class="fa fa-file-text-o" style="font-size:40px" data-tid="A370896"></i> Dinamik Raporlama Aracı
+</h1>
+<div style="padding: 20px;" data-tid="A370897">
+    <div class="row" style="height: unset !important;" data-tid="A370898">
+        <div class="col-xs-8" data-tid="A370899">
+            <div class="row item" data-tid="A370900">
+                <div class="col-xs-3" data-tid="A370901">Rapor</div>
+                <div class="col-xs-7" data-tid="A370902">
+                    <dx-select-box displayExpr="LongName" [dataSource]="reports" (onValueChanged)="reportChanged($event)" data-tid="A370903">
+                    </dx-select-box>
+                </div>
+                <div class="col-xs-2" data-tid="A370904">
+                    <div *ngIf="selectedItem != null" data-tid="A370905">
+                        <dx-button *ngIf="selectedItem.Enabled == false" type="success" text="Etkinleştir" (onClick)="enableDisableButtonClicked()" style="width: 100%" data-tid="A370906">
+                        </dx-button>
+                        <dx-button *ngIf="selectedItem.Enabled == true" type="danger" text="Devre Dışı Bırak" (onClick)="enableDisableButtonClicked()" style="width: 100%" data-tid="A370907">
+                        </dx-button>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="row item" *ngIf="revisions.length > 0" data-tid="A370908">
+                <div class="col-xs-3" data-tid="A370909">Revizyon</div>
+                <div class="col-xs-4" data-tid="A370910">
+                    <dx-select-box displayExpr="ReportComment" [dataSource]="revisions" (onValueChanged)="revisionChanged($event)" data-tid="A370911">
+                    </dx-select-box>
+
+                </div>
+                <div class="col-xs-5" data-tid="A370912">
+
+                    <div class="row item" data-tid="A370913">
+                        <div class="col-xs-4" data-tid="A370914">
+                            <dx-button class="height26" type="success" (onClick)="setAsMainRevision()" style="width:100%" data-tid="A370915">
+                                <i class="fa fa-home" aria-hidden="true" data-tid="A370916"></i>&nbsp;Ana Revizyon
+                            </dx-button>
+                        </div>
+                        <div class="col-xs-4" data-tid="A370917">
+                            <dx-button class="height26" type="default" (onClick)="downloadRevision()" style="width:100%" data-tid="A370918">
+                                <i class="fa fa-download" aria-hidden="true" data-tid="A370919"></i>&nbsp;İndir
+                            </dx-button>
+                        </div>
+                        <div class="col-xs-4" id="reportUploader" data-tid="A370920">
+
+                            <dx-file-uploader style="width:100%;margin-top:-4px;" [uploadUrl]="uploadUrl" [multiple]="false" accept="json" selectButtonText="Yukle" labelText [uploadHeaders]="uploadHeaders" uploadMode="instantly" (onUploaded)="onUploaded($event)" data-tid="A370921">
+
+                            </dx-file-uploader>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="row" *ngIf="showCreateReport" data-tid="A370922">
+
+                <div class="row item" data-tid="A370923">
+                    <div class="col-xs-3" data-tid="A370924">Rapor Adı</div>
+                    <div class="col-xs-9" data-tid="A370925">
+                        <dx-text-box #txtReportName data-tid="A370926"></dx-text-box>
+                    </div>
+                </div>
+
+
+                <div class="row item" data-tid="A370927">
+                    <div class="col-xs-3" data-tid="A370928">Rapor Kodu</div>
+                    <div class="col-xs-9" data-tid="A370929">
+                        <dx-text-box #txtReportCode data-tid="A370930"></dx-text-box>
+                    </div>
+                </div>
+
+
+                <div class="row item" data-tid="A370931">
+                    <div class="col-xs-3" data-tid="A370932">Class Adı (Veri Kaynağı)</div>
+                    <div class="col-xs-9" data-tid="A370933">
+                        <dx-select-box #txtClassName [acceptCustomValue]="true" [dataSource]="dataSourceClasses" data-tid="A370934">
+                        </dx-select-box>
+                    </div>
+                </div>
+
+
+                <div class="row item" data-tid="A370935">
+                    <div class="col-xs-3" data-tid="A370936"></div>
+                    <div class="col-xs-9" data-tid="A370937">
+                        <dx-button type="success" text="Yeni Rapor" (onClick)="saveReport()" data-tid="A370938">
+                        </dx-button>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row item" *ngIf="showDesigner == true" data-tid="A370939">
+                <div class="col-xs-3" data-tid="A370940">Rapor Açıklaması</div>
+                <div class="col-xs-9" data-tid="A370941">
+                    <dx-text-box #txtReportComment data-tid="A370942"></dx-text-box>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div *ngIf="showDesigner == true" data-tid="A370943">
+        <hvl-dynamic-report [Parameters]="DynamicReportParameters" (BeforeSave)="beforeSave($event)" (OnSave)="onSave($event)" data-tid="A370944"></hvl-dynamic-report>
+    </div>
+    <style data-tid="A370945">
+        .height26 {
+            height: 26px;
+        }
+
+        .row div {
+            padding-left: 5px;
+        }
+
+        .item {
+            height: 33px;
+        }
+
+        .item .col-xs-3 {
+            color: #08c;
+            font-weight: 600;
+        }
+    </style></div>

@@ -1,0 +1,105 @@
+<div class="row" style="background-color: #f0f8ff94;">
+    <div class="col-sm-12" data-tid="A328106">
+        <div class="col-sm-5 remove-padding" data-tid="A328110">
+            <label class="col-sm-12" data-tid="A328107">Hizmet Adı</label>
+            <div class="col-sm-12" data-tid="A328108">
+                <dx-text-box [value]="ProcedureDefInfo?.Name" [readOnly]="true" data-tid="A328109">
+
+                </dx-text-box>
+            </div>
+        </div>
+        <div class="col-sm-3 remove-padding" data-tid="A328110">
+            <label class="col-sm-12" data-tid="A328111">Hizmet Kodu</label>
+            <div class="col-sm-12" data-tid="A328112">
+                <dx-text-box [value]="ProcedureDefInfo?.Code" [readOnly]="true" data-tid="A328113">
+
+                </dx-text-box>
+            </div>
+        </div>
+        <div class="col-sm-3 remove-padding" data-tid="A328110">
+            <label class="col-sm-12" data-tid="A328111">SUT Kodu</label>
+            <div class="col-sm-12" data-tid="A328112">
+                <dx-text-box [value]="ProcedureDefInfo?.SUTCode" [readOnly]="true" data-tid="A328113">
+                </dx-text-box>
+            </div>
+        </div>
+    </div>
+    <br />
+
+</div>
+
+<br />
+<div class="row">
+
+    <div class="col-sm-12" data-tid="A328114">
+        <div class="col-sm-5" id="A26700" data-tid="A363546">
+            <label class="control-label" id="A26701" data-tid="A363547">Deposu</label>
+            <dx-select-box [items]="stores" displayExpr="Name" valueExpr="ObjectID" [searchEnabled]="true"
+                [acceptCustomValue]="true" [(value)]="selectedStore" (onValueChanged)="selectedStoreChange()">
+            </dx-select-box>
+        </div>
+
+        <div class="col-sm-6" id="A26703" data-tid="A363549">
+            <label class="control-label" id="A26704" data-tid="A363550">Sarf Malzeme</label>
+
+            <dx-drop-down-box #materialDrop [(value)]="selectedMaterialItem.Name" displayExpr="Name"
+                valueExpr="ObjectID" [showClearButton]="true" [dataSource] (onOpened)="openMaterialDropDown($event)"
+                (onValueChanged)="onClearMaterial($event)" data-tid="A363551">
+                <div *dxTemplate="let data of 'content'" data-tid="A363552">
+                    <dx-data-grid [showColumnLines]="true" [showRowLines]="true" [showBorders]="true"
+                        [rowAlternationEnabled]="true" [dataSource]="materialDataSource"
+                        (onRowClick)="selectMaterial($event)" data-tid="A363553">
+                        <dxo-search-panel [visible]="true" data-tid="A363554"></dxo-search-panel>
+                        <dxo-filter-row [visible]="true" data-tid="A363555"></dxo-filter-row>
+                        <dxo-paging [pageSize]="7" data-tid="A363556"></dxo-paging>
+                        <dxo-selection mode="single" data-tid="A363557"></dxo-selection>
+                        <dxi-column caption="Barkod" dataField="Barcode" width="100" data-tid="A363558">
+                        </dxi-column>
+                        <dxi-column caption="Taşınır Kodu" dataField="NATOStockNO" width="100" data-tid="A363559">
+                        </dxi-column>
+                        <dxi-column caption="Malzeme" dataField="Name" cssClass="pointer-column" data-tid="A363560">
+                        </dxi-column>
+                    </dx-data-grid>
+                </div>
+            </dx-drop-down-box>
+        </div>
+
+        <div class="col-sm-1">
+            <label class="control-label" id="A26704" data-tid="A363550">Miktar</label>
+
+            <dx-number-box [(value)]="materialAmount" max="9999999" id="A2030" data-tid="A324846">
+            </dx-number-box>
+        </div>
+    </div>
+
+</div>
+
+<br />
+<div class="row" data-tid="A325676">
+    <div class="col-sm-9">
+
+    </div>
+    <div class="col-sm-3">
+        <div class="col-sm-4" data-tid="A325677">
+            <dx-button type="success" style="width: 100%; margin: 0px 5px 0px 0px" text="Yeni"
+                (onClick)="createNewMatchData()" data-tid="A325678"></dx-button>
+        </div>
+        <div class="col-sm-4" data-tid="A325679">
+            <dx-button type="danger" style="width: 100%; margin: 0px 5px 0px 0px" text="Sil"
+                (onClick)="deleteMatchData($event)" data-tid="A325680"></dx-button>
+        </div>
+        <div class="col-sm-4" data-tid="A325681">
+            <dx-button type="success" style="width: 100%; margin: 0px 5px 0px 0px" text="Kaydet"
+                (onClick)="AddOrUpdateMatching()" data-tid="A325682"></dx-button>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <dx-data-grid [dataSource]="matchingViewModel.matches" [columns]="MatchingGridColumns"
+            (onRowClick)="onMatchingGridRowClick($event)" data-tid="A325674">
+        </dx-data-grid>
+    </div>
+</div>

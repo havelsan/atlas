@@ -1,0 +1,84 @@
+﻿<ng-container *ngIf="DisplayItems.IsLoggedIn == false" id="A30531" data-tid="A370811">
+    <hvl-login-view *ngIf="DisplayItems.ShowAsAnonymous==false" id="A30532" data-tid="A370812"></hvl-login-view>
+    <div *ngIf="DisplayItems.ShowAsAnonymous==true" class="fullfixed" data-tid="A370813">
+        <router-outlet data-tid="A370814"></router-outlet>
+    </div>
+</ng-container>
+<!-- BEGIN  NAVBAR -->
+<ng-container *ngIf="DisplayItems.IsLoggedIn == true" data-tid="A370815">
+    <m-header data-tid="A370816"></m-header>
+</ng-container>
+<!-- END  NAVBAR -->
+<!-- begin:: Page -->
+<ng-container *ngIf="DisplayItems.IsLoggedIn == true" data-tid="A370817">
+    <!-- begin::Body -->
+    <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body" [ngClass]="pageBodyClass$ | async" data-tid="A370818">
+        <!-- BEGIN:: Aside Left -->
+        <button class="m-aside-left-close" id="m_aside_left_close_btn" [ngClass]="DisplayItems.asideLeftCloseClass | mJoin" data-tid="A370819">
+            <i class="la la-close" data-tid="A370820"></i>
+        </button>
+        <ng-container *ngIf="DisplayItems.asideLeftDisplay" data-tid="A370821">
+            <m-aside-left data-tid="A370822"></m-aside-left>
+        </ng-container>
+        <!-- END:: Aside Left -->
+
+        <div #mContentWrapper class="m-grid__item m-grid__item--fluid m-wrapper" data-tid="A370823">
+            <div class="m-content" #mContent data-tid="A370824">
+                <dx-toast id="A30599" data-tid="A370825"></dx-toast>
+                <div id="pageContentHolder" data-tid="A370826"></div>
+                <router-outlet id="A30600" data-tid="A370827"></router-outlet>
+            </div>
+        </div>
+        <ng-container *ngIf="DisplayItems.asideRightDisplay" data-tid="A370828">
+            <m-aside-right data-tid="A370829"></m-aside-right>
+        </ng-container>
+    </div>
+    <!-- end:: Body -->
+    <!--<m-footer></m-footer>-->
+    <m-tooltips [ngDraggable]="draggable" data-tid="A370830"></m-tooltips>
+    <m-quick-sidebar data-tid="A370831"></m-quick-sidebar>
+
+</ng-container>
+<!-- end:: Page -->
+<!-- BEGIN modal -->
+<div class="clearfix" data-tid="A370832"> </div>
+<modal-placeholder id="A30540" data-tid="A370833"></modal-placeholder>
+<!-- END modal -->
+
+<dx-popup [visible]="DisplayItems.isBrandDialogVisible" id="A30601" data-tid="A370834">
+    <div *dxTemplate="let data of 'content'" id="A30602" data-tid="A370835">
+        <div style="width: 100%; text-align: center" id="A30603" data-tid="A370836">
+            <img src="/Content/Atlas.png" id="A30604" data-tid="A370837" />
+            <p id="A30605" data-tid="A370838">
+                <strong id="A30606" data-tid="A370839">
+                    ATLAS Care XXXXXX Bilgi Yönetim Sistemi
+                </strong>
+            </p>
+            <p id="A30607" data-tid="A370840">
+                <strong id="A30608" data-tid="A370841">
+                    ATLAS A.Ş.
+                </strong>
+            </p>
+        </div>
+    </div>
+</dx-popup>
+
+<dx-popup [hidden]="!DisplayItems.isChangePassword" closeOnOutsideClick="true" (onHidden)="ChangePasswordClosing()" id="A30609" data-tid="A370842">
+    <div *dxTemplate="let data of 'content'" id="A30610" data-tid="A370843">
+        <hvl-changepassword-view id="A30611" (PasswordChanged)="ChangePasswordClosing()" hideLoginTab="false" data-tid="A370844">
+        </hvl-changepassword-view>
+    </div>
+</dx-popup>
+<dx-popup [visible]="DisplayItems.IsSystemMessage" [width]="700" height="275" title="Sistem Mesajı Duyuru" closeOnOutsideClick="true" (onHidden)="SystemMessageClosing()" id="A30612" data-tid="A370845">
+    <div *dxTemplate="let data of 'content'" id="A30613" data-tid="A370846">
+        <hvl-richtextbox [value]="SystemMessage" Height="150px" ReadOnly="true" id="A30614" data-tid="A370847">
+        </hvl-richtextbox>
+        <div class="row" style="text-align:center" id="A30615" data-tid="A370848">
+            <br id="A30616" data-tid="A370849" />
+            <div class="col-sm-12" id="A30617" data-tid="A370850">
+                <dx-button type="success" text="Tamam" style="width:60px" (onClick)="CloseSystemMessage()" id="A30618" data-tid="A370851">
+                </dx-button>
+            </div>
+        </div>
+    </div>
+</dx-popup>

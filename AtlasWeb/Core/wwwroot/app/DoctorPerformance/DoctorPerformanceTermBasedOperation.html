@@ -1,0 +1,105 @@
+﻿
+<link href="/Content/DoctorPerformance/DoctorPerformance.css" rel="stylesheet" />
+
+<div class="col-sm-12 remove-padding" style="height:100%!important;width:100%!important" data-tid="A370565">
+    <div class="col-sm-3 remove-padding" style="height:100%!important; " data-tid="A370566">
+        <dx-tab-panel style="height:100%!important;" [selectedIndex]="0" elementOffsetTopTrim="-10" [animationEnabled]="true" [deferRendering]="false" data-tid="A370567">
+            <dxi-item title="Seçim" data-tid="A370568">
+                <dx-button type="default" style="  margin-top: 5px" (onClick)="onClickLoadAllDetailsOfaTerm()" hint="Seçili dönemin tüm hesaplanmış verisini getirir." icon="fa fa-arrow-right" data-tid="A370569"></dx-button>
+                <b data-tid="A370570"><u data-tid="A370571">Dönemler:</u></b>
+                <DPTermSelectComponent [(value)]="selectedTerm" (valueChange)="termValueChanged($event)" data-tid="A370572"></DPTermSelectComponent>
+                
+                <b data-tid="A370573"><u data-tid="A370574">Branş Listesi:</u></b>
+                <dx-data-grid [columnAutoWidth]="true" [columns]="BransColumns" [dataSource]="doctorPerformanceTermBasedOperationViewModel.BransList" [filterRow]="{visible: true}" style="height:43%!important;width:100%!important" [selection]="{mode: 'single'}" (onRowClick)="onRowClickBransList($event)" data-tid="A370575">
+                    <div *dxTemplate="let row of 'loadDetailCellTemplate'" data-tid="A370576">
+                        <dx-button type="default" style=" margin-top: -7px" (onClick)="onClickLoadAllDetailsOfaBrans(row)" hint="Seçili branşın dönemdeki tüm hesaplanmış verisini getirir." icon="fa fa-arrow-right" data-tid="A370577"></dx-button>
+                    </div>
+                </dx-data-grid>
+                <b data-tid="A370578"><u data-tid="A370579">Doktor Listesi:</u></b>
+                <dx-data-grid [columnAutoWidth]="true" [columns]="DoctorColumns" [dataSource]="doctorPerformanceTermBasedOperationViewModel.DoctorList" [filterRow]="{visible: true}" style="height:43%!important;width:100%!important" [selection]="{mode: 'single'}" (onRowClick)="onRowClickDoctorList($event)" data-tid="A370580">
+                </dx-data-grid>
+                <dx-button type="default" style="float: right;" icon="fa fa-bars" text="Listele" (onClick)="btnGetDoctorPerformanceDetailsClick()" data-tid="A370581"></dx-button>
+            </dxi-item>
+            <dxi-item title="Özet" data-tid="A370582">
+                <dx-data-grid [columnAutoWidth]="true" [columns]="SummaryColumns" (onSelectionChanged)="onSelectionChangedSummaryList($event)" (onFileSaving)="onFileSavingSummaryList($event)" [dataSource]="doctorPerformanceTermBasedOperationViewModel.SummaryList" style="height:100%!important;width:100%!important" [selection]="{mode: 'single'}" data-tid="A370583">
+                    <dxo-summary id="A31047" data-tid="A370584">
+                        <dxi-total-item column="TotalCount" summaryType="sum" [customizeText]="gridRowCount" data-tid="A370585">
+                        </dxi-total-item>
+                        <dxi-total-item column="TotalPoint" summaryType="sum" [customizeText]="customizePoint" data-tid="A370586">
+                        </dxi-total-item>
+                    </dxo-summary>
+                    <dxo-export [enabled]="true" [fileName]="summaryListExportFileName" [allowExportSelectedData]="true" data-tid="A370587"></dxo-export>
+                </dx-data-grid>
+            </dxi-item>
+            <dxi-item title="Açıklama" data-tid="A370588">
+                <dx-data-grid [columnAutoWidth]="true" [columns]="RuleColumns" (onSelectionChanged)="onSelectionChangedRuleList($event)" [dataSource]="doctorPerformanceTermBasedOperationViewModel.RuleList" style="height:100%!important;width:100%!important" [selection]="{mode: 'single'}" data-tid="A370589">
+                    <dxo-summary id="A31047" data-tid="A370590">
+                        <dxi-total-item column="TotalCount" summaryType="sum" [customizeText]="gridRowCount" id="A31829" data-tid="A370591">
+                        </dxi-total-item>
+                    </dxo-summary>
+                </dx-data-grid>
+            </dxi-item>
+        </dx-tab-panel>
+    </div>
+    <div class="col-sm-9" style="height:100%!important; " data-tid="A370592">
+        <dx-tab-panel style="height:100%!important;" [selectedIndex]="0" elementOffsetTopTrim="-10" [animationEnabled]="true" [deferRendering]="false" data-tid="A370593">
+            <dxi-item title="Sorgulama" data-tid="A370594">
+                <b data-tid="A370595"><u data-tid="A370596">Hizmet Detayları:</u></b>
+                <dx-data-grid #procedureDetail [columnAutoWidth]="true" [columns]="DetailColumns" 
+                              (onFileSaving)="onFileSavingDetailList($event)" [dataSource]="doctorPerformanceTermBasedOperationViewModel.DetailList" 
+                              [filterRow]="{visible: true}" (onRowUpdating)="onRowUpdatingDetailList($event)" 
+                              style="height:98%!important;width:100%!important" [selection]="{mode: 'multiple',showCheckBoxesMode:'none'}" 
+                              [masterDetail]="{ enabled: true, template: 'detail' }" data-tid="A370597"
+                              (onToolbarPreparing)="onToolbarPreparingTransactionList($event)"  [(selectedRowKeys)]="selectedTransactions"  >
+                    <dxo-paging [pageSize]="50" data-tid="A370598"></dxo-paging>
+                    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[50,100,200]" data-tid="A370599"></dxo-pager>
+                    <div *dxTemplate="let dpdetail of 'detail'" data-tid="A370600">
+                        <div data-tid="A370601">
+                            <p data-tid="A370602">{{dpdetail.data.RuleDescription}}</p>
+                        </div>
+                    </div>
+                    <dxo-editing mode="cell" [allowUpdating]="true" id="A31046" data-tid="A370603">
+                    </dxo-editing>
+                    <dxo-summary id="A31047" data-tid="A370604">
+                        <dxi-total-item column="Code" summaryType="count" [customizeText]="gridRowCount" data-tid="A370605">
+                        </dxi-total-item>
+                        <dxi-total-item column="CalcPoint" summaryType="sum" [customizeText]="customizePoint" data-tid="A370606">
+                        </dxi-total-item>
+                    </dxo-summary>
+                    <dxo-export [enabled]="true" [fileName]="detailListExportFileName" [allowExportSelectedData]="true" data-tid="A370607"></dxo-export>
+                </dx-data-grid>
+            </dxi-item>
+            <dxi-item title="Geçmiş" data-tid="A370608">
+                <div class="col-sm-3 remove-padding" style="height:60%!important;" data-tid="A370609">
+                    <b data-tid="A370610"><u data-tid="A370611">Sorgu Listesi:</u></b>
+                    <dx-data-grid #logListGrid [columnAutoWidth]="true" [columns]="LogColumns" [dataSource]="doctorPerformanceTermBasedOperationViewModel.LogList" style="height:95%!important;width:100%!important" [selection]="{mode: 'multiple',allowSelectAll: 'false',showCheckBoxesMode:'none'}" (onSelectionChanged)="onSelectionChangedLogList($event)" [(selectedRowKeys)]="selectedLogs" data-tid="A370612">
+                        <div *dxTemplate="let row of 'loadDetailCellTemplate'" data-tid="A370613">
+                                <dx-button type="default" style=" margin-top: -7px" (onClick)="onClickLoadLogDetails(row)" icon="fa fa-arrow-right" data-tid="A370614"></dx-button>
+                        </div>
+                    </dx-data-grid>
+                    <dx-button type="default" style="float: right;" icon="fa fa-bars" text="Farkı Hesapla" (onClick)="onClickCalculateDetailLogDiff()" data-tid="A370615"></dx-button><br data-tid="A370616" />
+                </div>
+                <div class="col-sm-9 remove-padding" style="height:60%!important;" data-tid="A370617">
+                    <b data-tid="A370618"><u data-tid="A370619">Detaylar</u></b><br data-tid="A370620" />
+                    <dx-data-grid [columnAutoWidth]="true" [columns]="DetailColumns" [dataSource]="doctorPerformanceTermBasedOperationViewModel.LogDetailList" [filterRow]="{visible: true}" style="height:100%!important;width:100%!important" [selection]="{mode: 'single',showCheckBoxesMode:'none'}" [masterDetail]="{ enabled: true, template: 'detail' }" data-tid="A370621">
+                        <dxo-paging [pageSize]="50" data-tid="A370622"></dxo-paging>
+                        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[50,100,200]" data-tid="A370623"></dxo-pager>
+                        <div *dxTemplate="let dpdetail of 'detail'" data-tid="A370624">
+                            <div data-tid="A370625">
+                                <p data-tid="A370626">{{dpdetail.data.RuleDescription}}</p>
+                            </div>
+                        </div>
+                    </dx-data-grid>
+                </div>
+                <div class="col-sm-12 remove-padding" style="height:40%!important;" data-tid="A370627">
+                    <b data-tid="A370628"><u data-tid="A370629">Fark:</u></b><br data-tid="A370630" />
+                    <dx-data-grid [columnAutoWidth]="true" [columns]="LogDiffColumns" [filterRow]="{visible: true}" style="height:100%!important;width:100%!important" [selection]="{mode: 'single'}" [dataSource]="doctorPerformanceTermBasedOperationViewModel.LogDiffList" data-tid="A370631">
+                    </dx-data-grid>
+                </div>
+            </dxi-item>
+        </dx-tab-panel>
+    </div>
+
+    <dx-load-panel class="highz" shadingColor="rgba(0,0,0,0.4)" [(visible)]="showLoadPanel" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" [(message)]="LoadPanelMessage" id="A31651" data-tid="A370632">
+    </dx-load-panel>
+</div>
